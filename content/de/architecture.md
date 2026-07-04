@@ -11,35 +11,7 @@ Hinata besteht aus zwei deploybaren Einheiten — einem Flutter-Client und einem
 
 Auf einen Blick, vom Client bis zum Speicher:
 
-```text
-┌──────────────────────────────────────────────────────────────┐
-│  Client — hinata-app (Flutter)                                │
-│  Android · iOS · Web · macOS · eine Codebasis                 │
-│                                                                │
-│   UI (bloc/cubit, go_router)                                  │
-│        │                                                       │
-│   ApiClient (dio)                                             │
-│    · hängt Bearer-Access-Token an                            │
-│    · sendet Accept-Language (en / de)                        │
-│    · erneuert automatisch bei 401, wiederholt einmal         │
-└───────────────┬────────────────────────────────┬─────────────┘
-                │ HTTPS  REST /api/v1             │ SSE (live)
-                ▼                                 ▼
-┌──────────────────────────────────────────────────────────────┐
-│  Server — hinata-server (Spring Boot 4, Java 21)             │
-│                                                                │
-│   Controller → Services → Repositories                        │
-│   JWT-Auth · Rate-Limiting · lokalisierte Fehler             │
-│   Laufzeit-Einstellungen aus MongoDB (überschreiben env)     │
-└───┬────────────────┬───────────────────┬──────────────┬───────┘
-    │                │                   │              │
-    ▼                ▼                   ▼              ▼
-┌────────┐    ┌────────────┐      ┌────────────┐  ┌──────────┐
-│MongoDB │    │  S3/MinIO  │      │    SMTP    │  │  Hinata  │
-│Replica │    │Attachments │      │  ausgeh.   │  │ Connect  │
-│  Set   │    │ presigned  │      │   E-Mail   │  │ Gateway  │
-└────────┘    └────────────┘      └────────────┘  └──────────┘
-```
+<div class="arch" role="img" aria-label="Architektur: Die Flutter-App spricht über REST und SSE mit dem Spring-Boot-Server; der Server wird von MongoDB, S3/MinIO, SMTP und dem Hinata Connect Gateway gestützt."><div class="arch-node glass"><div class="arch-node-top"><span class="arch-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg></span><span class="arch-txt"><strong>Client — hinata-app</strong><em>Flutter · eine Codebasis</em></span><span class="arch-tag">Android · iOS · Web · macOS</span></div><div class="arch-sub"><span class="arch-pill">UI · bloc/cubit · go_router</span><span class="arch-pill">ApiClient · dio · Bearer-Token · Accept-Language · Auto-Refresh</span></div></div><div class="arch-link"><span class="arch-vline"></span><span class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span><span class="arch-link-labels"><span>HTTPS · REST <code>/api/v1</code></span><span>SSE · Live-Updates</span></span></div><div class="arch-node glass"><div class="arch-node-top"><span class="arch-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2"/><rect width="20" height="8" x="2" y="14" rx="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg></span><span class="arch-txt"><strong>Server — hinata-server</strong><em>Spring Boot 4 · Java 21</em></span></div><div class="arch-sub"><span class="arch-pill">Controller → Services → Repositories</span><span class="arch-pill">JWT-Auth · Rate-Limiting · lokalisierte Fehler</span><span class="arch-pill">Laufzeit-Einstellungen aus MongoDB (überschreiben env)</span></div></div><div class="arch-link"><span class="arch-vline"></span><span class="arch-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div><div class="arch-stores"><div class="arch-store glass"><span class="arch-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg></span><strong>MongoDB</strong><em>Replica Set · X.509</em></div><div class="arch-store glass"><span class="arch-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></span><strong>S3 / MinIO</strong><em>Anhänge · presigned</em></div><div class="arch-store glass"><span class="arch-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span><strong>SMTP</strong><em>Ausgehende E-Mail</em></div><div class="arch-store glass"><span class="arch-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg></span><strong>Connect</strong><em>Push · Universal Links</em></div></div></div>
 
 - **App (Flutter)** — eine einzige Codebasis für Android, iOS, Web und macOS. State wird mit bloc/cubit verwaltet, Routing mit go_router, Lokalisierung mit i18next (Englisch + Deutsch) und Networking über **dio** innerhalb eines `ApiClient`. Diagramme werden mit fl_chart gezeichnet.
 - **Server (Spring Boot 4, Java 21)** — stellt die REST-API unter `/api/v1` bereit, hält die gesamte Geschäftslogik und Autorisierung und streamt Live-Updates.

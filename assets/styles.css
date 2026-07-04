@@ -65,7 +65,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: calc(var(--topbar-h) + 20px); }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--topbar-h) + 20px); overflow-x: clip; }
 
 body {
   margin: 0;
@@ -765,4 +765,115 @@ a { color: inherit; text-decoration: none; }
   .page-nav { grid-template-columns: 1fr; }
   .hero { padding: 48px 0 36px; }
   .lang-switch span { display: inline; }
+}
+
+/* ============================================================================
+   Architecture diagram (Liquid-Glass, theme-aware, responsive)
+   ============================================================================ */
+.arch { display: flex; flex-direction: column; align-items: stretch; gap: 4px; margin: 1.6em 0; }
+.arch-node {
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  position: relative;
+  overflow: hidden;
+}
+.arch-node::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  opacity: .8;
+}
+.arch-node-top { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.arch-node-top > .arch-txt { display: flex; flex-direction: column; line-height: 1.25; }
+.arch-node-top strong { font-size: 1.02rem; font-weight: 700; letter-spacing: -0.01em; }
+.arch-node-top em { font-style: normal; font-size: 0.82rem; color: var(--ink-faint); }
+.arch-tag {
+  margin-left: auto; font-size: 0.76rem; font-weight: 600; color: var(--amber);
+  background: rgba(217,160,50,.13); border: 1px solid rgba(217,160,50,.28);
+  padding: 5px 12px; border-radius: 999px; white-space: nowrap;
+}
+.arch-ico {
+  flex-shrink: 0; width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center;
+  color: #1b1830; background: linear-gradient(135deg, var(--amber-soft), var(--amber));
+  box-shadow: 0 5px 14px -5px rgba(217,160,50,.65);
+}
+.arch-ico svg { width: 22px; height: 22px; }
+.arch-sub { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.arch-pill {
+  font-size: 0.8rem; color: var(--ink-soft);
+  background: rgba(127,122,153,.1); border: 1px solid var(--line-strong);
+  padding: 6px 12px; border-radius: 9px;
+}
+.arch-pill code { background: transparent; border: 0; color: var(--amber); padding: 0; font-size: .95em; }
+
+.arch-link { display: flex; flex-direction: column; align-items: center; gap: 7px; padding: 6px 0; }
+.arch-vline { width: 2px; height: 18px; border-radius: 2px; background: linear-gradient(var(--amber), rgba(217,160,50,.15)); }
+.arch-arrow { color: var(--amber); display: grid; place-items: center; line-height: 0; }
+.arch-arrow svg { width: 22px; height: 22px; }
+.arch-link-labels { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.arch-link-labels span {
+  font-size: 0.78rem; color: var(--ink-soft); font-weight: 500;
+  background: var(--card); border: 1px solid var(--line-strong);
+  padding: 4px 11px; border-radius: 999px;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.arch-link-labels code { background: transparent; border: 0; color: var(--amber); padding: 0 0 0 2px; }
+
+.arch-stores { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.arch-store {
+  border-radius: var(--radius-sm); padding: 16px 12px; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  transition: transform .16s, border-color .16s;
+}
+.arch-store:hover { transform: translateY(-3px); border-color: rgba(217,160,50,.5); }
+.arch-store strong { font-size: 0.92rem; font-weight: 700; }
+.arch-store em { font-style: normal; font-size: 0.74rem; color: var(--ink-faint); line-height: 1.35; }
+.arch-store .arch-ico { width: 34px; height: 34px; border-radius: 10px; }
+.arch-store .arch-ico svg { width: 19px; height: 19px; }
+
+@media (max-width: 640px) {
+  .arch-stores { grid-template-columns: repeat(2, 1fr); }
+  .arch-tag { margin-left: 0; }
+}
+
+/* ============================================================================
+   Mobile overflow hardening — long German words + wide flex/grid children
+   ============================================================================ */
+/* Let long words wrap / hyphenate instead of overflowing the viewport */
+.hero-title, .section-head h2, .host-copy h2, .repo-card h3,
+.feat-card h3, .hero-sub, .prose h1, .prose h2 {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+/* Grid/flex children must be allowed to shrink below their content width so a
+   long code line scrolls inside its box instead of widening the whole card. */
+.host-split, .host-copy, .host-code, .code-window,
+.repo-grid, .repo-card, .feat-grid { min-width: 0; }
+.host-split { overflow: hidden; }
+.host-code, .code-window { max-width: 100%; }
+.code-window pre { overflow-x: auto; }
+
+@media (max-width: 767px) {
+  .landing-main { padding: 0 16px; }
+  .hero { padding: 40px 0 30px; }
+  .hero-title { font-size: clamp(1.8rem, 8vw, 3rem); }
+  .hero-sub { font-size: 1rem; }
+  .hero-cta { flex-direction: column; align-items: stretch; }
+  .hero-cta .btn { width: 100%; }
+  .section { padding: 38px 0; }
+  .section-head h2 { font-size: clamp(1.45rem, 6vw, 2rem); }
+  .host-split { padding: 24px 18px; gap: 22px; }
+  .host-copy h2 { font-size: clamp(1.35rem, 6vw, 2rem); }
+  .code-window pre { padding: 16px; }
+  .code-window code { font-size: 0.78rem; }
+}
+
+/* Compact top bar on narrow phones so it never overflows the viewport */
+@media (max-width: 560px) {
+  .topbar { padding: 8px 10px 0; }
+  .topbar-inner { gap: 6px; padding: 0 8px 0 10px; }
+  .topbar-actions { gap: 2px; }
+  .topbar-actions a.icon-btn { display: none; }   /* hide GitHub icon (link in footer/nav) */
+  .lang-switch { padding: 0 9px; }
+  .icon-btn, .lang-switch, .search-trigger { height: 38px; }
 }
