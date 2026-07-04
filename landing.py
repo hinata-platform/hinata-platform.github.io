@@ -151,18 +151,10 @@ docker compose up -d"""
   </section>
 
   <div class="hero-shot-wrap">
-    <div class="browser-frame glass">
-      <div class="browser-bar">
-        <span class="bd r"></span><span class="bd y"></span><span class="bd g"></span>
-        <div class="browser-url">track.example.com</div>
-      </div>
-      <img src="/assets/img/shot-dashboard.png" width="2880" height="1800"
-           alt="Hinata dashboard — today's focus, active sprint progress, project distribution and weekly tracker" loading="eager">
-    </div>
-    <div class="hero-shot-phone">
-      <img src="/assets/img/shot-mobile-board.png" width="1170" height="2532"
-           alt="Hinata on mobile — sprint board with capacity and story points" loading="lazy">
-    </div>
+    <img class="device device-mac" src="/assets/img/frame-macbook.png" width="4260" height="2840"
+         alt="Hinata on desktop — the dashboard shown in a MacBook" loading="eager">
+    <img class="device device-phone" src="/assets/img/frame-iphone.png" width="1470" height="3000"
+         alt="Hinata on mobile — the dashboard shown on an iPhone" loading="eager">
   </div>
 
   <section class="section">
