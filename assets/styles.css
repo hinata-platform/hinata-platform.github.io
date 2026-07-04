@@ -329,6 +329,7 @@ a { color: inherit; text-decoration: none; }
 .prose h4 { font-size: 1rem; font-weight: 700; margin: 1.5em 0 0.4em; color: var(--ink-soft); }
 .prose h2:first-child, .prose h1:first-child { margin-top: 0; border-top: 0; }
 
+.prose h1 .headerlink { display: none; }
 .prose h2 .headerlink, .prose h3 .headerlink, .prose h4 .headerlink {
   opacity: 0;
   margin-left: 8px;
