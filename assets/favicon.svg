@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Hinata">
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E4CE96"/>
+      <stop offset="1" stop-color="#D9A032"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="28" fill="url(#tile)"/>
+  <g transform="translate(60 60) scale(0.62) translate(-60 -60)" stroke="#211F3D" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M60 14 99.8 37v46L60 106 20.2 83V37Z"/>
+    <path d="M20.2 60h79.6"/>
+  </g>
+</svg>
