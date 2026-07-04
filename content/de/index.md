@@ -12,6 +12,10 @@ Keine Nutzer-Limits. Keine Team-Limits. Keine Board-Limits. Niemals. Was du selb
 !!! tip "Zwei Wege hinein"
     Neu hier? Spring direkt zum [Schnellstart](/de/quick-start.html) und bring in drei Befehlen einen Stack zum Laufen. Bereit für den echten Betrieb? Geh zum [Self-Hosting](/de/self-hosting.html) für den Produktivpfad.
 
+
+![Hinata-Dashboard](/assets/img/shot-dashboard.png)
+*Das Hinata-Dashboard — Tagesfokus, aktiver Sprint-Fortschritt und Team-Leistung.*
+
 ## Was ist Hinata?
 
 Hinata ist eine vollständige agile Projektmanagement-Suite: Projekte und Teams, Vorgänge mit einer echten Epic → Story → Sub-task-Hierarchie, agile Boards, Sprints, eine Gantt-Timeline, Zeiterfassung, Berichte und eine Confluence-artige Wissensdatenbank. Es ist darauf ausgelegt, sich modern und schnell anzufühlen — betreibbar von einem einzigen Team auf einem einzigen Server oder skaliert hinter einem Reverse Proxy für eine ganze Organisation.

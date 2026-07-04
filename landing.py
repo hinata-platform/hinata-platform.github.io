@@ -150,6 +150,21 @@ docker compose up -d"""
     </div>
   </section>
 
+  <div class="hero-shot-wrap">
+    <div class="browser-frame glass">
+      <div class="browser-bar">
+        <span class="bd r"></span><span class="bd y"></span><span class="bd g"></span>
+        <div class="browser-url">track.example.com</div>
+      </div>
+      <img src="/assets/img/shot-dashboard.png" width="2880" height="1800"
+           alt="Hinata dashboard — today's focus, active sprint progress, project distribution and weekly tracker" loading="eager">
+    </div>
+    <div class="hero-shot-phone">
+      <img src="/assets/img/shot-mobile-board.png" width="1170" height="2532"
+           alt="Hinata on mobile — sprint board with capacity and story points" loading="lazy">
+    </div>
+  </div>
+
   <section class="section">
     <div class="section-head">
       <h2 {_t('features_title')}>{T['features_title']['en']}</h2>

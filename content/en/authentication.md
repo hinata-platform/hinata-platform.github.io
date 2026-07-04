@@ -9,6 +9,10 @@ Hinata ships a complete local authentication system: username/password login, op
 
 This page covers the built-in credential system. For federated login (OpenID Connect, OAuth 2.0, SAML 2.0, LDAP) see [Single sign-on](/en/sso.html); for the underlying hardening and threat model see the [Security model](/en/security.html).
 
+
+![Hinata account settings](/assets/img/shot-settings.png)
+*Account settings — profile, security, 2FA, sessions and notifications.*
+
 ## Local credentials
 
 Users sign in with a username (or email) and password. Passwords are hashed with **BCrypt (strength 12)** and never stored or logged in the clear. On success the server issues a short-lived **JWT access token** and a **refresh token**; the app stores them per server and refreshes transparently.

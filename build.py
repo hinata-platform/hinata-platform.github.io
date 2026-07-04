@@ -80,7 +80,7 @@ def make_md() -> markdown.Markdown:
             "md_in_html",
             "admonition",
             "codehilite",
-            TocExtension(permalink="#", baselevel=2, toc_depth="2-3"),
+            TocExtension(permalink="#", baselevel=1, toc_depth="2-3"),
         ],
         extension_configs={
             "codehilite": {"guess_lang": False, "css_class": "codehilite"},
@@ -156,8 +156,9 @@ def render_toc(toc_tokens) -> str:
 
     def walk(tokens):
         for t in tokens:
+            # t["name"] is already HTML-escaped by the toc extension — don't double-escape
             items.append(
-                f'<li class="toc-l{t["level"]}"><a href="#{t["id"]}">{escape(t["name"])}</a></li>'
+                f'<li class="toc-l{t["level"]}"><a href="#{t["id"]}">{t["name"]}</a></li>'
             )
             if t.get("children"):
                 walk(t["children"])
@@ -374,19 +375,16 @@ def build():
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
 
-    # pygments highlight css
-    from pygments.formatters import HtmlFormatter
-
+    # pygments highlight css — we ship our own token palette (PYGMENTS_CSS)
     (OUT / "assets").mkdir(parents=True, exist_ok=True)
-    # We ship our own token colours (see styles.css handles container); still emit
-    # base structural css from pygments for correctness.
-    hl = HtmlFormatter(style="default").get_style_defs(".codehilite")
     (OUT / "assets" / "highlight.css").write_text(PYGMENTS_CSS, encoding="utf-8")
 
-    # copy static assets
+    # copy static assets (files + subdirectories like img/)
     for f in (ROOT / "assets").glob("*"):
         if f.is_file():
             shutil.copy(f, OUT / "assets" / f.name)
+        elif f.is_dir():
+            shutil.copytree(f, OUT / "assets" / f.name, dirs_exist_ok=True)
 
     build_time = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     search_index = []

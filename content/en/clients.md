@@ -12,6 +12,10 @@ layer adapt to whatever they run on. This page explains how the app connects to
 your server, how it decides whether it is up to date, how you sign in, and how a
 single app talks to many servers at once.
 
+
+![Hinata on mobile](/assets/img/shot-mobile-dashboard.png)
+*One Flutter codebase — Android, iOS, Web and macOS from a single app.*
+
 ## One codebase, four platforms
 
 The client is built with Flutter. State is managed with bloc/cubit, routing with

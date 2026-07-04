@@ -10,6 +10,10 @@ The **issue** is the atom of work in Hinata. Everything you plan, assign, discus
 !!! info "Where issues live"
     Every issue belongs to exactly one [project](/en/projects-teams.html) and carries that project's key as a prefix — `ASTA-42`, `WEB-7`. The number is assigned once and never reused, so a key is a stable, human-friendly identifier you can paste into a chat, a commit message or a browser.
 
+
+![Hinata issue detail](/assets/img/shot-issue.png)
+*The issue detail — description, sub-tasks, links, attachments, details and Git activity.*
+
 ## Anatomy of an issue
 
 Open any issue to see the full detail view. An issue holds:

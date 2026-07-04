@@ -10,6 +10,10 @@ The board is where a project's issues become a living, movable picture of the wo
 !!! info "Two kinds of board"
     A board is either **Kanban** — a continuous flow board — or **Scrum** — a board built around sprints with Planning, Active sprint and Insights tabs. Both share the same cards, filters and swimlanes; they differ in how they organize time. Pick the one that fits how your team works.
 
+
+![Hinata agile board](/assets/img/shot-board.png)
+*Sprint planning — capacity, story points and the active sprint at a glance.*
+
 ## The board
 
 Each **column** maps to one or more workflow states and shows a colored dot, the column name and a count badge. Cards are your issues. Epics never appear as cards — they act as swimlane headers and filters instead — and sub-tasks only appear as cards when you group by sub-task.

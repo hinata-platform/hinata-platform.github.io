@@ -10,6 +10,10 @@ Hinata is a full agile project-management suite in one place: plan work, run spr
 !!! tip "New to Hinata?"
     If you just want to get a stack running, start with the [Quick start](/en/quick-start.html). If you want to understand the vocabulary first — organizations, projects, issues, sprints, teams — read [Core concepts](/en/concepts.html).
 
+
+![Hinata dashboard](/assets/img/shot-dashboard.png)
+*One platform: dashboard, boards, sprints, Gantt, reports, knowledge base and more.*
+
 ## The feature map
 
 | Area | What it does | Guide |

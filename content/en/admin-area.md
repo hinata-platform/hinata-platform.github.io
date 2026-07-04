@@ -15,6 +15,10 @@ You configure a running instance live, from the same app your users are in.
     The Admin area requires the **`ADMIN`** role, and every endpoint under
     `/api/v1/admin/**` is gated to admins server-side. Regular users never see it.
 
+
+![Hinata admin area](/assets/img/shot-admin.png)
+*The admin area — users, app settings, SSO, Git and mail-to-ticket, all at runtime.*
+
 ## How runtime configuration works
 
 Bootstrapping a server needs only a handful of environment variables (a JWT

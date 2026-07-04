@@ -12,6 +12,10 @@ No user limits. No team limits. No board limits. Ever. What you self-host is you
 !!! tip "Two ways in"
     New here? Jump straight to the [Quick start](/en/quick-start.html) to get a stack running in three commands. Ready to run it for real? Head to [Self-hosting](/en/self-hosting.html) for the production path.
 
+
+![Hinata dashboard](/assets/img/shot-dashboard.png)
+*The Hinata dashboard — today's focus, active sprint progress and team performance.*
+
 ## What is Hinata?
 
 Hinata is a full agile project-management suite: projects and teams, issues with a real Epic → Story → Sub-task hierarchy, agile boards, sprints, a Gantt timeline, time tracking, reports, and a Confluence-style knowledge base. It is built to feel modern and fast, and to be operated by a single team on a single server — or scaled out behind a reverse proxy for an entire organization.
