@@ -133,6 +133,7 @@ NAV = [
             ("git-integration", {"en": "Git integration", "de": "Git-Integration"}),
             ("email-to-ticket", {"en": "E-mail to ticket", "de": "E-Mail zu Vorgang"}),
             ("connect-gateway", {"en": "Hinata Connect gateway", "de": "Hinata Connect Gateway"}),
+            ("mcp", {"en": "MCP server (AI)", "de": "MCP-Server (KI)"}),
         ],
     },
     {
