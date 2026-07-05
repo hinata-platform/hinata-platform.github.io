@@ -54,8 +54,28 @@ ein Ablaufdatum und kopiere das erzeugte Token.
 
 ## Einen Client verbinden
 
-Füge Hinata als Remote-MCP-Server hinzu und nutze dein Token als Bearer-Credential.
-Für **Claude Code**:
+Es gibt zwei Wege — je nach Client.
+
+### Ein-Klick-Verbindung (OAuth 2.1)
+
+Für **Claude.ai** und **Claude Desktop** fügst du Hinata als Custom-Connector nur
+mit seiner MCP-URL hinzu — `https://DEIN-HINATA-HOST/mcp` — und drückst
+**Verbinden**. Hinata ist ein vollständiger **OAuth-2.1-Authorization-Server**:
+der Client entdeckt ihn (RFC 9728 / RFC 8414 Metadaten), registriert sich
+automatisch (Dynamic Client Registration) und öffnet einen Browser, in dem du
+dich **wie gewohnt bei Hinata anmeldest — Passwort, 2FA oder SSO — und die
+angefragten Geltungsbereiche freigibst**. Kein Token zum Kopieren. Der Zugriff
+läuft über ein kurzlebiges Token mit rotierendem Refresh-Token, alles widerrufbar.
+
+!!! info "OAuth braucht HTTPS"
+    Der OAuth-Flow setzt voraus, dass dein Server über **HTTPS** unter einer
+    öffentlichen URL (seiner `base-url`) erreichbar ist. Er ist standardmäßig
+    aktiv; Admins können ihn — oder die offene Client-Registrierung — unter
+    **Adminbereich → MCP** deaktivieren.
+
+### Bearer-Token (PAT)
+
+Für **Claude Code**, **Cursor** und Skripte nutzt du ein Personal Access Token:
 
 ```bash
 claude mcp add --transport http hinata https://DEIN-HINATA-HOST/mcp \
@@ -101,11 +121,10 @@ Zusätzlich veröffentlicht er **Ressourcen** (`hinata://issue/{ASTA-42}`,
 - **PATs sind `/mcp`-exklusiv**, gehasht gespeichert, widerrufbar und optional
   ablaufend.
 - **Alles ist rate-limitiert** auf einem eigenen Pro-IP-Budget, und jeder
-  Schreibvorgang sowie jede Token-Erstellung/-Widerrufung wird im **Audit-Log**
-  festgehalten.
-
-!!! info "Auf der Roadmap"
-    Ein künftiges Release ergänzt einen vollständigen **OAuth-2.1**-Flow (Dynamic
-    Client Registration), sodass Claudes „Verbinden"-Button mit einem Klick eine
-    Verbindung zu Hinata herstellt — ohne Token-Einfügen. PATs bleiben der
-    einfachste Weg für Claude Code, Cursor und Skripte.
+  Schreibvorgang sowie jede Token-Erstellung/-Widerrufung und OAuth-Autorisierung
+  wird im **Audit-Log** festgehalten.
+- **OAuth ist standardkonform und gehärtet**: OAuth 2.1 mit verpflichtendem PKCE
+  (S256), exaktem Redirect-URI-Abgleich, Einmal-Autorisierungscodes, gehashten +
+  rotierenden Refresh-Tokens und audience-gebundenen Access-Tokens (RFC 8707).
+  OAuth-Tokens tragen dieselben Scopes und laufen durch dieselben Tools und ACLs
+  wie PATs.

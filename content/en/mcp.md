@@ -52,8 +52,26 @@ then copy the generated token.
 
 ## Connect a client
 
-Add Hinata as a remote MCP server, using your token as a bearer credential. For
-**Claude Code**:
+There are two ways to connect, depending on the client.
+
+### One-click connect (OAuth 2.1)
+
+For **Claude.ai** and **Claude Desktop**, add Hinata as a custom connector using
+just its MCP URL — `https://YOUR-HINATA-HOST/mcp` — and press **Connect**. Hinata
+is a full **OAuth 2.1 authorization server**: the client discovers it (RFC 9728 /
+RFC 8414 metadata), registers itself automatically (Dynamic Client Registration),
+and opens a browser where you **sign in to Hinata as normal — password, 2FA or
+SSO — and approve the requested scopes**. No token to copy. Access is bound to a
+short-lived token with a rotating refresh token, all revocable.
+
+!!! info "OAuth needs HTTPS"
+    The OAuth flow requires your server to be reachable over **HTTPS** at a public
+    URL (its `base-url`). It is on by default; admins can disable it or turn off
+    open client registration under **Admin area → MCP**.
+
+### Bearer token (PAT)
+
+For **Claude Code**, **Cursor** and scripts, use a Personal Access Token:
 
 ```bash
 claude mcp add --transport http hinata https://YOUR-HINATA-HOST/mcp \
@@ -97,9 +115,9 @@ of **prompt** templates (triage an issue, draft a sprint stand-up).
   refused before anything happens.
 - **PATs are `/mcp`-only**, hashed at rest, revocable, and optionally expiring.
 - **Everything is rate-limited** on its own per-IP budget, and every write plus
-  every token creation/revocation is recorded in the **audit log**.
-
-!!! info "On the roadmap"
-    A future release adds a full **OAuth 2.1** flow (dynamic client registration)
-    so Claude's one-click "Connect" button can link to Hinata without pasting a
-    token. PATs remain the simplest path for Claude Code, Cursor and scripts.
+  every token creation/revocation and OAuth authorization is recorded in the
+  **audit log**.
+- **OAuth is standards-based and hardened**: OAuth 2.1 with mandatory PKCE
+  (S256), exact redirect-URI matching, single-use authorization codes, hashed +
+  rotating refresh tokens, and audience-bound access tokens (RFC 8707). OAuth
+  tokens carry the same scopes and flow through the same tools and ACLs as PATs.
