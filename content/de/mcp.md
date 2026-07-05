@@ -26,8 +26,10 @@ Ein KI-Client verbindet sich mit einem **Personal Access Token (PAT)**, das du i
 der App erstellst. Ein PAT ist:
 
 - **Gescopt** — du vergibst eine minimale Teilmenge an Fähigkeiten
-  (`issues:read`, `issues:write`, `projects:read`, `kb:read`, `kb:write`,
-  `worklog:write`, `search:read`). Ein Read-only-Token kann niemals schreiben.
+  (`issues:read/write`, `projects:read`, `boards:read`, `sprints:write`,
+  `teams:read`, `users:read`, `kb:read/write`, `worklog:read/write`,
+  `search:read`, `notifications:read`). Ein Read-only-Token kann niemals
+  schreiben.
 - **Widerrufbar** — jederzeit widerrufbar; die nächste Anfrage mit diesem Token
   wird sofort abgelehnt.
 - **Gehasht gespeichert** — nur ein SHA-256-Hash wird abgelegt. Der Klartext wird
@@ -90,22 +92,47 @@ auf `https://DEIN-HINATA-HOST/mcp` aus und sende das Token als
 
 Der Server stellt eine kuratierte, feste Menge an Tools bereit — nie eine
 generische „beliebigen Endpunkt aufrufen"-Fläche und nie Admin-, Auth- oder
-Setup-Operationen.
+Setup-Operationen. Jedes Tool trägt die Standard-MCP-Annotationen
+(`readOnlyHint`, `destructiveHint`), sodass Clients wie Claude sichere
+Lese-Tools von Schreib- und Lösch-Operationen unterscheiden können.
+
+**Lese-Tools:**
 
 | Tool | Scope | Funktion |
 |---|---|---|
-| `search_issues` | `issues:read` | Vorgänge nach Projekt, Status, Zuweisung, Sprint, Typ oder Text filtern |
+| `search_issues` | `issues:read` | Vorgänge nach Projekt, Status, Zuweisung, Sprint, Backlog, Typ oder Text filtern |
 | `list_my_issues` | `issues:read` | Dem verbundenen Nutzer zugewiesene Vorgänge |
 | `get_issue` | `issues:read` | Ein Vorgang per id oder lesbarer id (z. B. `ASTA-42`) |
 | `get_issue_hierarchy` | `issues:read` | Epic/Parent und Sub-Tasks eines Vorgangs |
-| `list_projects` / `get_project` | `projects:read` | Für den Nutzer sichtbare Projekte |
+| `list_comments` | `issues:read` | Kommentare eines Vorgangs, paginiert |
+| `list_attachments` | `issues:read` | Anhang-Metadaten eines Vorgangs (Name, Typ, Größe) |
+| `get_dev_info` | `issues:read` | Verknüpfte Branches, Commits, Pull Requests und Builds eines Vorgangs |
+| `list_projects` / `get_project` | `projects:read` | Sichtbare Projekte inkl. Workflow-Status und Labels |
+| `list_project_members` | `projects:read` | Projektmitglieder — Personen zu Zuweisungs-Ids auflösen |
+| `get_project_metrics` | `projects:read` | Vorgangszahlen: gesamt, gelöst, offen, je Workflow-Status |
+| `list_boards` / `get_board` | `boards:read` | Zugängliche Agile-Boards; Spalten, WIP-Limits, aktiver Sprint |
+| `list_sprints` | `boards:read` | Sprints eines Boards, auf Wunsch inkl. archivierter |
+| `get_sprint_report` | `boards:read` | Sprint-Einblicke: Burndown, Velocity, Scope-Änderungen, Auslastung |
+| `list_teams` / `get_team` | `teams:read` | Die Teams des Nutzers inkl. Mitgliedern und Rollen |
+| `search_users` | `users:read` | Verzeichnissuche nach Name, Benutzername oder Titel |
+| `get_me` | `users:read` | Das eigene Profil des verbundenen Nutzers |
 | `search` | `search:read` | Globale Suche über Vorgänge, Projekte, Personen, Boards, Dokumente |
-| `read_kb_article` | `kb:read` | Ein Wissensdatenbank-Artikel, unter Beachtung seiner Sichtbarkeit |
-| `create_issue` | `issues:write` | Einen Vorgang anlegen |
-| `update_issue` | `issues:write` | Felder eines Vorgangs ändern |
-| `add_comment` | `issues:write` | Einen Vorgang kommentieren |
-| `create_kb_article` | `kb:write` | Einen Wissensdatenbank-Artikel anlegen |
-| `log_work` | `worklog:write` | Zeit auf einen Vorgang buchen |
+| `read_kb_article` | `kb:read` | Inhalt eines Wissensdatenbank-Artikels, unter Beachtung seiner Sichtbarkeit |
+| `list_kb_articles` | `kb:read` | Sichtbare Wissensdatenbank-Artikel, nach Projekt oder Space |
+| `list_work_items` | `worklog:read` | Die gebuchte Zeit eines Vorgangs |
+| `my_timesheet` | `worklog:read` | Die eigene gebuchte Zeit in einem Datumsbereich |
+| `list_my_notifications` | `notifications:read` | Der eigene Benachrichtigungseingang inkl. Ungelesen-Zähler |
+
+**Schreib-Tools:**
+
+| Tool | Scope | Funktion |
+|---|---|---|
+| `create_issue` / `update_issue` | `issues:write` | Vorgang anlegen; Felder ändern inkl. Status, Sprint, Parent, Zuweisungen |
+| `add_comment` / `edit_comment` / `delete_comment` | `issues:write` | Vorgang kommentieren; eigenen Kommentar bearbeiten oder löschen |
+| `create_sprint` / `update_sprint` | `sprints:write` | Sprint auf einem SCRUM-Board planen; Name, Ziel, Daten, Kapazität anpassen |
+| `start_sprint` / `complete_sprint` | `sprints:write` | Sprint-Lebenszyklus; Abschließen verschiebt offene Vorgänge |
+| `create_kb_article` / `update_kb_article` / `delete_kb_article` | `kb:write` | Wissensdatenbank-Artikel verwalten (der Sichtbarkeits-Scope ist per MCP nie änderbar) |
+| `log_work` / `delete_work_item` | `worklog:write` | Zeit auf einen Vorgang buchen; eigenes Work-Item löschen |
 
 Zusätzlich veröffentlicht er **Ressourcen** (`hinata://issue/{ASTA-42}`,
 `hinata://project/{KEY}`, `hinata://kb/{id}`) zur direkten Referenz sowie einige

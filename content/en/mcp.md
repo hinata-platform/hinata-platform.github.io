@@ -25,8 +25,9 @@ An AI client connects with a **Personal Access Token (PAT)** you create in the
 app. A PAT is:
 
 - **Scoped** — you grant it a least-privilege subset of capabilities
-  (`issues:read`, `issues:write`, `projects:read`, `kb:read`, `kb:write`,
-  `worklog:write`, `search:read`). A read-only token can never write.
+  (`issues:read/write`, `projects:read`, `boards:read`, `sprints:write`,
+  `teams:read`, `users:read`, `kb:read/write`, `worklog:read/write`,
+  `search:read`, `notifications:read`). A read-only token can never write.
 - **Revocable** — revoke it any time; the next request from that token is
   rejected immediately.
 - **Hashed at rest** — only a SHA-256 hash is stored. The plaintext is shown
@@ -85,22 +86,47 @@ point it at `https://YOUR-HINATA-HOST/mcp` and send the token as an
 ## What the AI can do
 
 The server exposes a curated, fixed set of tools — never a generic "call any
-endpoint" surface, and never admin, auth or setup operations.
+endpoint" surface, and never admin, auth or setup operations. Every tool
+carries the standard MCP annotations (`readOnlyHint`, `destructiveHint`), so
+clients like Claude can distinguish safe read tools from writes and deletions.
+
+**Read tools:**
 
 | Tool | Scope | What it does |
 |---|---|---|
-| `search_issues` | `issues:read` | Filter issues by project, state, assignee, sprint, type or text |
+| `search_issues` | `issues:read` | Filter issues by project, state, assignee, sprint, backlog, type or text |
 | `list_my_issues` | `issues:read` | Issues assigned to the connected user |
 | `get_issue` | `issues:read` | One issue by id or readable id (e.g. `ASTA-42`) |
 | `get_issue_hierarchy` | `issues:read` | An issue's epic/parent and sub-tasks |
-| `list_projects` / `get_project` | `projects:read` | Projects visible to the user |
+| `list_comments` | `issues:read` | An issue's comments, paginated |
+| `list_attachments` | `issues:read` | An issue's attachment metadata (name, type, size) |
+| `get_dev_info` | `issues:read` | Linked branches, commits, pull requests and builds of an issue |
+| `list_projects` / `get_project` | `projects:read` | Projects visible to the user, incl. workflow states and labels |
+| `list_project_members` | `projects:read` | A project's members — resolve people to assignee ids |
+| `get_project_metrics` | `projects:read` | Issue counts: total, resolved, open, per workflow state |
+| `list_boards` / `get_board` | `boards:read` | Agile boards the user can open; columns, WIP limits, active sprint |
+| `list_sprints` | `boards:read` | A board's sprints, incl. archived on request |
+| `get_sprint_report` | `boards:read` | Sprint insights: burndown, velocity, scope changes, assignee load |
+| `list_teams` / `get_team` | `teams:read` | The user's teams, incl. members and their roles |
+| `search_users` | `users:read` | Directory search by name, username or title |
+| `get_me` | `users:read` | The connected user's own profile |
 | `search` | `search:read` | Global search across issues, projects, people, boards, docs |
-| `read_kb_article` | `kb:read` | A knowledge-base article, respecting its visibility |
-| `create_issue` | `issues:write` | Create an issue |
-| `update_issue` | `issues:write` | Update fields on an issue |
-| `add_comment` | `issues:write` | Comment on an issue |
-| `create_kb_article` | `kb:write` | Create a knowledge-base article |
-| `log_work` | `worklog:write` | Log time against an issue |
+| `read_kb_article` | `kb:read` | A knowledge-base article's content, respecting its visibility |
+| `list_kb_articles` | `kb:read` | Visible knowledge-base articles, by project or space |
+| `list_work_items` | `worklog:read` | The logged time on an issue |
+| `my_timesheet` | `worklog:read` | The user's own logged time in a date range |
+| `list_my_notifications` | `notifications:read` | The user's notification inbox plus unread count |
+
+**Write tools:**
+
+| Tool | Scope | What it does |
+|---|---|---|
+| `create_issue` / `update_issue` | `issues:write` | Create an issue; update fields incl. state, sprint, parent, assignees |
+| `add_comment` / `edit_comment` / `delete_comment` | `issues:write` | Comment on an issue; edit or delete an own comment |
+| `create_sprint` / `update_sprint` | `sprints:write` | Plan a sprint on a SCRUM board; adjust name, goal, dates, capacity |
+| `start_sprint` / `complete_sprint` | `sprints:write` | Run the sprint lifecycle; completing re-homes open issues |
+| `create_kb_article` / `update_kb_article` / `delete_kb_article` | `kb:write` | Manage knowledge-base articles (the visibility scope is never changeable via MCP) |
+| `log_work` / `delete_work_item` | `worklog:write` | Log time against an issue; delete an own work item |
 
 It also publishes **resources** (`hinata://issue/{ASTA-42}`,
 `hinata://project/{KEY}`, `hinata://kb/{id}`) for direct reference, and a couple
