@@ -53,7 +53,8 @@ T = {
     },
     "host_cta": {"en": "Full deployment guide →", "de": "Vollständiger Deployment-Guide →"},
     "mcp_badge": {"en": "AI-native · MCP", "de": "KI-nativ · MCP"},
-    "mcp_title": {"en": "Talk to Hinata from Claude", "de": "Sprich mit Hinata über Claude"},
+    "mcp_title_1": {"en": "Talk to Hinata", "de": "Sprich mit Hinata"},
+    "mcp_title_2": {"en": "from Claude", "de": "über Claude"},
     "mcp_sub": {
         "en": "Hinata speaks the Model Context Protocol — a built-in /mcp endpoint, no sidecar to run. Connect Claude, Claude Code, Cursor or any MCP client and search issues, create work, log time or read the knowledge base, always within the connected user's exact permissions.",
         "de": "Hinata spricht das Model Context Protocol — ein eingebauter /mcp-Endpunkt, kein Sidecar nötig. Verbinde Claude, Claude Code, Cursor oder einen beliebigen MCP-Client und durchsuche Vorgänge, lege Arbeit an, buche Zeit oder lies die Wissensdatenbank — immer innerhalb der exakten Berechtigungen des verbundenen Nutzers.",
@@ -204,7 +205,10 @@ docker compose up -d"""
       </div>
       <div class="host-copy">
         <span class="mcp-badge" {_t('mcp_badge')}>{T['mcp_badge']['en']}</span>
-        <h2 {_t('mcp_title')}>{T['mcp_title']['en']}</h2>
+        <h2 class="mcp-title">
+          <span {_t('mcp_title_1')}>{T['mcp_title_1']['en']}</span>
+          <span {_t('mcp_title_2')}>{T['mcp_title_2']['en']}</span>
+        </h2>
         <p {_t('mcp_sub')}>{T['mcp_sub']['en']}</p>
         <a class="btn btn-primary" href="/en/mcp.html" {_t('mcp_cta')}>{T['mcp_cta']['en']}</a>
         <p class="mcp-clients" {_t('mcp_clients')}>{T['mcp_clients']['en']}</p>
