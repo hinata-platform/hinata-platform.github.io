@@ -429,6 +429,9 @@ def build():
     # root landing + language redirect helper
     (OUT / "index.html").write_text(render_landing(build_time), encoding="utf-8")
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
+    cname = ROOT / "CNAME"
+    if cname.exists():
+        shutil.copy(cname, OUT / "CNAME")
     (OUT / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\nSitemap: {SITE['base_url']}/sitemap.xml\n", encoding="utf-8"
     )

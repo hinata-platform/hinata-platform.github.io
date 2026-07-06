@@ -13,7 +13,7 @@ SITE = {
     "repo_org": "https://github.com/hinata-platform",
     "repo_app": "https://github.com/hinata-platform/hinata-app",
     "repo_server": "https://github.com/hinata-platform/hinata-server",
-    "base_url": "https://hinata-platform.github.io",
+    "base_url": "https://hinata.ahmadre.com",
     "languages": ["en", "de"],
 }
 
