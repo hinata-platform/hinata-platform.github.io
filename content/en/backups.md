@@ -174,8 +174,8 @@ data services (Mongo, MinIO) stay exactly as they are.
 
 ```bash
 # 1) Pin the versions you want (in .env)
-#    HINATA_SERVER_TAG=2.2.0
-#    HINATA_APP_TAG=2.2.0
+#    HINATA_SERVER_TAG={{version}}
+#    HINATA_APP_TAG={{version}}
 
 # 2) Pull the new images
 docker compose pull hinata-server hinata-app

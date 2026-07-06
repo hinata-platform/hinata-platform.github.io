@@ -118,8 +118,8 @@ HINATA_BASE_URL=https://api.track.example.com
 HINATA_WEB_BASE_URL=https://track.example.com
 
 # Image tags (pin a release instead of latest for reproducible deploys)
-HINATA_SERVER_TAG=2.2.0
-HINATA_APP_TAG=2.2.0
+HINATA_SERVER_TAG={{version}}
+HINATA_APP_TAG={{version}}
 
 # JWT — from ./deploy/generate-secrets.sh
 HINATA_JWT_SECRET=Kf3mS0pQ9xR2vN7wY1bZ8cH4dJ6gL5aT0eU3iO2rW9kP1sX4nC7mB6vD8fA2hQ0
@@ -149,7 +149,7 @@ HINATA_S3_BUCKET=hinata
 
 # App integration
 HINATA_PRIVACY_POLICY_URL=https://example.com/privacy
-HINATA_APP_MIN_VERSION=2.2.0
+HINATA_APP_MIN_VERSION={{version}}
 HINATA_CORS_ALLOWED_ORIGINS=https://track.example.com
 HINATA_DOCS_ENABLED=false
 
@@ -311,7 +311,7 @@ docker compose -f docker-compose.yml -f docker-compose.app.yml up -d hinata-app
 
 !!! tip "Pin tags for reproducible deploys"
     `latest` is convenient but moves under you. Pin `HINATA_SERVER_TAG` and
-    `HINATA_APP_TAG` to a specific version (e.g. `2.2.0`) so every host runs the
+    `HINATA_APP_TAG` to a specific version (e.g. `{{version}}`) so every host runs the
     same, known build and rollbacks are a one-line tag change.
 
 ## Where to go next

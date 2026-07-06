@@ -400,6 +400,7 @@ def build():
             else:
                 raw = src.read_text(encoding="utf-8")
             meta, text = parse_front_matter(raw)
+            text = text.replace("{{version}}", SITE["version"])
             meta.setdefault("title", titles[lang])
             md = make_md()
             body_html = md.convert(text)

@@ -79,7 +79,7 @@ German nav title (section 7).
 Hinata is an **independent, open-source, self-hosted project & issue tracker** — a
 modern alternative to hosted trackers. It is a **white-label** platform: operators
 run their own server and can ship their own branded client. Licensed **GPL-3.0**.
-Current platform version: **2.2.0**. No user, team or board limits, ever.
+Current platform version: use the `{{version}}` placeholder (auto-filled at build time from the latest hinata-app release tag) rather than a hardcoded number. No user, team or board limits, ever.
 
 Two repositories:
 - **hinata-server** — Spring Boot 4, Java 21, MongoDB (replica set), S3-compatible

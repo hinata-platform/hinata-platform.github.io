@@ -181,8 +181,8 @@ gezogen; die Datendienste (Mongo, MinIO) bleiben exakt, wie sie sind.
 
 ```bash
 # 1) Die gewünschten Versionen festpinnen (in .env)
-#    HINATA_SERVER_TAG=2.2.0
-#    HINATA_APP_TAG=2.2.0
+#    HINATA_SERVER_TAG={{version}}
+#    HINATA_APP_TAG={{version}}
 
 # 2) Die neuen Images ziehen
 docker compose pull hinata-server hinata-app

@@ -5,7 +5,7 @@ description: Hinata is an open-source, self-hosted, white-label project and issu
 
 # Hinata
 
-Hinata is an **independent, open-source, self-hosted project & issue tracker** — a modern alternative to hosted trackers that you run entirely on your own infrastructure. It is a **white-label** platform: operators run their own server and can ship their own branded client. Licensed under **GPL-3.0**, current platform version **2.2.0**.
+Hinata is an **independent, open-source, self-hosted project & issue tracker** — a modern alternative to hosted trackers that you run entirely on your own infrastructure. It is a **white-label** platform: operators run their own server and can ship their own branded client. Licensed under **GPL-3.0**, current platform version **{{version}}**.
 
 No user limits. No team limits. No board limits. Ever. What you self-host is yours.
 

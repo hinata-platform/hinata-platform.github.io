@@ -31,8 +31,8 @@ how the two relate.
 
 | Variable | Purpose | Default / example | Required |
 | --- | --- | --- | --- |
-| `HINATA_SERVER_TAG` | Tag of `ghcr.io/hinata-platform/hinata-server` to run | `latest` (pin e.g. `2.2.0`) | No |
-| `HINATA_APP_TAG` | Tag of `ghcr.io/hinata-platform/hinata-app` (web app overlay) | `latest` (pin e.g. `2.2.0`) | No |
+| `HINATA_SERVER_TAG` | Tag of `ghcr.io/hinata-platform/hinata-server` to run | `latest` (pin e.g. `{{version}}`) | No |
+| `HINATA_APP_TAG` | Tag of `ghcr.io/hinata-platform/hinata-app` (web app overlay) | `latest` (pin e.g. `{{version}}`) | No |
 
 !!! tip
     Pin both tags to a specific version in production so every host runs the same

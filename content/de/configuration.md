@@ -31,8 +31,8 @@ Abschnitt erklärt, wie die beiden zusammenhängen.
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
-| `HINATA_SERVER_TAG` | Tag von `ghcr.io/hinata-platform/hinata-server`, das ausgeführt wird | `latest` (z. B. `2.2.0` pinnen) | Nein |
-| `HINATA_APP_TAG` | Tag von `ghcr.io/hinata-platform/hinata-app` (Web-App-Overlay) | `latest` (z. B. `2.2.0` pinnen) | Nein |
+| `HINATA_SERVER_TAG` | Tag von `ghcr.io/hinata-platform/hinata-server`, das ausgeführt wird | `latest` (z. B. `{{version}}` pinnen) | Nein |
+| `HINATA_APP_TAG` | Tag von `ghcr.io/hinata-platform/hinata-app` (Web-App-Overlay) | `latest` (z. B. `{{version}}` pinnen) | Nein |
 
 !!! tip
     Pinne beide Tags im Produktivbetrieb auf eine bestimmte Version, damit jeder Host
