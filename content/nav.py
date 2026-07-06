@@ -2,13 +2,42 @@
 # Single source of truth consumed by build.py. Each page lists its slug and its
 # per-language title. Ordering here defines sidebar order and prev/next links.
 
+import json
+import os
+import re
+import urllib.error
+import urllib.request
+
+
+def _latest_app_version(fallback: str) -> str:
+    """Latest vX.Y.Z tag on hinata-app, falling back if the API is unreachable."""
+    req = urllib.request.Request(
+        "https://api.github.com/repos/hinata-platform/hinata-app/tags?per_page=30",
+        headers={"Accept": "application/vnd.github+json", "User-Agent": "hinata-docs-build"},
+    )
+    token = os.environ.get("GITHUB_TOKEN")
+    if token:
+        req.add_header("Authorization", f"Bearer {token}")
+    try:
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            tags = json.load(resp)
+    except (urllib.error.URLError, ValueError, OSError):
+        return fallback
+    versions = [
+        tuple(int(n) for n in m.groups())
+        for m in (re.fullmatch(r"v(\d+)\.(\d+)\.(\d+)", t.get("name", "")) for t in tags)
+        if m
+    ]
+    return ".".join(str(n) for n in max(versions)) if versions else fallback
+
+
 SITE = {
     "name": "Hinata",
     "tagline": {
         "en": "Open-source, self-hosted project management",
         "de": "Open-Source, selbst-gehostetes Projektmanagement",
     },
-    "version": "2.2.0",
+    "version": _latest_app_version("3.0.1"),
     "accent": "#D9A032",
     "repo_org": "https://github.com/hinata-platform",
     "repo_app": "https://github.com/hinata-platform/hinata-app",
