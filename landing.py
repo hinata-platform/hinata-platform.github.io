@@ -52,6 +52,15 @@ T = {
         "de": "Docker Compose startet Server, MongoDB-Replica-Set, Objektspeicher und Mail. Richte die App auf deine URL und schließe den In-App-Setup-Assistenten ab.",
     },
     "host_cta": {"en": "Full deployment guide →", "de": "Vollständiger Deployment-Guide →"},
+    "mcp_badge": {"en": "AI-native · MCP", "de": "KI-nativ · MCP"},
+    "mcp_title": {"en": "Talk to Hinata from Claude", "de": "Sprich mit Hinata über Claude"},
+    "mcp_sub": {
+        "en": "Hinata speaks the Model Context Protocol — a built-in /mcp endpoint, no sidecar to run. Connect Claude, Claude Code, Cursor or any MCP client and search issues, create work, log time or read the knowledge base, always within the connected user's exact permissions.",
+        "de": "Hinata spricht das Model Context Protocol — ein eingebauter /mcp-Endpunkt, kein Sidecar nötig. Verbinde Claude, Claude Code, Cursor oder einen beliebigen MCP-Client und durchsuche Vorgänge, lege Arbeit an, buche Zeit oder lies die Wissensdatenbank — immer innerhalb der exakten Berechtigungen des verbundenen Nutzers.",
+    },
+    "mcp_cta": {"en": "Explore the MCP server →", "de": "MCP-Server entdecken →"},
+    "mcp_clients": {"en": "Claude · Claude Code · Cursor · any MCP client",
+                    "de": "Claude · Claude Code · Cursor · jeder MCP-Client"},
     "repos_title": {"en": "Two repositories, one platform", "de": "Zwei Repositories, eine Plattform"},
     "app_desc": {"en": "The Flutter client — Android, iOS, Web & macOS from a single codebase.",
                  "de": "Der Flutter-Client — Android, iOS, Web & macOS aus einer Codebasis."},
@@ -80,6 +89,10 @@ def render_landing(build_time: str) -> str:
     quickstart = """cp .env.example .env
 ./deploy/generate-secrets.sh   # Mongo keyfile + secrets
 docker compose up -d"""
+
+    mcp_connect = """claude mcp add --transport http hinata \\
+  https://your-hinata-host/mcp \\
+  --header "Authorization: Bearer hn_pat_..." """.rstrip()
 
     return f"""<!doctype html>
 <html lang="en" data-theme="">
@@ -177,6 +190,24 @@ docker compose up -d"""
           <div class="code-dots"><i></i><i></i><i></i></div>
           <pre><code>{quickstart}</code></pre>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="host-split mcp-split glass">
+      <div class="host-code">
+        <div class="code-window">
+          <div class="code-dots"><i></i><i></i><i></i></div>
+          <pre><code>{mcp_connect}</code></pre>
+        </div>
+      </div>
+      <div class="host-copy">
+        <span class="mcp-badge" {_t('mcp_badge')}>{T['mcp_badge']['en']}</span>
+        <h2 {_t('mcp_title')}>{T['mcp_title']['en']}</h2>
+        <p {_t('mcp_sub')}>{T['mcp_sub']['en']}</p>
+        <a class="btn btn-primary" href="/en/mcp.html" {_t('mcp_cta')}>{T['mcp_cta']['en']}</a>
+        <p class="mcp-clients" {_t('mcp_clients')}>{T['mcp_clients']['en']}</p>
       </div>
     </div>
   </section>
