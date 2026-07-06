@@ -39,7 +39,7 @@ die genauen Befehle. Kurz gesagt:
 ```bash
 # Server
 docker compose -f docker-compose.dev.yml up -d
-./mvnw spring-boot:run
+./gradlew bootRun
 
 # App
 flutter pub get
@@ -50,7 +50,7 @@ Bevor du einen PR öffnest, stelle sicher, dass die Quality Gates lokal durchlau
 — es sind dieselben Checks, die die CI ausführt:
 
 ```bash
-./mvnw verify              # Server
+./gradlew build                   # Server
 flutter analyze && flutter test   # App
 ```
 

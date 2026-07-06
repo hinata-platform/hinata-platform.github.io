@@ -163,7 +163,7 @@ Befehl richtet alles ein:
 
 ```bash
 ./deploy/x509/setup-dev.sh
-SPRING_PROFILES_ACTIVE=dev ./mvnw spring-boot:run
+SPRING_PROFILES_ACTIVE=dev ./gradlew bootRun
 ```
 
 `setup-dev.sh` erzeugt die Dev-PKI (`deploy/x509/dev/`), startet das Dev-Mongo,

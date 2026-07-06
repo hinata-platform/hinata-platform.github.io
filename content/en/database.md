@@ -157,7 +157,7 @@ single standalone `mongod` — but it keeps the same security posture: `requireT
 
 ```bash
 ./deploy/x509/setup-dev.sh
-SPRING_PROFILES_ACTIVE=dev ./mvnw spring-boot:run
+SPRING_PROFILES_ACTIVE=dev ./gradlew bootRun
 ```
 
 `setup-dev.sh` generates the dev PKI (`deploy/x509/dev/`), starts the dev Mongo,

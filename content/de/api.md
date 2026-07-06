@@ -210,7 +210,7 @@ Schema und jeden Parameter während der Entwicklung zu durchstöbern.
 Aktiviere sie lokal, indem du das Flag setzt, bevor du den Server startest:
 
 ```bash
-HINATA_DOCS_ENABLED=true ./mvnw spring-boot:run
+HINATA_DOCS_ENABLED=true ./gradlew bootRun
 ```
 
 Oder in einer `.env`-/Compose-Umgebung:

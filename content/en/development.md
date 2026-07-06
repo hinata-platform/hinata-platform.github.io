@@ -19,7 +19,7 @@ client — and each has a short, predictable dev loop. Work through the server f
 
 - **JDK 21** (Temurin is what CI uses).
 - **Docker** with Compose, for the local infrastructure.
-- No global Maven needed — the repo ships the Maven Wrapper (`./mvnw`).
+- No global Gradle needed — the repo ships the Gradle Wrapper (`./gradlew`).
 
 ### 1. Start the infrastructure
 
@@ -44,7 +44,7 @@ Point the server at the local Mongo and MinIO and start it with the wrapper:
 ```bash
 HINATA_MONGODB_URI="mongodb://localhost:27017/hinata?replicaSet=rs0&directConnection=true" \
 HINATA_S3_ACCESS_KEY=hinata HINATA_S3_SECRET_KEY=hinata-dev-secret \
-./mvnw spring-boot:run
+./gradlew bootRun
 ```
 
 !!! tip "Seed a realistic demo workspace"
@@ -59,7 +59,7 @@ HINATA_S3_ACCESS_KEY=hinata HINATA_S3_SECRET_KEY=hinata-dev-secret \
 The quality gate is a single command — the same one CI runs:
 
 ```bash
-./mvnw verify
+./gradlew build
 ```
 
 !!! info "Dev vs prod profiles"
@@ -161,7 +161,7 @@ back over **SSE** and update the relevant bloc.
 
 Both repositories use **GitHub Actions**.
 
-- **Server** (`ci.yml`): on every push and pull request, runs `./mvnw verify`.
+- **Server** (`ci.yml`): on every push and pull request, runs `./gradlew build`.
   On pushes to `main` and on version (`v*`) tags, it builds and **publishes a Docker
   image to the GitHub Container Registry (GHCR)** under `ghcr.io/hinata-platform`,
   tagged `latest` on `main` and with the semantic version on tags.

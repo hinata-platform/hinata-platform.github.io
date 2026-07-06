@@ -82,16 +82,16 @@ Weil die App mehrserverfähig ist, brauchen Nutzer nur die URL eines laufenden S
 
 Das Bauen aus dem Quellcode (statt Images zu ziehen) erfordert die Toolchains hinter jedem Repository:
 
-- **[hinata-server](https://github.com/hinata-platform/hinata-server)** — **JDK 21** und der gebündelte Maven-Wrapper (`./mvnw`). Bringe die Entwicklungsabhängigkeiten mit `docker compose -f docker-compose.dev.yml up -d` hoch (Mongo-Replikatset, Mailpit, MinIO) und starte dann den Server:
+- **[hinata-server](https://github.com/hinata-platform/hinata-server)** — **JDK 21** und der gebündelte Gradle-Wrapper (`./gradlew`). Bringe die Entwicklungsabhängigkeiten mit `docker compose -f docker-compose.dev.yml up -d` hoch (Mongo-Replikatset, Mailpit, MinIO) und starte dann den Server:
 
   ```bash
   docker compose -f docker-compose.dev.yml up -d   # Mongo RS, Mailpit, MinIO
   HINATA_MONGODB_URI="mongodb://localhost:27017/hinata?replicaSet=rs0&directConnection=true" \
   HINATA_S3_ACCESS_KEY=hinata HINATA_S3_SECRET_KEY=hinata-dev-secret \
-  ./mvnw spring-boot:run
+  ./gradlew bootRun
   ```
 
-  Führe die Testsuite mit `./mvnw verify` aus.
+  Führe die Testsuite mit `./gradlew build` aus.
 
 - **[hinata-app](https://github.com/hinata-platform/hinata-app)** — ein **Flutter**-SDK (mit den Android-/iOS-/macOS-Toolchains für die Ziele, die du baust). State über bloc/cubit, Routing über go_router, i18n über i18next.
 

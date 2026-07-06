@@ -206,7 +206,7 @@ best way to browse every route, schema and parameter while developing.
 Enable it locally by setting the flag before you start the server:
 
 ```bash
-HINATA_DOCS_ENABLED=true ./mvnw spring-boot:run
+HINATA_DOCS_ENABLED=true ./gradlew bootRun
 ```
 
 Or in a `.env` / compose environment:

@@ -82,16 +82,16 @@ Because the app is multi-server, users just need the URL of a running server; no
 
 Building from source (rather than pulling images) needs the toolchains behind each repo:
 
-- **[hinata-server](https://github.com/hinata-platform/hinata-server)** — **JDK 21** and the bundled Maven wrapper (`./mvnw`). Bring up the dev dependencies with `docker compose -f docker-compose.dev.yml up -d` (Mongo replica set, Mailpit, MinIO), then run the server:
+- **[hinata-server](https://github.com/hinata-platform/hinata-server)** — **JDK 21** and the bundled Gradle wrapper (`./gradlew`). Bring up the dev dependencies with `docker compose -f docker-compose.dev.yml up -d` (Mongo replica set, Mailpit, MinIO), then run the server:
 
   ```bash
   docker compose -f docker-compose.dev.yml up -d   # Mongo RS, Mailpit, MinIO
   HINATA_MONGODB_URI="mongodb://localhost:27017/hinata?replicaSet=rs0&directConnection=true" \
   HINATA_S3_ACCESS_KEY=hinata HINATA_S3_SECRET_KEY=hinata-dev-secret \
-  ./mvnw spring-boot:run
+  ./gradlew bootRun
   ```
 
-  Run the test suite with `./mvnw verify`.
+  Run the test suite with `./gradlew build`.
 
 - **[hinata-app](https://github.com/hinata-platform/hinata-app)** — a **Flutter** SDK (with the Android/iOS/macOS toolchains for the targets you build). State via bloc/cubit, routing via go_router, i18n via i18next.
 

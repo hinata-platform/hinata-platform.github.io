@@ -36,7 +36,7 @@ Flutter toolchain for the app, plus the exact commands. In short:
 ```bash
 # Server
 docker compose -f docker-compose.dev.yml up -d
-./mvnw spring-boot:run
+./gradlew bootRun
 
 # App
 flutter pub get
@@ -47,7 +47,7 @@ Before you open a PR, make sure the quality gates pass locally — they are the 
 checks CI runs:
 
 ```bash
-./mvnw verify              # server
+./gradlew build                   # server
 flutter analyze && flutter test   # app
 ```
 

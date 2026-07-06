@@ -20,7 +20,7 @@ das, womit die App spricht), dann die App.
 
 - **JDK 21** (die CI nutzt Temurin).
 - **Docker** mit Compose für die lokale Infrastruktur.
-- Kein globales Maven nötig — das Repo liefert den Maven Wrapper (`./mvnw`).
+- Kein globales Gradle nötig — das Repo liefert den Gradle Wrapper (`./gradlew`).
 
 ### 1. Die Infrastruktur starten
 
@@ -47,7 +47,7 @@ Wrapper:
 ```bash
 HINATA_MONGODB_URI="mongodb://localhost:27017/hinata?replicaSet=rs0&directConnection=true" \
 HINATA_S3_ACCESS_KEY=hinata HINATA_S3_SECRET_KEY=hinata-dev-secret \
-./mvnw spring-boot:run
+./gradlew bootRun
 ```
 
 !!! tip "Einen realistischen Demo-Workspace seeden"
@@ -63,7 +63,7 @@ HINATA_S3_ACCESS_KEY=hinata HINATA_S3_SECRET_KEY=hinata-dev-secret \
 Die Quality Gate ist ein einziger Befehl — derselbe, den die CI ausführt:
 
 ```bash
-./mvnw verify
+./gradlew build
 ```
 
 !!! info "Dev- vs. Prod-Profile"
@@ -169,7 +169,7 @@ Live-Änderungen kommen über **SSE** zurück und aktualisieren den relevanten B
 
 Beide Repositories verwenden **GitHub Actions**.
 
-- **Server** (`ci.yml`): Bei jedem Push und Pull Request wird `./mvnw verify`
+- **Server** (`ci.yml`): Bei jedem Push und Pull Request wird `./gradlew build`
   ausgeführt. Bei Pushes auf `main` und bei Versions-Tags (`v*`) baut und
   **veröffentlicht es ein Docker-Image in der GitHub Container Registry (GHCR)**
   unter `ghcr.io/hinata-platform`, getaggt mit `latest` auf `main` und mit der
