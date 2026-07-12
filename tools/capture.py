@@ -24,6 +24,7 @@ import functools
 import http.server
 import json
 import os
+import re
 import socketserver
 import subprocess
 import sys
@@ -50,7 +51,11 @@ MOBILE = (390, 844, 3)
 # Hero viewports match the device frames' screen cut-outs so the composited
 # shot fills them without distortion (see tool/device_frames.py docstring).
 HERO_DESKTOP = (1440, 929, 2)   # 16:10.32 — MacBook frame
-HERO_MOBILE = (390, 845, 3)     # 19.5:9  — iPhone frame (status bar synthesized)
+# iPhone hero: the capture must match the app AREA BELOW the reserved status bar
+# (screen 1320×2868, status band ~168px ⇒ app area 1320×2700 ⇒ 2.045:1), so the
+# app content is never cropped or hidden behind the Dynamic Island. Keep this in
+# sync with device_frames.IOS_STATUS_FRAC.
+HERO_MOBILE = (390, 798, 3)     # 1320:2700 app area — iPhone frame
 SETTLE_MS = int(os.environ.get("SETTLE_MS", "7500"))
 
 DEVICE_FRAMES = os.path.join(APP_ROOT, "tool", "device_frames.py")
@@ -140,6 +145,47 @@ def an_issue_id(access):
         reverse=True,
     )
     return (ranked or data)[0]["id"] if data else None
+
+
+def enable_semantics(page):
+    """Turn on Flutter web's semantics tree so canvas widgets become queryable
+    DOM nodes (role + aria-label). Flutter ships a hidden "Enable accessibility"
+    placeholder; activating it flips the tree on. Returns True on success."""
+    try:
+        ph = page.locator(
+            "flt-semantics-placeholder, [aria-label='Enable accessibility']"
+        )
+        if ph.count():
+            ph.first.dispatch_event("click")
+            page.wait_for_timeout(700)
+            return True
+    except Exception as e:
+        print(f"    (semantics enable failed: {e})")
+    return False
+
+
+def expand_reply_threads(page, max_threads=4):
+    """Open every collapsed "N replies" thread so the comments screenshot shows
+    the expanded thread, not just the collapsed affordance. The toggle's
+    accessible label is the i18n "N replies"/"N reply", so we match a digit
+    followed by 'repl' — which never hits the bare 'Reply' composer action."""
+    if not enable_semantics(page):
+        return 0
+    opened = 0
+    label = re.compile(r"\d+\s+repl", re.I)
+    for _ in range(max_threads):
+        toggle = page.get_by_role("button", name=label)
+        if not toggle.count():
+            break
+        try:
+            toggle.first.click(timeout=2500)
+            opened += 1
+            page.wait_for_timeout(2600)   # let the reply page load over the API
+        except Exception:
+            break
+    if opened:
+        print(f"    ↳ expanded {opened} reply thread(s)")
+    return opened
 
 
 def seed_demo_thread(access, issue_id):
@@ -341,6 +387,13 @@ def main():
                 page.mouse.move(w // 2, h // 2)
                 page.mouse.wheel(0, SCROLLS[name])
                 page.wait_for_timeout(2500)
+            if name == "shot-comments":
+                # Open the reply thread so the shot shows it expanded, then nudge
+                # it back into view (loading replies grows the list).
+                if expand_reply_threads(page):
+                    page.mouse.move(w // 2, h // 2)
+                    page.mouse.wheel(0, 260)
+                    page.wait_for_timeout(1500)
             page.screenshot(path=os.path.join(OUT_DIR, f"{name}.png"))
             print(f"  ✓ {name:24} {w}x{h}@{dpr} {route}")
         ctx.close()
