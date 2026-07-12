@@ -30,7 +30,7 @@ WEB_DIR = os.path.join(APP_ROOT, "build", "web")
 OUT_DIR = "/Users/rebar/Documents/Dev/Hivora/hinata-platform.github.io/assets/img"
 
 API = os.environ.get("HINATA_API", "http://localhost:8080")
-WEB_PORT = int(os.environ.get("WEB_PORT", "8081"))
+WEB_PORT = int(os.environ.get("WEB_PORT", "3000"))
 WEB_ORIGIN = f"http://localhost:{WEB_PORT}"
 LOGIN = {"identifier": "admin", "password": "hinata-demo-2026"}
 HEADLESS = os.environ.get("HEADLESS", "1") != "0"
