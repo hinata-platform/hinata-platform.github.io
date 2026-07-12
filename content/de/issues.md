@@ -26,7 +26,7 @@ Der **Vorgang** ist das Atom der Arbeit in Hinata. Alles, was du planst, zuweist
 - **Story Points** — eine Schätzung, die für Sprint-Kapazität und den Velocity-Bericht verwendet wird.
 - **Daten** — ein Start- und Fälligkeitsdatum, die auch die [Gantt-Timeline](/de/timeline.html) steuern.
 - **Workflow-Zustand** — die Spalte, in der der Vorgang auf dem [Board](/de/boards-sprints.html) sitzt, aus der eigenen Menge an Zuständen des Projekts.
-- **Kommentare** — eine verschachtelte Diskussion am Vorgang.
+- **Kommentare** — eine flache, verschachtelte Diskussion mit Antwort-Threads pro Kommentar, Reaktionen und Sprachnachrichten (siehe unten).
 - **Anhänge** — Dateien und Bilder (siehe unten).
 - **Abhängigkeiten & Verknüpfungen** — Beziehungen zu anderen Vorgängen.
 
@@ -43,10 +43,17 @@ Der **Vorgang** ist das Atom der Arbeit in Hinata. Alles, was du planst, zuweist
 
 ## Beschreibungen & Kommentare
 
-Die Beschreibung und jeder Kommentar unterstützen **Markdown** mit einer gemeinsamen Editor-Toolbar, sodass du Überschriften, Checklisten, Codeblöcke und Links erhältst, ohne die Syntax auswendig zu lernen. Während du tippst, erkennen **Smart Links** Vorgangsschlüssel und Personen und verwandeln sie in lebendige Referenzen — erwähne `ASTA-42` oder ein Teammitglied, und der Text löst sich zum echten Objekt auf und bleibt korrekt, selbst wenn sich Titel ändern. Dies ist dieselbe Smart-Link-Engine, die auch die [Wissensdatenbank](/de/knowledge-base.html) nutzt.
+Die Beschreibung und jeder Kommentar unterstützen **Markdown** mit einer gemeinsamen Editor-Toolbar, sodass du Überschriften, Checklisten, Codeblöcke und Links erhältst, ohne die Syntax auswendig zu lernen. Während du tippst, benachrichtigen **@-Erwähnungen** ein Teammitglied direkt, und **Smart Links** erkennen separat Vorgangsschlüssel und verwandeln sie in lebendige Referenz-Pills — erwähne `ASTA-42`, und es löst sich auf (und bleibt hervorgehoben), selbst wenn sich der Titel später ändert. Dies ist dieselbe Smart-Link-Engine, die auch die [Wissensdatenbank](/de/knowledge-base.html) nutzt.
 
 !!! tip "Halte die Diskussion am Vorgang"
     Kommentare leben bei der Arbeit, nicht in einem separaten Chat. Wenn eine Entscheidung in einem Kommentar getroffen wird, bleibt sie für immer am Vorgang angehängt — das zukünftige Du (und alle, die das Ticket erben) werden es dir danken.
+
+Kommentare werden flach und linksbündig dargestellt, im Jira-Stil, statt als Chat-Bubbles — das lässt sich bei einem lange laufenden Vorgang leichter überfliegen. Jeder Wurzelkommentar kann seinen eigenen **Antwort-Thread** tragen, der erst beim Öffnen nachgeladen wird, sodass ein vielbesprochener Vorgang nicht jede Antwort im Voraus laden muss. Sortiere den Thread nach **neuestem zuerst** oder **ältestem zuerst** und springe über den Permalink direkt zu jedem Kommentar.
+
+- **Reaktionen** — reagiere auf einen Kommentar mit einem Emoji, im WhatsApp-Stil; du hast eine Reaktion pro Kommentar, eine neue Wahl ersetzt die alte.
+- **Sprachkommentare** — nimm direkt im Composer eine kurze Sprachnachricht auf. Sie wird in dein **S3/MinIO**-Bucket hochgeladen und spielt inline als Waveform-Bubble ab, neben Textkommentaren im selben Thread.
+- **Kontextmenü** — halte einen Kommentar lange gedrückt (oder fahre am Desktop mit der Maus darüber) für Antworten, Kopieren, Link kopieren (ein Deep Link, der zu genau diesem Kommentar scrollt und ihn aufblinken lässt), Anheften, Bearbeiten, Löschen sowie Mehrfachauswahl zum Stapel-Löschen eigener Kommentare.
+- **Live-Updates** — neue Kommentare, Bearbeitungen, Reaktionen und Löschungen strömen über **Server-Sent Events**, sodass alle, die einen Vorgang beobachten, die Diskussion in Echtzeit aktualisiert sehen, ohne neu zu laden.
 
 ## Anhänge
 
@@ -82,8 +89,14 @@ Du navigierst und baust diese Struktur direkt am Vorgang:
 - **Untergeordneten-Panel** — an einem Epic listet ein Panel seine untergeordneten Arbeitselemente auf und lässt dich weitere hinzufügen.
 - **Sub-Task-Panel** — an einer Story/Task/Bug/Feature listet ein Panel ihre Sub-Tasks auf und lässt dich sie inline hinzufügen.
 
-!!! warning "Das Löschen eines übergeordneten Elements kaskadiert"
-    Das Löschen eines Vorgangs, der untergeordnete Elemente hat, **kaskadiert** — seine untergeordneten Elemente (und deren Sub-Tasks) werden mit ihm entfernt. Hinata bittet dich um Bestätigung, aber es gibt kein Rückgängig, prüfe also doppelt, bevor du ein Epic mit einem vollen Baum darunter löschst.
+### Archivieren vs. Löschen
+
+Meistens willst du einen Vorgang nicht dauerhaft löschen — du willst ihn nur aus dem Weg räumen. **Archivieren** ist ein weiches Löschen: Jedes Projektmitglied kann einen Vorgang archivieren (Sub-Tasks kaskadieren mit), und er verschwindet standardmäßig aus Suche, Board und Sprints — ist aber nicht weg und lässt sich genauso leicht wieder entarchivieren.
+
+**Endgültiges Löschen** ist destruktiv und rollenbeschränkt: Nur ein Plattform-Admin, der Projektleiter oder ein Team-Admin kann einen Vorgang dauerhaft löschen. Die Oberfläche von Hinata prüft deine Berechtigungen am Vorgang und bietet dir nur die Option an, die du tatsächlich nutzen darfst.
+
+!!! warning "Endgültiges Löschen eines übergeordneten Elements kaskadiert — ohne Rückgängig"
+    Das dauerhafte Löschen eines Vorgangs, der untergeordnete Elemente hat, **kaskadiert**: Seine untergeordneten Elemente (und deren Sub-Tasks) werden zusammen mit ihren Kommentaren, Arbeitsprotokollen und Verknüpfungen mit ihm entfernt. Es gibt kein Rückgängig — archiviere also zuerst, wenn du dir nicht sicher bist, und hebe das endgültige Löschen für Aufräumarbeiten auf, die wirklich nicht mehr existieren sollen.
 
 Die Hierarchie treibt auch das Board an: Du kannst das [agile Board](/de/boards-sprints.html) nach **Epic** oder **Sub-Task** in Swimlanes gruppieren und das ganze Board auf ein einzelnes Epic herunterfiltern.
 

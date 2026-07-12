@@ -26,7 +26,7 @@ Open any issue to see the full detail view. An issue holds:
 - **Story points** — an estimate used for sprint capacity and the velocity report.
 - **Dates** — a start and due date that also drive the [Gantt timeline](/en/timeline.html).
 - **Workflow state** — the column the issue sits in on the [board](/en/boards-sprints.html), drawn from the project's own set of states.
-- **Comments** — a threaded discussion on the issue.
+- **Comments** — a flat, threaded discussion with per-comment reply threads, reactions and voice notes (see below).
 - **Attachments** — files and images (see below).
 - **Dependencies & links** — relationships to other issues.
 
@@ -43,10 +43,17 @@ Open any issue to see the full detail view. An issue holds:
 
 ## Descriptions & comments
 
-The description and every comment support **Markdown** with a shared editor toolbar, so you get headings, checklists, code blocks and links without memorizing syntax. As you type, **smart links** recognize issue keys and people and turn them into live references — mention `ASTA-42` or a teammate and the text resolves to the real thing, staying accurate even if titles change. This is the same smart-link engine the [knowledge base](/en/knowledge-base.html) uses.
+The description and every comment support **Markdown** with a shared editor toolbar, so you get headings, checklists, code blocks and links without memorizing syntax. As you type, **@mentions** notify a teammate directly, and **smart links** separately recognize issue keys and turn them into live reference pills — mention `ASTA-42` and it resolves (and stays highlighted) even if the title changes later. This is the same smart-link engine the [knowledge base](/en/knowledge-base.html) uses.
 
 !!! tip "Keep discussion on the issue"
     Comments live with the work, not in a separate chat. When a decision is made in a comment, it stays attached to the issue forever — future you (and everyone who inherits the ticket) will thank you.
+
+Comments are laid out flat and left-aligned, Jira-style, rather than as chat bubbles — easier to scan on a long-running issue. Each root comment can carry its own **reply thread**, loaded lazily only when you open it, so a busy issue doesn't have to fetch every reply up front. Sort the thread **newest first** or **oldest first**, and jump straight to any comment via its permalink.
+
+- **Reactions** — react to a comment with an emoji, WhatsApp-style; you get one reaction per comment, and picking a new one swaps the old.
+- **Voice comments** — record a short voice note straight from the composer. It's uploaded to your **S3/MinIO** bucket and plays back inline as a waveform bubble, alongside text comments in the same thread.
+- **Context menu** — long-press (or hover, on desktop) any comment for reply, copy, copy link (a deep link that scrolls to and flashes that exact comment), pin, edit, delete, and multi-select for batch deletion of your own comments.
+- **Live updates** — new comments, edits, reactions and deletes stream over **Server-Sent Events**, so everyone watching an issue sees the discussion update in real time without a refresh.
 
 ## Attachments
 
@@ -82,8 +89,14 @@ You navigate and build this structure right on the issue:
 - **Child panel** — on an epic, a panel lists its child work items and lets you add more.
 - **Sub-task panel** — on a story/task/bug/feature, a panel lists its sub-tasks and lets you add them inline.
 
-!!! warning "Deleting a parent cascades"
-    Deleting an issue that has children **cascades** — its children (and their sub-tasks) are removed with it. Hinata asks you to confirm, but there's no undo, so double-check before deleting an epic with a full tree beneath it.
+### Archiving vs. deleting
+
+Most of the time you don't want to permanently delete an issue — you want it out of the way. **Archiving** is a soft delete: any project member can archive an issue (and its sub-tasks cascade with it), and it disappears from search, the board and sprints by default, but it isn't gone — it can be unarchived just as easily.
+
+**Hard deletion** is destructive and role-gated: only a platform admin, the project lead or a team admin can permanently delete an issue. Hinata's UI checks your permissions on the issue and only offers the option you're actually allowed to use.
+
+!!! warning "Hard-deleting a parent cascades — and cannot be undone"
+    Permanently deleting an issue that has children **cascades**: its children (and their sub-tasks), along with their comments, work logs and links, are removed with it. There is no undo, so archive first if you're not certain, and reserve hard delete for cleanup that genuinely shouldn't exist anymore.
 
 The hierarchy also powers the board: you can group the [agile board](/en/boards-sprints.html) into swimlanes by **epic** or **sub-task**, and filter the whole board down to a single epic.
 
