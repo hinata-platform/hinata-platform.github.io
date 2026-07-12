@@ -51,14 +51,19 @@ MOBILE = (390, 844, 3)
 # Hero viewports match the device frames' screen cut-outs so the composited
 # shot fills them without distortion (see tool/device_frames.py docstring).
 HERO_DESKTOP = (1440, 929, 2)   # 16:10.32 — MacBook frame
-# iPhone hero: the capture must match the app AREA BELOW the reserved status bar
-# (screen 1320×2868, status band ~168px ⇒ app area 1320×2700 ⇒ 2.045:1), so the
-# app content is never cropped or hidden behind the Dynamic Island. Keep this in
-# sync with device_frames.IOS_STATUS_FRAC.
-HERO_MOBILE = (390, 798, 3)     # 1320:2700 app area — iPhone frame
 SETTLE_MS = int(os.environ.get("SETTLE_MS", "7500"))
 
 DEVICE_FRAMES = os.path.join(APP_ROOT, "tool", "device_frames.py")
+
+# The iPhone hero is a REAL simulator screenshot (native status bar + Dynamic
+# Island), captured exactly like hinata-app/tool/capture_ios.sh: seed the app's
+# sandbox plist (tokens + screenshot_route), simctl launch, simctl screenshot.
+# The sim shot (1320×2868) matches the frame's screen cut-out 1:1, so
+# device_frames adds NO synthesized status bar. UDID default mirrors
+# capture_ios.sh; override with IOS_UDID.
+IOS_UDID = os.environ.get("IOS_UDID", "BD91470D-338D-48C6-856B-0821AE6A316B")
+IOS_BUNDLE = "com.ahmadre.hinata"
+IOS_SETTLE_S = int(os.environ.get("IOS_SETTLE_S", "13"))
 
 # Gate/redirect screens the app shows while it is NOT connected + signed in
 # (the "Connect to your server" form, the login form, the boot splash, the
@@ -211,35 +216,101 @@ def seed_demo_thread(access, issue_id):
 
 
 def frame_heroes(browser, seed):
-    """Capture hero shots at the frames' screen aspect and composite them into
-    the landing-page device frames via tool/device_frames.py (subprocess, so
+    """MacBook hero: web capture at the frame's screen aspect, composited into
+    the landing-page device frame via tool/device_frames.py (subprocess, so
     the only extra dep here is Pillow in this venv)."""
-    heroes = [
-        ("macbook", HERO_DESKTOP, "/dashboard", "frame-macbook.png"),
-        ("iphone", HERO_MOBILE, "/dashboard", "frame-iphone.png"),
-    ]
+    device, (w, h, dpr), route, out_name = (
+        "macbook", HERO_DESKTOP, "/dashboard", "frame-macbook.png")
     with tempfile.TemporaryDirectory(prefix="hinata-hero-") as tmp:
-        for device, (w, h, dpr), route, out_name in heroes:
-            ctx = browser.new_context(
-                viewport={"width": w, "height": h},
-                device_scale_factor=dpr,
-                color_scheme="light",
-                locale="en-GB",
-                base_url=WEB_ORIGIN,
-            )
-            ctx.add_init_script(seed)
-            page = ctx.new_page()
-            page.goto(f"{WEB_ORIGIN}{route}", wait_until="domcontentloaded")
-            page.wait_for_timeout(SETTLE_MS + 3000)
-            # Never composite the connect/login screen into the hero frame.
-            ensure_connected(page, f"hero-{device}")
-            raw = os.path.join(tmp, f"hero-{device}.png")
-            page.screenshot(path=raw)
-            ctx.close()
-            out = os.path.join(OUT_DIR, out_name)
-            subprocess.run([sys.executable, DEVICE_FRAMES, device, raw, out],
-                           check=True)
-            print(f"  ✓ {out_name:24} {w}x{h}@{dpr} {route} (framed)")
+        ctx = browser.new_context(
+            viewport={"width": w, "height": h},
+            device_scale_factor=dpr,
+            color_scheme="dark",
+            locale="en-GB",
+            base_url=WEB_ORIGIN,
+        )
+        ctx.add_init_script(seed)
+        page = ctx.new_page()
+        page.goto(f"{WEB_ORIGIN}{route}", wait_until="domcontentloaded")
+        page.wait_for_timeout(SETTLE_MS + 3000)
+        # Never composite the connect/login screen into the hero frame.
+        ensure_connected(page, f"hero-{device}")
+        raw = os.path.join(tmp, f"hero-{device}.png")
+        page.screenshot(path=raw)
+        ctx.close()
+        out = os.path.join(OUT_DIR, out_name)
+        subprocess.run([sys.executable, DEVICE_FRAMES, device, raw, out],
+                       check=True)
+        print(f"  ✓ {out_name:24} {w}x{h}@{dpr} {route} (framed)")
+
+
+def _sim(*args, **kw):
+    return subprocess.run(["xcrun", "simctl", *args], capture_output=True,
+                          text=True, **kw)
+
+
+def iphone_hero_from_simulator(access, refresh):
+    """iPhone hero from a REAL iPhone simulator screenshot — native status bar
+    and Dynamic Island, no synthesized chrome. Same mechanics as
+    hinata-app/tool/capture_ios.sh: seed the app sandbox plist with the server
+    URL + tokens + screenshot_route, launch, screenshot, then frame it.
+
+    Requires: the simulator booted (open -a Simulator) and the Hinata app
+    installed on it. Fails loudly otherwise — we never fake this shot."""
+    import glob
+    import plistlib
+    import time
+
+    if _sim("list", "devices", "booted").stdout.find(IOS_UDID) < 0:
+        raise RuntimeError(
+            f"iPhone simulator {IOS_UDID} is not booted. Boot it (open -a "
+            f"Simulator), install the app, or set IOS_UDID to a booted device "
+            f"with {IOS_BUNDLE} installed."
+        )
+    plists = glob.glob(os.path.expanduser(
+        f"~/Library/Developer/CoreSimulator/Devices/{IOS_UDID}/data/Containers"
+        f"/Data/Application/*/Library/Preferences/{IOS_BUNDLE}.plist"))
+    if not plists:
+        raise RuntimeError(
+            f"{IOS_BUNDLE} is not installed on simulator {IOS_UDID} — build & "
+            f"install it first (flutter run -d <sim> or xcodebuild)."
+        )
+    pl = plists[0]
+
+    _sim("terminate", IOS_UDID, IOS_BUNDLE)
+    _sim("spawn", IOS_UDID, "launchctl", "stop",
+         "com.apple.cfprefsd.xpc.daemon")
+    time.sleep(1)
+    try:
+        with open(pl, "rb") as f:
+            prefs = plistlib.load(f)
+    except Exception:
+        prefs = {}
+    prefs.update({
+        "flutter.server_url": API,
+        "flutter.access_token": access,
+        "flutter.refresh_token": refresh,
+        "flutter.onboarding_done": True,
+        "flutter.locale": "en",
+        "flutter.screenshot_route": "/dashboard",
+    })
+    with open(pl, "wb") as f:
+        plistlib.dump(prefs, f, fmt=plistlib.FMT_BINARY)
+
+    r = _sim("launch", IOS_UDID, IOS_BUNDLE)
+    if r.returncode != 0:
+        raise RuntimeError(f"simctl launch failed: {r.stderr.strip()}")
+    time.sleep(IOS_SETTLE_S)
+    with tempfile.TemporaryDirectory(prefix="hinata-hero-ios-") as tmp:
+        raw = os.path.join(tmp, "hero-iphone.png")
+        r = _sim("io", IOS_UDID, "screenshot", "--type=png", raw)
+        if r.returncode != 0:
+            raise RuntimeError(f"simctl screenshot failed: {r.stderr.strip()}")
+        out = os.path.join(OUT_DIR, "frame-iphone.png")
+        subprocess.run([sys.executable, DEVICE_FRAMES, "iphone", raw, out],
+                       check=True)
+    _sim("terminate", IOS_UDID, IOS_BUNDLE)
+    print(f"  ✓ {'frame-iphone.png':24} simulator {IOS_UDID[:8]}… /dashboard (framed, native)")
 
 
 def shots(board_id, issue_id):
@@ -408,6 +479,9 @@ def main():
             frame_heroes(browser, seed)
         finally:
             browser.close()
+    # Real-device hero last: everything web-based is already on disk if this
+    # raises (sim not booted / app not installed).
+    iphone_hero_from_simulator(access, refresh)
     httpd.shutdown()
     print("done →", OUT_DIR)
 
