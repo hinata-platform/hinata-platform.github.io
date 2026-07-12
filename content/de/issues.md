@@ -50,6 +50,8 @@ Die Beschreibung und jeder Kommentar unterstützen **Markdown** mit einer gemein
 
 Kommentare werden flach und linksbündig dargestellt, im Jira-Stil, statt als Chat-Bubbles — das lässt sich bei einem lange laufenden Vorgang leichter überfliegen. Jeder Wurzelkommentar kann seinen eigenen **Antwort-Thread** tragen, der erst beim Öffnen nachgeladen wird, sodass ein vielbesprochener Vorgang nicht jede Antwort im Voraus laden muss. Sortiere den Thread nach **neuestem zuerst** oder **ältestem zuerst** und springe über den Permalink direkt zu jedem Kommentar.
 
+![Hinata-Kommentare mit Antwort-Thread](/assets/img/shot-comments.png)
+
 - **Reaktionen** — reagiere auf einen Kommentar mit einem Emoji, im WhatsApp-Stil; du hast eine Reaktion pro Kommentar, eine neue Wahl ersetzt die alte.
 - **Sprachkommentare** — nimm direkt im Composer eine kurze Sprachnachricht auf. Sie wird in dein **S3/MinIO**-Bucket hochgeladen und spielt inline als Waveform-Bubble ab, neben Textkommentaren im selben Thread.
 - **Kontextmenü** — halte einen Kommentar lange gedrückt (oder fahre am Desktop mit der Maus darüber) für Antworten, Kopieren, Link kopieren (ein Deep Link, der zu genau diesem Kommentar scrollt und ihn aufblinken lässt), Anheften, Bearbeiten, Löschen sowie Mehrfachauswahl zum Stapel-Löschen eigener Kommentare.

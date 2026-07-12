@@ -50,6 +50,8 @@ The description and every comment support **Markdown** with a shared editor tool
 
 Comments are laid out flat and left-aligned, Jira-style, rather than as chat bubbles — easier to scan on a long-running issue. Each root comment can carry its own **reply thread**, loaded lazily only when you open it, so a busy issue doesn't have to fetch every reply up front. Sort the thread **newest first** or **oldest first**, and jump straight to any comment via its permalink.
 
+![Hinata threaded comments with a reply thread](/assets/img/shot-comments.png)
+
 - **Reactions** — react to a comment with an emoji, WhatsApp-style; you get one reaction per comment, and picking a new one swaps the old.
 - **Voice comments** — record a short voice note straight from the composer. It's uploaded to your **S3/MinIO** bucket and plays back inline as a waveform bubble, alongside text comments in the same thread.
 - **Context menu** — long-press (or hover, on desktop) any comment for reply, copy, copy link (a deep link that scrolls to and flashes that exact comment), pin, edit, delete, and multi-select for batch deletion of your own comments.
