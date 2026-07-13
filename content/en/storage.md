@@ -1,27 +1,37 @@
 ---
-title: Object storage (S3/MinIO)
-description: Hinata keeps attachments and avatars in S3-compatible object storage — MinIO in the default stack, or any external S3 provider — with presigned downloads and randomized keys.
+title: Object storage (S3, GCS, Azure)
+description: Hinata keeps attachments and avatars in object storage — the bundled MinIO, any S3-compatible provider (AWS S3, Google Cloud Storage, R2, Spaces, …) or Azure Blob Storage — with presigned downloads and randomized keys.
 ---
 
-# Object storage (S3/MinIO)
+# Object storage (S3, GCS, Azure)
 
 Issue attachments and user avatars are not stored in MongoDB — they live in
-**S3-compatible object storage**. The default Docker stack ships **MinIO**, but the
-server talks to storage through the standard S3 API, so you can point it at AWS S3 or
-any other S3-compatible provider without changing code. This page covers the default
-setup, how downloads stay secure, and how to swap in an external bucket.
+**object storage**. Hinata supports two backends, selected with
+`HINATA_STORAGE_PROVIDER`:
+
+- **`s3`** (default) — any S3-compatible store: the **bundled MinIO**, **AWS S3**,
+  **Google Cloud Storage** (S3-interoperable XML API), **Cloudflare R2**,
+  **DigitalOcean Spaces**, Backblaze B2, Wasabi, Ceph, a managed MinIO, …
+- **`azure`** — **Azure Blob Storage** through its native API (Azure does not
+  speak the S3 protocol).
+
+This page covers the default setup, how downloads stay secure, and how to swap in
+an external provider.
 
 ## MinIO in the default stack
 
-The production `docker-compose.yml` runs a MinIO container alongside the server:
+The production `docker-compose.yml` runs a MinIO container alongside the server.
+It is attached to the compose **`local-storage` profile**, which is on by default
+(`COMPOSE_PROFILES=local-storage` in `.env.example`):
 
 ```yaml
 minio:
   image: minio/minio:latest
+  profiles: [local-storage]
   command: server /data --console-address ":9001"
   environment:
-    MINIO_ROOT_USER: ${MINIO_ROOT_USER:?set in .env}
-    MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?set in .env}
+    MINIO_ROOT_USER: ${MINIO_ROOT_USER:-}
+    MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-}
   volumes:
     - minio-data:/data
 ```
@@ -30,15 +40,16 @@ The server connects to it over the internal Docker network, reusing the MinIO ro
 credentials as its S3 access/secret keys:
 
 ```yaml
-HINATA_S3_ENDPOINT: http://minio:9000
-HINATA_S3_ACCESS_KEY: ${MINIO_ROOT_USER}
-HINATA_S3_SECRET_KEY: ${MINIO_ROOT_PASSWORD}
+HINATA_S3_ENDPOINT: ${HINATA_S3_ENDPOINT:-http://minio:9000}
+HINATA_S3_ACCESS_KEY: ${HINATA_S3_ACCESS_KEY:-${MINIO_ROOT_USER:-}}
+HINATA_S3_SECRET_KEY: ${HINATA_S3_SECRET_KEY:-${MINIO_ROOT_PASSWORD:-}}
 HINATA_S3_BUCKET: ${HINATA_S3_BUCKET:-hinata}
 ```
 
-So in the default stack you only set three things in `.env`:
+So in the default stack you only set four things in `.env`:
 
 ```properties
+COMPOSE_PROFILES=local-storage
 MINIO_ROOT_USER=hinata
 MINIO_ROOT_PASSWORD=change-me-to-a-long-random-value
 HINATA_S3_BUCKET=hinata
@@ -122,11 +133,19 @@ text, CSV, ZIP, JSON, and the OOXML Word/Excel documents. A few important safegu
     same MB values) are the outer guard; the app then enforces the file count and
     aggregate size on top. Raise all of them together if you need larger uploads.
 
-## Using external / AWS S3 instead of MinIO
+## Using an external provider instead of MinIO
 
-To use AWS S3 or any other S3-compatible provider (Cloudflare R2, Backblaze B2,
-Wasabi, Ceph, a managed MinIO, …), point the same four variables at it and drop the
-bundled MinIO container:
+To use an external store, turn the bundled MinIO off by clearing the compose
+profile in `.env` —
+
+```properties
+COMPOSE_PROFILES=
+```
+
+— and configure one of the providers below. The `MINIO_ROOT_*` variables can then
+be removed.
+
+### AWS S3
 
 ```properties
 HINATA_S3_ENDPOINT=https://s3.eu-central-1.amazonaws.com
@@ -136,17 +155,58 @@ HINATA_S3_BUCKET=my-hinata-bucket
 HINATA_S3_REGION=eu-central-1
 ```
 
+### Google Cloud Storage
+
+GCS speaks S3 through its **interoperable XML API**. Create **HMAC keys** in the
+Cloud Console under *Cloud Storage → Settings → Interoperability* (for a service
+account, recommended) and point Hinata at the interop endpoint:
+
+```properties
+HINATA_S3_ENDPOINT=https://storage.googleapis.com
+HINATA_S3_ACCESS_KEY=GOOG1E...          # HMAC access id
+HINATA_S3_SECRET_KEY=your-hmac-secret
+HINATA_S3_BUCKET=my-hinata-bucket
+HINATA_S3_ADDRESSING_STYLE=path
+```
+
+### Azure Blob Storage
+
+Azure has no S3 API, so Hinata talks to it natively. Switch the provider and pass
+the storage account's **connection string** (portal → storage account → *Access
+keys*). An account-key connection string is required — presigned downloads are
+issued as SAS URLs:
+
+```properties
+HINATA_STORAGE_PROVIDER=azure
+HINATA_AZURE_CONNECTION_STRING=DefaultEndpointsProtocol=https;AccountName=...;AccountKey=...;EndpointSuffix=core.windows.net
+HINATA_S3_BUCKET=hinata   # used as the blob container name
+```
+
+### Other S3-compatible providers
+
+Cloudflare R2, DigitalOcean Spaces, Backblaze B2, Wasabi, Ceph, Hetzner, a managed
+MinIO, … all work with the same `HINATA_S3_*` variables — endpoint, keys and region
+come from the provider's dashboard.
+
 Notes:
 
 - **`HINATA_S3_REGION`** defaults to `us-east-1`; set it to your bucket's region for
   AWS and providers that care about it.
-- For a non-AWS provider, `HINATA_S3_ENDPOINT` is its S3 endpoint URL (e.g. your R2
-  or Backblaze endpoint). Use HTTPS for anything crossing the network.
+- **`HINATA_S3_ADDRESSING_STYLE`** (default `auto`) controls S3 URL addressing:
+  `auto` picks virtual-host style for AWS endpoints and path style elsewhere, which
+  is right for almost everyone; set `path` or `virtual-host` explicitly if your
+  provider requires it.
+- Use HTTPS for any endpoint crossing the network.
 - The credentials need permission to `PutObject`, `GetObject`, `DeleteObject`,
-  `ListBucket`, and (unless you pre-create the bucket) `CreateBucket`.
-- If storage is left unconfigured (blank access key), attachment and avatar
-  endpoints respond with `error.storage.notConfigured` — the rest of Hinata still
-  works, you just can't upload files.
+  `ListBucket`, and (unless you pre-create the bucket) `CreateBucket` — or the
+  Azure equivalents (the container is created automatically too).
+- If storage is left unconfigured (blank access key, or blank connection string
+  with `provider=azure`), attachment and avatar endpoints respond with
+  `error.storage.notConfigured` — the rest of Hinata still works, you just can't
+  upload files.
+- **Switching providers does not migrate existing objects.** Copy the bucket
+  contents first (`mc mirror`, `aws s3 sync`, `azcopy`) if the instance already
+  holds data.
 
 !!! tip "Keep buckets private"
     Whichever provider you use, keep the bucket **private**. Hinata never needs

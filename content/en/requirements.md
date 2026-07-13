@@ -56,9 +56,9 @@ Production Hinata expects a **replica set**, not a standalone MongoDB, for two r
 
 Full detail lives in [MongoDB & X.509](/en/database.html).
 
-### S3 / MinIO
+### Object storage
 
-Hinata needs an **S3-compatible** object store. The bundled MinIO is the easy default (bucket `HINATA_S3_BUCKET`, default `hinata`), configured with `MINIO_ROOT_USER` / `MINIO_ROOT_PASSWORD`; in dev, `HINATA_S3_ACCESS_KEY` / `HINATA_S3_SECRET_KEY` are also used. You can point Hinata at any external S3-compatible provider instead. See [Object storage](/en/storage.html).
+Hinata needs an object store. The bundled MinIO is the easy default (bucket `HINATA_S3_BUCKET`, default `hinata`), configured with `MINIO_ROOT_USER` / `MINIO_ROOT_PASSWORD`; in dev, `HINATA_S3_ACCESS_KEY` / `HINATA_S3_SECRET_KEY` are also used. You can point Hinata at any external S3-compatible provider (AWS S3, Google Cloud Storage, Cloudflare R2, DigitalOcean Spaces, …) or at Azure Blob Storage (`HINATA_STORAGE_PROVIDER=azure`) instead. See [Object storage](/en/storage.html).
 
 ### SMTP
 

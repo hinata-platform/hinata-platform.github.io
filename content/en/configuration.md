@@ -90,20 +90,25 @@ See [MongoDB & X.509](/en/database.html) for how the PKI is generated and the
 Deep-link e-mails (verification, password reset, assignment notifications) are
 only delivered with a real relay. See [E-mail & SMTP](/en/email.html).
 
-## S3 / MinIO (object storage)
+## Object storage (S3 / MinIO / GCS / Azure)
 
 | Variable | Purpose | Default / example | Required |
 | --- | --- | --- | --- |
-| `MINIO_ROOT_USER` | MinIO root user (also used as the S3 access key in compose) | `hinata` | Yes |
-| `MINIO_ROOT_PASSWORD` | MinIO root password (also the S3 secret key in compose) | `hinata-dev-secret` (change it) | **Yes (prod)** |
-| `HINATA_S3_ENDPOINT` | S3 endpoint the server talks to | `http://minio:9000` (in compose) | No (prod, in compose) |
+| `HINATA_STORAGE_PROVIDER` | Backend: `s3` (MinIO, AWS S3, GCS interop, R2, Spaces, …) or `azure` (Azure Blob Storage) | `s3` | No |
+| `COMPOSE_PROFILES` | `local-storage` runs the bundled MinIO; empty when using an external store | `local-storage` | No |
+| `MINIO_ROOT_USER` | MinIO root user (also used as the S3 access key in compose) | `hinata` | With bundled MinIO |
+| `MINIO_ROOT_PASSWORD` | MinIO root password (also the S3 secret key in compose) | `hinata-dev-secret` (change it) | **With bundled MinIO (prod)** |
+| `HINATA_S3_ENDPOINT` | S3 endpoint the server talks to | `http://minio:9000` (in compose) | External S3 |
 | `HINATA_S3_ACCESS_KEY` | S3 access key (dev / external S3) | `hinata` | Dev / external |
 | `HINATA_S3_SECRET_KEY` | S3 secret key (dev / external S3) | `hinata-dev-secret` | Dev / external |
-| `HINATA_S3_BUCKET` | Bucket for attachments and avatars | `hinata` | No |
+| `HINATA_S3_BUCKET` | Bucket (S3) / container (Azure) for attachments and avatars | `hinata` | No |
+| `HINATA_S3_REGION` | Bucket region (AWS and region-aware providers) | `us-east-1` | External S3 |
+| `HINATA_S3_ADDRESSING_STYLE` | S3 URL addressing: `auto`, `virtual-host` or `path` | `auto` | No |
+| `HINATA_AZURE_CONNECTION_STRING` | Azure storage-account connection string (with `provider=azure`) | — | Azure |
 
-In production compose, `HINATA_S3_ACCESS_KEY` / `HINATA_S3_SECRET_KEY` are wired to
+In production compose, `HINATA_S3_ACCESS_KEY` / `HINATA_S3_SECRET_KEY` fall back to
 `MINIO_ROOT_USER` / `MINIO_ROOT_PASSWORD` automatically. See
-[Object storage](/en/storage.html).
+[Object storage](/en/storage.html) for per-provider setup (AWS, GCS, Azure, R2, …).
 
 ## App integration
 

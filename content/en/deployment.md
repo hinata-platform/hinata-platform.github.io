@@ -142,7 +142,10 @@ HINATA_SMTP_AUTH=true
 HINATA_SMTP_STARTTLS=true
 HINATA_MAIL_FROM=hinata@example.com
 
-# Object storage (MinIO)
+# Object storage — bundled MinIO (set COMPOSE_PROFILES= and HINATA_STORAGE_* /
+# HINATA_S3_* / HINATA_AZURE_* instead for AWS S3, GCS or Azure; see the
+# Object storage page)
+COMPOSE_PROFILES=local-storage
 MINIO_ROOT_USER=hinata
 MINIO_ROOT_PASSWORD=3b8e0d5f7a2c9146e0b3d7f1a5c8e2b4
 HINATA_S3_BUCKET=hinata
