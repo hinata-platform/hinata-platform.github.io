@@ -20,6 +20,7 @@ Run:  <venv>/bin/python tools/capture.py
 """
 from __future__ import annotations
 
+import argparse
 import functools
 import http.server
 import json
@@ -64,6 +65,16 @@ DEVICE_FRAMES = os.path.join(APP_ROOT, "tool", "device_frames.py")
 IOS_UDID = os.environ.get("IOS_UDID", "BD91470D-338D-48C6-856B-0821AE6A316B")
 IOS_BUNDLE = "com.ahmadre.hinata"
 IOS_SETTLE_S = int(os.environ.get("IOS_SETTLE_S", "13"))
+
+# Chromium launch flags for headless SwiftShader rendering of the Flutter web
+# canvas (shared by the per-page shots and the framed MacBook hero).
+_CHROMIUM_ARGS = [
+    "--hide-scrollbars",
+    "--force-color-profile=srgb",
+    "--enable-unsafe-swiftshader",
+    "--use-gl=angle",
+    "--use-angle=swiftshader",
+]
 
 # Gate/redirect screens the app shows while it is NOT connected + signed in
 # (the "Connect to your server" form, the login form, the boot splash, the
@@ -384,7 +395,7 @@ def serve():
     return httpd
 
 
-def main():
+def main(frames_only=False):
     assert os.path.isdir(WEB_DIR), f"missing web build at {WEB_DIR} — run flutter build web"
     os.makedirs(OUT_DIR, exist_ok=True)
     # Preflight: refuse to start unless the seeded demo server is actually up.
@@ -400,22 +411,33 @@ def main():
         )
     httpd = serve()
     access, refresh = login()
+    seed = init_script(access, refresh)
+
+    # --frames-only: just re-render the two landing-page device heroes
+    # (frame-macbook.png / frame-iphone.png) and skip every per-page shot. The
+    # heroes only need /dashboard, so no board/issue/thread seeding is required.
+    if frames_only:
+        print(f"frames-only: re-rendering device heroes; headless={HEADLESS}")
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=HEADLESS, args=_CHROMIUM_ARGS)
+            try:
+                frame_heroes(browser, seed)
+            finally:
+                browser.close()
+        iphone_hero_from_simulator(access, refresh)
+        httpd.shutdown()
+        print("done →", OUT_DIR)
+        return
+
     board_id = first_board_id(access)
     issue_id = an_issue_id(access)
     if issue_id:
         seed_demo_thread(access, issue_id)
-    seed = init_script(access, refresh)
     todo = shots(board_id, issue_id)
     print(f"logged in; board {board_id}; issue {issue_id}; {len(todo)} shots; "
           f"headless={HEADLESS}")
 
-    args = [
-        "--hide-scrollbars",
-        "--force-color-profile=srgb",
-        "--enable-unsafe-swiftshader",
-        "--use-gl=angle",
-        "--use-angle=swiftshader",
-    ]
+    args = _CHROMIUM_ARGS
     boot_ms = int(os.environ.get("BOOT_MS", "8500"))
 
     def capture_group(browser, group):
@@ -487,4 +509,14 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(
+        description="Capture fresh English screenshots of the Hinata app for the docs."
+    )
+    parser.add_argument(
+        "--frames-only",
+        action="store_true",
+        help="Only re-render the native device heroes (frame-macbook.png / "
+             "frame-iphone.png) and skip every per-page shot.",
+    )
+    cli = parser.parse_args()
+    main(frames_only=cli.frames_only)
