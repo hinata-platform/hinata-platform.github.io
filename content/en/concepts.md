@@ -9,7 +9,7 @@ This page is a glossary of the ideas Hinata is built from. Read it once and the 
 
 ## Organization
 
-The **organization** is the top-level container for everything on a Hinata server — its name, branding and the people in it. You create it during the [setup wizard](/en/setup-wizard.html) on first run (or seed it with `HINATA_SETUP_ORGANIZATION_NAME`). A server hosts a single organization; running several independent organizations means running several servers, which the [white-label](/en/white-label.html) model supports cleanly.
+The **organization** is the top-level container for everything on a Hinata server — its name, branding and the people in it. You create it during the [setup wizard](/en/setup-wizard.html) on first run (or seed it with `HINATA_SETUP_ORGANIZATION_NAME`). A server hosts a single organization; running several independent organizations means running several servers, which the [one-app, self-hosted-servers](/en/self-hosted-app.html) model supports cleanly.
 
 ## Users & roles
 

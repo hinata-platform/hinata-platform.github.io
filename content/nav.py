@@ -168,10 +168,10 @@ NAV = [
     {
         "id": "apps",
         "icon": "devices",
-        "label": {"en": "Apps & white-label", "de": "Apps & White-Label"},
+        "label": {"en": "Apps & branding", "de": "Apps & Branding"},
         "pages": [
             ("clients", {"en": "The apps", "de": "Die Apps"}),
-            ("white-label", {"en": "White-label & branding", "de": "White-Label & Branding"}),
+            ("self-hosted-app", {"en": "Branding & custom clients", "de": "Branding & eigene Clients"}),
         ],
     },
     {

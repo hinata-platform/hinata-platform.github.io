@@ -133,20 +133,21 @@ There are three ways to run the client, depending on who you are.
 | --- | --- |
 | **Just use a server in the browser** | The hosted **web app** — an operator serves it at `https://track.example.com` (the `docker-compose.app.yml` overlay). Nothing to install. |
 | **Run the client yourself from source** | Clone [hinata-app](https://github.com/hinata-platform/hinata-app), `flutter pub get`, `flutter run`. GPL-3.0. |
-| **Ship a branded app to the stores** | Build your own **white-label** client — see [White-label & branding](/en/white-label.html). |
+| **Ship a branded app to the stores** | Build your own **custom** client — see [Branding & custom clients](/en/self-hosted-app.html). |
 
-The published store builds are white-label apps: because native apps carry no
-baked-in server URL, one published app can serve every operator through the
+The published store builds follow the bring-your-own-server model: because
+native apps carry no baked-in server URL, one published app can serve every
+operator through the
 [Hinata Connect gateway](/en/connect-gateway.html).
 
 !!! note "Open source, GPL-3.0"
     The app is licensed **GPL-3.0**. You are free to build it, modify it and
-    ship your own branded client — see the [white-label guide](/en/white-label.html)
+    ship your own branded client — see the [custom-client guide](/en/self-hosted-app.html)
     for exactly what to change.
 
 ## Where to go next
 
-- [White-label & branding](/en/white-label.html) — ship your own branded client.
+- [Branding & custom clients](/en/self-hosted-app.html) — runtime branding, or ship your own client.
 - [Authentication](/en/authentication.html) — local accounts, registration, 2FA.
 - [Single sign-on](/en/sso.html) — connect an identity provider.
 - [Setup & first run](/en/setup-wizard.html) — configuring a fresh server.

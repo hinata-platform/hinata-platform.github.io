@@ -1,16 +1,20 @@
 ---
-title: White-label & branding
-description: Ship your own branded Hinata client — package id, name, icons, splash, accent and deep links — or use the zero-build hosted web app. Practical, step-by-step, GPL-3.0.
+title: Branding & custom clients
+description: One published client app for self-hosted Hinata servers — runtime branding from your server, and how to build your own client (package id, name, icons, splash, accent, deep links) if you want one. Practical, step-by-step, GPL-3.0.
 ---
 
-# White-label & branding
+# Branding & custom clients
 
-Hinata is a **white-label** platform: you run your own server, and you can ship
-your own branded client under your own name in the app stores. Because the native
-app carries **no baked-in server URL**, a single published app can serve every
-operator through the [Hinata Connect gateway](/en/connect-gateway.html) — but you
-are equally free to build and publish your own. This page is the practical guide
-to doing exactly that.
+Hinata follows the **one app, self-hosted servers** model you know from
+Rocket.Chat or Nextcloud: you run your own server instance, and the single
+published Hinata app connects to it. The native app carries **no baked-in
+server URL** — users bring their own server, and branding (organization name
+and logo) comes from the server at runtime via `/api/v1/meta`. Push and
+universal links work for every instance through the
+[Hinata Connect gateway](/en/connect-gateway.html), so most operators never
+need to build anything. If you *do* want a client of your own under your own
+store listing, you are equally free to build and publish one — this page is
+the practical guide to doing exactly that.
 
 !!! note "Open source, GPL-3.0"
     The client is licensed **GPL-3.0**. You may rebrand, modify and distribute it,
@@ -36,7 +40,7 @@ own store presence, icon and name.
 
 ## What you change
 
-A white-label client is a fork of [hinata-app](https://github.com/hinata-platform/hinata-app)
+A custom client is a fork of [hinata-app](https://github.com/hinata-platform/hinata-app)
 with a handful of identity values swapped. There are five things to change.
 
 | # | What | Where |

@@ -1,11 +1,11 @@
 ---
 title: Introduction
-description: Hinata is an open-source, self-hosted, white-label project and issue tracker — no user, team or board limits, ever. Meet the platform.
+description: Hinata is an open-source, self-hosted project and issue tracker with one published client app for your own server — no user, team or board limits, ever. Meet the platform.
 ---
 
 # Hinata
 
-Hinata is an **independent, open-source, self-hosted project & issue tracker** — a modern alternative to hosted trackers that you run entirely on your own infrastructure. It is a **white-label** platform: operators run their own server and can ship their own branded client. Licensed under **GPL-3.0**, current platform version **{{version}}**.
+Hinata is an **independent, open-source, self-hosted project & issue tracker** — a modern alternative to hosted trackers that you run entirely on your own infrastructure. It follows the **one app, self-hosted servers** model: operators run their own server instance, and the single published client app connects to it — with your organization's name and logo applied at runtime. Licensed under **GPL-3.0**, current platform version **{{version}}**.
 
 No user limits. No team limits. No board limits. Ever. What you self-host is yours.
 
@@ -23,7 +23,7 @@ Hinata is a full agile project-management suite: projects and teams, issues with
 Two things make it different from most self-hosted trackers:
 
 - **It ships a real cross-platform app.** Not just a web UI — a single Flutter codebase compiled for Android, iOS, Web and macOS, with live updates over Server-Sent Events, offline-friendly navigation, and a ⌘K command palette.
-- **It is white-label by design.** The server is decoupled from the client. You can point the published app at your own server, save and switch between multiple servers, or build and publish your own branded client with your package id, name, icons and accent color.
+- **You bring your own server.** The client carries no baked-in backend. You point the published app at your own server, save and switch between multiple servers, and branding comes from your server at runtime — or build and publish your own client with your package id, name, icons and accent color.
 
 !!! info "Design language"
     Hinata wears a navy navigation rail, a warm-paper workspace, and a honey-amber accent (`#D9A032`) that reads the same in light and dark. Liquid-glass surfaces appear on the mobile navigation, the ⌘K palette and the attachment lightbox. It is meant to be a joy to look at every day.

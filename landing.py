@@ -27,9 +27,9 @@ FEATURES = [
     ("⏱️", {"en": "Time tracking", "de": "Zeiterfassung"},
      {"en": "Work items by activity type and weekly timesheets, feeding reports.",
       "de": "Arbeitszeiten nach Aktivität und wöchentliche Timesheets — direkt in den Berichten."}),
-    ("🎨", {"en": "White-label", "de": "White-Label"},
-     {"en": "Your brand, your server. One Flutter codebase on Android, iOS, Web & macOS.",
-      "de": "Deine Marke, dein Server. Eine Flutter-Codebasis auf Android, iOS, Web & macOS."}),
+    ("🎨", {"en": "Bring your own server", "de": "Bring your own Server"},
+     {"en": "One app, your self-hosted server, runtime branding. One Flutter codebase on Android, iOS, Web & macOS.",
+      "de": "Eine App, dein selbst gehosteter Server, Laufzeit-Branding. Eine Flutter-Codebasis auf Android, iOS, Web & macOS."}),
 ]
 
 T = {

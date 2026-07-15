@@ -26,17 +26,18 @@ gesamte Plattform ist der Code in den beiden Repositories.
 zentrale [Hinata Connect Gateway](/de/connect-gateway.html) weitergeleitet. Dein Server
 registriert sich beim Start selbst am Gateway, und die Push-Zugangsdaten der
 veröffentlichten App liegen im Gateway — nicht in deinem Deployment. Self-Hoster
-konfigurieren für Push **nichts**. (Firebase betrifft dich nur, wenn du deine **eigene**
-White-Label-App mit eigener Store-Präsenz baust und ausrollst und dein eigenes Gateway
+konfigurieren für Push **nichts**. (Firebase betrifft dich nur, wenn du deinen **eigenen**
+Client mit eigener Store-Präsenz baust und ausrollst und dein eigenes Gateway
 betreibst.)
 
 ### Kann ich meine eigene Domain und mein eigenes Branding verwenden?
 
-**Ja — Hinata ist von Grund auf White-Label.** Du lieferst ohnehin bereits alles unter
-deiner eigenen Domain aus (`track.example.com` für die Web-App,
-`api.track.example.com` für die API). Darüber hinaus kannst du deinen eigenen gebrandeten
-Client bauen: eigene Package-ID, App-Name, Icons und Splash, Akzentfarbe, ausgerichtet
-auf das Gateway. Siehe [White-Label & Branding](/de/white-label.html). Native Apps backen
+**Ja.** Du lieferst ohnehin bereits alles unter deiner eigenen Domain aus
+(`track.example.com` für die Web-App, `api.track.example.com` für die API), und
+die App übernimmt Name und Logo deiner Organisation zur Laufzeit von deinem
+Server. Darüber hinaus kannst du deinen eigenen gebrandeten Client bauen: eigene
+Package-ID, App-Name, Icons und Splash, Akzentfarbe, ausgerichtet auf das
+Gateway. Siehe [Branding & eigene Clients](/de/self-hosted-app.html). Native Apps backen
 niemals eine Server-URL fest ein — Nutzer speichern Server und wechseln zwischen ihnen —
 sodass eine gebrandete App viele Instanzen bedienen kann.
 

@@ -1,17 +1,20 @@
 ---
-title: White-Label & Branding
-description: Liefere deinen eigenen gebrandeten Hinata-Client aus — Package-ID, Name, Icons, Splash, Akzent und Deep Links — oder nutze die zero-build gehostete Web-App. Praktisch, Schritt für Schritt, GPL-3.0.
+title: Branding & eigene Clients
+description: Eine veröffentlichte Client-App für selbst gehostete Hinata-Server — Laufzeit-Branding vom Server, und wie du bei Bedarf deinen eigenen Client baust (Package-ID, Name, Icons, Splash, Akzent, Deep Links). Praktisch, Schritt für Schritt, GPL-3.0.
 ---
 
-# White-Label & Branding
+# Branding & eigene Clients
 
-Hinata ist eine **White-Label**-Plattform: Du betreibst deinen eigenen Server und
-kannst deinen eigenen gebrandeten Client unter deinem eigenen Namen in den App
-Stores ausliefern. Weil die native App **keine einkompilierte Server-URL** trägt,
-kann eine einzige veröffentlichte App über das
-[Hinata Connect Gateway](/de/connect-gateway.html) jedem Betreiber dienen — es
-steht dir aber genauso frei, deine eigene App zu bauen und zu veröffentlichen.
-Diese Seite ist der praktische Leitfaden dazu.
+Hinata folgt dem Modell **eine App, selbst gehostete Server**, wie du es von
+Rocket.Chat oder Nextcloud kennst: Du betreibst deine eigene Server-Instanz, und
+die eine veröffentlichte Hinata-App verbindet sich mit ihr. Die native App trägt
+**keinen fest eingebauten Backend-Server** — Nutzer bringen ihren eigenen Server
+mit, und das Branding (Organisationsname und Logo) kommt zur Laufzeit vom Server
+über `/api/v1/meta`. Push und Universal Links funktionieren für jede Instanz über
+das [Hinata Connect Gateway](/de/connect-gateway.html), sodass die meisten
+Betreiber nie etwas bauen müssen. Willst du *doch* einen eigenen Client unter
+deinem eigenen Store-Eintrag, steht es dir frei, ihn zu bauen und zu
+veröffentlichen — diese Seite ist der praktische Leitfaden dazu.
 
 !!! note "Open Source, GPL-3.0"
     Der Client ist unter **GPL-3.0** lizenziert. Du darfst ihn neu branden,
@@ -39,7 +42,7 @@ Namen brauchst.
 
 ## Was du änderst
 
-Ein White-Label-Client ist ein Fork von
+Ein eigener Client ist ein Fork von
 [hinata-app](https://github.com/hinata-platform/hinata-app), bei dem eine Handvoll
 Identitätswerte ausgetauscht sind. Es gibt fünf Dinge zu ändern.
 

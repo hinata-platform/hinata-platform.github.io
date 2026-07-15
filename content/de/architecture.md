@@ -18,7 +18,7 @@ Auf einen Blick, vom Client bis zum Speicher:
 - **MongoDB** — das System of Record. In Produktion läuft ein **Replica Set** (2 Datenknoten + 1 Arbiter) mit TLS und X.509-Client-Authentifizierung.
 - **S3 / MinIO** — Objektspeicher für Attachments und Avatare, mit zufälligen Objekt-Keys und presignten Downloads.
 - **SMTP** — ausgehende Mail (Verifizierung, Benachrichtigungen, Passwort-Reset). Mailpit übernimmt das in der Entwicklung.
-- **Hinata Connect Gateway** — ein zentrales Push-Relay und Universal-Link-Relay, sodass eine einzige veröffentlichte White-Label-App viele Server bedienen kann.
+- **Hinata Connect Gateway** — ein zentrales Push-Relay und Universal-Link-Relay, sodass die eine veröffentlichte App viele selbst gehostete Server bedienen kann.
 
 ## Der Weg App → Server
 
@@ -31,7 +31,7 @@ Jeder Netzwerkaufruf aus der App läuft durch einen einzigen `ApiClient`, aufgeb
 Der Server stellt eine stabile, versionierte Oberfläche unter **`/api/v1`** bereit. Siehe die [API-Referenz](/de/api.html) für die vollständige Endpunktliste.
 
 !!! info "Multi-Server von Grund auf"
-    Die native App backt nie eine Server-URL ein. Nutzer speichern einen oder mehrere Server und wechseln zwischen ihnen, und Access-Tokens sind **pro Server** gescopet. Der Web-Build kann auf seinen eigenen Origin defaulten. Genau das macht dieselbe veröffentlichte App gegen jeden Hinata-Server nutzbar — siehe [White-Label & Branding](/de/white-label.html).
+    Die native App backt nie eine Server-URL ein. Nutzer speichern einen oder mehrere Server und wechseln zwischen ihnen, und Access-Tokens sind **pro Server** gescopet. Der Web-Build kann auf seinen eigenen Origin defaulten. Genau das macht dieselbe veröffentlichte App gegen jeden Hinata-Server nutzbar — siehe [Branding & eigene Clients](/de/self-hosted-app.html).
 
 ## Live-Updates mit SSE
 
@@ -92,7 +92,7 @@ Push-Benachrichtigungen und Universal Links werden über das **Hinata Connect Ga
 - Die App behandelt Universal Links der Form `/l/<code>` über das Gateway.
 - Überschreibe das Gateway mit `HINATA_GATEWAY_BASE_URL`, um ein eigenes zu betreiben.
 
-Diese Indirektion ermöglicht es, dass eine veröffentlichte White-Label-App eine unbegrenzte Anzahl unabhängiger Hinata-Server bedient. Siehe [Hinata Connect Gateway](/de/connect-gateway.html) für das vollständige Design.
+Diese Indirektion ermöglicht es, dass die eine veröffentlichte App eine unbegrenzte Anzahl unabhängiger, selbst gehosteter Hinata-Server bedient. Siehe [Hinata Connect Gateway](/de/connect-gateway.html) für das vollständige Design.
 
 ## Wohin als Nächstes
 

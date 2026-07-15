@@ -146,20 +146,21 @@ Es gibt drei Wege, den Client auszuführen, je nachdem, wer du bist.
 | --- | --- |
 | **Einen Server einfach im Browser nutzen** | Die gehostete **Web-App** — ein Betreiber liefert sie unter `https://track.example.com` aus (das Overlay `docker-compose.app.yml`). Nichts zu installieren. |
 | **Den Client selbst aus dem Quellcode ausführen** | Klone [hinata-app](https://github.com/hinata-platform/hinata-app), `flutter pub get`, `flutter run`. GPL-3.0. |
-| **Eine gebrandete App in die Stores bringen** | Baue deinen eigenen **White-Label**-Client — siehe [White-Label & Branding](/de/white-label.html). |
+| **Eine gebrandete App in die Stores bringen** | Baue deinen **eigenen** Client — siehe [Branding & eigene Clients](/de/self-hosted-app.html). |
 
-Die veröffentlichten Store-Builds sind White-Label-Apps: Weil native Apps keine
-einkompilierte Server-URL tragen, kann eine veröffentlichte App über das
+Die veröffentlichten Store-Builds folgen dem Bring-your-own-Server-Modell: Weil
+native Apps keine einkompilierte Server-URL tragen, kann eine veröffentlichte App
+über das
 [Hinata Connect Gateway](/de/connect-gateway.html) jedem Betreiber dienen.
 
 !!! note "Open Source, GPL-3.0"
     Die App ist unter **GPL-3.0** lizenziert. Es steht dir frei, sie zu bauen, zu
     modifizieren und deinen eigenen gebrandeten Client auszuliefern — siehe den
-    [White-Label-Leitfaden](/de/white-label.html) für genau das, was zu ändern ist.
+    [Leitfaden für eigene Clients](/de/self-hosted-app.html) für genau das, was zu ändern ist.
 
 ## Wie es weitergeht
 
-- [White-Label & Branding](/de/white-label.html) — liefere deinen eigenen gebrandeten Client aus.
+- [Branding & eigene Clients](/de/self-hosted-app.html) — Laufzeit-Branding oder dein eigener Client.
 - [Authentifizierung](/de/authentication.html) — lokale Konten, Registrierung, 2FA.
 - [Single Sign-on](/de/sso.html) — verbinde einen Identitätsanbieter.
 - [Setup & Erststart](/de/setup-wizard.html) — einen frischen Server konfigurieren.

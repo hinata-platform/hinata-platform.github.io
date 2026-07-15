@@ -77,8 +77,11 @@ German nav title (section 7).
 ## 2. What Hinata is
 
 Hinata is an **independent, open-source, self-hosted project & issue tracker** — a
-modern alternative to hosted trackers. It is a **white-label** platform: operators
-run their own server and can ship their own branded client. Licensed **GPL-3.0**.
+modern alternative to hosted trackers. It follows the **one app, self-hosted
+servers** model (think Rocket.Chat/Nextcloud): operators run their own server
+instance, the single published client app connects to it (runtime branding via
+org name/logo from the server), and operators can also ship their own client.
+Licensed **GPL-3.0**.
 Current platform version: use the `{{version}}` placeholder (auto-filled at build time from the latest hinata-app release tag) rather than a hardcoded number. No user, team or board limits, ever.
 
 Two repositories:
@@ -100,7 +103,7 @@ mobile nav, the ⌘K palette and the attachment lightbox.
   arbiter, TLS + X.509 client auth). Attachments live in **S3/MinIO** (presigned
   downloads, randomized object keys). Mail via **SMTP** (Mailpit in dev).
 - **Hinata Connect gateway**: a central push-relay + universal-link relay so a
-  single published white-label app can serve many servers; self-hosters need NO
+  single published app can serve many self-hosted servers; self-hosters need NO
   Firebase. The server registers itself with the gateway on boot. Default gateway
   URL: `https://connect.hinata.ahmadre.com` (override with `HINATA_GATEWAY_BASE_URL`).
 - Runtime settings (SSO, e-mail ingest, push, git OAuth apps) are stored in MongoDB
@@ -275,17 +278,17 @@ IMAP polling turns inbound mail into issues. Runtime-configured in the Admin are
 ## 6f. Hinata Connect gateway
 
 Central push-relay + universal-link relay (`connect.hinata.ahmadre.com`) so ONE
-white-label app serves many servers. The server registers itself on boot; per-server
+published app serves many self-hosted servers. The server registers itself on boot; per-server
 FCM/firebase-admin lives in the gateway, not each server — self-hosters need no
 Firebase. The app handles universal links `/l/<code>`. Override with
 `HINATA_GATEWAY_BASE_URL` to run your own gateway.
 
-## 6g. Multi-server & white-label
+## 6g. Multi-server & custom clients
 
 Native apps must NEVER bake in a server URL (web build may default via `kIsWeb`).
 Users save multiple servers and switch between them; tokens are scoped per server.
 A liquid-glass Server Manager shows live probe status/ping and lets you add/edit/
-delete/switch servers, with a connection test on add. White-label = build your own
+delete/switch servers, with a connection test on add. Custom client = build your own
 branded client: package id (e.g. `com.yourorg.yourapp`), app name, icons/splash,
 accent, and point it at the gateway. Deep links: Android App Links + iOS Universal
 Links for `https://track.example.com` (assetlinks.json / AASA served by the web
@@ -319,7 +322,7 @@ security: authentication (Authentication / Authentifizierung), sso (Single sign-
 security (Security model / Sicherheitsmodell).
 integrations: git-integration (Git integration / Git-Integration),
 email-to-ticket (E-mail to ticket / E-Mail zu Vorgang), connect-gateway (Hinata Connect gateway / Hinata Connect Gateway).
-apps: clients (The apps / Die Apps), white-label (White-label & branding / White-Label & Branding).
+apps: clients (The apps / Die Apps), self-hosted-app (Branding & custom clients / Branding & eigene Clients).
 administration: admin-area (Admin area / Adminbereich), project-settings (Project settings / Projekteinstellungen).
 reference: api (API reference / API-Referenz), development (Development / Entwicklung),
 contributing (Contributing / Mitwirken), faq (FAQ & troubleshooting / FAQ & Fehlerbehebung).

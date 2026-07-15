@@ -1,6 +1,6 @@
 ---
 title: Hinata Connect Gateway
-description: Ein zentrales Relay für mobile Push-Nachrichten und Universal Links, sodass eine einzige veröffentlichte White-Label-App jeden selbst gehosteten Hinata-Server bedienen kann — ohne Firebase für Betreiber.
+description: Ein zentrales Relay für mobile Push-Nachrichten und Universal Links, sodass die eine veröffentlichte App jeden selbst gehosteten Hinata-Server bedienen kann — ohne Firebase für Betreiber.
 ---
 
 # Hinata Connect Gateway
@@ -22,9 +22,9 @@ Das Gateway ist ein gemeinsamer, zentraler Dienst (standardmäßig `https://conn
 
 Dein Server **registriert sich beim Booten selbst beim Gateway**. Von da an funktionieren Push- und Universal-Link-Weiterleitung einfach — die FCM-Schlüssel und die App-Site-Association-Dateien liegen im Gateway, niemals in deinem Deployment.
 
-## Warum es existiert (White-Label)
+## Warum es existiert (eine App, viele Server)
 
-Weil eine veröffentlichte [White-Label](/de/white-label.html)-App auf viele Server zeigen kann, kann sie keine serverspezifischen Push-Anmeldedaten einbacken. Das Gateway ist das gemeinsame Teil, das „eine App, viele Server" ermöglicht und Betreiber dabei komplett aus dem Firebase-Geschäft heraushält.
+Weil die eine veröffentlichte App auf [jeden selbst gehosteten Server zeigen kann](/de/self-hosted-app.html), kann sie keine serverspezifischen Push-Anmeldedaten einbacken. Das Gateway ist das gemeinsame Teil, das „eine App, viele Server" ermöglicht und Betreiber dabei komplett aus dem Firebase-Geschäft heraushält.
 
 !!! tip "Für den Standardfall nichts zu konfigurieren"
     Wenn du die Standard-App und das Standard-Gateway nutzt, gibt es keine Push-Einrichtung: Dein Server registriert sich beim Booten, und Benachrichtigungen fließen. Das ist der empfohlene Weg für die meisten Selbst-Hoster.
@@ -40,13 +40,13 @@ Universal Links werden als `https://<gateway>/l/<code>` weitergeleitet, wobei `<
 
 ## Ein eigenes Gateway betreiben
 
-Wenn du deine **eigene** gebrandete App in die Stores bringst, besitzt du deren FCM-Anmeldedaten und Link-Domain — also betreibst du dein eigenes Gateway und richtest deinen Server mit `HINATA_GATEWAY_BASE_URL` darauf aus. Das ist ein fortgeschrittener Weg, der Hand in Hand mit einem vollständigen [White-Label-Build](/de/white-label.html) geht; die Mechanik von Registrierung und Weiterleitung ist identisch zum gemeinsamen Gateway.
+Wenn du deine **eigene** gebrandete App in die Stores bringst, besitzt du deren FCM-Anmeldedaten und Link-Domain — also betreibst du dein eigenes Gateway und richtest deinen Server mit `HINATA_GATEWAY_BASE_URL` darauf aus. Das ist ein fortgeschrittener Weg, der Hand in Hand mit einem vollständigen [eigenen Client-Build](/de/self-hosted-app.html) geht; die Mechanik von Registrierung und Weiterleitung ist identisch zum gemeinsamen Gateway.
 
 !!! warning "Härtung der Selbstregistrierung"
     Ein Gateway, das offene Registrierung akzeptiert, sollte in der Produktion geschützt werden (z. B. mit einem Bootstrap-Secret), sodass sich nur deine Server registrieren können. Verwende `HINATA_GATEWAY_BOOTSTRAP_SECRET`, wenn du dein eigenes betreibst.
 
 ## Nächste Schritte
 
-- Bringe deinen eigenen Client heraus unter [White-Label & Branding](/de/white-label.html).
+- Bringe deinen eigenen Client heraus unter [Branding & eigene Clients](/de/self-hosted-app.html).
 - Konfiguriere Zustellkanäle unter [Benachrichtigungen](/de/notifications.html).
 - Sieh dir die Link-Behandlung unter [Die Apps](/de/clients.html) an.

@@ -1,11 +1,11 @@
 ---
 title: Einführung
-description: Hinata ist ein quelloffener, selbst-gehosteter White-Label-Projekt- und Issue-Tracker — ohne Nutzer-, Team- oder Board-Limits. Lerne die Plattform kennen.
+description: Hinata ist ein quelloffener, selbst-gehosteter Projekt- und Issue-Tracker mit einer veröffentlichten Client-App für deinen eigenen Server — ohne Nutzer-, Team- oder Board-Limits. Lerne die Plattform kennen.
 ---
 
 # Hinata
 
-Hinata ist ein **unabhängiger, quelloffener, selbst-gehosteter Projekt- und Issue-Tracker** — eine moderne Alternative zu gehosteten Trackern, die du vollständig auf deiner eigenen Infrastruktur betreibst. Es ist eine **White-Label**-Plattform: Betreiber hosten ihren eigenen Server und können einen eigenen, gebrandeten Client ausliefern. Lizenziert unter **GPL-3.0**, aktuelle Plattformversion **{{version}}**.
+Hinata ist ein **unabhängiger, quelloffener, selbst-gehosteter Projekt- und Issue-Tracker** — eine moderne Alternative zu gehosteten Trackern, die du vollständig auf deiner eigenen Infrastruktur betreibst. Es folgt dem Modell **eine App, selbst gehostete Server**: Betreiber hosten ihre eigene Server-Instanz, und die eine veröffentlichte Client-App verbindet sich mit ihr — Name und Logo deiner Organisation werden zur Laufzeit übernommen. Lizenziert unter **GPL-3.0**, aktuelle Plattformversion **{{version}}**.
 
 Keine Nutzer-Limits. Keine Team-Limits. Keine Board-Limits. Niemals. Was du selbst hostest, gehört dir.
 
@@ -23,7 +23,7 @@ Hinata ist eine vollständige agile Projektmanagement-Suite: Projekte und Teams,
 Zwei Dinge unterscheiden es von den meisten selbst-gehosteten Trackern:
 
 - **Es liefert eine echte plattformübergreifende App.** Nicht nur eine Web-Oberfläche — eine einzige Flutter-Codebasis, kompiliert für Android, iOS, Web und macOS, mit Live-Updates über Server-Sent Events, offline-freundlicher Navigation und einer ⌘K-Befehlspalette.
-- **Es ist von Grund auf White-Label.** Der Server ist vom Client entkoppelt. Du kannst die veröffentlichte App auf deinen eigenen Server zeigen lassen, mehrere Server speichern und zwischen ihnen wechseln oder deinen eigenen gebrandeten Client mit eigener Package-ID, eigenem Namen, Icons und Akzentfarbe bauen und veröffentlichen.
+- **Du bringst deinen eigenen Server mit.** Der Client hat keinen fest eingebauten Backend-Server. Du lässt die veröffentlichte App auf deinen eigenen Server zeigen, speicherst mehrere Server und wechselst zwischen ihnen, und das Branding kommt zur Laufzeit von deinem Server — oder du baust und veröffentlichst deinen eigenen Client mit eigener Package-ID, eigenem Namen, Icons und Akzentfarbe.
 
 !!! info "Designsprache"
     Hinata trägt eine navyblaue Navigationsleiste, eine warme Papier-Arbeitsfläche und einen honig-bernsteinfarbenen Akzent (`#D9A032`), der in Hell und Dunkel gleich wirkt. Liquid-Glass-Oberflächen erscheinen auf der mobilen Navigation, der ⌘K-Palette und der Attachment-Lightbox. Es soll jeden Tag Freude machen, es anzusehen.

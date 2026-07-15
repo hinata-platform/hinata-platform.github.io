@@ -18,7 +18,7 @@ At a glance, from client to storage:
 - **MongoDB** — the system of record. Production runs a **replica set** (2 data nodes + 1 arbiter) with TLS and X.509 client authentication.
 - **S3 / MinIO** — object storage for attachments and avatars, with randomized object keys and presigned downloads.
 - **SMTP** — outbound mail (verification, notifications, password reset). Mailpit stands in during development.
-- **Hinata Connect gateway** — a central push-relay and universal-link relay so a single published white-label app can serve many servers.
+- **Hinata Connect gateway** — a central push-relay and universal-link relay so the single published app can serve many self-hosted servers.
 
 ## The app → server path
 
@@ -31,7 +31,7 @@ Every network call from the app goes through a single `ApiClient` built on **dio
 The server exposes a stable, versioned surface at **`/api/v1`**. See the [API reference](/en/api.html) for the full endpoint list.
 
 !!! info "Multi-server by design"
-    The native app never bakes in a server URL. Users save one or more servers and switch between them, and access tokens are scoped **per server**. The web build may default to its own origin. This is what makes the same published app usable against any Hinata server — see [White-label & branding](/en/white-label.html).
+    The native app never bakes in a server URL. Users save one or more servers and switch between them, and access tokens are scoped **per server**. The web build may default to its own origin. This is what makes the same published app usable against any Hinata server — see [Branding & custom clients](/en/self-hosted-app.html).
 
 ## Live updates with SSE
 
@@ -92,7 +92,7 @@ Push notifications and universal links are relayed through the **Hinata Connect 
 - The app handles universal links of the form `/l/<code>` via the gateway.
 - Override the gateway with `HINATA_GATEWAY_BASE_URL` to run your own.
 
-This indirection is what lets one published, white-label app serve an unlimited number of independent Hinata servers. See [Hinata Connect gateway](/en/connect-gateway.html) for the full design.
+This indirection is what lets the one published app serve an unlimited number of independent, self-hosted Hinata servers. See [Hinata Connect gateway](/en/connect-gateway.html) for the full design.
 
 ## Where to go next
 

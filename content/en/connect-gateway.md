@@ -1,6 +1,6 @@
 ---
 title: Hinata Connect gateway
-description: One central relay for mobile push and universal links, so a single published white-label app can serve every self-hosted Hinata server — with no Firebase for operators.
+description: One central relay for mobile push and universal links, so the single published app can serve every self-hosted Hinata server — with no Firebase for operators.
 ---
 
 # Hinata Connect gateway
@@ -22,9 +22,9 @@ The gateway is a shared, central service (default `https://connect.hinata.ahmadr
 
 Your server **registers itself with the gateway on boot**. From then on, push and universal-link relaying just work — the FCM keys and the app-site-association files live in the gateway, never in your deployment.
 
-## Why it exists (white-label)
+## Why it exists (one app, many servers)
 
-Because one published, [white-label](/en/white-label.html) app can point at many servers, it can't bake in per-server push credentials. The gateway is the shared piece that makes "one app, many servers" possible while keeping operators out of the Firebase business entirely.
+Because the one published app can [point at any self-hosted server](/en/self-hosted-app.html), it can't bake in per-server push credentials. The gateway is the shared piece that makes "one app, many servers" possible while keeping operators out of the Firebase business entirely.
 
 !!! tip "Nothing to configure for the common case"
     If you use the standard app and the default gateway, there is no push setup: your server registers on boot and notifications flow. This is the recommended path for most self-hosters.
@@ -40,13 +40,13 @@ Universal links are relayed as `https://<gateway>/l/<code>`, where `<code>` enco
 
 ## Running your own gateway
 
-If you ship your **own** branded app to the stores, you'll own its FCM credentials and link domain — so you run your own gateway and point your server at it with `HINATA_GATEWAY_BASE_URL`. This is an advanced path that goes hand-in-hand with a full [white-label build](/en/white-label.html); the mechanics of registration and relaying are identical to the shared gateway.
+If you ship your **own** branded app to the stores, you'll own its FCM credentials and link domain — so you run your own gateway and point your server at it with `HINATA_GATEWAY_BASE_URL`. This is an advanced path that goes hand-in-hand with a full [custom client build](/en/self-hosted-app.html); the mechanics of registration and relaying are identical to the shared gateway.
 
 !!! warning "Self-registration hardening"
     A gateway that accepts open registration should be protected in production (e.g. a bootstrap secret) so only your servers can register. Use `HINATA_GATEWAY_BOOTSTRAP_SECRET` when you run your own.
 
 ## Next steps
 
-- Ship your own client in [White-label & branding](/en/white-label.html).
+- Ship your own client in [Branding & custom clients](/en/self-hosted-app.html).
 - Configure delivery channels in [Notifications](/en/notifications.html).
 - Review link handling in [The apps](/en/clients.html).

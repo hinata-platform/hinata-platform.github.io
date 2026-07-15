@@ -1,7 +1,7 @@
 # Hinata Documentation
 
 The official documentation & self-hosting guide for **[Hinata](https://github.com/hinata-platform)** —
-an open-source, self-hosted, white-label project & issue tracker.
+an open-source, self-hosted project & issue tracker with one published client app for self-hosted server instances.
 
 📖 **Live site: https://hinata-platform.github.io**
 
