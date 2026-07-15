@@ -195,3 +195,11 @@ NAV = [
         ],
     },
 ]
+
+# Standalone legal pages: built like docs pages (per language) but NOT part of
+# the sidebar navigation — they are linked from the site footers and referenced
+# by the apps/store listings at /privacy-policy and /terms-of-service.
+LEGAL_PAGES = [
+    ("privacy-policy", {"en": "Privacy policy", "de": "Datenschutzerklärung"}),
+    ("terms-of-service", {"en": "Terms of service", "de": "Nutzungsbedingungen"}),
+]

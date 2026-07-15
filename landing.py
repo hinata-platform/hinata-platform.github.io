@@ -241,6 +241,8 @@ docker compose up -d"""
     <a href="/en/">Docs</a>
     <a href="{SITE['repo_app']}" target="_blank" rel="noopener">App</a>
     <a href="{SITE['repo_server']}" target="_blank" rel="noopener">Server</a>
+    <a href="/privacy-policy" data-en="Privacy" data-de="Datenschutz">Privacy</a>
+    <a href="/terms-of-service" data-en="Terms" data-de="Nutzungsbedingungen">Terms</a>
   </div>
 </footer>
 

@@ -22,7 +22,7 @@ import markdown
 from markdown.extensions.toc import TocExtension
 
 sys.path.insert(0, str(Path(__file__).parent / "content"))
-from nav import SITE, UI, NAV  # noqa: E402
+from nav import SITE, UI, NAV, LEGAL_PAGES  # noqa: E402
 
 ROOT = Path(__file__).parent
 CONTENT = ROOT / "content"
@@ -125,6 +125,9 @@ def title_for(slug: str, lang: str) -> str:
     for s, titles, _ in flat_pages():
         if s == slug:
             return titles[lang]
+    for s, titles in LEGAL_PAGES:
+        if s == slug:
+            return titles[lang]
     return slug
 
 
@@ -169,6 +172,8 @@ def render_toc(toc_tokens) -> str:
 
 def prev_next(slug: str):
     seq = [s for s, _, _ in flat_pages()]
+    if slug not in seq:  # standalone pages (legal) have no prev/next
+        return None, None
     i = seq.index(slug)
     prev = seq[i - 1] if i > 0 else None
     nxt = seq[i + 1] if i < len(seq) - 1 else None
@@ -188,6 +193,8 @@ def render_page(lang, slug, meta, body_html, toc_tokens, build_time):
         if slug in [p[0] for p in g["pages"]]:
             group_label = g["label"][lang]
             break
+    if not group_label and slug in [s for s, _ in LEGAL_PAGES]:
+        group_label = {"en": "Legal", "de": "Rechtliches"}[lang]
 
     sidebar = render_sidebar(lang, slug)
     toc = render_toc(toc_tokens)
@@ -250,6 +257,10 @@ def render_page(lang, slug, meta, body_html, toc_tokens, build_time):
         search_empty=escape(ui["search_empty"]),
         home_url=f"/{lang}/",
         repo_org=SITE["repo_org"],
+        legal_links="".join(
+            f'<a href="{page_url(lang, s)}">{escape(t[lang])}</a>'
+            for s, t in LEGAL_PAGES
+        ),
         build_time=build_time,
         icon_menu=icon("menu"),
         icon_search=icon("search"),
@@ -338,6 +349,7 @@ TEMPLATE = """<!doctype html>
       {nav_cards}
       <footer class="page-footer">
         <span>© <span id="year">2026</span> Hinata · GPL-3.0</span>
+        {legal_links}
         <a href="{repo_org}" target="_blank" rel="noopener">GitHub</a>
       </footer>
     </article>
@@ -423,6 +435,20 @@ def build():
                 "desc": meta.get("description", "")[:200],
             })
 
+    # Standalone legal pages — same template, but outside the sidebar nav;
+    # linked from the page/landing footers instead.
+    for lang in SITE["languages"]:
+        for slug, titles in LEGAL_PAGES:
+            raw = (CONTENT / lang / f"{slug}.md").read_text(encoding="utf-8")
+            meta, text = parse_front_matter(raw)
+            meta.setdefault("title", titles[lang])
+            md = make_md()
+            body_html = md.convert(text)
+            html = render_page(lang, slug, meta, body_html,
+                               getattr(md, "toc_tokens", []), build_time)
+            (OUT / lang / f"{slug}.html").write_text(html, encoding="utf-8")
+            built += 1
+
     (OUT / "search-index.json").write_text(
         json.dumps(search_index, ensure_ascii=False), encoding="utf-8"
     )
@@ -439,13 +465,37 @@ def build():
     (OUT / "sitemap.xml").write_text(render_sitemap(build_time), encoding="utf-8")
     (OUT / "404.html").write_text(render_404(), encoding="utf-8")
 
+    # Language-neutral legal entry points: /privacy-policy and /terms-of-service
+    # are the canonical URLs referenced by the apps and the store listings. Each
+    # is a tiny stub that forwards to the visitor's language version.
+    for slug in ("privacy-policy", "terms-of-service"):
+        stub_dir = OUT / slug
+        stub_dir.mkdir(parents=True, exist_ok=True)
+        (stub_dir / "index.html").write_text(render_lang_redirect(slug), encoding="utf-8")
+
     print(f"✓ built {built} pages · {len(search_index)} indexed → {OUT}")
+
+
+def render_lang_redirect(slug: str) -> str:
+    """Stub page at /{slug}/ that forwards to /de/{slug} for German browsers
+    and /en/{slug} otherwise (meta-refresh fallback to English without JS)."""
+    return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hinata</title>
+<link rel="canonical" href="{SITE['base_url']}/en/{slug}">
+<meta http-equiv="refresh" content="1; url=/en/{slug}">
+<script>
+  var lang = (navigator.language || 'en').toLowerCase().indexOf('de') === 0 ? 'de' : 'en';
+  location.replace('/' + lang + '/{slug}');
+</script>
+</head><body><p><a href="/en/{slug}">English</a> · <a href="/de/{slug}">Deutsch</a></p></body></html>
+"""
 
 
 def render_sitemap(build_time):
     urls = []
     for lang in SITE["languages"]:
-        for slug, _, _ in flat_pages():
+        for slug in [s for s, _, _ in flat_pages()] + [s for s, _ in LEGAL_PAGES]:
             urls.append(
                 f"<url><loc>{SITE['base_url']}{page_url(lang, slug)}</loc>"
                 f"<lastmod>{build_time}</lastmod></url>"
