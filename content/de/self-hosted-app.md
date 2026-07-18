@@ -113,10 +113,10 @@ Farbton mit genug Kontrast, um in **beiden** Modi, hell und dunkel, lesbar zu se
 
 Push-Benachrichtigungen und Universal Links werden über das
 [Hinata Connect Gateway](/de/connect-gateway.html) weitergeleitet, sodass
-Self-Hoster kein eigenes Firebase-Projekt brauchen. Deine gebrandete App
-registriert sich gegen ein Gateway; nutze das standardmäßige öffentliche Gateway
-oder betreibe dein eigenes und setze `HINATA_GATEWAY_BASE_URL` auf deinem Server.
-Der Server registriert sich beim Start selbst beim Gateway.
+Self-Hoster kein eigenes Firebase-Projekt brauchen. Eine gebrandete App, die du
+selbst veröffentlichst, besitzt ihre eigenen Push-Zugangsdaten und ihre eigene
+Link-Domain — du betreibst also dein eigenes Gateway und richtest deinen Server
+mit `HINATA_GATEWAY_BASE_URL` darauf aus.
 
 ## Deep Links & Universal Links
 

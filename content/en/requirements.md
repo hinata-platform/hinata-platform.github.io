@@ -66,7 +66,7 @@ For real mail — e-mail verification, notifications and password reset — conf
 
 ### Hinata Connect gateway (optional)
 
-Push notifications and universal links flow through the **Connect gateway**. Using the hosted gateway means self-hosters need **no Firebase project of their own** — the server registers itself on boot. It's optional; you can run without push, or stand up your own gateway and set `HINATA_GATEWAY_BASE_URL`. See [Hinata Connect gateway](/en/connect-gateway.html).
+Push notifications and universal links flow through the **Connect gateway**, a hosted service. Using it means self-hosters need **no Firebase project of their own**. It's optional; you can run without push, or ship your own branded app with your own gateway and set `HINATA_GATEWAY_BASE_URL`. See [Hinata Connect gateway](/en/connect-gateway.html).
 
 ## Client requirements
 

@@ -23,12 +23,11 @@ gesamte Plattform ist der Code in den beiden Repositories.
 ### Brauche ich Firebase für Push-Benachrichtigungen?
 
 **Nein.** Mobile Push-Benachrichtigungen und Universal- (Deep-) Links werden über das
-zentrale [Hinata Connect Gateway](/de/connect-gateway.html) weitergeleitet. Dein Server
-registriert sich beim Start selbst am Gateway, und die Push-Zugangsdaten der
-veröffentlichten App liegen im Gateway — nicht in deinem Deployment. Self-Hoster
-konfigurieren für Push **nichts**. (Firebase betrifft dich nur, wenn du deinen **eigenen**
-Client mit eigener Store-Präsenz baust und ausrollst und dein eigenes Gateway
-betreibst.)
+zentrale [Hinata Connect Gateway](/de/connect-gateway.html) weitergeleitet, einen
+gehosteten Dienst. Die Push-Zugangsdaten der veröffentlichten App liegen im Gateway —
+nicht in deinem Deployment — sodass Self-Hoster für Push **nichts** konfigurieren.
+(Firebase betrifft dich nur, wenn du deinen **eigenen** Client mit eigener
+Store-Präsenz baust und ausrollst und dein eigenes Gateway betreibst.)
 
 ### Kann ich meine eigene Domain und mein eigenes Branding verwenden?
 

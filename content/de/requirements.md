@@ -66,7 +66,7 @@ Für echte Mail — E-Mail-Verifizierung, Benachrichtigungen und Passwort-Reset 
 
 ### Hinata Connect Gateway (optional)
 
-Push-Benachrichtigungen und Universal Links fließen durch das **Connect Gateway**. Die Nutzung des gehosteten Gateways bedeutet, dass Selbst-Hoster **kein eigenes Firebase-Projekt** benötigen — der Server registriert sich selbst beim Start. Es ist optional; du kannst ohne Push betreiben oder dein eigenes Gateway aufsetzen und `HINATA_GATEWAY_BASE_URL` setzen. Siehe [Hinata Connect Gateway](/de/connect-gateway.html).
+Push-Benachrichtigungen und Universal Links fließen durch das **Connect Gateway**, einen gehosteten Dienst. Seine Nutzung bedeutet, dass Selbst-Hoster **kein eigenes Firebase-Projekt** benötigen. Es ist optional; du kannst ohne Push betreiben oder deine eigene gebrandete App mit eigenem Gateway ausrollen und `HINATA_GATEWAY_BASE_URL` setzen. Siehe [Hinata Connect Gateway](/de/connect-gateway.html).
 
 ## Client-Anforderungen
 

@@ -123,8 +123,7 @@ In production compose, `HINATA_S3_ACCESS_KEY` / `HINATA_S3_SECRET_KEY` fall back
 
 | Variable | Purpose | Default / example | Required |
 | --- | --- | --- | --- |
-| `HINATA_GATEWAY_BASE_URL` | Push + universal-link gateway URL. The server registers on boot; override only to run your own gateway | `https://connect.hinata.ahmadre.com` | No |
-| `HINATA_GATEWAY_BOOTSTRAP_SECRET` | Bootstrap secret, only if your gateway gates registration | *(empty)* | No |
+| `HINATA_GATEWAY_BASE_URL` | Push + universal-link gateway URL. Defaults to the hosted gateway; override only when you ship your own branded app with your own gateway | `https://connect.hinata.ahmadre.com` | No |
 
 See [Hinata Connect gateway](/en/connect-gateway.html).
 

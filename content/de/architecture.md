@@ -85,14 +85,13 @@ Fehlermeldungen werden **serverseitig** aus Resource-Bundles aufgelöst — `mes
 
 ## Das Connect Gateway
 
-Push-Benachrichtigungen und Universal Links werden über das **Hinata Connect Gateway** weitergeleitet, statt in jeden Server eingebacken zu sein:
+Push-Benachrichtigungen und Universal Links werden über das **Hinata Connect Gateway** weitergeleitet — einen gehosteten Dienst, den der App-Herausgeber betreibt — statt in jeden Server eingebacken zu sein:
 
-- Der Server **registriert sich beim Boot beim Gateway**.
-- Server-spezifische Firebase/FCM-Zugangsdaten leben im Gateway, nicht in jedem Server, sodass **Self-Hoster kein Firebase-Projekt brauchen**.
-- Die App behandelt Universal Links der Form `/l/<code>` über das Gateway.
-- Überschreibe das Gateway mit `HINATA_GATEWAY_BASE_URL`, um ein eigenes zu betreiben.
+- Dein Server verbindet sich mit dem Gateway; die Push-Zugangsdaten der veröffentlichten App liegen im Gateway, sodass **Self-Hoster kein eigenes Firebase-Projekt brauchen**.
+- Universal Links öffnen die veröffentlichte App auf dem richtigen Server — egal, woher die Einladung oder der Reset-Link stammt.
+- Das gemeinsame Gateway wird vom App-Herausgeber betrieben und abgesichert — Self-Hoster betreiben oder verwalten es nicht. Überschreibe es mit `HINATA_GATEWAY_BASE_URL` nur, wenn du deine eigene gebrandete App ausrollst.
 
-Diese Indirektion ermöglicht es, dass die eine veröffentlichte App eine unbegrenzte Anzahl unabhängiger, selbst gehosteter Hinata-Server bedient. Siehe [Hinata Connect Gateway](/de/connect-gateway.html) für das vollständige Design.
+Diese Indirektion ermöglicht es, dass die eine veröffentlichte App eine unbegrenzte Anzahl unabhängiger, selbst gehosteter Hinata-Server bedient. Siehe [Hinata Connect Gateway](/de/connect-gateway.html).
 
 ## Wohin als Nächstes
 

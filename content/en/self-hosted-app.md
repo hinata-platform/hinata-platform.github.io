@@ -107,9 +107,9 @@ buttons, highlights and active states. Pick a hue with enough contrast to read i
 
 Push notifications and universal links are relayed through the
 [Hinata Connect gateway](/en/connect-gateway.html), so self-hosters need no
-Firebase project of their own. Your branded app registers against a gateway; use
-the default public gateway or run your own and set `HINATA_GATEWAY_BASE_URL` on
-your server. The server registers itself with the gateway on boot.
+Firebase project of their own. A branded app you publish yourself owns its own
+push credentials and link domain, so you run your own gateway and point your
+server at it with `HINATA_GATEWAY_BASE_URL`.
 
 ## Deep links & universal links
 

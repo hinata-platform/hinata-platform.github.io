@@ -37,10 +37,10 @@ nötig.
 
 !!! info "Du brauchst kein Firebase"
     Mobile Push und universelle (Deep-)Links laufen über das zentrale
-    [Hinata Connect Gateway](/de/connect-gateway.html). Dein Server registriert
-    sich beim Start selbst am Gateway; die Push-Credentials der veröffentlichten App
-    liegen im Gateway, nicht in deinem Deployment. Für Push konfigurieren
-    Selbst-Hoster nichts.
+    [Hinata Connect Gateway](/de/connect-gateway.html), einen gehosteten Dienst.
+    Die Push-Credentials der veröffentlichten App liegen im Gateway, nicht in
+    deinem Deployment, sodass Selbst-Hoster keine Push-Infrastruktur betreiben und
+    für Push nichts konfigurieren.
 
 ## Die zwei Compose-Dateien
 

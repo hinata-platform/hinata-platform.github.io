@@ -123,8 +123,7 @@ Im Produktiv-Compose fallen `HINATA_S3_ACCESS_KEY` / `HINATA_S3_SECRET_KEY` auto
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
-| `HINATA_GATEWAY_BASE_URL` | Push- + Universal-Link-Gateway-URL. Der Server registriert sich beim Start; überschreibe dies nur, um ein eigenes Gateway zu betreiben | `https://connect.hinata.ahmadre.com` | Nein |
-| `HINATA_GATEWAY_BOOTSTRAP_SECRET` | Bootstrap-Secret, nur falls dein Gateway die Registrierung absichert | *(leer)* | Nein |
+| `HINATA_GATEWAY_BASE_URL` | Push- + Universal-Link-Gateway-URL. Standard ist das gehostete Gateway; überschreibe dies nur, wenn du deine eigene gebrandete App mit eigenem Gateway ausrollst | `https://connect.hinata.ahmadre.com` | Nein |
 
 Siehe [Hinata Connect Gateway](/de/connect-gateway.html).
 

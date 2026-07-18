@@ -34,9 +34,9 @@ so no extra message broker is required.
 
 !!! info "You do not need Firebase"
     Mobile push and universal (deep) links are relayed through the central
-    [Hinata Connect gateway](/en/connect-gateway.html). Your server registers
-    itself with the gateway on boot; the published app's push credentials live in
-    the gateway, not in your deployment. Self-hosters configure nothing for push.
+    [Hinata Connect gateway](/en/connect-gateway.html), a hosted service. The
+    published app's push credentials live in the gateway, not in your deployment,
+    so self-hosters run no push infrastructure and configure nothing for push.
 
 ## The two Compose files
 

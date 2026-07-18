@@ -85,14 +85,13 @@ Error messages are resolved **server-side** from resource bundles — `messages.
 
 ## The Connect gateway
 
-Push notifications and universal links are relayed through the **Hinata Connect gateway** rather than baked into each server:
+Push notifications and universal links are relayed through the **Hinata Connect gateway** — a hosted service run by the app publisher — rather than baked into each server:
 
-- The server **registers itself with the gateway on boot**.
-- Per-server Firebase/FCM credentials live in the gateway, not in each server, so **self-hosters need no Firebase project**.
-- The app handles universal links of the form `/l/<code>` via the gateway.
-- Override the gateway with `HINATA_GATEWAY_BASE_URL` to run your own.
+- Your server connects to the gateway; the published app's push credentials live in the gateway, so **self-hosters need no Firebase project of their own**.
+- Universal links open the published app on the correct server, wherever the invite or reset link originated.
+- The shared gateway is operated and secured by the app publisher — self-hosters don't run or manage it. Override it with `HINATA_GATEWAY_BASE_URL` only when you ship your own branded app.
 
-This indirection is what lets the one published app serve an unlimited number of independent, self-hosted Hinata servers. See [Hinata Connect gateway](/en/connect-gateway.html) for the full design.
+This indirection is what lets the one published app serve an unlimited number of independent, self-hosted Hinata servers. See [Hinata Connect gateway](/en/connect-gateway.html).
 
 ## Where to go next
 

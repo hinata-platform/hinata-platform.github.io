@@ -22,11 +22,11 @@ and no feature gate; the whole platform is the code in the two repositories.
 ### Do I need Firebase for push notifications?
 
 **No.** Mobile push and universal (deep) links are relayed through the central
-[Hinata Connect gateway](/en/connect-gateway.html). Your server registers itself with
-the gateway on boot, and the published app's push credentials live in the gateway —
-not in your deployment. Self-hosters configure **nothing** for push. (You only touch
-Firebase if you build and ship your **own** custom client with its own store
-presence and run your own gateway.)
+[Hinata Connect gateway](/en/connect-gateway.html), a hosted service. The published
+app's push credentials live in the gateway — not in your deployment — so
+self-hosters configure **nothing** for push. (You only touch Firebase if you build
+and ship your **own** custom client with its own store presence and run your own
+gateway.)
 
 ### Can I use my own domain and branding?
 
