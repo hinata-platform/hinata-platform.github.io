@@ -238,6 +238,7 @@ def render_page(lang, slug, meta, body_html, toc_tokens, build_time):
         og_url=canonical,
         site_name=SITE["name"],
         version=SITE["version"],
+        app_repo=SITE["app_repo"],
         sidebar=sidebar,
         body=body_html,
         toc=toc_block,
@@ -291,6 +292,7 @@ TEMPLATE = """<!doctype html>
 <meta property="og:url" content="{og_url}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#151327">
+<meta name="hinata:app-version" content="{version}" data-repo="{app_repo}">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="{other_lang}" href="{other_url}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -374,6 +376,7 @@ TEMPLATE = """<!doctype html>
   window.HINATA = {{ lang: "{lang}", noResults: "{no_results}", copy: "{copy_label}", copied: "{copied_label}" }};
 </script>
 <script src="/assets/app.js" defer></script>
+<script src="/assets/version.js" defer></script>
 </body>
 </html>
 """

@@ -5,30 +5,53 @@
 import json
 import os
 import re
-import urllib.error
 import urllib.request
 
 
-def _latest_app_version(fallback: str) -> str:
-    """Latest vX.Y.Z tag on hinata-app, falling back if the API is unreachable."""
+APP_REPO = "hinata-platform/hinata-app"
+
+
+def _tag_page(page: int) -> list:
+    """One page of hinata-app tags from the GitHub API."""
     req = urllib.request.Request(
-        "https://api.github.com/repos/hinata-platform/hinata-app/tags?per_page=30",
+        f"https://api.github.com/repos/{APP_REPO}/tags?per_page=100&page={page}",
         headers={"Accept": "application/vnd.github+json", "User-Agent": "hinata-docs-build"},
     )
     token = os.environ.get("GITHUB_TOKEN")
     if token:
         req.add_header("Authorization", f"Bearer {token}")
+    with urllib.request.urlopen(req, timeout=10) as resp:
+        return json.load(resp)
+
+
+def _latest_app_version() -> str:
+    """Highest vX.Y.Z release tag on hinata-app.
+
+    There is no version number written down anywhere in this repository — it is
+    resolved from the GitHub API on every build. The tag endpoint is not ordered
+    by semver, so we page through everything and take the maximum rather than
+    trusting the first entry. A failure aborts the build instead of inventing a
+    number: publishing a wrong version is worse than not publishing.
+
+    The resolved value is baked into the pages; assets/version.js refreshes it in
+    the browser, so a release that ships after the last deploy is still shown.
+    """
+    versions = []
     try:
-        with urllib.request.urlopen(req, timeout=5) as resp:
-            tags = json.load(resp)
-    except (urllib.error.URLError, ValueError, OSError):
-        return fallback
-    versions = [
-        tuple(int(n) for n in m.groups())
-        for m in (re.fullmatch(r"v(\d+)\.(\d+)\.(\d+)", t.get("name", "")) for t in tags)
-        if m
-    ]
-    return ".".join(str(n) for n in max(versions)) if versions else fallback
+        for page in range(1, 4):
+            tags = _tag_page(page)
+            versions += [
+                tuple(int(n) for n in m.groups())
+                for m in (re.fullmatch(r"v(\d+)\.(\d+)\.(\d+)", t.get("name", "")) for t in tags)
+                if m
+            ]
+            if len(tags) < 100:
+                break
+    except (OSError, ValueError) as exc:  # URLError/HTTPError are OSErrors
+        raise RuntimeError(f"cannot resolve the latest {APP_REPO} tag: {exc}") from exc
+    if not versions:
+        raise RuntimeError(f"no vX.Y.Z tags found on {APP_REPO}")
+    return ".".join(str(n) for n in max(versions))
 
 
 SITE = {
@@ -37,10 +60,12 @@ SITE = {
         "en": "Open-source, self-hosted project management",
         "de": "Open-Source, selbst-gehostetes Projektmanagement",
     },
-    "version": _latest_app_version("3.0.1"),
+    # Resolved live from the newest hinata-app tag; the browser refreshes it too.
+    "version": _latest_app_version(),
+    "app_repo": APP_REPO,
     "accent": "#D9A032",
     "repo_org": "https://github.com/hinata-platform",
-    "repo_app": "https://github.com/hinata-platform/hinata-app",
+    "repo_app": f"https://github.com/{APP_REPO}",
     "repo_server": "https://github.com/hinata-platform/hinata-server",
     "base_url": "https://hinata.ahmadre.com",
     "languages": ["en", "de"],

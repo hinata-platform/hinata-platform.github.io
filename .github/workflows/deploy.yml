@@ -4,6 +4,16 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # The version shown on the site comes from the newest hinata-app tag, resolved
+  # at build time. A nightly rebuild picks up releases that shipped without a
+  # docs change; hinata-app can also trigger one immediately by POSTing a
+  # repository_dispatch with event_type "app-release" (needs a PAT with
+  # contents:write on this repo). Between rebuilds assets/version.js keeps the
+  # already-published pages current in the browser.
+  schedule:
+    - cron: "17 4 * * *"
+  repository_dispatch:
+    types: [app-release]
 
 # Allow the workflow to publish to GitHub Pages
 permissions:
@@ -33,6 +43,10 @@ jobs:
 
       - name: Build static site
         run: python build.py
+        env:
+          # Authenticated GitHub API calls (version lookup) — shared runner IPs
+          # burn through the 60/h anonymous rate limit.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

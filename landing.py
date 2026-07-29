@@ -108,6 +108,7 @@ docker compose up -d"""
 <meta property="og:description" content="Open-source, self-hosted project & issue tracking. Boards, sprints, Gantt, Git integration. Android · iOS · Web · macOS.">
 <meta property="og:url" content="{SITE['base_url']}/">
 <meta name="theme-color" content="#151327">
+<meta name="hinata:app-version" content="{SITE['version']}" data-repo="{SITE['app_repo']}">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -160,7 +161,7 @@ docker compose up -d"""
     </div>
     <div class="hero-platforms">
       <span>Android</span><i>·</i><span>iOS</span><i>·</i><span>Web</span><i>·</i><span>macOS</span>
-      <span class="ver-pill">v{SITE['version']}</span>
+      <span class="ver-pill" data-app-version>v{SITE['version']}</span>
     </div>
   </section>
 
@@ -247,6 +248,7 @@ docker compose up -d"""
 </footer>
 
 <script src="/assets/landing.js" defer></script>
+<script src="/assets/version.js" defer></script>
 </body>
 </html>
 """
