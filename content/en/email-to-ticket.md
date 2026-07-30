@@ -58,6 +58,12 @@ Each imported message becomes one issue in the **default project** you selected:
 | **Reporter** | The sender's e-mail address is recorded on the issue |
 | **Author** | The sender, when their address belongs to an active Hinata account — so they are notified about every change to their own request, like any other watcher. An address nobody on the platform owns leaves the issue without an author (the description header still names the sender) |
 
+!!! note "An author who is not a project member"
+    Being an issue's author grants no access: project membership alone decides who may
+    open a ticket. An author outside the project still receives the e-mail and push
+    notices about their request — but without a link, because it would only land on a
+    "not a member" error. Add them to the project if they should be able to follow it.
+
 Because it is a normal issue, everything else in Hinata applies immediately: it lands in
 the project's default workflow state, appears on the board and backlog, can be assigned,
 labelled, linked and commented on, and — if the project is connected to Git — can pick

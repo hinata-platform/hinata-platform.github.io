@@ -61,6 +61,13 @@ ausgewählt hast:
 | **Melder** | Die E-Mail-Adresse des Absenders wird am Vorgang erfasst |
 | **Autor** | Der Absender, wenn seine Adresse zu einem aktiven Hinata-Konto gehört — so wird er wie jeder andere Beobachter über jede Änderung an seiner eigenen Anfrage benachrichtigt. Gehört die Adresse niemandem auf der Plattform, bleibt der Vorgang ohne Autor (der Beschreibungs-Header nennt den Absender weiterhin) |
 
+!!! note "Ein Autor ohne Projektmitgliedschaft"
+    Autor eines Vorgangs zu sein gewährt keinen Zugriff: allein die Projektmitgliedschaft
+    entscheidet, wer ein Ticket öffnen darf. Ein Autor außerhalb des Projekts erhält
+    E-Mail- und Push-Benachrichtigungen zu seiner Anfrage weiterhin — aber ohne Link,
+    weil dieser nur auf einen „kein Mitglied“-Fehler führen würde. Nimm ihn ins Projekt
+    auf, wenn er den Vorgang verfolgen können soll.
+
 Da es ein normaler Vorgang ist, gilt sofort alles andere in Hinata: Er landet im
 Standard-Workflow-Status des Projekts, erscheint auf Board und Backlog, kann zugewiesen,
 mit Labels versehen, verlinkt und kommentiert werden und — wenn das Projekt mit Git
