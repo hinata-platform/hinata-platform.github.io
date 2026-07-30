@@ -56,6 +56,7 @@ Each imported message becomes one issue in the **default project** you selected:
 | **Description** | A short header noting who it was created from, then the message's plain-text body (the HTML part is stripped to text if no plain part exists) |
 | **Type** | **Task** |
 | **Reporter** | The sender's e-mail address is recorded on the issue |
+| **Author** | The sender, when their address belongs to an active Hinata account — so they are notified about every change to their own request, like any other watcher. An address nobody on the platform owns leaves the issue without an author (the description header still names the sender) |
 
 Because it is a normal issue, everything else in Hinata applies immediately: it lands in
 the project's default workflow state, appears on the board and backlog, can be assigned,

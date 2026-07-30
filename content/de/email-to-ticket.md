@@ -59,6 +59,7 @@ ausgewählt hast:
 | **Beschreibung** | Ein kurzer Header, der vermerkt, von wem er erstellt wurde, dann der Klartext-Textkörper der Nachricht (der HTML-Teil wird zu Text reduziert, falls kein Klartext-Teil existiert) |
 | **Typ** | **Task** |
 | **Melder** | Die E-Mail-Adresse des Absenders wird am Vorgang erfasst |
+| **Autor** | Der Absender, wenn seine Adresse zu einem aktiven Hinata-Konto gehört — so wird er wie jeder andere Beobachter über jede Änderung an seiner eigenen Anfrage benachrichtigt. Gehört die Adresse niemandem auf der Plattform, bleibt der Vorgang ohne Autor (der Beschreibungs-Header nennt den Absender weiterhin) |
 
 Da es ein normaler Vorgang ist, gilt sofort alles andere in Hinata: Er landet im
 Standard-Workflow-Status des Projekts, erscheint auf Board und Backlog, kann zugewiesen,
