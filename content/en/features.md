@@ -24,7 +24,7 @@ Hinata is a full agile project-management suite in one place: plan work, run spr
 | **Boards & sprints** | An agile board with columns mapped to your workflow states, WIP limits, swimlanes and a backlog; plan, start and complete sprints with capacity and burndown. | [Boards & sprints](/en/boards-sprints.html) |
 | **Gantt & time tracking** | A timeline view of start/due dates and dependencies, plus work logging with activity types and weekly timesheets. | [Gantt & time tracking](/en/timeline.html) |
 | **Knowledge base** | Confluence-style hierarchical Markdown articles, global or per project, with smart links that resolve real issues and people. | [Knowledge base](/en/knowledge-base.html) |
-| **Notifications** | In-app and e-mail notifications, plus mobile push delivered through the Hinata Connect gateway — no Firebase project of your own required. | [Notifications](/en/notifications.html) |
+| **Notifications** | In-app and e-mail notifications, plus push delivered through the Hinata Connect gateway — no Firebase project of your own required. | [Notifications](/en/notifications.html) |
 | **Search & palette** | A ⌘K liquid-glass command palette to jump anywhere, run commands and reopen recent items, with a responsive sheet on mobile. | [Search & palette](/en/search.html) |
 | **Git integration** | Connect projects to GitHub, GitLab or Bitbucket for real development info, smart commits and workflow automation driven by signed webhooks. | [Git integration](/en/git-integration.html) |
 | **Single sign-on** | OpenID Connect, OAuth 2.0, SAML 2.0 and LDAP, configured at runtime from the Admin area with no restart. | [SSO](/en/sso.html) |
@@ -55,7 +55,7 @@ The **knowledge base** is a Confluence-style space for documentation: hierarchic
 
 ## Notifications
 
-Hinata keeps everyone in the loop with in-app notifications, e-mail (over your SMTP relay) and mobile push. Push is relayed through the [Hinata Connect gateway](/en/connect-gateway.html), which means a single published app can serve many servers and self-hosters don't need a Firebase project of their own. Each person tunes what they receive from a notification matrix in [account settings](/en/authentication.html). See [Notifications](/en/notifications.html).
+Hinata keeps everyone in the loop with in-app notifications, e-mail (over your SMTP relay) and push on mobile and Windows desktop. Push is relayed through the [Hinata Connect gateway](/en/connect-gateway.html), which means a single published app can serve many servers and self-hosters don't need a Firebase project of their own. Each person tunes what they receive from a notification matrix in [account settings](/en/authentication.html). See [Notifications](/en/notifications.html).
 
 ## Search & palette
 

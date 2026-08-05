@@ -74,7 +74,8 @@ Die [App](/de/clients.html) läuft auf:
 
 - **Android**- und **iOS**-Smartphones/Tablets,
 - **Web** (jeder moderne Browser),
-- **macOS**-Desktop.
+- **macOS**-Desktop,
+- **Windows**-Desktop.
 
 Weil die App mehrserverfähig ist, brauchen Nutzer nur die URL eines laufenden Servers; keine benutzerbezogene Installationskonfiguration ist erforderlich.
 
@@ -93,7 +94,7 @@ Das Bauen aus dem Quellcode (statt Images zu ziehen) erfordert die Toolchains hi
 
   Führe die Testsuite mit `./gradlew build` aus.
 
-- **[hinata-app](https://github.com/hinata-platform/hinata-app)** — ein **Flutter**-SDK (mit den Android-/iOS-/macOS-Toolchains für die Ziele, die du baust). State über bloc/cubit, Routing über go_router, i18n über i18next.
+- **[hinata-app](https://github.com/hinata-platform/hinata-app)** — ein **Flutter**-SDK (mit den Android-/iOS-/macOS-/Windows-Toolchains für die Ziele, die du baust). State über bloc/cubit, Routing über go_router, i18n über i18next.
 
 !!! tip "Willst du es nur zum Laufen bringen?"
     Du brauchst weder JDK noch Flutter, um Hinata zu *betreiben* — der [Schnellstart](/de/quick-start.html) zieht vorgefertigte Images. Die Entwicklungs-Toolchains sind nur für das Bauen aus dem Quellcode oder das Mitwirken. Siehe [Entwicklung](/de/development.html) und [Mitwirken](/de/contributing.html).

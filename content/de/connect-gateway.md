@@ -1,17 +1,17 @@
 ---
 title: Hinata Connect Gateway
-description: Ein zentrales, gehostetes Relay für mobile Push-Nachrichten und Universal Links, sodass die eine veröffentlichte App jeden selbst gehosteten Hinata-Server bedienen kann — ohne Firebase für Betreiber.
+description: Ein zentrales, gehostetes Relay für Push-Nachrichten und Universal Links, sodass die eine veröffentlichte App jeden selbst gehosteten Hinata-Server bedienen kann — ohne Firebase für Betreiber.
 ---
 
 # Hinata Connect Gateway
 
-Mobile Push-Benachrichtigungen und Universal Links haben eine unbequeme Voraussetzung: Sie sind an die Plattform-Anmeldedaten einer **veröffentlichten App** gebunden (Firebase/FCM, Apple/Google App-Site-Associations). Ein selbst gehosteter Server kann diese nicht für eine App besitzen, die er nicht in den Stores veröffentlicht hat. Das **Hinata Connect Gateway** löst das mit einem kleinen, zentralen Relay, sodass eine einzige veröffentlichte App *jeden* Hinata-Server bedienen kann — und Selbst-Hoster **überhaupt kein Firebase** brauchen.
+Push-Benachrichtigungen und Universal Links haben eine unbequeme Voraussetzung: Sie sind an die Plattform-Anmeldedaten einer **veröffentlichten App** gebunden (Firebase/FCM, Windows Push Notification Services, Apple/Google App-Site-Associations). Ein selbst gehosteter Server kann diese nicht für eine App besitzen, die er nicht in den Stores veröffentlicht hat. Das **Hinata Connect Gateway** löst das mit einem kleinen, zentralen Relay, sodass eine einzige veröffentlichte App *jeden* Hinata-Server bedienen kann — und Selbst-Hoster **überhaupt kein Firebase** brauchen.
 
 ## Was es macht
 
 Das Gateway ist ein gemeinsamer, **gehosteter** Dienst (standardmäßig `https://connect.hinata.ahmadre.com`), der vom App-Herausgeber betrieben und abgesichert wird und zwei Dinge weiterleitet:
 
-1. **Push-Benachrichtigungen** — die Push-Zugangsdaten der veröffentlichten App liegen im Gateway, sodass es Benachrichtigungen von jedem verbundenen Server an die richtigen Geräte weiterleiten kann.
+1. **Push-Benachrichtigungen** — die Push-Zugangsdaten der veröffentlichten App liegen im Gateway, sodass es Benachrichtigungen von jedem verbundenen Server an die richtigen Geräte weiterleiten kann. Es leitet für Android, iOS und macOS an **FCM** weiter und für den Windows-Build an **WNS**, das Firebase nicht unterstützt.
 2. **Universal- / App-Links** — es besitzt die verifizierte Link-Domain, sodass Einladungs-, Verifizierungs- und Passwort-Zurücksetzen-Links von *jedem* selbst gehosteten Server die installierte App auf dem richtigen Backend öffnen.
 
 ```text

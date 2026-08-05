@@ -1,17 +1,17 @@
 ---
 title: Hinata Connect gateway
-description: One central, hosted relay for mobile push and universal links, so the single published app can serve every self-hosted Hinata server — with no Firebase for operators.
+description: One central, hosted relay for push and universal links, so the single published app can serve every self-hosted Hinata server — with no Firebase for operators.
 ---
 
 # Hinata Connect gateway
 
-Mobile push notifications and universal links have an awkward requirement: they're tied to a **published app's** platform credentials (Firebase/FCM, Apple/Google app-site associations). A self-hosted server can't own those for an app it didn't publish to the stores. The **Hinata Connect gateway** solves this with one small, central relay so that a single published app can serve *any* Hinata server — and self-hosters need **no Firebase at all**.
+Push notifications and universal links have an awkward requirement: they're tied to a **published app's** platform credentials (Firebase/FCM, Windows Push Notification Services, Apple/Google app-site associations). A self-hosted server can't own those for an app it didn't publish to the stores. The **Hinata Connect gateway** solves this with one small, central relay so that a single published app can serve *any* Hinata server — and self-hosters need **no Firebase at all**.
 
 ## What it does
 
 The gateway is a shared, **hosted** service (default `https://connect.hinata.ahmadre.com`), operated and secured by the app publisher, that relays two things:
 
-1. **Push notifications** — the published app's push credentials live in the gateway, so it can forward notifications from any connected server to the right devices.
+1. **Push notifications** — the published app's push credentials live in the gateway, so it can forward notifications from any connected server to the right devices. It routes to **FCM** for Android, iOS and macOS, and to **WNS** for the Windows build, which Firebase does not support.
 2. **Universal / app links** — it owns the verified link domain, so invite, verification and password-reset links from *any* self-hosted server open the installed app on the correct backend.
 
 ```text

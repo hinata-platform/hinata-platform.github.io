@@ -22,7 +22,7 @@ Hinata ist eine vollständige agile Projektmanagement-Suite: Projekte und Teams,
 
 Zwei Dinge unterscheiden es von den meisten selbst-gehosteten Trackern:
 
-- **Es liefert eine echte plattformübergreifende App.** Nicht nur eine Web-Oberfläche — eine einzige Flutter-Codebasis, kompiliert für Android, iOS, Web und macOS, mit Live-Updates über Server-Sent Events, offline-freundlicher Navigation und einer ⌘K-Befehlspalette.
+- **Es liefert eine echte plattformübergreifende App.** Nicht nur eine Web-Oberfläche — eine einzige Flutter-Codebasis, kompiliert für Android, iOS, Web, macOS und Windows, mit Live-Updates über Server-Sent Events, offline-freundlicher Navigation und einer ⌘K-Befehlspalette.
 - **Du bringst deinen eigenen Server mit.** Der Client hat keinen fest eingebauten Backend-Server. Du lässt die veröffentlichte App auf deinen eigenen Server zeigen, speicherst mehrere Server und wechselst zwischen ihnen, und das Branding kommt zur Laufzeit von deinem Server — oder du baust und veröffentlichst deinen eigenen Client mit eigener Package-ID, eigenem Namen, Icons und Akzentfarbe.
 
 !!! info "Designsprache"
@@ -48,12 +48,13 @@ Die App spricht über eine versionierte REST-API unter `/api/v1` mit dem Server.
 
 ## Plattformen
 
-Eine Flutter-Codebasis, vier Ziele:
+Eine Flutter-Codebasis, fünf Ziele:
 
 - **Android** — Smartphones und Tablets, App Links für `https://track.example.com`.
 - **iOS** — iPhone und iPad, Universal Links über Associated Domains.
 - **Web** — ein voll ausgestatteter Flutter-Web-Build, ausgeliefert vom Web-Container.
 - **macOS** — ein nativer Desktop-Client.
+- **Windows** — ein nativer Desktop-Client, als MSIX für den Microsoft Store paketiert, mit Push über die Windows Push Notification Services (WNS).
 
 ## Was drinsteckt
 

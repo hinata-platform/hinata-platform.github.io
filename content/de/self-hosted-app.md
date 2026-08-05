@@ -48,8 +48,8 @@ Identitätswerte ausgetauscht sind. Es gibt fünf Dinge zu ändern.
 
 | # | Was | Wo |
 | --- | --- | --- |
-| 1 | **Package- / Bundle-ID** | `com.yourorg.yourapp` — Android `applicationId` + `namespace`, iOS/macOS `PRODUCT_BUNDLE_IDENTIFIER` |
-| 2 | **App-Anzeigename** | Android `android:label`, iOS/macOS Anzeigename |
+| 1 | **Package- / Bundle-ID** | `com.yourorg.yourapp` — Android `applicationId` + `namespace`, iOS/macOS `PRODUCT_BUNDLE_IDENTIFIER`, Windows `msix_config.identity_name` + `publisher` |
+| 2 | **App-Anzeigename** | Android `android:label`, iOS/macOS Anzeigename, Windows `msix_config.display_name` |
 | 3 | **Icons & Splash** | `assets/branding/` + `flutter_launcher_icons` / `flutter_native_splash` |
 | 4 | **Akzentfarbe** | das Honig-Amber-Akzent-Token `#D9A032` im Theme |
 | 5 | **Gateway** | auf das Hinata Connect Gateway (oder dein eigenes) zeigen |
@@ -73,6 +73,11 @@ Für iOS und macOS setzt du `PRODUCT_BUNDLE_IDENTIFIER` im Xcode-Projekt
 (Runner-Target). Diese ID ist nach der Veröffentlichung in einem Store permanent —
 wähle sorgfältig.
 
+Windows identifiziert ein MSIX-Paket anders: `identity_name`, `publisher` und
+`publisher_display_name` im `msix_config`-Block von `pubspec.yaml` werden dir
+**vom Partner Center zugewiesen** (Produktverwaltung → Produktidentität).
+Übernimm sie zeichengenau — bei jeder Abweichung lehnt der Store das Paket ab.
+
 ### 2 — App-Anzeigename
 
 Setze den sichtbaren Namen, der unter dem Icon angezeigt wird:
@@ -83,7 +88,8 @@ Setze den sichtbaren Namen, der unter dem Icon angezeigt wird:
 ```
 
 Unter iOS/macOS setzt du den Anzeigenamen in den Info-Einstellungen des
-Runner-Targets.
+Runner-Targets; unter Windows setzt du `msix_config.display_name` in
+`pubspec.yaml`.
 
 ### 3 — Icons & Splash
 
@@ -100,6 +106,11 @@ Die Blöcke `flutter_launcher_icons` und `flutter_native_splash` in `pubspec.yam
 steuern die Quellbilder und Hintergrundfarben (hell `#F4F3EF`, dunkel `#131119`
 standardmäßig) — passe sie an deine Marke an und lass die Generatoren dann erneut
 laufen.
+
+Windows nimmt sein Kachel- und Taskleisten-Icon stattdessen aus
+`msix_config.logo_path`. Zeige dort auf eine **abgerundete** Variante deines
+Icons: Windows maskiert nichts von sich aus, ein randlos quadratisches Icon
+erscheint auf der Kachel also als hartes Quadrat.
 
 ### 4 — Akzentfarbe
 
@@ -168,11 +179,12 @@ erfolgt, sobald die Web-App unter deiner Domain läuft. Beispiel
 
 ## Store-Releases brauchen eine Datenschutzerklärung
 
-Sowohl Apples App Store als auch Google Play verlangen für die Prüfung eine
-erreichbare **URL zur Datenschutzerklärung**, und du brauchst sie ohnehin für die
-DSGVO-Konformität. Hinata zeigt diese URL in der App über die Servereinstellung
-`HINATA_PRIVACY_POLICY_URL` an (auch live im [Adminbereich](/de/admin-area.html) →
-App-Einstellungen editierbar). Setze sie, bevor du einreichst.
+Apples App Store, Google Play und der Microsoft Store verlangen für die Prüfung
+alle eine erreichbare **URL zur Datenschutzerklärung**, und du brauchst sie
+ohnehin für die DSGVO-Konformität. Hinata zeigt diese URL in der App über die
+Servereinstellung `HINATA_PRIVACY_POLICY_URL` an (auch live im
+[Adminbereich](/de/admin-area.html) → App-Einstellungen editierbar). Setze sie,
+bevor du einreichst.
 
 !!! tip "Barrierefreiheit ist Teil der Konformität"
     Die Oberfläche ist mit Blick auf Barrierefreiheit gebaut — skalierbarer Text,
@@ -184,9 +196,11 @@ App-Einstellungen editierbar). Setze sie, bevor du einreichst.
 Arbeite von oben nach unten; jeder Schritt ist unabhängig.
 
 1. **Forke** [hinata-app](https://github.com/hinata-platform/hinata-app) und halte GPL-3.0 ein.
-2. Setze die **Package-/Bundle-ID** (`com.yourorg.yourapp`) auf Android, iOS und macOS.
+2. Setze die **Package-/Bundle-ID** (`com.yourorg.yourapp`) auf Android, iOS und
+   macOS sowie die **MSIX-Identität** aus dem Partner Center auf Windows.
 3. Setze den **App-Anzeigenamen** auf jeder Plattform.
-4. Ersetze das Artwork in `assets/branding/` und lass die Icon- + Splash-Generatoren laufen.
+4. Ersetze das Artwork in `assets/branding/` und lass die Icon- + Splash-Generatoren
+   laufen; zeige mit `msix_config.logo_path` für Windows auf ein abgerundetes Icon.
 5. Ändere das **Akzentfarb**-Token im Theme; verifiziere den hellen **und** dunklen Modus.
 6. Entscheide dich für dein **Gateway** — Standard oder dein eigenes über `HINATA_GATEWAY_BASE_URL`.
 7. Liefere `assetlinks.json` + AASA unter `https://track.example.com/.well-known/`

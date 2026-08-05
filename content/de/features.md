@@ -24,7 +24,7 @@ Hinata ist eine vollständige agile Projektmanagement-Suite an einem Ort: Arbeit
 | **Boards & Sprints** | Ein agiles Board mit Spalten, die auf deine Workflow-Zustände abgebildet sind, WIP-Limits, Swimlanes und einem Backlog; Sprints planen, starten und abschließen mit Kapazität und Burndown. | [Boards & Sprints](/de/boards-sprints.html) |
 | **Gantt & Zeiterfassung** | Eine Timeline-Ansicht von Start-/Fälligkeitsdaten und Abhängigkeiten, dazu Arbeitszeiterfassung mit Aktivitätstypen und wöchentlichen Timesheets. | [Gantt & Zeiterfassung](/de/timeline.html) |
 | **Wissensdatenbank** | Confluence-artige hierarchische Markdown-Artikel, global oder pro Projekt, mit Smart-Links, die echte Vorgänge und Personen auflösen. | [Wissensdatenbank](/de/knowledge-base.html) |
-| **Benachrichtigungen** | In-App- und E-Mail-Benachrichtigungen, dazu mobiler Push über das Hinata Connect Gateway — kein eigenes Firebase-Projekt nötig. | [Benachrichtigungen](/de/notifications.html) |
+| **Benachrichtigungen** | In-App- und E-Mail-Benachrichtigungen, dazu Push über das Hinata Connect Gateway — kein eigenes Firebase-Projekt nötig. | [Benachrichtigungen](/de/notifications.html) |
 | **Suche & Palette** | Eine ⌘K-Liquid-Glass-Befehlspalette, um überallhin zu springen, Befehle auszuführen und zuletzt geöffnete Elemente wieder aufzurufen, mit einem responsiven Sheet auf dem Handy. | [Suche & Palette](/de/search.html) |
 | **Git-Integration** | Verbinde Projekte mit GitHub, GitLab oder Bitbucket für echte Entwicklungsinfos, Smart Commits und Workflow-Automatisierung über signierte Webhooks. | [Git-Integration](/de/git-integration.html) |
 | **Single Sign-on** | OpenID Connect, OAuth 2.0, SAML 2.0 und LDAP, zur Laufzeit im Adminbereich konfiguriert, ohne Neustart. | [SSO](/de/sso.html) |
@@ -55,7 +55,7 @@ Die **Wissensdatenbank** ist ein Confluence-artiger Raum für Dokumentation: hie
 
 ## Benachrichtigungen
 
-Hinata hält alle auf dem Laufenden — mit In-App-Benachrichtigungen, E-Mail (über deinen SMTP-Relay) und mobilem Push. Push wird über das [Hinata Connect Gateway](/de/connect-gateway.html) weitergeleitet, was bedeutet, dass eine einzige veröffentlichte App viele Server bedienen kann und Selbst-Hoster kein eigenes Firebase-Projekt brauchen. Jede Person stellt in den [Kontoeinstellungen](/de/authentication.html) über eine Benachrichtigungsmatrix ein, was sie erhält. Siehe [Benachrichtigungen](/de/notifications.html).
+Hinata hält alle auf dem Laufenden — mit In-App-Benachrichtigungen, E-Mail (über deinen SMTP-Relay) und Push auf Mobilgeräten und dem Windows-Desktop. Push wird über das [Hinata Connect Gateway](/de/connect-gateway.html) weitergeleitet, was bedeutet, dass eine einzige veröffentlichte App viele Server bedienen kann und Selbst-Hoster kein eigenes Firebase-Projekt brauchen. Jede Person stellt in den [Kontoeinstellungen](/de/authentication.html) über eine Benachrichtigungsmatrix ein, was sie erhält. Siehe [Benachrichtigungen](/de/notifications.html).
 
 ## Suche & Palette
 

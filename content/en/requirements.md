@@ -74,7 +74,8 @@ The [app](/en/clients.html) runs on:
 
 - **Android** and **iOS** phones/tablets,
 - **Web** (any modern browser),
-- **macOS** desktop.
+- **macOS** desktop,
+- **Windows** desktop.
 
 Because the app is multi-server, users just need the URL of a running server; no per-user install configuration is required.
 
@@ -93,7 +94,7 @@ Building from source (rather than pulling images) needs the toolchains behind ea
 
   Run the test suite with `./gradlew build`.
 
-- **[hinata-app](https://github.com/hinata-platform/hinata-app)** — a **Flutter** SDK (with the Android/iOS/macOS toolchains for the targets you build). State via bloc/cubit, routing via go_router, i18n via i18next.
+- **[hinata-app](https://github.com/hinata-platform/hinata-app)** — a **Flutter** SDK (with the Android/iOS/macOS/Windows toolchains for the targets you build). State via bloc/cubit, routing via go_router, i18n via i18next.
 
 !!! tip "Just want it running?"
     You don't need JDK or Flutter to *operate* Hinata — the [Quick start](/en/quick-start.html) pulls prebuilt images. The development toolchains are only for building from source or contributing. See [Development](/en/development.html) and [Contributing](/en/contributing.html).

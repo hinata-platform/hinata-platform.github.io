@@ -80,7 +80,8 @@ Die Quality Gate ist ein einziger Befehl — derselbe, den die CI ausführt:
   baut). Führe `flutter doctor` aus und behebe alles, was es für deine
   Zielplattformen anmerkt.
 - Plattform-SDKs nur für die Ziele, die du baust: Android Studio / SDK für Android,
-  Xcode für iOS und macOS. Web braucht nichts Zusätzliches.
+  Xcode für iOS und macOS, Visual Studio mit dem Workload *Desktopentwicklung mit
+  C++* für Windows. Web braucht nichts Zusätzliches.
 
 ### Ausführen
 
@@ -95,6 +96,7 @@ wählen:
 ```bash
 flutter run -d chrome    # Web
 flutter run -d macos     # macOS-Desktop
+flutter run -d windows   # Windows-Desktop
 flutter devices          # angeschlossene Geräte/Emulatoren auflisten
 ```
 

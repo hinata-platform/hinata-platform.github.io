@@ -22,7 +22,7 @@ Issue-Tracker und eigenen Pull Requests:
 | Repository | Was es ist | Link |
 | --- | --- | --- |
 | **hinata-server** | Spring Boot 4 / Java 21 REST-API, MongoDB, S3/MinIO, SMTP. | [github.com/hinata-platform/hinata-server](https://github.com/hinata-platform/hinata-server) |
-| **hinata-app** | Der Flutter-Client — Android, iOS, Web, macOS aus einer Codebasis. | [github.com/hinata-platform/hinata-app](https://github.com/hinata-platform/hinata-app) |
+| **hinata-app** | Der Flutter-Client — Android, iOS, Web, macOS, Windows aus einer Codebasis. | [github.com/hinata-platform/hinata-app](https://github.com/hinata-platform/hinata-app) |
 
 Öffne dein Issue oder deinen Pull Request gegen das Repository, dem der Code
 gehört, den du änderst. Eine Änderung, die beide betrifft (ein neuer Endpunkt plus
@@ -110,7 +110,8 @@ Ein guter Fehlerbericht spart allen Zeit. Wenn du ein Issue öffnest, gib an:
 - **Was du erwartet hast** und **was tatsächlich passiert ist**.
 - **Schritte zur Reproduktion** — je kleiner und präziser, desto besser.
 - **Umgebung** — Server-Image-Tag / App-Version, Plattform (Android, iOS, Web,
-  macOS) und alles Relevante zu deinem Deployment (Reverse Proxy, SSO-Provider).
+  macOS, Windows) und alles Relevante zu deinem Deployment (Reverse Proxy,
+  SSO-Provider).
 - Relevante **Logs oder Fehlermeldungen** — aber **schwärze Secrets** (Tokens,
   Passwörter, Connection-Strings), bevor du einfügst.
 

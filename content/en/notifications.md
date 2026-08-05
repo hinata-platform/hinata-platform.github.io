@@ -11,7 +11,7 @@ Hinata keeps people informed without drowning them. Notifications arrive through
 
 - **In-app** — a live notification centre inside the app, updated as things happen.
 - **E-mail** — delivered through your server's [SMTP relay](/en/email.html). Actionable e-mails (an assignment, a mention) carry a deep link that opens the exact issue in the app.
-- **Push** — mobile push notifications delivered through the [Hinata Connect gateway](/en/connect-gateway.html), so a published app can notify users of any self-hosted server without each server owning Firebase credentials.
+- **Push** — push notifications on mobile and Windows desktop, delivered through the [Hinata Connect gateway](/en/connect-gateway.html), so a published app can notify users of any self-hosted server without each server owning Firebase credentials.
 
 !!! info "E-mail needs a real relay"
     In-app notifications work out of the box. For e-mail to actually be delivered — including verification and password-reset links — the server needs a real SMTP relay configured. See [E-mail & SMTP](/en/email.html).

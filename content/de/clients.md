@@ -1,12 +1,12 @@
 ---
 title: Die Apps
-description: Eine Flutter-Codebasis für Android, iOS, Web und macOS — wie sich der Client verbindet, Versionen sperrt, sich anmeldet und mehrere Server aus einem Liquid-Glass-Server-Manager verwaltet.
+description: Eine Flutter-Codebasis für Android, iOS, Web, macOS und Windows — wie sich der Client verbindet, Versionen sperrt, sich anmeldet und mehrere Server aus einem Liquid-Glass-Server-Manager verwaltet.
 ---
 
 # Die Apps
 
 Hinata liefert einen einzigen Flutter-Client, der aus **einer Codebasis** auf
-**Android, iOS, Web und macOS** läuft. Es gibt keine separate Mobil- und
+**Android, iOS, Web, macOS und Windows** läuft. Es gibt keine separate Mobil- und
 Desktop-App, die synchron gehalten werden müssten — dieselben Bildschirme, derselbe
 State, dieselbe Netzwerkschicht passen sich an, worauf auch immer sie laufen. Diese
 Seite erklärt, wie sich die App mit deinem Server verbindet, wie sie entscheidet,
@@ -15,9 +15,9 @@ Servern gleichzeitig spricht.
 
 
 ![Hinata auf dem Smartphone](/assets/img/shot-mobile-dashboard.png)
-*Eine Flutter-Codebasis — Android, iOS, Web und macOS aus einer App.*
+*Eine Flutter-Codebasis — Android, iOS, Web, macOS und Windows aus einer App.*
 
-## Eine Codebasis, vier Plattformen
+## Eine Codebasis, fünf Plattformen
 
 Der Client ist mit Flutter gebaut. Der State wird mit bloc/cubit verwaltet, das
 Routing mit go_router, die Lokalisierung mit i18next, und jeder Netzwerkaufruf

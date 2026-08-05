@@ -75,7 +75,8 @@ The quality gate is a single command — the same one CI runs:
 - The **Flutter toolchain** (stable channel — the same channel CI builds with).
   Run `flutter doctor` and resolve anything it flags for your target platforms.
 - Platform SDKs only for the targets you build: Android Studio / SDK for Android,
-  Xcode for iOS and macOS. Web needs nothing extra.
+  Xcode for iOS and macOS, Visual Studio with the *Desktop development with C++*
+  workload for Windows. Web needs nothing extra.
 
 ### Run it
 
@@ -89,6 +90,7 @@ flutter run
 ```bash
 flutter run -d chrome    # web
 flutter run -d macos     # macOS desktop
+flutter run -d windows   # Windows desktop
 flutter devices          # list attached devices/emulators
 ```
 

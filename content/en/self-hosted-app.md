@@ -45,8 +45,8 @@ with a handful of identity values swapped. There are five things to change.
 
 | # | What | Where |
 | --- | --- | --- |
-| 1 | **Package / bundle id** | `com.yourorg.yourapp` — Android `applicationId` + `namespace`, iOS/macOS `PRODUCT_BUNDLE_IDENTIFIER` |
-| 2 | **App display name** | Android `android:label`, iOS/macOS display name |
+| 1 | **Package / bundle id** | `com.yourorg.yourapp` — Android `applicationId` + `namespace`, iOS/macOS `PRODUCT_BUNDLE_IDENTIFIER`, Windows `msix_config.identity_name` + `publisher` |
+| 2 | **App display name** | Android `android:label`, iOS/macOS display name, Windows `msix_config.display_name` |
 | 3 | **Icons & splash** | `assets/branding/` + `flutter_launcher_icons` / `flutter_native_splash` |
 | 4 | **Accent color** | the honey-amber `#D9A032` accent token in the theme |
 | 5 | **Gateway** | point at the Hinata Connect gateway (or your own) |
@@ -69,6 +69,11 @@ android {
 For iOS and macOS, set `PRODUCT_BUNDLE_IDENTIFIER` in the Xcode project (Runner
 target). This id is permanent once published to a store — choose carefully.
 
+Windows identifies an MSIX package differently: `identity_name`, `publisher` and
+`publisher_display_name` in the `msix_config` block of `pubspec.yaml` are
+**assigned to you by Partner Center** (Product management → Product identity).
+Copy them character-exact — the Store rejects the package on any mismatch.
+
 ### 2 — App display name
 
 Set the visible name shown under the icon:
@@ -78,7 +83,8 @@ Set the visible name shown under the icon:
 <application android:label="Your App Name" ... >
 ```
 
-On iOS/macOS set the display name in the Runner target's Info settings.
+On iOS/macOS set the display name in the Runner target's Info settings; on Windows
+set `msix_config.display_name` in `pubspec.yaml`.
 
 ### 3 — Icons & splash
 
@@ -94,6 +100,10 @@ dart run flutter_native_splash:create  # regenerate splash screens
 The `flutter_launcher_icons` and `flutter_native_splash` blocks in `pubspec.yaml`
 control the source images and background colors (light `#F4F3EF`, dark `#131119`
 by default) — edit them to your brand, then re-run the generators.
+
+Windows takes its tile and taskbar icon from `msix_config.logo_path` instead.
+Point it at a **rounded** variant of your icon: Windows applies no mask of its
+own, so a full-bleed square icon shows as a hard square on the tile.
 
 ### 4 — Accent color
 
@@ -155,11 +165,11 @@ web app runs at your domain. Example `assetlinks.json`:
 
 ## Store releases need a privacy policy
 
-Both Apple's App Store and Google Play require a reachable **privacy policy** URL
-for review, and you need one for GDPR/DSGVO compliance anyway. Hinata surfaces
-this URL in the app from the server setting `HINATA_PRIVACY_POLICY_URL` (also
-editable live in the [Admin area](/en/admin-area.html) → App settings). Set it
-before you submit.
+Apple's App Store, Google Play and the Microsoft Store all require a reachable
+**privacy policy** URL for review, and you need one for GDPR/DSGVO compliance
+anyway. Hinata surfaces this URL in the app from the server setting
+`HINATA_PRIVACY_POLICY_URL` (also editable live in the
+[Admin area](/en/admin-area.html) → App settings). Set it before you submit.
 
 !!! tip "Accessibility is part of compliance"
     The UI is built to be accessibility-minded — scalable text, semantic widgets
@@ -171,9 +181,11 @@ before you submit.
 Work top to bottom; each step is independent.
 
 1. **Fork** [hinata-app](https://github.com/hinata-platform/hinata-app) and honor GPL-3.0.
-2. Set the **package/bundle id** (`com.yourorg.yourapp`) on Android, iOS and macOS.
+2. Set the **package/bundle id** (`com.yourorg.yourapp`) on Android, iOS and macOS,
+   and the **MSIX identity** from Partner Center on Windows.
 3. Set the **app display name** on every platform.
-4. Replace the artwork in `assets/branding/` and run the icon + splash generators.
+4. Replace the artwork in `assets/branding/` and run the icon + splash generators;
+   point `msix_config.logo_path` at a rounded icon for Windows.
 5. Change the **accent color** token in the theme; verify light **and** dark mode.
 6. Decide your **gateway** — default, or your own via `HINATA_GATEWAY_BASE_URL`.
 7. Serve `assetlinks.json` + AASA at `https://track.example.com/.well-known/`

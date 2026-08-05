@@ -1,22 +1,22 @@
 ---
 title: The apps
-description: One Flutter codebase for Android, iOS, Web and macOS — how the client connects, gates versions, signs in, and manages multiple servers from a liquid-glass Server Manager.
+description: One Flutter codebase for Android, iOS, Web, macOS and Windows — how the client connects, gates versions, signs in, and manages multiple servers from a liquid-glass Server Manager.
 ---
 
 # The apps
 
 Hinata ships a single Flutter client that runs from **one codebase** on
-**Android, iOS, Web and macOS**. There is no separate mobile app and desktop
-app to keep in sync — the same screens, the same state, the same networking
-layer adapt to whatever they run on. This page explains how the app connects to
-your server, how it decides whether it is up to date, how you sign in, and how a
-single app talks to many servers at once.
+**Android, iOS, Web, macOS and Windows**. There is no separate mobile app and
+desktop app to keep in sync — the same screens, the same state, the same
+networking layer adapt to whatever they run on. This page explains how the app
+connects to your server, how it decides whether it is up to date, how you sign
+in, and how a single app talks to many servers at once.
 
 
 ![Hinata on mobile](/assets/img/shot-mobile-dashboard.png)
-*One Flutter codebase — Android, iOS, Web and macOS from a single app.*
+*One Flutter codebase — Android, iOS, Web, macOS and Windows from a single app.*
 
-## One codebase, four platforms
+## One codebase, five platforms
 
 The client is built with Flutter. State is managed with bloc/cubit, routing with
 go_router, localization with i18next, and every network call goes through a
