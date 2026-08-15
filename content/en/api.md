@@ -185,6 +185,11 @@ authentication routes to blunt brute-force attempts:
 | General API | **300** requests/minute | `HINATA_RATE_LIMIT_API` |
 | `/auth/**` | **10** requests/minute | `HINATA_RATE_LIMIT_AUTH` |
 
+`GET /auth/sso/providers` is the one exception: the sign-in screen calls it on
+every visit to decide which SSO buttons to draw, and it exposes nothing an
+attacker could guess at, so it draws from the general budget rather than the
+sign-in one.
+
 Rate limiting is toggled by `HINATA_RATE_LIMIT_ENABLED` (on by default). Repeated
 failed logins additionally trigger a **database-backed lockout**
 (`HINATA_MAX_LOGIN_FAILURES`, default 5; `HINATA_LOGIN_BLOCK_MINUTES`, default 15)

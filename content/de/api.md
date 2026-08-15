@@ -188,6 +188,11 @@ auf Authentifizierungsrouten, um Brute-Force-Versuche abzuschwächen:
 | Allgemeine API | **300** Anfragen/Minute | `HINATA_RATE_LIMIT_API` |
 | `/auth/**` | **10** Anfragen/Minute | `HINATA_RATE_LIMIT_AUTH` |
 
+Die einzige Ausnahme ist `GET /auth/sso/providers`: Der Anmeldebildschirm fragt bei
+jedem Aufruf ab, welche SSO-Buttons er zeichnen soll, und die Antwort verrät nichts
+Erratbares — deshalb zählt sie auf das allgemeine Budget statt auf das
+Anmelde-Budget.
+
 Rate Limiting wird über `HINATA_RATE_LIMIT_ENABLED` umgeschaltet (standardmäßig an).
 Wiederholt fehlgeschlagene Logins lösen zusätzlich eine **datenbankgestützte Sperre**
 aus (`HINATA_MAX_LOGIN_FAILURES`, Standard 5; `HINATA_LOGIN_BLOCK_MINUTES`, Standard

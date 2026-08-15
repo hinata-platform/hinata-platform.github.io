@@ -39,7 +39,7 @@ Two independent layers protect the credential and API surface.
 | --- | --- | --- |
 | `HINATA_RATE_LIMIT_ENABLED` | `true` | Master switch for rate limiting |
 | `HINATA_RATE_LIMIT_API` | `300` | Requests per minute for general API |
-| `HINATA_RATE_LIMIT_AUTH` | `10` | Requests per minute for `/auth/**` (strict) |
+| `HINATA_RATE_LIMIT_AUTH` | `10` | Requests per minute for `/auth/**` (strict; the public SSO provider lookup counts against the API budget) |
 
 !!! warning "Rate limiting needs the real client IP"
     Behind a reverse proxy every request appears to come from the proxy unless you tell Hinata which proxies to trust. Set `HINATA_TRUSTED_PROXIES` to the CIDR(s) of your load balancer/proxy so `X-Forwarded-For` is honoured only from them. Leave it empty and Hinata trusts no forwarded header — safe, but every client looks like the proxy. See [Reverse proxy & TLS](/en/reverse-proxy.html).

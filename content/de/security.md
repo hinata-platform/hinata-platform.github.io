@@ -39,7 +39,7 @@ Zwei unabhängige Schichten schützen die Zugangsdaten- und API-Angriffsfläche.
 | --- | --- | --- |
 | `HINATA_RATE_LIMIT_ENABLED` | `true` | Hauptschalter für Rate Limiting |
 | `HINATA_RATE_LIMIT_API` | `300` | Anfragen pro Minute für die allgemeine API |
-| `HINATA_RATE_LIMIT_AUTH` | `10` | Anfragen pro Minute für `/auth/**` (streng) |
+| `HINATA_RATE_LIMIT_AUTH` | `10` | Anfragen pro Minute für `/auth/**` (streng; die öffentliche SSO-Anbieterabfrage zählt aufs API-Budget) |
 
 !!! warning "Rate Limiting braucht die echte Client-IP"
     Hinter einem Reverse Proxy scheint jede Anfrage vom Proxy zu kommen, es sei denn, du sagst Hinata, welchen Proxies es vertrauen soll. Setze `HINATA_TRUSTED_PROXIES` auf die CIDR(s) deines Load Balancers/Proxys, damit `X-Forwarded-For` nur von diesen honoriert wird. Lässt du es leer, vertraut Hinata keinem weitergeleiteten Header — sicher, aber jeder Client sieht aus wie der Proxy. Siehe [Reverse Proxy & TLS](/de/reverse-proxy.html).
