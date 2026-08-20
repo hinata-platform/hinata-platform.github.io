@@ -55,7 +55,7 @@ The **knowledge base** is a Confluence-style space for documentation: hierarchic
 
 ## Notifications
 
-Hinata keeps everyone in the loop with in-app notifications, e-mail (over your SMTP relay) and push on mobile and Windows desktop. Push is relayed through the [Hinata Connect gateway](/en/connect-gateway.html), which means a single published app can serve many servers and self-hosters don't need a Firebase project of their own. Each person tunes what they receive from a notification matrix in [account settings](/en/authentication.html). See [Notifications](/en/notifications.html).
+Hinata keeps everyone in the loop with in-app notifications, e-mail (over your SMTP relay) and push wherever an operating system delivers it — Android, iOS, macOS and Windows. Push is relayed through the [Hinata Connect gateway](/en/connect-gateway.html), which means a single published app can serve many servers and self-hosters don't need a Firebase project of their own. Linux has no desktop push service to register with, so a Linux client hears the same news in the app and by e-mail, while the account's push preference keeps working for the phone in that person's pocket. Each person tunes what they receive from a notification matrix in [account settings](/en/authentication.html). See [Notifications](/en/notifications.html).
 
 ## Search & palette
 

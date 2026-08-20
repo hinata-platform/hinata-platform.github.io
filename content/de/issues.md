@@ -97,8 +97,12 @@ Meistens willst du einen Vorgang nicht dauerhaft löschen — du willst ihn nur 
 
 **Endgültiges Löschen** ist destruktiv und rollenbeschränkt: Nur ein Plattform-Admin, der Projektleiter oder ein Team-Admin kann einen Vorgang dauerhaft löschen. Die Oberfläche von Hinata prüft deine Berechtigungen am Vorgang und bietet dir nur die Option an, die du tatsächlich nutzen darfst.
 
-!!! warning "Endgültiges Löschen eines übergeordneten Elements kaskadiert — ohne Rückgängig"
-    Das dauerhafte Löschen eines Vorgangs, der untergeordnete Elemente hat, **kaskadiert**: Seine untergeordneten Elemente (und deren Sub-Tasks) werden zusammen mit ihren Kommentaren, Arbeitsprotokollen und Verknüpfungen mit ihm entfernt. Es gibt kein Rückgängig — archiviere also zuerst, wenn du dir nicht sicher bist, und hebe das endgültige Löschen für Aufräumarbeiten auf, die wirklich nicht mehr existieren sollen.
+!!! warning "Endgültiges Löschen lässt sich nicht rückgängig machen — was mitgeht, hängt vom Typ ab"
+    Das dauerhafte Löschen eines **Standard-Vorgangs** (Story, Task, Bug, Feature) **kaskadiert**: Seine Sub-Tasks werden zusammen mit ihren Kommentaren, Arbeitsprotokollen und Verknüpfungen mit entfernt — ein Sub-Task kann ohne sein übergeordnetes Element nicht existieren.
+
+    Beim Löschen eines **Epics** ist das nicht so. Seine untergeordneten Vorgänge bleiben als gewöhnliche Vorgänge der obersten Ebene bestehen und verlieren nur die Epic-Verknüpfung — eine Story ist für sich genommen ein echtes Stück Arbeit.
+
+    In beiden Fällen gibt es kein Rückgängig — archiviere also zuerst, wenn du dir nicht sicher bist, und hebe das endgültige Löschen für Aufräumarbeiten auf, die wirklich nicht mehr existieren sollen.
 
 Die Hierarchie treibt auch das Board an: Du kannst das [agile Board](/de/boards-sprints.html) nach **Epic** oder **Sub-Task** in Swimlanes gruppieren und das ganze Board auf ein einzelnes Epic herunterfiltern.
 

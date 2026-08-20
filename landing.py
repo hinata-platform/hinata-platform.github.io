@@ -28,8 +28,8 @@ FEATURES = [
      {"en": "Work items by activity type and weekly timesheets, feeding reports.",
       "de": "Arbeitszeiten nach Aktivität und wöchentliche Timesheets — direkt in den Berichten."}),
     ("🎨", {"en": "Bring your own server", "de": "Bring your own Server"},
-     {"en": "One app, your self-hosted server, runtime branding. One Flutter codebase on Android, iOS, Web, macOS & Windows.",
-      "de": "Eine App, dein selbst gehosteter Server, Laufzeit-Branding. Eine Flutter-Codebasis auf Android, iOS, Web, macOS & Windows."}),
+     {"en": "One app, your self-hosted server, runtime branding. One Flutter codebase, six platforms — mobile, web and desktop.",
+      "de": "Eine App, dein selbst gehosteter Server, Laufzeit-Branding. Eine Flutter-Codebasis, sechs Plattformen — Mobile, Web und Desktop."}),
 ]
 
 T = {
@@ -38,8 +38,8 @@ T = {
     "headline_1": {"en": "Project management", "de": "Projektmanagement,"},
     "headline_2": {"en": "you actually own.", "de": "das dir gehört."},
     "sub": {
-        "en": "Hinata is an independent, self-hosted project & issue tracker — agile boards, sprints, Gantt, time tracking, a knowledge base and deep Git integration. One Flutter app for Android, iOS, Web, macOS and Windows. No user, team or board limits. Ever.",
-        "de": "Hinata ist ein unabhängiger, selbst-gehosteter Projekt- & Issue-Tracker — agile Boards, Sprints, Gantt, Zeiterfassung, Wissensdatenbank und tiefe Git-Integration. Eine Flutter-App für Android, iOS, Web, macOS und Windows. Keine Nutzer-, Team- oder Board-Limits. Niemals.",
+        "en": "Hinata is an independent, self-hosted project & issue tracker — agile boards, sprints, Gantt, time tracking, a knowledge base and deep Git integration. One Flutter app, six platforms: Android, iOS, Web, macOS, Windows and Linux. No user, team or board limits. Ever.",
+        "de": "Hinata ist ein unabhängiger, selbst-gehosteter Projekt- & Issue-Tracker — agile Boards, Sprints, Gantt, Zeiterfassung, Wissensdatenbank und tiefe Git-Integration. Eine Flutter-App, sechs Plattformen: Android, iOS, Web, macOS, Windows und Linux. Keine Nutzer-, Team- oder Board-Limits. Niemals.",
     },
     "cta_start": {"en": "Get started", "de": "Loslegen"},
     "cta_host": {"en": "Self-hosting guide", "de": "Self-Hosting-Guide"},
@@ -63,8 +63,8 @@ T = {
     "mcp_clients": {"en": "Claude · Claude Code · Cursor · any MCP client",
                     "de": "Claude · Claude Code · Cursor · jeder MCP-Client"},
     "repos_title": {"en": "Two repositories, one platform", "de": "Zwei Repositories, eine Plattform"},
-    "app_desc": {"en": "The Flutter client — Android, iOS, Web, macOS & Windows from a single codebase.",
-                 "de": "Der Flutter-Client — Android, iOS, Web, macOS & Windows aus einer Codebasis."},
+    "app_desc": {"en": "The Flutter client — Android, iOS, Web, macOS, Windows & Linux from one codebase.",
+                 "de": "Der Flutter-Client — Android, iOS, Web, macOS, Windows & Linux aus einer Codebasis."},
     "server_desc": {"en": "The Spring Boot 4 backend — Java 21, MongoDB, S3, SSO, Git integration.",
                     "de": "Das Spring-Boot-4-Backend — Java 21, MongoDB, S3, SSO, Git-Integration."},
     "docs_title": {"en": "Read the docs", "de": "Zur Dokumentation"},
@@ -101,11 +101,11 @@ docker compose up -d"""
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Hinata · Open-source, self-hosted project management</title>
-<meta name="description" content="Hinata is an independent, self-hosted project & issue tracker with agile boards, sprints, Gantt, time tracking, a knowledge base and Git integration. Android, iOS, Web, macOS & Windows.">
+<meta name="description" content="Hinata is an independent, self-hosted project & issue tracker — boards, sprints, Gantt, knowledge base and Git integration, on Android, iOS, Web, macOS, Windows and Linux.">
 <link rel="canonical" href="{SITE['base_url']}/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hinata — project management you actually own">
-<meta property="og:description" content="Open-source, self-hosted project & issue tracking. Boards, sprints, Gantt, Git integration. Android · iOS · Web · macOS · Windows.">
+<meta property="og:description" content="Open-source, self-hosted project & issue tracking. Boards, sprints, Gantt, Git integration. Android · iOS · Web · macOS · Windows · Linux.">
 <meta property="og:url" content="{SITE['base_url']}/">
 <meta name="theme-color" content="#151327">
 <meta name="hinata:app-version" content="{SITE['version']}" data-repo="{SITE['app_repo']}">
@@ -160,7 +160,7 @@ docker compose up -d"""
       <a class="btn btn-ghost glass" href="/en/self-hosting.html" {_t('cta_host')}>{T['cta_host']['en']}</a>
     </div>
     <div class="hero-platforms">
-      <span>Android</span><i>·</i><span>iOS</span><i>·</i><span>Web</span><i>·</i><span>macOS</span><i>·</i><span>Windows</span>
+      <span>Android</span><i>·</i><span>iOS</span><i>·</i><span>Web</span><i>·</i><span>macOS</span><i>·</i><span>Windows</span><i>·</i><span>Linux</span>
       <span class="ver-pill" data-app-version>v{SITE['version']}</span>
     </div>
   </section>

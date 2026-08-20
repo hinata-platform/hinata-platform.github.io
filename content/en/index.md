@@ -22,7 +22,7 @@ Hinata is a full agile project-management suite: projects and teams, issues with
 
 Two things make it different from most self-hosted trackers:
 
-- **It ships a real cross-platform app.** Not just a web UI — a single Flutter codebase compiled for Android, iOS, Web, macOS and Windows, with live updates over Server-Sent Events, offline-friendly navigation, and a ⌘K command palette.
+- **It ships a real cross-platform app.** Not just a web UI — one Flutter codebase compiled six ways, for Android, iOS, Web, macOS, Windows and Linux, with live updates over Server-Sent Events, offline-friendly navigation, and a ⌘K command palette.
 - **You bring your own server.** The client carries no baked-in backend. You point the published app at your own server, save and switch between multiple servers, and branding comes from your server at runtime — or build and publish your own client with your package id, name, icons and accent color.
 
 !!! info "Design language"
@@ -48,13 +48,19 @@ The app talks to the server over a versioned REST API at `/api/v1`. See [Archite
 
 ## Platforms
 
-One Flutter codebase, five targets:
+One Flutter codebase, six targets:
 
 - **Android** — phones and tablets, App Links for `https://track.example.com`.
 - **iOS** — iPhone and iPad, Universal Links via Associated Domains.
 - **Web** — a full-featured Flutter-web build served by the web container.
 - **macOS** — a native desktop client.
 - **Windows** — a native desktop client, packaged as an MSIX for the Microsoft Store, with push delivered over Windows Push Notification Services (WNS).
+- **Linux** — a native GTK 3 desktop client (application id `com.ahmadre.hinata`), distributed as a Flatpak and as an AppImage built from the same bundle. A `hinata://` link — an SSO callback, an invite, a password reset — reaches the window that is already open, because the app registers the scheme handler and runs as a single instance.
+
+!!! note "What Linux does differently"
+    There is no desktop push service on Linux to register with, so notifications arrive in the app and by e-mail rather than as system banners — your notification settings stay exactly where they are, because they still govern your phone. There is no webcam capture either, so the composer simply doesn't offer "take a photo"; attaching a photo, or any other file you already have, works as it does everywhere else. And staying signed in between launches needs a keyring (GNOME Keyring, KWallet — anything that speaks the Secret Service): without one the app says so, and the session ends when you close the window.
+
+Platform-by-platform detail lives on [The apps](/en/clients.html).
 
 ## What's inside
 

@@ -75,9 +75,30 @@ Die [App](/de/clients.html) läuft auf:
 - **Android**- und **iOS**-Smartphones/Tablets,
 - **Web** (jeder moderne Browser),
 - **macOS**-Desktop,
-- **Windows**-Desktop.
+- **Windows**-Desktop,
+- **Linux**-Desktop — ein nativer GTK-3-Build, installiert als Flatpak, als AppImage oder aus einem Bundle, das du selbst gebaut hast.
 
 Weil die App mehrserverfähig ist, brauchen Nutzer nur die URL eines laufenden Servers; keine benutzerbezogene Installationskonfiguration ist erforderlich.
+
+### Was ein Linux-Desktop mitbringen muss
+
+Der Linux-Client bindet sich an GTK, GStreamer und libsecret des Systems, statt eigene Kopien mitzuliefern — deshalb trägt er dein Theme und spielt mit den Codecs, die deine Distribution installiert hat. Die Kehrseite: Er setzt einen gewöhnlichen Desktop darunter voraus. Alles Folgende ist auf einer normalen GNOME- oder Plasma-Installation längst vorhanden; die Liste zählt für Container, minimale Fenstermanager und abgespeckte Images.
+
+| Paket (Debian-/Ubuntu-Namen) | Wofür | Ohne das Paket |
+| --- | --- | --- |
+| `libgtk-3-0` | die App selbst | sie startet nicht |
+| `libsecret-1-0` plus ein Schlüsselbund (GNOME Keyring, KWallet — alles, was den Secret Service spricht) | angemeldet bleiben über Neustarts hinweg | die Sitzung lebt nur, solange die App offen ist — und die App sagt das auch |
+| `zenity`, `qarma` oder `kdialog` | die Dateiauswahl für Anhänge | die Auswahl nennt, welches der drei zu installieren ist |
+| `pulseaudio-utils` und `ffmpeg` | Sprachkommentare aufnehmen | die Aufnahme startet nicht |
+| `gstreamer1.0-plugins-base/good/bad` und `gstreamer1.0-libav` | Sprachkommentare abspielen | die Wiedergabe scheitert und nennt das fehlende Paket |
+
+`gstreamer1.0-libav` sieht optional aus und ist es nicht: Sprachkommentare werden auf jeder Plattform als AAC aufgenommen, und libav bringt den passenden Decoder mit. Fehlt es, lädt die Sprachblase und weigert sich dann abzuspielen.
+
+!!! note "Das Flatpak bringt fast alles davon selbst mit"
+    Das Flatpak sitzt auf der Freedesktop-Runtime, die GTK, zenity, GStreamer inklusive libav, libsecret und FFmpeg bereits enthält, und es baut PulseAudios Aufnahme-Werkzeuge selbst ins Paket. Der Schlüsselbund ist das Stück, das weiterhin vom Host kommt — er gehört zur Anmeldesitzung des Nutzers, nicht zur Sandbox.
+
+!!! info "Zwei Dinge, die Linux nicht kann"
+    Es gibt **kein Push**: `firebase_messaging` hat keine Linux-Implementierung, und es existiert kein Desktop-Push-Dienst, bei dem sich die App registrieren könnte — Benachrichtigungen kommen deshalb in der App und per E-Mail an. Und es gibt **keine Webcam-Aufnahme** — für Linux existiert keine Kamera-Implementierung, deshalb bietet die App „Foto aufnehmen“ gar nicht erst an, statt beim Antippen zu scheitern. Vorhandene Dateien anzuhängen funktioniert genau wie überall sonst.
 
 ## Entwicklungsvoraussetzungen
 
@@ -85,16 +106,41 @@ Das Bauen aus dem Quellcode (statt Images zu ziehen) erfordert die Toolchains hi
 
 - **[hinata-server](https://github.com/hinata-platform/hinata-server)** — **JDK 21** und der gebündelte Gradle-Wrapper (`./gradlew`). Bringe die Entwicklungsabhängigkeiten mit `docker compose -f docker-compose.dev.yml up -d` hoch (Mongo-Replikatset, Mailpit, MinIO) und starte dann den Server:
 
-  ```bash
-  docker compose -f docker-compose.dev.yml up -d   # Mongo RS, Mailpit, MinIO
-  HINATA_MONGODB_URI="mongodb://localhost:27017/hinata?replicaSet=rs0&directConnection=true" \
-  HINATA_S3_ACCESS_KEY=hinata HINATA_S3_SECRET_KEY=hinata-dev-secret \
-  ./gradlew bootRun
-  ```
+```bash
+docker compose -f docker-compose.dev.yml up -d   # Mongo RS, Mailpit, MinIO
+HINATA_MONGODB_URI="mongodb://localhost:27017/hinata?replicaSet=rs0&directConnection=true" \
+HINATA_S3_ACCESS_KEY=hinata HINATA_S3_SECRET_KEY=hinata-dev-secret \
+./gradlew bootRun
+```
 
-  Führe die Testsuite mit `./gradlew build` aus.
+Führe die Testsuite mit `./gradlew build` aus.
 
-- **[hinata-app](https://github.com/hinata-platform/hinata-app)** — ein **Flutter**-SDK (mit den Android-/iOS-/macOS-/Windows-Toolchains für die Ziele, die du baust). State über bloc/cubit, Routing über go_router, i18n über i18next.
+- **[hinata-app](https://github.com/hinata-platform/hinata-app)** — ein **Flutter**-SDK plus die native Toolchain jedes Ziels, das du baust: das Android-SDK, Xcode für iOS und macOS, Visual Studio mit der Desktop-C++-Workload für Windows und die GTK-Entwicklungspakete für Linux. State über bloc/cubit, Routing über go_router, i18n über i18next.
+
+### Das Linux-Desktop-Ziel bauen
+
+Der Linux-Build kompiliert gegen Systembibliotheken, statt sie mitzuliefern — installiere daher zuerst deren Header, unter Debian oder Ubuntu:
+
+```bash
+sudo apt install \
+  clang cmake ninja-build pkg-config \
+  libgtk-3-dev liblzma-dev libsecret-1-dev libjsoncpp-dev \
+  libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+```
+
+Danach baust du es wie jedes andere Ziel:
+
+```bash
+flutter config --enable-linux-desktop
+flutter build linux --release
+```
+
+Jedes Paket hat seinen Grund: `libgtk-3-dev` ist der Embedder und bringt die GTK-Druckunterstützung mit, auf der Drucken und PDF-Export aufsetzen, `libsecret-1-dev` trägt die sichere Token-Ablage, die eine Sitzung überhaupt am Leben hält, und die GStreamer-Header bauen die Audiowiedergabe, die Sprachkommentare brauchen. Zusätzlich brauchst du eine **Rust**-Toolchain ([rustup](https://rustup.rs)) — das Plugin für Zwischenablage und Drag & Drop ist eine Rust-Crate, die unter Linux aus dem Quellcode kompiliert und nicht vorgebaut ausgeliefert wird.
+
+Heraus kommt ein verschiebbares Verzeichnis `build/linux/<arch>/release/bundle/` — das Binary `hinata` neben `data/` und `lib/` — und genau das packen die Flatpak- und AppImage-Rezepte in `packaging/linux/`.
+
+!!! note "Baue Linux auf der ältesten Distribution, die du unterstützen willst"
+    Ein Flutter-Bundle ist dynamisch gegen die glibc der Maschine gelinkt, die es gebaut hat, und glibc ist nur vorwärtskompatibel — ein auf einer brandneuen Distribution gebautes Binary startet auf einer älteren nicht. Genau deshalb pinnt Hinatas CI für den Linux-Job `ubuntu-22.04`: So ist die glibc-Untergrenze des Bundles eine Entscheidung und kein Zufall.
 
 !!! tip "Willst du es nur zum Laufen bringen?"
     Du brauchst weder JDK noch Flutter, um Hinata zu *betreiben* — der [Schnellstart](/de/quick-start.html) zieht vorgefertigte Images. Die Entwicklungs-Toolchains sind nur für das Bauen aus dem Quellcode oder das Mitwirken. Siehe [Entwicklung](/de/development.html) und [Mitwirken](/de/contributing.html).

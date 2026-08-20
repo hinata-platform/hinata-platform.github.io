@@ -21,7 +21,7 @@ pull requests:
 | Repository | What it is | Link |
 | --- | --- | --- |
 | **hinata-server** | Spring Boot 4 / Java 21 REST API, MongoDB, S3/MinIO, SMTP. | [github.com/hinata-platform/hinata-server](https://github.com/hinata-platform/hinata-server) |
-| **hinata-app** | The Flutter client — Android, iOS, Web, macOS, Windows from one codebase. | [github.com/hinata-platform/hinata-app](https://github.com/hinata-platform/hinata-app) |
+| **hinata-app** | The Flutter client — Android, iOS, Web, macOS, Windows and Linux from one codebase. | [github.com/hinata-platform/hinata-app](https://github.com/hinata-platform/hinata-app) |
 
 Open your issue or pull request against the repository that owns the code you are
 changing. A change that spans both (a new endpoint plus its UI) is two coordinated
@@ -102,8 +102,12 @@ A good bug report saves everyone time. When you open an issue, include:
 - **What you expected** and **what actually happened**.
 - **Steps to reproduce** — the smaller and more precise, the better.
 - **Environment** — server image tag / app version, platform (Android, iOS, web,
-  macOS, Windows), and anything relevant about your deployment (reverse proxy, SSO
-  provider).
+  macOS, Windows, Linux), and anything relevant about your deployment (reverse
+  proxy, SSO provider). On Linux, also name the distribution, the desktop session
+  (GNOME or Plasma, X11 or Wayland) and how you installed the app — Flatpak,
+  AppImage or your own `flutter build linux`. The file picker, the keyring and the
+  audio tools the app relies on are all provided by the system, so those three
+  facts often *are* the bug report.
 - Relevant **logs or error messages** — but **redact secrets** (tokens, passwords,
   connection strings) before pasting.
 

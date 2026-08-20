@@ -87,13 +87,64 @@ Current platform version: use the `{{version}}` placeholder (auto-filled at buil
 Two repositories:
 - **hinata-server** — Spring Boot 4, Java 21, MongoDB (replica set), S3-compatible
   object storage (MinIO), SMTP mail. Publishes a Docker image to GHCR.
-- **hinata-app** — a single Flutter codebase targeting **Android, iOS, Web and
-  macOS**. State via bloc/cubit, routing via go_router, i18n via i18next (en + de),
-  networking via dio (auto token refresh, `Accept-Language`). Charts via fl_chart.
+- **hinata-app** — a single Flutter codebase targeting **Android, iOS, Web, macOS,
+  Windows and Linux** — six targets, one codebase. State via bloc/cubit, routing via
+  go_router, i18n via i18next (en + de), networking via dio (auto token refresh,
+  `Accept-Language`). Charts via fl_chart. Windows ships as an MSIX for the Microsoft
+  Store with push over WNS; Linux is section 2b.
 
 **Design language**: navy navigation rail, warm-paper workspace, honey-amber accent
 `#D9A032` that reads the same in light and dark, with liquid-glass surfaces on the
 mobile nav, the ⌘K palette and the attachment lightbox.
+
+## 2b. Linux (client)
+
+Linux is a fully supported target, not a preview. The complete picture lives in
+`hinata-app/docs/LINUX.md` — read it before writing a Linux page. The facts below
+are the ones doc pages may state; do not invent beyond them, and do not publish a
+store or download URL, because none is final.
+
+- **What it is**: a native **GTK 3** desktop app — application id
+  `com.ahmadre.hinata`, binary `hinata`, the same Flutter codebase as every other
+  platform.
+- **Packaging**: a **Flatpak** (submitted to Flathub, in review) and an **AppImage**,
+  both built from the same `flutter build linux --release` bundle. The recipes live in
+  `packaging/linux/` in hinata-app.
+- **Deep links work**: the desktop entry registers `x-scheme-handler/hinata`, and the
+  app is a single-instance GTK application, so an SSO callback, an invite or a
+  password-reset link reaches the window that is already open. There is no https
+  Universal/App-Links equivalent on Linux — those are Apple and Android mechanisms.
+
+What differs on Linux, and why — be honest about these, they are the valuable part:
+
+- **No push notifications.** `firebase_messaging` has no Linux implementation and
+  there is no desktop push service to register with. Notifications arrive in-app and
+  by e-mail. The setting stays visible and usable, because the preference belongs to
+  the account and still governs the user's phone.
+- **No webcam capture.** No camera implementation exists for Linux, so the "take a
+  photo" entry is not offered at all rather than failing when tapped. Attaching
+  existing files works normally.
+- **Staying signed in needs a keyring** — GNOME Keyring, KWallet, anything
+  implementing the freedesktop Secret Service. Without one the session lives only
+  until the app closes, and the app says so.
+- **Voice comments** need `gstreamer1.0-plugins-base/good/bad` plus
+  `gstreamer1.0-libav` to play (the recorder produces AAC) and `pulseaudio-utils` +
+  `ffmpeg` to record. Playback runs through a GStreamer plugin written for this app,
+  because `just_audio` ships no Linux implementation.
+- **The file picker** shells out to `zenity`, `qarma` or `kdialog`; if none of them is
+  installed, the app says which to install.
+- **Downloads** go straight to the Downloads folder — there is no share sheet on Linux.
+
+Build prerequisites (Debian/Ubuntu):
+
+```bash
+sudo apt install clang cmake ninja-build pkg-config \
+  libgtk-3-dev liblzma-dev libsecret-1-dev libjsoncpp-dev \
+  libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+```
+
+CI builds Linux on a pinned `ubuntu-22.04`, so the bundle's glibc floor is a decision
+rather than an accident.
 
 ## 3. Architecture
 

@@ -55,7 +55,7 @@ Die **Wissensdatenbank** ist ein Confluence-artiger Raum für Dokumentation: hie
 
 ## Benachrichtigungen
 
-Hinata hält alle auf dem Laufenden — mit In-App-Benachrichtigungen, E-Mail (über deinen SMTP-Relay) und Push auf Mobilgeräten und dem Windows-Desktop. Push wird über das [Hinata Connect Gateway](/de/connect-gateway.html) weitergeleitet, was bedeutet, dass eine einzige veröffentlichte App viele Server bedienen kann und Selbst-Hoster kein eigenes Firebase-Projekt brauchen. Jede Person stellt in den [Kontoeinstellungen](/de/authentication.html) über eine Benachrichtigungsmatrix ein, was sie erhält. Siehe [Benachrichtigungen](/de/notifications.html).
+Hinata hält alle auf dem Laufenden — mit In-App-Benachrichtigungen, E-Mail (über deinen SMTP-Relay) und Push überall dort, wo ein Betriebssystem ihn zustellt: Android, iOS, macOS und Windows. Push wird über das [Hinata Connect Gateway](/de/connect-gateway.html) weitergeleitet, was bedeutet, dass eine einzige veröffentlichte App viele Server bedienen kann und Selbst-Hoster kein eigenes Firebase-Projekt brauchen. Unter Linux gibt es keinen Push-Dienst, bei dem sich die App registrieren könnte — dort erfährt der Client dasselbe in der App und per E-Mail, während die Push-Einstellung des Kontos weiterhin für das Telefon derselben Person gilt. Jede Person stellt in den [Kontoeinstellungen](/de/authentication.html) über eine Benachrichtigungsmatrix ein, was sie erhält. Siehe [Benachrichtigungen](/de/notifications.html).
 
 ## Suche & Palette
 
