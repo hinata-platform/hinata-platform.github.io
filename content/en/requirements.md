@@ -75,9 +75,30 @@ The [app](/en/clients.html) runs on:
 - **Android** and **iOS** phones/tablets,
 - **Web** (any modern browser),
 - **macOS** desktop,
-- **Windows** desktop.
+- **Windows** desktop,
+- **Linux** desktop — a native GTK 3 build, installed as a Flatpak, as an AppImage, or from a bundle you built yourself.
 
 Because the app is multi-server, users just need the URL of a running server; no per-user install configuration is required.
+
+### What a Linux desktop needs
+
+The Linux client links against the system's GTK, GStreamer and libsecret instead of bundling its own copies — that is why it wears your theme and plays with the codecs your distribution installed. The other side of that trade is that it expects an ordinary desktop underneath. Everything below is already there on a stock GNOME or Plasma install; the list matters for containers, minimal window managers and stripped-down images.
+
+| Package (Debian/Ubuntu names) | Needed for | Without it |
+| --- | --- | --- |
+| `libgtk-3-0` | the app itself | it does not start |
+| `libsecret-1-0` plus a keyring (GNOME Keyring, KWallet — anything speaking the Secret Service) | staying signed in across restarts | the session lives only until the app closes, and the app tells the user so |
+| `zenity`, `qarma` or `kdialog` | the file picker for attachments | the picker names which of the three to install |
+| `pulseaudio-utils` and `ffmpeg` | recording a voice comment | the recorder does not start |
+| `gstreamer1.0-plugins-base/good/bad` and `gstreamer1.0-libav` | playing a voice comment | playback fails with the missing package named |
+
+`gstreamer1.0-libav` is the one that looks optional and is not: voice comments are recorded as AAC on every platform, and libav carries the decoder for it. Without it a voice bubble loads and then refuses to play.
+
+!!! note "The Flatpak brings nearly all of this with it"
+    The Flatpak sits on the Freedesktop runtime, which already carries GTK, zenity, GStreamer including libav, libsecret and FFmpeg, and it builds PulseAudio's recording tools into the package itself. The keyring is the piece that still comes from the host — it belongs to the user's login session, not to the sandbox.
+
+!!! info "Two things Linux does not do"
+    There are **no push notifications**: `firebase_messaging` has no Linux implementation and there is no desktop push service to register with, so notifications arrive in the app and by e-mail. And there is **no webcam capture** — no camera implementation exists for Linux, so the app does not offer "take a photo" at all rather than failing when it is tapped. Attaching files that already exist works exactly as everywhere else.
 
 ## Development requirements
 
@@ -85,16 +106,41 @@ Building from source (rather than pulling images) needs the toolchains behind ea
 
 - **[hinata-server](https://github.com/hinata-platform/hinata-server)** — **JDK 21** and the bundled Gradle wrapper (`./gradlew`). Bring up the dev dependencies with `docker compose -f docker-compose.dev.yml up -d` (Mongo replica set, Mailpit, MinIO), then run the server:
 
-  ```bash
-  docker compose -f docker-compose.dev.yml up -d   # Mongo RS, Mailpit, MinIO
-  HINATA_MONGODB_URI="mongodb://localhost:27017/hinata?replicaSet=rs0&directConnection=true" \
-  HINATA_S3_ACCESS_KEY=hinata HINATA_S3_SECRET_KEY=hinata-dev-secret \
-  ./gradlew bootRun
-  ```
+```bash
+docker compose -f docker-compose.dev.yml up -d   # Mongo RS, Mailpit, MinIO
+HINATA_MONGODB_URI="mongodb://localhost:27017/hinata?replicaSet=rs0&directConnection=true" \
+HINATA_S3_ACCESS_KEY=hinata HINATA_S3_SECRET_KEY=hinata-dev-secret \
+./gradlew bootRun
+```
 
-  Run the test suite with `./gradlew build`.
+Run the test suite with `./gradlew build`.
 
-- **[hinata-app](https://github.com/hinata-platform/hinata-app)** — a **Flutter** SDK (with the Android/iOS/macOS/Windows toolchains for the targets you build). State via bloc/cubit, routing via go_router, i18n via i18next.
+- **[hinata-app](https://github.com/hinata-platform/hinata-app)** — a **Flutter** SDK plus the native toolchain of every target you build: the Android SDK, Xcode for iOS and macOS, Visual Studio with the desktop C++ workload for Windows, and the GTK development packages for Linux. State via bloc/cubit, routing via go_router, i18n via i18next.
+
+### Building the Linux desktop target
+
+The Linux build compiles against system libraries instead of bundling them, so install their headers first — on Debian or Ubuntu:
+
+```bash
+sudo apt install \
+  clang cmake ninja-build pkg-config \
+  libgtk-3-dev liblzma-dev libsecret-1-dev libjsoncpp-dev \
+  libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+```
+
+Then build it like any other target:
+
+```bash
+flutter config --enable-linux-desktop
+flutter build linux --release
+```
+
+Every package earns its place: `libgtk-3-dev` is the embedder and brings the GTK printing support behind print and PDF export, `libsecret-1-dev` backs the secure token storage that keeps a session alive, and the GStreamer headers build the audio playback voice comments need. A **Rust** toolchain ([rustup](https://rustup.rs)) is required too — the rich clipboard and drag-and-drop plugin is a Rust crate compiled from source on Linux rather than shipped prebuilt.
+
+The result is a relocatable `build/linux/<arch>/release/bundle/` directory — the `hinata` binary next to `data/` and `lib/` — which is exactly what the Flatpak and AppImage recipes in `packaging/linux/` package.
+
+!!! note "Build Linux on the oldest distribution you intend to support"
+    A Flutter bundle is dynamically linked against the glibc of the machine that built it, and glibc is only forward compatible — a binary built on a brand-new distribution refuses to start on an older one. Hinata's CI pins `ubuntu-22.04` for its Linux job for exactly that reason, so the bundle's glibc floor is a decision rather than an accident.
 
 !!! tip "Just want it running?"
     You don't need JDK or Flutter to *operate* Hinata — the [Quick start](/en/quick-start.html) pulls prebuilt images. The development toolchains are only for building from source or contributing. See [Development](/en/development.html) and [Contributing](/en/contributing.html).

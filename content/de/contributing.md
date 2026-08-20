@@ -22,7 +22,7 @@ Issue-Tracker und eigenen Pull Requests:
 | Repository | Was es ist | Link |
 | --- | --- | --- |
 | **hinata-server** | Spring Boot 4 / Java 21 REST-API, MongoDB, S3/MinIO, SMTP. | [github.com/hinata-platform/hinata-server](https://github.com/hinata-platform/hinata-server) |
-| **hinata-app** | Der Flutter-Client — Android, iOS, Web, macOS, Windows aus einer Codebasis. | [github.com/hinata-platform/hinata-app](https://github.com/hinata-platform/hinata-app) |
+| **hinata-app** | Der Flutter-Client — Android, iOS, Web, macOS, Windows und Linux aus einer Codebasis. | [github.com/hinata-platform/hinata-app](https://github.com/hinata-platform/hinata-app) |
 
 Öffne dein Issue oder deinen Pull Request gegen das Repository, dem der Code
 gehört, den du änderst. Eine Änderung, die beide betrifft (ein neuer Endpunkt plus
@@ -110,8 +110,12 @@ Ein guter Fehlerbericht spart allen Zeit. Wenn du ein Issue öffnest, gib an:
 - **Was du erwartet hast** und **was tatsächlich passiert ist**.
 - **Schritte zur Reproduktion** — je kleiner und präziser, desto besser.
 - **Umgebung** — Server-Image-Tag / App-Version, Plattform (Android, iOS, Web,
-  macOS, Windows) und alles Relevante zu deinem Deployment (Reverse Proxy,
-  SSO-Provider).
+  macOS, Windows, Linux) und alles Relevante zu deinem Deployment (Reverse Proxy,
+  SSO-Provider). Nenne unter Linux zusätzlich die Distribution, die Desktop-Sitzung
+  (GNOME oder Plasma, X11 oder Wayland) und wie du die App installiert hast —
+  Flatpak, AppImage oder ein eigenes `flutter build linux`. Dateiauswahl,
+  Schlüsselbund und die Audio-Werkzeuge kommen dort alle vom System, deshalb sind
+  diese drei Angaben oft schon der halbe Fehlerbericht.
 - Relevante **Logs oder Fehlermeldungen** — aber **schwärze Secrets** (Tokens,
   Passwörter, Connection-Strings), bevor du einfügst.
 

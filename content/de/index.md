@@ -22,7 +22,7 @@ Hinata ist eine vollständige agile Projektmanagement-Suite: Projekte und Teams,
 
 Zwei Dinge unterscheiden es von den meisten selbst-gehosteten Trackern:
 
-- **Es liefert eine echte plattformübergreifende App.** Nicht nur eine Web-Oberfläche — eine einzige Flutter-Codebasis, kompiliert für Android, iOS, Web, macOS und Windows, mit Live-Updates über Server-Sent Events, offline-freundlicher Navigation und einer ⌘K-Befehlspalette.
+- **Es liefert eine echte plattformübergreifende App.** Nicht nur eine Web-Oberfläche — eine einzige Flutter-Codebasis, sechsfach kompiliert: für Android, iOS, Web, macOS, Windows und Linux, mit Live-Updates über Server-Sent Events, offline-freundlicher Navigation und einer ⌘K-Befehlspalette.
 - **Du bringst deinen eigenen Server mit.** Der Client hat keinen fest eingebauten Backend-Server. Du lässt die veröffentlichte App auf deinen eigenen Server zeigen, speicherst mehrere Server und wechselst zwischen ihnen, und das Branding kommt zur Laufzeit von deinem Server — oder du baust und veröffentlichst deinen eigenen Client mit eigener Package-ID, eigenem Namen, Icons und Akzentfarbe.
 
 !!! info "Designsprache"
@@ -48,13 +48,19 @@ Die App spricht über eine versionierte REST-API unter `/api/v1` mit dem Server.
 
 ## Plattformen
 
-Eine Flutter-Codebasis, fünf Ziele:
+Eine Flutter-Codebasis, sechs Ziele:
 
 - **Android** — Smartphones und Tablets, App Links für `https://track.example.com`.
 - **iOS** — iPhone und iPad, Universal Links über Associated Domains.
 - **Web** — ein voll ausgestatteter Flutter-Web-Build, ausgeliefert vom Web-Container.
 - **macOS** — ein nativer Desktop-Client.
 - **Windows** — ein nativer Desktop-Client, als MSIX für den Microsoft Store paketiert, mit Push über die Windows Push Notification Services (WNS).
+- **Linux** — ein nativer GTK-3-Desktop-Client (Application-ID `com.ahmadre.hinata`), ausgeliefert als Flatpak und als AppImage, beide aus demselben Bundle gebaut. Ein `hinata://`-Link — ein SSO-Rücksprung, eine Einladung, ein Passwort-Reset — erreicht das bereits geöffnete Fenster, denn die App registriert den Scheme-Handler und läuft als Einzelinstanz.
+
+!!! note "Was unter Linux anders läuft"
+    Unter Linux gibt es keinen Desktop-Push-Dienst, bei dem sich die App registrieren könnte — Benachrichtigungen kommen deshalb in der App und per E-Mail statt als System-Banner. Deine Benachrichtigungseinstellungen bleiben trotzdem genau da, wo sie sind, denn sie steuern weiterhin dein Handy. Eine Kamera-Aufnahme gibt es ebenfalls nicht: Der Composer bietet „Foto aufnehmen“ gar nicht erst an; ein vorhandenes Foto — oder jede andere Datei — anzuhängen funktioniert wie überall sonst. Und damit du zwischen zwei Starts angemeldet bleibst, braucht es einen Schlüsselbund (GNOME Keyring, KWallet — alles, was den Secret Service spricht): Fehlt er, sagt die App das, und die Sitzung endet, wenn du das Fenster schließt.
+
+Details zu jeder Plattform findest du unter [Die Apps](/de/clients.html).
 
 ## Was drinsteckt
 

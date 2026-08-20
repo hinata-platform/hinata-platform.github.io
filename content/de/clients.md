@@ -1,23 +1,25 @@
 ---
 title: Die Apps
-description: Eine Flutter-Codebasis für Android, iOS, Web, macOS und Windows — wie sich der Client verbindet, Versionen sperrt, sich anmeldet und mehrere Server aus einem Liquid-Glass-Server-Manager verwaltet.
+description: Eine Flutter-Codebasis für Android, iOS, Web, macOS, Windows und Linux — wie sich der Client verbindet, Versionen sperrt, sich anmeldet und mehrere Server aus einem Liquid-Glass-Server-Manager verwaltet.
 ---
 
 # Die Apps
 
 Hinata liefert einen einzigen Flutter-Client, der aus **einer Codebasis** auf
-**Android, iOS, Web, macOS und Windows** läuft. Es gibt keine separate Mobil- und
-Desktop-App, die synchron gehalten werden müssten — dieselben Bildschirme, derselbe
-State, dieselbe Netzwerkschicht passen sich an, worauf auch immer sie laufen. Diese
+**Android**, **iOS**, im **Web** und auf allen drei Desktops — **macOS**,
+**Windows** und **Linux** — läuft. Es gibt keine separate Mobil- und Desktop-App,
+die synchron gehalten werden müssten — dieselben Bildschirme, derselbe State,
+dieselbe Netzwerkschicht passen sich an, worauf auch immer sie laufen. Diese
 Seite erklärt, wie sich die App mit deinem Server verbindet, wie sie entscheidet,
-ob sie aktuell ist, wie du dich anmeldest und wie eine einzige App mit vielen
-Servern gleichzeitig spricht.
+ob sie aktuell ist, wie du dich anmeldest, wie eine einzige App mit vielen
+Servern gleichzeitig spricht und was du wissen solltest, wenn du sie unter Linux
+betreibst.
 
 
 ![Hinata auf dem Smartphone](/assets/img/shot-mobile-dashboard.png)
-*Eine Flutter-Codebasis — Android, iOS, Web, macOS und Windows aus einer App.*
+*Eine Flutter-Codebasis — Android, iOS, Web, macOS, Windows und Linux aus einer App.*
 
-## Eine Codebasis, fünf Plattformen
+## Eine Codebasis, sechs Plattformen
 
 Der Client ist mit Flutter gebaut. Der State wird mit bloc/cubit verwaltet, das
 Routing mit go_router, die Lokalisierung mit i18next, und jeder Netzwerkaufruf
@@ -37,6 +39,10 @@ landet eine Funktion überall auf einmal.
   Papier-Workspace und der charakteristische Honig-Amber-Akzent `#D9A032`, der im
   hellen und dunklen Modus identisch wirkt, mit Liquid-Glass-Oberflächen auf der
   mobilen Navigation, der ⌘K-Palette und der Anhang-Lightbox.
+- **Nativ auf dem Desktop.** Die drei Desktop-Ziele sind echte native Builds und
+  kein Browser im Rahmen: macOS, Windows (als MSIX paketiert) und Linux als
+  **GTK-3**-Anwendung. Was das praktisch bedeutet, steht unter
+  [Hinata unter Linux](#hinata-unter-linux).
 
 ## So funktioniert es: vom Start bis zum Workspace
 
@@ -151,12 +157,118 @@ Es gibt drei Wege, den Client auszuführen, je nachdem, wer du bist.
 Die veröffentlichten Store-Builds folgen dem Bring-your-own-Server-Modell: Weil
 native Apps keine einkompilierte Server-URL tragen, kann eine veröffentlichte App
 über das
-[Hinata Connect Gateway](/de/connect-gateway.html) jedem Betreiber dienen.
+[Hinata Connect Gateway](/de/connect-gateway.html) jedem Betreiber dienen. Dieses
+Gateway leitet auch Push-Benachrichtigungen weiter — an FCM für Android, iOS und
+macOS und an WNS für Windows. Unter Linux gibt es keinen solchen Dienst, an den
+sich weiterleiten ließe, deshalb erhält der Linux-Build gar kein Push;
+Benachrichtigungen erreichen dich stattdessen in der App und per E-Mail.
+
+Unter Linux gibt es auch keinen Store-Weg: Derselbe Build erscheint als
+**Flatpak** und als **AppImage**, beide aus einem einzigen Bundle erzeugt.
 
 !!! note "Open Source, GPL-3.0"
     Die App ist unter **GPL-3.0** lizenziert. Es steht dir frei, sie zu bauen, zu
     modifizieren und deinen eigenen gebrandeten Client auszuliefern — siehe den
     [Leitfaden für eigene Clients](/de/self-hosted-app.html) für genau das, was zu ändern ist.
+
+## Hinata unter Linux
+
+Linux ist ein vollwertiges Ziel, keine Kompatibilitätsschicht. Die App wird als
+native **GTK-3**-Desktop-Anwendung gebaut — eine Binary, `hinata`, mit der
+Application-ID `com.ahmadre.hinata` — aus exakt derselben Flutter-Codebasis wie
+die Telefon- und die Web-Variante. Anmeldung, SSO, Multi-Server, Boards, Anhänge,
+Drucken und PDF-Export verhalten sich genau wie überall sonst.
+
+### Installieren
+
+| Format | Was du bekommst |
+| --- | --- |
+| **Flatpak** | Das per Sandbox isolierte Desktop-Paket, bei Flathub eingereicht und in Prüfung. Bis es dort landet, baust und installierst du es mit `flatpak-builder` aus dem Manifest in `packaging/linux/flatpak/`. |
+| **AppImage** | Eine portable Datei: herunterladen, `chmod +x`, starten. Sie linkt bewusst gegen GTK, GStreamer und libsecret deines Systems und behält so dein Desktop-Theme und die Codecs deiner Distribution, statt eigene Kopien einzufrieren. |
+| **Aus dem Quellcode** | `flutter build linux --release` erzeugt ein verschiebbares Bundle (die Binary `hinata` plus `data/` und `lib/`), das du installieren kannst, wo du möchtest. |
+
+Beide Pakete entstehen aus **demselben Bundle**, und beide Rezepte liegen in
+`packaging/linux/` in
+[hinata-app](https://github.com/hinata-platform/hinata-app). Release-Builds
+entstehen auf einem fest gepinnten `ubuntu-22.04`-Runner, wodurch die
+glibc-Untergrenze des Bundles eine Entscheidung ist und kein Zufall: Ein
+Flutter-Bundle ist dynamisch gegen die glibc gelinkt, mit der es gebaut wurde,
+und glibc ist nur vorwärtskompatibel — ein neuerer Runner würde also still und
+leise eine Binary erzeugen, die auf älteren Distributionen nicht startet.
+
+So baust du sie selbst unter Debian oder Ubuntu:
+
+```bash
+sudo apt install \
+  clang cmake ninja-build pkg-config \
+  libgtk-3-dev liblzma-dev libsecret-1-dev libjsoncpp-dev \
+  libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+
+flutter config --enable-linux-desktop
+flutter build linux --release
+```
+
+### Deep Links landen im Fenster, aus dem du gestartet bist
+
+Der Desktop-Eintrag registriert das Schema `x-scheme-handler/hinata`, und die App
+läuft als **Single-Instance**-GTK-Anwendung: Ein zweiter Start von `hinata` gibt
+seine Argumente an die bereits laufende Kopie weiter, statt ein konkurrierendes
+Fenster zu öffnen. Genau das lässt `hinata://auth-callback` funktionieren — eine
+SSO-Rückkehr, eine Einladung oder ein Link zum Zurücksetzen des Passworts kommt
+in dem Fenster an, aus dem du gestartet bist, egal ob die App schon offen war
+oder der Link sie erst gestartet hat.
+
+### Was unter Linux anders ist
+
+Zwei Dinge sind unter Linux wirklich nicht verfügbar, und ein paar weitere
+stützen sich auf Programme, die deine Distribution installiert haben kann oder
+auch nicht. Die ehrliche Liste:
+
+| Bereich | Unter Linux | Warum |
+| --- | --- | --- |
+| **Push-Benachrichtigungen** | Nicht verfügbar. Benachrichtigungen erreichen dich **in der App** und **per E-Mail**. | `firebase_messaging` hat keine Linux-Implementierung, und es gibt keinen Desktop-Push-Dienst, bei dem sich ein Token registrieren ließe — nichts übernimmt die Rolle, die FCM auf Mobilgeräten und WNS unter Windows spielt. |
+| **Kameraaufnahme** | Der Eintrag *Foto aufnehmen* wird gar nicht erst angeboten. Ein vorhandenes Bild oder eine vorhandene Datei anzuhängen funktioniert normal. | Für Linux existiert keine Kamera-Implementierung. Den Eintrag wegzulassen ist besser als eine Schaltfläche, deren einziges mögliches Ergebnis ein Fehlerdialog ist. |
+| **Angemeldet bleiben** | Braucht einen Schlüsselbund — siehe den Hinweis unten. | Sitzungs-Tokens werden über den freedesktop Secret Service geschrieben. |
+| **Sprachkommentare** | Die Wiedergabe braucht die GStreamer-Plugin-Pakete, die Aufnahme `pulseaudio-utils` und `ffmpeg`. | `just_audio` liefert keine Linux-Implementierung, deshalb läuft die Wiedergabe über ein für diese App geschriebenes GStreamer-Plugin. Der Recorder erzeugt AAC — genau deshalb ist `gstreamer1.0-libav` nötig und nicht optional. |
+| **Dateiauswahl für Anhänge** | Nutzt `zenity`, `qarma` oder `kdialog`. Ist keines davon installiert, nennt die App die Programme, die du installieren kannst, statt einfach nichts zu öffnen. | Die Flutter-Dateiauswahl hat kein natives Linux-Backend; sie steuert einen dieser Dialoge an. |
+| **Downloads** | Ein Anhang landet direkt in deinem Downloads-Ordner, und ein Toast nennt die Datei. | Unter Linux gibt es kein Share-Sheet, dem sich die Datei übergeben ließe — also sagt die App dir, wo sie gelandet ist. |
+
+Deine **Benachrichtigungseinstellungen bleiben** auf einem Linux-Desktop
+**sichtbar und bearbeitbar**, obwohl dort nie ein Push ausgelöst wird. Die
+Einstellung gehört zu deinem Konto, nicht zu dem Rechner, an dem du gerade sitzt
+— sie unter Linux auszublenden, würde dir den Schalter nehmen, der dein Telefon
+steuert.
+
+!!! warning "Angemeldet bleiben braucht einen Schlüsselbund"
+    Hinata legt deine Sitzungs-Tokens über den freedesktop **Secret Service** im
+    Schlüsselbund des Systems ab — GNOME Keyring, KWallet oder alles andere, das
+    ihn implementiert. Ein minimaler Fenstermanager, ein Container oder eine
+    SSH-Sitzung auf einen Desktop, dessen Schlüsselbund nie entsperrt wurde, hat
+    nichts, worin sie sich speichern ließen. Die Anmeldung funktioniert trotzdem
+    und deine Sitzung hält, bis du die App schließt — und die App sagt dir das
+    sofort, statt es dich beim nächsten Start herausfinden zu lassen.
+
+    ```bash
+    sudo apt install gnome-keyring     # Debian / Ubuntu
+    sudo dnf install gnome-keyring     # Fedora
+    ```
+
+Alles in der Tabelle oben funktioniert auf einer normalen Desktop-Installation.
+Auf einem schlanken System — einem Container, einem nackten Fenstermanager — ist
+das hier die vollständige Liste:
+
+```bash
+sudo apt install \
+  gnome-keyring zenity \
+  pulseaudio-utils ffmpeg \
+  gstreamer1.0-plugins-base gstreamer1.0-plugins-good \
+  gstreamer1.0-plugins-bad gstreamer1.0-libav
+```
+
+!!! tip "Das Flatpak bringt das meiste davon mit"
+    Die Flatpak-Runtime enthält GTK, `zenity`, FFmpeg und die GStreamer-Plugins
+    bereits. Eine Flatpak-Installation braucht auf dem Host also nur noch einen
+    Schlüsselbund, damit du angemeldet bleibst.
 
 ## Wie es weitergeht
 

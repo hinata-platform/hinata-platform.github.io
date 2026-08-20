@@ -148,6 +148,25 @@ def first_board_id(access):
     return data[0]["id"]
 
 
+def first_id(access, path):
+    """The id of the first entry of a collection endpoint, or None.
+
+    The user guide screenshots a project, a team and a knowledge article by id,
+    and the demo seed's ids change on every reseed — so they are looked up
+    rather than pinned. Returns None instead of raising: a missing collection
+    should cost one screenshot, not the whole run.
+    """
+    try:
+        r = requests.get(f"{API}/api/v1/{path}",
+                         headers={"Authorization": f"Bearer {access}"}, timeout=15)
+        r.raise_for_status()
+        data = r.json()
+        data = data if isinstance(data, list) else data.get("content", [])
+        return data[0]["id"] if data else None
+    except (requests.RequestException, KeyError, IndexError, ValueError):
+        return None
+
+
 def an_issue_id(access):
     r = requests.get(f"{API}/api/v1/issues?size=60",
                      headers={"Authorization": f"Bearer {access}"}, timeout=15)
@@ -324,7 +343,7 @@ def iphone_hero_from_simulator(access, refresh):
     print(f"  ✓ {'frame-iphone.png':24} simulator {IOS_UDID[:8]}… /dashboard (framed, native)")
 
 
-def shots(board_id, issue_id):
+def shots(board_id, issue_id, project_id=None, team_id=None, article_id=None):
     board = f"/boards/{board_id}"
     lst = [
         ("shot-dashboard", DESKTOP, "/dashboard"),
@@ -337,6 +356,12 @@ def shots(board_id, issue_id):
         ("shot-settings", DESKTOP, "/settings"),
         ("shot-admin", DESKTOP, "/admin/users"),
         ("shot-timesheet", DESKTOP, "/timesheet"),
+        # Added for the end-user guide: the screens a person actually works in
+        # every day, which the developer-facing pages never needed.
+        ("shot-projects", DESKTOP, "/projects"),
+        ("shot-notifications", DESKTOP, "/notifications"),
+        ("shot-watched", DESKTOP, "/watched"),
+        ("shot-weekly-summary", DESKTOP, "/weekly-summary"),
         ("shot-mobile-dashboard", MOBILE, "/dashboard"),
         ("shot-mobile-board", MOBILE, board),
         ("shot-mobile-issues", MOBILE, "/issues"),
@@ -344,6 +369,15 @@ def shots(board_id, issue_id):
     if issue_id:
         lst.insert(6, ("shot-issue", DESKTOP, f"/issues/{issue_id}"))
         lst.insert(7, ("shot-comments", DESKTOP, f"/issues/{issue_id}"))
+        lst.append(("shot-mobile-issue", MOBILE, f"/issues/{issue_id}"))
+    # Ids come from the seed and are absent on an empty server; skip rather than
+    # capture a "not found" screen.
+    if project_id:
+        lst.append(("shot-project-settings", DESKTOP, f"/projects/{project_id}/settings"))
+    if team_id:
+        lst.append(("shot-team", DESKTOP, f"/teams/{team_id}"))
+    if article_id:
+        lst.append(("shot-knowledge-article", DESKTOP, f"/knowledge/{article_id}"))
     return lst
 
 
@@ -431,9 +465,12 @@ def main(frames_only=False):
 
     board_id = first_board_id(access)
     issue_id = an_issue_id(access)
+    project_id = first_id(access, "projects")
+    team_id = first_id(access, "teams")
+    article_id = first_id(access, "articles")
     if issue_id:
         seed_demo_thread(access, issue_id)
-    todo = shots(board_id, issue_id)
+    todo = shots(board_id, issue_id, project_id, team_id, article_id)
     print(f"logged in; board {board_id}; issue {issue_id}; {len(todo)} shots; "
           f"headless={HEADLESS}")
 

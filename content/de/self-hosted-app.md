@@ -48,9 +48,9 @@ Identitätswerte ausgetauscht sind. Es gibt fünf Dinge zu ändern.
 
 | # | Was | Wo |
 | --- | --- | --- |
-| 1 | **Package- / Bundle-ID** | `com.yourorg.yourapp` — Android `applicationId` + `namespace`, iOS/macOS `PRODUCT_BUNDLE_IDENTIFIER`, Windows `msix_config.identity_name` + `publisher` |
-| 2 | **App-Anzeigename** | Android `android:label`, iOS/macOS Anzeigename, Windows `msix_config.display_name` |
-| 3 | **Icons & Splash** | `assets/branding/` + `flutter_launcher_icons` / `flutter_native_splash` |
+| 1 | **Package- / Bundle-ID** | `com.yourorg.yourapp` — Android `applicationId` + `namespace`, iOS/macOS `PRODUCT_BUNDLE_IDENTIFIER`, Windows `msix_config.identity_name` + `publisher`, Linux `APPLICATION_ID` + `BINARY_NAME` in `linux/CMakeLists.txt` |
+| 2 | **App-Anzeigename** | Android `android:label`, iOS/macOS Anzeigename, Windows `msix_config.display_name`, Linux `Name=` im Desktop-Eintrag |
+| 3 | **Icons & Splash** | `assets/branding/` + `flutter_launcher_icons` / `flutter_native_splash`; Linux nimmt ein 512×512-PNG aus `packaging/linux/` |
 | 4 | **Akzentfarbe** | das Honig-Amber-Akzent-Token `#D9A032` im Theme |
 | 5 | **Gateway** | auf das Hinata Connect Gateway (oder dein eigenes) zeigen |
 
@@ -78,6 +78,33 @@ Windows identifiziert ein MSIX-Paket anders: `identity_name`, `publisher` und
 **vom Partner Center zugewiesen** (Produktverwaltung → Produktidentität).
 Übernimm sie zeichengenau — bei jeder Abweichung lehnt der Store das Paket ab.
 
+Linux hält seine Identität in `linux/CMakeLists.txt` — die GTK-Application-ID und
+den Namen des Binaries, das im Bundle landet:
+
+```cmake
+# linux/CMakeLists.txt
+set(BINARY_NAME "yourapp")
+set(APPLICATION_ID "com.yourorg.yourapp")
+```
+
+Die Application-ID reicht allerdings weiter als bis zum Prozess. Sie ist auch der
+Dateiname des Desktop-Eintrags (`com.yourorg.yourapp.desktop`), die
+`StartupWMClass` darin, die `<id>` der AppStream-Metainfo und die Flatpak-`app-id`
+— AppStream und die Desktop-Shells verknüpfen diese Dateien allein über diese eine
+Zeichenkette. Bleibt ein einziges Vorkommen zurück, zeigt die Shell deine App mit
+einem generischen Icon, oder der Store-Eintrag passt nie zur installierten App.
+Der Binary-Name wandert ebenfalls mit: `Exec=` im Desktop-Eintrag,
+`<provides><binary>` in der Metainfo und das `command:` des Flatpaks.
+
+!!! note "Warum die Linux-Packaging-Dateien außerhalb von `linux/` liegen"
+    In hinata-app liegen der Desktop-Eintrag, das Icon, die AppStream-Metainfo und
+    die Flatpak-/AppImage-Rezepte in `packaging/linux/`, nicht in `linux/`.
+    `flutter create --platforms=linux .` schreibt alles unter `linux/` neu, und
+    handgepflegte Packaging-Eingaben haben in diesem Wirkungsbereich nichts zu
+    suchen. Ein gemeinsames Verzeichnis bedeutet außerdem, dass jedes Format —
+    Flatpak, AppImage, ein Distributionspaket, ein schlichtes `install` — exakt
+    dieselben Dateien ausliefert.
+
 ### 2 — App-Anzeigename
 
 Setze den sichtbaren Namen, der unter dem Icon angezeigt wird:
@@ -90,6 +117,12 @@ Setze den sichtbaren Namen, der unter dem Icon angezeigt wird:
 Unter iOS/macOS setzt du den Anzeigenamen in den Info-Einstellungen des
 Runner-Targets; unter Windows setzt du `msix_config.display_name` in
 `pubspec.yaml`.
+
+Unter Linux ist der sichtbare Name `Name=` im Desktop-Eintrag, daneben stehen
+`GenericName` und `Comment` — alle drei nehmen lokalisierte Varianten
+(`Comment[de]=…`), so bekommt eine deutsche Sitzung deutschen Text im Starter.
+Setze `<name>` und `<summary>` in der AppStream-Metainfo passend dazu: Das ist,
+was GNOME Software und KDE Discover im Eintrag anzeigen.
 
 ### 3 — Icons & Splash
 
@@ -111,6 +144,15 @@ Windows nimmt sein Kachel- und Taskleisten-Icon stattdessen aus
 `msix_config.logo_path`. Zeige dort auf eine **abgerundete** Variante deines
 Icons: Windows maskiert nichts von sich aus, ein randlos quadratisches Icon
 erscheint auf der Kachel also als hartes Quadrat.
+
+Linux ist das Ziel, das die Generatoren auslassen. `flutter_launcher_icons`
+schreibt die Assets für Android, iOS, Web und macOS; das Linux-Icon ist ein
+schlichtes **512×512-PNG**, das du selbst installierst, benannt nach der
+Application-ID — in hinata-app ist das
+`packaging/linux/icons/hicolor/512x512/apps/com.ahmadre.hinata.png`. Nimm dasselbe
+abgerundete Artwork wie für Windows: Auch GNOME und KDE maskieren App-Icons nicht,
+ein randloses Quadrat wirkt dort also ebenso als hartes Quadrat. Einen Splash gibt
+es nicht zu generieren — das GTK-Fenster erscheint, sobald die App bereit ist.
 
 ### 4 — Akzentfarbe
 
@@ -177,6 +219,50 @@ erfolgt, sobald die Web-App unter deiner Domain läuft. Beispiel
     und diese Fähigkeit im Provisioning Profile aktiviert ist. Ohne sie ruft iOS
     deine AASA-Datei nie ab.
 
+### Linux: dein eigenes URL-Schema
+
+Linux hat kein Gegenstück zu App Links oder Universal Links — `assetlinks.json`
+und die AASA-Datei sind Android- und Apple-Mechanismen, und im Freedesktop-Umfeld
+antwortet nichts darauf. Ein Link auf `https://track.example.com/...` öffnet sich
+deshalb im Browser, und die Seite bietet von dort den Weg in die App an.
+
+Was funktioniert — und zwar gut — ist das eigene Schema: Der Desktop-Eintrag
+beansprucht es, und der Client ist eine **Single-Instance**-GTK-Anwendung. Ein
+SSO-Rücksprung, eine Einladung oder ein Passwort-Reset landet also in genau dem
+Fenster, in dem der Nutzer bereits angemeldet ist, statt eine zweite Kopie zu
+starten.
+
+```ini
+# com.yourorg.yourapp.desktop
+Exec=yourapp %u
+MimeType=x-scheme-handler/yourscheme;
+```
+
+Ein umgebrandeter Client braucht sein **eigenes** Schema. `hinata://` gehört der
+veröffentlichten App, und wenn zwei installierte Apps dasselbe Schema
+beanspruchen, ist es Zufall, welcher von beiden der Desktop den Link gibt. Ändere
+es überall dort, wo es beansprucht wird — im Android-Intent-Filter, in
+`CFBundleURLSchemes` unter iOS und macOS, in der `MimeType=`-Zeile oben — und im
+Client-Code, der eine eingehende URI erkennt.
+
+Registriere und prüfe den Handler, nachdem du den Desktop-Eintrag installiert
+hast:
+
+```bash
+update-desktop-database ~/.local/share/applications
+xdg-mime default com.yourorg.yourapp.desktop x-scheme-handler/yourscheme
+xdg-mime query default x-scheme-handler/yourscheme
+
+xdg-open 'yourscheme://verify-email?token=test'   # einmal mit laufender App,
+                                                  # einmal mit geschlossener
+```
+
+!!! tip "Teste beide Eingänge"
+    Ein Warmstart reicht die URI über D-Bus an die laufende Instanz weiter; ein
+    Kaltstart bekommt sie als Prozessargument, bevor überhaupt ein Plugin
+    registriert ist. Das sind wirklich zwei verschiedene Codepfade — probiere den
+    Link also mit geöffneter und mit geschlossener App.
+
 ## Store-Releases brauchen eine Datenschutzerklärung
 
 Apples App Store, Google Play und der Microsoft Store verlangen für die Prüfung
@@ -185,6 +271,13 @@ ohnehin für die DSGVO-Konformität. Hinata zeigt diese URL in der App über die
 Servereinstellung `HINATA_PRIVACY_POLICY_URL` an (auch live im
 [Adminbereich](/de/admin-area.html) → App-Einstellungen editierbar). Setze sie,
 bevor du einreichst.
+
+Linux kennt keinen solchen Torwächter — ein AppImage oder dein eigenes
+Flatpak-Remote muss niemandem Rechenschaft ablegen. Veröffentlichst du auf
+**Flathub**, wird der Eintrag allerdings aus deiner AppStream-Metainfo erzeugt:
+Diese Datei braucht dann Name, Kurzbeschreibung, Beschreibung, Lizenz, ein
+OARS-Content-Rating und mindestens einen Screenshot unter einer stabilen,
+gehosteten URL.
 
 !!! tip "Barrierefreiheit ist Teil der Konformität"
     Die Oberfläche ist mit Blick auf Barrierefreiheit gebaut — skalierbarer Text,
@@ -197,15 +290,20 @@ Arbeite von oben nach unten; jeder Schritt ist unabhängig.
 
 1. **Forke** [hinata-app](https://github.com/hinata-platform/hinata-app) und halte GPL-3.0 ein.
 2. Setze die **Package-/Bundle-ID** (`com.yourorg.yourapp`) auf Android, iOS und
-   macOS sowie die **MSIX-Identität** aus dem Partner Center auf Windows.
-3. Setze den **App-Anzeigenamen** auf jeder Plattform.
+   macOS, die **MSIX-Identität** aus dem Partner Center auf Windows sowie
+   `APPLICATION_ID` + `BINARY_NAME` in `linux/CMakeLists.txt` — benenne danach den
+   Linux-Desktop-Eintrag, die `<id>` der Metainfo und die Flatpak-`app-id` passend um.
+3. Setze den **App-Anzeigenamen** auf jeder Plattform, inklusive `Name=` im
+   Linux-Desktop-Eintrag und `<name>` in der Metainfo.
 4. Ersetze das Artwork in `assets/branding/` und lass die Icon- + Splash-Generatoren
-   laufen; zeige mit `msix_config.logo_path` für Windows auf ein abgerundetes Icon.
+   laufen; zeige mit `msix_config.logo_path` für Windows auf ein abgerundetes Icon und
+   installiere dasselbe abgerundete Icon als 512×512-PNG unter `packaging/linux/icons/…`.
 5. Ändere das **Akzentfarb**-Token im Theme; verifiziere den hellen **und** dunklen Modus.
 6. Entscheide dich für dein **Gateway** — Standard oder dein eigenes über `HINATA_GATEWAY_BASE_URL`.
 7. Liefere `assetlinks.json` + AASA unter `https://track.example.com/.well-known/`
    aus (das Web-Image erledigt das) und liste deine **Release-Schlüssel-SHA-256** auf.
-8. Aktiviere die **Associated Domains**-Fähigkeit für iOS Universal Links.
+8. Aktiviere die **Associated Domains**-Fähigkeit für iOS Universal Links und
+   beanspruche dein eigenes `x-scheme-handler/`-Schema im Linux-Desktop-Eintrag.
 9. Setze **`HINATA_PRIVACY_POLICY_URL`** auf dem Server.
 10. Baue, signiere und reiche bei den Stores ein.
 
