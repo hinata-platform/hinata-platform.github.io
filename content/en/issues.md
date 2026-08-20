@@ -97,8 +97,12 @@ Most of the time you don't want to permanently delete an issue — you want it o
 
 **Hard deletion** is destructive and role-gated: only a platform admin, the project lead or a team admin can permanently delete an issue. Hinata's UI checks your permissions on the issue and only offers the option you're actually allowed to use.
 
-!!! warning "Hard-deleting a parent cascades — and cannot be undone"
-    Permanently deleting an issue that has children **cascades**: its children (and their sub-tasks), along with their comments, work logs and links, are removed with it. There is no undo, so archive first if you're not certain, and reserve hard delete for cleanup that genuinely shouldn't exist anymore.
+!!! warning "Hard-deleting cannot be undone — and what it takes with it depends on the type"
+    Permanently deleting a **standard issue** (story, task, bug, feature) **cascades**: its sub-tasks, along with their comments, work logs and links, are removed with it — a sub-task cannot exist without its parent.
+
+    Deleting an **epic** does not. Its children survive as ordinary top-level issues and lose only the epic link, because a story is a real piece of work in its own right.
+
+    Either way there is no undo, so archive first if you're not certain, and reserve hard delete for cleanup that genuinely shouldn't exist anymore.
 
 The hierarchy also powers the board: you can group the [agile board](/en/boards-sprints.html) into swimlanes by **epic** or **sub-task**, and filter the whole board down to a single epic.
 
