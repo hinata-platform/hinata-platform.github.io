@@ -88,6 +88,11 @@ GATE_ROUTES = {
 # Wheel-scroll (px) applied before the screenshot, for below-the-fold content.
 SCROLLS = {"shot-comments": 1600}
 
+# What to type into the ⌘K palette for shot-search. Short enough to look like
+# something a person actually typed, broad enough that the seeded demo answers
+# it across several result groups.
+SEARCH_QUERY = os.environ.get("SEARCH_QUERY", "board")
+
 # Threaded demo conversation seeded (idempotently) on the shot issue, so the
 # comments screenshot shows a realistic root comment + reply thread.
 DEMO_THREAD = (
@@ -362,6 +367,9 @@ def shots(board_id, issue_id, project_id=None, team_id=None, article_id=None):
         ("shot-notifications", DESKTOP, "/notifications"),
         ("shot-watched", DESKTOP, "/watched"),
         ("shot-weekly-summary", DESKTOP, "/weekly-summary"),
+        # The ⌘K palette is an overlay rather than a route: it is captured on
+        # top of /dashboard by the shot-search special case below.
+        ("shot-search", DESKTOP, "/dashboard"),
         ("shot-mobile-dashboard", MOBILE, "/dashboard"),
         ("shot-mobile-board", MOBILE, board),
         ("shot-mobile-issues", MOBILE, "/issues"),
@@ -429,7 +437,7 @@ def serve():
     return httpd
 
 
-def main(frames_only=False):
+def main(frames_only=False, only=None):
     assert os.path.isdir(WEB_DIR), f"missing web build at {WEB_DIR} — run flutter build web"
     os.makedirs(OUT_DIR, exist_ok=True)
     # Preflight: refuse to start unless the seeded demo server is actually up.
@@ -471,6 +479,15 @@ def main(frames_only=False):
     if issue_id:
         seed_demo_thread(access, issue_id)
     todo = shots(board_id, issue_id, project_id, team_id, article_id)
+    if only:
+        wanted = set(only)
+        unknown = wanted - {s[0] for s in todo}
+        if unknown:
+            raise SystemExit(
+                f"unknown shot(s): {', '.join(sorted(unknown))}. Available: "
+                + ", ".join(s[0] for s in todo)
+            )
+        todo = [s for s in todo if s[0] in wanted]
     print(f"logged in; board {board_id}; issue {issue_id}; {len(todo)} shots; "
           f"headless={HEADLESS}")
 
@@ -517,6 +534,15 @@ def main(frames_only=False):
                 page.mouse.move(w // 2, h // 2)
                 page.mouse.wheel(0, SCROLLS[name])
                 page.wait_for_timeout(2500)
+            if name == "shot-search":
+                # Ctrl+K is handled globally by the shell (meta or ctrl, see
+                # app_shell._onGlobalKey), so this works headless on any OS.
+                # Type a query: an empty palette shows only the prompt, and the
+                # guide page is about what results look like.
+                page.keyboard.press("Control+k")
+                page.wait_for_timeout(1500)
+                page.keyboard.type(SEARCH_QUERY, delay=110)
+                page.wait_for_timeout(3000)
             if name == "shot-comments":
                 # Open the reply thread so the shot shows it expanded, then nudge
                 # it back into view (loading replies grows the list).
@@ -525,6 +551,11 @@ def main(frames_only=False):
                     page.mouse.wheel(0, 260)
                     page.wait_for_timeout(1500)
             page.screenshot(path=os.path.join(OUT_DIR, f"{name}.png"))
+            if name == "shot-search":
+                # One context captures every desktop shot in sequence — leaving
+                # the overlay open would put it on top of the next one too.
+                page.keyboard.press("Escape")
+                page.wait_for_timeout(1000)
             print(f"  ✓ {name:24} {w}x{h}@{dpr} {route}")
         ctx.close()
 
@@ -535,12 +566,14 @@ def main(frames_only=False):
         try:
             capture_group(browser, desktop)
             capture_group(browser, mobile)
-            frame_heroes(browser, seed)
+            if not only:
+                frame_heroes(browser, seed)
         finally:
             browser.close()
     # Real-device hero last: everything web-based is already on disk if this
     # raises (sim not booted / app not installed).
-    iphone_hero_from_simulator(access, refresh)
+    if not only:
+        iphone_hero_from_simulator(access, refresh)
     httpd.shutdown()
     print("done →", OUT_DIR)
 
@@ -550,10 +583,17 @@ if __name__ == "__main__":
         description="Capture fresh English screenshots of the Hinata app for the docs."
     )
     parser.add_argument(
+        "--only",
+        action="append",
+        metavar="SHOT",
+        help="Capture only this shot (repeatable), e.g. --only shot-search. "
+             "Skips the device heroes. Without it every shot is captured.",
+    )
+    parser.add_argument(
         "--frames-only",
         action="store_true",
         help="Only re-render the native device heroes (frame-macbook.png / "
              "frame-iphone.png) and skip every per-page shot.",
     )
     cli = parser.parse_args()
-    main(frames_only=cli.frames_only)
+    main(frames_only=cli.frames_only, only=cli.only)

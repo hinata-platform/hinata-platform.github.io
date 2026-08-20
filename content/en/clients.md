@@ -168,7 +168,7 @@ PDF export behave the way they do everywhere else.
 
 | Format | What you get |
 | --- | --- |
-| **Flatpak** | The sandboxed desktop package, submitted to Flathub and in review. Until it lands there, build and install it from the manifest in `packaging/linux/flatpak/` with `flatpak-builder`. |
+| **Flatpak** | The sandboxed desktop package. Build and install it from the manifest in `packaging/linux/flatpak/` with `flatpak-builder`; it is not currently published on a hosted Flatpak remote. |
 | **AppImage** | One portable file: download it, `chmod +x`, run it. It links against your system's GTK, GStreamer and libsecret on purpose, so it keeps your desktop theme and your distribution's codecs instead of freezing its own copies. |
 | **From source** | `flutter build linux --release` produces a relocatable bundle (the `hinata` binary plus `data/` and `lib/`) that you can install wherever you like. |
 

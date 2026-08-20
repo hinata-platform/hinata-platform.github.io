@@ -882,3 +882,77 @@ a { color: inherit; text-decoration: none; }
   .lang-switch { padding: 0 9px; }
   .icon-btn, .lang-switch, .search-trigger { height: 38px; }
 }
+
+/* ── Platform / download grid (download.html) ─────────────────────────────
+   One card per platform. The store badges are each vendor's own artwork and
+   they disagree about padding and aspect ratio — Google's carries a quarter of
+   its height as internal margin, Apple's almost none — so every badge is sized
+   by HEIGHT and given a per-vendor value that makes them look optically equal
+   rather than measure equal. */
+.plat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin: 28px 0 8px;
+  padding: 0;
+  list-style: none;
+}
+.plat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px;
+  border-radius: var(--radius);
+  transition: transform 0.18s, border-color 0.18s;
+}
+.plat-card:hover { transform: translateY(-3px); border-color: rgba(217, 160, 50, 0.5); }
+.plat-head { display: flex; align-items: center; gap: 10px; }
+.plat-head svg { width: 20px; height: 20px; color: var(--amber); flex-shrink: 0; }
+.plat-head strong { font-size: 1.06rem; font-weight: 700; letter-spacing: -0.01em; }
+.plat-card p { margin: 0; color: var(--ink-soft); font-size: 0.9rem; line-height: 1.55; }
+
+/* Status pill. `soon` is deliberately not red: "in review" is a normal state,
+   not a failure, and colouring it like one would misinform. */
+.plat-status {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(217, 160, 50, 0.14);
+  color: var(--amber);
+}
+.plat-status.live { background: rgba(46, 160, 110, 0.14); color: #2ea06e; }
+.plat-status.soon { background: rgba(33, 31, 61, 0.08); color: var(--ink-faint); }
+
+.plat-actions { margin-top: auto; padding-top: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.plat-actions img { display: block; width: auto; border-radius: 6px; }
+.plat-actions img.b-apple { height: 40px; }
+.plat-actions img.b-ms { height: 40px; }
+.plat-actions img.b-flathub { height: 40px; }
+/* Google's badge bakes in ~25% padding; matching heights would make it read
+   noticeably smaller than the others. */
+.plat-actions img.b-play { height: 54px; margin: -7px 0; }
+.plat-actions a:hover img { opacity: 0.86; }
+
+/* A plain link where a vendor has no badge to offer (web, direct downloads). */
+.plat-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 7px 14px;
+  text-decoration: none;
+  transition: border-color 0.18s, color 0.18s;
+}
+.plat-link:hover { border-color: var(--amber); color: var(--amber); }
+
+@media (max-width: 640px) {
+  .plat-grid { grid-template-columns: 1fr; }
+}
