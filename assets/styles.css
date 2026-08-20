@@ -932,6 +932,15 @@ a { color: inherit; text-decoration: none; }
 .plat-actions img.b-apple { height: 40px; }
 .plat-actions img.b-ms { height: 40px; }
 .plat-actions img.b-flathub { height: 40px; }
+/* The Snap Store badge ships as two artworks rather than one that adapts: the
+   "dark" file is the black badge, made for a light page, and the "light" file
+   is the white one for a dark page. Named after the artwork rather than the
+   theme, because the other way round reads backwards every single time. Same
+   swap the theme toggle does with its own two icons. */
+.plat-actions img.b-snap { height: 40px; }
+.plat-actions img.b-snap-white { display: none; }
+:root[data-theme="dark"] .plat-actions img.b-snap-black { display: none; }
+:root[data-theme="dark"] .plat-actions img.b-snap-white { display: inline; }
 /* Google's badge bakes in ~25% padding; matching heights would make it read
    noticeably smaller than the others. */
 .plat-actions img.b-play { height: 54px; margin: -7px 0; }

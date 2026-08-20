@@ -51,10 +51,10 @@ dieselben Daten, dieselben Tastenkürzel — egal, wo du sie öffnest.
 </li>
 <li class="plat-card glass">
   <span class="plat-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg><strong>Linux</strong></span>
-  <span class="plat-status soon">Selbst bauen</span>
-  <p>Ein nativer GTK-3-Client. Die Rezepte für Flatpak und AppImage liegen im Repository und bauen mit einem Befehl; über einen gehosteten Kanal wird gerade entschieden.</p>
+  <span class="plat-status live">Verfügbar</span>
+  <p>Ein nativer GTK-3-Client, streng isoliert, für x86-64 und ARM64. Rezepte für Flatpak und AppImage liegen im Repository, wer die lieber mag.</p>
   <span class="plat-actions">
-    <a class="plat-link" href="https://github.com/hinata-platform/hinata-app/tree/main/packaging/linux">Selbst bauen</a>
+    <a href="https://snapcraft.io/hinata"><img class="b-snap b-snap-black" src="/assets/img/badges/snap-store-dark.svg" alt="Im Snap Store erhältlich"><img class="b-snap b-snap-white" src="/assets/img/badges/snap-store-light.svg" alt="Im Snap Store erhältlich"></a>
   </span>
 </li>
 <li class="plat-card glass">

@@ -50,10 +50,10 @@ data, the same shortcuts, wherever you open it.
 </li>
 <li class="plat-card glass">
   <span class="plat-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg><strong>Linux</strong></span>
-  <span class="plat-status soon">Build it yourself</span>
-  <p>A native GTK 3 client. The Flatpak and AppImage recipes live in the repository and build from one command; a hosted channel is being decided.</p>
+  <span class="plat-status live">Available</span>
+  <p>A native GTK 3 client, strictly confined, for x86-64 and ARM64. Flatpak and AppImage recipes are in the repository for anyone who prefers them.</p>
   <span class="plat-actions">
-    <a class="plat-link" href="https://github.com/hinata-platform/hinata-app/tree/main/packaging/linux">Build it yourself</a>
+    <a href="https://snapcraft.io/hinata"><img class="b-snap b-snap-black" src="/assets/img/badges/snap-store-dark.svg" alt="Get it from the Snap Store"><img class="b-snap b-snap-white" src="/assets/img/badges/snap-store-light.svg" alt="Get it from the Snap Store"></a>
   </span>
 </li>
 <li class="plat-card glass">
