@@ -163,13 +163,11 @@ macOS und an WNS für Windows. Unter Linux gibt es keinen solchen Dienst, an den
 sich weiterleiten ließe, deshalb erhält der Linux-Build gar kein Push;
 Benachrichtigungen erreichen dich stattdessen in der App und per E-Mail.
 
-Unter Linux führt der Weg über den **Snap Store**: Dorthin wird der Build als
-strikt isoliertes Snap für amd64 und arm64 hochgeladen. Hochgeladen heißt noch
-nicht installierbar — bislang liegt keine Revision auf einem Kanal, es gibt also
-nichts zu installieren und auch keine Store-Seite; der Abschnitt weiter unten
-sagt, wie der Stand ist. Das **Flatpak**-Manifest und das **AppImage**-Skript
-liegen weiterhin daneben im Repository — dieselbe App, nur von dir gebaut statt
-von einem Store.
+Unter Linux führt der Weg über den **Snap Store**: `snap install hinata` bringt
+dir ein strikt isoliertes Snap für amd64 und arm64, von
+[snapcraft.io/hinata](https://snapcraft.io/hinata). Das **Flatpak**-Manifest und
+das **AppImage**-Skript liegen weiterhin daneben im Repository — dieselbe App,
+nur von dir gebaut statt von einem Store.
 
 !!! note "Open Source, GPL-3.0"
     Die App ist unter **GPL-3.0** lizenziert. Es steht dir frei, sie zu bauen, zu

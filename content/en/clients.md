@@ -148,12 +148,11 @@ push notifications — to FCM for Android, iOS and macOS, and to WNS for Windows
 Linux has no such service to relay to, so the Linux build receives no push at
 all; notifications reach you in the app and by e-mail instead.
 
-On Linux the lane is the **Snap Store**: the build is uploaded there as a
-strictly confined snap for amd64 and arm64. Uploaded is not yet installable —
-no revision has been released to a channel, so there is nothing to install and
-no store page to visit; the section below says where that stands. The
-**Flatpak** manifest and the **AppImage** script stay in the repository beside
-it — the same app, built by you instead of by a store.
+On Linux the lane is the **Snap Store**: `snap install hinata` gets you a
+strictly confined snap for amd64 and arm64, from
+[snapcraft.io/hinata](https://snapcraft.io/hinata). The **Flatpak** manifest
+and the **AppImage** script stay in the repository beside it — the same app,
+built by you instead of by a store.
 
 !!! note "Open source, GPL-3.0"
     The app is licensed **GPL-3.0**. You are free to build it, modify it and
