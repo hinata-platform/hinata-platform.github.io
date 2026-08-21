@@ -25,11 +25,9 @@ die Vorgänge darunter — und genau darum geht es auf dieser Seite.
 
 Die große dunkle Karte ist das Board, das gerade für dich zählt. Läuft auf einem
 Scrum-Board ein Sprint, bekommst du den Sprint: seinen Namen, darunter sein Ziel
-und drei Chips —
-
-- **Tag 14/14** — wo du im Kalender des Sprints stehst.
-- **9/44 SP** — abgeschlossene Story Points von den committeten.
-- **5/18 Issues** — fertige Vorgänge von denen im Sprint.
+und drei Chips: den Tag, an dem du im Kalender des Sprints stehst, die
+abgeschlossenen Story Points von den committeten und die fertigen Vorgänge von
+denen im Sprint.
 
 Der Ring rechts erzählt dieselbe Geschichte als einzelne Prozentzahl, und die
 Reihe Avatare zeigt, wer in diesem Sprint Vorgänge zugewiesen hat. **Zum Board**
@@ -113,29 +111,34 @@ Zwei weitere Karten, beide etwas abseits vom Tagesgeschäft:
 
 ### Anpassen
 
-**Anpassen** oben rechts macht das Dashboard bearbeitbar. Du kannst:
+**Anpassen** oben rechts macht das Dashboard bearbeitbar.
 
-- **Ein Hero-Board anheften** oder es auf *Automatisch (aktiver Sprint)* lassen.
-- **Einzelne Kacheln ein- oder ausblenden** — Hero-Board, Fokus heute,
-  Kennzahlen, Projektfortschritt, Fokuszeit, Team-Ranking, Git-Aktivität.
-- **Die Daten auf bestimmte Projekte eingrenzen**, damit die Zählungen keine
-  Arbeit mehr enthalten, mit der du nichts zu tun hast.
-- **Das Team-Ranking auf bestimmte Teams eingrenzen.**
+![Das Dashboard im Bearbeitungsmodus mit den Auswählern für Hero-Board, Dashboard-Daten und Team-Ranking](/assets/img/shot-dashboard-customize.png)
+*Der Bearbeitungsmodus. Über den Kacheln stehen ein Hinweisstreifen und drei Felder — „Hero-Board“, „Dashboard-Daten“ und „Team-Ranking“ —, jede Kachel bekommt ein Augensymbol, das sie ausblendet, und das amberfarbene „Fertig“ steht dort, wo „Anpassen“ stand.*
 
-Drücke **Fertig**, und es wird in deinem Konto gespeichert, nicht auf diesem
-Gerät — dasselbe Dashboard folgt dir also aufs Handy.
+„Dashboard-Daten“ ist die Einstellung, die die Zahlen bewegt: Grenzt du sie auf
+deine eigenen Projekte ein, zählen Kennzahlen, Donut und „Fokus heute“ keine
+Arbeit mehr mit, mit der du nichts zu tun hast.
+
+![Der Auswähler für das Hero-Board, geöffnet, mit Haken auf „Automatisch (aktiver Sprint)“](/assets/img/shot-dashboard-hero-board-picker.png)
+*Das Feld „Hero-Board“ öffnet ein angedocktes Popover. „Automatisch (aktiver Sprint)“ trägt den Haken; darunter steht jedes Board, das du erreichst — hier „Hinata Platform Board“.*
+
+Drücke **Fertig**, um zu speichern. Das Layout gehört zu deinem Konto und nicht
+zu diesem Gerät, folgt dir also aufs Handy — und wer die Seite verlässt, ohne
+Fertig zu drücken, verwirft die Änderungen.
 
 ## Berichte
 
 **Berichte** in der Seitenleiste, auf dem Handy hinter **Mehr**. Berichte
-betrachten **ein Projekt auf einmal**; der Auswähler unter der Überschrift
-wechselt zwischen ihnen und listet die Projekte, die dir dein Teamzugriff
-gewährt.
+betrachten **ein Projekt auf einmal**.
 
-![Die Hinata-Berichte mit dem 30-Tage-Burndown, der Gesamtzahl und der Verteilung nach Status](/assets/img/shot-reports.png)
-*Berichte für ein einzelnes Projekt. Die bernsteinfarbene Linie sind die offenen Vorgänge der letzten 30 Tage gegen eine gestrichelte Ideallinie; darunter schlüsseln die Verteilungskarten dasselbe Projekt nach Status, Priorität und Bearbeiter auf.*
+![Der Projektauswähler auf der Berichteseite, geöffnet, mit drei Projekten](/assets/img/shot-reports-project-picker.png)
+*Der Auswähler unter der Überschrift, geöffnet. Er listet nur die Projekte, die dir dein Teamzugriff gewährt, mit einem Haken auf dem gerade gezeigten; ein anderes zu wählen, zeichnet jede Karte der Seite neu.*
 
 ### Burndown · letzte 30 Tage
+
+![Die Hinata-Berichte mit dem 30-Tage-Burndown, der Gesamtzahl und der Verteilung nach Status](/assets/img/shot-reports.png)
+*Der obere Teil der Seite. Die bernsteinfarbene Linie sind die an jedem der letzten 30 Tage offenen Vorgänge gegen eine gestrichelte Ideallinie, mit der heutigen Zahl in der Ecke; darunter „Aufgaben gesamt“ und „Aufgaben nach Status“.*
 
 Die bernsteinfarbene Linie zeigt, wie viele Vorgänge an jedem der letzten 30 Tage
 offen waren — verankert an der heutigen echten Zahl offener Vorgänge und rückwärts
@@ -162,8 +165,8 @@ geben, woran sie gemessen werden kann.
     - **Perfekt auf der gestrichelten Linie.** Sei eher misstrauisch als stolz.
       Echte Arbeit ist klumpig.
 
-Die Zahl oben rechts — *37 offen verbleibend* — ist der heutige Wert und die
-einzige Zahl auf dieser Karte, die gemessen und nicht rekonstruiert ist.
+Die Zahl oben rechts ist der heutige Wert und die einzige Zahl auf dieser Karte,
+die gemessen und nicht rekonstruiert ist.
 
 ### Aufgaben gesamt
 
@@ -184,17 +187,18 @@ schneller an, als sie jemand herausnimmt.
 
 ### Aufgaben nach Priorität
 
-Dieselben Balken, aufgeteilt nach Priorität, mit der Prioritätsflagge neben jeder
-Zeile. Die nützliche Frage ist der Anteil, nicht die Anzahl: Wenn der Großteil
-des Projekts als dringend markiert ist, trägt die Markierung keine Information
-mehr — dann braucht es eine Triage-Runde und kein größeres Team.
+![Die Auswertungen nach Priorität, Bearbeiter und Tätigkeit weiter unten auf der Berichteseite](/assets/img/shot-reports-breakdowns.png)
+*Die drei Karten unterhalb des Sichtbereichs: „Aufgaben nach Priorität“ mit einer Flagge pro Zeile, „Aufgaben nach Bearbeiter“ mit einem Avatar pro Zeile und „Zeit pro Tätigkeit (30 Tage)“, dessen Balken Dauern statt Anzahlen sind.*
+
+Lies die Priorität als Anteil, nicht als Anzahl: Wenn der Großteil des Projekts
+als dringend markiert ist, trägt die Markierung keine Information mehr — was das
+verlangt, ist eine Triage-Runde und kein größeres Team.
 
 ### Aufgaben nach Bearbeiter
 
-Die Last über die Personen hinweg, ein Avatar pro Zeile, nach Anzahl sortiert.
-Vorgänge, die niemandem gehören, sammeln sich unter **unassigned** — und diese
-Zeile ist meist die interessanteste auf der Karte, denn Arbeit ohne Besitzer wird
-von niemandem versehentlich fertig.
+Vorgänge, die niemandem gehören, sammeln sich unter **unassigned** — meist die
+interessanteste Zeile auf der Karte, denn Arbeit ohne Besitzer wird von niemandem
+versehentlich fertig.
 
 !!! warning "Vorgänge zählen ist nicht Aufwand messen"
     Jede Verteilung hier zählt Vorgänge, und Vorgänge sind nicht gleich groß. Eine
@@ -205,10 +209,10 @@ von niemandem versehentlich fertig.
 
 ### Zeit pro Tätigkeit (30 Tage)
 
-Die eine Karte, die Dauern statt Anzahlen liest: die in den letzten 30 Tagen von
-allen erfasste Arbeit an diesem Projekt, summiert je Tätigkeitsart. Sie enthält
-nur Arbeit, die als [Zeiteintrag](/de/guide-time.html) erfasst wurde; Zeit aus
-einem Git-Commit erreicht sie nicht.
+Die in den letzten 30 Tagen von allen erfasste Arbeit an diesem Projekt,
+summiert je Tätigkeitsart. Sie enthält nur Arbeit, die als
+[Zeiteintrag](/de/guide-time.html) erfasst wurde; Zeit aus einem Git-Commit
+erreicht sie nicht.
 
 ### Sprint-Burndown und Velocity leben auf dem Board
 
@@ -242,8 +246,8 @@ wird:
 
 ## Einen Bericht exportieren
 
-Der Knopf **Exportieren** sitzt oben rechts auf der Berichteseite und bietet drei
-Formate.
+![Das Export-Menü oben rechts auf der Berichteseite, geöffnet](/assets/img/shot-reports-export-menu.png)
+*„Exportieren“ oben rechts öffnet drei Möglichkeiten: „Als PDF exportieren“, „Als CSV exportieren“ und „Als JSON exportieren“. Jede umfasst das Projekt, das gerade auf dem Bildschirm ist, nicht alle.*
 
 **Als PDF exportieren** baut aus dem, was du gerade siehst, ein druckbares
 A4-Dokument: Name und Logo deiner Organisation oben, der Projektname, ein
@@ -266,9 +270,8 @@ Download-Ordner zu suchen.
     Meeting und die auf dem Bildschirm überein.
 
 !!! note "Berichte zeigen, was du sehen darfst"
-    Der Projektauswähler listet nur Projekte, die dir dein Teamzugriff gewährt —
-    die Berichte, die du bauen kannst, sind also von denselben
-    Sichtbarkeitsregeln begrenzt wie der Rest der App. Siehe
+    Die Berichte, die du bauen kannst, sind von denselben Sichtbarkeitsregeln
+    begrenzt wie der Rest der App. Siehe
     [Projekte & Teams](/de/guide-projects.html).
 
 ## Nächste Schritte

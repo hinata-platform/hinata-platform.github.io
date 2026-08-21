@@ -27,7 +27,10 @@ Auf dem Board gibt es einen fünften: den Inline-Composer unten in einer Spalte,
 
 ### Was die Felder bedeuten
 
-Das Formular besteht aus dem Text oben, einem Block **Details** und einem Block **Timeline**. Pflicht sind nur Projekt und Titel — alles andere darf leer bleiben und später ergänzt werden, von dir oder von der Person, die die Arbeit übernimmt.
+Pflicht sind nur Projekt und Titel — alles andere darf leer bleiben und später ergänzt werden, von dir oder von der Person, die die Arbeit übernimmt.
+
+![Der Dialog „Neue Aufgabe“](/assets/img/shot-issue-create.png)
+*„Neue Aufgabe“: links Titel und Beschreibung, rechts „Details“ und „Timeline“ übereinander. Projekt, Status, Priorität und Typ kommen bereits gesetzt; zugewiesene Person, Epic, Story Points, Stichwort, Sprint und beide Datumsfelder bleiben leer, bis sie jemand füllt. „Speichern“ ist die einzige Schaltfläche unten.*
 
 | Feld | Wofür es da ist |
 | --- | --- |
@@ -90,9 +93,12 @@ Die Seite **Issues** listet alles, was du über deine Projekte hinweg sehen darf
 
 - **Gruppieren nach** — Keine, Status, Priorität, Zugewiesene Person, Projekt oder Typ. Gruppieren macht aus der flachen Liste beschriftete Abschnitte — der schnellste Weg zu sehen, wo ein Projekt Schlagseite hat.
 - **Sortieren** — Neueste oder Älteste zuerst, oder nach Änderungsdatum.
-- **Filter** — Status, Zugewiesen, Priorität, Typ und Projekt, jeweils mehrfach wählbar, dazu ein Schalter **Archiviert**, der weich gelöschte Vorgänge zurück in die Ansicht holt. Der Button zeigt, wie viele Filter aktiv sind; **Zurücksetzen** räumt auf.
+- **Filter** — fünf Kategorien, jeweils mehrfach wählbar, dazu ein Schalter **Archiviert**, der weich gelöschte Vorgänge zurück in die Ansicht holt.
 - **Zeitraum** — Überfällig, Bis heute fällig, Diese Woche, Nächste 7 Tage, ein eigener Zeitraum und so weiter.
 - **Exportieren** — schreibt die aktuelle, gefilterte Liste als PDF, CSV oder JSON. Dabei wird die komplette Ergebnismenge durchblättert, nicht nur die sichtbaren Zeilen.
+
+![Das Filter-Popover in der Vorgangsliste](/assets/img/shot-issue-filter.png)
+*„Filter“ ist ein einziges Popover, keine fünf Bedienelemente: ein Reiter pro Kategorie, darunter die Optionen der aktiven, mit einem Haken an jedem gewählten Wert. Zwei sind hier an, deshalb trägt die Schaltfläche in der Werkzeugleiste eine 2 und unten im Popover steht „2 aktiv“ neben „Zurücksetzen“ und dem Schalter „Archiviert“. Die Unterzeile zählt, was der Filter übrig lässt — 14 von 14 Vorgängen, gegenüber den 57 einer ungefilterten Liste.*
 
 Ein Klick auf eine Zeile öffnet den Vorgang. Um einen bestimmten Vorgang über seinen Schlüssel oder über Wörter im Text zu finden, ist die [Befehlspalette](/de/guide-search.html) schneller als jeder Filter.
 
@@ -101,11 +107,14 @@ Ein Klick auf eine Zeile öffnet den Vorgang. Um einen bestimmten Vorgang über 
 Ein geöffneter Vorgang sieht überall gleich aus: eine breite Hauptspalte für den Inhalt, eine schmale rechte Spalte für die Fakten.
 
 ![Ein Hinata-Vorgang in der Detailansicht](/assets/img/shot-issue.png)
-*Links: Titel, Beschreibung, die Sub-Task-Karte und verknüpfte Vorgänge, unten schwebt der Kommentar-Composer. Rechts: die Details-Karte, eine Deployment-Karte für das verbundene Repository und die Timeline-Karte mit „Zeit erfassen“.*
+*Links: der Titel, dann die Beschreibung — Überschrift, Liste, Codeblock, Tabelle und Zitat, alles an Ort und Stelle dargestellt —, darunter die Sub-Task-Karte, und über allem schwebt der Kommentar-Composer. Verknüpfte Vorgänge und das Anhang-Raster folgen weiter unten in derselben Spalte. Rechts: die Details-Karte, eine Deployment-Karte für das verbundene Repository und die Timeline-Karte mit „Zeit erfassen“.*
 
 ### Die Kopfzeile
 
-Zurück-Pfeil, Vorgangsschlüssel und der aktuelle Status als farbiger Chip. Rechts liegt im Menü **…** alles, was kein Feld ist: beobachten, exportieren, klonen, in ein anderes Projekt verschieben, archivieren oder löschen.
+Zurück-Pfeil, Vorgangsschlüssel und der aktuelle Status als farbiger Chip.
+
+![Das Aktionsmenü an einem Vorgang](/assets/img/shot-issue-actions-menu.png)
+*Das Menü **…** rechts oben trägt alles, was kein Feld ist: „Beobachten“, „Exportieren …“, „Klonen …“, „In Projekt verschieben …“ und, als Einziges in Rot, „Löschen“. Vier der folgenden Abschnitte beginnen hier.*
 
 ### Die Hauptspalte
 
@@ -172,7 +181,12 @@ Zwei Dinge lohnen sich über die Buttons hinaus:
 
 ## Vorgänge miteinander verknüpfen
 
-Die Karte **Verknüpfte Vorgänge** hält fest, wie dieser Vorgang zu anderen steht. Klick **Vorgang hinzufügen**, wähl links die Verknüpfungsart und finde rechts den anderen Vorgang — über einen Teil des Titels, über den Schlüssel oder indem du seine URL einfügst. Du kannst mehrere auf einmal auswählen, **Verknüpfen** legt sie an.
+Die Karte **Verknüpfte Vorgänge** hält fest, wie dieser Vorgang zu anderen steht.
+
+![Eine Verknüpfungsart wählen](/assets/img/shot-issue-link.png)
+*„Vorgang hinzufügen“ öffnet eine Zeile direkt in der Karte: links die Verknüpfungsart, rechts ein Feld, das einen Teil des Titels, einen Vorgangsschlüssel oder eine eingefügte URL annimmt. Das Menü der Verknüpfungsarten hält dreizehn Verben — es scrollt über die elf sichtbaren hinaus — und die vorhandenen Verknüpfungen stehen darüber, nach Verb gruppiert.*
+
+Du kannst mehrere Vorgänge auf einmal auswählen, **Verknüpfen** legt sie an.
 
 | Beziehung | Liest sich als | Wann |
 | --- | --- | --- |
@@ -202,22 +216,22 @@ Zwei Dinge sparen dir einen Klick:
 
 **… → Klonen …** kopiert einen Vorgang in dasselbe Projekt — praktisch für wiederkehrende Arbeit oder als Vorlage für eine Serie ähnlicher Tickets.
 
-Der Dialog fragt nach der Zusammenfassung der Kopie und lässt dich dann wählen, was mitkommt. Alle drei Schalter starten aus:
+![Der Klon-Dialog](/assets/img/shot-issue-clone.png)
+*Klonen: Die Zusammenfassung kommt mit dem Präfix „CLONE - “, und was mitkommt, sind drei Schalter — „Anhänge“, „Verknüpfungen“, „Sprint-Werte“ — alle aus, jeder mit der Zeile, die sagt, was das Einschalten tut.*
 
-- **Anhänge** — die Dateien des Originals werden in die Kopie übernommen, jede als eigene gespeicherte Fassung; das Entfernen der einen rührt die andere nicht an.
-- **Verknüpfungen** — die Beziehungen des Originals zu anderen Vorgängen.
-- **Sprint-Werte** — legt die Kopie in denselben Sprint. Bleibt der Schalter aus, startet sie im Backlog.
-
-Was du auch wählst: Eine **klont**-Verknüpfung zurück zum Original wird immer angelegt, und **du** wirst als Autor der Kopie eingetragen.
+Anhänge, die mitkommen, werden als eigene gespeicherte Dateien kopiert; das spätere Entfernen der einen rührt die andere nicht an. Was du auch wählst: Eine **klont**-Verknüpfung zurück zum Original wird immer angelegt, und **du** wirst als Autor der Kopie eingetragen.
 
 !!! note "Die Diskussion bleibt beim Original"
     Kommentare, Arbeitszeiten und Verlauf wandern nie in einen Klon. Genau das ist der Sinn: Ein Klon ist ein frischer Start mit derselben Form, keine Momentaufnahme einer Unterhaltung.
 
 ## Einen Vorgang in ein anderes Projekt verschieben
 
-**… → In Projekt verschieben …** siedelt einen Vorgang um, und das ist ein zweistufiger Assistent, weil ein Umzug selten verlustfrei ist. Zuerst wählst du das Zielprojekt, dann bildest du jeden Status auf einen ab, den das Zielprojekt wirklich hat. Hinata ordnet vorab zu, was es zuordnen kann, und fragt nur nach dem Rest.
+**… → In Projekt verschieben …** siedelt einen Vorgang um. Das ist ein zweistufiger Assistent, weil ein Umzug selten verlustfrei ist: erst das Zielprojekt, dann alles, was nicht einfach mitkommen kann.
 
-Vor dem Bestätigen listet der Assistent genau auf, was passieren wird — die Kinder eines Epics, die zurückbleiben, ein Sprint, dessen Board das Zielprojekt nicht abdeckt, eine zugewiesene Person, die drüben kein Mitglied ist. Im neuen Projekt bekommt der Vorgang einen neuen Schlüssel.
+![Schritt zwei des Verschiebe-Assistenten](/assets/img/shot-issue-move.png)
+*Schritt zwei. Jeder beteiligte Status wird auf einen abgebildet, den das Zielprojekt hat — hier passt alles, es ist also nichts zu entscheiden — darunter die Folgen, die Hinata selbst ermittelt hat, und ganz unten die neuen Schlüssel: Aus HIN-4 wird MOB-9, und die drei Sub-Tasks ziehen mit.*
+
+Hinata ordnet vorab jeden Status zu, den es zuordnen kann, und fragt nur nach dem Rest. Im neuen Projekt bekommt der Vorgang einen neuen Schlüssel, und der alte löst nicht mehr auf.
 
 !!! warning "Archivierte Vorgänge zuerst wiederherstellen"
     Für archivierte Vorgänge ist der Eintrag deaktiviert. Erst wiederherstellen, dann verschieben.

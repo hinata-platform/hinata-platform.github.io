@@ -18,14 +18,16 @@ Three levels, and no more than three, because a filing system deeper than that i
 - Any article can have **sub-pages**, and those can have sub-pages of their own. This is where the real structure lives: a handbook at the top, its chapters beneath it.
 
 ![The knowledge base home: search, a card per space, and the most recently updated articles](/assets/img/shot-knowledge.png)
-
-*The knowledge base home. Each card is a space with its own colour, description and article count; the dashed tile creates a new one. Below, **Recently updated** shows what the team has been writing, with the space and author on every row.*
+*The knowledge base home. Each card is a space with its own colour, description and article count; the __New space__ tile beside them creates another. Below, __Recently updated__ shows what the team has been writing, with the space and author on every row.*
 
 The home screen shows every space as a card, plus a **Recently updated** list — which is, in practice, how most people re-find a page they read last week.
 
 ### Creating a space
 
-Click the dashed **New space** tile. Give it a **name**, an optional **description** of what lives in it, pick an **icon** and a **colour**, then **Create space**. It appears on the grid immediately, empty and ready.
+Click the **New space** tile.
+
+![The New space dialog with a name and description filled in](/assets/img/shot-kb-new-space.png)
+*Name, description, an icon grid and a colour row in one dialog. __Create space__ stays dead until the space has a name; the space then appears on the grid immediately, empty and ready.*
 
 Keep spaces few and broad. A space per team or per discipline works; a space per project usually does not, because most documentation is about a *subject* that outlives any single project.
 
@@ -36,14 +38,15 @@ Keep spaces few and broad. A space per team or per discipline works; a space per
 
 Press **New article** — from the knowledge base home, or from the article view where it sits next to **All spaces**.
 
-You get a title field, a space picker, and the body. Type the title first: it becomes the page's heading, the row in the tree, and the thing everyone will search for later, so it is worth a moment's thought. *"Release checklist & version gating"* is findable. *"Notes"* is not.
+![The article editor on a new page, with a title typed and the body still empty](/assets/img/shot-kb-new-article.png)
+*The title sits above the toolbar; the space picker beside it decides which shelf the article lands on, and can be changed later at any time. The button on the right reads __Publish__ on a new page and __Save__ on one you are editing.*
 
-The space picker in the header decides which shelf the article lands on. You can change it later at any time.
+Type the title first: it becomes the page's heading, the row in the tree, and the thing everyone will search for later, so it is worth a moment's thought. *"Release checklist & version gating"* is findable. *"Notes"* is not.
 
-When you are done, press **Publish** (on a new article) or **Save** (on one you are editing). There is no separate draft state to remember — an article is either written or it is not.
+There is no separate draft state to remember — an article is either written or it is not.
 
 !!! tip "Start it as a sub-page"
-    If the article belongs under an existing one, do not create it from the home screen. Open the parent in the tree, use its row menu, and choose **Add sub-page**. It is created in the right place, in the right space, with no tidying afterwards.
+    If the article belongs under an existing one, do not create it from the home screen. Hover the parent's row in the tree and press the **+** that appears — **Add sub-page**. It is created in the right place, in the right space, with no tidying afterwards.
 
 ## A first page, start to finish
 
@@ -75,7 +78,10 @@ Above the text sits the toolbar, in the order you reach for things:
 
 A few of these are worth knowing about specifically.
 
-**Text style is a dropdown, not a row of toggles**, because a line can only be one of those things at a time. It shows what the cursor is currently sitting in — *Mixed* when your selection spans several kinds.
+**Text style is a dropdown, not a row of toggles**, because a line can only be one of those things at a time.
+
+![The Text style dropdown open over the article editor](/assets/img/shot-kb-text-style.png)
+*The nine shapes a line can take, with a tick on the one the cursor is in. The button carries that name too, and reads __Mixed__ where a selection spans several of them.*
 
 **The four coloured panels** — Info, Warning, Note and Tip — are the fastest way to make a page skimmable. Put the one sentence that saves someone an outage in a Warning and it will be read; leave it in the fourth paragraph and it will not.
 
@@ -113,7 +119,10 @@ Everything else lives on the toolbar. There is no shortcut for the coloured pane
 
 ## Smart links: @ is the important key
 
-Type **@** anywhere in an article — or press the **@** button on the toolbar — and a picker opens over the glass, searching **issues, articles and people** at once. Pick one and a *chip* is inserted: not text that looks like a reference, but a live link.
+Type **@** anywhere in an article — or press the **@** button at the end of the toolbar. Pick a candidate and a *chip* is inserted: not text that looks like a reference, but a live link.
+
+![The Mention / link picker open over the article editor](/assets/img/shot-kb-mention-picker.png)
+*One picker across issues, articles and people, narrowing as you type. Every row names its kind with a glyph and carries the issue key or the article's space underneath. Two letters reach all three kinds here: `ok` finds four issues, two articles and Amara Okafor.*
 
 That distinction is the whole point:
 
@@ -133,11 +142,13 @@ Because chips are links, Hinata can show the connection from both ends — and t
 - At the foot of an article, **Linked issues** lists every issue the page mentions, each as a card with its current status. A runbook shows you the state of the work it describes without your having to go looking.
 - On an issue, **Documented in** lists every article that links to it. Someone landing on a ticket cold can find the page explaining the subsystem it belongs to.
 
+![An issue chip in an article body with its hover preview open](/assets/img/shot-kb-chip-preview.png)
+*Two chips in one sentence of ordinary prose — an issue and a person. Hovering the issue chip opens a preview card with the issue's status, title, assignee, priority and label, and __Open issue__ at its foot. The same issue is listed once more under __Linked issues__ at the end of the page, without anyone having put it there.*
+
 Neither list is maintained by hand. Both are derived from the chips in the text, so they cannot drift out of date — write the link once and the relationship exists in both directions, forever.
 
 ![An article with its space tree on the left, the body in the centre, and contributors and details on the right](/assets/img/shot-knowledge-article.png)
-
-*The article view: the space picker and page tree on the left, the article with its space chip, byline, labels and body in the centre — note the Info panel and the inline person chip — and Contributors plus Details on the right. **Edit** and the delete button sit next to the byline.*
+*The article view: the space picker and page tree on the left, the article with its space chip, byline, labels and body in the centre — note the Info panel and the inline person chip — and Contributors plus Details on the right. __Edit__ and the delete button sit next to the byline.*
 
 ## Finding your way around an article
 
@@ -171,9 +182,13 @@ Reading is comfortable on a phone; writing a long page is not, on any device. Ph
 The tree is not decoration — it is the editing surface for structure:
 
 - **Drag a page onto another page** to nest it underneath. Its own sub-pages travel with it; you never have to reattach a subtree by hand.
-- **Drop it on the root zone** at the top of the tree to pull it back out to the top level. The row menu offers **Move to top level** for the same thing without dragging.
-- The row menu also holds **Add sub-page** and **Delete**.
+- **Drop it on the root zone** at the top of the tree to pull it back out to the top level.
 - To move a page to a *different space*, open it, press **Edit** and change the space in the header.
+
+Hovering a row reveals two controls at its right edge: a **+** for **Add sub-page**, and the menu below.
+
+![The row menu of a page in the knowledge tree](/assets/img/shot-kb-tree-menu.png)
+*The row's own menu. __Move to top level__ un-nests the page without dragging it anywhere, and __Delete__ is the only way to remove a page from the tree — on a page that still has sub-pages that row reads __Delete (move sub-pages first)__ and does nothing.*
 
 !!! warning "Deleting is permanent, and parents are protected"
     **Delete** asks for confirmation and names the article, because there is no undo and no wastebasket. A page that has sub-pages cannot be deleted at all until they are moved somewhere else — the menu says so rather than offering an action that would orphan them.

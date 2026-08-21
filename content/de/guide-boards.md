@@ -13,11 +13,12 @@ Du musst vorher nichts einrichten. Wenn für dein Projekt schon ein Board existi
 
 Wähle **Board** in der Seitenleiste. Du siehst eine Liste aller Boards, die du sehen darfst, über alle Projekte hinweg; ein Menü oben grenzt sie auf ein Projekt ein. Tippe ein Board an, um es zu öffnen.
 
-Ist die Liste leer, legst du mit **Neues Board** eines an. Drei Dinge werden gefragt:
+Ist die Liste leer, legst du mit **Neues Board** eines an.
 
-- **Board-Typ** — **Kanban** oder **Scrum**. In der App gibt es kein Bedienelement, um den Typ eines Boards nachträglich zu wechseln — hier lohnt also ein kurzer Moment: siehe [Kanban oder Scrum](#kanban-oder-scrum) weiter unten.
-- **Board-Name** — wie euer Team das Board nennt, nicht wie das Projekt heißt.
-- **Projekte** — eines oder mehrere. Ein Board über mehrere Projekte fasst gleichwertige Spalten zu einer Wand zusammen, sodass zwei Teams nebeneinander arbeiten können, ohne ihr eigenes Projekt zu verlassen.
+![Der Dialog „Neues Board“](/assets/img/shot-board-new-dialog.png)
+*Der Dialog „Neues Board“. Der Board-Typ sind zwei Karten mit eigener Beschreibung — hier ist Kanban gewählt, Scrum liegt darunter —, dann „Board-Name“, dann eine Zeile „Projekte“, die schon „1 ausgewählt“ meldet. „Erstellen“ bleibt ausgegraut, bis das Board einen Namen hat.*
+
+Nur der Typ verdient einen kurzen Moment. In der App gibt es kein Bedienelement, um ein Board nachträglich von Kanban auf Scrum zu wechseln — lies also [Kanban oder Scrum](#kanban-oder-scrum) weiter unten, bevor du wählst. Der Name ist, wie euer Team das Board nennt, nicht wie das Projekt heißt. Und wählst du mehr als ein Projekt, werden deren gleichwertige Spalten zu einer einzigen Wand zusammengefasst, sodass zwei Teams nebeneinander arbeiten können, ohne ihr eigenes Projekt zu verlassen.
 
 !!! tip "Ein Projekt kann mehrere Boards haben"
     Boards sind Ansichten, keine Behälter. Derselbe Vorgang kann auf einem Team-Board, einem Release-Board und einem persönlichen Board auftauchen, ohne kopiert zu werden. Nichts gehört *zu* einem Board — Vorgänge gehören zu Projekten.
@@ -43,14 +44,11 @@ Boards nutzen dieselbe dreistufige Hierarchie wie der Rest von Hinata — siehe 
 
 ### Was eine Karte verrät, ohne geöffnet zu werden
 
-Eine Karte ist bewusst dicht — sie soll aus drei Metern Entfernung die Frage „muss ich das anklicken?“ beantworten:
+Eine Karte ist bewusst dicht — sie soll aus drei Metern Entfernung die Frage „muss ich das anklicken?“ beantworten. Statusstreifen, Typ-Symbol, Vorgangsschlüssel, Prioritätspfeil, Titel, Stichwörter und der Avatar der zugewiesenen Person stehen alle darauf; drei Dinge lohnt es sich zu wissen:
 
-- Ein **farbiger Streifen** oben, in der Statusfarbe des Vorgangs.
-- Das **Typ-Symbol** und der **Vorgangsschlüssel** (`HIN-42`) in der ersten Zeile, rechts der **Prioritätspfeil**.
-- Der **Titel**, bis zu drei Zeilen.
-- Bis zu drei **Stichwörter**, in ihren eigenen Farben.
-- Die bisher **aufgewendete Zeit**, falls der Vorgang eine Schätzung trägt; das **Fälligkeitsdatum**, das rot wird, sobald es vorbei ist; und der **Avatar der zugewiesenen Person**.
-- Hat der Vorgang Sub-Tasks, findest du unten eine Leiste, die du aufklappen kannst — inklusive Fortschritt, ohne das Board zu verlassen.
+- Das **Fälligkeitsdatum** wird rot, sobald es vorbei ist — eine überfällige Karte meldet sich also quer über die Wand.
+- Die **aufgewendete Zeit** erscheint nur, wenn der Vorgang eine Schätzung trägt. Eine Karte ohne Timer-Chip heißt: Niemand hat geschätzt, nicht: Niemand hat gearbeitet.
+- Die **Sub-Task-Leiste** unten klappt an Ort und Stelle auf — du siehst den Fortschritt, ohne das Board zu verlassen.
 
 ## Einen Vorgang über das Board bewegen
 
@@ -68,7 +66,10 @@ Das ist Absicht. Die Alternative wäre, den Drop anzunehmen und dann zu scheiter
 
 ### Einen Vorgang genau dort anlegen, wo er hingehört
 
-Am Fuß jeder Spalte sitzt ein Direkteingabefeld — **Aufgabe hinzufügen**. Titel tippen, Enter drücken, fertig: Der Vorgang entsteht bereits im Projekt und im Status dieser Spalte. Steht die Spalte in einer Epic-Swimlane, erbt er das Epic; in einer Personen-Lane die Person; auf einem Sprint-Board den Sprint.
+![Das Direkteingabefeld am Fuß einer Board-Spalte](/assets/img/shot-board-quick-create.png)
+*„Aufgabe hinzufügen“ am Fuß der Spalte „Open“, aufgeklappt zum Direkteingabefeld: ein getippter Titel, noch nicht abgeschickt, darunter Chips für Typ, Fälligkeit und zugewiesene Person sowie die bernsteinfarbene Enter-Schaltfläche. Dahinter die Wand des aktiven Sprints — ein Statuspunkt je Spalte, die 4/4 auf „In Progress“ genau am WIP-Limit, „Tag 8/15“ in der Sprint-Kopfzeile.*
+
+Titel tippen, Enter drücken, fertig: Der Vorgang entsteht bereits im Projekt und im Status dieser Spalte. Er erbt außerdem, worin die Spalte steht — das Epic einer Epic-Swimlane, die Person einer Personen-Lane, den Sprint eines Sprint-Boards —, es ist also nichts doppelt zu setzen.
 
 Das ist deutlich schneller als das vollständige Formular — und es sorgt dafür, dass ein Gedanke aus dem Daily auch im Daily notiert wird.
 
@@ -93,7 +94,7 @@ Ein Board mit zweihundert Karten ist eine Wand, kein Bild. Drei Bedienelemente �
 
 ### Die Personenleiste
 
-Die überlappenden Avatare oben rechts sind alle, die auf diesem Board Arbeit haben. Klick auf einen, um nur dessen Karten zu sehen; klick auf einen zweiten, um ihn hinzuzunehmen; noch ein Klick entfernt ihn wieder. Ausgewählte Avatare bleiben hell, die übrigen werden blass — du siehst also immer auf einen Blick, ob ein Filter aktiv ist.
+Die überlappenden Avatare oben rechts sind alle, die auf diesem Board Arbeit haben. Klick auf einen, um nur dessen Karten zu sehen; klick auf einen zweiten, um ihn hinzuzunehmen; noch ein Klick entfernt ihn wieder.
 
 Das ist dieselbe Einstellung wie die Facette „Zugewiesen“ im Filter-Popup — die Leiste ist schlicht die Abkürzung für das, wonach am häufigsten gefiltert wird.
 
@@ -103,13 +104,16 @@ Das ist dieselbe Einstellung wie die Facette „Zugewiesen“ im Filter-Popup �
 
 **Status · Typ · Priorität · Zugewiesen · Sprint · Autor · Stichwort · Epic**
 
+![Das Filter-Popup des Boards mit zwei ausgewählten Personen](/assets/img/shot-board-filter.png)
+*Die Facette „Zugewiesen“ mit Häkchen bei Amara Okafor und Mei Lin. Die Fußzeile meldet „2 aktiv“, daneben steht „Zurücksetzen“, die Schaltfläche „Filter“ bekommt eine bernsteinfarbene 2, dieselben zwei Avatare leuchten in der Personenleiste auf — und die Wand dahinter ist auf ihre Karten geschrumpft, „Open“ steht bei eins.*
+
 Jede Facette ist eine durchsuchbare Mehrfachauswahl. Wie sie zusammenwirken, lohnt sich zu merken — genau das macht den Filter brauchbar statt fummelig:
 
 > Auswahlen **innerhalb** einer Facette sind ein ODER. Facetten **untereinander** sind ein UND.
 
 *Bug* und *Story* unter Typ, dazu *Ana* unter Zugewiesen, ergibt also „Bugs oder Stories, die Ana zugewiesen sind“. Nichts in einer Facette auszuwählen heißt: Diese Facette filtert gar nicht.
 
-Die Sprint-Facette enthält den Eintrag **Kein Sprint** — so siehst du Backlog-Einträge zwischen dem Rest. Die Schaltfläche trägt ein bernsteinfarbenes Abzeichen mit der Zahl der aktiven Kriterien, und **Zurücksetzen** räumt mit einem Klick alles ab.
+Die Sprint-Facette enthält den Eintrag **Kein Sprint** — so siehst du Backlog-Einträge zwischen dem Rest.
 
 !!! tip "Der Filter gehört dir, nicht dem Board"
     Filtern ändert, was *du* siehst. Es verschiebt, versteckt oder verändert für niemanden sonst etwas und wird auch nicht am Board gespeichert — filtere also unbesorgt.
@@ -117,6 +121,9 @@ Die Sprint-Facette enthält den Eintrag **Kein Sprint** — so siehst du Backlog
 ### Swimlanes
 
 **Gruppieren nach** teilt die Wand in waagerechte Lanes, von denen jede den vollständigen Spaltensatz trägt. Es ist das wirksamste Mittel, ein volles Board lesbar zu machen — welche Gruppierung hilft, hängt an deiner Frage.
+
+![Das Menü „Gruppieren nach“ auf einem Board](/assets/img/shot-board-group-by.png)
+*„Gruppieren nach“, neben „Filter“ über der Wand. Dieses Board umfasst ein Projekt, also bietet das Menü „Keine“, „Epic“, „Zugewiesene Person“ und „Sub-Task“ — „Projekt“ erscheint nur auf einem Board über mehrere Projekte.*
 
 | Gruppieren nach | Du bekommst | Nimm es, wenn |
 | --- | --- | --- |
@@ -137,7 +144,10 @@ Eine Spalte kann ein **WIP-Limit** tragen (Work in Progress): die größte Zahl 
 
 Hinata hindert dich nicht daran, ein WIP-Limit zu überschreiten — mit Absicht. Das Limit ist ein Gesprächsanlass, kein Schloss: Der Sinn eines roten Abzeichens in *Im Review* ist, dass jemand bemerkt, dass nichts reviewt wird, nicht dass die siebte Karte an der Tür abgewiesen wird.
 
-Limits werden je Spalte unter **Board-Optionen → Spalten** gesetzt, zusammen mit dem Spaltennamen und den enthaltenen Status. Dafür musst du das Board besitzen, eines seiner Projekte leiten, ein Team mit Zugriff leiten oder Administrator sein.
+![Der Spalten-Editor eines Boards](/assets/img/shot-board-columns.png)
+*„Board-Optionen → Spalten“. Eine Zeile je Spalte: ein Ziehgriff zum Sortieren, die enthaltenen Workflow-Status als Chips, ein Feld „Max.“ für das WIP-Limit — bei „In Progress“ und „In Review“ gefüllt, sonst leer — und eine Schaltfläche, die die Spalte ganz entfernt.*
+
+Dafür musst du das Board besitzen, eines seiner Projekte leiten, ein Team mit Zugriff leiten oder Administrator sein.
 
 ## Das Backlog
 
@@ -153,7 +163,7 @@ Dort warten Ideen. Ein Bug, der dienstags gemeldet wird, liegt im Backlog, bis e
 Ein Sprint ist ein festes Zeitfenster — meist ein bis vier Wochen — mit einem vereinbarten Arbeitsumfang. Hinata bildet den ganzen Zyklus ab: planen, starten, durcharbeiten, abschließen. Alles passiert in den drei Tabs eines Scrum-Boards.
 
 ![Der Planungs-Tab eines Hinata-Boards](/assets/img/shot-board.png)
-*Der Tab „Planung“: Sprint 24 ist aktiv, läuft vom 18. Juli bis 1. August, und sein Kapazitätsbalken ist rot — 44 committete Story Points gegen eine Kapazität von 40. Jede Zeile zeigt Typ, Schlüssel, Titel, Priorität, Story Points und zugewiesene Person.*
+*Der Tab „Planung“: Sprint 24 ist aktiv, läuft vom 14. bis 28. August, und sein Kapazitätsbalken ist rot — 42 committete Story Points gegen eine Kapazität von 40. Jede Zeile zeigt Typ, Schlüssel, Titel, Stichwörter, Story Points und zugewiesene Person.*
 
 ### 1. Den Sprint planen
 
@@ -174,12 +184,15 @@ Auf demselben Weg verschiebst du Vorgänge auch *zwischen* geplanten Sprints —
 
 ### 3. Mit Story Points schätzen
 
-Tippe auf einer Sprint-Zeile den Punktebereich an, um den Schätzdialog zu öffnen. Es ist ein Planning-Poker-Kartenraster auf der Fibonacci-Skala — **1, 2, 3, 5, 8, 13, 21** — plus einer Möglichkeit, die Schätzung wieder zu löschen.
+Tippe auf einer Sprint-Zeile den Punktebereich an, um den Schätzdialog zu öffnen.
+
+![Der Schätzdialog](/assets/img/shot-board-estimate.png)
+*„Schätzen“, geöffnet aus der Zeile von HIN-4: ein Planning-Poker-Raster auf der Fibonacci-Skala — 1, 2, 3, 5, 8, 13, 21 — mit der aktuellen 5 des Vorgangs. Schlüssel und Titel unter der Überschrift sagen, welcher Vorgang gerade geschätzt wird, und genau das wird am häufigsten verwechselt; die letzte Karte, „—“, löscht die Schätzung wieder.*
 
 Story Points messen relativen Aufwand, keine Stunden. Eine 5 ist spürbar größer als eine 3 und ungefähr halb so groß wie eine 13; mehr ist nicht vereinbart. Ihr Wert liegt in der Summe — und dafür gibt es die zwei Anzeigen in der Sprint-Kopfzeile:
 
 - **Punkte-Töpfe** — drei Pillen, die zeigen, wie sich die committeten Punkte auf offen, in Arbeit und erledigt verteilen. Während des Sprints willst du zusehen, wie der grüne wächst.
-- **Kapazität** — committete Punkte gegen die Kapazität des Teams, als `44 / 40 pts` mit Balken darunter. Bei Überschreitung werden beide rot, wie im Screenshot oben.
+- **Kapazität** — committete Punkte gegen die Kapazität des Teams, als `42 / 40 pts` mit Balken darunter. Bei Überschreitung werden beide rot, wie im Screenshot oben.
 
 !!! note "Kapazität ist optional"
     Ein Sprint ohne Kapazitätswert zeigt seine committeten Punkte allein, ohne Balken — ein Balken, der immer voll ist, sagt nichts. Die Kapazität wird über die API oder ein Admin-Werkzeug gesetzt, nicht im Erstellen-Dialog. Nutzt dein Team sie nicht, siehst du sie einfach nicht.
@@ -194,17 +207,16 @@ Ein Sprintstart benachrichtigt alle Mitglieder der Board-Projekte — niemand mu
 
 ### 5. Ihn durcharbeiten
 
-Der Tab **Aktiver Sprint** ist eine ganz normale Board-Wand, begrenzt auf den Sprint. Gleiches Ziehen, gleiche Filter, gleiche Swimlanes — dazu eine Glas-Kopfzeile mit bernsteinfarbenem **Aktiv**-Abzeichen, Sprint-Name und -Ziel sowie einem Tageszähler `Tag 4/14` mit Fortschrittsbalken.
+Der Tab **Aktiver Sprint** ist eine ganz normale Board-Wand, begrenzt auf den Sprint. Gleiches Ziehen, gleiche Filter, gleiche Swimlanes — dazu eine Glas-Kopfzeile mit bernsteinfarbenem **Aktiv**-Abzeichen, Sprint-Name und -Ziel sowie einem Tageszähler `Tag 8/15` mit Fortschrittsbalken.
 
-Dieser Zähler ist still das Nützlichste am Tab. „Wir sind an Tag 11 von 14, und die Hälfte der Punkte ist noch offen“ ist ein Gespräch, das du an Tag 11 führen willst, nicht an Tag 14.
+Dieser Zähler ist still das Nützlichste am Tab. „Wir sind an Tag 11 von 15, und die Hälfte der Punkte ist noch offen“ ist ein Gespräch, das du an Tag 11 führen willst, nicht an Tag 14.
 
 ### 6. Ihn abschließen
 
-Drück **Sprint abschließen**, wenn das Zeitfenster endet. Der Dialog bilanziert:
+Drück **Sprint abschließen**, wenn das Zeitfenster endet.
 
-- **Abgeschlossen** — wie viele Vorgänge fertig wurden, wie viele Punkte das waren, und der Prozentsatz.
-- **Nicht abgeschlossen** — wie viele Vorgänge und Punkte noch offen sind.
-- **Wohin die offene Arbeit geht** — wähle einen anderen geplanten Sprint, in den sie übernommen wird, oder **Backlog**, um sie zurück in den Pool zu geben.
+![Der Dialog „Sprint abschließen“](/assets/img/shot-board-complete-sprint.png)
+*„Sprint 24 abschließen“: fünf Vorgänge abgeschlossen für neun Story Points — 29 % — gegen zwölf nicht abgeschlossene und 33 noch offene Punkte, darunter das Ziel für ebendiese zwölf. Über „Backlog“ steht jeder geplante Sprint — hier __Sprint 25__ mit dem Datum, auf das die Übernahme fällt —, und „Backlog“ bleibt, wenn es nichts zum Übernehmen gibt.*
 
 Bestätige, und drei Dinge passieren. Der Sprint wird archiviert. Fertige Arbeit bleibt ihm zugerechnet, damit Historie und Zahlen ehrlich bleiben. Jeder offene Vorgang wandert an das gewählte Ziel, wird in seiner Historie als Sprint-Wechsel festgehalten, und seine Beobachter werden benachrichtigt.
 
@@ -229,7 +241,7 @@ Für Trends über viele Sprints, Durchlaufzeit und Exporte geht es weiter zu [Be
 
 Alles oben Beschriebene funktioniert auf dem Handy; das Layout faltet sich nur zusammen.
 
-![Ein Hinata-Sprint-Board auf dem Handy](/assets/img/shot-mobile-board.png)
+![Der Planungs-Tab eines Hinata-Boards auf dem Handy](/assets/img/shot-mobile-board.png)
 *Derselbe Tab „Planung“ auf dem Handy: Ansichtsumschalter und Filter schrumpfen zu Symbolen, die Sprint-Kopfzeile stapelt Vorgangszahl, Punkte-Töpfe und Kapazitätsbalken untereinander, und „Sprint abschließen“ nimmt die volle Breite ein.*
 
 Die Unterschiede, die du kennen solltest:
@@ -246,7 +258,7 @@ Jedes Board in der Board-Liste trägt eine **⋮**-Schaltfläche — das sind di
 
 - **Board umbenennen** — neuer Name, sonst ändert sich nichts.
 - **Projekte** — ändern, welche Projekte das Board umfasst. Gleichwertige Status der gewählten Projekte werden automatisch zu gemeinsamen Spalten zusammengefasst.
-- **Spalten** — Spalten von Hand benennen, festlegen, welcher Status in welche gehört, sie umsortieren und WIP-Limits setzen. Die automatische Zusammenführung rät gut, aber zwei Projekte können denselben Schritt unterschiedlich nennen; hier korrigierst du das.
+- **Spalten** — der Editor [von oben](#wip-limits). Die automatische Zusammenführung rät gut, aber zwei Projekte können denselben Schritt unterschiedlich nennen; hier korrigierst du das.
 - **Board löschen** — entfernt das Board. Die Vorgänge darauf bleiben unangetastet: Sie gehören ihren Projekten, nicht dem Board.
 
 Dafür musst du das Board besitzen, eines seiner Projekte leiten, ein Team mit Zugriff leiten oder Administrator sein. Siehst du das Menü nicht, bist du in keiner dieser Rollen — das ist normal und nichts, was du selbst reparieren müsstest.

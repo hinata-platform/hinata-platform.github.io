@@ -21,8 +21,7 @@ Die Palette öffnet sich *über* dem, was du gerade tust. Nichts halb Getipptes 
     Das Tastenkürzel gehört der App selbst, nicht einem bestimmten Bildschirm. Beim Lesen eines Vorgangs, beim Ziehen einer Karte, mitten in einem Kommentar — ⌘K öffnet trotzdem. Die einzige Ausnahme: Liegt bereits ein anderer Dialog obenauf, stapelt die Palette kein zweites Fenster darüber.
 
 ![Die Befehlspalette über dem Dashboard, mit gruppierten Ergebnissen für die Suche „board"](/assets/img/shot-search.png)
-
-*Eine Eingabe, alles auf einmal: Jeder Bereichs-Chip trägt seine Anzahl (9 Befehle, 71 Vorgänge, 3 Projekte, 7 Personen), Treffer sind überall hervorgehoben, und jede Vorgangszeile zeigt Schlüssel und Status. Der beste Treffer — der Befehl **Zum Board** — ist bereits ausgewählt, **Enter** würde ihn also öffnen. Die Leiste unten nennt die einzigen drei Tasten, die du brauchst.*
+*Eine Eingabe, alles auf einmal: Jeder Bereichs-Chip trägt seine Anzahl (9 Befehle, 57 Vorgänge, 3 Projekte, 6 Personen), Treffer sind überall hervorgehoben, und jede Zeile zeigt, was sie unterscheidet — ein Vorgang Schlüssel und Status, ein Sprint sein Ziel, ein Artikel Bereich und Alter. Eine Zeile ist immer ausgewählt, __Enter__ öffnet sie also. Die Leiste unten nennt die einzigen drei Tasten, die du brauchst.*
 
 ## Was sie durchsucht
 
@@ -43,12 +42,15 @@ In der Standardansicht **Alle** zeigt jede Gruppe bis zu fünf Treffer. Wählst 
 
 ## Auf eine Art von Treffern eingrenzen
 
-Die Reihe von Chips unter dem Suchfeld — **Alle**, **Befehle**, **Vorgänge**, **Projekte**, **Personen**, **Boards & Sprints**, **Wissen** — schränkt die Suche auf eine Kategorie ein. Jeder Chip trägt die Anzahl der Objekte dieser Art, die es gibt: ein leises, aber nützliches Gefühl für Größenordnungen.
+Die Reihe von Chips unter dem Suchfeld — **Alle**, **Befehle**, **Vorgänge**, **Projekte**, **Personen**, **Boards & Sprints**, **Wissen** — schränkt die Suche auf eine Kategorie ein.
+
+![Die Palette mit gewähltem Bereich „Wissen“ und leerem Suchfeld](/assets/img/shot-search-scope-knowledge.png)
+*Jeder Chip trägt die Anzahl der Objekte dieser Art: 57 Vorgänge, 3 Projekte, 6 Personen, 4 Boards, 8 Artikel. Mit gewähltem __Wissen__ und leerem Feld stöbert die Palette, statt zu suchen — die zuletzt bearbeiteten Artikel, jeder mit seinem Bereich und seinem Alter.*
 
 Klicke einen Chip an oder drücke **Tab**, um vorwärts durch sie zu wandern, und **Umschalt+Tab** zurück. Deine Suchanfrage bleibt dabei im Feld stehen, du kannst also einmal tippen und dann zwischen „meinte ich den Vorgang oder den Artikel?“ hin- und herspringen.
 
 !!! tip "Eine leere Anfrage in einem Bereich ist eine Stöberliste"
-    Wähle einen Bereich, ohne etwas zu tippen, und du bekommst die zehn zuletzt bearbeiteten Objekte dieser Art. Das ist der schnellste Weg zurück zu dem, woran das Team heute Morgen gearbeitet hat — ganz ohne ein Wort aus dem Titel zu kennen.
+    Das ist der schnellste Weg zurück zu dem, woran das Team heute Morgen gearbeitet hat — ganz ohne ein Wort aus dem Titel zu kennen.
 
 ## Alles über die Tastatur
 
@@ -73,9 +75,12 @@ Jede Zeile trägt genug Kontext, um „ist das der richtige?“ zu beantworten, 
 
 ## Letzte Suchen
 
-Öffne die Palette mit leerem Feld, und sie zeigt deine **letzten Suchen** — die letzten sechs Begriffe, die du tatsächlich benutzt hast, der jüngste zuerst. Ein Klick setzt den Begriff zurück ins Feld und führt ihn erneut aus; er springt nicht direkt zu einem Treffer, denn eine Suche, die du wiederholst, willst du meistens noch einmal durchsehen.
+Öffne die Palette mit leerem Feld, und sie zeigt die letzten sechs Begriffe, die du tatsächlich benutzt hast.
 
-Die Liste liegt auf dem Gerät, an dem du sitzt — Handy und Laptop merken sich also Verschiedenes. **Leeren** räumt sie ab.
+![Die Palette mit den letzten Suchen bei leerem Suchfeld](/assets/img/shot-search-recents.png)
+*Unter __Letzte Suchen__, der jüngste zuerst, rechts __Leeren__. Ein Begriff wird festgehalten, wenn du einen seiner Treffer öffnest, nicht schon beim Tippen — in der Liste stehen also die Suchen, die irgendwohin geführt haben.*
+
+Ein Klick setzt den Begriff zurück ins Feld und führt ihn erneut aus; er springt nicht direkt zu einem Treffer, denn eine Suche, die du wiederholst, willst du meistens noch einmal durchsehen. Die Liste liegt auf dem Gerät, an dem du sitzt — Handy und Laptop merken sich also Verschiedenes.
 
 ## Sie ist auch eine Befehlsleiste
 
@@ -147,8 +152,7 @@ Schlüssel überleben einen Umzug. Wird ein Vorgang in ein anderes Projekt versc
 Die Seite **Issues** ist die andere Hälfte des Findens. Sie zeigt jeden Vorgang aus jedem Projekt, auf das du Zugriff hast, zuletzt bearbeitete zuerst, und lädt beim Scrollen nach. Vier Bedienelemente formen sie.
 
 ![Die Issues-Liste mit Gruppieren nach, Sortieren, Filter und Zeitraum über der Tabelle](/assets/img/shot-issues.png)
-
-*Die Seite Issues: 71 Aufgaben aus allen sichtbaren Projekten, die vier Ansichts-Bedienelemente über der Tabelle und rechts Exportieren. Das Feld **Suchen oder springen zu…** mit seinem ⌘K-Abzeichen sitzt auf jedem Bildschirm in der oberen Leiste.*
+*Die Seite Issues: 57 Aufgaben aus allen sichtbaren Projekten, die vier Ansichts-Bedienelemente über der Tabelle und rechts Exportieren. Das Feld __Suchen oder springen zu…__ mit seinem ⌘K-Abzeichen sitzt auf jedem Bildschirm in der oberen Leiste.*
 
 ### Eine Zeile lesen
 
@@ -161,13 +165,22 @@ Ein Klick irgendwo auf die Zeile öffnet den Vorgang.
 
 ### Die Liste formen
 
-**Filter** öffnet ein Popover mit fünf Facetten — **Status**, **Priorität**, **Zugewiesen**, **Projekt** und **Typ** — dazu einen Schalter **Archiviert**. Innerhalb einer Facette sind die Auswahlen Alternativen: *Bug* und *Task* zeigt beides. Zwischen Facetten addieren sie sich: *Bug* plus *In Arbeit* plus *Lena* zeigt nur Lenas laufende Bugs. Der Knopf trägt einen Zähler, solange etwas aktiv ist, und **Zurücksetzen** räumt auf.
+**Filter** öffnet ein Popover mit fünf Facetten — **Status**, **Priorität**, **Zugewiesen**, **Projekt** und **Typ** — dazu einen Schalter **Archiviert**. Innerhalb einer Facette sind die Auswahlen Alternativen: *Bug* und *Task* zeigt beides. Zwischen Facetten addieren sie sich: *Bug* plus *In Arbeit* plus *Lena* zeigt nur Lenas laufende Bugs.
 
-**Gruppieren nach** teilt die Liste in beschriftete Abschnitte — nach Status, Priorität, zugewiesener Person, Projekt oder Typ. Vor dem Daily nach Person gruppiert, wird aus der Liste eine Agenda pro Kopf; nach Projekt gruppiert, eine Portfolio-Ansicht.
+![Das Filter-Popover mit geöffneter Facette „Zugewiesen“](/assets/img/shot-issues-filter.png)
+*Je eine Auswahl in __Status__ und __Zugewiesen__: Jeder Facetten-Chip trägt seinen eigenen Zähler, die Fußzeile sagt __2 aktiv__, und die Kopfzeile zählt, was übrig bleibt — 3 von 11 Aufgaben. Lange Facetten bekommen ein eigenes Suchfeld, und __Zurücksetzen__ in der Fußzeile leert alle Facetten auf einmal.*
+
+**Gruppieren nach** teilt die Liste in beschriftete Abschnitte. Vor dem Daily nach Person gruppiert, wird aus der Liste eine Agenda pro Kopf; nach Projekt gruppiert, eine Portfolio-Ansicht.
+
+![Das Menü „Gruppieren nach“ über der Vorgangsliste](/assets/img/shot-issues-groupby.png)
+*Ein Dropdown statt einer Knopfreihe, mit einem Haken an der geltenden Gruppierung. Der Knopf liest sich als __Gruppieren nach__, solange __Keine__ gilt, und übernimmt den Namen der Gruppierung, sobald du eine wählst.*
 
 **Sortieren** ordnet die gesamte Ergebnismenge, nicht nur die Zeilen, bis zu denen du gescrollt hast: neueste zuerst, älteste zuerst oder nach Änderungsdatum in beide Richtungen. Voreingestellt ist zuletzt bearbeitet zuerst.
 
-**Zeitraum** grenzt nach Datum ein — **Überfällig**, **Bis heute fällig**, **Heute**, **Diese Woche**, **Dieser Monat**, die letzten oder nächsten 7 und 30 Tage oder ein **Eigener Zeitraum…** aus dem Kalender. Er liest Daten so, wie du es tätest: Ein Vorgang mit Start *und* Fälligkeit passt, wenn seine Spanne das Fenster überlappt; einer mit nur einem der beiden passt, wenn dieses Datum im Fenster liegt; einer ohne beides fällt auf seine letzte Aktivität zurück, damit ungeplante Arbeit trotzdem auftaucht.
+**Zeitraum** grenzt nach Datum ein. Er liest Daten so, wie du es tätest: Ein Vorgang mit Start *und* Fälligkeit passt, wenn seine Spanne das Fenster überlappt; einer mit nur einem der beiden passt, wenn dieses Datum im Fenster liegt; einer ohne beides fällt auf seine letzte Aktivität zurück, damit ungeplante Arbeit trotzdem auftaucht.
+
+![Das Menü „Zeitraum“ über der Vorgangsliste](/assets/img/shot-issues-timerange.png)
+*Überfälliges und Heutiges oben, rollende Fenster in der Mitte, unten __Eigener Zeitraum…__ — diese letzte Zeile öffnet einen Kalender, in dem du das Fenster selbst setzt. Wie __Gruppieren nach__ benennt sich auch dieser Knopf nach dem gerade aktiven Zeitraum um.*
 
 !!! note "Filter halten für den Besuch, nicht für immer"
     Gespeicherte Ansichten gibt es noch nicht. Was du einstellst, bleibt, bis du die Seite verlässt; beim nächsten Mal öffnet die Liste ungefiltert. Für eine Ansicht, die du täglich brauchst, behalte den Link — siehe unten — oder baue sie als [Board](/de/guide-boards.html), das seine Konfiguration sehr wohl behält.
@@ -180,11 +193,10 @@ In der Web-App trägt die Adresszeile diesen Zuschnitt mit, ein Link, den du von
 
 ## Ergebnisse mitnehmen
 
-**Exportieren** schreibt die vollständige gefilterte Menge, nicht nur die Zeilen, die du hereingescrollt hast — die App blättert zuerst die ganze Ergebnismenge auf dem Server durch. Du hast die Wahl:
+**Exportieren** schreibt die vollständige gefilterte Menge, nicht nur die Zeilen, die du hereingescrollt hast — die App blättert zuerst die ganze Ergebnismenge auf dem Server durch.
 
-- **Als PDF exportieren** — eine druckbare Tabelle mit Name und Logo deiner Organisation.
-- **Als CSV exportieren** — für die Tabellenkalkulation.
-- **Als JSON exportieren** — für alles, was es wieder einlesen soll.
+![Das Export-Menü in der Werkzeugleiste der Vorgangsliste](/assets/img/shot-issues-export.png)
+*Drei Formate hinter der Pille __Exportieren__ rechts in der Werkzeugleiste: __Als PDF exportieren__ ist eine druckbare Tabelle mit Name und Logo deiner Organisation, __Als CSV exportieren__ ist für die Tabellenkalkulation, __Als JSON exportieren__ für alles, was es wieder einlesen soll.*
 
 Die Datei landet in deinem Downloads-Ordner, und die App nennt dir den verwendeten Dateinamen.
 

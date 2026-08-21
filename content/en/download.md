@@ -50,9 +50,10 @@ data, the same shortcuts, wherever you open it.
 </li>
 <li class="plat-card glass">
   <span class="plat-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg><strong>Linux</strong></span>
-  <span class="plat-status soon">Build it yourself</span>
-  <p>A native GTK 3 client. The Flatpak and AppImage recipes live in the repository and build from one command; a hosted channel is being decided.</p>
+  <span class="plat-status soon">In review</span>
+  <p>A native GTK 3 client, uploaded to the store as a strictly confined snap for amd64 and arm64 — but no revision is on a channel yet, so there is nothing to install and no store page to link. <code>snap info hinata</code> is the check; it errors while none is published. Until one is, the Flatpak and AppImage recipes in the repository build the same app.</p>
   <span class="plat-actions">
+    <a class="plat-link" href="/en/clients.html#hinata-on-linux">What the status is</a>
     <a class="plat-link" href="https://github.com/hinata-platform/hinata-app/tree/main/packaging/linux">Build it yourself</a>
   </span>
 </li>

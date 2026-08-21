@@ -101,15 +101,31 @@ mobile nav, the ⌘K palette and the attachment lightbox.
 
 Linux is a fully supported target, not a preview. The complete picture lives in
 `hinata-app/docs/LINUX.md` — read it before writing a Linux page. The facts below
-are the ones doc pages may state; do not invent beyond them, and do not publish a
-store or download URL, because none is final.
+are the ones doc pages may state; do not invent beyond them. **Do not link
+https://snapcraft.io/hinata**: a snap with no released revision has no public
+page, and that URL answers 404 today.
 
 - **What it is**: a native **GTK 3** desktop app — application id
   `com.ahmadre.hinata`, binary `hinata`, the same Flutter codebase as every other
   platform.
-- **Packaging**: a **Flatpak** (submitted to Flathub, in review) and an **AppImage**,
-  both built from the same `flutter build linux --release` bundle. The recipes live in
-  `packaging/linux/` in hinata-app.
+- **Packaging**: the intended channel is the **Snap Store** — a strictly confined
+  snap for amd64 and arm64. The name is registered and both architectures are
+  uploaded, but no revision is on a channel, so there is nothing to install and no
+  store page to link. Do not name a cause for the hold beyond "the store reviews a
+  revision before it can go on a channel": the session-bus `dbus` slot is *not* it
+  (snapd's base declaration installs a session-bus slot without a store override —
+  see the slot's comment in `snapcraft.yaml`). Write the state so it survives the
+  review clearing — point at `snap info hinata` as the check rather than asserting
+  a date, and note that a tagged build releases to **edge**, so the first working
+  install is `snap install hinata --edge` (`stable`, which a bare
+  `snap install hinata` reads, only on a deliberately submitted release). A **Flatpak**
+  manifest and an **AppImage** script live beside the snap recipe in
+  `packaging/linux/` and both still build; they are the build-it-yourself options,
+  not a channel. Neither is published anywhere — CI attaches the AppImage to a
+  workflow run, not to a release — so never tell a reader to download one. **Flathub is not a channel this app can use**: its submission
+  requirements (https://docs.flathub.org/docs/for-app-authors/requirements) exclude
+  applications whose content was produced with an LLM. State that plainly if a page
+  needs the reason, link that page and nothing else.
 - **Deep links work**: the desktop entry registers `x-scheme-handler/hinata`, and the
   app is a single-instance GTK application, so an SSO callback, an invite or a
   password-reset link reaches the window that is already open. There is no https

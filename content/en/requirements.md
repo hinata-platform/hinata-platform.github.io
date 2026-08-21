@@ -76,7 +76,7 @@ The [app](/en/clients.html) runs on:
 - **Web** (any modern browser),
 - **macOS** desktop,
 - **Windows** desktop,
-- **Linux** desktop — a native GTK 3 build, installed as a Flatpak, as an AppImage, or from a bundle you built yourself.
+- **Linux** desktop — a native GTK 3 build, installed as a Flatpak, an AppImage or a bundle you built yourself; a snap is uploaded to the Snap Store but not yet on a channel. [The apps](/en/clients.html#hinata-on-linux) has the current install status of the snap.
 
 Because the app is multi-server, users just need the URL of a running server; no per-user install configuration is required.
 
@@ -94,8 +94,8 @@ The Linux client links against the system's GTK, GStreamer and libsecret instead
 
 `gstreamer1.0-libav` is the one that looks optional and is not: voice comments are recorded as AAC on every platform, and libav carries the decoder for it. Without it a voice bubble loads and then refuses to play.
 
-!!! note "The Flatpak brings nearly all of this with it"
-    The Flatpak sits on the Freedesktop runtime, which already carries GTK, zenity, GStreamer including libav, libsecret and FFmpeg, and it builds PulseAudio's recording tools into the package itself. The keyring is the piece that still comes from the host — it belongs to the user's login session, not to the sandbox.
+!!! note "The packaged builds bring nearly all of this with them"
+    The Flatpak sits on the Freedesktop runtime, which already carries GTK, zenity, GStreamer including libav, libsecret and FFmpeg, and it builds PulseAudio's recording tools into the package itself. The snap sits on the GNOME platform snap and stages the rest — `gstreamer1.0-plugins-bad`, `gstreamer1.0-libav`, `pulseaudio-utils`, `ffmpeg` — into the package; it picks files through the desktop portal, so it needs no `zenity` either. The keyring is the piece that still comes from the host in both cases — it belongs to the user's login session, not to the sandbox. Under the snap it additionally needs `snap connect hinata:password-manager-service`, and recording needs `snap connect hinata:audio-record`.
 
 !!! info "Two things Linux does not do"
     There are **no push notifications**: `firebase_messaging` has no Linux implementation and there is no desktop push service to register with, so notifications arrive in the app and by e-mail. And there is **no webcam capture** — no camera implementation exists for Linux, so the app does not offer "take a photo" at all rather than failing when it is tapped. Attaching files that already exist works exactly as everywhere else.

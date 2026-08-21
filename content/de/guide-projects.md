@@ -77,11 +77,14 @@ Damit ist Archivieren der richtige Schritt für ein fertiges Projekt, ein abgesa
 
 ### Ein Projekt anlegen
 
-**Neues Projekt**, oben rechts, fragt nach einem **Projektnamen** und einem **Projektkürzel**, dazu optional eine Beschreibung, eine Farbe und eine Projektleitung. Neben dem Kürzelfeld sitzt ein Zauberstab, der dir eines aus dem Namen vorschlägt.
+**Neues Projekt**, oben rechts, ist die ganze Zeremonie.
 
-Das Kürzel muss in Großbuchstaben stehen, mit einem Buchstaben beginnen und zwischen zwei und zehn Zeichen aus Buchstaben und Ziffern lang sein. Außerdem muss es auf dem ganzen Server eindeutig sein — hat es jemand schon, bekommst du vor dem Speichern *„Dieser Schlüssel ist bereits vergeben.“* zu lesen.
+![Der Dialog „Neues Projekt“](/assets/img/shot-project-new.png)
+*Der Dialog „Neues Projekt“. Das Kürzel schreibt sich beim Tippen aus dem Namen — aus „Billing & Plans“ wurde BP, im Feld „Projektkürzel“ und im Symbol daneben — und Beschreibung, Projektleitung und Farbe sind der Rest. Die Zeile unten nennt den Workflow, mit dem das Projekt startet.*
 
-Das neue Projekt startet mit dem Standard-Workflow, und der Dialog sagt das auch: Workflow und Stichwörter passt du danach in den Projekteinstellungen an. Es besteht also kein Druck, alles in einem Durchgang richtig zu machen.
+Den Vorschlag darfst du überschreiben. Das Kürzel muss in Großbuchstaben stehen, mit einem Buchstaben beginnen, zwischen zwei und zehn Zeichen aus Buchstaben und Ziffern lang und auf dem ganzen Server eindeutig sein — hat es jemand schon, bekommst du vor dem Speichern *„Dieser Schlüssel ist bereits vergeben.“* zu lesen.
+
+Sonst ist hier nichts endgültig. Workflow und Stichwörter passt du danach in den Projekteinstellungen an; es besteht kein Druck, alles in einem Durchgang richtig zu machen.
 
 ## Teams — und warum du nicht alles siehst
 
@@ -104,7 +107,7 @@ Das ist die ganze Regel. Und sie wird bei jeder einzelnen Anfrage auf dem Server
 Ein Team ist eine Gruppe von Personen plus eine Menge von Projekten. Setz jemanden ins Team, gewähr dem Team ein Projekt — und diese Person kann darin arbeiten. Nimm das Projekt vom Team, und alle, die es nur über dieses Team erreicht haben, verlieren es leise wieder.
 
 ![Der Überblick eines Teams](/assets/img/shot-team.png)
-*Eine Teamseite: oben Name und Kürzel des Teams mit „Mitglieder hinzufügen“ und „Projekt hinzufügen“, darunter die Reiter Überblick / Mitglieder / Projekte / Einstellungen, die Kennzahlen für Mitglieder, Team-Admins und Projekte, die Liste der Projekte, die das Team gewährt, und ein Feed der letzten Aktivität.*
+*Eine Teamseite: oben Name und Kürzel des Teams mit „Mitglieder hinzufügen“ und „Projekt hinzufügen“, darunter die Reiter Überblick / Mitglieder / Projekte / Einstellungen, die Kennzahlen für Mitglieder, Team-Admins und Projekte, die Liste der Projekte, die das Team gewährt, und ein Feed der letzten Aktivität — hier die neu geschriebene Beschreibung sowie Amara Okafor, hinzugefügt und anschließend befördert.*
 
 Der Eintrag **Teams** in der Leiste listet die Teams, in denen du bist. Jede Karte zeigt das Kürzel, die Mitgliederzahl, ein paar Gesichter, wie viele Projekte das Team gewährt und — bei den Teams, in denen du tatsächlich bist — ein Abzeichen mit deiner eigenen Rolle darin: **Admin** oder **Mitglied**.
 
@@ -126,19 +129,21 @@ Innerhalb eines Teams gibt es genau zwei Rollen, und die App schreibt aus, was j
 
 ### Drei Stufen von Projektzugriff
 
-Wenn jemand zu einem Team hinzugefügt wird, wird der Projektzugriff zusammen mit der Rolle festgelegt:
+Wenn jemand zu einem Team hinzugefügt wird, wird der Projektzugriff zusammen mit der Rolle festgelegt.
 
-- **Alle Projekte** — die Person sieht jedes Projekt, das das Team gewährt, auch später hinzugefügte.
-- **Bestimmte Projekte** — sie sieht genau die, die du ankreuzt, und nichts anderes aus dem Bestand des Teams.
-- **Noch keine Projekte** — sie ist im Team, aber das Team öffnet ihr nichts. Nützlich, wenn du Leute jetzt aufnehmen und den Zugriff später klären willst.
+![Schritt zwei von „Mitglieder hinzufügen“](/assets/img/shot-team-add-members.png)
+*Schritt 2, „Zugriff“: die Rolle — „Mitglied“ oder „Team-Admin“ — und darunter die drei Stufen des Projektzugriffs. „Zurück“ führt zum Schritt „Personen“; „1 hinzufügen“ legt Person, Rolle und Zugriff in einem Rutsch fest.*
+
+**Alle Projekte** bleibt richtig, während das Team wächst: Später angehängte Projekte sind dabei, ohne dass jemand die Person noch einmal anfassen muss. **Bestimmte Projekte** ist genau das, was du ankreuzt, und nichts anderes aus dem Bestand des Teams. **Noch keine Projekte** setzt jemanden ins Team, ohne ihm etwas zu öffnen — nützlich, wenn du Leute jetzt aufnehmen und den Zugriff später klären willst.
 
 **Team-Admins sind die Ausnahme**: Sie sehen immer alles, was ihrem Team gehört, egal was die Zugriffseinstellung sagt. Genau das macht sie zu Admins.
 
-Personen hinzuzufügen läuft als zweistufiger Ablauf — erst **Personen** (suchen und auswählen), dann **Zugriff** (Rolle und Projekte) — du legst also beides in einem Durchgang fest, statt jemanden hinzuzufügen und dann nach den Berechtigungen zu suchen.
-
 ### Die Projekte, die einem Team gehören
 
-Der Reiter **Projekte** eines Teams ist der Ort, an dem das Gewähren tatsächlich passiert. **Projekt hinzufügen** bietet zwei Wege: **Bestehendes anhängen** greift ein Projekt, das es schon gibt, und übergibt es dem Team; **Neu erstellen** legt ein frisches Projekt an, das dem Team vom ersten Tag an gehört.
+Der Reiter **Projekte** eines Teams ist der Ort, an dem das Gewähren tatsächlich passiert.
+
+![Ein Projekt zu einem Team hinzufügen](/assets/img/shot-team-add-project.png)
+*„Projekt hinzufügen“, auf dem Reiter „Bestehendes anhängen“: jedes Projekt, das das Team noch nicht hat, je eine Zeile mit Kürzel, Name und Leitung, dazu ein Kästchen. „Mobile App“ ist hier angehakt, deshalb zählt der Bestätigen-Button mit — __1 anhängen__. „Neu erstellen“ daneben legt ein frisches Projekt an, das dem Team vom ersten Tag an gehört.*
 
 Ein Projekt aus einem Team zu entfernen ist das Spiegelbild, und die App ist vor dem Bestätigen ehrlich über die Folge: Mitglieder verlieren den Zugriff, den dieses Team gewährt hat. Erreichen sie das Projekt noch auf anderem Weg — als direktes Mitglied oder über ein zweites Team — behalten sie es. Hinata prüft jeden Weg, bevor es etwas wegnimmt.
 
@@ -210,8 +215,11 @@ Die Spalten, die ein Vorgang durchläuft, in ihrer Reihenfolge. Füg einen hinzu
 
 Jeder Status hat einen Schalter **Erledigt**, der ihn als Status markiert, der als *fertig* zählt. Dieser Schalter ist es, der Burndown-Diagramme, Fortschrittsringe und durchgestrichene Teilaufgaben die Wahrheit sagen lässt — es lohnt sich also, ihn richtig zu setzen. Ein Projekt braucht **mindestens zwei Status und mindestens einen erledigten**; der Editor lässt dich unter keines von beiden.
 
-!!! warning "Einen Status entfernen, in dem noch Vorgänge liegen"
-    Hinata lässt sie nicht im Regen stehen. Löschst du einen Status, in dem Vorgänge liegen, erscheint ein Dialog — *„Status hat noch Aufgaben“* — der dir sagt, wie viele es sind, und fragt, in welchen Status sie sollen. Erst wenn du gewählt hast, lässt sich der Status entfernen. Du kannst die Vorgänge auch vorher selbst verschieben, wenn du es bewusster machen möchtest.
+![Einen Workflow-Status entfernen, in dem noch Vorgänge liegen](/assets/img/shot-workflow-state-migrate.png)
+*Wer einen Status löscht, in dem noch Vorgänge liegen, bekommt „Status hat noch Aufgaben“: Der Dialog zählt sie, nennt den Status, in dem sie stehen, und bietet die übrigen Status als Ziel an. „Migrieren & entfernen“ bleibt inaktiv, bis eines gewählt ist.*
+
+!!! warning "Nichts bleibt im Regen stehen"
+    Ein Status lässt sich nicht entfernen, solange Vorgänge darin liegen. Du kannst diese Vorgänge auch vorher selbst verschieben, wenn du es bewusster machen möchtest.
 
 ### Speichern
 
@@ -229,12 +237,13 @@ Das ist fast immer das, was du willst, wenn ein Projekt endet. Es kostet nichts 
 
 Die **Gefahrenzone** ganz unten hat eine Schaltfläche: **Projekt löschen**. Das ist die eine wirklich unumkehrbare Aktion im Leben eines Projekts.
 
-!!! warning "Was Löschen tatsächlich mitnimmt"
-    Der Bestätigungsdialog listet den Schaden auf, bevor du weitermachen kannst: Die Boards und Sprints, die dem Projekt gehören, werden gelöscht; geteilte Boards funktionieren weiter, verlieren aber dieses Projekt; das Projekt wird von den Teams gelöst, die es gewährt haben; und seine Artikel in der Wissensdatenbank werden gelöscht.
+![Die Bestätigung zum Löschen eines Projekts](/assets/img/shot-project-delete.png)
+*Die Bestätigung listet den Schaden mit den echten Zahlen des Projekts auf, das du löschst — Boards und Sprints, die Teams, von denen es gelöst wird, die Wiki-Artikel — und fragt dann, was mit den Vorgängen passieren soll: löschen oder in ein anderes Projekt verschieben? „Löschen“ bleibt inaktiv, bis der Projektname eingetippt ist.*
 
-    Dann kommt die wichtige Frage — was passiert mit den Vorgängen? Du wählst entweder **Vorgänge löschen** (endgültig, samt Kommentaren und Dateien) oder **In ein anderes Projekt verschieben** (sie behalten alles und bekommen ein neues Zuhause). Zuletzt tippst du den Projektnamen zur Bestätigung ein.
+Ein Board, das mit anderen Projekten geteilt ist, überlebt das Löschen; es verliert nur dieses eine.
 
-    Wenn du löschst, weil das Projekt fertig ist, und nicht, weil es ein Versehen war: **archivier es stattdessen**.
+!!! warning "Archivieren, außer es war ein Versehen"
+    Löschen ist für ein Projekt, das es nie hätte geben sollen. Für eines, das einfach zu Ende ist: **archivier es**. Das kostet nichts, verliert nichts und lässt sich wieder einschalten.
 
 ## Wer was darf
 

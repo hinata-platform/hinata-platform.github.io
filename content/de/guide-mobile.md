@@ -25,21 +25,20 @@ Die Leiste am linken Rand des Desktop-Layouts ist weg. An ihrer Stelle:
 - **Ein separater runder Suchknopf**, abgesetzt von der Tab-Pille unten rechts.
   Er öffnet dieselbe Befehlspalette wie `⌘K` auf dem Desktop — tippen und direkt
   zu einem Vorgang, einem Projekt, einer Person oder einer Seite springen.
-- **Eine schmale obere Leiste** mit dem Seitentitel, der **Glocke** samt Punkt
-  für Ungelesenes und dem **Einstellungs**-Symbol.
+- **Eine schmale obere Leiste** mit Seitentitel, Glocke und Einstellungs-Symbol.
 
 ![Das Hinata-Dashboard auf dem Handy](/assets/img/shot-mobile-dashboard.png)
 *Home auf dem Handy. Oben Begrüßung und Sprint-Tag, darunter der aktive Sprint auf einer navyblauen Karte mit Fortschrittsring und „Zum Board“-Button, dann die Kennzahlen-Kacheln und „Fokus heute“. Die Vier-Tab-Glaspille und der runde Suchknopf schweben unten über dem Inhalt; Glocke und Einstellungen sitzen oben rechts.*
 
-**Mehr** öffnet ein Sheet mit allem, was die vier Tabs nicht abdecken: oben dein
-Name und dein Bild, darunter **Projekte**, **Teams**, **Beobachtet**, **Gantt**,
-**Stundenzettel**, **Berichte** und **Wissen**. Solange du auf einer dieser
-Seiten bist, bleibt „Mehr“ als aktiver Tab hervorgehoben — du weißt also immer,
-wo du bist.
+**Mehr** öffnet ein Sheet mit allem, was die vier Tabs nicht abdecken.
 
-Mitteilungen haben in diesem Sheet bewusst keinen Eintrag: Die Glocke ist ohnehin
-auf jedem Bildschirm, und eine zweite Tür in denselben Raum wäre nur eine weitere
-Zeile zum Überlesen.
+![Das Sheet „Mehr“, geöffnet über dem Dashboard auf dem Handy](/assets/img/shot-mobile-more-sheet.png)
+*Das Sheet „Mehr“: oben dein Name und dein Bild, darunter ein Raster mit sieben Zielen — „Projekte“, „Teams“, „Beobachtet“, „Gantt“, „Stundenzettel“, „Berichte“ und „Wissen“. „Mitteilungen“ ist nicht dabei.*
+
+Solange du auf einer dieser Seiten bist, bleibt „Mehr“ als aktiver Tab
+hervorgehoben — du weißt also immer, wo du bist. „Mitteilungen“ bekommt bewusst
+keinen eigenen Eintrag: Die Glocke ist ohnehin auf jedem Bildschirm, und eine
+zweite Tür in denselben Raum wäre nur eine weitere Zeile zum Überlesen.
 
 !!! tip "Inhalt scrollt hinter dem Glas, nicht unter einer Leiste"
     Sowohl die obere Leiste als auch die untere Pille sind durchscheinend und
@@ -87,19 +86,12 @@ Der Desktop zeigt Vorgänge als Tabelle. Ein Handy zeigt sie als Karten, denn
 eine Tabelle mit sechs Spalten auf einem 390-Punkt-Bildschirm ist eine Tabelle,
 die man nicht lesen kann.
 
-Jede Karte gibt dir in drei Zeilen: den Vorgangsschlüssel und die Priorität; das
-Typ-Symbol und den Titel (bis zu zwei Zeilen, plus ein Abzeichen, wenn es
-Untervorgänge gibt); und darunter den Workflow-Status, das Bild des Bearbeiters
-und — falls zutreffend — wie überfällig er ist.
-
 ![Die Vorgangsliste auf dem Handy](/assets/img/shot-mobile-issues.png)
 *Issues auf dem Handy. Die vier Ansichtssteuerungen — Gruppierung, Sortierung, Filter und Zeitraum — fallen oben zu einer zusammenhängenden Glasleiste zusammen, daneben der Export-Button. Jeder Vorgang ist eine Karte: Schlüssel und Priorität in der ersten Zeile, Typ und Titel in der zweiten, Status, Bearbeiter und Überfälligkeit in der dritten. Das amberfarbene „+“ erstellt einen neuen Vorgang.*
 
 Die vier Steuerungen, die auf dem Desktop als getrennte beschriftete Pillen
-sitzen — **Gruppierung**, **Sortierung**, **Filter** und **Zeitraum** — fallen zu
-einer einzigen segmentierten Glasleiste zusammen, damit sie als ein Cluster
-gelesen werden statt als vier verstreute Kästchen. Der **Export**-Button behält
-seinen eigenen Platz rechts daneben.
+sitzen, fallen zu einer einzigen segmentierten Glasleiste zusammen, damit sie als
+ein Cluster gelesen werden statt als vier verstreute Kästchen.
 
 Der amberfarbene **+**-Button erstellt einen Vorgang. Drücke lange auf eine
 Karte, um die Auswahl zu starten, und bearbeite dann die ganze Auswahl auf einmal.
@@ -121,7 +113,7 @@ Beschriftungen die Breite auffraßen, die sich diese Zeile mit den anderen
 Steuerungen teilt.
 
 ![Ein Sprint-Backlog auf dem Handy](/assets/img/shot-mobile-board.png)
-*Die Backlog-Ansicht eines Scrum-Boards auf dem Handy. Oben links die drei Ansichtssymbole, gegenüber der Filter-Button; darunter „Sprint erstellen“ und ein Filterfeld. Der Sprint-Kopf zeigt Zeitraum, Anzahl der Vorgänge, Kapazität — hier 44 von 40 Punkten, deshalb ist der Balken rot — und einen „Sprint abschließen“-Button. Jede Zeile hat ein rundes Kästchen, um mehrere auf einmal auszuwählen.*
+*Die Backlog-Ansicht eines Scrum-Boards auf dem Handy. Oben links die drei Ansichtssymbole, gegenüber der Filter-Button; darunter „Sprint erstellen“ und ein Filterfeld. Der Sprint-Kopf zeigt Zeitraum, Anzahl der Vorgänge, Kapazität — hier 42 von 40 Punkten, deshalb ist der Balken rot — und einen „Sprint abschließen“-Button. Jede Zeile hat ein rundes Kästchen, um mehrere auf einmal auszuwählen.*
 
 !!! warning "Karten lassen sich auf einem Touchscreen nicht ziehen"
     Eine Karte zwischen Spalten zu ziehen, ist eine Maus-Geste. Auf dem Handy
@@ -132,8 +124,12 @@ Steuerungen teilt.
     Verschiebe einen Vorgang stattdessen, indem du ihn **öffnest und seinen
     Status änderst** — ein Tipp mehr, dafür geht nie etwas daneben. Für die
     Sprintplanung setzt du die **runden Häkchen** in den gewünschten Zeilen und
-    nutzt **Verschieben nach…** in der Leiste, die unten erscheint; das erledigt
-    zehn Vorgänge schneller, als das Ziehen einen erledigt hätte.
+    nutzt **Verschieben nach…** in der Leiste, die unten erscheint. Sie listet die
+    Sprints dieses Boards und **Backlog** — und erledigt zehn Vorgänge schneller,
+    als das Ziehen einen erledigt hätte.
+
+![Zwei Backlog-Zeilen ausgewählt auf dem Handy, mit Sammelleiste über der Tab-Pille](/assets/img/shot-mobile-board-select.png)
+*Zwei Zeilen sind angehakt. Die ausgewählten Zeilen bekommen einen amberfarbenen Rahmen, und über der Tab-Pille dockt eine Leiste „2 ausgewählt“ an — mit der Auswahl „Verschieben nach…“ und einem ✕, das die Auswahl wieder aufhebt.*
 
 Der **Vorgang-hinzufügen**-Button am Fuß jeder Spalte, der auf dem Desktop bis
 zum Hovern verborgen bleibt, ist hier immer sichtbar — es gibt kein Hovern, mit
@@ -141,30 +137,28 @@ dem man ihn hervorholen könnte.
 
 ## Arbeiten in einem Vorgang
 
-Ein Vorgang auf dem Handy bekommt den ganzen Bildschirm: oben ein Zurück-Pfeil,
-der Vorgangsschlüssel, sein Status und das **⋯**-Menü, darunter Titel,
-Beschreibung und jedes Panel — Untervorgänge, verknüpfte Vorgänge, Anhänge,
-Details — in einem Scroll gestapelt.
+Ein Vorgang auf dem Handy bekommt den ganzen Bildschirm: Jedes Panel, das auf dem
+Desktop neben der Beschreibung sitzt — Untervorgänge, verknüpfte Vorgänge,
+Anhänge, Details —, stapelt sich hier in einen Scroll.
 
 ![Ein geöffneter Vorgang auf dem Handy](/assets/img/shot-mobile-issue.png)
 *Ein Vorgang auf dem Handy. Die Beschreibung wird vollständig dargestellt — Überschriften, Listen, ein Codeblock, ein Zitat und eine Tabelle —, darunter folgt das Panel „Sub-Tasks“, und der Kommentar-Composer bleibt unten angedockt, mit „+“-Button, dem Feld „Kommentar…“ und dem Mikrofon.*
 
 Der **Composer bleibt beim Lesen unten angedockt**, sodass Antworten nie heißt,
-erst ans Ende zu scrollen. Er hat drei Teile: das **+** für Anhänge und
-Formatierung, das Textfeld und das **Mikrofon**. Sobald du tippst, wird aus dem
-Mikrofon der amberfarbene Senden-Button.
+erst ans Ende zu scrollen. Sobald du tippst, wird aus dem Mikrofon der
+amberfarbene Senden-Button.
 
 ## Ein Foto anhängen
 
-Tippe im Composer auf **+** oder im Anhänge-Panel auf **Dateien hinzufügen** —
-auf dem Handy bekommst du dann ein Auswahl-Sheet, das es auf dem Desktop nicht
-gibt:
+Zwei Bedienelemente, zwei verschiedene Menüs.
 
-- **Fotomediathek** — Fotos *oder* Videos auswählen, auch mehrere auf einmal.
-- **Foto aufnehmen** — die Kamera, für ein neues Foto.
-- **Video aufnehmen** — die Kamera, für einen neuen Clip.
-- **Datei auswählen** — der System-Dokumentenauswähler für PDFs, Dokumente und
-  Archive.
+![Das Plus-Menü des Composers auf dem Handy, geöffnet](/assets/img/shot-mobile-composer-attach.png)
+*Das „+“ neben dem Kommentarfeld öffnet vier Zeilen: „Foto/Video aufnehmen“, „Foto- und Videogalerie“, „Anhang“ und „Textformatierung“ — letzteres formatiert, was du gerade schreibst, statt etwas anzuhängen.*
+
+**Dateien hinzufügen** im Anhänge-Panel öffnet stattdessen das Auswahl-Sheet des
+Systems: **Fotomediathek** für mehrere Fotos oder Videos auf einmal,
+**Foto aufnehmen** und **Video aufnehmen** für die Kamera und
+**Datei auswählen** für PDFs, Dokumente und Archive.
 
 Das ist der Unterschied, der in der Praxis am meisten bringt. Ein Fehler, den du
 fotografieren kannst, ist ein halb gemeldeter Fehler: Mach das Bild an der
@@ -231,8 +225,12 @@ Das heißt: Eine App kann mehrere bedienen — Arbeit, Verein, Testinstanz. Jede
 Server behält seine **eigene Anmeldung** auf dem Gerät; sich von einem
 abzumelden, rührt die anderen nicht an.
 
-Öffne **Einstellungen → Server verwalten**, um alle zu sehen. Das Sheet zeigt
-jeden gespeicherten Server mit Live-Status und Ping und lässt dich:
+Öffne **Einstellungen → Server verwalten**, um alle zu sehen.
+
+![Das Server-Sheet auf dem Handy mit zwei gespeicherten Servern](/assets/img/shot-mobile-servers.png)
+*Das Sheet „Server“. Jeder gespeicherte Server wird beim Öffnen geprüft, deshalb meldet eine Zeile ihre Laufzeit in Millisekunden und die andere „Offline“; der Haken markiert den genutzten. „Bearbeiten“ oben macht aus den Zeilen Umbenennen- und Entfernen-Bedienelemente.*
+
+Von dort aus kannst du:
 
 - **Wechseln** — die ganze App stellt um, samt Organisationsname und Logo des
   neuen Servers.

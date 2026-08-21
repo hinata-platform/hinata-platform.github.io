@@ -22,7 +22,7 @@ Wann was: die **Gantt-Seite**, wenn du das ganze Projekt willst, auch Arbeit, di
 ## Was du da vor dir hast
 
 ![Die Hinata-Zeitachse](/assets/img/shot-gantt.png)
-*Die Seite „Zeitachse“. Links eine fixierte Spalte mit den Vorgängen — Typ, Schlüssel und Titel. Oben der Monat mit seinen Tagesziffern, heute (der 20.) blau eingekreist, dazu eine blaue Linie quer durchs Diagramm. Unten rechts die schwebende Steuerung: Verknüpfungen, Heute, Woche und Monat. Das Diagramm öffnet immer zentriert auf heute — Balken außerhalb des sichtbaren Ausschnitts liegen daneben, bis du scrollst oder auf Monat umschaltest.*
+*Die Seite „Zeitachse“. Links eine fixierte Spalte mit den Vorgängen — Typ, Schlüssel und Titel. Oben der Monat mit seinen Tagesziffern, heute (der 21.) blau eingekreist, dazu eine blaue Linie quer durchs Diagramm. Meilensteine sind Rauten; das rote Paar in der Mitte ist ein Terminkonflikt. Unten rechts die schwebende Steuerung: Verknüpfungen, Heute, Woche und Monat.*
 
 Vier Teile, jeder mit einer Aufgabe:
 
@@ -54,12 +54,10 @@ Ein Vorgang ohne Daten steht nicht im Diagramm. Das ist kein Fehler; es heißt, 
 
 ### Die Daten setzen
 
-Öffne den Vorgang und such die Karte **Timeline**. Sie hat zwei Zeilen:
+Öffne den Vorgang und such die Karte **Timeline**. Das **Startdatum** ist der erste Tag, den die Arbeit abdeckt, das **Fälligkeitsdatum** der letzte, einschließlich.
 
-- **Startdatum** — der erste Tag, den die Arbeit abdeckt.
-- **Fälligkeitsdatum** — der letzte Tag, einschließlich.
-
-Tippe eine der Zeilen an, um ein Datum zu wählen. Ist eines gesetzt, löscht ein kleines **×** daneben es wieder.
+![Der Datumsauswähler, geöffnet aus der Timeline-Karte eines Vorgangs](/assets/img/shot-issue-dates.png)
+*Ein Tipp auf die Zeile „Startdatum“ öffnet einen Monatskalender: heute eingekreist, das aktuelle Startdatum des Vorgangs ausgefüllt, „Abbrechen“ lässt das Datum, wie es war. Das kleine × auf der Zeile selbst — hier hinter dem Dialog — löscht das Datum sofort, ohne diesen Auswähler zu öffnen; ziel also auf die Beschriftung statt auf die Mitte der Zeile.*
 
 Das geht direkt aus dem Diagramm: Balken lange drücken (oder den Titel in der linken Spalte anklicken), und der Vorgang öffnet sich über der Zeitachse. Datum setzen, wieder schließen — das Diagramm wird neu gezeichnet, mit Scrollposition und Zoom genau dort, wo du sie verlassen hast.
 
@@ -108,17 +106,21 @@ Nimm sie für die Fixpunkte, an denen ein Plan hängt: ein Launch, eine Übergab
 
 Eine **Abhängigkeit** ist ein Vorgang, der einen anderen blockiert: Der zweite kann nicht beginnen, bevor der erste fertig ist. Im Diagramm ist das ein durchgezogener Verbinder aus der rechten Kante des Blockierers, mit einer Pfeilspitze in die linke Kante des blockierten Vorgangs.
 
-Zum Anlegen öffnest du den Vorgang und gehst zum Abschnitt **Verknüpfte Vorgänge**:
+Zum Anlegen öffnest du den Vorgang und gehst zum Abschnitt **Verknüpfte Vorgänge**.
 
-1. Wähle **Vorgang hinzufügen**.
-2. Wähle die Verknüpfungsart aus der Liste. **wird blockiert von** und **blockiert** sind die beiden, die einen Terminplan einschränken.
-3. Such die Vorgänge des Projekts nach Schlüssel oder Titel, wähle einen (oder mehrere) und bestätige mit **Verknüpfen**.
+![Das Verknüpfungsfeld an einem Vorgang](/assets/img/shot-issue-link-composer.png)
+*„Vorgang hinzufügen“ öffnet unter den bestehenden Verknüpfungen eine Zeile: links die Verknüpfungsart, rechts ein Suchfeld. „capacity“ trifft auch Titel, nicht nur Schlüssel, und listet HIN-9, HIN-19 und HIN-12 unter „Aktuelle Vorgänge“. „Verknüpfen“ bestätigt, „Abbrechen“ bricht ab.*
+
+**wird blockiert von** und **blockiert** sind die beiden Arten, die einen Terminplan einschränken; die übrigen stehen weiter unten. Du kannst vor dem Bestätigen mehrere Vorgänge wählen.
 
 Die Verknüpfung erscheint sofort an beiden Vorgängen — der andere zeigt dieselbe Beziehung aus seiner Sicht formuliert — und der Verbinder erscheint auf der Zeitachse.
 
 ### Jede Beziehung — und was das Diagramm damit macht
 
 Nur eine der sieben Verknüpfungsarten sagt etwas über *Reihenfolge*. Der Rest sagt, wie Vorgänge zusammengehören — am Vorgang nützlich, auf einem Kalender meist Rauschen. Deshalb zeichnet die Zeitachse sie als blasse Striche und lässt sie ausgeschaltet, bis du sie einschaltest.
+
+![Die Auswahlliste der Verknüpfungsarten](/assets/img/shot-issue-link-types.png)
+*Die Liste der Verknüpfungsarten. Beide Richtungen einer Art sind eigene Einträge — „wird blockiert von“ und „blockiert“, „wird geklont von“ und „klont“ —, weil du eine Verknüpfung immer von dem Vorgang aus formulierst, den du offen hast. Die Liste scrollt; „aufgeteilt aus“ und „aufgeteilt in“ liegen darunter.*
 
 | Verknüpfungsart | Liest sich als | Auf der Zeitachse |
 | --- | --- | --- |
@@ -140,15 +142,10 @@ Die Richtung zählt bei allen außer *hängt zusammen mit*, das sich von beiden 
 
 ## Auswählen, was gezeichnet wird
 
-Die Schaltfläche **Verknüpfungen** auf der schwebenden Steuerung öffnet die Ansichtsoptionen. Drei Schalter, jeder sofort wirksam:
+Die Schaltfläche **Verknüpfungen** auf der schwebenden Steuerung öffnet die Ansichtsoptionen.
 
-| Schalter | Standard | Was gezeichnet wird |
-| --- | --- | --- |
-| **Abhängigkeiten** | An | Die blockierenden Verknüpfungen — die, die den Terminplan wirklich einschränken |
-| **Weitere Verknüpfungen** | Aus | Alle anderen Beziehungen, als blasse Striche |
-| **Kritischer Pfad** | Aus | Betonung der längsten Kette von Abhängigkeiten |
-
-Jede Zeile nennt dir, wie viele Verknüpfungen dieser Art das Diagramm überhaupt enthält — du siehst also sofort, ob ein Einschalten etwas ändern würde; „0 blockierende Verknüpfungen in diesem Diagramm“ ist für sich schon eine Antwort. Darunter stehen eine Legende für die vier Linienarten und, falls vorhanden, ein roter Balken mit der Zahl der Terminkonflikte.
+![Das Panel „Verknüpfungen“ der Zeitachse](/assets/img/shot-gantt-links.png)
+*„Abhängigkeiten“ an, „Weitere Verknüpfungen“ aus, „Kritischer Pfad“ aus — drei Schalter, jeder sofort wirksam. Jede Zeile nennt, wie viel dieses Diagramm überhaupt enthält, 4 blockierende gegen 5 weitere Verknüpfungen; du siehst also vorher, ob ein Einschalten etwas ändert, und „0 blockierende Verknüpfungen in diesem Diagramm“ ist für sich schon eine Antwort. Darunter der rote Konfliktbalken und die Legende der Linienarten.*
 
 Auf breiten Bildschirmen öffnet sich das Panel als Popover neben der Schaltfläche, auf dem Handy fährt es von unten hoch. Es gibt nichts zu bestätigen — jeder Schalter wirkt beim Umlegen.
 
@@ -159,20 +156,19 @@ Auf breiten Bildschirmen öffnet sich das Panel als Popover neben der Schaltflä
 
 Ein **Terminkonflikt** ist eine Abhängigkeit, deren Daten ihr widersprechen: Der blockierte Vorgang soll an oder vor dem Tag beginnen, an dem sein Blockierer endet.
 
-Konkret — *HIN-9 Datenbank migrieren* läuft Montag bis Donnerstag, und *HIN-12 App umstellen* ist als **wird blockiert von** HIN-9 markiert, beginnt aber am Dienstag. Der Plan sagt, HIN-12 wartet auf HIN-9; der Kalender sagt, er beginnt drei Tage zu früh. Beides kann nicht stimmen — und es ist genau der Widerspruch, der jedes Status-Meeting überlebt, bis ihn jemand aufzeichnet.
+Es ist genau der Widerspruch, der jedes Status-Meeting überlebt, bis ihn jemand aufzeichnet — deshalb wird die Zeitachse laut: Ein leiser Konflikt ist ein verpasster Termin drei Wochen später.
 
-Die Zeitachse wird deshalb laut, denn ein leiser Konflikt ist ein verpasster Termin drei Wochen später:
-
-- Der Verbinder zwischen beiden Vorgängen wird **rot**.
-- Der Balken des blockierten Vorgangs bekommt eine **rote Umrandung**.
-- Neben seinem Titel in der Vorgangsspalte erscheint ein **Warndreieck**, mit der Erklärung beim Darüberfahren.
-- Das Verknüpfungs-Panel zeigt eine rote Zahl aller Konflikte im Diagramm.
+![Ein Terminkonflikt auf der Zeitachse](/assets/img/shot-gantt-conflict.png)
+*HIN-7 wird von HIN-6 blockiert und beginnt, bevor HIN-6 endet. Vier Signale sagen das gleichzeitig: der rote gestrichelte Verbinder, die rote Umrandung des HIN-7-Balkens, das Warndreieck neben HIN-7 in der fixierten Vorgangsspalte und der Tooltip beim Darüberfahren — „wird blockiert von HIN-6 · Beginnt, bevor der blockierende Vorgang abgeschlossen ist“. Das Verknüpfungs-Panel zählt denselben Konflikt.*
 
 Es gibt nur zwei ehrliche Auswege, und Hinata nimmt dir bewusst keinen davon ab: die Daten so verschieben, dass der blockierte Vorgang nach seinem Blockierer beginnt — oder entscheiden, dass die Abhängigkeit gar keine war, und die Verknüpfung entfernen. Den Vorgang von jemandem still umzuplanen wäre der dritte Weg, und es ist der, der Vertrauen kostet.
 
 ## Der kritische Pfad
 
-Schalte **Kritischer Pfad** ein, und die Zeitachse hebt die längste Kette blockierender Abhängigkeiten im Projekt hervor — in Tagen gemessen, vom ersten Vorgang der Kette bis zum letzten. Alles auf dieser Kette trägt einen bernsteinfarbenen Ring.
+Schalte **Kritischer Pfad** ein, und die Zeitachse hebt die längste Kette blockierender Abhängigkeiten im Projekt hervor — in Tagen gemessen, vom ersten Vorgang der Kette bis zum letzten.
+
+![Der kritische Pfad auf der Zeitachse](/assets/img/shot-gantt-critical-path.png)
+*Dasselbe Diagramm mit eingeschaltetem kritischem Pfad: Die Verbinder entlang HIN-4 → HIN-2 → HIN-5 → HIN-6 → HIN-7 → HIN-8 werden dicker und bernsteinfarben, während jede Verknüpfung abseits dieser Kette dünn und grau bleibt.*
 
 Was dieser Ring praktisch heißt: **Diese Vorgänge haben keinen Puffer.** Rutscht einer davon um einen Tag, rutscht das Ende der ganzen Kette um einen Tag, weil nichts das abfängt. Vorgänge abseits des kritischen Pfads haben Luft; die darauf nicht. Es ist die kürzeste Antwort auf „wo sollten die zusätzlichen Hände hin?“.
 

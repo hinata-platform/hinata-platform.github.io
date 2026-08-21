@@ -42,9 +42,10 @@ Die App ist überall dieselbe. Nichts auf dieser Seite gilt nur für den Desktop
 
 Es gibt keine eine Adresse, bei der sich alle anmelden. Jede Organisation betreibt ihren eigenen Hinata-Server, deshalb muss die App zuerst wissen, welcher deiner ist — vorher kann sie dir gar nichts zeigen.
 
-Darum ist der allererste Bildschirm **Mit deinem Server verbinden**. Trag die Adresse unter **Server-URL** ein und drücke **Verbinden**.
+![Mit deinem Server verbinden](/assets/img/shot-connect-server.png)
+*Der allererste Bildschirm nach der Installation: die Wortmarke hinata, ein Feld „Server-URL“, vorbelegt mit https://, und die Schaltfläche „Verbinden“. Mehr steht nicht darauf — kein Konto zur Auswahl, nichts zum Überspringen.*
 
-Die App fragt diese Adresse dann, wer sie ist. Sie macht erst weiter, wenn der Server antwortet und sich als Hinata-Server ausweist. Bis dahin bleibst du genau da, wo du bist.
+Die App fragt diese Adresse, wer sie ist. Sie macht erst weiter, wenn der Server antwortet und sich als Hinata-Server ausweist. Bis dahin bleibst du genau da, wo du bist.
 
 Das ist Absicht. Eine App, die rät oder still auf irgendeinen Standard zurückfällt, wäre eine App, die die Arbeit deiner Organisation irgendwohin schicken könnte, wo sie nicht hingehört. Hinata hält lieber an und fragt nach.
 
@@ -62,9 +63,12 @@ Dann steht da *„Verbindung zu diesem Server fehlgeschlagen. Bitte URL prüfen.
 
 ### Mehr als ein Server
 
-Hinata merkt sich jeden Server, mit dem du dich verbunden hast, und hält die Anmeldungen getrennt. Das zählt, wenn du mit einem Kunden arbeitest, der sein eigenes Hinata betreibt, oder wenn deine Firma neben dem echten noch einen Testserver hat.
+Hinata merkt sich jeden Server, mit dem du dich verbunden hast, und hält die Anmeldungen getrennt. Das zählt, wenn du mit einem Kunden arbeitest, der sein eigenes Hinata betreibt, oder wenn deine Firma neben dem echten noch einen Testserver hat. Gespeicherte Server erscheinen unter dem Verbindungsformular, du springst also schon vor dem Anmelden dazwischen hin und her — und aus der App heraus zeigt **Einstellungen → Server verwalten** dieselbe Liste.
 
-Gespeicherte Server erscheinen unter dem Verbindungsformular, du springst also mit einem Tipp dazwischen hin und her. Später, aus der App heraus, zeigt **Einstellungen → Server verwalten** dieselbe Liste mit einer laufenden Erreichbarkeitsprüfung — ob jeder Server online ist, wie schnell er antwortet, ob die Verbindung gesichert ist — und lässt dich Server hinzufügen, umbenennen, wechseln oder vergessen.
+![Die Serververwaltung](/assets/img/shot-server-manager.png)
+*„Server verwalten“: eine Zeile pro gespeichertem Server, mit dem Abzeichen „Eigener“ oder „Cloud“, einem grünen Punkt und der Antwortzeit in Millisekunden, wenn er erreichbar ist, und einem roten „Offline“, wenn nicht. Der Haken markiert den Server, mit dem diese App gerade verbunden ist; „Server hinzufügen“ sitzt unten im Sheet.*
+
+Die Erreichbarkeitsprüfung läuft, während das Sheet offen ist — eine Offline-Zeile heißt also: der Server, nicht die App.
 
 !!! warning "Einen Server zu vergessen löscht seine Anmeldung"
     Wenn du einen Server aus der Liste entfernst, werden auch die gespeicherten Zugangsdaten *auf diesem Gerät* gelöscht. Dein Konto auf dem Server bleibt unangetastet — du musst dich beim nächsten Mal nur wieder anmelden.
@@ -73,9 +77,10 @@ Gespeicherte Server erscheinen unter dem Verbindungsformular, du springst also m
 
 Sobald der Server antwortet, bekommst du seinen Anmeldebildschirm. Was darauf steht, hängt davon ab, wie deine Administration den Server eingerichtet hat — nicht jede Option unten wird bei dir dabei sein.
 
-### Mit Benutzername und Passwort
+![Der Anmeldebildschirm](/assets/img/shot-sign-in.png)
+*Ein Anmeldebildschirm mit allem eingeschaltet: „E-Mail oder Benutzername“, „Passwort“, „Passwort vergessen?“, „Anmelden“, eine Schaltfläche „Weiter mit …“ für den Single-Sign-on-Anbieter des Servers und darunter „Konto erstellen“. Der Chip oben auf der Karte nennt den Server, bei dem du dich anmeldest — und wechselt zu einem anderen.*
 
-Trag **E-Mail oder Benutzername** und **Passwort** ein und drücke **Anmelden**.
+### Mit Benutzername und Passwort
 
 Wenn du das Passwort mehrmals hintereinander vertippst, pausiert dich der Server eine Weile und sagt *„Zu viele Fehlversuche. Bitte später erneut versuchen.“* Das ist ein Schutz gegen Brute-Force-Angriffe, keine Strafe, und er löst sich nach ein paar Minuten von selbst auf.
 
@@ -87,7 +92,7 @@ Ein Wiederherstellungscode funktioniert hier ebenfalls — einer von denen, die 
 
 ### Mit Single Sign-on
 
-Nutzt deine Organisation Single Sign-on, zeigt der Bildschirm eine oder mehrere Schaltflächen **Weiter mit …** mit dem Namen eures Identitätsanbieters. Drück eine davon, dein Browser öffnet sich, du meldest dich so an, wie du es überall sonst tust, und landest angemeldet wieder in Hinata.
+Drück **Weiter mit …**, dein Browser öffnet sich, du meldest dich so an, wie du es überall sonst tust, und landest angemeldet wieder in Hinata. Die Schaltfläche trägt den Namen eures Identitätsanbieters, es gibt also nichts zu raten.
 
 Manche Server schalten Passwörter komplett ab und machen Single Sign-on zum einzigen Weg hinein. Dann sagt der Anmeldebildschirm das offen, statt dir ein Passwortfeld zu zeigen, das nicht funktionieren kann.
 
@@ -172,18 +177,22 @@ Home beantwortet genau eine Frage: *Was sollte ich heute tun?* Von oben nach unt
 
 **Anpassen**, oben rechts, verwandelt das Dashboard in einen Editor.
 
-- **Hero-Board** wählt, welches Board die große Karte bekommt. Lass es auf *Automatisch*, dann folgt es dem aktiven Sprint.
-- **Kacheln** blendet jede Karte einzeln ein oder aus. Wenn ein Team-Ranking nicht zu eurer Arbeitsweise passt, schalt es ab.
-- **Dashboard-Daten** und **Team-Ranking** grenzen die Zahlen auf bestimmte Projekte oder Teams ein, statt auf alles, was du sehen kannst — nützlich, sobald du in mehr als zwei oder drei Dingen drinsteckst.
+![Das Dashboard im Bearbeitungsmodus](/assets/img/shot-dashboard-customize.png)
+*Der Bearbeitungsmodus: über den Karten erscheinen drei Auswahlfelder — „Hero-Board“ auf „Automatisch (aktiver Sprint)“, „Dashboard-Daten“ auf „Alle Projekte“, „Team-Ranking“ auf „Alle Teams“ — jede Karte bekommt ein Auge zum Ausblenden, und aus „Anpassen“ ist „Fertig“ geworden.*
+
+Auf *Automatisch* folgt die große Karte dem laufenden Sprint; zeigst du stattdessen auf ein Board, bleibt sie dort. Die beiden Auswahlfelder für den Datenbereich grenzen die Zahlen auf bestimmte Projekte oder Teams ein, statt auf alles, was du sehen kannst — das zählt, sobald du in mehr als zwei oder drei Dingen drinsteckst. Und eine Karte, die nicht zu eurer Arbeitsweise passt — meist das Team-Ranking — darf einfach verschwinden.
 
 Drück **Fertig**, wenn es passt. Das Layout wird an deinem Konto gespeichert, nicht am Gerät — es wartet also auch auf deinem Handy auf dich.
 
 ### Auf dem Handy oder in einem schmalen Fenster
 
-Dieselbe App, umsortiert statt reduziert. Die Leiste wird zu einer schwebenden Glasleiste am unteren Rand — **Home**, **Issues**, **Board**, **Mehr** — mit einer Suchschaltfläche daneben, und unter **Mehr** liegt alles aus der Gruppe „Plan“.
+Dieselbe App, umsortiert statt reduziert.
 
 ![Home auf dem Handy](/assets/img/shot-mobile-dashboard.png)
-*Derselbe Home-Bildschirm auf dem Handy: Sprint-Karte, Kennzahlen und Fokus heute, unten die schwebende Tab-Leiste mit ihrer abgesetzten Suchschaltfläche.*
+*Derselbe Home-Bildschirm auf dem Handy: Sprint-Karte, Kennzahlen und „Fokus heute“, unten die schwebende Glasleiste — Home, Issues, Board, Mehr — mit ihrer abgesetzten Suchschaltfläche.*
+
+![Das Sheet „Mehr“ auf dem Handy](/assets/img/shot-mobile-more-sheet.png)
+*„Mehr“ öffnet ein Sheet über der Seite: oben dein Konto, darunter die ganze Gruppe „Plan“ als Kacheln — Projekte, Teams, Beobachtet, Gantt, Stundenzettel, Berichte, Wissen.*
 
 Auf dem Handy fehlt nichts; es sind dieselben Bildschirme und dieselben Daten, für einen Daumen gelegt. [Auf dem Handy](/de/guide-mobile.html) beschreibt die Unterschiede, die es wirklich gibt.
 
@@ -191,12 +200,14 @@ Auf dem Handy fehlt nichts; es sind dieselben Bildschirme und dieselben Daten, f
 
 Öffne **Einstellungen** unten in der Leiste und such die Karte **Darstellung & App**.
 
-- **Sprache** stellt die gesamte Oberfläche zwischen **English (UK)** und **Deutsch (Deutschland)** um. Dein allererster Start nimmt das, was zu deinem Gerät passt; danach bleibt deine Wahl bestehen. Sie reist außerdem mit jeder Anfrage an den Server mit — Meldungen und Fehler, die *vom* Server kommen, treffen also ebenfalls in deiner Sprache ein.
-- **Darstellung** sind drei Schaltflächen: dem **System** folgen, immer **Hell**, immer **Dunkel**. Der honigbernsteinfarbene Akzent ist in beiden bewusst derselbe Farbton, es verschiebt sich also nichts, wenn die Sonne untergeht.
+![Die Sprachauswahl](/assets/img/shot-language-picker.png)
+*Die Karte „Darstellung & App“ auf dem Handy, mit geöffneter Sprachauswahl: zwei Einträge, und ein Haken an dem, der gerade gilt. Darüber nennt die Karte den Server, mit dem diese App verbunden ist, und trägt „Server verwalten“.*
 
-Wenn du die Einstellungen nicht öffnen magst: Die ⌘K-Palette kennt *Hell / Dunkel umschalten* als Befehl.
+Dein allererster Start nimmt die Sprache, die zu deinem Gerät passt; danach bleibt deine Wahl bestehen. Sie reist außerdem mit jeder Anfrage an den Server mit — Meldungen und Fehler, die *vom* Server kommen, treffen also ebenfalls in deiner Sprache ein.
 
-Dieselbe Karte zeigt, mit welchem Server du **verbunden** bist, und trägt die Schaltfläche **Server verwalten**. Der Rest der Einstellungen — Profil, E-Mail-Adresse, Passwort, Zwei-Faktor, aktive Sitzungen und deine Daten — steht unter [Dein Konto](/de/guide-account.html).
+**Darstellung**, unter der Sprachzeile, sind drei Schaltflächen: dem **System** folgen, immer **Hell**, immer **Dunkel**. Der honigbernsteinfarbene Akzent ist in beiden bewusst derselbe Farbton, es verschiebt sich also nichts, wenn die Sonne untergeht. Und wenn du die Einstellungen gar nicht öffnen magst: Die ⌘K-Palette kennt *Hell / Dunkel umschalten* als Befehl.
+
+Der Rest der Einstellungen — Profil, E-Mail-Adresse, Passwort, Zwei-Faktor, aktive Sitzungen und deine Daten — steht unter [Dein Konto](/de/guide-account.html).
 
 ## Deine ersten fünf Minuten
 

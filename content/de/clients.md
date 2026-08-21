@@ -163,8 +163,13 @@ macOS und an WNS für Windows. Unter Linux gibt es keinen solchen Dienst, an den
 sich weiterleiten ließe, deshalb erhält der Linux-Build gar kein Push;
 Benachrichtigungen erreichen dich stattdessen in der App und per E-Mail.
 
-Unter Linux gibt es auch keinen Store-Weg: Derselbe Build erscheint als
-**Flatpak** und als **AppImage**, beide aus einem einzigen Bundle erzeugt.
+Unter Linux führt der Weg über den **Snap Store**: Dorthin wird der Build als
+strikt isoliertes Snap für amd64 und arm64 hochgeladen. Hochgeladen heißt noch
+nicht installierbar — bislang liegt keine Revision auf einem Kanal, es gibt also
+nichts zu installieren und auch keine Store-Seite; der Abschnitt weiter unten
+sagt, wie der Stand ist. Das **Flatpak**-Manifest und das **AppImage**-Skript
+liegen weiterhin daneben im Repository — dieselbe App, nur von dir gebaut statt
+von einem Store.
 
 !!! note "Open Source, GPL-3.0"
     Die App ist unter **GPL-3.0** lizenziert. Es steht dir frei, sie zu bauen, zu
@@ -183,18 +188,56 @@ Drucken und PDF-Export verhalten sich genau wie überall sonst.
 
 | Format | Was du bekommst |
 | --- | --- |
-| **Flatpak** | Das per Sandbox isolierte Desktop-Paket, bei Flathub eingereicht und in Prüfung. Bis es dort landet, baust und installierst du es mit `flatpak-builder` aus dem Manifest in `packaging/linux/flatpak/`. |
-| **AppImage** | Eine portable Datei: herunterladen, `chmod +x`, starten. Sie linkt bewusst gegen GTK, GStreamer und libsecret deines Systems und behält so dein Desktop-Theme und die Codecs deiner Distribution, statt eigene Kopien einzufrieren. |
+| **Snap** | Der vorgesehene Kanal — nur liegt dort noch nichts, `snap install hinata` funktioniert heute also nicht. Lies vorher den Hinweis unten. |
+| **Flatpak** | Baust und installierst du selbst: mit `flatpak-builder` aus dem Manifest in `packaging/linux/flatpak/`. Es liegt auf keinem gehosteten Flatpak-Remote, und nach Flathub geht es auch nicht — siehe unten. |
+| **AppImage** | Eine portable Datei, die du selbst baust: `packaging/linux/appimage/build-appimage.sh` macht aus einem Release-Bundle eine, dann `chmod +x` und starten. Veröffentlicht ist sie nirgends — die CI hängt sie an einen Workflow-Lauf, nicht an ein Release. Sie linkt bewusst gegen GTK, GStreamer und libsecret deines Systems und behält so dein Desktop-Theme und die Codecs deiner Distribution, statt eigene Kopien einzufrieren. |
 | **Aus dem Quellcode** | `flutter build linux --release` erzeugt ein verschiebbares Bundle (die Binary `hinata` plus `data/` und `lib/`), das du installieren kannst, wo du möchtest. |
 
-Beide Pakete entstehen aus **demselben Bundle**, und beide Rezepte liegen in
-`packaging/linux/` in
-[hinata-app](https://github.com/hinata-platform/hinata-app). Release-Builds
-entstehen auf einem fest gepinnten `ubuntu-22.04`-Runner, wodurch die
-glibc-Untergrenze des Bundles eine Entscheidung ist und kein Zufall: Ein
-Flutter-Bundle ist dynamisch gegen die glibc gelinkt, mit der es gebaut wurde,
-und glibc ist nur vorwärtskompatibel — ein neuerer Runner würde also still und
-leise eine Binary erzeugen, die auf älteren Distributionen nicht startet.
+!!! warning "Aus dem Store gibt es noch nichts zu installieren"
+    Der Name ist registriert und beide Architekturen sind hochgeladen, aber
+    keine Revision liegt auf einem Kanal — und ein Snap ohne veröffentlichte
+    Revision hat überhaupt keine öffentliche Seite. `snapcraft.io/hinata`
+    antwortet mit 404, die Store-API ebenso. Deshalb verlinkt diese Seite sie
+    nicht.
+
+    Hochladen ist nicht Veröffentlichen: Der Store prüft eine Revision, bevor
+    sie auf einen Kanal darf, und bis das durch ist, findet `snap` nichts. Der
+    Release-Workflow rechnet damit und behandelt eine zurückgehaltene Revision
+    als zurückgehalten statt als Fehler — sie erreicht ihren Kanal von selbst,
+    sobald die Prüfung fertig ist.
+
+    Verlass dich auf `snap info hinata` statt auf diese Seite. Es nennt die
+    Kanäle, auf denen eine Revision liegt, und meldet *no snap found*, solange
+    keine da ist. Taucht eine auf, achte auf den Kanal: Ein getaggter Build geht
+    nach **edge**, und nach `stable` — das, was ein blankes
+    `snap install hinata` liest — nur, wenn ein Release bewusst eingereicht
+    wird. Der erste Befehl, der funktionieren wird, ist also
+    `snap install hinata --edge`. Bis dahin bauen die Rezepte unten dieselbe
+    Anwendung.
+
+Alle drei Rezepte liegen in `packaging/linux/` in
+[hinata-app](https://github.com/hinata-platform/hinata-app), und alle drei
+installieren denselben Desktop-Eintrag, dasselbe Icon und dieselbe
+AppStream-Metainfo. Flatpak und AppImage paketieren ein vorher gebautes Bundle;
+das Snap führt den Flutter-Build selbst aus, denn ein Snapcraft-Build-Schritt
+hat Netzwerk — und sowohl die Flutter-Engine-Artefakte als auch pdfium werden
+erst während eines Builds geladen. `flatpak-builder` lässt seine Module ganz
+ohne Netzwerk laufen; deshalb muss man dem Flatpak ein fertiges Bundle
+hinlegen.
+
+AppImage und rohes Bundle entstehen auf einem fest gepinnten
+`ubuntu-22.04`-Runner, wodurch ihre glibc-Untergrenze eine Entscheidung ist und
+kein Zufall: Ein Flutter-Bundle ist dynamisch gegen die glibc gelinkt, mit der
+es gebaut wurde, und glibc ist nur vorwärtskompatibel — ein neuerer Runner würde
+also still und leise eine Binary erzeugen, die auf älteren Distributionen nicht
+startet. Das Snap braucht diesen Pin nicht: Seine libc kommt aus seiner
+`core24`-Base, nicht von der Maschine, die es gebaut hat.
+
+!!! note "Warum nicht Flathub"
+    Die [Anforderungen an Einreichungen](https://docs.flathub.org/docs/for-app-authors/requirements)
+    von Flathub schließen Anwendungen aus, deren Inhalte mit einem LLM erzeugt
+    wurden — auf Hinata trifft das zu. Das Manifest bleibt trotzdem im
+    Repository, weil es baut und installiert: Es ist ein Rezept, kein Kanal.
 
 So baust du sie selbst unter Debian oder Ubuntu:
 
@@ -265,10 +308,19 @@ sudo apt install \
   gstreamer1.0-plugins-bad gstreamer1.0-libav
 ```
 
-!!! tip "Das Flatpak bringt das meiste davon mit"
+!!! tip "Die fertigen Pakete bringen das meiste davon mit"
     Die Flatpak-Runtime enthält GTK, `zenity`, FFmpeg und die GStreamer-Plugins
     bereits. Eine Flatpak-Installation braucht auf dem Host also nur noch einen
-    Schlüsselbund, damit du angemeldet bleibst.
+    Schlüsselbund, damit du angemeldet bleibst. Das Snap bringt FFmpeg,
+    PulseAudios Aufnahme-Werkzeuge und die zusätzlichen GStreamer-Plugins selbst
+    mit und wählt Dateien über das Desktop-Portal statt über `zenity`. Zwei
+    seiner Berechtigungen verbinden sich nicht von allein, weil sie an
+    Schlüsselbund und Mikrofon reichen:
+
+    ```bash
+    sudo snap connect hinata:password-manager-service   # angemeldet bleiben
+    sudo snap connect hinata:audio-record               # Sprachkommentare aufnehmen
+    ```
 
 ## Wie es weitergeht
 

@@ -18,14 +18,16 @@ Drei Ebenen, und nicht mehr, denn ein tieferes Ablagesystem pflegt am Ende niema
 - Jeder Artikel kann **Unterseiten** haben, und die wieder eigene. Hier wohnt die eigentliche Struktur: oben ein Handbuch, darunter seine Kapitel.
 
 ![Die Startseite der Wissensdatenbank: Suche, eine Karte pro Bereich und die zuletzt aktualisierten Artikel](/assets/img/shot-knowledge.png)
-
-*Die Startseite der Wissensdatenbank. Jede Karte ist ein Bereich mit eigener Farbe, Beschreibung und Artikelzahl; die gestrichelte Kachel legt einen neuen an. Darunter zeigt **Kürzlich aktualisiert**, woran das Team geschrieben hat — mit Bereich und Autor in jeder Zeile.*
+*Die Startseite der Wissensdatenbank. Jede Karte ist ein Bereich mit eigener Farbe, Beschreibung und Artikelzahl; die Kachel __Neuer Bereich__ daneben legt einen weiteren an. Darunter zeigt __Kürzlich aktualisiert__, woran das Team geschrieben hat — mit Bereich und Autor in jeder Zeile.*
 
 Die Startseite zeigt jeden Bereich als Karte, dazu eine Liste **Kürzlich aktualisiert** — praktisch der Weg, auf dem die meisten eine Seite von letzter Woche wiederfinden.
 
 ### Einen Bereich anlegen
 
-Klicke die gestrichelte Kachel **Neuer Bereich**. Gib ihm einen **Namen**, optional eine **Beschreibung** dessen, was darin lebt, wähle ein **Symbol** und eine **Farbe**, dann **Bereich erstellen**. Er erscheint sofort im Raster, leer und bereit.
+Klicke die Kachel **Neuer Bereich**.
+
+![Der Dialog „Neuer Bereich“ mit ausgefülltem Namen und Beschreibung](/assets/img/shot-kb-new-space.png)
+*Name, Beschreibung, ein Symbolraster und eine Farbreihe in einem Dialog. __Bereich erstellen__ bleibt tot, bis der Bereich einen Namen hat; danach erscheint er sofort im Raster, leer und bereit.*
 
 Halte die Zahl der Bereiche klein und ihren Zuschnitt weit. Ein Bereich pro Team oder pro Disziplin funktioniert; einer pro Projekt meistens nicht, denn die meiste Dokumentation handelt von einem *Thema*, das jedes einzelne Projekt überlebt.
 
@@ -36,14 +38,15 @@ Halte die Zahl der Bereiche klein und ihren Zuschnitt weit. Ein Bereich pro Team
 
 Drücke **Neuer Artikel** — auf der Startseite der Wissensdatenbank oder in der Artikelansicht, wo der Knopf neben **Alle Bereiche** sitzt.
 
-Du bekommst ein Titelfeld, eine Bereichsauswahl und den Textkörper. Tippe zuerst den Titel: Er wird zur Überschrift der Seite, zur Zeile im Baum und zu dem, wonach später alle suchen — ein Moment Nachdenken lohnt sich also. *„Release-Checkliste & Versions-Gating“* ist auffindbar. *„Notizen“* nicht.
+![Der Artikeleditor bei einer neuen Seite, Titel getippt, Text noch leer](/assets/img/shot-kb-new-article.png)
+*Der Titel steht über der Werkzeugleiste; die Bereichsauswahl daneben entscheidet, auf welchem Regal der Artikel landet, und lässt sich jederzeit ändern. Der Knopf rechts liest sich bei einer neuen Seite als __Veröffentlichen__ und bei einer, die du bearbeitest, als __Speichern__.*
 
-Die Bereichsauswahl in der Kopfzeile entscheidet, auf welchem Regal der Artikel landet. Du kannst das jederzeit ändern.
+Tippe zuerst den Titel: Er wird zur Überschrift der Seite, zur Zeile im Baum und zu dem, wonach später alle suchen — ein Moment Nachdenken lohnt sich also. *„Release-Checkliste & Versions-Gating“* ist auffindbar. *„Notizen“* nicht.
 
-Bist du fertig, drücke **Veröffentlichen** (bei einem neuen Artikel) oder **Speichern** (bei einem, den du bearbeitest). Es gibt keinen separaten Entwurfsstatus, den du dir merken müsstest — ein Artikel ist geschrieben oder eben nicht.
+Es gibt keinen separaten Entwurfsstatus, den du dir merken müsstest — ein Artikel ist geschrieben oder eben nicht.
 
 !!! tip "Fang ihn gleich als Unterseite an"
-    Gehört der Artikel unter einen bestehenden, erstelle ihn nicht von der Startseite aus. Öffne den Elternartikel im Baum, nimm sein Zeilenmenü und wähle **Unterseite hinzufügen**. Er entsteht an der richtigen Stelle, im richtigen Bereich, ganz ohne Aufräumen danach.
+    Gehört der Artikel unter einen bestehenden, erstelle ihn nicht von der Startseite aus. Fahr im Baum über die Zeile des Elternartikels und drück das **+**, das dort erscheint — **Unterseite hinzufügen**. Er entsteht an der richtigen Stelle, im richtigen Bereich, ganz ohne Aufräumen danach.
 
 ## Eine erste Seite von Anfang bis Ende
 
@@ -75,7 +78,10 @@ Der Textkörper ist ein Rich-Text-Editor: Was du tippst, ist das, wie die Seite 
 
 Ein paar davon lohnen eine eigene Erwähnung.
 
-**Textstil ist ein Dropdown, keine Knopfreihe**, weil eine Zeile immer nur eines davon sein kann. Es zeigt, worin der Cursor gerade steckt — *Gemischt*, wenn deine Auswahl mehrere Arten umspannt.
+**Textstil ist ein Dropdown, keine Knopfreihe**, weil eine Zeile immer nur eines davon sein kann.
+
+![Das Dropdown „Textstil“ offen über dem Artikeleditor](/assets/img/shot-kb-text-style.png)
+*Die neun Formen, die eine Zeile annehmen kann, mit einem Haken an der, in der der Cursor steckt. Der Knopf trägt denselben Namen — und liest sich als __Gemischt__, wenn eine Auswahl mehrere davon umspannt.*
 
 **Die vier farbigen Boxen** — Infobox, Warnung, Notiz und Tipp — sind der schnellste Weg zu einer überfliegbaren Seite. Steck den einen Satz, der jemandem einen Ausfall erspart, in eine Warnung, und er wird gelesen; lass ihn im vierten Absatz stehen, und er wird es nicht.
 
@@ -113,7 +119,10 @@ Alles andere wohnt auf der Werkzeugleiste. Für die farbigen Boxen und für **@*
 
 ## Smart-Links: @ ist die wichtige Taste
 
-Tippe irgendwo im Artikel **@** — oder drück den **@**-Knopf in der Werkzeugleiste — und über dem Glas öffnet sich eine Auswahl, die **Vorgänge, Artikel und Personen** gleichzeitig durchsucht. Wählst du etwas aus, wird ein *Chip* eingefügt: kein Text, der wie eine Referenz aussieht, sondern ein lebendiger Link.
+Tippe irgendwo im Artikel **@** — oder drück den **@**-Knopf am Ende der Werkzeugleiste. Wählst du einen Vorschlag, wird ein *Chip* eingefügt: kein Text, der wie eine Referenz aussieht, sondern ein lebendiger Link.
+
+![Die Auswahl „Erwähnen / verlinken (@)“ über dem Artikeleditor](/assets/img/shot-kb-mention-picker.png)
+*Eine Auswahl über Vorgänge, Artikel und Personen hinweg, die sich beim Tippen verengt. Jede Zeile nennt ihre Art über ein Symbol und trägt darunter den Vorgangsschlüssel oder den Bereich des Artikels. Zwei Buchstaben erreichen hier alle drei Arten: `ok` findet vier Vorgänge, zwei Artikel und Amara Okafor.*
 
 Genau darin liegt der ganze Unterschied:
 
@@ -133,11 +142,13 @@ Weil Chips Links sind, kann Hinata die Verbindung von beiden Enden zeigen — un
 - Am Fuß eines Artikels listet **Verknüpfte Aufgaben** jeden Vorgang, den die Seite erwähnt, als Karte mit aktuellem Status. Ein Runbook zeigt dir den Stand der Arbeit, die es beschreibt, ohne dass du nachsehen gehst.
 - An einem Vorgang listet **Dokumentiert in** jeden Artikel, der ihn verlinkt. Wer kalt auf einem Ticket landet, findet die Seite, die das dahinterliegende Subsystem erklärt.
 
+![Ein Vorgangs-Chip im Artikeltext mit geöffneter Vorschaukarte](/assets/img/shot-kb-chip-preview.png)
+*Zwei Chips in einem gewöhnlichen Satz — ein Vorgang und eine Person. Fährst du über den Vorgangs-Chip, öffnet sich eine Vorschaukarte mit Status, Titel, zugewiesener Person, Priorität und Label des Vorgangs, unten __Aufgabe öffnen__. Derselbe Vorgang steht am Fuß der Seite noch einmal unter __Verknüpfte Aufgaben__, ohne dass ihn dort jemand eingetragen hätte.*
+
 Keine der beiden Listen wird von Hand gepflegt. Beide leiten sich aus den Chips im Text ab, sie können also gar nicht veralten — schreib den Link einmal, und die Beziehung existiert in beide Richtungen, dauerhaft.
 
 ![Ein Artikel mit Seitenbaum links, Text in der Mitte sowie Mitwirkenden und Details rechts](/assets/img/shot-knowledge-article.png)
-
-*Die Artikelansicht: links Bereichsauswahl und Seitenbaum, in der Mitte der Artikel mit Bereichs-Chip, Zeile zur Urheberschaft, Labels und Text — beachte die Infobox und den Personen-Chip im Fließtext — und rechts Mitwirkende und Details. **Bearbeiten** und der Löschknopf sitzen neben der Autorenzeile.*
+*Die Artikelansicht: links Bereichsauswahl und Seitenbaum, in der Mitte der Artikel mit Bereichs-Chip, Zeile zur Urheberschaft, Labels und Text — beachte die Infobox und den Personen-Chip im Fließtext — und rechts Mitwirkende und Details. __Bearbeiten__ und der Löschknopf sitzen neben der Autorenzeile.*
 
 ## Sich in einem Artikel zurechtfinden
 
@@ -171,9 +182,13 @@ Lesen ist auf dem Handy angenehm; eine lange Seite zu schreiben ist es auf keine
 Der Baum ist keine Dekoration — er ist die Bearbeitungsfläche für Struktur:
 
 - **Zieh eine Seite auf eine andere**, um sie darunter zu hängen. Ihre eigenen Unterseiten reisen mit; du musst nie einen Teilbaum von Hand wieder anhängen.
-- **Lass sie auf der Wurzelzone** oben im Baum fallen, um sie zurück auf die oberste Ebene zu holen. Das Zeilenmenü bietet **Auf oberste Ebene verschieben** für dasselbe ohne Ziehen.
-- Im Zeilenmenü stecken außerdem **Unterseite hinzufügen** und **Löschen**.
+- **Lass sie auf der Wurzelzone** oben im Baum fallen, um sie zurück auf die oberste Ebene zu holen.
 - Um eine Seite in einen *anderen Bereich* zu verschieben, öffne sie, drücke **Bearbeiten** und ändere den Bereich in der Kopfzeile.
+
+Fährst du über eine Zeile, erscheinen an ihrem rechten Rand zwei Bedienelemente: ein **+** für **Unterseite hinzufügen** und darunter das Menü.
+
+![Das Zeilenmenü einer Seite im Wissensbaum](/assets/img/shot-kb-tree-menu.png)
+*Das Menü der Zeile selbst. __Auf oberste Ebene verschieben__ löst die Seite aus ihrem Elternartikel, ganz ohne Ziehen, und __Löschen__ ist der einzige Weg, eine Seite aus dem Baum zu entfernen — hat sie noch Unterseiten, liest sich dieselbe Zeile als __Löschen (zuerst Unterseiten verschieben)__ und tut nichts.*
 
 !!! warning "Löschen ist endgültig, und Elternseiten sind geschützt"
     **Löschen** fragt nach und nennt den Artikel beim Namen, denn es gibt kein Rückgängig und keinen Papierkorb. Eine Seite mit Unterseiten lässt sich überhaupt nicht löschen, solange die nicht woandershin verschoben sind — das Menü sagt das, statt eine Aktion anzubieten, die Waisen hinterließe.

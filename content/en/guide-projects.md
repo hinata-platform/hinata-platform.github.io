@@ -77,11 +77,14 @@ That makes archiving the right move for a finished project, a cancelled one, or 
 
 ### Creating a project
 
-**New project**, at the top right, asks for a **Project name** and a **Project key**, plus an optional description, a colour and a project lead. There's a wand next to the key field that suggests one from the name.
+**New project**, at the top right, is the whole ceremony.
 
-The key must be uppercase, start with a letter, and be between two and ten characters of letters and digits. It also has to be unique across the whole server — if someone already took it you'll be told *"That key is already taken."* before you can save.
+![The New project dialog](/assets/img/shot-project-new.png)
+*The New project dialog. The key writes itself from the name as you type — "Billing & Plans" became BP, in the field and in the glyph beside it — and description, lead and colour are the rest. The line at the foot names the workflow the project will start with.*
 
-The new project starts with the default workflow, and the dialog says so: you can tune the workflow and the labels afterwards in project settings, so there's no pressure to get everything right in one go.
+You can overwrite the suggested key. It must be uppercase, start with a letter, and be between two and ten characters of letters and digits, and it has to be unique across the whole server — if someone already took it you'll be told *"That key is already taken."* before you can save.
+
+Nothing else here is final. The workflow and the labels are edited afterwards in project settings, so there is no pressure to get everything right in one go.
 
 ## Teams, and why you can't see everything
 
@@ -104,7 +107,7 @@ That's the whole rule. And it is enforced by the server on every single request,
 A team is a group of people plus a set of projects. Put someone on the team, grant the team a project, and that person can work in it. Take the project off the team, and everyone who reached it only through that team quietly loses it.
 
 ![A team's overview](/assets/img/shot-team.png)
-*A team page: the team's name and key at the top with Add members and Add project, the Overview / Members / Projects / Settings tabs, headline counts for members, Team-Admins and projects, the list of projects the team grants, and a recent-activity feed.*
+*A team page: the team's name and key at the top with Add members and Add project, the Overview / Members / Projects / Settings tabs, headline counts for members, Team-Admins and projects, the list of projects the team grants, and a recent-activity feed — here the description being rewritten, and Amara Okafor being added and then promoted.*
 
 The **Teams** entry in the rail lists the teams you belong to, each card showing its key, its member count, a few faces, how many projects it grants, and — on the teams you're actually on — a badge with your own role in it, **Admin** or **Member**.
 
@@ -126,19 +129,21 @@ Inside a team there are exactly two roles, and the app spells out what each mean
 
 ### Three levels of project access
 
-When someone is added to a team, their project access is set alongside their role:
+When someone is added to a team, their project access is set alongside their role.
 
-- **All projects** — they see every project the team grants, including ones added later.
-- **Specific projects** — they see exactly the ones you tick, and nothing else the team happens to own.
-- **No projects yet** — they're on the team, but the team opens nothing for them. Useful when you want to add people now and sort out access afterwards.
+![Step two of Add members](/assets/img/shot-team-add-members.png)
+*Step 2, Access: the role — Member or Team-Admin — with the three levels of project access under it. Back returns to the People step; Add 1 commits the person, the role and the access in one go.*
+
+**All projects** keeps working as the team grows: projects attached later are included without anyone revisiting that person. **Specific projects** is exactly what you tick and nothing else the team happens to own. **No projects yet** puts someone on the team with nothing open to them — useful when you want to add people now and sort out access afterwards.
 
 **Team-Admins are the exception**: they always see everything their team owns, whatever the access setting says. That's what makes them admins.
 
-Adding people runs as a two-step flow — **People** first (search and pick), then **Access** (role and projects) — so you set both in one pass instead of adding someone and then hunting for their permissions.
-
 ### The projects a team owns
 
-The **Projects** tab of a team is where the granting actually happens. **Add project** offers two routes: **Attach existing** picks a project that already exists and hands it to the team, and **Create new** spins up a fresh project that belongs to the team from its first day.
+The **Projects** tab of a team is where the granting actually happens.
+
+![Adding a project to a team](/assets/img/shot-team-add-project.png)
+*Add a project, on the Attach existing tab: every project the team does not already have, one row each with key, name and lead, and a tick box. Mobile App is ticked here, so the confirm button counts it — __Attach 1__. Create new, beside it, spins up a fresh project that belongs to the team from its first day.*
 
 Removing a project from a team is the mirror image, and the app is honest about the consequence before you confirm: members lose the access this team granted them. If they also reach the project some other way — as a direct member, or through a second team — they keep it. Hinata checks every route before it takes anything away.
 
@@ -210,8 +215,11 @@ The columns an issue moves through, in order. Add one, rename one, drag them int
 
 Each state has a **Resolved** toggle, which marks it as a state that counts as *finished*. That toggle is what makes burndown charts, progress rings and struck-through sub-tasks tell the truth, so it's worth getting right. A project needs **at least two states and at least one resolved state**; the editor won't let you go below either.
 
-!!! warning "Removing a state that still holds issues"
-    Hinata won't strand them. If you delete a state with issues in it, a dialog appears — *"Status still has issues"* — telling you how many, and asking which state to move them to. Only once you've chosen can the state be removed. You can also move the issues yourself beforehand, if you'd rather do it deliberately.
+![Removing a workflow state that still holds issues](/assets/img/shot-workflow-state-migrate.png)
+*Deleting a state that still holds issues opens "Status still has issues": it counts them, names the state they are sitting in, and offers the remaining states as a destination. Migrate & remove stays inactive until one is picked.*
+
+!!! warning "Nothing gets stranded"
+    A state cannot be removed while issues are in it. You can also move those issues yourself beforehand, if you'd rather do it deliberately.
 
 ### Saving
 
@@ -229,12 +237,13 @@ This is almost always what you want when a project ends. It costs nothing and it
 
 The **Danger zone** at the bottom has one button: **Delete project**. This is the one genuinely irreversible action in a project's life.
 
-!!! warning "What deleting actually takes with it"
-    The confirmation dialog itemises the damage before you can proceed: the boards and sprints the project owns are deleted, shared boards keep working but lose this project, the project is detached from the teams that granted it, and its knowledge-base articles are deleted.
+![The delete-project confirmation](/assets/img/shot-project-delete.png)
+*The confirmation itemises the damage with the real counts from the project you are deleting — boards and sprints, the teams it will be detached from, the wiki articles — and then asks what happens to its issues: delete them, or move them to another project. Delete stays inactive until the project's name has been typed in.*
 
-    Then it asks the important question — what happens to the issues? You choose either **Delete the issues** (permanently, with their comments and files) or **Move them to another project** (they keep everything and get a new home). Finally you type the project's name to confirm.
+A board shared with other projects survives the deletion; it only loses this one.
 
-    If you're deleting because the project is finished rather than because it was a mistake, **archive it instead**.
+!!! warning "Archive instead, unless it was a mistake"
+    Deleting is for a project that should never have existed. For one that simply ended, **archive it**: it costs nothing, loses nothing, and can be turned back on.
 
 ## Who can do what
 

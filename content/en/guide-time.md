@@ -22,51 +22,57 @@ and due dates, the spent-versus-estimate line, and the most recent work entries.
 On a wide window it sits in the right-hand column under Details; on a phone it is
 further down the page. In the top-right corner of that card is **Log time**.
 
-Tap it and a small glass sheet slides up with four things to fill in:
+Tap it and a small glass sheet slides up.
 
-| Field | What to put in it |
-| --- | --- |
-| **Hours** / **Minutes** | How long you worked. Two separate boxes; they start at `1` and `0`, so a plain hour is one tap away. |
-| **Activity type** | What kind of work it was — Development, Testing, Documentation, Design, Meeting or Support. |
-| **Date** | The day the work happened. Defaults to today. |
-| **Note (optional)** | A sentence about what you actually did. |
+![The Log time sheet](/assets/img/shot-time-log.png)
+*Log time, filled in: Hours and Minutes as two separate boxes — 1 and 30 here — Activity type set to Testing, a Date that starts on today, and an optional Note. Only the duration is required; the note is the field worth the extra five seconds.*
 
 Press **Save** and the entry is recorded immediately. The issue's spent total
 goes up, the entry appears in the list at the bottom of the Timeline card, and
 your timesheet for that week gains the minutes.
 
 !!! tip "The two-box duration is faster than it looks"
-    Leave **Hours** at `1` and type `30` into **Minutes** for an hour and a half.
-    For a 20-minute job, clear **Hours** to `0` and put `20` in **Minutes**. The
-    boxes only accept digits, so there is no format to remember and nothing to
-    get wrong.
+    The boxes start at `1` and `0`, so a plain hour is one tap away. Leave
+    **Hours** at `1` and type `30` into **Minutes** for an hour and a half; for a
+    20-minute job, clear **Hours** to `0` and put `20` in **Minutes**. They only
+    accept digits, so there is no format to remember.
+
+The same sheet on a phone:
+
+![The Log time sheet on a phone](/assets/img/shot-mobile-time-log.png)
+*On a phone the sheet slides up from the bottom edge and the fields run the full width, with the issue dimmed away behind it. Hours and Minutes stay side by side, so a duration is typed exactly as it is on a desktop.*
 
 ### What you can and cannot enter
 
 - **A single entry must be at least one minute and at most 24 hours.** If you
   genuinely worked a marathon session across midnight, log it as two entries on
   the two days it belongs to — which is more accurate anyway.
-- **You can back-date up to a year.** The date picker opens on today and lets you
-  go back 365 days.
-- **You cannot log time in the future.** Today is the last selectable day. Time
+- **You can back-date up to a year**, and you cannot log time in the future. Time
   tracking records what happened, not what you intend to happen; that is what
   the [start and due dates](/en/guide-timeline.html) are for.
 - **Entries add up.** Logging twice against the same issue on the same day is
   perfectly normal and gives you two lines instead of one bigger one.
 
+![The date picker in the Log time sheet](/assets/img/shot-time-date.png)
+*Both date rules are drawn rather than enforced on Save: the picker opens on today, today is the last day you can select, and everything after it is greyed out. Going back, it stops 365 days ago.*
+
 ### The entry list
 
-Underneath the spent line, the Timeline card lists the most recent entries on
-that issue — the eight newest, each as *duration · activity type* with the date
-on the right. These are everyone's entries, not just yours, which is exactly
-what you want when you are trying to work out why a task that was supposed to
-take a day has eaten three.
+![The Timeline card of an issue with its work entries](/assets/img/shot-time-entries.png)
+*The Timeline card in full: start and due dates, the spent-of-estimate line, then the eight newest work entries — duration · activity type, with the date on the right.*
+
+These are everyone's entries, not just yours, which is exactly what you want
+when you are trying to work out why a task that was supposed to take a day has
+eaten three.
 
 ## Pick the right activity type
 
 The six activity types are fixed, and they are fixed on purpose. A short, shared
 list means that six months from now "Testing" still means the same thing to
 everyone, and the numbers can actually be added together.
+
+![The Activity type menu](/assets/img/shot-time-activity.png)
+*The Activity type menu, open. Six entries and no "other" — the list is the entire vocabulary, which is what lets a report add anything up.*
 
 - **Development** — writing and changing the thing itself.
 - **Testing** — verifying it, manually or by building tests.
@@ -87,11 +93,8 @@ learned something useful — but only if everyone logs meetings as meetings.
 
 ## Estimate, spent, and the difference between them
 
-The Timeline card carries one line that quietly does a lot of work:
-
-```text
-Spent 3h 30m of 8h
-```
+The Timeline card carries one line that quietly does a lot of work — the
+`Spent 9h 30m of 10h` in [the entry list](#the-entry-list) above.
 
 The first number is the sum of every work entry on this issue, from everybody.
 The second is the issue's **time estimate** — the original guess at how long the
@@ -111,7 +114,7 @@ Where an issue carries a time estimate, it shows up in two more places:
     Fibonacci cards — sets **story points**, a relative size used for planning
     and velocity. That is a different field from the time estimate, and it is
     the one most teams use day to day. If nobody has set a time estimate on an
-    issue, the spent line simply reads `Spent 3h 30m of —`, and that is fine.
+    issue, the spent line simply reads `Spent 9h 30m of —`, and that is fine.
     Your logged time is still counted everywhere else.
 
 ## The weekly timesheet
@@ -120,22 +123,17 @@ Where an issue carries a time estimate, it shows up in two more places:
 been logged. On a phone it lives behind the **More** tab.
 
 ![The Hinata timesheet, showing one week and its navigation](/assets/img/shot-timesheet.png)
-*The Timesheet page. The week you are looking at sits in the top-right corner with an arrow on either side; when nothing has been logged in that week, the card says so rather than showing an empty grid.*
+*The Timesheet page. One row per person per project — five people across MOB, HIN and INF, down to the two who logged a single entry each — a column per day from Monday to Sunday, a __Total__ closing every row, and a dash wherever nothing was logged. The week being shown sits in the top-right corner between its two arrows.*
 
 ### Reading a row
 
-The timesheet is a grid. Each **row** is one person working on one project, and
-the columns are:
+Each **row** is one person working on one project. The days run Monday through
+Sunday and end in a **Total** for the row; a day with no entries shows a dash
+rather than a zero, so the days you actually worked stand out.
 
-- **Member** — who logged the time.
-- **Project** — the project key the work belongs to, derived from the issue.
-- **One column per day**, Monday through Sunday. A day with no entries shows a
-  dash rather than a zero, so the days you actually worked stand out.
-- **Total** — the row's sum for the week.
-
-If you worked on three projects this week, you get three rows. That split is the
-point: it answers "where did my week go?" without anyone having to tag anything
-manually.
+The project is derived from the issue, so if you worked on three projects this
+week you get three rows without having to tag anything by hand. That split is
+the point: it answers "where did my week go?".
 
 ### Moving between weeks
 
