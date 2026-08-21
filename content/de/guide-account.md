@@ -17,14 +17,15 @@ dein Profilbild oben rechts — dieses Menü hat außerdem ein schnelles
 Einstellungs-Symbol neben der Glocke in der oberen Leiste.
 
 ![Der Einstellungs-Bildschirm von Hinata](/assets/img/shot-settings.png)
-*Die Einstellungen auf dem Desktop. Oben läuft das Profil-Banner mit „Profil bearbeiten“ und „Abmelden“; darunter links E-Mail & Sicherheit, Aktive Sitzungen und deine Benachrichtigungsmatrix, rechts Zugriff, Darstellung & App und die Datenfunktionen.*
+*Die Einstellungen auf dem Desktop. Oben läuft das Profil-Banner mit „Profil bearbeiten“ und „Abmelden“. Darunter teilt sich die Seite: links beginnen E-Mail & Sicherheit und Aktive Sitzungen, rechts Zugriff und Darstellung & App. Deine Benachrichtigungsmatrix und die Datenfunktionen laufen in denselben zwei Spalten unterhalb des sichtbaren Bereichs weiter.*
 
 !!! tip "Auf dem Handy ist das eine Liste, keine Wand"
-    Schmale Bildschirme machen aus demselben Inhalt ein Verzeichnis —
-    Sicherheit, Sitzungen, Benachrichtigungen, Zugriff, Darstellung, Tokens,
-    Daten, Gefahrenzone — und jeder Eintrag öffnet sich als eigene Seite. Der
-    Zurück-Pfeil bringt dich erst zurück ins Verzeichnis und dann dorthin, wo du
-    hergekommen bist.
+    Schmale Bildschirme machen aus demselben Inhalt ein Verzeichnis, und jeder
+    Eintrag öffnet sich als eigene Seite. Der Zurück-Pfeil bringt dich erst
+    zurück ins Verzeichnis und dann dorthin, wo du hergekommen bist.
+
+![Die Einstellungen auf dem Handy: das Profil-Banner über einer Liste von Bereichen](/assets/img/shot-mobile-settings-index.png)
+*Die Einstellungen auf dem Handy. Das Profil-Banner behält „Profil bearbeiten“ und „Abmelden“; darunter wird jede Karte des Desktop-Bildschirms zu einer Zeile — „E-Mail & Sicherheit“, „Aktive Sitzungen“, „Benachrichtigungen“, „Zugriff“, „Darstellung & App“ und für Administratoren „Adminbereich“. Welche Zeilen du bekommst, hängt von deinem Konto ab.*
 
 ## Dein Profil
 
@@ -32,17 +33,17 @@ Das Banner ganz oben zeigt, wie alle anderen dich sehen: dein Bild, deinen
 Anzeigenamen, deinen `@Benutzernamen`, deine Position, deine Rollen und den
 Monat, in dem du dazugekommen bist.
 
-**Profil bearbeiten** lässt dich ändern:
+![Der Dialog „Profil bearbeiten“ mit ausgegrautem Feld „Benutzername“](/assets/img/shot-account-edit-profile.png)
+*„Profil bearbeiten“ öffnet sich über dem Einstellungs-Bildschirm. „Anzeigename“ und „Position“ sind änderbar; „Benutzername“ liegt ausgegraut dazwischen, und die Unterzeile sagt, warum.*
 
-- **Anzeigename** — was Kolleginnen und Kollegen auf Karten, in Kommentaren und
-  in der Bearbeiter-Auswahl sehen.
-- **Position** — freier Text, unter deinem Namen angezeigt. „Maintainer“,
-  „Design-Leitung“, „Werkstudentin“ — was auch immer jemandem hilft zu
-  entscheiden, ob er dich fragen sollte.
+Dein Anzeigename ist das, was Kolleginnen und Kollegen auf Karten, in Kommentaren
+und in der Bearbeiter-Auswahl sehen — ihn zu ändern kostet nichts. Die Position
+ist freier Text: „Maintainer“, „Design-Leitung“, „Werkstudentin“ — was auch immer
+jemandem hilft zu entscheiden, ob er dich fragen sollte.
 
-Dein **Benutzername lässt sich nicht ändern**. Er ist dein dauerhafter Name:
-`@`-Erwähnungen lösen darauf auf, alte Kommentare zeigen weiter darauf — ihn
-verschieben zu lassen würde die Geschichte still umschreiben.
+Der **Benutzername lässt sich nicht ändern**, weil `@`-Erwähnungen darauf auflösen
+und alte Kommentare weiter darauf zeigen. Ihn verschieben zu lassen würde die
+Geschichte still umschreiben.
 
 ### Dein Bild
 
@@ -63,11 +64,12 @@ Gesichter.
 Die Karte **E-Mail & Sicherheit** beginnt mit der Adresse, mit der du dich
 anmeldest, markiert als **Verifiziert** oder **Nicht verifiziert**.
 
-Drücke **Ändern** und gib die neue Adresse ein. Hinata schickt einen
-Bestätigungslink dorthin — und, das ist der wichtige Teil: **deine aktuelle
-Adresse bleibt aktiv, bis du diesen Link anklickst**. Solange zeigt die Karte
-*Bestätigung ausstehend für …*. Ein Tippfehler kostet dich also nichts: Du
-bestätigst schlicht nie, und nichts bewegt sich.
+![Der Dialog „E-Mail ändern“, mit der aktuellen Adresse schreibgeschützt über der neuen](/assets/img/shot-account-change-email.png)
+*„Ändern“ in der Zeile E-Mail öffnet diesen Dialog. Die aktuelle Adresse steht schreibgeschützt über der neuen, und die Unterzeile trägt die Zusage: Deine Anmelde-E-Mail ändert sich erst nach der Bestätigung.*
+
+Bis du den Link in dieser Mail anklickst, zeigt die Karte *Bestätigung ausstehend
+für …*, und nichts hat sich bewegt. Ein Tippfehler kostet dich also nichts — du
+bestätigst schlicht nie.
 
 In dem Moment, in dem du *doch* bestätigst, passieren zwei Dinge: Jedes Gerät,
 das an deinem Konto angemeldet ist, wird abgemeldet, und ein Sicherheitshinweis
@@ -84,9 +86,10 @@ entsprechend.
 
 ## Dein Passwort
 
-Hinata fragt dich nicht in einem Formular nach deinem alten Passwort. Drücke
-**Zurücksetzen**, und du bekommst einen einmaligen Link per E-Mail, mit dem du
-ein neues vergibst; der Link läuft nach **30 Minuten** ab.
+Hinata fragt dich nicht in einem Formular nach deinem alten Passwort.
+
+![Der Bestätigungsdialog „Passwort zurücksetzen“](/assets/img/shot-account-password-reset.png)
+*„Zurücksetzen“ in der Zeile Passwort öffnet kein Formular zum Ändern. Es öffnet dies: eine Zeile, dass ein einmaliger Link in dein Postfach geht und nach 30 Minuten abläuft, und einen einzigen Knopf „Link per E-Mail senden“.*
 
 Das ist Absicht. Ein Passwort-ändern-Formular in einer angemeldeten Sitzung
 schützt nichts, wenn jemand an deinem entsperrten Laptop sitzt. Ein Link ins
@@ -117,17 +120,16 @@ Wiederherstellungscodes übrig*, wenn es an ist.
 Drücke **Aktivieren**. Der Assistent hat drei Schritte und dauert etwa eine
 Minute.
 
-**Schritt 1 von 3 · QR-Code scannen.** Öffne eine Authenticator-App — Google
-Authenticator, 1Password, Authy, was immer du ohnehin nutzt — und scanne den
-Code auf dem Bildschirm. Kannst du nicht scannen (weil du genau auf dem Handy
-sitzt, das scannen würde), tippe auf den **Schlüssel zur manuellen Eingabe**
-unter dem Code und füge ihn stattdessen in der App ein.
+![Schritt 1 des Zwei-Faktor-Assistenten, mit QR-Code und Schlüssel zur manuellen Eingabe](/assets/img/shot-2fa-scan.png)
+*Schritt 1 von 3. Scanne den Code mit einer Authenticator-App — Google Authenticator, 1Password, Authy. Sitzt du gerade auf genau dem Handy, das scannen würde, kopiere stattdessen den „Schlüssel zur manuellen Eingabe“ darunter. Beides ist hier verpixelt: Es ist ein echtes Geheimnis, und ein funktionierendes gehört nicht auf eine Webseite.*
 
-**Schritt 2 von 3 · 6-stelligen Code eingeben.** Tippe die Zahl ein, die deine
-Authenticator-App jetzt für `hinata` anzeigt. Das beweist, dass die App das
-richtige Geheimnis wirklich gespeichert hat, bevor Hinata anfängt, es zu
-verlangen — der Schritt, der verhindert, dass du dich aus einem Konto
-aussperrst, das du nie sauber eingerichtet hast.
+![Schritt 2 des Zwei-Faktor-Assistenten, fünf der sechs Felder gefüllt](/assets/img/shot-2fa-verify.png)
+*Schritt 2 von 3 sind sechs einzelne Felder statt eines Textfelds, und der Cursor springt von selbst weiter. „Bestätigen & aktivieren“ bleibt ausgegraut, bis alle sechs gefüllt sind — hier fehlt noch das letzte.*
+
+Schritt 2 gibt es, damit bewiesen ist, dass deine Authenticator-App das richtige
+Geheimnis wirklich gespeichert hat, bevor Hinata anfängt, es zu verlangen. Genau
+das verhindert, dass du dich aus einem Konto aussperrst, das du nie sauber
+eingerichtet hast.
 
 **Schritt 3 von 3 · Wiederherstellungscodes speichern.** Du bekommst **zehn
 einmalig verwendbare Codes**. Jeder funktioniert genau einmal anstelle des
@@ -250,8 +252,10 @@ hast.
 
 ### Konto löschen (Art. 17)
 
-**Gefahrenzone → Konto löschen** löscht dein Konto. Du musst `DELETE`
-ausschreiben, bevor der Button überhaupt etwas tut.
+**Gefahrenzone → Konto löschen** löscht dein Konto.
+
+![Der Dialog zum Kontolöschen mit leerem Bestätigungsfeld und deaktiviertem Knopf](/assets/img/shot-account-delete-confirm.png)
+*Die Bestätigung. „Konto löschen“ bleibt wirkungslos, bis im Feld genau DELETE steht — und der Satz darüber ist der, den man zuerst liest: Profil, Zugangsdaten und Sitzungen gehen, erstellte Vorgänge und Kommentare werden anonymisiert.*
 
 !!! warning "Das lässt sich nicht rückgängig machen"
     Das Löschen deines Kontos entfernt dauerhaft dein Profil, deine Zugangsdaten

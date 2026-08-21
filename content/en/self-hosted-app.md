@@ -85,16 +85,17 @@ set(APPLICATION_ID "com.yourorg.yourapp")
 
 The application id reaches further than the process, though. It is also the
 basename of the desktop entry (`com.yourorg.yourapp.desktop`), the
-`StartupWMClass` inside it, the `<id>` of the AppStream metainfo and the Flatpak
-`app-id` — AppStream and the desktop shells tie those files together by that one
-string. Leave a single occurrence behind and the shell shows your app with a
+`StartupWMClass` inside it, the `<id>` of the AppStream metainfo, the Flatpak
+`app-id` and the bus name in the snap's `dbus` slot — AppStream and the desktop
+shells tie those files together by that one string. Leave a single occurrence behind and the shell shows your app with a
 generic icon, or the store listing never matches what is installed. The binary
 name travels too: `Exec=` in the desktop entry, `<provides><binary>` in the
-metainfo, and the Flatpak's `command:`.
+metainfo, and the `command:` of the Flatpak and of the snap.
 
 !!! note "Why the Linux packaging files sit outside `linux/`"
     In hinata-app the desktop entry, the icon, the AppStream metainfo and the
-    Flatpak/AppImage recipes live in `packaging/linux/`, not in `linux/`.
+    snap, Flatpak and AppImage recipes live in `packaging/linux/`, not in
+    `linux/`.
     `flutter create --platforms=linux .` rewrites everything under `linux/`, and
     hand-maintained packaging inputs have no business in the blast radius of a
     regenerate. Keeping them in one directory also means every format —
@@ -254,10 +255,16 @@ anyway. Hinata surfaces this URL in the app from the server setting
 [Admin area](/en/admin-area.html) → App settings). Set it before you submit.
 
 Linux has no gatekeeper of that kind — an AppImage or your own Flatpak remote
-answers to nobody. If you publish to **Flathub**, though, the listing is
-generated from your AppStream metainfo, so that file needs a name, a summary, a
-description, the licence, an OARS content rating and at least one screenshot at
-a stable, hosted URL.
+answers to nobody. A store does. The **Snap Store** reviews what a strictly
+confined snap asks for, by hand where a request is privileged, and Flathub
+generates its listing from your AppStream metainfo, so that file needs a name, a
+summary, a description, the licence, an OARS content rating and at least one
+screenshot at a stable, hosted URL.
+
+Hinata itself ships Linux through the Snap Store and not through Flathub, whose
+[submission requirements](https://docs.flathub.org/docs/for-app-authors/requirements)
+exclude applications whose content was produced with an LLM. If your fork keeps
+Hinata's screens and copy, that applies to it too.
 
 !!! tip "Accessibility is part of compliance"
     The UI is built to be accessibility-minded — scalable text, semantic widgets
@@ -272,7 +279,9 @@ Work top to bottom; each step is independent.
 2. Set the **package/bundle id** (`com.yourorg.yourapp`) on Android, iOS and macOS,
    the **MSIX identity** from Partner Center on Windows, and `APPLICATION_ID` +
    `BINARY_NAME` in `linux/CMakeLists.txt` — then rename the Linux desktop entry,
-   the metainfo `<id>` and the Flatpak `app-id` to match it.
+   the metainfo `<id>`, the Flatpak `app-id` and the snap's `dbus` slot `name` to
+   match it. The snap's own `name:` is a separate, store-wide identifier you
+   register at snapcraft.io.
 3. Set the **app display name** on every platform, including `Name=` in the Linux
    desktop entry and `<name>` in the metainfo.
 4. Replace the artwork in `assets/branding/` and run the icon + splash generators;

@@ -24,24 +24,26 @@ und die letzten Arbeitseinträge. In einem breiten Fenster steht sie in der
 rechten Spalte unter Details, auf dem Handy weiter unten auf der Seite. Oben
 rechts auf dieser Karte steht **Zeit erfassen**.
 
-Tippe darauf, und ein kleines Glass-Sheet fährt hoch — mit vier Feldern:
+Tippe darauf, und ein kleines Glass-Sheet fährt hoch.
 
-| Feld | Was hineingehört |
-| --- | --- |
-| **Stunden** / **Minuten** | Wie lange du gearbeitet hast. Zwei getrennte Felder; sie starten bei `1` und `0`, eine glatte Stunde ist also einen Tipp entfernt. |
-| **Tätigkeitsart** | Welche Art von Arbeit es war — Entwicklung, Testen, Dokumentation, Design, Meeting oder Support. |
-| **Datum** | Der Tag, an dem die Arbeit stattfand. Voreingestellt ist heute. |
-| **Notiz (optional)** | Ein Satz dazu, was du tatsächlich getan hast. |
+![Das Sheet „Zeit erfassen“](/assets/img/shot-time-log.png)
+*„Zeit erfassen“, ausgefüllt: „Stunden“ und „Minuten“ als zwei getrennte Felder — hier 1 und 30 —, „Tätigkeitsart“ auf „Testen“, ein „Datum“, das auf heute steht, und eine „Notiz (optional)“. Pflicht ist nur die Dauer; die Notiz ist das Feld, das die fünf Sekunden extra wert ist.*
 
 Drücke **Speichern**, und der Eintrag ist sofort erfasst. Der Aufwand am Vorgang
 steigt, der Eintrag erscheint in der Liste unten auf der Timeline-Karte, und dein
 Stundenzettel für diese Woche bekommt die Minuten gutgeschrieben.
 
 !!! tip "Die Zwei-Felder-Dauer ist schneller, als sie aussieht"
-    Lass **Stunden** auf `1` und tippe `30` in **Minuten** für anderthalb
-    Stunden. Für einen 20-Minuten-Job setzt du **Stunden** auf `0` und schreibst
-    `20` in **Minuten**. Die Felder nehmen nur Ziffern an — es gibt also kein
-    Format zu merken und nichts falsch zu machen.
+    Die Felder starten bei `1` und `0`, eine glatte Stunde ist also einen Tipp
+    entfernt. Lass **Stunden** auf `1` und tippe `30` in **Minuten** für
+    anderthalb Stunden; für einen 20-Minuten-Job setzt du **Stunden** auf `0` und
+    schreibst `20` in **Minuten**. Sie nehmen nur Ziffern an — es gibt also kein
+    Format zu merken.
+
+Dasselbe Sheet auf dem Handy:
+
+![Das Sheet „Zeit erfassen“ auf dem Handy](/assets/img/shot-mobile-time-log.png)
+*Auf dem Handy fährt das Sheet von der Unterkante hoch, die Felder nehmen die volle Breite, und der Vorgang dahinter tritt abgeblendet zurück. „Stunden“ und „Minuten“ bleiben nebeneinander — eine Dauer wird also genau so eingetippt wie auf dem Desktop.*
 
 ### Was du eingeben kannst und was nicht
 
@@ -49,27 +51,32 @@ Stundenzettel für diese Woche bekommt die Minuten gutgeschrieben.
   Stunden umfassen.** Wenn du wirklich über Mitternacht durchgearbeitet hast,
   erfasse zwei Einträge an den beiden Tagen, zu denen sie gehören — das ist
   ohnehin genauer.
-- **Du kannst bis zu ein Jahr rückdatieren.** Der Datumsauswähler öffnet auf
-  heute und lässt dich 365 Tage zurückgehen.
-- **Du kannst keine Zeit in der Zukunft erfassen.** Heute ist der letzte
-  wählbare Tag. Die Zeiterfassung hält fest, was passiert ist, nicht, was du
+- **Du kannst bis zu ein Jahr rückdatieren** — und keine Zeit in der Zukunft
+  erfassen. Die Zeiterfassung hält fest, was passiert ist, nicht, was du
   vorhast; dafür sind [Start- und Fälligkeitsdatum](/de/guide-timeline.html) da.
 - **Einträge addieren sich.** Zweimal am selben Tag am selben Vorgang zu
   erfassen ist völlig normal und ergibt zwei Zeilen statt einer größeren.
 
+![Der Datumsauswähler im Sheet „Zeit erfassen“](/assets/img/shot-time-date.png)
+*Beide Datumsregeln sind gezeichnet statt beim Speichern erzwungen: Der Auswähler öffnet auf heute, heute ist der letzte wählbare Tag, alles danach ist ausgegraut. Nach hinten endet er 365 Tage zurück.*
+
 ### Die Eintragsliste
 
-Unter der Aufwandszeile listet die Timeline-Karte die jüngsten Einträge an
-diesem Vorgang — die acht neuesten, jeweils als *Dauer · Tätigkeitsart* mit dem
-Datum rechts. Das sind die Einträge aller Beteiligten, nicht nur deine, und genau
-das willst du, wenn du herausfinden willst, warum eine Aufgabe, die einen Tag
-dauern sollte, drei verschlungen hat.
+![Die Timeline-Karte eines Vorgangs mit ihren Arbeitseinträgen](/assets/img/shot-time-entries.png)
+*Die Timeline-Karte vollständig: Start- und Fälligkeitsdatum, die Zeile mit Aufwand gegen Schätzung, darunter die acht jüngsten Arbeitseinträge — Dauer · Tätigkeitsart, rechts das Datum.*
+
+Das sind die Einträge aller Beteiligten, nicht nur deine, und genau das willst
+du, wenn du herausfinden willst, warum eine Aufgabe, die einen Tag dauern
+sollte, drei verschlungen hat.
 
 ## Die richtige Tätigkeitsart wählen
 
 Die sechs Tätigkeitsarten sind fest — und zwar mit Absicht. Eine kurze,
 gemeinsame Liste sorgt dafür, dass „Testen“ auch in einem halben Jahr für alle
 dasselbe bedeutet und die Zahlen sich tatsächlich addieren lassen.
+
+![Das Menü „Tätigkeitsart“](/assets/img/shot-time-activity.png)
+*Das Menü „Tätigkeitsart“, geöffnet. Sechs Einträge und kein „Sonstiges“ — die Liste ist das ganze Vokabular, und genau deshalb lässt sich in einem Bericht überhaupt etwas addieren.*
 
 - **Entwicklung** — die Sache selbst schreiben und verändern.
 - **Testen** — sie überprüfen, manuell oder indem du Tests baust.
@@ -92,11 +99,9 @@ wenn alle Meetings auch als Meetings erfassen.
 
 ## Schätzung, Aufwand und der Unterschied dazwischen
 
-Die Timeline-Karte trägt eine Zeile, die still sehr viel leistet:
-
-```text
-3h 30m von 8h aufgewendet
-```
+Die Timeline-Karte trägt eine Zeile, die still sehr viel leistet — das
+`9h 30m von 10h aufgewendet` in [der Eintragsliste](#die-eintragsliste) weiter
+oben.
 
 Die erste Zahl ist die Summe aller Arbeitseinträge an diesem Vorgang, von allen
 Beteiligten. Die zweite ist die **Zeitschätzung** des Vorgangs — die
@@ -116,7 +121,7 @@ Wo ein Vorgang eine Zeitschätzung trägt, taucht sie an zwei weiteren Stellen a
     mit den Fibonacci-Karten — setzt **Story Points**, eine relative Größe für
     Planung und Velocity. Das ist ein anderes Feld als die Zeitschätzung, und es
     ist das, das die meisten Teams im Alltag nutzen. Hat niemand eine
-    Zeitschätzung gesetzt, steht dort schlicht `3h 30m von — aufgewendet`
+    Zeitschätzung gesetzt, steht dort schlicht `9h 30m von — aufgewendet`
     — und das ist in Ordnung. Deine erfasste Zeit zählt überall sonst trotzdem.
 
 ## Der wöchentliche Stundenzettel
@@ -125,24 +130,19 @@ Wo ein Vorgang eine Zeitschätzung trägt, taucht sie an zwei weiteren Stellen a
 erfasst wurde. Auf dem Handy liegt sie hinter dem Tab **Mehr**.
 
 ![Der Hinata-Stundenzettel mit einer Woche und ihrer Navigation](/assets/img/shot-timesheet.png)
-*Die Seite Stundenzettel. Die angezeigte Woche steht oben rechts, mit je einem Pfeil links und rechts; wurde in dieser Woche nichts erfasst, sagt die Karte das, statt ein leeres Raster zu zeigen.*
+*Die Seite „Stundenzettel“. Eine Zeile je Person und Projekt — fünf Personen über MOB, HIN und INF, bis hin zu den beiden mit je einem einzigen Eintrag —, eine Spalte je Tag von Montag bis Sonntag, am Ende jeder Zeile eine __Gesamt__-Spalte und ein Strich, wo nichts erfasst wurde. Die angezeigte Woche steht oben rechts zwischen ihren beiden Pfeilen.*
 
 ### Eine Zeile lesen
 
-Der Stundenzettel ist ein Raster. Jede **Zeile** ist eine Person in einem
-Projekt, und die Spalten sind:
+Jede **Zeile** ist eine Person in einem Projekt. Die Tage laufen von Montag bis
+Sonntag und enden in einer Spalte **Gesamt** für die Zeile; ein Tag ohne
+Einträge zeigt einen Strich statt einer Null, damit die Tage hervorstechen, an
+denen du wirklich gearbeitet hast.
 
-- **Mitglied** — wer die Zeit erfasst hat.
-- **Projekt** — der Projektschlüssel, zu dem die Arbeit gehört, abgeleitet aus
-  dem Vorgang.
-- **Eine Spalte pro Tag**, Montag bis Sonntag. Ein Tag ohne Einträge zeigt einen
-  Strich statt einer Null, damit die Tage hervorstechen, an denen du wirklich
-  gearbeitet hast.
-- **Gesamt** — die Wochensumme der Zeile.
-
-Wenn du diese Woche an drei Projekten gearbeitet hast, bekommst du drei Zeilen.
-Genau darum geht es: Die Frage „Wo ist meine Woche hin?“ wird beantwortet, ohne
-dass jemand etwas von Hand verschlagworten muss.
+Das Projekt wird aus dem Vorgang abgeleitet: Wenn du diese Woche an drei
+Projekten gearbeitet hast, bekommst du drei Zeilen, ohne dass jemand etwas von
+Hand verschlagworten muss. Genau darum geht es — die Frage „Wo ist meine Woche
+hin?“ wird beantwortet.
 
 ### Zwischen Wochen wechseln
 

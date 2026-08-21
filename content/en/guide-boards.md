@@ -13,11 +13,12 @@ You do not have to set anything up first. If someone has already created a board
 
 Choose **Board** in the sidebar. You get a list of every board you can see, across all your projects; a menu at the top lets you narrow it to one project. Tap a board to open it.
 
-If the list is empty, use **New board** to make one. You will be asked for three things:
+If the list is empty, use **New board** to make one.
 
-- **Board type** — **Kanban** or **Scrum**. There is no control in the app for switching a board's type afterwards, so this one is worth a moment's thought: see [Kanban or Scrum](#kanban-or-scrum) below.
-- **Board name** — what your team calls it, not what the project is called.
-- **Projects** — one project, or several. A board that spans several projects merges their equivalent columns into one wall, so two teams can work side by side without leaving their own projects.
+![The New board dialog](/assets/img/shot-board-new-dialog.png)
+*The New board dialog. Board type is two cards carrying their own descriptions — Kanban selected here, Scrum underneath — then Board name, then a Projects row already reading "1 selected". Create stays greyed out until the board has a name.*
+
+Only the type is worth a pause. There is no control in the app for switching a board from Kanban to Scrum afterwards, so read [Kanban or Scrum](#kanban-or-scrum) below before you pick. The name is what your team calls the board, not what the project is called. And selecting more than one project merges those projects' equivalent columns into a single wall, so two teams can work side by side without leaving their own projects.
 
 !!! tip "One project can have several boards"
     Boards are views, not containers. The same issue can appear on a team board, on a release board and on a personal board without being copied. Nothing belongs *to* a board — issues belong to projects.
@@ -43,14 +44,11 @@ Boards use the same three-level hierarchy as the rest of Hinata — see [Working
 
 ### What a card tells you without being opened
 
-A card is dense on purpose — it is meant to answer "should I click this?" from across the room:
+A card is dense on purpose — it is meant to answer "should I click this?" from across the room. The status stripe, type glyph, issue key, priority arrow, title, labels and assignee avatar are all on it, and three of them repay knowing:
 
-- A **colored stripe** along the top, in the issue's status color.
-- The **type glyph** and the **issue key** (`HIN-42`) on the first line, with the **priority arrow** on the right.
-- The **title**, up to three lines.
-- Up to three **labels**, in their own colors.
-- **Time spent** so far, if the issue carries an estimate; the **due date**, which turns red once it has passed; and the **assignee's avatar**.
-- If the issue has sub-tasks, a strip at the bottom you can expand to see them and their progress, without leaving the board.
+- The **due date** turns red once it has passed, so an overdue card announces itself from across the wall.
+- **Time spent** only appears if the issue carries an estimate. A card with no timer chip means nobody estimated it, not that nobody has worked on it.
+- The **sub-task strip** at the bottom expands in place, so you can check a parent's progress without leaving the board.
 
 ## Move an issue through the board
 
@@ -68,7 +66,10 @@ This is deliberate. The alternative is accepting the drop and then failing, whic
 
 ### Create an issue right where it belongs
 
-At the foot of every column there is an inline composer — **Add issue**. Type a title, press Enter, and the issue is created already in that column's project and status. If the column sits inside an epic swimlane, it inherits the epic; inside an assignee lane, it inherits the person; on a sprint board, it joins that sprint.
+![The inline composer at the foot of a board column](/assets/img/shot-board-quick-create.png)
+*Add issue at the foot of the Open column, opened into a composer: a title typed and not yet submitted, chips for type, due date and assignee, and the amber Enter button. Behind it the Active sprint wall — a status dot per column, the 4/4 count on In Progress sitting exactly on its WIP limit, Day 8/15 in the sprint header.*
+
+Type a title, press Enter, and the issue is created already in that column's project and status. It also inherits whatever the column sits inside — the epic of an epic swimlane, the person of an assignee lane, the sprint of a sprint board — so there is nothing to set twice.
 
 It is much faster than the full form, and it means a thought that arrives during standup gets written down during standup.
 
@@ -93,7 +94,7 @@ A board with two hundred cards on it is a wall, not a picture. Three controls si
 
 ### The people strip
 
-The overlapping avatars in the top-right are everyone with work on this board. Click one to show only their cards; click another to add them; click again to remove. Selected avatars stay bright and the rest dim, so you can always see at a glance whether a filter is on.
+The overlapping avatars in the top-right are everyone with work on this board. Click one to show only their cards; click another to add them; click again to remove.
 
 This is the same setting as the Assignee facet in the filter popup — the strip is simply the shortcut for the thing you filter by most often.
 
@@ -103,13 +104,16 @@ This is the same setting as the Assignee facet in the filter popup — the strip
 
 **Status · Type · Priority · Assignee · Sprint · Author · Label · Epic**
 
+![The board filter popup, with two people picked under the Assignee facet](/assets/img/shot-board-filter.png)
+*The Assignee facet with Amara Okafor and Mei Lin ticked. The footer reads 2 active with Clear all beside it, the Filter button gains an amber 2, the same two avatars light up in the people strip, and the wall behind has narrowed to their cards — Open is down to one.*
+
 Each facet is a searchable multi-select. The rule for how they combine is worth learning, because it is what makes the filter useful rather than fiddly:
 
 > Choices **within** one facet are an OR. Facets **between** each other are an AND.
 
 So picking *Bug* and *Story* under Type, and *Ana* under Assignee, gives you "bugs or stories that are assigned to Ana". Picking nothing in a facet means that facet is not filtering at all.
 
-The Sprint facet includes a **No sprint** entry, which is how you look at backlog items among the rest. The button carries an amber badge with the number of active criteria, and **Clear all** resets everything in one click.
+The Sprint facet includes a **No sprint** entry, which is how you look at backlog items among the rest.
 
 !!! tip "The filter is yours, not the board's"
     Filtering changes what *you* see. It does not move, hide or alter anything for anyone else, and it is not saved onto the board — so filter freely.
@@ -117,6 +121,9 @@ The Sprint facet includes a **No sprint** entry, which is how you look at backlo
 ### Swimlanes
 
 **Group by** splits the wall into horizontal lanes, each carrying the full set of columns. It is the single most effective way to make a crowded board legible, and which grouping helps depends on the question you are asking.
+
+![The Group by menu on a board](/assets/img/shot-board-group-by.png)
+*Group by, beside Filter above the wall. This board covers one project, so the menu offers None, Epic, Assignee and Sub-task — Project appears only on a board that spans several.*
 
 | Group by | You get | Use it when |
 | --- | --- | --- |
@@ -137,7 +144,10 @@ A column can carry a **work-in-progress limit**: the largest number of cards tha
 
 Hinata does not stop you exceeding a WIP limit, and that is on purpose. The limit is a conversation-starter, not a lock — the point of a red badge in *In Review* is that somebody notices nothing is being reviewed, not that the seventh card gets blocked at the door.
 
-Limits are set per column in **Board options → Columns**, alongside the column's name and which statuses it holds. You need to be the board's owner, a lead on one of its projects, a team lead or an administrator to change them.
+![The column editor of a board](/assets/img/shot-board-columns.png)
+*Board options → Columns. One row per column: a drag handle for reordering, the workflow states it holds as chips, a Max box for the WIP limit — filled in on In Progress and In Review, empty on the rest — and a button to remove the column outright.*
+
+You need to be the board's owner, a lead on one of its projects, a team lead or an administrator to open it.
 
 ## The backlog
 
@@ -153,7 +163,7 @@ It is where ideas wait. Raise a bug on Tuesday, and it sits in the backlog until
 A sprint is a fixed stretch of time — usually one to four weeks — with an agreed set of work in it. Hinata models the whole lifecycle: plan it, start it, work through it, complete it. Everything happens on a Scrum board's three tabs.
 
 ![The sprint planning tab of a Hinata board](/assets/img/shot-board.png)
-*The Planning tab: Sprint 24 is active, runs 18 July to 1 August, and its capacity bar is red — 44 story points committed against a capacity of 40. Each row shows the issue's type, key, title, priority, story points and assignee.*
+*The Planning tab: Sprint 24 is active, runs 14 to 28 August, and its capacity bar is red — 42 story points committed against a capacity of 40. Each row shows the issue's type, key, title, labels, story points and assignee.*
 
 ### 1. Plan the sprint
 
@@ -174,12 +184,15 @@ You can also move issues *between* planned sprints the same way, which is how "t
 
 ### 3. Estimate with story points
 
-Tap the points area on any row in the sprint to open the estimate picker. It is a planning-poker card grid on the Fibonacci scale — **1, 2, 3, 5, 8, 13, 21** — plus an option to clear the estimate again.
+Tap the points area on any row in the sprint to open the estimate picker.
+
+![The estimate picker](/assets/img/shot-board-estimate.png)
+*Estimate, opened from HIN-4's row: a planning-poker grid on the Fibonacci scale — 1, 2, 3, 5, 8, 13, 21 — with the issue's current 5 selected. The key and title under the heading say which issue is being sized, which is the part people get wrong; the last card, —, clears the estimate again.*
 
 Story points measure relative effort, not hours. A 5 is meaningfully bigger than a 3 and roughly half of a 13; that is the whole contract. Their value is what they add up to, which is what the two readouts in the sprint header are for:
 
 - **Point buckets** — three pills showing how the committed points split across to-do, in-progress and done. During a sprint you want to watch the green one grow.
-- **Capacity** — committed points against the team's capacity, as `44 / 40 pts` with a bar underneath. Go over and both turn red, as in the screenshot above.
+- **Capacity** — committed points against the team's capacity, as `42 / 40 pts` with a bar underneath. Go over and both turn red, as in the screenshot above.
 
 !!! note "Capacity is optional"
     A sprint without a capacity figure shows its committed points on their own, with no bar — a bar that is always full says nothing. Capacity is set through the API or an admin tool rather than in the create dialog, so if your team does not use it, you simply will not see it.
@@ -194,17 +207,16 @@ Starting a sprint notifies everyone who is a member of the board's projects, so 
 
 ### 5. Work through it
 
-The **Active sprint** tab is a normal board wall, scoped to the sprint. The same drag, the same filters, the same swimlanes — plus a glass header carrying an amber **Active** badge, the sprint name and goal, and a day counter reading `Day 4/14` with a progress bar.
+The **Active sprint** tab is a normal board wall, scoped to the sprint. The same drag, the same filters, the same swimlanes — plus a glass header carrying an amber **Active** badge, the sprint name and goal, and a day counter reading `Day 8/15` with a progress bar.
 
-That counter is quietly the most useful thing on the tab. "We are on day 11 of 14 and half the points are still to-do" is a conversation you want to have on day 11, not on day 14.
+That counter is quietly the most useful thing on the tab. "We are on day 11 of 15 and half the points are still to-do" is a conversation you want to have on day 11, not on day 14.
 
 ### 6. Complete it
 
-Press **Complete sprint** when the timebox ends. The dialog reviews what happened:
+Press **Complete sprint** when the timebox ends.
 
-- **Completed** — how many issues finished, how many points that was, and the percentage.
-- **Not completed** — how many issues and points are still open.
-- **Where the unfinished work goes** — pick another planned sprint to carry it into, or **Backlog** to return it to the pool.
+![The Complete sprint dialog](/assets/img/shot-board-complete-sprint.png)
+*Complete Sprint 24: five issues completed for nine story points — 29 % — against twelve not completed and 33 points still open, then the destination for those twelve. Every planned sprint is offered above Backlog — here __Sprint 25__, with the date the carry-over would land on — and Backlog is what is left when there is nothing to carry into.*
 
 Confirm, and three things happen. The sprint is archived. Finished work stays attributed to it, so its history and its numbers stay honest. Every unfinished issue moves to the destination you chose, is recorded in that issue's history as a sprint change, and its watchers are notified.
 
@@ -229,7 +241,7 @@ For trends across many sprints, cycle time and exports, go to [Reports & dashboa
 
 Everything above works on a phone; the layout simply folds.
 
-![A Hinata sprint board on a phone](/assets/img/shot-mobile-board.png)
+![The Planning tab of a Hinata board on a phone](/assets/img/shot-mobile-board.png)
 *The same Planning tab on a phone: the view switcher and filter collapse to icons, the sprint header stacks its issue count, point buckets and capacity bar vertically, and Complete sprint runs the full width.*
 
 The differences worth knowing:
@@ -246,7 +258,7 @@ Every board in the boards list carries a **⋮** button — that is **Board opti
 
 - **Rename board** — new name, nothing else changes.
 - **Projects** — change which projects the board covers. Equivalent statuses of the selected projects merge into shared columns automatically.
-- **Columns** — name the columns by hand, decide which status belongs to which, reorder them, and set WIP limits. The automatic merge is a good guess, but two projects may name the same step differently; this is where you correct it.
+- **Columns** — the editor [shown above](#wip-limits). The automatic merge is a good guess, but two projects may name the same step differently; this is where you correct it.
 - **Delete board** — removes the board. The issues on it are untouched: they belong to their projects, not to the board.
 
 You need to own the board, lead one of its projects, lead a team with access to it, or be an administrator. If you do not see the menu, you are not in one of those roles — which is normal, and not something you need to fix yourself.

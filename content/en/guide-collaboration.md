@@ -15,27 +15,28 @@ Activity has three tabs — **All**, **Comments** and **History**. An issue open
 
 The composer floats at the bottom of the screen and stays there while the feed scrolls behind it, so you never have to hunt for it on a long issue.
 
-![Comments and attachments on a Hinata issue](/assets/img/shot-comments.png)
-*The attachments drop zone names the limits your server allows, and the Activity section below it holds the thread: a root comment, its indented replies, per-comment Reply and reaction controls, a "Hide replies" toggle, and the floating composer with its attach and microphone buttons.*
+![A comment thread on a Hinata issue](/assets/img/shot-comments.png)
+*A thread: a root comment carrying a __👍 3__ reaction, its indented replies under it, and under every one of them __Reply__, __React__ and the __More__ chevron. The composer floats over all of it with its __+__ and its microphone.*
 
 ## Write a comment
 
-Click the **Comment…** field, type, and send. Everything you can write in an issue description you can write in a comment: headings, bold and italics, lists, task lists, quotes, tables, code blocks with a language, callouts, links and images. The buttons live behind the **+** button next to the field, under **Text formatting**, which expands the composer into the full editor with an **Editor** / **Preview** switch so you can check a long comment before it goes out.
+Click the **Comment…** field, type, and send. Everything you can write in an issue description you can write in a comment: headings, bold and italics, lists, task lists, quotes, tables, code blocks with a language, callouts, links and images. **Text formatting** expands the composer into the full editor with an **Editor** / **Preview** switch, so you can check a long comment before it goes out.
+
+![The + menu open next to the comment composer](/assets/img/shot-comment-attach-menu.png)
+*The __+__ to the left of the __Comment…__ field. The two picture entries put the image into the comment text, at your cursor; __Attachment__ uploads the file to the issue's attachment list instead, where everyone finds it without scrolling the thread.*
 
 !!! tip "⌘↵ sends"
     The composer prints its own hint: **⌘↵ to send** — that is ⌘ and Return on a Mac, **Ctrl** and Return everywhere else. Plain Return gives you a new line — comments are often more than one sentence, so the safer key is the one that does less.
-
-The **+** button also offers, depending on your device:
-
-- **Photo & video library** and **Take photo or video** — these insert the picture *into the comment text*, inline, where your cursor is.
-- **Attachment** — uploads any file and adds it to the **issue's** attachment list rather than into the comment body. A comment is text; files belong to the issue, where everyone can find them without scrolling the thread.
 
 !!! note "Not every entry appears on every platform"
     The camera entry is only offered where a camera exists — on Linux there is no webcam support, so the entry is hidden rather than shown and then failing. See [Download](/en/download.html) for what each platform can do.
 
 ## Mention someone
 
-Type `@` anywhere in a comment and a menu opens that searches **issues, knowledge base articles and people** at once. Pick one and it becomes a chip in your text.
+Type `@` anywhere in a comment and pick from the menu that opens. What lands in your text is a chip, not characters.
+
+![The mention menu open in the comment composer after typing @ke](/assets/img/shot-comment-mention.png)
+*One menu searches issues, knowledge base articles and people together, under the heading __LINK TO…__. Two letters are enough: `@ke` brings back three issues, the article __Auth & token refresh__ and Jonas Becker, each row labelled __ISSUE__, __DOC__ or __USER__ on the right.*
 
 What each kind does:
 
@@ -62,6 +63,9 @@ Replies are loaded only when you open them, which is why an issue with hundreds 
 
 Next to **Reply** there is a smiley button. Click it, search the emoji picker if you need something specific, and your reaction appears under the comment.
 
+![The quick-reaction row open under a comment](/assets/img/shot-comment-reactions.png)
+*One click opens six emoji — ❤️ 👍 😂 😮 😢 🙏 — and a __…__ for the full picker. The comment below already carries its own __👍 3__: reactions sit under the text, above the action row, and the count is how many people picked that one.*
+
 - **One reaction per person, per comment.** Picking a different emoji replaces yours; picking the same one again removes it.
 - Anyone in the project can react.
 - Reactions are the cheapest way to close a loop. "👍" on "I'll take this one" saves a comment that says nothing else.
@@ -72,7 +76,10 @@ Any project member can **Pin** a comment from its menu. Pinned comments are coll
 
 ## Edit or delete your own comments
 
-Open a comment's menu — the chevron on desktop, a long press on touch — and you get **Reply**, **Copy**, **Select**, **Edit**, **Copy link**, **Pin** and **Delete**. Which of them you see depends on whose comment it is.
+Open a comment's menu — the **More** chevron on desktop, a long press on touch. Which entries it holds depends on whose comment it is.
+
+![The comment menu open under a comment in the thread](/assets/img/shot-comment-menu.png)
+*The menu on one of your own comments. __Reply__, __Copy__, __Copy link__ and __Pin__ are offered on anybody's comment; __Select__, __Edit__ and the red __Delete__ at the foot only on your own.*
 
 - **Edit** — only the author of a comment can edit it. An edited comment is marked **edited**, so nobody has to wonder whether they misread it the first time. Voice messages cannot be edited; delete and re-record instead.
 - **Delete** — you can always delete your own. Administrators can delete anyone's, for moderation.
@@ -135,7 +142,10 @@ The **Attachments** block sits just above the discussion. Two ways to fill it:
 - **Drag files onto it.** The zone highlights and reads **Drop to attach**; let go and the upload starts.
 - **Click it** to open your file picker. On a phone or tablet an **Add attachment** sheet opens first, offering **Photo Library**, **Take Photo**, **Record Video** and **Choose File**.
 
-The zone itself tells you the rules your server enforces — "Images, PDFs & text preview inline · any file type · up to 25 MB" in the screenshot above. Three limits apply, and all three are set by whoever runs your server:
+![The Attachments block on an issue, filled with four files](/assets/img/shot-attachments.png)
+*Once the block has files the drop zone becomes __Add files__, which opens the same picker. The image gets a real thumbnail, the ZIP, the log and the PDF a colour-coded glyph — and the tile under the cursor grows a download and a remove button.*
+
+The zone itself tells you the rules your server enforces — something like "Images, PDFs & text preview inline · any file type · up to 25 MB". Three limits apply, and all three are set by whoever runs your server:
 
 | Limit | What it means |
 | --- | --- |
@@ -162,14 +172,15 @@ Rule of thumb: if it illustrates a sentence, put it inline. If it is evidence, a
 
 ## Preview, open and download
 
-Attachments appear as tiles in a grid. Images and PDFs get a real thumbnail (for a PDF, its first page); everything else gets a colour-coded glyph for its type — document, spreadsheet, archive, video — plus the file name, size and age.
+Attachments appear as tiles in a grid. Images and PDFs get a real thumbnail (for a PDF, its first page); everything else gets a colour-coded glyph for its type.
 
-Click a tile to open the **viewer**, a full-screen dark stage with the file in the middle:
+![The attachments grid with the More actions menu open](/assets/img/shot-attachment-actions.png)
+*Four files on one issue, each tile naming size, uploader and age. __Add files__ uploads more; the __…__ beside it is __More actions__, holding __Download all (4)__ — every file on the issue in one ZIP — and __Delete all (4)__.*
 
-- **Images** zoom with the scroll wheel, a pinch or the zoom buttons, and **Reset zoom** brings you back.
-- **PDFs** render page by page and can be printed from the viewer.
-- **Text files** — code, logs, config, Markdown — are shown as plain, inert text, with **Line numbers**, **Wrap long lines** and **Copy all text**. A file too large to preview says so and offers the download instead.
-- **Previous file** / **Next file** step through the whole grid without going back, which is what you want when someone attached fourteen screenshots.
+Click a tile to open the **viewer**, a full-screen dark stage with the file in the middle.
+
+![A log file open in the full-screen attachment viewer](/assets/img/shot-attachment-viewer.png)
+*A log file in the viewer, with __Line numbers__ and __Wrap long lines__ switched on and __Copy all text__ beside them. The counter reads 2 / 4: the arrows and the strip along the bottom step through the whole grid without going back to the issue.*
 
 Not every type can be shown, and the viewer says so rather than failing:
 
@@ -182,7 +193,7 @@ Not every type can be shown, and the viewer says so rather than failing:
 
 Text files past a couple of megabytes are not pulled into the viewer at all: they say they are too large and point you at the download, because a preview pane is no place for a giant log.
 
-**Download** saves a single file; the **More actions** menu offers **Download all**, which packs every file on the issue into one ZIP archive. Where the file goes depends on your platform: iOS, Android, macOS and Windows open the system share sheet so you choose the destination; Linux writes straight to your Downloads folder and names the file; the web build hands it to your browser.
+Where a download goes — one file or the whole ZIP — depends on your platform: iOS, Android, macOS and Windows open the system share sheet so you choose the destination; Linux writes straight to your Downloads folder and names the file; the web build hands it to your browser.
 
 !!! warning "Removing a file removes it for everyone"
     **Remove** deletes the attachment from the issue and from storage — for every person looking at that issue, permanently. There is no archive step for files the way there is for issues, so read the file name twice before confirming.

@@ -64,18 +64,14 @@ morning does not get an e-mail about it this afternoon.
 The bell sits in the top bar on every screen. A small dot appears on it when
 you have something unread.
 
-Click it and you get a preview of your **five most recent** notifications, each
-with an icon that tells you the kind at a glance — an `@` for a mention, a
-person-with-a-tick for an assignment, a speech bubble for a comment, a shield
-for anything about your account's security. Unread entries carry a soft amber
-tint; read ones are transparent. **Mark all read** clears the lot,
-**View all notifications** opens the full centre.
-
-![The Hinata notification centre](/assets/img/shot-notifications.png)
-*The full notification centre. Unread rows sit on an amber tint and carry a dot on the right; the unread count and "Mark all read" are at the top. The first entry here is a weekly summary; the three below it are sign-in alerts, which are the one kind you cannot switch off.*
+![The notification preview open under the bell with five entries](/assets/img/shot-notification-bell.png)
+*The preview under the bell: the five most recent notices, each with an icon for its kind — a person-with-a-tick for the assignment, speech bubbles for the comments, an "@" for the mention, a shield for the sign-in. Unread rows sit on an amber tint. "Mark all read" is top-right, "View all notifications" at the foot.*
 
 The full centre keeps everything, grouped into **Today**, **Yesterday**,
 **This week**, **This month** and **Earlier**, and it loads more as you scroll.
+
+![The Hinata notification centre](/assets/img/shot-notifications.png)
+*The same notices in the full centre, under "Yesterday", with the unread count and "Mark all read" at the top. Every row carries the sentence that explains it — who commented and what they wrote — so most of them need no click at all.*
 
 Three things you can do with a row:
 
@@ -120,17 +116,18 @@ each platform can do.
 
 ## Tune what reaches you
 
-Open **Settings → Notifications**. You get two master switches — one for
-**E-mail notifications**, one for **Push notifications** — and below them a grid
-with one row per event and one column per channel.
+Open **Settings → Notifications**.
+
+![The notification matrix in settings with the two master switches above the per-event grid](/assets/img/shot-notification-matrix.png)
+*The Notifications card. The two masters sit at the top — "Email notifications" and "Push notifications", the latter noting that this particular device has no push service — and under them one row per event, with an "Email" and a "Push" column.*
 
 The masters are the blunt instrument: switch **E-mail notifications** off and no
 mail is sent for anything, while your per-event choices stay exactly as you left
 them, ready for when you turn it back on. Delivery happens when the master *and*
 the event's cell are both on.
 
-On a phone the grid becomes one card per event with the two channels stacked
-inside it — same choices, laid out for a narrow screen.
+![The same notification settings on a phone, one card per event](/assets/img/shot-mobile-notification-matrix.png)
+*The same screen on a phone. Each event becomes its own card with "Email" and "Push" listed inside it, so nothing has to be read across columns.*
 
 These are the defaults a new account starts with:
 
@@ -165,22 +162,22 @@ losable in a preference you set eighteen months ago.
 ## Watch an issue to opt in
 
 Watching is how you subscribe to an issue that is not yours. Open it, use the
-**⋯** menu in the top bar and choose **Watch**. That opens a small panel with a
-**Start watching** / **Stop watching** toggle and the list of everyone else
-currently watching, so you can see who is already paying attention.
+**⋯** menu in the top bar and choose **Watch**.
+
+![The watch panel open on an issue, showing the toggle and the watcher list](/assets/img/shot-issue-watch-panel.png)
+*The panel behind "⋯ → Watch", anchored where the menu was. The toggle at the top reads "Stop watching" once you are subscribed; beneath it "You already get notifications as the reporter." and "Watchers of this issue", everyone already paying attention.*
 
 A toast confirms it: *You are now watching this issue.* From then on, every
 change to it can reach you through the "Watched issues" event.
 
-If you are already the assignee or the reporter, the panel says so — *You
-already get notifications as the assignee* — so you can tell the difference
-between "nobody is listening" and "you are already covered".
+That line about being the assignee or the reporter is worth reading before you
+subscribe: it separates "nobody is listening" from "you are already covered".
 
 Everything you have subscribed to is collected on one page: **Watched** in the
 sidebar (behind **More** on a phone).
 
 ![The Watched issues page](/assets/img/shot-watched.png)
-*The Watched page, before you have subscribed to anything. It tells you exactly how to fill it: open an issue and turn on "Watch".*
+*The Watched page: one row per subscription, across every project you can reach, with state, priority, assignee and due date. Before you have subscribed to anything it holds a single line telling you how to fill it — open an issue and turn on "Watch".*
 
 !!! info "Why watched issues do not flood your inbox"
     The bell and push fire the moment something changes, because you glance at
@@ -211,13 +208,8 @@ If there is genuinely nothing to report — a quiet week, a new account, a holid
 ![The weekly summary page](/assets/img/shot-weekly-summary.png)
 *The weekly summary. The navy hero names the week and how many issues the team completed, with your own closed count and focus time beside it; "The week behind" holds completed, created and focus-time tiles plus the active sprint's progress, and "Your upcoming to-dos" lists what is next, with overdue items flagged in red.*
 
-Reading it top to bottom:
+Two sections the screenshot does not reach:
 
-- **The hero** — the date range, how much the whole team completed, and two
-  chips for your own contribution: how many you closed and how long you spent
-  focused.
-- **The week behind** — completed, created and focus time as three tiles, then
-  the active sprint with its day count and how many of its issues are done.
 - **Top contributors and completed highlights** — who moved what, and a sample
   of the actual work that got finished. Useful for a Monday stand-up.
 - **Your upcoming to-dos** — everything open and assigned to you, ordered by

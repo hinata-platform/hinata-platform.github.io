@@ -76,7 +76,7 @@ Die [App](/de/clients.html) läuft auf:
 - **Web** (jeder moderne Browser),
 - **macOS**-Desktop,
 - **Windows**-Desktop,
-- **Linux**-Desktop — ein nativer GTK-3-Build, installiert als Flatpak, als AppImage oder aus einem Bundle, das du selbst gebaut hast.
+- **Linux**-Desktop — ein nativer GTK-3-Build, installiert als Flatpak, als AppImage oder aus einem Bundle, das du selbst gebaut hast; ein Snap liegt im Snap Store, aber noch auf keinem Kanal. [Die Apps](/de/clients.html#hinata-unter-linux) nennt den aktuellen Installationsstand des Snaps.
 
 Weil die App mehrserverfähig ist, brauchen Nutzer nur die URL eines laufenden Servers; keine benutzerbezogene Installationskonfiguration ist erforderlich.
 
@@ -94,8 +94,8 @@ Der Linux-Client bindet sich an GTK, GStreamer und libsecret des Systems, statt 
 
 `gstreamer1.0-libav` sieht optional aus und ist es nicht: Sprachkommentare werden auf jeder Plattform als AAC aufgenommen, und libav bringt den passenden Decoder mit. Fehlt es, lädt die Sprachblase und weigert sich dann abzuspielen.
 
-!!! note "Das Flatpak bringt fast alles davon selbst mit"
-    Das Flatpak sitzt auf der Freedesktop-Runtime, die GTK, zenity, GStreamer inklusive libav, libsecret und FFmpeg bereits enthält, und es baut PulseAudios Aufnahme-Werkzeuge selbst ins Paket. Der Schlüsselbund ist das Stück, das weiterhin vom Host kommt — er gehört zur Anmeldesitzung des Nutzers, nicht zur Sandbox.
+!!! note "Die fertigen Pakete bringen fast alles davon selbst mit"
+    Das Flatpak sitzt auf der Freedesktop-Runtime, die GTK, zenity, GStreamer inklusive libav, libsecret und FFmpeg bereits enthält, und es baut PulseAudios Aufnahme-Werkzeuge selbst ins Paket. Das Snap sitzt auf dem GNOME-Platform-Snap und legt den Rest selbst dazu — `gstreamer1.0-plugins-bad`, `gstreamer1.0-libav`, `pulseaudio-utils`, `ffmpeg`; Dateien wählt es über das Desktop-Portal, `zenity` braucht es also ebenfalls nicht. Der Schlüsselbund ist in beiden Fällen das Stück, das weiterhin vom Host kommt — er gehört zur Anmeldesitzung des Nutzers, nicht zur Sandbox. Im Snap kommt dazu, dass er mit `snap connect hinata:password-manager-service` verbunden sein will, und die Aufnahme mit `snap connect hinata:audio-record`.
 
 !!! info "Zwei Dinge, die Linux nicht kann"
     Es gibt **kein Push**: `firebase_messaging` hat keine Linux-Implementierung, und es existiert kein Desktop-Push-Dienst, bei dem sich die App registrieren könnte — Benachrichtigungen kommen deshalb in der App und per E-Mail an. Und es gibt **keine Webcam-Aufnahme** — für Linux existiert keine Kamera-Implementierung, deshalb bietet die App „Foto aufnehmen“ gar nicht erst an, statt beim Antippen zu scheitern. Vorhandene Dateien anzuhängen funktioniert genau wie überall sonst.

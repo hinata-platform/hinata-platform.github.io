@@ -22,7 +22,7 @@ Which one to reach for: the **Gantt page** when you want the whole project, incl
 ## What you are looking at
 
 ![The Hinata timeline](/assets/img/shot-gantt.png)
-*The Timeline page. On the left, a frozen column of issues — type, key and title. Along the top, the month and its day numbers, with today (the 20th) circled in blue and a blue line running down the whole chart. Bottom right, the floating control: Links, Today, Week and Month. The chart always opens centred on today, so bars that fall outside the current window sit off to the side until you scroll or switch to Month.*
+*The Timeline page. On the left, a frozen column of issues — type, key and title. Along the top, the month and its day numbers, with today (the 21st) circled in blue and a blue line running down the whole chart. Milestones are diamonds; the red pair mid-chart is a scheduling conflict. Bottom right, the floating control: Links, Today, Week and Month.*
 
 Four parts, each doing one job:
 
@@ -54,12 +54,10 @@ An issue with no dates is not on the chart. That is not an error; it means nobod
 
 ### Set the dates
 
-Open the issue and find the **Timeline** card. It holds two rows:
+Open the issue and find the **Timeline** card. **Start date** is the first day the work covers, **Due date** the last day it covers, inclusive.
 
-- **Start date** — the first day the work covers.
-- **Due date** — the last day it covers, inclusive.
-
-Tap either row to pick a date. Once a date is set, a small **×** next to it clears it again.
+![The date picker opened from an issue's Timeline card](/assets/img/shot-issue-dates.png)
+*Tapping the Start date row opens a month calendar: today ringed, the issue's current start date filled in, Cancel leaving the date as it was. The small × on the row itself — behind the dialog here — clears the date outright without opening this picker, so aim for the label rather than the middle of the row.*
 
 You can do this straight from the chart: long-press a bar (or click the issue's title in the left-hand column) and the issue opens over the timeline. Set a date, close it again, and the chart is redrawn with your scroll position and zoom exactly where you left them.
 
@@ -108,17 +106,21 @@ Use them for the fixed points a plan hangs off: a launch, a hand-over, an audit,
 
 A **dependency** is one issue blocking another: the second one cannot start until the first is finished. On the chart it is a solid connector out of the blocker's right edge, with an arrowhead pointing into the blocked issue's left edge.
 
-To create one, open the issue and go to the **Linked issues** section:
+To create one, open the issue and go to the **Linked issues** section.
 
-1. Choose **Add issue**.
-2. Pick the relationship from the dropdown. **is blocked by** and **blocks** are the two that constrain a schedule.
-3. Search the project's issues by key or title, pick one (or several), and confirm with **Link**.
+![The link composer on an issue](/assets/img/shot-issue-link-composer.png)
+*Add issue opens a composer below the links the issue already has: the relationship on the left, a search field on the right. Typing "capacity" matches on title as well as key and lists HIN-9, HIN-19 and HIN-12 under Current issues. Link confirms, Cancel backs out.*
+
+**is blocked by** and **blocks** are the two relationships that constrain a schedule; the rest are covered below. You can pick several issues before confirming.
 
 The link appears immediately on both issues — the other one shows the same relationship phrased from its own side — and the connector appears on the timeline.
 
 ### Every relationship, and what the chart does with it
 
 Only one of the seven relationship types says anything about *order*. The rest say how issues belong together, which is useful on the issue and mostly noise on a calendar — so the timeline draws them as faint dashes and leaves them switched off until you ask.
+
+![The relationship dropdown of the link composer](/assets/img/shot-issue-link-types.png)
+*The relationship dropdown. Both directions of a type are separate entries — is blocked by and blocks, is cloned by and clones — because you phrase a link from the issue you have open. The list scrolls; split from and split to sit below the fold.*
 
 | Relationship | Reads as | On the timeline |
 | --- | --- | --- |
@@ -140,15 +142,10 @@ Direction matters for all of them except *relates to*, which reads the same from
 
 ## Choose what gets drawn
 
-The **Links** button on the floating control opens the timeline's view options. Three switches, each applying live:
+The **Links** button on the floating control opens the timeline's view options.
 
-| Switch | Default | What it draws |
-| --- | --- | --- |
-| **Dependencies** | On | The blocking links — the ones that actually constrain the schedule |
-| **Other links** | Off | Every other relationship, as faint dashes |
-| **Critical path** | Off | Emphasis on the longest chain of dependencies |
-
-Each row tells you how many links of that kind this chart actually holds, so you can see at a glance whether turning one on will change anything — "0 blocking links on this chart" is a useful answer in itself. Underneath sits a legend for the four line styles, and, if there are any, a red bar counting the scheduling conflicts.
+![The Links panel of the timeline](/assets/img/shot-gantt-links.png)
+*Dependencies on, Other links off, Critical path off — three switches, each applying live. Every row counts what this chart actually holds, 4 blocking links against 5 related ones, so you can see whether turning one on will change anything before you do it; "0 blocking links on this chart" is a useful answer in itself. Below them the red conflict bar and a legend for the line styles.*
 
 On a wide screen the panel opens as a popover beside the button; on a phone it slides up from the bottom. There is nothing to confirm — every switch takes effect as you flip it.
 
@@ -159,20 +156,19 @@ On a wide screen the panel opens as a popover beside the button; on a phone it s
 
 A **conflict** is a dependency whose dates contradict it: the blocked issue is scheduled to start on or before the day its blocker finishes.
 
-Concretely — *HIN-9 Migrate the database* runs Monday to Thursday, and *HIN-12 Switch the app over* is marked **is blocked by** HIN-9 but starts on Tuesday. The plan says HIN-12 waits for HIN-9; the calendar says it starts three days early. Both cannot be true, and it is the kind of contradiction that survives every status meeting until somebody draws it.
+It is the kind of contradiction that survives every status meeting until somebody draws it, so the timeline is loud about it — a quiet conflict is a missed deadline three weeks later.
 
-The timeline is loud about it, because a quiet conflict is a missed deadline three weeks later:
-
-- The connector between the two issues turns **red**.
-- The blocked issue's bar gets a **red outline**.
-- A **warning triangle** appears next to its title in the issue column, with the explanation on hover.
-- The Links panel shows a red count of every conflict on the chart.
+![A scheduling conflict on the timeline](/assets/img/shot-gantt-conflict.png)
+*HIN-7 is blocked by HIN-6 and starts before it ends. Four signals say so at once: the red dashed connector, the red outline on HIN-7's bar, the warning triangle beside HIN-7 in the frozen issue column, and the hover tooltip — "is blocked by HIN-6 · Starts before the issue blocking it is finished". The Links panel counts the same conflict.*
 
 There are only two honest fixes, and Hinata deliberately makes neither of them for you: move the dates so the blocked issue starts after its blocker finishes, or decide the dependency was not real and remove the link. Silently rescheduling somebody's issue would be the third option, and it is the one that loses trust.
 
 ## The critical path
 
-Turn on **Critical path** and the timeline highlights the longest chain of blocking dependencies in the project — measured in days, from the first issue in the chain to the last. Everything on that chain carries an amber ring.
+Turn on **Critical path** and the timeline highlights the longest chain of blocking dependencies in the project — measured in days, from the first issue in the chain to the last.
+
+![The critical path drawn on the timeline](/assets/img/shot-gantt-critical-path.png)
+*The same chart with Critical path switched on: the connectors along HIN-4 → HIN-2 → HIN-5 → HIN-6 → HIN-7 → HIN-8 thicken and turn amber, while every link off that chain stays thin and grey.*
 
 What that ring means in practice: **these issues have no slack**. If one of them slips by a day, the end of the whole chain slips by a day, because there is nothing to absorb it. Issues off the critical path have some room; issues on it do not. It is the shortest answer to "where should the extra pair of hands go?"
 

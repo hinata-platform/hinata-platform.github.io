@@ -21,8 +21,7 @@ The palette opens *over* whatever you were doing. Nothing you have half-typed is
     The shortcut is registered by the app itself, not by any particular screen. Reading an issue, dragging a card, in the middle of a comment — ⌘K still opens. The one exception is when another dialog is already on top; the palette will not stack a second window over it.
 
 ![The command palette open over the dashboard, showing grouped results for the query "board"](/assets/img/shot-search.png)
-
-*One query, everything at once: the scope chips carry a count each (9 commands, 71 issues, 3 projects, 7 people), matches are highlighted wherever they occur, and every issue row shows its key and status. The best match — the **Go to Board** command — is already selected, so **Enter** would open it. The bar along the bottom names the only three keys you need.*
+*One query, everything at once: the scope chips carry a count each (9 commands, 57 issues, 3 projects, 6 people), matches are highlighted wherever they occur, and every row shows what tells it apart — an issue its key and status, a sprint its goal, an article its space and age. One row is always selected, so __Enter__ opens it. The bar along the bottom names the only three keys you need.*
 
 ## What it searches
 
@@ -43,12 +42,15 @@ In the default **All** view each group shows up to five results. Pick a single g
 
 ## Narrow it to one kind of thing
 
-The row of chips under the search field — **All**, **Commands**, **Issues**, **Projects**, **People**, **Boards & Sprints**, **Knowledge** — restricts the search to one category. Each chip carries the number of items of that kind that exist, which is a quiet but useful sense of scale.
+The row of chips under the search field — **All**, **Commands**, **Issues**, **Projects**, **People**, **Boards & Sprints**, **Knowledge** — restricts the search to one category.
+
+![The palette with the Knowledge scope picked and nothing typed](/assets/img/shot-search-scope-knowledge.png)
+*Each chip carries the number of items of that kind that exist: 57 issues, 3 projects, 6 people, 4 boards, 8 articles. With __Knowledge__ picked and the field still empty, the palette browses instead of searching — the most recently touched articles, each with the space it lives in and how long ago it changed.*
 
 Click a chip, or press **Tab** to walk forward through them and **Shift+Tab** to walk back. Your query stays in the field while you switch, so you can type once and then flick between "did I mean the issue or the article?".
 
 !!! tip "An empty query in a scope is a browse list"
-    Pick a scope without typing anything and you get the ten most recently touched items of that kind. It is the fastest way back to whatever the team was working on this morning without knowing a single word of its title.
+    It is the fastest way back to whatever the team was working on this morning without knowing a single word of its title.
 
 ## The keyboard is the point
 
@@ -73,9 +75,12 @@ Each row carries enough context to answer "is this the one?" without opening any
 
 ## Recent searches
 
-Open the palette with an empty field and it shows your **recent searches** — the last six terms you actually used, most recent first. Clicking one puts it back in the field and runs it again; it does not jump straight to a result, because a search you repeat is usually a search you want to look through again.
+Open the palette with an empty field and it shows the last six terms you actually used.
 
-Recents are stored on the device you are using, so your phone and your laptop remember different things. **Clear** empties the list.
+![The palette showing recent searches with an empty query](/assets/img/shot-search-recents.png)
+*Under __Recent searches__, most recent first, with __Clear__ on the right. A term is recorded when you open one of its results, not while you type — so the list holds the searches that led somewhere.*
+
+Clicking one puts it back in the field and runs it again; it does not jump straight to a result, because a search you repeat is usually a search you want to look through again. Recents are stored on the device you are using, so your phone and your laptop remember different things.
 
 ## It is also a command bar
 
@@ -147,8 +152,7 @@ Keys survive a move. If an issue is moved to another project it is renumbered �
 The **Issues** page is the other half of finding things. It shows every issue in every project you have access to, newest activity first, and pages more in as you scroll. Four controls shape it.
 
 ![The Issues list with its Group by, Sort, Filter and Time range controls above the table](/assets/img/shot-issues.png)
-
-*The Issues page: 71 issues across every project you can see, the four view controls above the table, and Export on the right. The **Search or jump to…** field with its ⌘K badge sits in the top bar on every screen.*
+*The Issues page: 57 issues across every project you can see, the four view controls above the table, and Export on the right. The __Search or jump to…__ field with its ⌘K badge sits in the top bar on every screen.*
 
 ### Reading a row
 
@@ -161,13 +165,22 @@ Clicking anywhere on a row opens the issue.
 
 ### Shaping the list
 
-**Filter** opens a popover with five facets — **Status**, **Priority**, **Assignee**, **Project** and **Type** — plus an **Archived** switch. Within one facet the choices are alternatives: picking *Bug* and *Task* shows both. Between facets they add up: *Bug* plus *In Progress* plus *Lena* shows only Lena's in-progress bugs. The button carries a count while anything is active, and **Clear all** resets it.
+**Filter** opens a popover with five facets — **Status**, **Priority**, **Assignee**, **Project** and **Type** — plus an **Archived** switch. Within one facet the choices are alternatives: picking *Bug* and *Task* shows both. Between facets they add up: *Bug* plus *In Progress* plus *Lena* shows only Lena's in-progress bugs.
 
-**Group by** breaks the list into labelled sections — by status, priority, assignee, project or type. Grouping by assignee before a stand-up turns the list into a per-person agenda; grouping by project turns it into a portfolio view.
+![The Filter popover with the Assignee facet open](/assets/img/shot-issues-filter.png)
+*One choice in __Status__ and one in __Assignee__: each facet chip carries its own count, the footer reads __2 active__, and the page header counts what survived — 3 of 11 issues. Long facets get a search field of their own, and __Clear all__ in the footer empties every facet at once.*
+
+**Group by** breaks the list into labelled sections. Grouping by assignee before a stand-up turns the list into a per-person agenda; grouping by project turns it into a portfolio view.
+
+![The Group by menu open above the issue list](/assets/img/shot-issues-groupby.png)
+*One dropdown rather than a row of controls, with a tick on the grouping in force. The button reads __Group by__ while it is __None__ and takes the grouping's own name once you pick one.*
 
 **Sort** orders the whole result set, not just the rows you have scrolled to: newest first, oldest first, or by last modified in either direction. The default is most recently touched first.
 
-**Time range** narrows by date — **Overdue**, **Due by today**, **Today**, **This week**, **This month**, the last or next 7 and 30 days, or a **Custom range…** you pick from a calendar. It reads dates the way you would: an issue with a start *and* a due date matches when its span overlaps the window, an issue with only one of the two matches when that date falls inside it, and an issue with neither falls back to when it was last touched, so unscheduled work still surfaces.
+**Time range** narrows by date. It reads dates the way you would: an issue with a start *and* a due date matches when its span overlaps the window, an issue with only one of the two matches when that date falls inside it, and an issue with neither falls back to when it was last touched, so unscheduled work still surfaces.
+
+![The Time range menu open above the issue list](/assets/img/shot-issues-timerange.png)
+*Overdue and today at the top, rolling windows in the middle, __Custom range…__ at the foot — that last row opens a calendar where you pick the window yourself. Like __Group by__, the button renames itself to whichever preset is active.*
 
 !!! note "Filters last for the visit, not forever"
     There are no saved views yet. What you set up stays until you leave the page, and the list opens unfiltered next time. For a view you need every day, keep the link — see below — or build it as a [board](/en/guide-boards.html), which does remember its configuration.
@@ -180,11 +193,10 @@ In the web app the address bar carries that scope, so a link you copy from it op
 
 ## Taking the results with you
 
-**Export** writes the complete filtered set, not just the rows you have scrolled into view — the app pages through the whole result on the server first. You get to choose:
+**Export** writes the complete filtered set, not just the rows you have scrolled into view — the app pages through the whole result on the server first.
 
-- **Export as PDF** — a printable table carrying your organisation's name and logo.
-- **Export as CSV** — for a spreadsheet.
-- **Export as JSON** — for anything that needs to read it back.
+![The Export menu open on the Issues toolbar](/assets/img/shot-issues-export.png)
+*Three formats behind the __Export__ pill on the right of the toolbar: __Export as PDF__ is a printable table carrying your organisation's name and logo, __Export as CSV__ is for a spreadsheet, __Export as JSON__ for anything that needs to read it back.*
 
 The file lands in your Downloads folder, and the app tells you the file name it used.
 

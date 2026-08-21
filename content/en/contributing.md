@@ -104,8 +104,8 @@ A good bug report saves everyone time. When you open an issue, include:
 - **Environment** — server image tag / app version, platform (Android, iOS, web,
   macOS, Windows, Linux), and anything relevant about your deployment (reverse
   proxy, SSO provider). On Linux, also name the distribution, the desktop session
-  (GNOME or Plasma, X11 or Wayland) and how you installed the app — Flatpak,
-  AppImage or your own `flutter build linux`. The file picker, the keyring and the
+  (GNOME or Plasma, X11 or Wayland) and how you installed the app — snap,
+  Flatpak, AppImage or your own `flutter build linux`. The file picker, the keyring and the
   audio tools the app relies on are all provided by the system, so those three
   facts often *are* the bug report.
 - Relevant **logs or error messages** — but **redact secrets** (tokens, passwords,

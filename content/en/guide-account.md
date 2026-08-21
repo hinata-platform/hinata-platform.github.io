@@ -15,13 +15,15 @@ avatar in the top-right corner — that menu also has a quick **Edit profile** a
 **Sign out**. On a phone, the settings icon lives beside the bell in the top bar.
 
 ![The Hinata settings screen](/assets/img/shot-settings.png)
-*Settings on a desktop. The profile banner runs along the top with "Edit profile" and "Sign out"; below it sit E-mail & security, Active sessions and your notification matrix on the left, and Access, Appearance & app and the data controls on the right.*
+*Settings on a desktop. The profile banner runs along the top with "Edit profile" and "Sign out". Under it the page splits: E-mail & security and Active sessions open the left column, Access and Appearance & app the right. Your notification matrix and the data controls carry on below the fold in the same two columns.*
 
 !!! tip "On a phone this is a list, not a wall"
-    Narrow screens turn the same content into an index — Security, Sessions,
-    Notifications, Access, Appearance, Tokens, Data, Danger zone — and each entry
-    opens as its own page. The back arrow returns you to the index first, then to
+    Narrow screens turn the same content into an index, and each entry opens as
+    its own page. The back arrow returns you to the index first, then to
     wherever you came from.
+
+![Settings on a phone: the profile hero above a list of section rows](/assets/img/shot-mobile-settings-index.png)
+*Settings on a phone. The profile hero keeps "Edit profile" and "Sign out"; below it every card of the desktop screen becomes one row — "Email & security", "Active sessions", "Notifications", "Access", "Appearance & app", and "Admin area" for an administrator. Which rows you get depends on your account.*
 
 ## Your profile
 
@@ -29,16 +31,16 @@ The banner at the top shows how you appear to everyone else: your picture, your
 display name, your `@username`, your job title, the roles you hold and the month
 you joined.
 
-**Edit profile** lets you change:
+![The Edit profile dialog with the username field greyed out](/assets/img/shot-account-edit-profile.png)
+*"Edit profile" opens over the settings screen. "Display name" and "Job title" are editable; "Username" sits greyed out between them, and the subtitle says why.*
 
-- **Display name** — what colleagues see on cards, in comments and in
-  assignee pickers.
-- **Job title** — free text, shown under your name. "Maintainer", "Design lead",
-  "Working student" — whatever helps someone decide whether to ask you.
+Your display name is what colleagues see on cards, in comments and in assignee
+pickers, and changing it costs nothing. The job title is free text —
+"Maintainer", "Design lead", "Working student" — whatever helps someone decide
+whether to ask you.
 
-Your **username cannot be changed**. It is your permanent handle: it is what
-`@`-mentions resolve to and what old comments still point at, so letting it move
-would quietly rewrite history.
+The **username cannot be changed** because `@`-mentions resolve to it and old
+comments still point at it. Letting it move would quietly rewrite history.
 
 ### Your picture
 
@@ -57,11 +59,12 @@ is genuinely harder to scan than a board full of faces.
 The **E-mail & security** card starts with the address you sign in with, marked
 **Verified** or **Unverified**.
 
-Press **Change** and enter the new address. Hinata sends a confirmation link
-there, and — this is the important part — **your current address stays active
-until you click that link**. The card shows *Pending confirmation for …* in the
-meantime. A typo therefore costs you nothing: you simply never confirm, and
-nothing moves.
+![The Change email dialog, with the current address read-only above the new one](/assets/img/shot-account-change-email.png)
+*"Change" on the Email row opens this. The current address sits above the new one, read-only, and the subtitle carries the guarantee: your sign-in email only changes once you confirm it.*
+
+Until you click the link in that mail, the card shows *Pending confirmation for
+…* and nothing has moved. A typo therefore costs you nothing — you simply never
+confirm.
 
 The moment you *do* confirm, two things happen: every device signed in to your
 account is signed out, and a security alert lands in your bell and your inbox.
@@ -76,9 +79,10 @@ it as one.
 
 ## Your password
 
-Hinata does not ask you for your old password in a form. Press **Reset** and it
-e-mails you a one-time link that lets you set a new one; the link expires after
-**30 minutes**.
+Hinata does not ask you for your old password in a form.
+
+![The Reset password confirmation dialog](/assets/img/shot-account-password-reset.png)
+*"Reset" on the Password row does not open a change-password form. It opens this: one line saying a one-time link goes to your inbox and expires in 30 minutes, and a single "Email reset link" button.*
 
 That is deliberate. A change-password form in a signed-in session protects
 nothing if someone is sitting at your unlocked laptop. A link to your mailbox
@@ -106,15 +110,15 @@ it is on.
 
 Press **Enable**. The wizard has three steps and takes about a minute.
 
-**Step 1 of 3 · Scan the QR code.** Open an authenticator app — Google
-Authenticator, 1Password, Authy, whatever you already use — and scan the code on
-screen. If you cannot scan (you are on the phone that would be scanning), tap
-the **Manual entry key** below the code and paste it into the app instead.
+![Step 1 of the two-factor wizard, with the QR code and the manual entry key](/assets/img/shot-2fa-scan.png)
+*Step 1 of 3. Scan the code with an authenticator app — Google Authenticator, 1Password, Authy. If you are reading this on the phone that would be doing the scanning, copy the "Manual entry key" printed underneath instead. Both are pixelated here: they are a real secret, and one that works is not something to print on a web page.*
 
-**Step 2 of 3 · Enter the 6-digit code.** Type the number your authenticator now
-shows for `hinata`. This proves the app really did store the right secret before
-Hinata starts requiring it — the step that stops you locking yourself out of an
-account you never actually enrolled properly.
+![Step 2 of the two-factor wizard, with five of the six code boxes filled](/assets/img/shot-2fa-verify.png)
+*Step 2 of 3 is six separate boxes rather than a text field, and the cursor advances by itself. "Verify & enable" stays greyed out until all six are filled — here the last one is still empty.*
+
+Step 2 is there to prove your authenticator really did store the right secret
+before Hinata starts requiring it. It is the step that stops you locking
+yourself out of an account you never enrolled properly.
 
 **Step 3 of 3 · Save your recovery codes.** You get **ten single-use codes**.
 Each one works exactly once, in place of the six-digit code, if you lose access
@@ -230,8 +234,10 @@ You do not need a reason, and nobody is notified that you asked.
 
 ### Delete your account (Art. 17)
 
-**Danger zone → Delete account** erases your account. You are asked to type
-`DELETE` in full before the button does anything.
+**Danger zone → Delete account** erases your account.
+
+![The delete-account dialog with an empty confirmation field and a disabled button](/assets/img/shot-account-delete-confirm.png)
+*The confirmation. "Delete account" stays inert until the field reads exactly DELETE — and the sentence above it is the one to read first: profile, credentials and sessions go, authored issues and comments are anonymised.*
 
 !!! warning "This cannot be undone"
     Deleting your account permanently removes your profile, your credentials and

@@ -148,8 +148,12 @@ push notifications — to FCM for Android, iOS and macOS, and to WNS for Windows
 Linux has no such service to relay to, so the Linux build receives no push at
 all; notifications reach you in the app and by e-mail instead.
 
-On Linux there is no store lane to go through: the same build ships as a
-**Flatpak** and as an **AppImage**, both produced from one bundle.
+On Linux the lane is the **Snap Store**: the build is uploaded there as a
+strictly confined snap for amd64 and arm64. Uploaded is not yet installable —
+no revision has been released to a channel, so there is nothing to install and
+no store page to visit; the section below says where that stands. The
+**Flatpak** manifest and the **AppImage** script stay in the repository beside
+it — the same app, built by you instead of by a store.
 
 !!! note "Open source, GPL-3.0"
     The app is licensed **GPL-3.0**. You are free to build it, modify it and
@@ -168,18 +172,53 @@ PDF export behave the way they do everywhere else.
 
 | Format | What you get |
 | --- | --- |
-| **Flatpak** | The sandboxed desktop package. Build and install it from the manifest in `packaging/linux/flatpak/` with `flatpak-builder`; it is not currently published on a hosted Flatpak remote. |
-| **AppImage** | One portable file: download it, `chmod +x`, run it. It links against your system's GTK, GStreamer and libsecret on purpose, so it keeps your desktop theme and your distribution's codecs instead of freezing its own copies. |
+| **Snap** | The intended channel — but nothing is on one yet, so `snap install hinata` does not work today. Read the note below before you try it. |
+| **Flatpak** | Build and install it yourself from the manifest in `packaging/linux/flatpak/` with `flatpak-builder`. It is on no hosted Flatpak remote, and it is not going to Flathub — see below. |
+| **AppImage** | One portable file, which you build: `packaging/linux/appimage/build-appimage.sh` turns a release bundle into it, then `chmod +x` and run. It is published nowhere — CI attaches it to a workflow run, not to a release. It links against your system's GTK, GStreamer and libsecret on purpose, so it keeps your desktop theme and your distribution's codecs instead of freezing its own copies. |
 | **From source** | `flutter build linux --release` produces a relocatable bundle (the `hinata` binary plus `data/` and `lib/`) that you can install wherever you like. |
 
-Both packages are built from the **same bundle**, and both recipes live in
-`packaging/linux/` in
-[hinata-app](https://github.com/hinata-platform/hinata-app). Release builds are
-made on a pinned `ubuntu-22.04` runner, which makes the bundle's glibc floor a
-decision rather than an accident: a Flutter bundle is dynamically linked against
-the glibc it was built on, and glibc is only forward-compatible, so building on
-a newer runner would quietly produce a binary that refuses to start on older
-distributions.
+!!! warning "There is nothing to install from the store yet"
+    The name is registered and both architectures are uploaded, but no revision
+    has been released to a channel — and a snap with no released revision has no
+    public page at all. `snapcraft.io/hinata` answers 404, and so does the store
+    API. That is why this page does not link it.
+
+    Uploading is not publishing: the store reviews a revision before it can go
+    on a channel, and until that clears there is nothing for `snap` to find. The
+    release workflow expects this and treats a held revision as held rather than
+    as a failure, so the revision reaches its channel by itself when the review
+    is done.
+
+    `snap info hinata` is the status worth trusting, not this page. It prints
+    the channels that carry a revision, and errors with *no snap found* while
+    none does. When one appears, note which channel: a tagged build goes to
+    **edge**, and `stable` — what a bare `snap install hinata` reads — only when
+    a release is deliberately submitted. So the first command that will work is
+    `snap install hinata --edge`. Until then, the recipes below build the same
+    application.
+
+All three recipes live in `packaging/linux/` in
+[hinata-app](https://github.com/hinata-platform/hinata-app), and all three
+install the identical desktop entry, icon and AppStream metainfo. The Flatpak
+and the AppImage package a bundle that was built beforehand; the snap runs the
+Flutter build itself, because a snapcraft build step has network — and both the
+Flutter engine artefacts and pdfium are fetched during a build. `flatpak-builder`
+runs its modules with no network at all, which is why the Flatpak has to be
+handed a finished bundle.
+
+The AppImage and the raw bundle are built on a pinned `ubuntu-22.04` runner,
+which makes their glibc floor a decision rather than an accident: a Flutter
+bundle is dynamically linked against the glibc it was built on, and glibc is
+only forward-compatible, so building on a newer runner would quietly produce a
+binary that refuses to start on older distributions. The snap needs no such pin,
+because its libc comes from its `core24` base rather than from the machine that
+built it.
+
+!!! note "Why not Flathub"
+    Flathub's [submission requirements](https://docs.flathub.org/docs/for-app-authors/requirements)
+    exclude applications whose content was produced with an LLM, and Hinata's
+    was. The manifest stays in the repository because it builds and installs
+    fine — it is a recipe, not a channel.
 
 To build it yourself on Debian or Ubuntu:
 
@@ -246,10 +285,18 @@ sudo apt install \
   gstreamer1.0-plugins-bad gstreamer1.0-libav
 ```
 
-!!! tip "The Flatpak brings most of that with it"
+!!! tip "The packaged builds bring most of that with them"
     The Flatpak runtime already contains GTK, `zenity`, FFmpeg and the GStreamer
     plugins, so a Flatpak install only needs a keyring on the host to keep you
-    signed in.
+    signed in. The snap stages FFmpeg, PulseAudio's recording tools and the
+    extra GStreamer plugins itself, and picks files through the desktop portal
+    instead of `zenity`. Two of its permissions do not connect on their own,
+    because of what they reach:
+
+    ```bash
+    sudo snap connect hinata:password-manager-service   # stay signed in
+    sudo snap connect hinata:audio-record               # record voice comments
+    ```
 
 ## Where to go next
 

@@ -67,20 +67,15 @@ wurde, bekommt am Nachmittag keine E-Mail mehr darüber.
 Die Glocke sitzt auf jedem Bildschirm oben in der Leiste. Ein kleiner Punkt
 erscheint, sobald etwas Ungelesenes da ist.
 
-Ein Klick zeigt dir eine Vorschau deiner **fünf neuesten** Mitteilungen, jede
-mit einem Symbol, das die Art auf einen Blick verrät — ein `@` für eine
-Erwähnung, eine Person mit Haken für eine Zuweisung, eine Sprechblase für einen
-Kommentar, ein Schild für alles, was die Sicherheit deines Kontos betrifft.
-Ungelesene Einträge liegen auf einem sanften Amber-Ton, gelesene sind
-transparent. **Alle als gelesen markieren** räumt alles ab, **Alle Mitteilungen
-anzeigen** öffnet das vollständige Center.
-
-![Das Mitteilungscenter von Hinata](/assets/img/shot-notifications.png)
-*Das vollständige Mitteilungscenter. Ungelesene Zeilen liegen auf einem Amber-Ton und tragen rechts einen Punkt; oben stehen die Anzahl der Ungelesenen und „Alle als gelesen markieren“. Der erste Eintrag ist eine Wochenübersicht, die drei darunter sind Anmelde-Hinweise — die einzige Art, die sich nicht abschalten lässt.*
+![Die Mitteilungs-Vorschau unter der Glocke mit fünf Einträgen](/assets/img/shot-notification-bell.png)
+*Die Vorschau unter der Glocke: die fünf neuesten Mitteilungen, jede mit einem Symbol für ihre Art — eine Person mit Haken für die Zuweisung, Sprechblasen für die Kommentare, ein „@“ für die Erwähnung, ein Schild für die Anmeldung. Ungelesene Zeilen liegen auf einem Amber-Ton. Oben rechts „Alle als gelesen markieren“, unten „Alle Mitteilungen anzeigen“.*
 
 Das vollständige Center behält alles und gruppiert es nach **Heute**,
 **Gestern**, **Diese Woche**, **Dieser Monat** und **Früher**; beim Scrollen
 lädt es weiter nach.
+
+![Das Mitteilungscenter von Hinata](/assets/img/shot-notifications.png)
+*Dieselben Mitteilungen im vollständigen Center, unter „Gestern“, mit der Anzahl der Ungelesenen und „Alle als gelesen markieren“ oben. Jede Zeile trägt den Satz, der sie erklärt — wer kommentiert hat und was —, sodass die meisten gar keinen Klick brauchen.*
 
 Drei Dinge kannst du mit einer Zeile tun:
 
@@ -129,9 +124,10 @@ vollständige Tabelle, was welche Plattform kann.
 
 ## Stell ein, was dich erreicht
 
-Öffne **Einstellungen → Benachrichtigungen**. Du bekommst zwei Hauptschalter —
-einen für **E-Mail-Benachrichtigungen**, einen für **Push-Benachrichtigungen** —
-und darunter ein Raster mit einer Zeile pro Ereignis und einer Spalte pro Kanal.
+Öffne **Einstellungen → Benachrichtigungen**.
+
+![Die Benachrichtigungsmatrix in den Einstellungen, mit den beiden Hauptschaltern über dem Raster](/assets/img/shot-notification-matrix.png)
+*Die Karte „Benachrichtigungen“. Oben die beiden Hauptschalter — „E-Mail-Benachrichtigungen“ und „Push-Benachrichtigungen“, letzterer mit dem Hinweis, dass genau dieses Gerät keinen Push-Dienst hat —, darunter eine Zeile pro Ereignis mit den Spalten „E-Mail“ und „Push“.*
 
 Die Hauptschalter sind das grobe Werkzeug: Schalte
 **E-Mail-Benachrichtigungen** aus, und es geht für nichts mehr Post raus,
@@ -139,8 +135,8 @@ während deine Auswahl pro Ereignis genau so erhalten bleibt, wie du sie gesetzt
 hast — bereit für den Moment, in dem du wieder einschaltest. Zugestellt wird
 nur, wenn Hauptschalter *und* die Zelle des Ereignisses aktiv sind.
 
-Auf dem Handy wird aus dem Raster eine Karte pro Ereignis mit den beiden Kanälen
-untereinander — dieselben Optionen, nur für ein schmales Display gelegt.
+![Dieselben Benachrichtigungseinstellungen auf dem Handy, eine Karte pro Ereignis](/assets/img/shot-mobile-notification-matrix.png)
+*Derselbe Bildschirm auf dem Handy. Jedes Ereignis wird zu einer eigenen Karte, „E-Mail“ und „Push“ stehen darin untereinander — nichts muss über Spalten hinweg gelesen werden.*
 
 Das sind die Voreinstellungen eines frischen Kontos:
 
@@ -177,23 +173,22 @@ verschwinden darf, die du vor anderthalb Jahren gesetzt hast.
 ## Vorgänge beobachten und bewusst zuhören
 
 Beobachten ist die Art, einen Vorgang zu abonnieren, der nicht deiner ist. Öffne
-ihn, nutze das **⋯**-Menü in der Kopfzeile und wähle **Beobachten**. Das öffnet
-ein kleines Panel mit dem Schalter **Beobachtung beginnen** /
-**Beobachtung beenden** und der Liste aller, die gerade mitlesen — so siehst du,
-wer ohnehin schon aufpasst.
+ihn, nutze das **⋯**-Menü in der Kopfzeile und wähle **Beobachten**.
+
+![Das Beobachten-Panel an einem Vorgang, mit Schalter und Beobachterliste](/assets/img/shot-issue-watch-panel.png)
+*Das Panel hinter „⋯ → Beobachten“, verankert dort, wo das Menü stand. Oben steht „Beobachtung beenden“, sobald du abonniert hast; darunter „Du erhältst bereits Benachrichtigungen als Ersteller.“ und „Beobachter dieses Vorgangs“ — alle, die ohnehin schon aufpassen.*
 
 Ein Toast bestätigt es: *Du beobachtest diesen Vorgang jetzt.* Ab dann kann dich
 jede Änderung über das Ereignis „Beobachtete Vorgänge“ erreichen.
 
-Bist du bereits Bearbeiter oder Ersteller, sagt das Panel es dir — *Du erhältst
-bereits Benachrichtigungen als Bearbeiter* —, damit du „hier hört gerade niemand
-zu“ von „du bist längst versorgt“ unterscheiden kannst.
+Die Zeile über Bearbeiter und Ersteller lohnt einen Blick, bevor du abonnierst:
+Sie trennt „hier hört gerade niemand zu“ von „du bist längst versorgt“.
 
 Alles, was du abonniert hast, sammelt eine einzige Seite: **Beobachtet** in der
 Seitenleiste (auf dem Handy hinter **Mehr**).
 
 ![Die Seite „Beobachtete Vorgänge“](/assets/img/shot-watched.png)
-*Die Seite „Beobachtete Vorgänge“, bevor du etwas abonniert hast. Sie sagt dir genau, wie du sie füllst: einen Vorgang öffnen und „Beobachten“ einschalten.*
+*Die Seite „Beobachtete Vorgänge“: eine Zeile pro Abo, über alle Projekte hinweg, die du erreichst, mit Status, Priorität, Bearbeiter und Fälligkeit. Bevor du etwas abonniert hast, steht dort eine einzige Zeile, die sagt, wie du sie füllst — einen Vorgang öffnen und „Beobachten“ einschalten.*
 
 !!! info "Warum beobachtete Vorgänge dein Postfach nicht fluten"
     Glocke und Push feuern in dem Moment, in dem sich etwas ändert — du schaust
@@ -226,14 +221,8 @@ Gibt es wirklich nichts zu berichten — eine ruhige Woche, ein neues Konto, Url
 ![Die Seite Wochenübersicht](/assets/img/shot-weekly-summary.png)
 *Die Wochenübersicht. Der navyblaue Kopf nennt den Zeitraum und wie viele Vorgänge das Team abgeschlossen hat, daneben deine eigenen erledigten Vorgänge und deine Fokuszeit; „Die Woche hinter uns“ enthält die Kacheln Abgeschlossen, Erstellt und Fokuszeit sowie den Fortschritt des aktiven Sprints, und „Deine anstehenden To-Dos“ listet, was ansteht — Überfälliges rot markiert.*
 
-Von oben nach unten gelesen:
+Zwei Abschnitte, die der Screenshot nicht mehr erreicht:
 
-- **Der Kopf** — der Zeitraum, wie viel das gesamte Team abgeschlossen hat, und
-  zwei Chips für deinen eigenen Anteil: wie viele Vorgänge du erledigt und wie
-  lange du fokussiert gearbeitet hast.
-- **Die Woche hinter uns** — Abgeschlossen, Erstellt und Fokuszeit als drei
-  Kacheln, darunter der aktive Sprint mit Tageszähler und dem Anteil erledigter
-  Vorgänge.
 - **Top-Mitwirkende und Erledigte Highlights** — wer was bewegt hat und eine
   Auswahl der tatsächlich fertiggestellten Arbeit. Praktisch für ein
   Montags-Stand-up.

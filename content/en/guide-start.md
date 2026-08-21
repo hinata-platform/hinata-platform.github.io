@@ -42,9 +42,10 @@ The app is the same everywhere. Nothing on this page is desktop-only unless it s
 
 There is no single address everyone signs into. Every organization runs its own Hinata server, so the app has to be told which one is yours before it can show you anything at all.
 
-That is why the very first screen is **Connect to your server**. Type the address into **Server URL** and press **Connect**.
+![Connect to your server](/assets/img/shot-connect-server.png)
+*The very first screen after installing: the hinata wordmark, one Server URL field pre-filled with https://, and the Connect button. There is nothing else on it — no account to pick, nothing to skip.*
 
-The app then asks that address who it is, and only moves on once the server answers and identifies itself as a Hinata server. Until then you stay exactly where you are.
+The app asks that address who it is, and only moves on once the server answers and identifies itself as a Hinata server. Until then you stay exactly where you are.
 
 This is deliberate. An app that guessed, or quietly fell back to some default, would be an app that could send your organization's work somewhere it doesn't belong. Hinata would rather stop and ask.
 
@@ -62,9 +63,12 @@ You'll see *"Could not connect to this server. Please verify the URL."* Work dow
 
 ### Working with more than one server
 
-Hinata remembers every server you've connected to, and keeps each one's sign-in separate. That matters if you work with a client who runs their own Hinata, or if your company keeps a test server alongside the real one.
+Hinata remembers every server you've connected to, and keeps each one's sign-in separate. That matters if you work with a client who runs their own Hinata, or if your company keeps a test server alongside the real one. Saved servers appear underneath the connect form, so you can jump between them before signing in — and from inside the app, **Settings → Manage servers** shows the same list.
 
-Saved servers appear underneath the connect form, so you can jump between them with a tap. Later, from inside the app, **Settings → Manage servers** shows the same list with a live reachability check — whether each one is online, how fast it answers, whether its connection is secured — and lets you add, rename, switch or forget one.
+![The server manager](/assets/img/shot-server-manager.png)
+*Manage servers: one row per saved server with a Self or Cloud badge, a green dot and the answer time in milliseconds when it is reachable, a red Offline when it is not. The tick marks the server this app is currently connected to; Add server sits at the foot of the sheet.*
+
+The reachability check runs while the sheet is open, so an offline row means the server, not the app.
 
 !!! warning "Forgetting a server clears its sign-in"
     Removing a server from the list also deletes the saved credentials for it *on that device*. Your account on the server is untouched — you'll just have to sign in again next time.
@@ -73,9 +77,10 @@ Saved servers appear underneath the connect form, so you can jump between them w
 
 Once the server answers, you get its sign-in screen. What you find there depends on how your administrator set the server up, so not every option below will be on yours.
 
-### With a username and password
+![The sign-in screen](/assets/img/shot-sign-in.png)
+*A sign-in screen with everything switched on: E-mail or username, Password, Forgot password?, Sign in, one Continue with … button for the server's single sign-on provider, and Create account under it. The chip at the top of the card names the server you are signing in to, and switches to another one.*
 
-Enter your **E-mail or username** and your **Password**, then press **Sign in**.
+### With a username and password
 
 If you fumble the password several times in a row, the server pauses you for a while and says *"Too many failed attempts. Please try again later."* That's brute-force protection rather than a punishment, and it clears itself after a few minutes.
 
@@ -87,7 +92,7 @@ A recovery code works here too — one of the codes you were told to save when y
 
 ### With single sign-on
 
-If your organization uses single sign-on, the screen shows one or more **Continue with …** buttons carrying your identity provider's name. Press one, your browser opens, you sign in the way you already do everywhere else, and you land back in Hinata already signed in.
+Press **Continue with …**, and your browser opens; you sign in the way you already do everywhere else and land back in Hinata already signed in. The button carries your identity provider's name, so there is nothing to choose.
 
 Some servers turn passwords off entirely and make single sign-on the only way in. When that's the case the sign-in screen says so plainly rather than showing you a password box that cannot work.
 
@@ -172,18 +177,22 @@ Home exists to answer one question: *what should I be doing today?* Reading it f
 
 **Customize**, at the top right, turns the dashboard into an editor.
 
-- **Hero board** chooses which board takes the big card. Leave it on *Automatic* and it follows the active sprint.
-- **Cards** shows or hides each card individually. If team ranking isn't how your team works, switch it off.
-- **Dashboard data** and **Team ranking** narrow the numbers to particular projects or teams instead of everything you can see — useful the moment you're a member of more than two or three things.
+![The dashboard in edit mode](/assets/img/shot-dashboard-customize.png)
+*Edit mode: three scope pickers appear above the cards — Hero board on Automatic (active sprint), Dashboard data on All projects, Team ranking on All teams — every card grows an eye that hides it, and Customize has become Done.*
+
+Left on *Automatic*, the hero card follows whichever sprint is running; point it at a board instead and it stays there. The two scope pickers narrow the numbers to particular projects or teams rather than everything you can see, which starts to matter the moment you belong to more than two or three things. And a card that isn't how your team works — team ranking is the usual one — can simply go.
 
 Press **Done** when you're happy. The layout is saved to your account rather than to the device, so it is waiting for you on your phone too.
 
 ### On a phone, or in a narrow window
 
-The same app, rearranged rather than reduced. The rail becomes a floating glass tab bar at the bottom — **Home**, **Issues**, **Board**, **More** — with a search button beside it, and **More** holds everything from the Plan group.
+The same app, rearranged rather than reduced.
 
 ![Home on a phone](/assets/img/shot-mobile-dashboard.png)
-*The same Home screen on a phone: sprint card, key figures and today's focus, with the floating tab bar and its detached search button at the bottom.*
+*The same Home screen on a phone: sprint card, key figures and today's focus, with the floating glass tab bar — Home, Issues, Board, More — and its detached search button at the bottom.*
+
+![The More sheet on a phone](/assets/img/shot-mobile-more-sheet.png)
+*More opens a sheet over the page: your account at the top, then the whole Plan group as tiles — Projects, Teams, Watched, Gantt, Timesheet, Reports, Knowledge.*
 
 Nothing is missing on the phone; it is the same screens and the same data, laid out for a thumb. [On your phone](/en/guide-mobile.html) covers the differences that do exist.
 
@@ -191,12 +200,14 @@ Nothing is missing on the phone; it is the same screens and the same data, laid 
 
 Open **Settings** at the bottom of the rail and look for the **Appearance & app** card.
 
-- **Language** switches the entire interface between **English (UK)** and **Deutsch (Deutschland)**. Your very first launch picks whichever matches your device, and after that your choice sticks. It also travels with every request to the server, so messages and errors that come *from* the server arrive in your language too.
-- **Appearance** is three buttons: follow the **system**, always **light**, always **dark**. The honey-amber accent is deliberately the same colour in both, so nothing shifts hue when the sun goes down.
+![The language picker](/assets/img/shot-language-picker.png)
+*The Appearance & app card on a phone, with the language picker open: two entries, and a tick on the one in use. Above it the card names the server this app is connected to and carries Manage servers.*
 
-If you'd rather not open Settings, the ⌘K palette has *Toggle light / dark appearance* as a command.
+Your very first launch picks whichever language matches your device, and after that your choice sticks. It travels with every request to the server too, so messages and errors that come *from* the server arrive in your language.
 
-That same card shows which server you are **connected** to and carries the **Manage servers** button. The rest of the Settings page — your profile, e-mail address, password, two-factor, active sessions and your data — is covered in [Your account](/en/guide-account.html).
+**Appearance**, under the language row, is three buttons: follow the **system**, always **light**, always **dark**. The honey-amber accent is deliberately the same colour in both, so nothing shifts hue when the sun goes down. If you'd rather not open Settings at all, the ⌘K palette has *Toggle light / dark appearance* as a command.
+
+The rest of the Settings page — your profile, e-mail address, password, two-factor, active sessions and your data — is covered in [Your account](/en/guide-account.html).
 
 ## Your first five minutes
 

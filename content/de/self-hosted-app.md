@@ -89,16 +89,17 @@ set(APPLICATION_ID "com.yourorg.yourapp")
 
 Die Application-ID reicht allerdings weiter als bis zum Prozess. Sie ist auch der
 Dateiname des Desktop-Eintrags (`com.yourorg.yourapp.desktop`), die
-`StartupWMClass` darin, die `<id>` der AppStream-Metainfo und die Flatpak-`app-id`
-— AppStream und die Desktop-Shells verknüpfen diese Dateien allein über diese eine
-Zeichenkette. Bleibt ein einziges Vorkommen zurück, zeigt die Shell deine App mit
+`StartupWMClass` darin, die `<id>` der AppStream-Metainfo, die Flatpak-`app-id`
+und der Bus-Name im `dbus`-Slot des Snaps — AppStream und die Desktop-Shells
+verknüpfen diese Dateien allein über diese eine Zeichenkette. Bleibt ein einziges Vorkommen zurück, zeigt die Shell deine App mit
 einem generischen Icon, oder der Store-Eintrag passt nie zur installierten App.
 Der Binary-Name wandert ebenfalls mit: `Exec=` im Desktop-Eintrag,
-`<provides><binary>` in der Metainfo und das `command:` des Flatpaks.
+`<provides><binary>` in der Metainfo und das `command:` von Flatpak und Snap.
 
 !!! note "Warum die Linux-Packaging-Dateien außerhalb von `linux/` liegen"
     In hinata-app liegen der Desktop-Eintrag, das Icon, die AppStream-Metainfo und
-    die Flatpak-/AppImage-Rezepte in `packaging/linux/`, nicht in `linux/`.
+    die Rezepte für Snap, Flatpak und AppImage in `packaging/linux/`, nicht in
+    `linux/`.
     `flutter create --platforms=linux .` schreibt alles unter `linux/` neu, und
     handgepflegte Packaging-Eingaben haben in diesem Wirkungsbereich nichts zu
     suchen. Ein gemeinsames Verzeichnis bedeutet außerdem, dass jedes Format —
@@ -273,11 +274,17 @@ Servereinstellung `HINATA_PRIVACY_POLICY_URL` an (auch live im
 bevor du einreichst.
 
 Linux kennt keinen solchen Torwächter — ein AppImage oder dein eigenes
-Flatpak-Remote muss niemandem Rechenschaft ablegen. Veröffentlichst du auf
-**Flathub**, wird der Eintrag allerdings aus deiner AppStream-Metainfo erzeugt:
-Diese Datei braucht dann Name, Kurzbeschreibung, Beschreibung, Lizenz, ein
-OARS-Content-Rating und mindestens einen Screenshot unter einer stabilen,
-gehosteten URL.
+Flatpak-Remote muss niemandem Rechenschaft ablegen. Ein Store schon: Der **Snap
+Store** prüft, was ein strikt isoliertes Snap anfordert, bei privilegierten
+Anforderungen von Hand. Und veröffentlichst du auf **Flathub**, wird der Eintrag
+aus deiner AppStream-Metainfo erzeugt: Diese Datei braucht dann Name,
+Kurzbeschreibung, Beschreibung, Lizenz, ein OARS-Content-Rating und mindestens
+einen Screenshot unter einer stabilen, gehosteten URL.
+
+Hinata selbst liefert Linux über den Snap Store aus und nicht über Flathub:
+Dessen [Anforderungen an Einreichungen](https://docs.flathub.org/docs/for-app-authors/requirements)
+schließen Anwendungen aus, deren Inhalte mit einem LLM erzeugt wurden. Behält
+dein Fork Hinatas Oberfläche und Texte, gilt das auch für ihn.
 
 !!! tip "Barrierefreiheit ist Teil der Konformität"
     Die Oberfläche ist mit Blick auf Barrierefreiheit gebaut — skalierbarer Text,
@@ -292,7 +299,9 @@ Arbeite von oben nach unten; jeder Schritt ist unabhängig.
 2. Setze die **Package-/Bundle-ID** (`com.yourorg.yourapp`) auf Android, iOS und
    macOS, die **MSIX-Identität** aus dem Partner Center auf Windows sowie
    `APPLICATION_ID` + `BINARY_NAME` in `linux/CMakeLists.txt` — benenne danach den
-   Linux-Desktop-Eintrag, die `<id>` der Metainfo und die Flatpak-`app-id` passend um.
+   Linux-Desktop-Eintrag, die `<id>` der Metainfo, die Flatpak-`app-id` und den
+   `name` des `dbus`-Slots im Snap passend um. Das `name:` des Snaps selbst ist
+   eine eigene, storeweite Kennung, die du auf snapcraft.io registrierst.
 3. Setze den **App-Anzeigenamen** auf jeder Plattform, inklusive `Name=` im
    Linux-Desktop-Eintrag und `<name>` in der Metainfo.
 4. Ersetze das Artwork in `assets/branding/` und lass die Icon- + Splash-Generatoren

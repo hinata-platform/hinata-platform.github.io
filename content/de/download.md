@@ -51,9 +51,10 @@ dieselben Daten, dieselben Tastenkürzel — egal, wo du sie öffnest.
 </li>
 <li class="plat-card glass">
   <span class="plat-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg><strong>Linux</strong></span>
-  <span class="plat-status soon">Selbst bauen</span>
-  <p>Ein nativer GTK-3-Client. Die Rezepte für Flatpak und AppImage liegen im Repository und bauen mit einem Befehl; über einen gehosteten Kanal wird gerade entschieden.</p>
+  <span class="plat-status soon">In Prüfung</span>
+  <p>Ein nativer GTK-3-Client, als strikt isoliertes Snap für amd64 und arm64 in den Store hochgeladen — aber noch liegt keine Revision auf einem Kanal, es gibt also nichts zu installieren und keine Store-Seite zum Verlinken. <code>snap info hinata</code> ist die Probe; solange nichts veröffentlicht ist, meldet es einen Fehler. Bis dahin bauen die Flatpak- und AppImage-Rezepte im Repository dieselbe App.</p>
   <span class="plat-actions">
+    <a class="plat-link" href="/de/clients.html#hinata-unter-linux">Wie der Stand ist</a>
     <a class="plat-link" href="https://github.com/hinata-platform/hinata-app/tree/main/packaging/linux">Selbst bauen</a>
   </span>
 </li>

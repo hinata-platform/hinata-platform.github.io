@@ -27,7 +27,10 @@ On the board there is a fifth: the inline composer at the bottom of a column, wh
 
 ### What the fields mean
 
-The form is split into the text at the top, a **Details** block, and a **Timeline** block. Only a project and a title are required — everything else can stay empty and be filled in later, by you or by whoever picks the work up.
+Only a project and a title are required — everything else can stay empty and be filled in later, by you or by whoever picks the work up.
+
+![The New issue dialog](/assets/img/shot-issue-create.png)
+*New issue: title and description on the left, Details and Timeline stacked on the right. Project, Status, Priority and Type arrive already set; assignee, epic, story points, label, sprint and both dates stay empty until someone fills them in. Save is the only button at the foot.*
 
 | Field | What it does |
 | --- | --- |
@@ -90,9 +93,12 @@ The **Issues** page lists everything you can see across your projects. The count
 
 - **Group by** — None, Status, Priority, Assignee, Project or Type. Grouping turns the flat list into labelled sections, which is the fastest way to see where a project is lopsided.
 - **Sort** — newest or oldest first, or by when the issue was last modified.
-- **Filter** — Status, Assignee, Priority, Type and Project, each multi-select, plus an **Archived** switch that brings soft-deleted issues back into view. The button shows how many filters are active; **Clear all** resets them.
+- **Filter** — five facets, each multi-select, plus an **Archived** switch that brings soft-deleted issues back into view.
 - **Time range** — Overdue, Due by today, This week, Next 7 days, a custom range, and so on.
 - **Export** — writes the current, filtered list to PDF, CSV or JSON. It pages the whole result set, not just the rows on screen.
+
+![The filter popover on the issues list](/assets/img/shot-issue-filter.png)
+*Filter is one popover, not five controls: a tab per facet, the options of the active one below it, a tick on each chosen value. Two are on here, so the toolbar button carries a 2 and the foot of the popover reads "2 active" beside Clear all and the Archived switch. The subtitle under the page title counts what the filter left — 14 of 14 issues, against the 57 an unfiltered list shows.*
 
 Click any row to open it. For finding a specific issue by key or by words in its text, the [command palette](/en/guide-search.html) is faster than any filter.
 
@@ -101,11 +107,14 @@ Click any row to open it. For finding a specific issue by key or by words in its
 Opening an issue gives you the same layout everywhere: a wide main column for the content, a narrow right column for the facts.
 
 ![A Hinata issue open in detail](/assets/img/shot-issue.png)
-*Left: title, description, the sub-tasks card and linked issues, with the comment composer floating at the bottom. Right: the Details card, a Deployment card for the connected repository, and the Timeline card with its "Log time" link.*
+*Left: the title, then the description — a heading, a list, a code block, a table and a quote, all rendered in place — with the Sub-tasks card under it and the comment composer floating over the lot. Linked issues and the attachments grid follow further down the same column. Right: the Details card, a Deployment card for the connected repository, and the Timeline card with its "Log time" link.*
 
 ### The top bar
 
-The back arrow, the issue key, and the current status as a coloured chip. On the right, the **…** menu holds every action that is not a field: watch, export, clone, move to another project, and archive or delete.
+The back arrow, the issue key, and the current status as a coloured chip.
+
+![The actions menu on an issue](/assets/img/shot-issue-actions-menu.png)
+*The … menu at the top right holds every action that is not a field: Watch, Export…, Clone…, Move to project… and, alone in red, Delete. Four of the sections below this one start here.*
 
 ### The main column
 
@@ -172,7 +181,12 @@ Two things are worth knowing beyond the buttons:
 
 ## Linking issues to each other
 
-The **Linked issues** card records how this issue relates to others. Press **Add issue**, pick the relationship from the dropdown on the left, then find the other issue on the right — by typing part of its title or key, or by pasting its URL. You can select several at once, and **Link** commits them.
+The **Linked issues** card records how this issue relates to others.
+
+![Choosing a relationship](/assets/img/shot-issue-link.png)
+*Add issue opens an inline row: the relationship on the left, and a field on the right that takes part of a title, an issue key or a pasted URL. The relationship menu holds thirteen verbs — it scrolls past the eleven shown — and the links already on this issue sit above it, grouped by verb.*
+
+You can select several issues at once, and **Link** commits them.
 
 | Relationship | Reads as | Use it when |
 | --- | --- | --- |
@@ -202,22 +216,22 @@ Two things save you a click:
 
 **… → Clone** copies an issue into the same project — useful for recurring work, or as a template for a series of similar tickets.
 
-The dialog asks for the copy's summary, then lets you choose what comes along. All three switches start off:
+![The Clone dialog](/assets/img/shot-issue-clone.png)
+*Clone: the summary arrives prefixed with CLONE -, and what comes along is three switches — Attachments, Links, Sprint values — all off, each with the line that says what turning it on does.*
 
-- **Attachments** — the original's files are copied onto the clone, each as its own stored copy, so removing one does not touch the other.
-- **Links** — the original's relationships to other issues.
-- **Sprint values** — put the copy in the same sprint. Left off, it starts in the backlog.
-
-Whatever you choose, a **clones** link back to the original is always created, and **you** are recorded as the author of the copy.
+Attachments that do come along are copied as their own stored files, so removing one later does not touch the other. Whatever you choose, a **clones** link back to the original is always created, and **you** are recorded as the author of the copy.
 
 !!! note "Discussion stays with the original"
     Comments, work logs and history never travel to a clone. That is the point: a clone is a fresh start with the same shape, not a snapshot of a conversation.
 
 ## Moving an issue to another project
 
-**… → Move to project…** relocates an issue, and it is a two-step wizard because a move is rarely lossless. First pick the target project; then map each status onto one the target project actually has. Hinata pre-matches everything it can and asks only about the rest.
+**… → Move to project…** relocates an issue. It is a two-step wizard because a move is rarely lossless: first the target project, then everything that cannot simply come along with it.
 
-Before you confirm, it lists exactly what will happen — an epic's children left behind, a sprint the target's board does not cover, an assignee who is not a member over there. The issue gets a new key in its new project.
+![Step two of the move wizard](/assets/img/shot-issue-move.png)
+*Step two. Every status in play is mapped onto one the target project has — all of them matched here, so nothing needs a decision — then the consequences Hinata worked out for itself, then the new keys: HIN-4 becomes MOB-9, and its three sub-tasks follow with it.*
+
+Hinata pre-matches every status it can and asks only about the rest. The issue gets a new key in its new project, and its old key stops resolving.
 
 !!! warning "Restore an archived issue before moving it"
     The move entry is disabled for archived issues. Restore it first, then move it.

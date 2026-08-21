@@ -15,27 +15,28 @@ Die Aktivität hat drei Tabs — **Alle**, **Kommentare** und **Verlauf**. Ein V
 
 Der Composer schwebt unten am Bildschirm und bleibt dort, während der Verlauf dahinter scrollt — du musst ihn an einem langen Vorgang also nie suchen.
 
-![Kommentare und Anhänge an einem Hinata-Vorgang](/assets/img/shot-comments.png)
-*Die Ablagefläche nennt die Grenzen, die dein Server erlaubt, und darunter hält die Aktivität den Thread: ein Ausgangskommentar, seine eingerückten Antworten, pro Kommentar Antworten- und Reaktions-Buttons, ein „Antworten verbergen“-Umschalter und der schwebende Composer mit Anhang- und Mikrofon-Button.*
+![Ein Kommentar-Thread an einem Hinata-Vorgang](/assets/img/shot-comments.png)
+*Ein Thread: ein Ausgangskommentar mit einer Reaktion __👍 3__, darunter seine eingerückten Antworten, unter jeder davon __Antworten__, __Reagieren__ und das Chevron __Mehr__. Über allem schwebt der Composer mit seinem __+__ und dem Mikrofon.*
 
 ## Einen Kommentar schreiben
 
-Klick ins Feld **Kommentar…**, tippe, sende. Alles, was du in eine Beschreibung schreiben kannst, kannst du auch in einen Kommentar schreiben: Überschriften, Fett und Kursiv, Listen, Aufgabenlisten, Zitate, Tabellen, Codeblöcke mit Sprache, Infoboxen, Links und Bilder. Die Buttons dafür liegen hinter dem **+** neben dem Feld unter **Textformatierung**, das den Composer zum vollen Editor mit dem Umschalter **Editor** / **Vorschau** aufklappt — so kannst du einen langen Kommentar prüfen, bevor er rausgeht.
+Klick ins Feld **Kommentar…**, tippe, sende. Alles, was du in eine Beschreibung schreiben kannst, kannst du auch in einen Kommentar schreiben: Überschriften, Fett und Kursiv, Listen, Aufgabenlisten, Zitate, Tabellen, Codeblöcke mit Sprache, Infoboxen, Links und Bilder. **Textformatierung** klappt den Composer zum vollen Editor mit dem Umschalter **Editor** / **Vorschau** auf — so kannst du einen langen Kommentar prüfen, bevor er rausgeht.
+
+![Das +-Menü neben dem Kommentar-Composer](/assets/img/shot-comment-attach-menu.png)
+*Das __+__ links neben dem Feld __Kommentar…__. Die beiden Bild-Einträge setzen das Bild in den Kommentartext, an die Cursorposition; __Anhang__ lädt die Datei stattdessen in die Anhangliste des Vorgangs, wo sie alle finden, ohne den Thread zu durchsuchen.*
 
 !!! tip "⌘↵ sendet"
     Der Composer zeigt seinen Hinweis selbst an: **⌘↵ zum Senden** — auf dem Mac ⌘ und Return, sonst **Strg** und Return. Ein einfaches Return macht einen Zeilenumbruch; Kommentare sind oft mehr als ein Satz, deshalb ist die sichere Taste die, die weniger tut.
-
-Der **+**-Button bietet je nach Gerät außerdem:
-
-- **Foto- und Videogalerie** und **Foto/Video aufnehmen** — das setzt das Bild *in den Kommentartext*, direkt an die Cursorposition.
-- **Anhang** — lädt eine beliebige Datei hoch und legt sie in die Anhangliste des **Vorgangs**, nicht in den Kommentartext. Ein Kommentar ist Text; Dateien gehören dem Vorgang, wo sie alle finden, ohne den Thread zu durchsuchen.
 
 !!! note "Nicht jeder Eintrag erscheint auf jeder Plattform"
     Der Kamera-Eintrag wird nur angeboten, wo es eine Kamera gibt — unter Linux gibt es keine Webcam-Unterstützung, deshalb fehlt der Eintrag ganz, statt beim Tippen zu scheitern. Was welche Plattform kann, steht unter [Download](/de/download.html).
 
 ## Jemanden erwähnen
 
-Tippe irgendwo im Kommentar ein `@`, und es öffnet sich ein Menü, das gleichzeitig **Vorgänge, Artikel der Wissensdatenbank und Personen** durchsucht. Wähl einen Eintrag, und er wird zu einem Chip in deinem Text.
+Tippe irgendwo im Kommentar ein `@` und wähl aus dem Menü, das aufgeht. Was in deinem Text landet, ist ein Chip, keine Zeichen.
+
+![Das Erwähnungs-Menü im Kommentar-Composer nach der Eingabe von @ke](/assets/img/shot-comment-mention.png)
+*Ein Menü durchsucht Vorgänge, Artikel der Wissensdatenbank und Personen gemeinsam, unter der Überschrift __Verknüpfen mit …__. Zwei Buchstaben genügen: `@ke` bringt drei Vorgänge, den Artikel __Auth & token refresh__ und Jonas Becker zurück, jede Zeile rechts als __ISSUE__, __DOC__ oder __USER__ ausgezeichnet.*
 
 Was die drei Arten bewirken:
 
@@ -62,6 +63,9 @@ Antworten werden erst geladen, wenn du sie aufklappst — deshalb öffnet sich a
 
 Neben **Antworten** sitzt ein Smiley-Button. Anklicken, bei Bedarf im Emoji-Picker suchen, und deine Reaktion erscheint unter dem Kommentar.
 
+![Die Schnellreaktions-Leiste, geöffnet unter einem Kommentar](/assets/img/shot-comment-reactions.png)
+*Ein Klick öffnet sechs Emoji — ❤️ 👍 😂 😮 😢 🙏 — und ein __…__ für den vollen Picker. Der Kommentar darunter trägt schon sein eigenes __👍 3__: Reaktionen sitzen unter dem Text, über der Aktionszeile, und die Zahl sagt, wie viele Personen genau dieses Emoji gewählt haben.*
+
 - **Eine Reaktion pro Person und Kommentar.** Ein anderes Emoji ersetzt deins; dasselbe noch einmal entfernt es.
 - Reagieren darf jede Person im Projekt.
 - Reaktionen sind der billigste Weg, eine Schleife zu schließen. Ein „👍“ auf „ich übernehme das“ spart einen Kommentar, der sonst nichts sagt.
@@ -72,7 +76,10 @@ Jedes Projektmitglied kann einen Kommentar über sein Menü **fixieren**. Fixier
 
 ## Eigene Kommentare bearbeiten oder löschen
 
-Öffne das Menü eines Kommentars — am Desktop über das Chevron, auf dem Touchscreen per langem Druck — und du bekommst **Antworten**, **Kopieren**, **Auswählen**, **Bearbeiten**, **Link kopieren**, **Fixieren** und **Löschen**. Was davon du siehst, hängt davon ab, wessen Kommentar es ist.
+Öffne das Menü eines Kommentars — am Desktop über das Chevron **Mehr**, auf dem Touchscreen per langem Druck. Was darin steht, hängt davon ab, wessen Kommentar es ist.
+
+![Das Kommentarmenü offen unter einem Kommentar im Thread](/assets/img/shot-comment-menu.png)
+*Das Menü an einem eigenen Kommentar. __Antworten__, __Kopieren__, __Link kopieren__ und __Fixieren__ gibt es an jedem Kommentar; __Auswählen__, __Bearbeiten__ und das rote __Löschen__ am Fuß nur am eigenen.*
 
 - **Bearbeiten** — nur die verfassende Person darf ihren Kommentar bearbeiten. Ein bearbeiteter Kommentar ist mit **bearbeitet** markiert, niemand muss sich also fragen, ob er sich beim ersten Lesen getäuscht hat. Sprachnachrichten lassen sich nicht bearbeiten; lösch sie und nimm neu auf.
 - **Löschen** — deine eigenen kannst du immer löschen. Administratorinnen und Administratoren dürfen zur Moderation jeden Kommentar löschen.
@@ -135,7 +142,10 @@ Der Block **Anhänge** sitzt direkt über der Diskussion. Zwei Wege, ihn zu fül
 - **Dateien darauf ziehen.** Die Fläche hebt sich hervor und liest sich als **Zum Anhängen ablegen**; loslassen startet den Upload.
 - **Draufklicken** öffnet deine Dateiauswahl. Auf Handy und Tablet öffnet sich zuerst das Blatt **Anhang hinzufügen** mit **Fotomediathek**, **Foto aufnehmen**, **Video aufnehmen** und **Datei auswählen**.
 
-Die Fläche selbst nennt die Regeln, die dein Server durchsetzt — im Screenshot oben „Bilder, PDFs & Text werden direkt angezeigt · beliebiger Dateityp · bis zu 25 MB“. Drei Grenzen gelten, und alle drei legt fest, wer deinen Server betreibt:
+![Der Block „Anhänge“ an einem Vorgang, mit vier Dateien gefüllt](/assets/img/shot-attachments.png)
+*Sobald Dateien im Block liegen, wird aus der Ablagefläche __Dateien hinzufügen__, das dieselbe Auswahl öffnet. Das Bild bekommt eine echte Miniatur, ZIP, Log und PDF je ein farbcodiertes Glyph — und die Kachel unter dem Cursor bekommt einen Herunterladen- und einen Entfernen-Knopf.*
+
+Die Fläche selbst nennt die Regeln, die dein Server durchsetzt — etwa „Bilder, PDFs & Text werden direkt angezeigt · beliebiger Dateityp · bis zu 25 MB“. Drei Grenzen gelten, und alle drei legt fest, wer deinen Server betreibt:
 
 | Grenze | Was sie bedeutet |
 | --- | --- |
@@ -162,14 +172,15 @@ Faustregel: Illustriert es einen Satz, gehört es in den Text. Ist es ein Beleg,
 
 ## Ansehen, öffnen und herunterladen
 
-Anhänge erscheinen als Kacheln in einem Raster. Bilder und PDFs bekommen eine echte Miniatur (beim PDF die erste Seite), alles andere ein farbcodiertes Glyph für seinen Typ — Dokument, Tabelle, Archiv, Video — dazu Dateiname, Größe und Alter.
+Anhänge erscheinen als Kacheln in einem Raster. Bilder und PDFs bekommen eine echte Miniatur (beim PDF die erste Seite), alles andere ein farbcodiertes Glyph für seinen Typ.
 
-Ein Klick auf eine Kachel öffnet die **Vorschau**, eine dunkle Vollbildbühne mit der Datei in der Mitte:
+![Das Anhang-Raster mit geöffnetem Menü „Weitere Aktionen“](/assets/img/shot-attachment-actions.png)
+*Vier Dateien an einem Vorgang, jede Kachel mit Größe, hochladender Person und Alter. __Dateien hinzufügen__ lädt weitere hoch; das __…__ daneben ist __Weitere Aktionen__ mit __Alle herunterladen (4)__ — jede Datei des Vorgangs in einem ZIP — und __Alle löschen (4)__.*
 
-- **Bilder** zoomen mit Scrollrad, Pinch oder den Zoom-Buttons, **Zoom zurücksetzen** bringt dich zurück.
-- **PDFs** werden Seite für Seite dargestellt und lassen sich aus der Vorschau drucken.
-- **Textdateien** — Code, Logs, Konfiguration, Markdown — erscheinen als reiner, inerter Text, mit **Zeilennummern**, **Lange Zeilen umbrechen** und **Gesamten Text kopieren**. Ist eine Datei zu groß für die Vorschau, sagt sie das und bietet den Download an.
-- **Vorherige Datei** / **Nächste Datei** blättern durch das ganze Raster, ohne zurückzugehen — genau das, was du willst, wenn jemand vierzehn Screenshots angehängt hat.
+Ein Klick auf eine Kachel öffnet die **Vorschau**, eine dunkle Vollbildbühne mit der Datei in der Mitte.
+
+![Eine Logdatei in der Vollbild-Vorschau](/assets/img/shot-attachment-viewer.png)
+*Eine Logdatei in der Vorschau, mit eingeschalteten __Zeilennummern__ und __Lange Zeilen umbrechen__, daneben __Gesamten Text kopieren__. Der Zähler steht auf 2 / 4: Die Pfeile und der Streifen am unteren Rand blättern durch das ganze Raster, ohne zum Vorgang zurückzugehen.*
 
 Nicht jeder Typ lässt sich anzeigen, und die Vorschau sagt das, statt zu scheitern:
 
@@ -182,7 +193,7 @@ Nicht jeder Typ lässt sich anzeigen, und die Vorschau sagt das, statt zu scheit
 
 Textdateien jenseits einiger Megabyte werden gar nicht erst in die Vorschau geholt: Sie melden, dass sie zu groß sind, und verweisen auf den Download — ein Vorschaufenster ist kein Ort für ein riesiges Log.
 
-**Herunterladen** speichert eine einzelne Datei; das Menü **Weitere Aktionen** bietet **Alle herunterladen**, das jede Datei des Vorgangs in ein ZIP-Archiv packt. Wo die Datei landet, hängt von der Plattform ab: iOS, Android, macOS und Windows öffnen das System-Teilen-Menü, du wählst also das Ziel; Linux schreibt direkt in deinen Downloads-Ordner und nennt den Dateinamen; der Web-Build übergibt sie deinem Browser.
+Wo ein Download landet — eine einzelne Datei oder das ganze ZIP — hängt von der Plattform ab: iOS, Android, macOS und Windows öffnen das System-Teilen-Menü, du wählst also das Ziel; Linux schreibt direkt in deinen Downloads-Ordner und nennt den Dateinamen; der Web-Build übergibt die Datei deinem Browser.
 
 !!! warning "Entfernen entfernt für alle"
     **Entfernen** löscht den Anhang vom Vorgang und aus dem Speicher — für jede Person, die diesen Vorgang ansieht, dauerhaft. Für Dateien gibt es keinen Archivierungsschritt wie für Vorgänge, lies den Dateinamen also zweimal, bevor du bestätigst.

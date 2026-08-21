@@ -23,20 +23,20 @@ The rail on the left of the desktop layout is gone. In its place:
 - **A separate round search button**, detached from the tab pill at the bottom
   right. It opens the same command palette as `⌘K` on a desktop — type to jump
   to an issue, a project, a person or a page.
-- **A slim top bar** with the page title, the **bell** with its unread dot, and
-  the **settings** icon.
+- **A slim top bar** with the page title, the bell and the settings icon.
 
 ![The Hinata dashboard on a phone](/assets/img/shot-mobile-dashboard.png)
 *Home on a phone. The greeting and sprint day are at the top, the active sprint sits on a navy card with its completion ring and a "To board" button, then the stat tiles and Today's focus. The four-tab glass pill and the round search button float above the content at the bottom; the bell and settings sit top-right.*
 
-**More** opens a sheet with everything the four tabs do not cover: your name and
-avatar at the top, then **Projects**, **Teams**, **Watched**, **Gantt**,
-**Timesheet**, **Reports** and **Knowledge**. Whenever you are on one of those
-pages, More stays lit as the active tab, so you always know where you are.
+**More** opens a sheet with everything the four tabs do not cover.
 
-Notifications deliberately have no entry in that sheet — the bell is on every
-screen already, so a second door to the same room would only be one more thing
-to scan past.
+![The More sheet open over the dashboard on a phone](/assets/img/shot-mobile-more-sheet.png)
+*The More sheet: your name and avatar at the top, then a grid of seven destinations — "Projects", "Teams", "Watched", "Gantt", "Timesheet", "Reports" and "Knowledge". Notifications is not among them.*
+
+Whenever you are on one of those pages, More stays lit as the active tab, so you
+always know where you are. Notifications gets no entry of its own on purpose:
+the bell is on every screen already, and a second door to the same room would
+only be one more line to scan past.
 
 !!! tip "Content scrolls behind the glass, not under a bar"
     Both the top bar and the bottom pill are translucent and float above the
@@ -80,18 +80,12 @@ next screen fetches fresh.
 The desktop shows issues as a table. A phone shows them as cards, because a
 table with six columns on a 390-point screen is a table you cannot read.
 
-Each card gives you, in three lines: the issue key and its priority; the type
-glyph and the title (up to two lines, plus a sub-task badge if it has children);
-and then the workflow state, the assignee's avatar and how overdue it is, if it
-is.
-
 ![The issue list on a phone](/assets/img/shot-mobile-issues.png)
 *Issues on a phone. The four view controls — grouping, sort, filter and time range — collapse into one connected glass bar at the top, with the export button beside it. Each issue is a card: key and priority on the first line, type and title on the second, state, assignee and an overdue note on the third. The amber "+" creates a new issue.*
 
-The four controls that sit as separate labelled pills on a desktop —
-**grouping**, **sort**, **filter** and **time range** — collapse into a single
-segmented glass bar, so they read as one cluster instead of four scattered
-boxes. The **export** button keeps its own place to the right of them.
+The four controls that sit as separate labelled pills on a desktop collapse into
+one segmented glass bar, so they read as a single cluster instead of four
+scattered boxes.
 
 The amber **+** button creates an issue. Long-press any card to start selecting,
 then act on the whole selection at once.
@@ -112,7 +106,7 @@ re-aim.
 were eating the width the row shares with the other controls.
 
 ![A sprint backlog on a phone](/assets/img/shot-mobile-board.png)
-*A Scrum board's backlog view on a phone. The three view icons sit top-left with the filter button opposite; below them "Create sprint" and a filter field. The sprint header shows its dates, issue count, capacity — 44 of 40 points here, so the bar is red — and a "Complete sprint" button. Each row has a round checkbox for selecting several at once.*
+*A Scrum board's backlog view on a phone. The three view icons sit top-left with the filter button opposite; below them "Create sprint" and a filter field. The sprint header shows its dates, issue count, capacity — 42 of 40 points here, so the bar is red — and a "Complete sprint" button. Each row has a round checkbox for selecting several at once.*
 
 !!! warning "Cards do not drag on a touch screen"
     Dragging a card between columns is a mouse gesture. On a phone it fights the
@@ -123,7 +117,11 @@ were eating the width the row shares with the other controls.
     Move an issue instead by **opening it and changing its state** — one tap
     more, and it never misfires. To plan a sprint, tick the **round checkboxes**
     on the rows you want and use **Move to…** in the bar that appears at the
-    bottom; that handles ten issues faster than dragging would have handled one.
+    bottom. It lists this board's sprints and **Backlog**, and it handles ten
+    issues faster than dragging would have handled one.
+
+![Two backlog rows selected on a phone, with the bulk bar docked above the tab pill](/assets/img/shot-mobile-board-select.png)
+*Two rows ticked. The selected rows are outlined in amber, and a "2 selected" bar docks above the tab pill, carrying the __Move to…__ picker and an ✕ that clears the selection again.*
 
 The **add issue** button at the foot of each column, which stays hidden until
 you hover on a desktop, is always visible here — there is no hover to reveal it
@@ -131,28 +129,28 @@ with.
 
 ## Working inside an issue
 
-Opening an issue on a phone gives you the whole screen: a back arrow, the issue
-key, its state and the **⋯** menu across the top, then the title, the
-description and each panel — sub-tasks, linked issues, attachments, details —
-stacked in one scroll.
+Opening an issue on a phone gives you the whole screen: every panel that sits
+beside the description on a desktop — sub-tasks, linked issues, attachments,
+details — stacks into one scroll.
 
 ![An issue open on a phone](/assets/img/shot-mobile-issue.png)
 *An issue on a phone. The description renders in full — headings, lists, a code block, a quote and a table — the Sub-tasks panel follows underneath, and the comment composer stays docked at the bottom with its "+" button, the "Comment…" field and the microphone.*
 
 The **composer stays docked at the bottom** while you read, so replying never
-means scrolling to the end first. It has three parts: the **+** for attachments
-and formatting, the text field, and the **microphone**. Start typing and the
-microphone becomes the amber send button.
+means scrolling to the end first. Start typing and the microphone becomes the
+amber send button.
 
 ## Attaching a photo
 
-Tap **+** in the composer, or **Add files** on the attachments panel, and a
-phone gives you a source sheet that a desktop does not:
+Two controls, two different menus.
 
-- **Photo Library** — pick photos *or* videos, several at once.
-- **Take Photo** — the camera, for one new photo.
-- **Record Video** — the camera, for one new clip.
-- **Choose File** — the system document picker, for PDFs, documents and archives.
+![The composer's plus menu open on a phone](/assets/img/shot-mobile-composer-attach.png)
+*The "+" beside the comment field opens four rows: "Take photo or video", "Photo & video library", "Attachment", and "Text formatting" — the last one formats what you are typing rather than attaching anything.*
+
+**Add files** on the attachments panel opens the system source sheet instead:
+**Photo Library** for several photos or videos at once, **Take Photo** and
+**Record Video** for the camera, and **Choose File** for PDFs, documents and
+archives.
 
 This is the difference that matters most in practice. A bug you can photograph is
 a bug you have already half-reported: take the picture at the machine, in the
@@ -212,8 +210,12 @@ That means one app can serve several: work, a club, a test instance. Each server
 keeps its **own sign-in** on the device — signing out of one does not touch the
 others.
 
-Open **Settings → Manage servers** to see them all. The sheet shows each saved
-server with a live status and ping, and lets you:
+Open **Settings → Manage servers** to see them all.
+
+![The server manager sheet on a phone with two saved servers](/assets/img/shot-mobile-servers.png)
+*The manager sheet. Every saved server is probed as the sheet opens, so one row reports its round trip in milliseconds while the other reports "Offline"; the check marks the one in use. "Edit" at the top turns the rows into rename and remove controls.*
+
+From there you can:
 
 - **Switch** to another one — the whole app changes over, with the new server's
   organisation name and logo.

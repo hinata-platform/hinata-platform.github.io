@@ -113,7 +113,7 @@ Ein guter Fehlerbericht spart allen Zeit. Wenn du ein Issue öffnest, gib an:
   macOS, Windows, Linux) und alles Relevante zu deinem Deployment (Reverse Proxy,
   SSO-Provider). Nenne unter Linux zusätzlich die Distribution, die Desktop-Sitzung
   (GNOME oder Plasma, X11 oder Wayland) und wie du die App installiert hast —
-  Flatpak, AppImage oder ein eigenes `flutter build linux`. Dateiauswahl,
+  Snap, Flatpak, AppImage oder ein eigenes `flutter build linux`. Dateiauswahl,
   Schlüsselbund und die Audio-Werkzeuge kommen dort alle vom System, deshalb sind
   diese drei Angaben oft schon der halbe Fehlerbericht.
 - Relevante **Logs oder Fehlermeldungen** — aber **schwärze Secrets** (Tokens,
