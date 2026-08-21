@@ -50,11 +50,10 @@ data, the same shortcuts, wherever you open it.
 </li>
 <li class="plat-card glass">
   <span class="plat-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg><strong>Linux</strong></span>
-  <span class="plat-status soon">In review</span>
-  <p>A native GTK 3 client, uploaded to the store as a strictly confined snap for amd64 and arm64 — but no revision is on a channel yet, so there is nothing to install and no store page to link. <code>snap info hinata</code> is the check; it errors while none is published. Until one is, the Flatpak and AppImage recipes in the repository build the same app.</p>
+  <span class="plat-status live">Available</span>
+  <p>A native GTK 3 client, strictly confined, for x86-64 and ARM64. The Flatpak and AppImage recipes stay in the repository for anyone who prefers them.</p>
   <span class="plat-actions">
-    <a class="plat-link" href="/en/clients.html#hinata-on-linux">What the status is</a>
-    <a class="plat-link" href="https://github.com/hinata-platform/hinata-app/tree/main/packaging/linux">Build it yourself</a>
+    <a href="https://snapcraft.io/hinata"><img class="b-snap b-snap-black" src="/assets/img/badges/snap-store-dark.svg" alt="Get it from the Snap Store"><img class="b-snap b-snap-white" src="/assets/img/badges/snap-store-light.svg" alt="Get it from the Snap Store"></a>
   </span>
 </li>
 <li class="plat-card glass">
