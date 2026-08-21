@@ -188,32 +188,27 @@ Drucken und PDF-Export verhalten sich genau wie überall sonst.
 
 | Format | Was du bekommst |
 | --- | --- |
-| **Snap** | Der vorgesehene Kanal — nur liegt dort noch nichts, `snap install hinata` funktioniert heute also nicht. Lies vorher den Hinweis unten. |
+| **Snap** | Der Kanal, über den Hinata unter Linux ausgeliefert wird. `sudo snap install hinata` auf jeder Distribution mit snapd, für x86-64 und ARM64, streng isoliert. Zwei Berechtigungen verbinden sich nicht von selbst — siehe unten. |
 | **Flatpak** | Baust und installierst du selbst: mit `flatpak-builder` aus dem Manifest in `packaging/linux/flatpak/`. Es liegt auf keinem gehosteten Flatpak-Remote, und nach Flathub geht es auch nicht — siehe unten. |
 | **AppImage** | Eine portable Datei, die du selbst baust: `packaging/linux/appimage/build-appimage.sh` macht aus einem Release-Bundle eine, dann `chmod +x` und starten. Veröffentlicht ist sie nirgends — die CI hängt sie an einen Workflow-Lauf, nicht an ein Release. Sie linkt bewusst gegen GTK, GStreamer und libsecret deines Systems und behält so dein Desktop-Theme und die Codecs deiner Distribution, statt eigene Kopien einzufrieren. |
 | **Aus dem Quellcode** | `flutter build linux --release` erzeugt ein verschiebbares Bundle (die Binary `hinata` plus `data/` und `lib/`), das du installieren kannst, wo du möchtest. |
 
-!!! warning "Aus dem Store gibt es noch nichts zu installieren"
-    Der Name ist registriert und beide Architekturen sind hochgeladen, aber
-    keine Revision liegt auf einem Kanal — und ein Snap ohne veröffentlichte
-    Revision hat überhaupt keine öffentliche Seite. `snapcraft.io/hinata`
-    antwortet mit 404, die Store-API ebenso. Deshalb verlinkt diese Seite sie
-    nicht.
+!!! info "Zwei Berechtigungen brauchen einen Klick"
+    Snap führt die App streng isoliert aus, und zwei der angeforderten
+    Schnittstellen verbinden sich nicht automatisch. Beides ist die Art von
+    Zugriff, die ein Store bewusst erteilen lässt statt beim Installieren
+    mitzugeben:
 
-    Hochladen ist nicht Veröffentlichen: Der Store prüft eine Revision, bevor
-    sie auf einen Kanal darf, und bis das durch ist, findet `snap` nichts. Der
-    Release-Workflow rechnet damit und behandelt eine zurückgehaltene Revision
-    als zurückgehalten statt als Fehler — sie erreicht ihren Kanal von selbst,
-    sobald die Prüfung fertig ist.
+    ```bash
+    sudo snap connect hinata:password-manager-service   # angemeldet bleiben
+    sudo snap connect hinata:audio-record               # Sprachnachricht aufnehmen
+    ```
 
-    Verlass dich auf `snap info hinata` statt auf diese Seite. Es nennt die
-    Kanäle, auf denen eine Revision liegt, und meldet *no snap found*, solange
-    keine da ist. Taucht eine auf, achte auf den Kanal: Ein getaggter Build geht
-    nach **edge**, und nach `stable` — das, was ein blankes
-    `snap install hinata` liest — nur, wenn ein Release bewusst eingereicht
-    wird. Der erste Befehl, der funktionieren wird, ist also
-    `snap install hinata --edge`. Bis dahin bauen die Rezepte unten dieselbe
-    Anwendung.
+    Ohne die erste läuft die App, kann deine Sitzung aber nicht im
+    Schlüsselbund behalten — jeder Neustart landet auf der Anmeldung. Ohne die
+    zweite tut die Mikrofon-Schaltfläche nichts. Die App benennt die fehlende
+    Berechtigung, statt stillschweigend nichts zu tun, und dieselben Schalter
+    stehen in Ubuntus App Center unter „Berechtigungen“.
 
 Alle drei Rezepte liegen in `packaging/linux/` in
 [hinata-app](https://github.com/hinata-platform/hinata-app), und alle drei

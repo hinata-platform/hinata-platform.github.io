@@ -172,22 +172,26 @@ PDF export behave the way they do everywhere else.
 
 | Format | What you get |
 | --- | --- |
-| **Snap** | The intended channel — but nothing is on one yet, so `snap install hinata` does not work today. Read the note below before you try it. |
+| **Snap** | The channel Hinata ships Linux through. `sudo snap install hinata` on any distribution with snapd, for x86-64 and ARM64, strictly confined. Two of its permissions do not connect by themselves — see below. |
 | **Flatpak** | Build and install it yourself from the manifest in `packaging/linux/flatpak/` with `flatpak-builder`. It is on no hosted Flatpak remote, and it is not going to Flathub — see below. |
 | **AppImage** | One portable file, which you build: `packaging/linux/appimage/build-appimage.sh` turns a release bundle into it, then `chmod +x` and run. It is published nowhere — CI attaches it to a workflow run, not to a release. It links against your system's GTK, GStreamer and libsecret on purpose, so it keeps your desktop theme and your distribution's codecs instead of freezing its own copies. |
 | **From source** | `flutter build linux --release` produces a relocatable bundle (the `hinata` binary plus `data/` and `lib/`) that you can install wherever you like. |
 
-!!! warning "There is nothing to install from the store yet"
-    The name is registered and both architectures are uploaded, but no revision
-    has been released to a channel — and a snap with no released revision has no
-    public page at all. `snapcraft.io/hinata` answers 404, and so does the store
-    API. That is why this page does not link it.
+!!! info "Two permissions need one click"
+    Snap runs the app under strict confinement, and two of the interfaces it
+    asks for are not connected automatically. Both are the kind of thing a
+    store makes you grant deliberately rather than by installing:
 
-    Uploading is not publishing: the store reviews a revision before it can go
-    on a channel, and until that clears there is nothing for `snap` to find. The
-    release workflow expects this and treats a held revision as held rather than
-    as a failure, so the revision reaches its channel by itself when the review
-    is done.
+    ```bash
+    sudo snap connect hinata:password-manager-service   # stay signed in
+    sudo snap connect hinata:audio-record               # record a voice comment
+    ```
+
+    Without the first, the app runs but cannot keep your session in the
+    keyring, so every restart lands on the sign-in screen. Without the second,
+    the microphone button does nothing. The app names the missing one instead
+    of failing quietly, and the same toggles are in Ubuntu's App Center under
+    the app's Permissions.
 
     `snap info hinata` is the status worth trusting, not this page. It prints
     the channels that carry a revision, and errors with *no snap found* while
