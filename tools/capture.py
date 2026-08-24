@@ -86,6 +86,13 @@ IOS_UDID = os.environ.get("IOS_UDID", "BD91470D-338D-48C6-856B-0821AE6A316B")
 IOS_BUNDLE = "com.ahmadre.hinata"
 IOS_SETTLE_S = int(os.environ.get("IOS_SETTLE_S", "13"))
 
+# SharedPreferences key names the app stores its session under, mirrored from
+# hinata-app lib/core/storage/app_storage.dart. Kept as constants because the
+# simulator hero seeds them and then reads them back to prove the app took the
+# session — both halves have to name the same key for either to mean anything.
+_K_ACCESS = "access_token"
+_K_REFRESH = "refresh_token"
+
 # Chromium launch flags for headless SwiftShader rendering of the Flutter web
 # canvas (shared by the per-page shots and the framed MacBook hero).
 _CHROMIUM_ARGS = [
@@ -571,11 +578,27 @@ def _sim(*args, **kw):
                           text=True, **kw)
 
 
+def _saved_servers(prefs):
+    """The simulator's saved-server list, as plain dicts. Anything unreadable
+    counts as no list — a malformed one is what the app itself falls back on,
+    and this is a screenshot device, not somewhere to salvage state."""
+    try:
+        parsed = json.loads(prefs.get("flutter.servers.v1") or "[]")
+    except (TypeError, ValueError):
+        return []
+    return [s for s in parsed if isinstance(s, dict) and s.get("url")]
+
+
 def iphone_hero_from_simulator(access, refresh):
     """iPhone hero from a REAL iPhone simulator screenshot — native status bar
     and Dynamic Island, no synthesized chrome. Same mechanics as
     hinata-app/tool/capture_ios.sh: seed the app sandbox plist with the server
-    URL + tokens + screenshot_route, launch, screenshot, then frame it.
+    URL + its tokens + screenshot_route, launch, screenshot, then frame it.
+
+    The shot is verified signed-in before it is written, because an app that
+    boots unauthenticated does not fail here — it hands back a perfectly sharp
+    screenshot of the *login* screen, which is exactly what went into the
+    landing page's hero frame the last time these keys drifted.
 
     Requires: the simulator booted (open -a Simulator) and the Hinata app
     installed on it. Fails loudly otherwise — we never fake this shot."""
@@ -608,14 +631,31 @@ def iphone_hero_from_simulator(access, refresh):
             prefs = plistlib.load(f)
     except Exception:
         prefs = {}
+    # Tokens are scoped per server and live in the Keychain, which no file here
+    # can write. The one door in is the plaintext prefs copy AppStorage lifts
+    # into the secret store at boot (see hinata-app
+    # lib/core/storage/app_storage.dart) — so seed the per-server keys, and the
+    # saved-server list they hang off, rather than the pre-multi-server globals
+    # `access_token`/`refresh_token`. Those are only ever read by a one-time
+    # migration that is skipped the moment `servers.v1` exists, i.e. on every
+    # simulator that has already run the app once.
+    server = API.rstrip("/")
+    access_key = f"flutter.{_K_ACCESS}::{server}"
+    refresh_key = f"flutter.{_K_REFRESH}::{server}"
+    saved = _saved_servers(prefs)
+    if not any(s.get("url") == server for s in saved):
+        saved.append({"url": server})
     prefs.update({
-        "flutter.server_url": API,
-        "flutter.access_token": access,
-        "flutter.refresh_token": refresh,
+        "flutter.server_url": server,
+        "flutter.servers.v1": json.dumps(saved),
+        access_key: access,
+        refresh_key: refresh,
         "flutter.onboarding_done": True,
         "flutter.locale": "en",
         "flutter.screenshot_route": "/dashboard",
     })
+    prefs.pop(f"flutter.{_K_ACCESS}", None)
+    prefs.pop(f"flutter.{_K_REFRESH}", None)
     with open(pl, "wb") as f:
         plistlib.dump(prefs, f, fmt=plistlib.FMT_BINARY)
 
@@ -628,10 +668,33 @@ def iphone_hero_from_simulator(access, refresh):
         r = _sim("io", IOS_UDID, "screenshot", "--type=png", raw)
         if r.returncode != 0:
             raise RuntimeError(f"simctl screenshot failed: {r.stderr.strip()}")
+        # The read receipt, checked before anything overwrites the hero on
+        # disk: AppStorage deletes the plaintext prefs token the instant it has
+        # moved it into the Keychain, so a key still sitting there means the
+        # keys above are not the ones the app reads any more — and the picture
+        # in hand is the sign-in screen. Terminate first so the app flushes,
+        # then stop cfprefsd so the file, not its cache, is what we read.
+        _sim("terminate", IOS_UDID, IOS_BUNDLE)
+        _sim("spawn", IOS_UDID, "launchctl", "stop",
+             "com.apple.cfprefsd.xpc.daemon")
+        time.sleep(1)
+        try:
+            with open(pl, "rb") as f:
+                after = plistlib.load(f)
+        except Exception:
+            after = {}
+        unread = [k for k in (access_key, refresh_key) if k in after]
+        if unread:
+            raise RuntimeError(
+                f"the app did not sign in on simulator {IOS_UDID[:8]}…: it left "
+                f"{', '.join(unread)} untouched in its prefs, so this screenshot "
+                f"is the login screen and is NOT being published. Re-check the "
+                f"token keys against hinata-app "
+                f"lib/core/storage/app_storage.dart."
+            )
         out = os.path.join(OUT_DIR, "frame-iphone.png")
         subprocess.run([sys.executable, DEVICE_FRAMES, "iphone", raw, out],
                        check=True)
-    _sim("terminate", IOS_UDID, IOS_BUNDLE)
     print(f"  ✓ {'frame-iphone.png':24} simulator {IOS_UDID[:8]}… /dashboard (framed, native)")
 
 
