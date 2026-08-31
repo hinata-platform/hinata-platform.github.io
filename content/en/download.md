@@ -26,10 +26,10 @@ data, the same shortcuts, wherever you open it.
 </li>
 <li class="plat-card glass">
   <span class="plat-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg><strong>iOS</strong></span>
-  <span class="plat-status soon">In review</span>
-  <p>The iPhone and iPad build is with App Review. The listing below is live already — it serves the Mac app until iOS is approved.</p>
+  <span class="plat-status live">Available</span>
+  <p>iPhone and iPad, with push notifications and deep links that open straight into the issue they point at.</p>
   <span class="plat-actions">
-    <a class="plat-link" href="https://apps.apple.com/us/app/hinata/id6781889251">View the listing</a>
+    <a href="https://apps.apple.com/us/app/hinata/id6781889251"><img class="b-apple" src="/assets/img/badges/app-store.svg" alt="Download on the App Store"></a>
   </span>
 </li>
 <li class="plat-card glass">

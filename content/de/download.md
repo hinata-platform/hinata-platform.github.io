@@ -27,10 +27,10 @@ dieselben Daten, dieselben Tastenkürzel — egal, wo du sie öffnest.
 </li>
 <li class="plat-card glass">
   <span class="plat-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg><strong>iOS</strong></span>
-  <span class="plat-status soon">In Prüfung</span>
-  <p>Der Build für iPhone und iPad liegt bei der App-Review. Die Seite unten ist bereits online — sie führt bis zur Freigabe zur Mac-App.</p>
+  <span class="plat-status live">Verfügbar</span>
+  <p>Für iPhone und iPad, mit Push-Benachrichtigungen und Deep Links, die direkt den Vorgang öffnen, auf den sie zeigen.</p>
   <span class="plat-actions">
-    <a class="plat-link" href="https://apps.apple.com/us/app/hinata/id6781889251">Zur Store-Seite</a>
+    <a href="https://apps.apple.com/us/app/hinata/id6781889251"><img class="b-apple" src="/assets/img/badges/app-store.svg" alt="Laden im App Store"></a>
   </span>
 </li>
 <li class="plat-card glass">
