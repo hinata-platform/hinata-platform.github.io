@@ -133,8 +133,8 @@ docker compose up -d"""
       <span class="brand-name">Hinata<em>docs</em></span>
     </a>
     <nav class="landing-nav">
-      <a href="/en/" data-en="Docs" data-de="Doku">Docs</a>
-      <a href="/en/self-hosting.html" data-en="Self-host" data-de="Self-Host">Self-host</a>
+      <a href="/en/" data-doc="" data-en="Docs" data-de="Doku">Docs</a>
+      <a href="/en/self-hosting.html" data-doc="self-hosting.html" data-en="Self-host" data-de="Self-Host">Self-host</a>
       <a href="{SITE['repo_org']}" target="_blank" rel="noopener">GitHub</a>
     </nav>
     <div class="topbar-actions">
@@ -156,8 +156,8 @@ docker compose up -d"""
     </h1>
     <p class="hero-sub" {_t('sub')}>{T['sub']['en']}</p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="/en/quick-start.html" {_t('cta_start')}>{T['cta_start']['en']}</a>
-      <a class="btn btn-ghost glass" href="/en/self-hosting.html" {_t('cta_host')}>{T['cta_host']['en']}</a>
+      <a class="btn btn-primary" href="/en/quick-start.html" data-doc="quick-start.html" {_t('cta_start')}>{T['cta_start']['en']}</a>
+      <a class="btn btn-ghost glass" href="/en/self-hosting.html" data-doc="self-hosting.html" {_t('cta_host')}>{T['cta_host']['en']}</a>
     </div>
     <div class="hero-platforms">
       <span>Android</span><i>·</i><span>iOS</span><i>·</i><span>Web</span><i>·</i><span>macOS</span><i>·</i><span>Windows</span><i>·</i><span>Linux</span>
@@ -185,7 +185,7 @@ docker compose up -d"""
       <div class="host-copy">
         <h2 {_t('host_title')}>{T['host_title']['en']}</h2>
         <p {_t('host_sub')}>{T['host_sub']['en']}</p>
-        <a class="btn btn-primary" href="/en/deployment.html" {_t('host_cta')}>{T['host_cta']['en']}</a>
+        <a class="btn btn-primary" href="/en/deployment.html" data-doc="deployment.html" {_t('host_cta')}>{T['host_cta']['en']}</a>
       </div>
       <div class="host-code">
         <div class="code-window">
@@ -211,7 +211,7 @@ docker compose up -d"""
           <span {_t('mcp_title_2')}>{T['mcp_title_2']['en']}</span>
         </h2>
         <p {_t('mcp_sub')}>{T['mcp_sub']['en']}</p>
-        <a class="btn btn-primary" href="/en/mcp.html" {_t('mcp_cta')}>{T['mcp_cta']['en']}</a>
+        <a class="btn btn-primary" href="/en/mcp.html" data-doc="mcp.html" {_t('mcp_cta')}>{T['mcp_cta']['en']}</a>
         <p class="mcp-clients" {_t('mcp_clients')}>{T['mcp_clients']['en']}</p>
       </div>
     </div>
@@ -239,7 +239,7 @@ docker compose up -d"""
 <footer class="landing-footer">
   <p>© <span id="year">2026</span> Hinata · Made with 🍯 · GPL-3.0</p>
   <div>
-    <a href="/en/">Docs</a>
+    <a href="/en/" data-doc="">Docs</a>
     <a href="{SITE['repo_app']}" target="_blank" rel="noopener">App</a>
     <a href="{SITE['repo_server']}" target="_blank" rel="noopener">Server</a>
     <a href="/privacy-policy" data-en="Privacy" data-de="Datenschutz">Privacy</a>

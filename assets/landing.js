@@ -19,6 +19,20 @@
       var v = nodes[i].getAttribute("data-" + lang);
       if (v != null) nodes[i].textContent = v;
     }
+    // Every link into the docs, pointed at the tree the reader is actually
+    // reading. The labels above already switched — "Docs" became "Doku" — but
+    // the hrefs stayed on /en/, so a German visitor clicked a German word and
+    // landed on an English page. data-doc holds the path after the language
+    // segment ("" for the docs index), so one rule rebuilds all of them.
+    //
+    // ?lang= rides along on purpose: it tells the docs page that this language
+    // was chosen rather than guessed, which is what stops it redirecting back.
+    var links = document.querySelectorAll("[data-doc]");
+    for (var j = 0; j < links.length; j++) {
+      links[j].setAttribute(
+        "href", "/" + lang + "/" + links[j].getAttribute("data-doc") + "?lang=" + lang
+      );
+    }
     var label = document.getElementById("langLabel");
     if (label) label.textContent = lang.toUpperCase();
     try { localStorage.setItem("hinata-lang", lang); } catch (e) {}

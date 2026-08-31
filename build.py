@@ -308,6 +308,51 @@ TEMPLATE = """<!doctype html>
       document.documentElement.setAttribute('data-theme', t);
     }} catch (e) {{ document.documentElement.setAttribute('data-theme', 'light'); }}
   }})();
+
+  // Language. Here in the head, and before anything paints, for the same reason
+  // the theme is: a reader who prefers German must not watch an English page
+  // draw itself and then jump. The docs are two URL trees, so "switch language"
+  // is a navigation, not a class on <html>.
+  //
+  // Three inputs, in order:
+  //   1. ?lang= — what the language switch appends. It is an explicit choice, so
+  //      it is stored and the query is then wiped from the address bar. Reading
+  //      the choice off the URL rather than from a click handler is what makes it
+  //      race-free: the destination page decides, so a click that lands before
+  //      any deferred script has run still counts.
+  //   2. The stored choice — set here, by the switch on the landing page, or by
+  //      the landing page detecting a language. This is the "changes everywhere"
+  //      half: one choice, both trees and the landing page.
+  //   3. The browser's own language, for a first visit that chose nothing.
+  //
+  // A redirect can never loop or 404: the two content trees are built from the
+  // same set of pages, so `otherUrl` is always a page that exists, and after the
+  // jump the page's language equals the preference that caused it.
+  (function() {{
+    var PAGE = '{lang}', OTHER = '{other_lang}', OTHER_URL = '{other_url}';
+    function store(v) {{ try {{ localStorage.setItem('hinata-lang', v); }} catch (e) {{}} }}
+    var pref = null;
+    try {{
+      var q = new URLSearchParams(location.search).get('lang');
+      if (q === PAGE || q === OTHER) {{
+        store(q);
+        pref = q;
+        // Drop the marker so the address bar stays shareable and a later reload
+        // is governed by the stored choice rather than by a stale query.
+        var clean = location.pathname + location.hash;
+        if (history.replaceState) history.replaceState(null, '', clean);
+      }}
+    }} catch (e) {{}}
+    if (!pref) {{
+      try {{ pref = localStorage.getItem('hinata-lang'); }} catch (e) {{}}
+    }}
+    if (!pref) {{
+      pref = (navigator.language || 'en').toLowerCase().indexOf('de') === 0 ? 'de' : 'en';
+    }}
+    if (pref !== PAGE && pref === OTHER) {{
+      location.replace(OTHER_URL + location.hash);
+    }}
+  }})();
 </script>
 </head>
 <body>
@@ -316,7 +361,7 @@ TEMPLATE = """<!doctype html>
 <header class="topbar">
   <div class="topbar-inner glass">
     <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Menu">{icon_menu}</button>
-    <a class="brand" href="{home_url}">
+    <a class="brand" href="/">
       <span class="brand-mark">{icon_hex}</span>
       <span class="brand-name">{site_name}<em>docs</em></span>
     </a>
@@ -324,7 +369,7 @@ TEMPLATE = """<!doctype html>
       {icon_search}<span>{search_hint}</span><kbd>⌘K</kbd>
     </button>
     <div class="topbar-actions">
-      <a class="lang-switch" href="{other_url}" title="{other_lang_label}" aria-label="Language">
+      <a class="lang-switch" href="{other_url}?lang={other_lang}" title="{other_lang_label}" aria-label="Language">
         {icon_languages}<span>{this_lang_label}</span>
       </a>
       <button class="icon-btn theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -373,7 +418,7 @@ TEMPLATE = """<!doctype html>
 </div>
 
 <script>
-  window.HINATA = {{ lang: "{lang}", noResults: "{no_results}", copy: "{copy_label}", copied: "{copied_label}" }};
+  window.HINATA = {{ lang: "{lang}", otherLang: "{other_lang}", otherUrl: "{other_url}", noResults: "{no_results}", copy: "{copy_label}", copied: "{copied_label}" }};
 </script>
 <script src="/assets/app.js" defer></script>
 <script src="/assets/version.js" defer></script>

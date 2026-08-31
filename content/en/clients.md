@@ -193,12 +193,11 @@ PDF export behave the way they do everywhere else.
     the app's Permissions.
 
     `snap info hinata` is the status worth trusting, not this page. It prints
-    the channels that carry a revision, and errors with *no snap found* while
-    none does. When one appears, note which channel: a tagged build goes to
-    **edge**, and `stable` — what a bare `snap install hinata` reads — only when
-    a release is deliberately submitted. So the first command that will work is
-    `snap install hinata --edge`. Until then, the recipes below build the same
-    application.
+    the channels that carry a revision, and which build sits on each. **stable**
+    — what a bare `snap install hinata` reads — carries the released version for
+    both architectures, so that command is all you need. **edge** carries
+    whatever the last tag built, which is ahead of stable and correspondingly
+    less settled: `snap install hinata --edge` if you want it.
 
 All three recipes live in `packaging/linux/` in
 [hinata-app](https://github.com/hinata-platform/hinata-app), and all three

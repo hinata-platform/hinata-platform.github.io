@@ -76,7 +76,7 @@ The [app](/en/clients.html) runs on:
 - **Web** (any modern browser),
 - **macOS** desktop,
 - **Windows** desktop,
-- **Linux** desktop — a native GTK 3 build, installed as a Flatpak, an AppImage or a bundle you built yourself; a snap is uploaded to the Snap Store but not yet on a channel. [The apps](/en/clients.html#hinata-on-linux) has the current install status of the snap.
+- **Linux** desktop — a native GTK 3 build. `sudo snap install hinata` from the Snap Store is the short way, for x86-64 and ARM64; the Flatpak and AppImage recipes build the same application for anyone who prefers them. [The apps](/en/clients.html#hinata-on-linux) has the two permissions the snap needs connected by hand.
 
 Because the app is multi-server, users just need the URL of a running server; no per-user install configuration is required.
 

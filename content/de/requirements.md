@@ -76,7 +76,7 @@ Die [App](/de/clients.html) läuft auf:
 - **Web** (jeder moderne Browser),
 - **macOS**-Desktop,
 - **Windows**-Desktop,
-- **Linux**-Desktop — ein nativer GTK-3-Build, installiert als Flatpak, als AppImage oder aus einem Bundle, das du selbst gebaut hast; ein Snap liegt im Snap Store, aber noch auf keinem Kanal. [Die Apps](/de/clients.html#hinata-unter-linux) nennt den aktuellen Installationsstand des Snaps.
+- **Linux**-Desktop — ein nativer GTK-3-Build. `sudo snap install hinata` aus dem Snap Store ist der kurze Weg, für x86-64 und ARM64; die Rezepte für Flatpak und AppImage bauen dieselbe Anwendung, wer die lieber mag. [Die Apps](/de/clients.html#hinata-unter-linux) nennt die zwei Berechtigungen, die der Snap von Hand verbunden braucht.
 
 Weil die App mehrserverfähig ist, brauchen Nutzer nur die URL eines laufenden Servers; keine benutzerbezogene Installationskonfiguration ist erforderlich.
 
