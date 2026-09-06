@@ -1,6 +1,3 @@
-import fs from 'node:fs';
-import path from 'node:path';
-
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeRaw from 'rehype-raw';
 import rehypeSlug from 'rehype-slug';
@@ -13,6 +10,8 @@ import { unified } from 'unified';
 import { visit } from 'unist-util-visit';
 import type { Element, Root as HastRoot, Text as HastText } from 'hast';
 import type { Root as MdRoot } from 'mdast';
+
+import { IMAGE_MANIFEST } from './images';
 
 export interface Heading {
   id: string;
@@ -37,21 +36,6 @@ export interface RenderedPage {
 // not run, so it would hand back the original PNG — the 1.25 MB that made the
 // old site slow on a phone in the first place.
 
-interface ImageEntry {
-  w: number;
-  h: number;
-  widths: number[];
-  lqip?: string;
-  alpha?: boolean;
-}
-
-const MANIFEST: Record<string, ImageEntry> = JSON.parse(
-  fs.readFileSync(
-    path.join(process.cwd(), 'assets', 'img', 'opt', 'manifest.json'),
-    'utf8',
-  ),
-);
-
 /** The content column is 780px; below the breakpoint an image is the viewport. */
 const SIZES_BODY = '(max-width: 820px) 100vw, 780px';
 
@@ -62,7 +46,7 @@ function pictureFor(
   sizes = SIZES_BODY,
 ): Element | null {
   const name = src.split('/').pop() ?? '';
-  const entry = MANIFEST[name];
+  const entry = IMAGE_MANIFEST[name];
   if (!entry) return null;
   const stem = name.replace(/\.png$/, '');
   const srcset = (ext: string) =>

@@ -25,7 +25,14 @@ import { VersionSync } from './VersionSync';
  * what that is. Doing it the other way round, with a redirect, would make the
  * one link the stores and READMEs point at unshareable.
  */
-export function Landing({ version }: { version: string }) {
+export function Landing({
+  version,
+  frames,
+}: {
+  version: string;
+  /** The optimizer's widths for each device frame, keyed by its file stem. */
+  frames: Record<string, number[]>;
+}) {
   const [lang, setLang] = useState<Lang>('en');
 
   useEffect(() => {
@@ -124,11 +131,13 @@ export function Landing({ version }: { version: string }) {
           <DeviceShot
             className="device device-mac"
             stem="frame-macbook"
+            widths={frames['frame-macbook']!}
             alt="Hinata on desktop — the dashboard shown in a MacBook"
           />
           <DeviceShot
             className="device device-phone"
             stem="frame-iphone"
+            widths={frames['frame-iphone']!}
             alt="Hinata on mobile — the dashboard shown on an iPhone"
           />
         </div>
@@ -260,22 +269,30 @@ function CodeWindow({ code }: { code: string }) {
 
 /** A device frame, served from the same AVIF/WebP set the docs images use.
  *
- * These two are the largest files on the site and they sit above the fold, so
- * they are eager, full-viewport-sized and never lazy. The manifest's widths are
- * read at build time by the page that renders this. */
+ * These two are the largest files on the site and one of them is the first
+ * thing anybody sees, so both are eager — on a phone the MacBook is
+ * display:none, and a rule that only makes "the first image" eager makes the
+ * one image anybody looks at the one that waits.
+ *
+ * The widths are the optimizer's, handed in from the server. Guessing them is
+ * how the iPhone frame ended up asking for a 1920px variant of a 1470px master
+ * and getting a 404 on the live site: `srcset` promises a browser that every
+ * candidate exists. No placeholder either — these two are the only images on
+ * the site with transparency, and a background behind a cut-out never goes
+ * away. */
 function DeviceShot({
   className,
   stem,
+  widths,
   alt,
 }: {
   className: string;
   stem: string;
+  widths: number[];
   alt: string;
 }) {
   const srcset = (ext: string) =>
-    [480, 960, 1440, 1920]
-      .map((w) => `/assets/img/opt/${stem}-${w}.${ext} ${w}w`)
-      .join(', ');
+    widths.map((w) => `/assets/img/opt/${stem}-${w}.${ext} ${w}w`).join(', ');
   return (
     <picture>
       <source type="image/avif" srcSet={srcset('avif')} sizes="100vw" />
@@ -283,7 +300,7 @@ function DeviceShot({
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         className={className}
-        src={`/assets/img/opt/${stem}-960.webp`}
+        src={`/assets/img/opt/${stem}-${Math.min(...widths)}.webp`}
         alt={alt}
         fetchPriority="high"
         decoding="async"

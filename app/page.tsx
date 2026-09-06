@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import { Landing } from '@/components/Landing';
 import { SITE } from '@/lib/content';
+import { imageEntry } from '@/lib/images';
 import { latestAppVersion } from '@/lib/version';
 
 export const metadata: Metadata = {
@@ -19,5 +20,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  return <Landing version={await latestAppVersion()} />;
+  const frames = Object.fromEntries(
+    ['frame-macbook', 'frame-iphone'].map((stem) => [
+      stem,
+      imageEntry(`${stem}.png`)?.widths ?? [960],
+    ]),
+  );
+  return <Landing version={await latestAppVersion()} frames={frames} />;
 }
