@@ -69,6 +69,77 @@ def icon(name: str, cls: str = "") -> str:
 # ---------------------------------------------------------------------------
 # Markdown pipeline
 # ---------------------------------------------------------------------------
+# ── responsive images ───────────────────────────────────────────────────────
+#
+# Every screenshot in content/ is written as a plain `![alt](/assets/img/x.png)`,
+# and that is how it should stay — an author should not have to think about
+# encodings. What came out the other side, though, was a bare <img> pointing at
+# a full-resolution PNG: 99 of them, up to 3.1 MB each, all eager, no srcset. A
+# phone opening one page pulled 1.25 MB for a single picture.
+#
+# tools/optimize_images.py writes AVIF and WebP at several widths next to the
+# original and records their sizes; this turns each <img> into a <picture> that
+# uses them. The same photograph a phone now takes at 480 px in AVIF is 9 KB.
+_IMG_MANIFEST_PATH = ROOT / "assets" / "img" / "opt" / "manifest.json"
+_IMG_MANIFEST = (
+    json.loads(_IMG_MANIFEST_PATH.read_text())
+    if _IMG_MANIFEST_PATH.exists()
+    else {}
+)
+
+# Any <img> pointing straight at a top-level screenshot, whatever order its
+# attributes come in — the markdown pipeline emits `alt` then `src`, the landing
+# page hand-writes `class`, `src`, `width`, `height`, `alt` over several lines.
+# Both need the same treatment, and the landing page needs it most: it carried
+# the two largest files on the site, 4.6 MB between them, above the fold.
+_IMG_RE = re.compile(
+    r'<img\s[^>]*?src="/assets/img/([^"/]+\.png)"[^>]*?>', re.S
+)
+_ATTR_RE = re.compile(r'(\w[\w-]*)="([^"]*)"')
+
+# Sizes the browser can trust. The content column tops out around 780 CSS px;
+# below the breakpoint an image is the full viewport width. Without this a
+# phone picks the widest candidate it can find, which is the whole problem.
+_SIZES_BODY = "(max-width: 820px) 100vw, 780px"
+_SIZES_FULL = "100vw"
+
+
+def responsive_images(html: str, sizes: str = _SIZES_BODY) -> str:
+    """Swap plain <img> for a <picture> with AVIF/WebP srcsets."""
+
+    def one(m: "re.Match[str]") -> str:
+        name = m.group(1)
+        attrs = dict(_ATTR_RE.findall(m.group(0)))
+        entry = _IMG_MANIFEST.get(name)
+        if not entry:
+            return m.group(0)  # no variants (new screenshot?) — leave it alone
+        alt = attrs.get("alt", "")
+        cls = f' class="{attrs["class"]}"' if "class" in attrs else ""
+        stem = name[:-4]
+        widths = entry["widths"]
+
+        def srcset(ext: str) -> str:
+            return ", ".join(f"/assets/img/opt/{stem}-{w}.{ext} {w}w" for w in widths)
+
+        fallback = f"/assets/img/opt/{stem}-{min(widths)}.webp"
+        # The 20px placeholder rides along in the markup and paints in the first
+        # frame, so a lazy image is a blurred version of itself while it loads
+        # rather than a hole. width/height on the tag reserve the box, so
+        # nothing below it moves when the real one lands.
+        lqip = entry.get("lqip", "")
+        style = f' style="background-image:url({lqip});background-size:cover"' if lqip else ""
+        return (
+            "<picture>"
+            f'<source type="image/avif" srcset="{srcset("avif")}" sizes="{sizes}">'
+            f'<source type="image/webp" srcset="{srcset("webp")}" sizes="{sizes}">'
+            f'<img{cls} src="{fallback}" alt="{alt}" width="{entry["w"]}" '
+            f'height="{entry["h"]}" loading="lazy" decoding="async"{style}>'
+            "</picture>"
+        )
+
+    return _IMG_RE.sub(one, html)
+
+
 def make_md() -> markdown.Markdown:
     return markdown.Markdown(
         extensions=[
@@ -440,11 +511,28 @@ def build():
     (OUT / "assets" / "highlight.css").write_text(PYGMENTS_CSS, encoding="utf-8")
 
     # copy static assets (files + subdirectories like img/)
+    #
+    # The source PNGs are deliberately left behind. They are the masters — 71 MB
+    # of them — and nothing in the built site points at one any more: every
+    # screenshot is served from assets/img/opt as AVIF or WebP. Shipping them
+    # anyway would put 71 MB into every Pages deploy for nobody to download.
+    # Only the ones the optimizer knows about are skipped, so a screenshot added
+    # without re-running it still reaches the site rather than 404ing.
+    def _skip_optimized(dirname: str, names: list[str]) -> set[str]:
+        if dirname != str(ROOT / "assets" / "img"):
+            return set()
+        return {n for n in names if n in _IMG_MANIFEST}
+
     for f in (ROOT / "assets").glob("*"):
         if f.is_file():
             shutil.copy(f, OUT / "assets" / f.name)
         elif f.is_dir():
-            shutil.copytree(f, OUT / "assets" / f.name, dirs_exist_ok=True)
+            shutil.copytree(
+                f,
+                OUT / "assets" / f.name,
+                dirs_exist_ok=True,
+                ignore=_skip_optimized,
+            )
 
     build_time = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     search_index = []
@@ -463,7 +551,7 @@ def build():
             text = text.replace("{{version}}", SITE["version"])
             meta.setdefault("title", titles[lang])
             md = make_md()
-            body_html = md.convert(text)
+            body_html = responsive_images(md.convert(text))
             toc_tokens = getattr(md, "toc_tokens", [])
 
             html = render_page(lang, slug, meta, body_html, toc_tokens, build_time)
@@ -491,7 +579,7 @@ def build():
             meta, text = parse_front_matter(raw)
             meta.setdefault("title", titles[lang])
             md = make_md()
-            body_html = md.convert(text)
+            body_html = responsive_images(md.convert(text))
             html = render_page(lang, slug, meta, body_html,
                                getattr(md, "toc_tokens", []), build_time)
             (OUT / lang / f"{slug}.html").write_text(html, encoding="utf-8")
@@ -502,7 +590,12 @@ def build():
     )
 
     # root landing + language redirect helper
-    (OUT / "index.html").write_text(render_landing(build_time), encoding="utf-8")
+    # The landing hero is full-bleed, so its images want 100vw sizing rather
+    # than the content column's 780px.
+    (OUT / "index.html").write_text(
+        responsive_images(render_landing(build_time), _SIZES_FULL),
+        encoding="utf-8",
+    )
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
     cname = ROOT / "CNAME"
     if cname.exists():
