@@ -180,9 +180,11 @@ the screen you come to next. See
 
 The **Appearance & app** card holds the small choices:
 
-- **Language** — English or German. It changes the interface immediately, and it
-  is also the language the server uses for the e-mails it sends you and for the
-  error messages it returns. One setting, everywhere.
+- **Language** — one of [nine](/en/features.html#languages): English, German,
+  French, Spanish, Russian, Chinese, Japanese, Hindi or Arabic. It changes the
+  interface immediately, and it is also the language the server uses for the
+  e-mails it sends you and for the error messages it returns. One setting,
+  everywhere. Choosing Arabic also turns the whole layout right to left.
 - **Appearance** — **System**, **Light** or **Dark**. System follows whatever
   your operating system is doing, including switching at sunset if your OS does.
 - **The connected server** — which server this app is talking to, with

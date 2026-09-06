@@ -194,9 +194,12 @@ Postfach auf — und dieser Bildschirm ist der nächste, den du dann öffnest. S
 
 Die Karte **Darstellung & App** enthält die kleinen Entscheidungen:
 
-- **Sprache** — Englisch oder Deutsch. Sie ändert die Oberfläche sofort und ist
-  zugleich die Sprache, in der der Server dir E-Mails schickt und Fehlermeldungen
-  zurückgibt. Eine Einstellung, überall.
+- **Sprache** — eine von [neun](/de/features.html#sprachen): Englisch, Deutsch,
+  Französisch, Spanisch, Russisch, Chinesisch, Japanisch, Hindi oder Arabisch.
+  Sie ändert die Oberfläche sofort und ist zugleich die Sprache, in der der
+  Server dir E-Mails schickt und Fehlermeldungen zurückgibt. Eine Einstellung,
+  überall. Wer Arabisch wählt, bekommt außerdem das ganze Layout von rechts nach
+  links.
 - **Darstellung** — **System**, **Hell** oder **Dunkel**. System folgt dem, was
   dein Betriebssystem tut, inklusive Umschalten bei Sonnenuntergang, wenn dein
   System das macht.

@@ -26,6 +26,7 @@ Hinata ist eine vollständige agile Projektmanagement-Suite an einem Ort: Arbeit
 | **Wissensdatenbank** | Confluence-artige hierarchische Markdown-Artikel, global oder pro Projekt, mit Smart-Links, die echte Vorgänge und Personen auflösen. | [Wissensdatenbank](/de/knowledge-base.html) |
 | **Benachrichtigungen** | In-App- und E-Mail-Benachrichtigungen, dazu Push über das Hinata Connect Gateway — kein eigenes Firebase-Projekt nötig. | [Benachrichtigungen](/de/notifications.html) |
 | **Suche & Palette** | Eine ⌘K-Liquid-Glass-Befehlspalette, um überallhin zu springen, Befehle auszuführen und zuletzt geöffnete Elemente wieder aufzurufen, mit einem responsiven Sheet auf dem Handy. | [Suche & Palette](/de/search.html) |
+| **Sprachen** | Neun vollständige Übersetzungen — Englisch, Deutsch, Französisch, Spanisch, Russisch, Chinesisch, Japanisch, Hindi und Arabisch — für Arabisch durchgehend mit Rechts-nach-links-Layout. | [Sprachen](/de/features.html#sprachen) |
 | **Git-Integration** | Verbinde Projekte mit GitHub, GitLab oder Bitbucket für echte Entwicklungsinfos, Smart Commits und Workflow-Automatisierung über signierte Webhooks. | [Git-Integration](/de/git-integration.html) |
 | **Single Sign-on** | OpenID Connect, OAuth 2.0, SAML 2.0 und LDAP, zur Laufzeit im Adminbereich konfiguriert, ohne Neustart. | [SSO](/de/sso.html) |
 
@@ -60,6 +61,38 @@ Hinata hält alle auf dem Laufenden — mit In-App-Benachrichtigungen, E-Mail (�
 ## Suche & Palette
 
 Drücke überall **⌘K** (oder **Strg+K**), um die Liquid-Glass-Befehlspalette zu öffnen. Sie sucht über Projekte, Vorgänge, Personen und Artikel hinweg, zeigt zuletzt geöffnete Elemente und bietet Schnellbefehle — alles in einem responsiven Sheet, das auch auf dem Handy hervorragend funktioniert. Siehe [Suche & Palette](/de/search.html).
+
+## Sprachen
+
+Hinata spricht **neun Sprachen**, und alle neun sind vollständig — jede
+Zeichenkette, nicht eine übersetzte Menüleiste über einer englischen App.
+
+| | Sprache | In eigener Schreibweise | Code |
+| --- | --- | --- | --- |
+| 🇬🇧 | Englisch | English (UK) | `en` |
+| 🇩🇪 | Deutsch | Deutsch | `de` |
+| 🇫🇷 | Französisch | Français | `fr` |
+| 🇪🇸 | Spanisch | Español | `es` |
+| 🇷🇺 | Russisch | Русский | `ru` |
+| 🇨🇳 | Chinesisch (vereinfacht) | 简体中文 | `zh` |
+| 🇯🇵 | Japanisch | 日本語 | `ja` |
+| 🇮🇳 | Hindi | हिन्दी | `hi` |
+| 🇸🇦 | Arabisch | العربية | `ar` |
+
+Deine wählst du unter **Aussehen & App** in [deinem Konto](/de/guide-account.html).
+Die Wahl gilt überall: die Oberfläche wechselt sofort, und es ist zugleich die
+Sprache, in der der Server seine E-Mails und Fehlermeldungen schreibt.
+
+**Arabisch läuft von rechts nach links**, und die App tut es mit — Menüs,
+Listen, Navigation, die Pfeile auf jeder Schaltfläche. Das ist ein Layout und
+keine Übersetzung, und es gehört gesagt, weil die meiste Software, die Arabisch
+anbietet, bei den Wörtern aufhört.
+
+!!! note "Eine Flagge ist ein Land, keine Sprache"
+    Die Flaggen oben sind Wegweiser, mehr nicht. Spanisch gehört nicht nur
+    Spanien und Arabisch mehr als zwanzig Ländern; kein kleines Bild bekommt das
+    richtig hin. Sie stehen hier, weil sie sich schneller erfassen lassen als
+    eine Liste von Namen.
 
 ## Git-Integration
 

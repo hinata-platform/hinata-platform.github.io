@@ -26,6 +26,7 @@ Hinata is a full agile project-management suite in one place: plan work, run spr
 | **Knowledge base** | Confluence-style hierarchical Markdown articles, global or per project, with smart links that resolve real issues and people. | [Knowledge base](/en/knowledge-base.html) |
 | **Notifications** | In-app and e-mail notifications, plus push delivered through the Hinata Connect gateway — no Firebase project of your own required. | [Notifications](/en/notifications.html) |
 | **Search & palette** | A ⌘K liquid-glass command palette to jump anywhere, run commands and reopen recent items, with a responsive sheet on mobile. | [Search & palette](/en/search.html) |
+| **Languages** | Nine complete translations — English, German, French, Spanish, Russian, Chinese, Japanese, Hindi and Arabic — with right-to-left layout throughout for Arabic. | [Languages](/en/features.html#languages) |
 | **Git integration** | Connect projects to GitHub, GitLab or Bitbucket for real development info, smart commits and workflow automation driven by signed webhooks. | [Git integration](/en/git-integration.html) |
 | **Single sign-on** | OpenID Connect, OAuth 2.0, SAML 2.0 and LDAP, configured at runtime from the Admin area with no restart. | [SSO](/en/sso.html) |
 
@@ -60,6 +61,37 @@ Hinata keeps everyone in the loop with in-app notifications, e-mail (over your S
 ## Search & palette
 
 Press **⌘K** (or **Ctrl+K**) anywhere to open the liquid-glass command palette. It searches across projects, issues, people and articles, surfaces recent items, and exposes quick commands — all in a responsive sheet that works just as well on a phone. See [Search & palette](/en/search.html).
+
+## Languages
+
+Hinata speaks **nine languages**, and all nine are complete — every string, not
+a translated menu bar over an English app.
+
+| | Language | In its own words | Code |
+| --- | --- | --- | --- |
+| 🇬🇧 | English | English (UK) | `en` |
+| 🇩🇪 | German | Deutsch | `de` |
+| 🇫🇷 | French | Français | `fr` |
+| 🇪🇸 | Spanish | Español | `es` |
+| 🇷🇺 | Russian | Русский | `ru` |
+| 🇨🇳 | Chinese (Simplified) | 简体中文 | `zh` |
+| 🇯🇵 | Japanese | 日本語 | `ja` |
+| 🇮🇳 | Hindi | हिन्दी | `hi` |
+| 🇸🇦 | Arabic | العربية | `ar` |
+
+Pick yours under **Appearance & app** in [your account](/en/guide-account.html).
+The choice follows you everywhere: the interface changes at once, and it is also
+the language the server writes its e-mails and error messages in.
+
+**Arabic reads right to left**, and so does the app when you choose it — menus,
+lists, navigation, the arrows on every button. That is a layout, not a
+translation, and it is worth saying out loud because most software that offers
+Arabic stops at the words.
+
+!!! note "A flag is a country, not a language"
+    The flags above are signposts, nothing more. Spanish is not only Spain's and
+    Arabic belongs to more than twenty countries; no small picture gets that
+    right. They are here because they are quicker to scan than a list of names.
 
 ## Git integration
 
