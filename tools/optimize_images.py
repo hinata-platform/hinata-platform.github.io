@@ -48,16 +48,19 @@ WIDTHS = (480, 960, 1440, 1920)
 AVIF_Q = 58
 WEBP_Q = 78
 
-# The placeholder that stands in until the real image arrives: the picture at
-# 20 px wide, WebP, as a data URI of a few hundred bytes. It ships inside the
-# HTML, so it is on screen in the first paint — no request, no decode wait, no
-# second network round trip.
+# The placeholder that stands in until the real image arrives: a small WebP as
+# a data URI, shipped inside the HTML, so it is on screen in the first paint —
+# no request, no decode wait, no second round trip.
 #
 # A real BlurHash would need its decoder shipped and run in JavaScript before
-# anything appears; this is the same idea with the browser's own image decoder
-# doing the work, and it degrades to "nothing happens" rather than "blank box"
-# if scripts are off. CSS blurs it up to size.
-LQIP_WIDTH = 20
+# anything appeared; this is the same idea with the browser's own image decoder
+# doing the work, and it costs no script at all.
+#
+# 20 px was too few. Stretched across a phone it is not "a blurred version of
+# the screenshot", it is a smear — and because the real image is lazy, that
+# smear is what a reader looks at for as long as it takes to arrive. 48 px is
+# still under a kilobyte and actually resembles the picture.
+LQIP_WIDTH = 48
 
 
 def variants(img: Image.Image) -> list[int]:
@@ -76,13 +79,19 @@ def variants(img: Image.Image) -> list[int]:
 
 
 def placeholder(img: Image.Image) -> str:
-    """A data URI of the image at [LQIP_WIDTH], for the blur-up placeholder."""
-    tiny = img.convert("RGB").resize(
+    """A data URI of the image at [LQIP_WIDTH], for the blur-up placeholder.
+
+    Alpha is carried through. Flattening it to RGB is what put a solid black
+    rectangle behind the transparent device frames on the landing page: the
+    placeholder sits *behind* the image, so wherever the image is see-through,
+    the placeholder is what you see — and a flattened one is not see-through.
+    """
+    tiny = img.resize(
         (LQIP_WIDTH, max(1, round(img.height * LQIP_WIDTH / img.width))),
         Image.LANCZOS,
     )
     buf = io.BytesIO()
-    tiny.save(buf, "WEBP", quality=42, method=6)
+    tiny.save(buf, "WEBP", quality=60, method=6, exact=True)
     return "data:image/webp;base64," + base64.b64encode(buf.getvalue()).decode()
 
 
@@ -116,6 +125,9 @@ def main() -> int:
             "h": img.height,
             "widths": widths,
             "lqip": placeholder(img),
+            # Whether the source has any see-through pixels. A transparent image
+            # must not be given an opaque backdrop of any kind — see placeholder().
+            "alpha": img.mode == "RGBA",
         }
         saved_from += src.stat().st_size
 

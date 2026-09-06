@@ -107,7 +107,11 @@ _SIZES_FULL = "100vw"
 def responsive_images(html: str, sizes: str = _SIZES_BODY) -> str:
     """Swap plain <img> for a <picture> with AVIF/WebP srcsets."""
 
+    seen = 0
+
     def one(m: "re.Match[str]") -> str:
+        nonlocal seen
+        seen += 1
         name = m.group(1)
         attrs = dict(_ATTR_RE.findall(m.group(0)))
         entry = _IMG_MANIFEST.get(name)
@@ -128,12 +132,25 @@ def responsive_images(html: str, sizes: str = _SIZES_BODY) -> str:
         # nothing below it moves when the real one lands.
         lqip = entry.get("lqip", "")
         style = f' style="background-image:url({lqip});background-size:cover"' if lqip else ""
+
+        # The first image on a page is usually above or just below the fold, and
+        # lazy-loading it means the reader looks at the placeholder for as long
+        # as the request takes. That is what "the images are broken on mobile"
+        # was: not a wrong variant, the stand-in. It loads eagerly, and asks to
+        # be fetched first; everything further down stays lazy, which is where
+        # lazy actually pays.
+        eager = seen <= 1
+        how = (
+            ' fetchpriority="high" decoding="async"'
+            if eager
+            else ' loading="lazy" decoding="async"'
+        )
         return (
             "<picture>"
             f'<source type="image/avif" srcset="{srcset("avif")}" sizes="{sizes}">'
             f'<source type="image/webp" srcset="{srcset("webp")}" sizes="{sizes}">'
             f'<img{cls} src="{fallback}" alt="{alt}" width="{entry["w"]}" '
-            f'height="{entry["h"]}" loading="lazy" decoding="async"{style}>'
+            f'height="{entry["h"]}"{how}{style}>'
             "</picture>"
         )
 
