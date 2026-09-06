@@ -307,6 +307,9 @@ a { color: inherit; text-decoration: none; }
 .breadcrumb a:hover { color: var(--amber); }
 .breadcrumb span:last-child { color: var(--ink-soft); font-weight: 600; }
 
+/* The negative bottom margin tucks the edit link into the heading's own top
+   margin, which is right on a wide column and a collision on a narrow one: a
+   2.3rem title's ascenders run straight through "Diese Seite bearbeiten". */
 .page-actions { display: flex; justify-content: flex-end; margin: -6px 0 -14px; }
 .edit-link { font-size: 0.8rem; color: var(--ink-faint); }
 .edit-link:hover { color: var(--amber); }
@@ -1014,3 +1017,7 @@ a { color: inherit; text-decoration: none; }
 .lang-chip em { font-style: normal; font-weight: 500; color: var(--ink-soft); }
 .lang-note { margin: 22px auto 0; max-width: 620px; color: var(--ink-soft); font-size: 0.95rem; }
 .lang-note a { color: var(--amber); font-weight: 600; }
+
+@media (max-width: 720px) {
+  .page-actions { margin: -6px 0 6px; }
+}
