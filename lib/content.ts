@@ -1,6 +1,3 @@
-import fs from 'node:fs';
-import path from 'node:path';
-
 import navData from '@/content/nav.json';
 
 export type Lang = 'en' | 'de';
@@ -20,7 +17,8 @@ export interface NavGroup {
   pages: NavPage[];
 }
 
-/** nav.json is the shape build.py's nav.py exported; these narrow it for TS. */
+/** nav.json is the site's structure, exported once from the Python generator
+ * this replaced and now edited directly; these types narrow it. */
 const raw = navData as unknown as {
   site: Record<string, unknown>;
   ui: Record<string, Record<string, string>>;
@@ -52,12 +50,6 @@ export const PAGES: NavPage[] = NAV.flatMap((g) => g.pages);
 
 export const ALL_SLUGS = [...PAGES, ...LEGAL].map((p) => p.slug);
 
-const CONTENT_DIR = path.join(process.cwd(), 'content');
-
-export function readSource(lang: Lang, slug: string): string {
-  return fs.readFileSync(path.join(CONTENT_DIR, lang, `${slug}.md`), 'utf8');
-}
-
 /** The group a page belongs to, for the breadcrumb and the sidebar's open state. */
 export function groupOf(slug: string): NavGroup | undefined {
   return NAV.find((g) => g.pages.some((p) => p.slug === slug));
@@ -72,4 +64,28 @@ export function neighbours(slug: string): { prev?: NavPage; next?: NavPage } {
 
 export function titleOf(slug: string, lang: Lang): string {
   return [...PAGES, ...LEGAL].find((p) => p.slug === slug)?.title[lang] ?? slug;
+}
+
+/** Canonical URL of a page.
+ *
+ * `trailingSlash: true`, so every route is a directory with an index.html —
+ * which is the only shape GitHub Pages serves without a rewrite layer. The old
+ * generator wrote `/en/features.html`; those URLs are kept alive by the stubs
+ * scripts/legacy-urls.mjs writes after the export, because they are in the
+ * store listings, in the apps and in other people's bookmarks.
+ */
+export function pageUrl(lang: Lang, slug: string): string {
+  return slug === 'index' ? `/${lang}/` : `/${lang}/${slug}/`;
+}
+
+export function otherLang(lang: Lang): Lang {
+  return lang === 'en' ? 'de' : 'en';
+}
+
+/** The label above a page in the breadcrumb — its nav group, or "Legal". */
+export function groupLabel(slug: string, lang: Lang): string {
+  const g = groupOf(slug);
+  if (g) return g.label[lang];
+  if (LEGAL.some((p) => p.slug === slug)) return lang === 'de' ? 'Rechtliches' : 'Legal';
+  return '';
 }

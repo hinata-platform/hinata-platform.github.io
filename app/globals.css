@@ -39,8 +39,10 @@
   --toc-w: 232px;
   --topbar-h: 64px;
 
-  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  /* next/font self-hosts both faces and hands us these variables, so the
+     page no longer blocks on two round-trips to fonts.googleapis.com. */
+  --font: var(--font-inter), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace;
 
   --sky: #6d8bd6;
   --violet: #9a7fd0;
@@ -970,6 +972,27 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 640px) {
   .plat-grid { grid-template-columns: 1fr; }
 }
+
+/* ---------- Shiki (replaces the Pygments sheet) ----------
+   Snippets are highlighted once, at build time, in both themes at once: every
+   token carries a --shiki-light and a --shiki-dark, and the theme picks. That
+   is why there is no second copy of any code block in the HTML. */
+.shiki, .shiki span { color: var(--shiki-light); background-color: var(--shiki-light-bg); }
+:root[data-theme="dark"] .shiki,
+:root[data-theme="dark"] .shiki span { color: var(--shiki-dark); background-color: var(--shiki-dark-bg); }
+.prose .shiki { background: transparent; }
+.prose .shiki code { background: none; }
+
+/* ---------- 404 ---------- */
+.notfound {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 24px;
+}
+.notfound h1 { font-size: 4rem; margin: 0 0 8px; }
+.notfound a { color: var(--amber); font-weight: 600; }
 
 /* ---------- Languages band (landing) ----------
    Nine translations were a table on the features page and a line in the

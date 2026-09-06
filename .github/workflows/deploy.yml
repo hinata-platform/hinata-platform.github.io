@@ -5,10 +5,10 @@ on:
     branches: [main]
   workflow_dispatch:
   # The version shown on the site comes from the newest hinata-app tag, resolved
-  # at build time. A nightly rebuild picks up releases that shipped without a
+  # at build time. A weekly rebuild picks up releases that shipped without a
   # docs change; hinata-app can also trigger one immediately by POSTing a
   # repository_dispatch with event_type "app-release" (needs a PAT with
-  # contents:write on this repo). Between rebuilds assets/version.js keeps the
+  # contents:write on this repo). Between rebuilds <VersionSync> keeps the
   # already-published pages current in the browser.
   schedule:
     - cron: "0 3 * * 0"
@@ -33,16 +33,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Set up Node
+        uses: actions/setup-node@v4
         with:
-          python-version: "3.12"
+          node-version: "24"
+          cache: npm
 
-      - name: Install build dependencies
-        run: pip install -r requirements.txt
+      - name: Install dependencies
+        run: npm ci
 
+      # `npm run build` is three steps: mirror assets/ into public/ (minus the
+      # 71 MB of master PNGs nothing links to any more), export the site with
+      # Next, then write the stubs that keep the old .html URLs answering.
       - name: Build static site
-        run: python build.py
+        run: npm run build
         env:
           # Authenticated GitHub API calls (version lookup) — shared runner IPs
           # burn through the 60/h anonymous rate limit.
@@ -51,7 +55,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: out
 
   deploy:
     needs: build

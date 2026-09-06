@@ -14,7 +14,7 @@ Run it after adding or replacing a screenshot:
     python3 tools/optimize_images.py
 
 It writes `assets/img/opt/<name>-<width>.{avif,webp}` plus a manifest that
-build.py reads to emit a <picture> with the right srcset and the image's
+lib/markdown.ts reads to emit a <picture> with the right srcset and the image's
 intrinsic size (so the layout does not jump while it loads). Output is
 committed: the encode is slow enough that doing it in CI would add minutes to
 every deploy, and the results are deterministic.
