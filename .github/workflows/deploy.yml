@@ -11,7 +11,7 @@ on:
   # contents:write on this repo). Between rebuilds assets/version.js keeps the
   # already-published pages current in the browser.
   schedule:
-    - cron: "17 4 * * *"
+    - cron: "0 3 * * 0"
   repository_dispatch:
     types: [app-release]
 
