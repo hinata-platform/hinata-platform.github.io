@@ -443,7 +443,13 @@ a { color: inherit; text-decoration: none; }
 .prose tbody tr:hover { background: rgba(127, 122, 153, 0.06); }
 .prose td code { white-space: nowrap; }
 
-.prose img { max-width: 100%; border-radius: var(--radius-sm); border: 1px solid var(--line); }
+/* height:auto is load-bearing, not tidiness. The <img> now carries width/
+   height attributes so the browser can reserve the box before the file
+   lands; without height:auto the attribute *is* the used height, so a
+   2880x1800 screenshot rendered 390px wide keeps its 1800px height and
+   stretches. max-width:100% alone was fine only while the tags were
+   dimensionless. */
+.prose img { max-width: 100%; height: auto; border-radius: var(--radius-sm); border: 1px solid var(--line); }
 
 /* ---------- Admonitions (info/warning/tip/danger/note) ---------- */
 .admonition {
