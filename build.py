@@ -104,7 +104,7 @@ _SIZES_BODY = "(max-width: 820px) 100vw, 780px"
 _SIZES_FULL = "100vw"
 
 
-def responsive_images(html: str, sizes: str = _SIZES_BODY) -> str:
+def responsive_images(html: str, sizes: str = _SIZES_BODY, eager: int = 1) -> str:
     """Swap plain <img> for a <picture> with AVIF/WebP srcsets."""
 
     seen = 0
@@ -130,7 +130,13 @@ def responsive_images(html: str, sizes: str = _SIZES_BODY) -> str:
         # frame, so a lazy image is a blurred version of itself while it loads
         # rather than a hole. width/height on the tag reserve the box, so
         # nothing below it moves when the real one lands.
-        lqip = entry.get("lqip", "")
+        # Never behind a cut-out. The placeholder is a *background*, and a
+        # background under an image with alpha is not a stand-in — it is a
+        # blurred copy of the silhouette that keeps showing around the edges
+        # after the real file has landed. On the two device frames that read as
+        # a smeared halo tracing the phone and a hard box around the laptop.
+        # Opaque screenshots cover it completely, which is the whole trick.
+        lqip = "" if entry.get("alpha") else entry.get("lqip", "")
         style = f' style="background-image:url({lqip});background-size:cover"' if lqip else ""
 
         # The first image on a page is usually above or just below the fold, and
@@ -139,10 +145,9 @@ def responsive_images(html: str, sizes: str = _SIZES_BODY) -> str:
         # was: not a wrong variant, the stand-in. It loads eagerly, and asks to
         # be fetched first; everything further down stays lazy, which is where
         # lazy actually pays.
-        eager = seen <= 1
         how = (
             ' fetchpriority="high" decoding="async"'
-            if eager
+            if seen <= eager
             else ' loading="lazy" decoding="async"'
         )
         return (
@@ -610,7 +615,7 @@ def build():
     # The landing hero is full-bleed, so its images want 100vw sizing rather
     # than the content column's 780px.
     (OUT / "index.html").write_text(
-        responsive_images(render_landing(build_time), _SIZES_FULL),
+        responsive_images(render_landing(build_time), _SIZES_FULL, eager=2),
         encoding="utf-8",
     )
     (OUT / ".nojekyll").write_text("", encoding="utf-8")

@@ -32,6 +32,22 @@ FEATURES = [
       "de": "Eine App, dein selbst gehosteter Server, Laufzeit-Branding. Eine Flutter-Codebasis, sechs Plattformen — Mobile, Web und Desktop."}),
 ]
 
+# The nine shipped translations, in the order the language picker lists them.
+# A flag is a country and not a language — said out loud under the row, because
+# Spanish is not only Spain's and Arabic belongs to more than twenty countries.
+LANGUAGES = [
+    ("🇬🇧", "English", "en"),
+    ("🇩🇪", "Deutsch", "de"),
+    ("🇫🇷", "Français", "fr"),
+    ("🇪🇸", "Español", "es"),
+    ("🇷🇺", "Русский", "ru"),
+    ("🇨🇳", "简体中文", "zh"),
+    ("🇯🇵", "日本語", "ja"),
+    ("🇮🇳", "हिन्दी", "hi"),
+    ("🇸🇦", "العربية", "ar"),
+]
+
+
 T = {
     "eyebrow": {"en": "Open source · Self-hosted · GPL-3.0",
                 "de": "Open Source · Self-hosted · GPL-3.0"},
@@ -67,6 +83,17 @@ T = {
                  "de": "Der Flutter-Client — Android, iOS, Web, macOS, Windows & Linux aus einer Codebasis."},
     "server_desc": {"en": "The Spring Boot 4 backend — Java 21, MongoDB, S3, SSO, Git integration.",
                     "de": "Das Spring-Boot-4-Backend — Java 21, MongoDB, S3, SSO, Git-Integration."},
+    "langs_title": {"en": "Nine languages, all of them complete",
+                    "de": "Neun Sprachen, alle vollständig"},
+    "langs_sub": {
+        "en": "Every string, not a translated menu bar over an English app — and Arabic turns the whole layout right to left, not only the words.",
+        "de": "Jede Zeichenkette, nicht eine übersetzte Menüleiste über einer englischen App — und Arabisch dreht das ganze Layout nach rechts-nach-links, nicht nur die Wörter.",
+    },
+    "langs_note": {
+        "en": "A flag is a country, not a language. They are signposts, because nine of them read faster than nine names.",
+        "de": "Eine Flagge ist ein Land, keine Sprache. Sie stehen hier als Wegweiser, weil neun Bilder schneller zu erfassen sind als neun Namen.",
+    },
+    "langs_cta": {"en": "All nine, in detail →", "de": "Alle neun im Detail →"},
     "docs_title": {"en": "Read the docs", "de": "Zur Dokumentation"},
 }
 
@@ -86,6 +113,12 @@ def render_landing(build_time: str) -> str:
           <h3 data-en="{title['en']}" data-de="{title['de']}">{title['en']}</h3>
           <p data-en="{desc['en']}" data-de="{desc['de']}">{desc['en']}</p>
         </article>"""
+
+    chips = "".join(
+        f'<span class="lang-chip"><span>{flag}</span><strong>{name}</strong>'
+        f'<em>{code}</em></span>'
+        for flag, name, code in LANGUAGES
+    )
 
     quickstart = """cp .env.example .env
 ./deploy/generate-secrets.sh   # Mongo keyfile + secrets
@@ -178,6 +211,16 @@ docker compose up -d"""
       <p {_t('features_sub')}>{T['features_sub']['en']}</p>
     </div>
     <div class="feat-grid">{cards}</div>
+  </section>
+
+  <section class="section lang-band">
+    <div class="section-head">
+      <h2 {_t('langs_title')}>{T['langs_title']['en']}</h2>
+      <p {_t('langs_sub')}>{T['langs_sub']['en']}</p>
+    </div>
+    <div class="lang-flags">{chips}</div>
+    <p class="lang-note" {_t('langs_note')}>{T['langs_note']['en']}</p>
+    <p class="lang-note"><a href="/en/features.html#languages" data-doc="features.html#languages" data-doc-de="features.html#sprachen" {_t('langs_cta')}>{T['langs_cta']['en']}</a></p>
   </section>
 
   <section class="section">

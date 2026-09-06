@@ -970,3 +970,24 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 640px) {
   .plat-grid { grid-template-columns: 1fr; }
 }
+
+/* ---------- Languages band (landing) ----------
+   Nine translations were a table on the features page and a line in the
+   account guide — findable only by someone who already knew to look. It is one
+   of the first things a team checks, so it belongs where they land. */
+.lang-band { text-align: center; }
+.lang-band .section-head { margin-bottom: 26px; }
+.lang-flags {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+  max-width: 880px; margin: 0 auto;
+}
+.lang-chip {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 9px 16px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--card);
+  font-weight: 600; font-size: 0.94rem; white-space: nowrap;
+}
+.lang-chip span:first-child { font-size: 1.15rem; line-height: 1; }
+.lang-chip em { font-style: normal; font-weight: 500; color: var(--ink-soft); }
+.lang-note { margin: 22px auto 0; max-width: 620px; color: var(--ink-soft); font-size: 0.95rem; }
+.lang-note a { color: var(--amber); font-weight: 600; }

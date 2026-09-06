@@ -29,9 +29,14 @@
     // was chosen rather than guessed, which is what stops it redirecting back.
     var links = document.querySelectorAll("[data-doc]");
     for (var j = 0; j < links.length; j++) {
-      links[j].setAttribute(
-        "href", "/" + lang + "/" + links[j].getAttribute("data-doc") + "?lang=" + lang
-      );
+      // A per-language override, because a heading's anchor is the heading's
+      // own words: #languages in English is #sprachen in German.
+      var doc = links[j].getAttribute("data-doc-" + lang) || links[j].getAttribute("data-doc");
+      // The query has to come before the fragment, or the browser reads the
+      // whole of "#languages?lang=de" as the fragment and lands nowhere.
+      var hash = "", at = doc.indexOf("#");
+      if (at >= 0) { hash = doc.slice(at); doc = doc.slice(0, at); }
+      links[j].setAttribute("href", "/" + lang + "/" + doc + "?lang=" + lang + hash);
     }
     var label = document.getElementById("langLabel");
     if (label) label.textContent = lang.toUpperCase();
