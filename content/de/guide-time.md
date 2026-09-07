@@ -67,7 +67,24 @@ Dasselbe Sheet auf dem Handy:
 
 Das sind die Einträge aller Beteiligten, nicht nur deine, und genau das willst
 du, wenn du herausfinden willst, warum eine Aufgabe, die einen Tag dauern
-sollte, drei verschlungen hat.
+sollte, drei verschlungen hat. Von fremden Einträgen siehst du die Arbeit: wie
+lange sie gedauert hat und welcher Art sie war. Wem sie gehört und welche Notiz
+dransteht, steht an deinen eigenen Einträgen — und bei der Projektleitung, die
+sie korrigieren kann.
+
+!!! note "Warum am Eintrag einer Kollegin kein Name steht"
+    Stunden an einem Vorgang beantworten eine Frage über den Vorgang. Ein Name
+    und ein Datum an jedem einzelnen beantworten eine andere, nämlich eine über
+    eine Person — und eine laufende Aufzeichnung, wer wann wie lange gearbeitet
+    hat, ist genau die Auswertung von Beschäftigtendaten, die bewusst eingeführt
+    werden muss statt standardmäßig zu laufen, mit Betriebsvereinbarung, wo eine
+    gilt. Eine Betreiber-Richtlinie, die das für Projektleitungen öffnet, kommt
+    noch; bis dahin gilt für alle dieselbe Antwort.
+
+Die Karte zeigt die jüngsten Einträge; darunter öffnet **Alle Einträge (24)** ein
+Sheet mit der vollständigen Historie und der bisher erfassten Gesamtzeit, das
+beim Scrollen weitere Seiten nachlädt. Ein Vorgang, an dem seit einem Jahr
+gearbeitet wird, öffnet damit genauso schnell wie einer mit zwei Einträgen.
 
 ## Die richtige Tätigkeitsart wählen
 
@@ -152,12 +169,24 @@ montags, das Raster passt also zu der Art, wie die meisten Menschen über eine
 Woche sprechen — und eine Sonntagssitzung landet am Ende der Woche, zu der sie
 gehörte, statt am Anfang der nächsten.
 
+**Heute** im Seitenkopf holt dich von überall in die laufende Woche zurück und
+liest sie dabei neu ein — die Schaltfläche ist also zugleich der
+Aktualisieren-Knopf. Sie leuchtet nur auf, wenn du tatsächlich woanders bist.
+
 ### Wessen Zeit du siehst
 
-Dein Stundenzettel zeigt **deine eigene** Arbeit. Administratorinnen und
-Administratoren sehen alle Zeilen, was die Seite für eine Teamleitung beim
-Rückblick auf eine Woche nützlich macht. Niemand sonst kann hier deine Stunden
+Dein Stundenzettel zeigt **deine eigene** Arbeit, und der Server setzt das durch,
+statt dass die Seite den Rest nur ausblendet: Wer nach fremden Stunden fragt,
+bekommt eine Absage, nicht stillschweigend die eigenen. Administratorinnen und
+Administratoren sehen alle Zeilen — das macht die Seite für eine Teamleitung beim
+Rückblick auf eine Woche nützlich — und haben zwei durchsuchbare Filter, einen
+für die Person und einen fürs Projekt, um eine volle Woche auf die Frage
+einzugrenzen, die sie wirklich haben. Niemand sonst kann hier deine Stunden
 durchblättern.
+
+Zeit, die an einem inzwischen verschobenen Vorgang erfasst wurde oder deren
+Projekt es nicht mehr gibt, gehört weiter dir und wird weiter angezeigt —
+gesammelt unter **Nicht zugeordnet**.
 
 !!! note "Leer heißt nicht kaputt"
     „In dieser Woche wurden keine Arbeitszeiten erfasst“ bedeutet genau das — in
@@ -192,34 +221,61 @@ Stunden. Ob das zur Verfügung steht, hängt davon ab, ob eine Administratorin o
 ein Administrator dein Projekt mit einem Repository verbunden hat; siehe
 [Git-Integration](/de/git-integration.html).
 
-!!! warning "Zeit aus einem Commit ist kein Stundenzettel-Eintrag"
-    Ein `#time`-Trailer erhöht den **Aufwand** am Vorgang, erzeugt aber keinen
-    Arbeitseintrag mit Datum und Tätigkeitsart. Er taucht deshalb weder in deinem
-    Stundenzettel noch in deinem Fokuszeit-Diagramm noch im Bericht „Zeit pro
-    Tätigkeit“ auf. Wenn diese Zahlen dir oder deinem Team wichtig sind, erfasse
-    die Arbeit zusätzlich — oder stattdessen — in der App.
+Ein Trailer erzeugt einen echten Arbeitseintrag, und zwar für **die Autorin oder
+den Autor des Commits** — aufgelöst über die Autor-E-Mail, die Git ohnehin
+mitführt. Er landet damit auf deren Stundenzettel, in deren Fokuszeit-Diagramm
+und im Bericht „Zeit pro Tätigkeit“, genau wie ein in der App getippter Eintrag.
+Datiert wird er auf den Tag, an dem der Commit geschrieben wurde, in der
+Zeitzone dieser Person; die Notiz hält die kurze SHA und die Commit-Betreffzeile
+fest, sodass sich jeder Eintrag zu seiner Arbeit zurückverfolgen lässt. Ohne
+ausdrückliche Tätigkeitsart zählt er als **Entwicklung**.
+
+!!! note "Ein Commit bucht nur auf ein Konto, das er erkennt"
+    Die Autor-E-Mail muss zu einem aktiven Hinata-Konto gehören, und diese Person
+    muss Mitglied des Projekts sein. Passt sie zu niemandem — ein Commit von
+    einer privaten Adresse, von einem Bot oder von jemandem außerhalb des
+    Projekts —, wird der Trailer übersprungen und im Serverprotokoll vermerkt;
+    es wird gar keine Zeit gebucht. Niemals landet sie bei der Person, die das
+    Repository verbunden hat. Wenn deine Commits nicht auftauchen, schau zuerst
+    auf die Adresse in `git config user.email`.
 
 ## Einen Eintrag korrigieren
 
-Hier ist ein wenig Vorsicht angebracht, denn das ist der eine Teil der
-Zeiterfassung, der noch nicht nachsichtig ist.
+Eine falsch getippte Dauer ist nichts mehr, wovor man sich in Acht nehmen müsste.
+Jeder Eintrag auf der Timeline-Karte — und jeder Eintrag im Sheet **Alle
+Einträge** — trägt rechts ein kleines Menü.
 
-!!! warning "Ein gespeicherter Eintrag lässt sich in der App nicht bearbeiten"
-    Es gibt keine Bearbeiten- oder Löschen-Funktion an einem Arbeitseintrag.
-    Prüfe Dauer, Datum und Vorgang, bevor du **Speichern** drückst.
+**Eintrag bearbeiten** öffnet dasselbe Sheet, in dem du die Zeit erfasst hast,
+gefüllt mit dem, was gerade drinsteht. Ändere Dauer, Datum, Tätigkeitsart oder
+Notiz, drücke **Speichern**, und der **Aufwand** am Vorgang wird aus seinen
+Einträgen neu berechnet. Die Datumsregeln gelten weiter: nichts in der Zukunft,
+nichts weiter als ein Jahr zurück.
 
-Was tun, wenn es trotzdem schiefgeht:
+**Löschen** fragt vorher nach — es nennt Dauer und Tag, um die es geht — und
+lässt sich nicht rückgängig machen. Der Eintrag verschwindet, und der **Aufwand**
+am Vorgang sinkt um genau diesen Betrag.
 
-- **Du hast zu wenig erfasst.** Erfasse die Differenz als zweiten Eintrag.
-  Einträge am selben Vorgang und Tag addieren sich, zwei Einträge über eine
-  Stunde und 30 Minuten lesen sich also genau wie ein Eintrag über 1h 30m.
-- **Du hast zu viel oder am falschen Vorgang erfasst.** Bitte eine Administratorin
-  oder einen Administrator, den Eintrag für dich zu entfernen — das Löschen gibt
-  es serverseitig, es hat nur noch keinen Knopf in der App — und erfasse
-  anschließend neu und richtig.
-- **Du hast die falsche Tätigkeitsart gewählt.** In der Praxis lohnt es selten,
-  das aufzudröseln. Es verschiebt ein paar Minuten zwischen zwei Balken in einem
-  30-Tage-Bericht. Mach den nächsten richtig.
+### Wessen Einträge du ändern darfst
+
+- **Deine eigenen**, immer: Bearbeiten und Löschen gehören beide dir.
+- **Fremde**, wenn du das Projekt leitest oder Administratorin bzw. Administrator
+  bist: Du darfst den Eintrag **löschen**, aber nicht umschreiben. Die Stunden
+  einer anderen Person in deren Namen zu korrigieren hinterließe eine Aufzeichnung,
+  die etwas behauptet, das diese Person nie gesagt hat; ihn zu entfernen und um
+  eine neue Erfassung zu bitten hält die Historie ehrlich darüber, wer was
+  geschrieben hat. Jede solche Entfernung steht mit beiden Namen im Audit-Log.
+
+!!! tip "Zu wenig erfasst? Dann musst du gar nicht bearbeiten"
+    Einträge am selben Vorgang und Tag addieren sich. Die fehlenden 30 Minuten
+    als zweiten Eintrag zu erfassen liest sich genau wie ein Eintrag über 1h 30m.
+    Bearbeiten ist für eine Dauer da, die schlicht falsch ist, nicht fürs
+    Nachlegen.
+
+Eine Sorte Eintrag gehört niemandem: Zeit, die ältere Versionen direkt aus
+`#time`-Commits gebucht haben, bevor Smart Commits echte Einträge schrieben. Sie
+steht als **Smart Commits (vor 2.0)** ohne Namen daneben — die Stunden zählen
+also weiter und bleiben nachvollziehbar. Entfernen kann sie nur eine Projektleitung
+oder die Administration.
 
 ## Wo deine erfasste Zeit landet
 
