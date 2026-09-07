@@ -63,7 +63,18 @@ The same sheet on a phone:
 
 These are everyone's entries, not just yours, which is exactly what you want
 when you are trying to work out why a task that was supposed to take a day has
-eaten three.
+eaten three. What you see of somebody else's is the work: how long it took and
+what kind of work it was. Whose it is, and the note they wrote on it, is shown
+on your own entries — and to whoever leads the project, who can correct them.
+
+!!! note "Why a colleague's entry has no name on it"
+    Hours on an issue answer a question about the issue. A name and a day
+    against every one of them answers a different question, about a person, and
+    a running record of who worked how long on which day is exactly the kind of
+    reading of employee data that has to be introduced deliberately rather than
+    switched on by default — with a works agreement where one applies. An
+    operator policy that opens it up to a project's leads is coming; until then
+    the answer is the same for everyone.
 
 The card holds the newest entries; underneath them, **All entries (24)** opens a
 sheet with the whole history and the total logged so far, fetching further pages

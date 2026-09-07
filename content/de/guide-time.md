@@ -67,7 +67,19 @@ Dasselbe Sheet auf dem Handy:
 
 Das sind die Einträge aller Beteiligten, nicht nur deine, und genau das willst
 du, wenn du herausfinden willst, warum eine Aufgabe, die einen Tag dauern
-sollte, drei verschlungen hat.
+sollte, drei verschlungen hat. Von fremden Einträgen siehst du die Arbeit: wie
+lange sie gedauert hat und welcher Art sie war. Wem sie gehört und welche Notiz
+dransteht, steht an deinen eigenen Einträgen — und bei der Projektleitung, die
+sie korrigieren kann.
+
+!!! note "Warum am Eintrag einer Kollegin kein Name steht"
+    Stunden an einem Vorgang beantworten eine Frage über den Vorgang. Ein Name
+    und ein Datum an jedem einzelnen beantworten eine andere, nämlich eine über
+    eine Person — und eine laufende Aufzeichnung, wer wann wie lange gearbeitet
+    hat, ist genau die Auswertung von Beschäftigtendaten, die bewusst eingeführt
+    werden muss statt standardmäßig zu laufen, mit Betriebsvereinbarung, wo eine
+    gilt. Eine Betreiber-Richtlinie, die das für Projektleitungen öffnet, kommt
+    noch; bis dahin gilt für alle dieselbe Antwort.
 
 Die Karte zeigt die jüngsten Einträge; darunter öffnet **Alle Einträge (24)** ein
 Sheet mit der vollständigen Historie und der bisher erfassten Gesamtzeit, das
