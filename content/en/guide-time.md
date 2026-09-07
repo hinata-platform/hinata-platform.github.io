@@ -65,6 +65,11 @@ These are everyone's entries, not just yours, which is exactly what you want
 when you are trying to work out why a task that was supposed to take a day has
 eaten three.
 
+The card holds the newest entries; underneath them, **All entries (24)** opens a
+sheet with the whole history and the total logged so far, fetching further pages
+as you scroll. An issue that has been worked on for a year therefore opens
+exactly as fast as one that was logged against twice.
+
 ## Pick the right activity type
 
 The six activity types are fixed, and they are fixed on purpose. A short, shared
@@ -142,11 +147,23 @@ The arrows step one week back or forward. Weeks always start on Monday, so the
 grid lines up with how most people talk about a week, and a Sunday session lands
 at the end of the week it belonged to rather than the start of the next one.
 
+**Today** in the page header brings you straight back to the current week from
+wherever you have wandered to, and re-reads the week while it is at it — so it
+doubles as the refresh button. It only lights up when you are actually somewhere
+else.
+
 ### Whose time you can see
 
-Your timesheet shows **your own** work. Administrators see everyone's rows,
-which is what makes the page useful for a team lead reviewing a week. Nobody
-else can browse your hours from here.
+Your timesheet shows **your own** work, and the server enforces that rather than
+the page merely hiding the rest: asking it for somebody else's hours is refused,
+not quietly answered with your own. Administrators see everyone's rows, which is
+what makes the page useful for a team lead reviewing a week, and they get two
+searchable filters — one for the person, one for the project — to narrow a busy
+week down to the question they actually have. Nobody else can browse your hours
+from here.
+
+Time logged against an issue that has since moved, or whose project is gone,
+still belongs to you and still shows, grouped under **Unassigned**.
 
 !!! note "Empty is not broken"
     "No work items recorded in this week" means exactly that — nothing was
@@ -180,33 +197,56 @@ a day is 8 hours and a week is 5 days — so `1d 4h` means twelve hours. Whether
 this is available depends on whether an administrator has connected your project
 to a repository; see [Git integration](/en/git-integration.html).
 
-!!! warning "Time from a commit is not a timesheet entry"
-    A `#time` trailer raises the **Spent** total on the issue, but it does not
-    create a work entry with a date and an activity type. It therefore does not
-    appear on your timesheet, in your focus-time chart, or in the Time per
-    activity report. If those numbers matter to you or to your team, log the
-    work in the app as well as — or instead of — in the commit.
+A trailer creates a real work entry, owned by **the author of the commit** —
+resolved from the author e-mail Git already carries — so it lands on that
+person's timesheet, in their focus-time chart and in the Time per activity
+report, exactly like an entry typed into the app. It is dated the day the commit
+was authored, in that person's own time zone, and its note records the short sha
+and the commit subject so you can trace any entry back to the work it came from.
+Without an explicit activity type it counts as **Development**.
+
+!!! note "A commit only logs time for an account it can recognise"
+    The author e-mail has to match an active Hinata account, and that person has
+    to be a member of the project. When it matches nobody — a commit from a
+    personal address, from a bot, or from someone outside the project — the
+    trailer is skipped and noted in the server log, and no time is logged at all.
+    Nothing is ever booked to whoever connected the repository. If your commits
+    are not showing up, the address in `git config user.email` is the first thing
+    to check.
 
 ## Correcting an entry
 
-Be a little careful here, because this is the one part of time tracking that is
-not yet forgiving.
+Getting a duration wrong is not something to be careful about any more. Every
+entry on the Timeline card — and every entry in the **All entries** sheet —
+carries a small menu on the right.
 
-!!! warning "A saved entry cannot be edited in the app"
-    There is no edit or delete control on a work entry. Check the duration, the
-    date and the issue before you press **Save**.
+**Edit** reopens the same sheet you logged the time in, filled in with what is
+there now. Change the duration, the date, the activity type or the note, press
+**Save**, and the issue's **Spent** total is recomputed from its entries. The
+date rules still apply: nothing in the future, nothing more than a year back.
 
-What to do when it goes wrong anyway:
+**Delete** asks first — it names the duration and the day it is about to remove
+— and cannot be undone. The entry goes, and the issue's **Spent** total drops by
+exactly that much.
 
-- **You logged too little.** Log the difference as a second entry. Entries on the
-  same issue and day add together, so two entries of 1h and 30m read exactly the
-  same as one entry of 1h 30m.
-- **You logged too much, or against the wrong issue.** Ask an administrator to
-  remove the entry for you — deletion exists on the server, it simply has no
-  button in the app yet — and then log it again correctly.
-- **You picked the wrong activity type.** In practice this is rarely worth
-  unpicking. It shifts a few minutes between two bars on one 30-day report. Get
-  the next one right.
+### Whose entries you may change
+
+- **Your own**, always: editing and deleting are both yours.
+- **Somebody else's**, if you lead the project or are an administrator: you may
+  **delete** the entry, but not rewrite it. Correcting another person's hours in
+  their name would leave a record that says something they never said; removing
+  it and asking them to log it again keeps the history honest about who wrote
+  what. Every such removal is written to the audit log with both names.
+
+!!! tip "You logged too little — you do not have to edit"
+    Entries on the same issue and day add together, so logging the missing 30
+    minutes as a second entry reads exactly the same as one entry of 1h 30m.
+    Editing is for a duration that is plainly wrong, not for a top-up.
+
+One kind of entry belongs to nobody: time that older versions booked straight
+from `#time` commits, before smart commits wrote real entries. It shows as
+**Smart commits (pre-2.0)** with no name against it, so the hours are still
+counted and still traceable. Only a lead or an administrator can remove it.
 
 ## Where your logged time ends up
 
