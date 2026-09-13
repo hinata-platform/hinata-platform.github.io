@@ -382,7 +382,8 @@ reverse-proxy (Reverse proxy & TLS / Reverse Proxy & TLS), setup-wizard (Setup &
 backups (Backups & upgrades / Backups & Upgrades).
 features: features (Feature tour / Feature-Tour), projects-teams (Projects & teams / Projekte & Teams),
 issues (Issues & hierarchy / Vorgänge & Hierarchie), boards-sprints (Boards & sprints / Boards & Sprints),
-timeline (Gantt & time tracking / Gantt & Zeiterfassung), reports (Reports & dashboard / Berichte & Dashboard),
+timeline (Gantt & time tracking / Gantt & Zeiterfassung),
+time-tracking-privacy (Time tracking: privacy & law / Zeiterfassung: Datenschutz & Recht), reports (Reports & dashboard / Berichte & Dashboard),
 knowledge-base (Knowledge base / Wissensdatenbank), notifications (Notifications / Benachrichtigungen),
 search (Search & palette / Suche & Palette).
 security: authentication (Authentication / Authentifizierung), sso (Single sign-on (SSO) / Single Sign-on (SSO)),
