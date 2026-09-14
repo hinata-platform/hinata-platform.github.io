@@ -1,41 +1,44 @@
 ---
 title: Notifications
-description: Stay in the loop with in-app, e-mail and push notifications — each user tunes exactly what they receive with a per-event notification matrix.
+description: In-app, e-mail and push notifications, tuned per event by each user.
 ---
 
 # Notifications
 
-Hinata keeps people informed without drowning them. Notifications arrive through three channels, and every user decides exactly which events reach them and where.
+Hinata keeps people informed through three channels. Each user decides which events reach them and where.
 
 ## Channels
 
-- **In-app** — a live notification centre inside the app, updated as things happen.
-- **E-mail** — delivered through your server's [SMTP relay](/en/email.html). Actionable e-mails (an assignment, a mention) carry a deep link that opens the exact issue in the app.
-- **Push** — push notifications on mobile and Windows desktop, delivered through the [Hinata Connect gateway](/en/connect-gateway.html), so a published app can notify users of any self-hosted server without each server owning Firebase credentials.
+- **In-app**: a notification centre inside the app that updates as things happen.
+- **E-mail**: sent through your server's [SMTP relay](/en/email.html). E-mails you can act on (an assignment, a mention) carry a deep link that opens the exact issue in the app.
+- **Push**: on Android, iOS, macOS and Windows, delivered through the [Hinata Connect gateway](/en/connect-gateway.html). That way a published app can notify users of any self-hosted server without each server owning Firebase credentials.
 
 !!! info "E-mail needs a real relay"
-    In-app notifications work out of the box. For e-mail to actually be delivered — including verification and password-reset links — the server needs a real SMTP relay configured. See [E-mail & SMTP](/en/email.html).
+    In-app notifications work out of the box. For e-mail to actually arrive, including verification and password reset links, the server needs a real SMTP relay configured. See [E-mail & SMTP](/en/email.html).
 
 ## What triggers a notification
 
-Typical events include:
+Typical events:
 
-- **Assignment** — an issue is assigned to you.
-- **Mentions** — someone `@`-mentions you in a description or comment.
-- **Comments** — new activity on an issue you're involved with.
-- **Status changes** — an issue you follow moves through the workflow.
-- **Sprint events** — sprint start/complete and related planning changes.
-- **Invites** — you're invited to the workspace or a team.
-- **Security** — sign-ins and account-security events (always on — you can't silence these).
+- **Assignment**: an issue is assigned to you.
+- **Mentions**: someone `@`-mentions you in a description or comment.
+- **Comments**: new activity on an issue you're involved with.
+- **Status changes**: an issue you follow moves through the workflow.
+- **Sprint events**: a sprint starts or completes, and related planning changes.
+- **Invites**: you're invited to the workspace or a team.
+- **Security**: sign-ins and account security events. These are always on and cannot be silenced.
 
 ## The notification matrix
 
-In **Settings → Notifications**, each user gets a matrix: a row per event type, a column per channel. Two master switches turn e-mail and push on or off wholesale, and the matrix fine-tunes the rest. Turn off comment e-mails but keep mention e-mails; get push for assignments but not for digests — whatever fits how you work.
+In **Settings → Notifications** each user gets a matrix: one row per event type, one column per channel.
+
+- Two master switches turn e-mail and push on or off completely.
+- The matrix handles the rest. For example: comment e-mails off, mention e-mails on. Or push for assignments but not for digests.
 
 !!! tip "Set it once, forget it"
-    Encourage new team members to spend thirty seconds on their matrix during onboarding. Well-tuned notifications are the difference between a tool people trust and one they mute entirely.
+    Ask new team members to spend thirty seconds on their matrix during onboarding. People trust a tool with well-tuned notifications. Otherwise they tend to mute it entirely.
 
-Security-related notifications are locked on by design, so account-safety events always reach you.
+Security notifications are locked on, so account security events always reach you.
 
 ## Next steps
 

@@ -1,96 +1,94 @@
 ---
 title: Projects & teams
-description: What a project is, what the HIN-42 key on every issue means, how teams decide which projects you can see, and what a project lead can change.
+description: What a project is, what the HIN-42 key means, and how teams decide which projects you can see.
 ---
 
 # Projects & teams
 
-Every issue in Hinata belongs to a **project**, and every project you can open was opened to you by a **team** or by someone adding you to it directly. Those two ideas explain most of what you see — and most of what you don't.
-
-This page covers both, in the order you'll meet them: what a project is, how to browse the ones you have, why your list may be shorter than a colleague's, and what a project lead can change without ever going near an admin area.
+Every issue belongs to a **project**. Which projects you can see depends on whether a **team** grants them to you or someone added you directly.
 
 ## What a project is
 
-A project is a container for a body of work — one product, one service, one internal initiative. It holds its own issues, its own board, its own set of columns and its own labels. Two projects can work completely differently and never get in each other's way.
+A project holds one area of work: a product, a service or an internal initiative. It has its own issues, its own board, its own columns and its own labels. Projects never get in each other's way.
 
-Practically, a project gives you five things:
+Every project has:
 
 - **An issue key**, the prefix on every issue in it.
-- **Workflow states** — the columns an issue moves through.
-- **Labels** — reusable colored tags for its issues.
+- **Workflow states**, the columns an issue moves through.
+- **Labels**, reusable coloured tags.
 - **Members**, and one or more **leads**.
 - **A board**, a backlog, a timeline and reports, all scoped to it.
 
 ### The issue key
 
-When a project is created it gets a short uppercase key: `HIN`, `MOB`, `INF`. Every issue in that project is then numbered from it — `HIN-1`, `HIN-2`, `HIN-3` — and that combination is the issue's name for the rest of its life.
+When a project is created it gets a short uppercase key, such as `HIN`, `MOB` or `INF`. Its issues are then numbered `HIN-1`, `HIN-2`, `HIN-3` and so on. An issue keeps that name for good.
 
-This is the single most useful thing to learn about Hinata, because the key travels everywhere:
+How to use the key:
 
-- Type `HIN-42` into the search palette and you go straight to that issue.
-- Paste `HIN-42` in a chat message and everyone knows what you mean.
-- Put `HIN-42` in a branch name or a commit message and, if your project is connected to a repository, the work links itself back to the issue.
+- Type `HIN-42` into the search palette to jump straight to the issue.
+- Write `HIN-42` in a chat and everyone knows what you mean.
+- Put `HIN-42` in a branch name or commit message. If the project is connected to a repository, the work links back to the issue.
 
-Numbers are handed out in order and **never reused**. Archive `HIN-42`, delete it, move it — the number `42` does not come back for something else. That's what makes a key safe to write down in a document that will outlive the issue.
+Numbers are handed out in order and **never reused**. Even after archiving, deleting or moving `HIN-42`, the `42` does not come back. That makes a key safe to write into documents.
 
 !!! tip "Say it out loud before you commit to it"
-    Keys end up in commit messages, branch names and half your conversations. `HIN` is a pleasure to type a hundred times a day; `PLATFORM2024` is not. Short wins.
+    You type the key constantly, in commits, branches and conversations. `HIN` is easy, `PLATFORM2024` is not. Short wins.
 
 !!! note "A key can change later, and it takes its issues with it"
-    If a project is renamed and its key changes, every issue is renumbered to the new prefix and keeps its number: `HIN-42` becomes `PLAT-42`. Old links stop resolving, so it is worth doing early rather than late — but it is not a trap you can fall into permanently.
+    If the key changes, every issue gets the new prefix and keeps its number: `HIN-42` becomes `PLAT-42`. Old links stop working, so change it early if you can.
 
 ### Workflow states, labels and members
 
-The rest of what a project carries is described in the sections below, but in short:
-
-**Workflow states** are the columns of the board and the possible values of an issue's status. A new project starts with a sensible default — *Backlog → Open → In Progress → In Review → Done*, with *Done* marked as the state that counts as finished — and a lead can change all of it later.
-
-**Labels** are reusable tags with a colour, defined once per project and then available on every issue in it. `design`, `performance`, `security`, `good-first-issue`. Because they are defined at the project level rather than typed freehand, they stay tidy and searchable.
-
-**Members** are the people who work in the project. They show up in assignee pickers, in the board's people filter and in reports. One or more of them is marked as a **lead** — the people who may change the project's configuration.
+- **Workflow states** are the board's columns and the possible status values. New projects start with *Backlog → Open → In Progress → In Review → Done*, with *Done* marked as finished. A lead can change all of it later.
+- **Labels** are coloured tags defined once per project and available on every issue in it, such as `design`, `performance`, `security`, `good-first-issue`. Because nobody types them freehand, they stay tidy and searchable.
+- **Members** work in the project. They appear in assignee pickers, the board's people filter and reports. Members marked as **lead** may change the project's configuration.
 
 ## Browsing your projects
 
-**Projects** in the navigation rail lists everything you can see.
+**Projects** in the navigation rail lists every project you can see.
 
 ![The Projects overview](/assets/img/shot-projects.png)
-*The Projects page: a card per project with its key glyph, name, key and lead, member and workflow-state counts, a progress bar, member avatars and a label count. The Active / Archived switch sits above the cards, and New project at the top right.*
+*The Projects page, with one card per project.*
 
-Clicking anywhere on a card opens that project's **issue list** — that's the main way in. The **Settings** button on the card is a separate destination, and it only appears if you are allowed to use it (more on that below).
+The Active / Archived switch sits above the cards, New project at the top right.
+
+Click a card to open the project's **issue list**. The **Settings** button on the card only appears if you are allowed to use it.
 
 ### What a card tells you at a glance
 
-- **The square glyph** is the project's picture, or its key set in a mono typeface if it doesn't have one.
-- **The line under the name** is the key and the project lead: `HIN · lead admin`.
-- **Members** and **States** are counts — how many people work here, and how many columns the workflow has.
-- **The bar** is progress: how much of the project's work is resolved.
-- **The faces** are the members, with a `+2` when there are more than fit.
-- **The tag count** is how many labels the project defines.
+- **Square glyph:** the project's picture or, without one, its key in a mono typeface.
+- **Line under the name:** key and project lead, such as `HIN · lead admin`.
+- **Members** and **States:** how many people work here and how many columns the workflow has.
+- **Bar:** how much of the work is resolved.
+- **Faces:** the members, with `+2` when not all fit.
+- **Tag count:** how many labels the project defines.
 
 ### Active and archived
 
-The switch above the cards flips between **Active** and **Archived**, and the line under the page title keeps the score: *"3 active · 0 archived"*.
+The switch flips between **Active** and **Archived**. The line under the page title shows the count, such as *"3 active · 0 archived"*.
 
-Archiving is how a project ends without being destroyed. An archived project disappears from the active list and becomes read-only — its issues, comments, attachments and history all stay exactly where they were, and you can still find and read them. Nothing is deleted.
-
-That makes archiving the right move for a finished project, a cancelled one, or one that is simply dormant. It is also reversible: flip the switch back and the project returns.
+Archived projects are read-only and disappear from the active list. Issues, comments, attachments and history stay findable and readable. Nothing is deleted, and you can bring a project back at any time. This fits finished, cancelled or dormant projects.
 
 ### Creating a project
 
-**New project**, at the top right, is the whole ceremony.
+Click **New project** at the top right.
 
 ![The New project dialog](/assets/img/shot-project-new.png)
-*The New project dialog. The key writes itself from the name as you type — "Billing & Plans" became BP, in the field and in the glyph beside it — and description, lead and colour are the rest. The line at the foot names the workflow the project will start with.*
+*The key fills in from the name as you type, here BP from "Billing & Plans".*
 
-You can overwrite the suggested key. It must be uppercase, start with a letter, and be between two and ten characters of letters and digits, and it has to be unique across the whole server — if someone already took it you'll be told *"That key is already taken."* before you can save.
+You also set a description, lead and colour. The line at the bottom names the workflow the project starts with.
 
-Nothing else here is final. The workflow and the labels are edited afterwards in project settings, so there is no pressure to get everything right in one go.
+You can overwrite the suggested key. It must:
+
+- be uppercase and start with a letter,
+- be two to ten characters of letters and digits,
+- be unique across the whole server. Otherwise you see *"That key is already taken."* before you can save.
+
+You edit the workflow and labels later in project settings.
 
 ## Teams, and why you can't see everything
 
-Here is the part that surprises people, so it's worth being direct about it.
-
-**You do not automatically see every project on the server.** Your colleague may open Projects and find six cards where you find two. Nothing is broken, and nobody is hiding anything from you personally — Hinata simply treats project access as something that has to be granted rather than something everyone gets by default.
+**You do not automatically see every project on the server.** A colleague may see six projects where you see two. That is not a bug. Project access has to be granted.
 
 ### The rule, in three lines
 
@@ -100,172 +98,179 @@ You can see a project if **any one** of these is true:
 2. A **team you're on grants** you that project.
 3. You are a **platform administrator**, who sees everything.
 
-That's the whole rule. And it is enforced by the server on every single request, not by hiding buttons in the app — so a project you cannot see does not appear in your issue list, your search results, your reports, your board filters or your notifications either. There's no "shared with me" step for anyone to forget: being granted access *is* the access.
+The server checks this on every request. A project you cannot access therefore also stays out of your issue list, search, reports, board filters and notifications. There is no extra sharing step: being granted access is the access.
 
 ### What a team is
 
-A team is a group of people plus a set of projects. Put someone on the team, grant the team a project, and that person can work in it. Take the project off the team, and everyone who reached it only through that team quietly loses it.
+A team is a group of people plus a set of projects. Anyone on the team can work in the team's projects. Take a project off the team, and everyone who reached it only through that team loses it.
 
 ![A team's overview](/assets/img/shot-team.png)
-*A team page: the team's name and key at the top with Add members and Add project, the Overview / Members / Projects / Settings tabs, headline counts for members, Team-Admins and projects, the list of projects the team grants, and a recent-activity feed — here the description being rewritten, and Amara Okafor being added and then promoted.*
+*A team page with headline counts, projects and recent activity.*
 
-The **Teams** entry in the rail lists the teams you belong to, each card showing its key, its member count, a few faces, how many projects it grants, and — on the teams you're actually on — a badge with your own role in it, **Admin** or **Member**.
+**Teams** in the rail lists the teams you belong to. Each card shows the key, member count, a few faces and how many projects the team grants. On teams you are on yourself, it shows your role: **Admin** or **Member**.
 
-Open one and you get four tabs:
+The top of a team page has Add members and Add project. Below are four tabs:
 
-- **Overview** — the headline counts, the projects this team grants, and what has been happening in it lately.
-- **Members** — who is on the team, their role, and what each of them can reach.
-- **Projects** — the projects the team grants, with the option to attach an existing one or create a new one for the team.
-- **Settings** — the team's name, key, colour and icon, a plain-language summary of what each role can do, and the danger zone.
+- **Overview:** counts for members, Team-Admins and projects, the granted projects and recent activity.
+- **Members:** who is on the team, with role and reachable projects.
+- **Projects:** the granted projects. Attach an existing one or create a new one for the team here.
+- **Settings:** the team's name, key, colour and icon, a summary of what each role can do, and the danger zone.
 
 ### Two roles
 
-Inside a team there are exactly two roles, and the app spells out what each means:
-
 | Role | What it can do |
 | --- | --- |
-| **Team-Admin** | Full control of this team — members, projects, settings. The same rights as a platform administrator, but scoped to this one team. Always sees every project the team owns. |
+| **Team-Admin** | Full control of this team: members, projects, settings. The same rights as a platform administrator, but scoped to this one team. Always sees every project the team owns. |
 | **Member** | Works on the projects they're granted. Cannot change the team's membership or its settings. |
 
 ### Three levels of project access
 
-When someone is added to a team, their project access is set alongside their role.
+When you add someone to a team, you set their role and project access together.
 
 ![Step two of Add members](/assets/img/shot-team-add-members.png)
-*Step 2, Access: the role — Member or Team-Admin — with the three levels of project access under it. Back returns to the People step; Add 1 commits the person, the role and the access in one go.*
+*Step 2, Access: role and project access on one screen.*
 
-**All projects** keeps working as the team grows: projects attached later are included without anyone revisiting that person. **Specific projects** is exactly what you tick and nothing else the team happens to own. **No projects yet** puts someone on the team with nothing open to them — useful when you want to add people now and sort out access afterwards.
+Back returns to the People step. Add 1 saves the person, role and access in one go.
 
-**Team-Admins are the exception**: they always see everything their team owns, whatever the access setting says. That's what makes them admins.
+- **All projects:** includes projects attached to the team later.
+- **Specific projects:** only the projects you tick.
+- **No projects yet:** the person is on the team but sees no projects. Useful when you want to sort out access later.
+
+**Team-Admins are the exception:** they always see every project their team owns, whatever the setting says.
 
 ### The projects a team owns
 
-The **Projects** tab of a team is where the granting actually happens.
+The team's **Projects** tab is where you grant projects.
 
 ![Adding a project to a team](/assets/img/shot-team-add-project.png)
-*Add a project, on the Attach existing tab: every project the team does not already have, one row each with key, name and lead, and a tick box. Mobile App is ticked here, so the confirm button counts it — __Attach 1__. Create new, beside it, spins up a fresh project that belongs to the team from its first day.*
+*Attach existing lists every project the team does not have yet.*
 
-Removing a project from a team is the mirror image, and the app is honest about the consequence before you confirm: members lose the access this team granted them. If they also reach the project some other way — as a direct member, or through a second team — they keep it. Hinata checks every route before it takes anything away.
+- Each row shows key, name and lead with a tick box. The button counts along, such as **Attach 1**.
+- **Create new** creates a project that belongs to the team from day one.
+
+If you remove a project from a team, members lose the access this team gave them. The app tells you before you confirm. Anyone who also reaches the project directly or through another team keeps it. Hinata checks every route.
 
 ### "I'm sure this project exists, but I can't find it"
 
-This is the most common confusion in Hinata, and it has a short answer: someone needs to grant you access. Either
+Then you are missing access. You have three options:
 
-- ask to be **added to the project** as a member, or
-- ask to be **added to a team** that grants it, or — if you're already on that team —
-- ask a Team-Admin to widen your project access from *Specific projects* to include it.
+- Ask to be **added to the project** as a member.
+- Ask to be **added to a team** that grants it.
+- If you are already on that team, ask a Team-Admin to widen your *Specific projects* access to include it.
 
-Any Team-Admin of the relevant team, any lead of the project, or a platform administrator can do it, and the change takes effect immediately. You don't need to sign out and back in; the project simply appears.
+Team-Admins of that team, leads of the project and platform administrators can do this. The change works immediately, no need to sign in again.
 
 !!! warning "Removing access removes it everywhere, at once"
-    Taking someone off a team, or detaching a project from a team, revokes everything that grant carried — the project, its boards, its issues, and the notifications about them. They also stop watching issues they can no longer reach. The work itself is untouched; only the access disappears.
+    Taking someone off a team or detaching a project from a team removes everything that grant allowed: the project, its boards, its issues and the notifications about them. The person also stops watching issues they can no longer reach. The work itself is untouched.
 
 !!! note "Deleting a team never deletes its projects"
-    The confirmation says so explicitly: members lose the access the team granted, and the projects, boards and issues stay in the workspace. A team is a permission structure, not a container.
+    Members lose the access the team granted. Projects, boards and issues stay in the workspace. The confirmation says so too.
 
 ## An example that makes it click
 
-Abstract rules are hard to hold on to, so here is an invented organization, laid out the way most teams end up doing it.
-
-Suppose there are three projects — **Hinata Platform** (`HIN`), **Mobile App** (`MOB`) and **Infrastructure** (`INF`) — and two teams:
+Three projects: **Hinata Platform** (`HIN`), **Mobile App** (`MOB`) and **Infrastructure** (`INF`). And two teams:
 
 - **Core Platform** grants `HIN` and `INF`.
 - **Design & Mobile** grants `MOB`.
 
-Now follow four people:
+Four people:
 
-- **Nora** is a Member of Core Platform with access to *All projects*. She opens Projects and sees two cards: `HIN` and `INF`.
-- **Sam** is a Member of Design & Mobile. They see one card: `MOB`. `HIN` does not appear anywhere for them — not in search, not in reports, not in a board filter.
-- **Ida** is a Team-Admin of Core Platform. She sees `HIN` and `INF` regardless of any per-person access setting, because Team-Admins always see what their team owns. She is also lead of `INF`, so `INF` is the only card that shows her a Settings button.
-- **Ruben** is a Member of Design & Mobile *and* was added directly to `HIN` as a project member, because he designs one screen in it. He sees `MOB` through his team and `HIN` through direct membership — two different routes, same result.
+- **Nora** is a Member of Core Platform with *All projects*. She sees `HIN` and `INF`.
+- **Sam** is a Member of Design & Mobile and sees only `MOB`. `HIN` does not appear anywhere for them, not in search, reports or board filters.
+- **Ida** is a Team-Admin of Core Platform. She sees `HIN` and `INF` regardless of any access setting. She also leads `INF`, so that is the only card that shows her a Settings button.
+- **Ruben** is a Member of Design & Mobile *and* a direct member of `HIN`, because he designs one screen in it. He sees `MOB` through his team and `HIN` through direct membership.
 
-Nothing here required an administrator after the initial setup. Team-Admins grant projects, project leads configure them, and everyone else simply finds the right work waiting for them.
+After the initial setup, none of this needs an administrator. Team-Admins grant projects, project leads configure them.
 
 !!! tip "Team grant or direct membership?"
-    Use a **team grant** when a whole group needs a project — it stays correct as people join and leave the group. Use **direct membership** for the one designer, the one contractor, the one person from another department. Mixing them is normal, and access is the union of everything that applies.
+    A **team grant** fits when a whole group needs a project. It stays correct as people join and leave. **Direct membership** fits individuals, such as one designer, one contractor or someone from another department. Mixing both is normal. Access is the union of everything that applies.
 
 ## What a project lead can change
 
-Every project has a **Settings** page, and it belongs to the people who run that project: its **leads**, plus platform administrators. If you're a regular member you can work in the project all day and never see this page — that's why the Settings button on the card isn't there for you.
-
-Nothing here needs the admin area. A lead configures their own project.
+A project's **Settings** belong to its **leads** and platform administrators. Regular members never see this page, which is why the Settings button is missing on their card. Leads do not need the admin area for any of this.
 
 ![Project settings](/assets/img/shot-project-settings.png)
-*Project settings for the Hinata Platform project: the General card with picture, name, key, description and accent colour on the left, Leads & members below it, and Labels, Archive and the Danger zone stacked on the right.*
+*Project settings for Hinata Platform.*
+
+General and Leads & members are on the left, Labels, Archive and the Danger zone on the right.
 
 ### General
 
-The project's **picture** (or its key glyph if it has none), its **name**, its **key**, a **description** and an **accent colour** that tints the project across the app.
+The **picture** (or key glyph), **name**, **key**, **description** and an **accent colour** that tints the project across the app.
 
-Under the key field the page shows you the consequence in real time — *"Issues read like HIN-42"* — which is a small thing that has saved a lot of regret.
+Under the key field you see live how issues will be named, such as *"Issues read like HIN-42"*.
 
 ### Leads & members
 
-The list of people in the project. **Star a member to make them a project lead**, and a project must always have at least one — the page tells you so, and refuses to save if you'd leave it with none.
-
-**Add members** opens a search over everyone on the server. Newly added people are notified that they now have the project.
+- **Star a member to make them a project lead.**
+- A project always needs at least one lead. You cannot save without one.
+- **Add members** searches everyone on the server. Newly added people are notified.
 
 ### Labels
 
-Reusable tags for this project's issues: type a name, pick a colour, press **Add**. You can rename, recolour or remove them later, and a rename flows through to every issue already carrying the label — nothing is left pointing at the old name.
+Type a name, pick a colour, press **Add**. You can rename, recolour or remove labels later. A rename applies to every issue already carrying the label.
 
 ### Workflow states
 
-The columns an issue moves through, in order. Add one, rename one, drag them into a different order, remove one you don't use.
+The columns an issue moves through, in order. You can add, rename, drag to reorder and remove states.
 
-Each state has a **Resolved** toggle, which marks it as a state that counts as *finished*. That toggle is what makes burndown charts, progress rings and struck-through sub-tasks tell the truth, so it's worth getting right. A project needs **at least two states and at least one resolved state**; the editor won't let you go below either.
+- The **Resolved** toggle marks a state as *finished*. Burndown charts, progress rings and struck-through sub-tasks rely on it.
+- A project needs **at least two states and at least one resolved state**. The editor won't let you go below that.
 
 ![Removing a workflow state that still holds issues](/assets/img/shot-workflow-state-migrate.png)
-*Deleting a state that still holds issues opens "Status still has issues": it counts them, names the state they are sitting in, and offers the remaining states as a destination. Migrate & remove stays inactive until one is picked.*
+*"Status still has issues" counts them and offers the remaining states as a destination.*
+
+Migrate & remove stays inactive until you pick one.
 
 !!! warning "Nothing gets stranded"
-    A state cannot be removed while issues are in it. You can also move those issues yourself beforehand, if you'd rather do it deliberately.
+    A state cannot be removed while issues are in it. You can also move those issues yourself beforehand.
 
 ### Saving
 
-Project settings is a draft editor, not a live one. Change anything and a bar appears at the bottom saying **Unsaved changes**, with **Discard** and **Save changes**. Nothing you've touched reaches the project — or anyone else's screen — until you press save.
+Settings are a draft. As soon as you change something, a bar appears at the bottom with **Unsaved changes**, **Discard** and **Save changes**. Nothing reaches the project or anyone else's screen until you save.
 
-If something is invalid the bar says *"Fix required fields to save"* rather than letting you save a broken project.
+If something is invalid, the bar says *"Fix required fields to save"*.
 
 ### Archiving
 
-The **Archive** card has a single switch: *Project is active*. Turn it off and the project moves to the Archived tab, becomes read-only, and stays there — complete and readable — until someone turns it back on.
+The **Archive** card has one switch: *Project is active*. Turn it off and the project moves to the Archived tab and becomes read-only. It stays complete and readable until someone turns it back on.
 
-This is almost always what you want when a project ends. It costs nothing and it loses nothing.
+When a project ends, this is almost always the right step.
 
 ### Deleting
 
-The **Danger zone** at the bottom has one button: **Delete project**. This is the one genuinely irreversible action in a project's life.
+The **Danger zone** at the bottom has one button: **Delete project**. This is the only truly irreversible action.
 
 ![The delete-project confirmation](/assets/img/shot-project-delete.png)
-*The confirmation itemises the damage with the real counts from the project you are deleting — boards and sprints, the teams it will be detached from, the wiki articles — and then asks what happens to its issues: delete them, or move them to another project. Delete stays inactive until the project's name has been typed in.*
+*The confirmation shows what will be lost and asks what happens to the issues.*
 
-A board shared with other projects survives the deletion; it only loses this one.
+- It lists the real counts: boards and sprints, the teams the project will be detached from, and wiki articles.
+- You can delete the issues or move them to another project.
+- Delete stays inactive until you type the project's name.
+- A board shared with other projects survives and only loses this one.
 
 !!! warning "Archive instead, unless it was a mistake"
-    Deleting is for a project that should never have existed. For one that simply ended, **archive it**: it costs nothing, loses nothing, and can be turned back on.
+    Deleting is for a project that should never have existed. For one that simply ended, **archive it**. It can be turned back on.
 
 ## Who can do what
 
-A summary you can skim when you're not sure whether to ask someone, or just do it:
-
 | Action | Who |
 | --- | --- |
-| Work in a project — create issues, comment, log time, move cards | Any member of the project |
+| Work in a project: create issues, comment, log time, move cards | Any member of the project |
 | See a project at all | Direct members, people a team grants it to, platform administrators |
 | Change a project's name, key, labels, workflow, members | Project leads and platform administrators |
 | Archive or delete a project | Project leads and platform administrators |
 | Add or remove team members, set their role and access | Team-Admins and platform administrators |
 | Attach or detach a team's projects | Team-Admins and platform administrators |
 | Change a team's name, key, colour or icon | Team-Admins and platform administrators |
-| Everything else — users, sign-in, e-mail, integrations | Platform administrators, in the admin area |
+| Everything else: users, sign-in, e-mail, integrations | Platform administrators, in the admin area |
 
-If you need something from the last row, you're looking for whoever runs the server. The [Admin area](/en/admin-area.html) page describes what lives there.
+For anything in the last row, contact whoever runs the server. The [Admin area](/en/admin-area.html) page describes what lives there.
 
 ## Where to go next
 
-- **[Working with issues](/en/guide-issues.html)** — now that you know where issues live, learn how to write good ones.
-- **[Boards & sprints](/en/guide-boards.html)** — the workflow states from this page, as columns you drag cards across.
-- **[Finding things](/en/guide-search.html)** — searching across every project you can see, and filtering down to one.
-- **[Reports & dashboard](/en/guide-reports.html)** — where those resolved states and progress bars turn into charts.
-- **[Getting started](/en/guide-start.html)** — back to the front door, if you arrived here first.
+- **[Working with issues](/en/guide-issues.html):** how to write good issues.
+- **[Boards & sprints](/en/guide-boards.html):** the workflow states as columns you drag cards across.
+- **[Finding things](/en/guide-search.html):** search every project you can see, or filter down to one.
+- **[Reports & dashboard](/en/guide-reports.html):** where resolved states and progress turn into charts.
+- **[Getting started](/en/guide-start.html):** back to the start.

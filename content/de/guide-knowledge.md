@@ -1,100 +1,91 @@
 ---
 title: Dokumentation schreiben
-description: Artikel in der Wissensdatenbank schreiben, sie in Bereiche und Unterseiten einsortieren und mit den Vorgängen und Personen verknüpfen, die sie beschreiben.
+description: Artikel in der Wissensdatenbank schreiben, ordnen und mit Vorgängen und Personen verknüpfen.
 ---
 
 # Dokumentation schreiben
 
-Vorgänge beschreiben Arbeit, die gerade passiert. Dokumentation beschreibt, wie die Dinge *sind* — das Runbook, dem du um drei Uhr nachts folgst, die Entscheidung, an deren Zustandekommen sich niemand erinnert, die Onboarding-Seite, die einer neuen Kollegin eine Woche Nachfragen erspart.
+Vorgänge beschreiben laufende Arbeit. Dokumentation beschreibt, wie die Dinge *sind*: Runbooks, Entscheidungen, Einstiegsseiten.
 
-Genau dafür ist Hinatas **Wissensdatenbank** da. Sie ist ein Wiki im ehrlichen Sinn: Seiten stecken in Seiten, wer eine Seite lesen kann, darf sie auch verbessern, und jeder Artikel kann auf die Vorgänge und Personen zeigen, um die es geht — so bleiben Dokumentation und Arbeit aneinander.
+Dafür gibt es die **Wissensdatenbank**, ein Wiki. Seiten lassen sich verschachteln, wer eine Seite lesen kann, darf sie bearbeiten, und Artikel verlinken die Vorgänge und Personen, um die es geht.
 
 ## Bereiche, Artikel und Unterseiten
 
-Drei Ebenen, und nicht mehr, denn ein tieferes Ablagesystem pflegt am Ende niemand:
-
-- Ein **Bereich** ist ein Regal — *Engineering*, *Product*, *Design*, *Operations*. Er hat einen Namen, ein Symbol, eine Farbe und eine Zeile dazu, was hineingehört.
+- Ein **Bereich** ist ein Regal, etwa *Engineering*, *Product*, *Design* oder *Operations*. Er hat Namen, Symbol, Farbe und eine Zeile Beschreibung.
 - Ein **Artikel** ist eine Seite in einem Bereich.
-- Jeder Artikel kann **Unterseiten** haben, und die wieder eigene. Hier wohnt die eigentliche Struktur: oben ein Handbuch, darunter seine Kapitel.
+- Jeder Artikel kann **Unterseiten** haben, beliebig tief. Zum Beispiel oben ein Handbuch, darunter seine Kapitel.
 
 ![Die Startseite der Wissensdatenbank: Suche, eine Karte pro Bereich und die zuletzt aktualisierten Artikel](/assets/img/shot-knowledge.png)
-*Die Startseite der Wissensdatenbank. Jede Karte ist ein Bereich mit eigener Farbe, Beschreibung und Artikelzahl; die Kachel __Neuer Bereich__ daneben legt einen weiteren an. Darunter zeigt __Kürzlich aktualisiert__, woran das Team geschrieben hat — mit Bereich und Autor in jeder Zeile.*
+*Die Startseite der Wissensdatenbank.*
 
-Die Startseite zeigt jeden Bereich als Karte, dazu eine Liste **Kürzlich aktualisiert** — praktisch der Weg, auf dem die meisten eine Seite von letzter Woche wiederfinden.
+Jede Karte zeigt Farbe, Beschreibung und Artikelzahl eines Bereichs. Darunter listet **Kürzlich aktualisiert** die neuesten Änderungen mit Bereich und Autor.
 
 ### Einen Bereich anlegen
 
-Klicke die Kachel **Neuer Bereich**.
+Klicke die Kachel **Neuer Bereich**, gib Name und Beschreibung ein und wähle Symbol und Farbe.
 
 ![Der Dialog „Neuer Bereich“ mit ausgefülltem Namen und Beschreibung](/assets/img/shot-kb-new-space.png)
-*Name, Beschreibung, ein Symbolraster und eine Farbreihe in einem Dialog. __Bereich erstellen__ bleibt tot, bis der Bereich einen Namen hat; danach erscheint er sofort im Raster, leer und bereit.*
+*Der Dialog „Neuer Bereich“.*
 
-Halte die Zahl der Bereiche klein und ihren Zuschnitt weit. Ein Bereich pro Team oder pro Disziplin funktioniert; einer pro Projekt meistens nicht, denn die meiste Dokumentation handelt von einem *Thema*, das jedes einzelne Projekt überlebt.
+**Bereich erstellen** wird erst mit einem Namen aktiv. Der Bereich erscheint dann sofort im Raster.
+
+Leg lieber wenige, breite Bereiche an, etwa einen pro Team oder Disziplin. Einer pro Projekt passt selten, weil Themen Projekte überdauern.
 
 !!! warning "Ein Bereich lässt sich nur löschen, solange er leer ist"
-    **Bereich löschen** wird nur bei einem Bereich ohne Artikel angeboten. Enthält er Seiten, verschiebe oder lösche sie zuerst. Das ist Absicht: Ein Regal zu entfernen darf niemals stillschweigend die Bücher darin mitnehmen.
+    **Bereich löschen** gibt es nur für Bereiche ohne Artikel. Verschiebe oder lösche vorher alle Seiten.
 
 ## Einen Artikel schreiben
 
-Drücke **Neuer Artikel** — auf der Startseite der Wissensdatenbank oder in der Artikelansicht, wo der Knopf neben **Alle Bereiche** sitzt.
+Tippe auf **Neuer Artikel**, auf der Startseite oder in der Artikelansicht neben **Alle Bereiche**.
 
 ![Der Artikeleditor bei einer neuen Seite, Titel getippt, Text noch leer](/assets/img/shot-kb-new-article.png)
-*Der Titel steht über der Werkzeugleiste; die Bereichsauswahl daneben entscheidet, auf welchem Regal der Artikel landet, und lässt sich jederzeit ändern. Der Knopf rechts liest sich bei einer neuen Seite als __Veröffentlichen__ und bei einer, die du bearbeitest, als __Speichern__.*
+*Der Editor bei einer neuen Seite.*
 
-Tippe zuerst den Titel: Er wird zur Überschrift der Seite, zur Zeile im Baum und zu dem, wonach später alle suchen — ein Moment Nachdenken lohnt sich also. *„Release-Checkliste & Versions-Gating“* ist auffindbar. *„Notizen“* nicht.
+- **Titel** über der Werkzeugleiste. Er wird Überschrift, Zeile im Seitenbaum und Suchbegriff. *„Checkliste für Releases“* findet man, *„Notizen“* nicht.
+- **Bereichsauswahl** daneben. Lässt sich jederzeit ändern.
+- **Knopf rechts:** **Veröffentlichen** bei neuen Seiten, **Speichern** beim Bearbeiten.
 
-Es gibt keinen separaten Entwurfsstatus, den du dir merken müsstest — ein Artikel ist geschrieben oder eben nicht.
+Einen Entwurfsstatus gibt es nicht.
 
 !!! tip "Fang ihn gleich als Unterseite an"
-    Gehört der Artikel unter einen bestehenden, erstelle ihn nicht von der Startseite aus. Fahr im Baum über die Zeile des Elternartikels und drück das **+**, das dort erscheint — **Unterseite hinzufügen**. Er entsteht an der richtigen Stelle, im richtigen Bereich, ganz ohne Aufräumen danach.
+    Fahr im Baum über den Elternartikel und drück das **+** (**Unterseite hinzufügen**). Der Artikel entsteht direkt an der richtigen Stelle.
 
 ## Eine erste Seite von Anfang bis Ende
 
-Falls du noch nie eine geschrieben hast — das ist die ganze Schleife in sechs Schritten:
-
 1. Öffne **Wissen** in der Seitenleiste und drücke **Neuer Artikel**.
-2. Gib ihm einen Titel nach der Frage, die er beantwortet — *„Wie wir ein Release ausrollen“*, nicht *„Release“*.
-3. Wähle im Dropdown neben dem Titel den passenden Bereich.
-4. Schreibe den Text. Nimm **Überschrift 2** für jede Etappe, eine **nummerierte Liste** für die Schritte darin und eine **Warnung**-Box für das eine, was schiefgeht, wenn man es überspringt.
-5. Tippe **@**, wo du das Ticket erwähnst, aus dem das entstanden ist, und wähle es aus der Liste.
+2. Wähle einen Titel nach der Frage, die er beantwortet: *„Wie wir ein Release ausrollen“*, nicht *„Release“*.
+3. Wähle im Dropdown neben dem Titel den Bereich.
+4. Schreib den Text mit **Überschrift 2** pro Etappe, einer **nummerierten Liste** für die Schritte und einer **Warnung** für das, was schiefgehen kann.
+5. Tippe **@** und wähle das zugehörige Ticket.
 6. Drücke **Veröffentlichen**.
 
-Diese Seite ist ab jetzt über ihren Titel und über die Wörter darin auffindbar, sie erscheint fürs Team unter **Kürzlich aktualisiert**, und der verknüpfte Vorgang zeigt diesen Artikel nun unter **Dokumentiert in**. Zwei Minuten Schreiben, dauerhaft an der Arbeit befestigt.
+Die Seite ist jetzt über Titel und Text auffindbar, steht unter **Kürzlich aktualisiert**, und der Vorgang zeigt sie unter **Dokumentiert in**.
 
 ## Der Editor
 
-Der Textkörper ist ein Rich-Text-Editor: Was du tippst, ist das, wie die Seite aussehen wird — keine Syntax zu lernen, keine Vorschau, zwischen der du hin- und herschalten musst.
-
-Über dem Text sitzt die Werkzeugleiste, in der Reihenfolge, in der man danach greift:
+Du schreibst direkt formatiert, ohne Syntax und ohne Vorschau. Die Werkzeugleiste:
 
 | Gruppe | Knöpfe |
 | --- | --- |
 | **Verlauf** | Rückgängig, Wiederholen |
-| **Textstil** | Ein Dropdown: Fließtext, Überschrift 1–3, Zitat, Aufzählung, Nummerierte Liste, Aufgabenliste, Codeblock |
+| **Textstil** | Ein Dropdown: Fließtext, Überschrift 1 bis 3, Zitat, Aufzählung, Nummerierte Liste, Aufgabenliste, Codeblock |
 | **Formatierung** | Fett, Kursiv, Unterstrichen, Durchgestrichen, Inline-Code, Link |
 | **Ausrichtung** | Linksbündig, Zentriert, Rechtsbündig, Blocksatz |
 | **Blöcke** | Infobox, Warnung, Notiz, Tipp, Trennlinie |
 | **Einfügen** | Bild einfügen, Erwähnen / verlinken (@) |
 
-Ein paar davon lohnen eine eigene Erwähnung.
-
-**Textstil ist ein Dropdown, keine Knopfreihe**, weil eine Zeile immer nur eines davon sein kann.
-
 ![Das Dropdown „Textstil“ offen über dem Artikeleditor](/assets/img/shot-kb-text-style.png)
-*Die neun Formen, die eine Zeile annehmen kann, mit einem Haken an der, in der der Cursor steckt. Der Knopf trägt denselben Namen — und liest sich als __Gemischt__, wenn eine Auswahl mehrere davon umspannt.*
+*Das Dropdown „Textstil“ mit neun Formen.*
 
-**Die vier farbigen Boxen** — Infobox, Warnung, Notiz und Tipp — sind der schnellste Weg zu einer überfliegbaren Seite. Steck den einen Satz, der jemandem einen Ausfall erspart, in eine Warnung, und er wird gelesen; lass ihn im vierten Absatz stehen, und er wird es nicht.
-
-**Aufgabenlisten** sind echte Kästchen zum Abhaken. Sie sind für Checklisten, denen man folgt, nicht für Arbeit, die verfolgt wird — brauchen die Punkte Verantwortliche und Termine, wollen sie [Vorgänge](/de/guide-issues.html) sein.
-
-**Codeblöcke** tragen eine Sprache, ein Shell-Schnipsel und ein JSON-Payload sind also unterschiedlich eingefärbt und auf einen Blick auseinanderzuhalten.
+- **Textstil** ist ein Dropdown, weil eine Zeile nur eine Form haben kann. Ein Haken markiert die aktuelle. Umfasst die Auswahl mehrere, steht dort **Gemischt**.
+- **Farbige Boxen** (Infobox, Warnung, Notiz, Tipp) machen Wichtiges sichtbar.
+- **Aufgabenlisten** haben echte Kästchen und sind für Checklisten gedacht. Brauchen Punkte Verantwortliche und Termine, nimm [Vorgänge](/de/guide-issues.html).
+- **Codeblöcke** haben eine Sprache und werden passend eingefärbt.
 
 !!! tip "Markiere Text, und die Werkzeuge kommen zu dir"
-    Markierst du eine Passage, erscheint darüber eine kleine Glas-Leiste mit den Formatierungen, die du am wahrscheinlichsten brauchst — inklusive Link-Editor. Die Adresse tippst du direkt über den Wörtern, die verlinkt werden, du siehst also weiter, was du verlinkst, während du tippst, wohin.
+    Über markiertem Text erscheint eine kleine Leiste mit den häufigsten Formatierungen und dem Linkeditor. Die Adresse tippst du direkt über den markierten Wörtern.
 
 ### Tastenkürzel
-
-Am Schreibtisch funktionieren die gewohnten, deine Hände müssen den Text also nie verlassen:
 
 | Kürzel | Wirkung |
 | --- | --- |
@@ -104,98 +95,84 @@ Am Schreibtisch funktionieren die gewohnten, deine Hände müssen den Text also 
 | **⌘Z / Strg+Z** | Rückgängig |
 | **⇧⌘Z / Strg+Y** | Wiederholen |
 
-Alles andere wohnt auf der Werkzeugleiste. Für die farbigen Boxen und für **@** gibt es kein Kürzel — aber **@** ist ohnehin ein Zeichen, das du tippst, und genau deshalb wurde es gewählt.
+Für farbige Boxen und **@** gibt es kein Kürzel. **@** tippst du einfach.
 
 ### Links, Bilder und Trennlinien
 
-**Links** setzt du über die Werkzeugleiste oder die Auswahl-Leiste. Adresse tippen oder einfügen; **Link entfernen** nimmt ihn wieder weg. Adressen, denen zu folgen nicht sicher wäre, werden abgelehnt statt stillschweigend gespeichert.
-
-**Bilder** lädst du mit dem Bild-Knopf von deinem Gerät hoch; sie landen dort, wo der Cursor steht. Zieh an den Griffen in den Ecken, um die Größe zu ändern, und setz eine Bildunterschrift darunter, wenn das Bild eine braucht. PNG, JPEG, GIF und WebP werden akzeptiert — SVG bewusst nicht, weil eine SVG-Datei Code enthalten kann. Wie groß ein Bild sein darf, legt fest, wer euren Server betreibt; siehe [Objektspeicher](/de/storage.html), falls du das bist.
-
-**Trennlinien** trennen Abschnitte einer langen Seite. Setz sie sparsam ein — Überschriften machen den Job besser und füttern zusätzlich die Gliederung.
+- **Links** über die Werkzeugleiste oder die Leiste über markiertem Text. **Link entfernen** löscht ihn. Unsichere Adressen lehnt der Editor ab.
+- **Bilder** lädst du mit dem Bildknopf hoch, sie landen am Cursor. Größe über die Eckgriffe, Bildunterschrift darunter. Erlaubt sind PNG, JPEG, GIF und WebP. SVG nicht, weil es Code enthalten kann. Die maximale Größe legt fest, wer den Server betreibt, siehe [Objektspeicher](/de/storage.html).
+- **Trennlinien** sparsam einsetzen. Überschriften erscheinen zusätzlich in der Gliederung.
 
 !!! warning "Eine leere Seite über eine volle zu speichern, ist gesperrt"
-    Geht beim Laden eines Artikels etwas schief, weigert sich der Editor, einen leeren Text über bestehenden Inhalt zu speichern, und sagt dir warum. Es ist die einzige Aktion hier, die eine ganze Seite Schreibarbeit mit einem Klick zerstören könnte — also wurde sie unmöglich gemacht statt nur unwahrscheinlich.
+    Geht beim Laden etwas schief, speichert der Editor keinen leeren Text über bestehenden Inhalt und nennt den Grund.
 
-## Smart-Links: @ ist die wichtige Taste
+## Smarte Links mit @
 
-Tippe irgendwo im Artikel **@** — oder drück den **@**-Knopf am Ende der Werkzeugleiste. Wählst du einen Vorschlag, wird ein *Chip* eingefügt: kein Text, der wie eine Referenz aussieht, sondern ein lebendiger Link.
+Tippe **@** im Text oder drück den Knopf **@** am Ende der Werkzeugleiste. Wählst du einen Vorschlag, entsteht ein *Chip*, ein echter Link.
 
 ![Die Auswahl „Erwähnen / verlinken (@)“ über dem Artikeleditor](/assets/img/shot-kb-mention-picker.png)
-*Eine Auswahl über Vorgänge, Artikel und Personen hinweg, die sich beim Tippen verengt. Jede Zeile nennt ihre Art über ein Symbol und trägt darunter den Vorgangsschlüssel oder den Bereich des Artikels. Zwei Buchstaben erreichen hier alle drei Arten: `ok` findet vier Vorgänge, zwei Artikel und Amara Okafor.*
+*Die Auswahl für Vorgänge, Artikel und Personen.*
 
-Genau darin liegt der ganze Unterschied:
+Die Liste wird beim Tippen enger. Jede Zeile zeigt ein Symbol für die Art und den Vorgangsschlüssel oder Bereich. Im Beispiel findet `ok` vier Vorgänge, zwei Artikel und Amara Okafor.
 
-- Ein **Vorgangs-Chip** zeigt Typ, Schlüssel und echten Titel des Vorgangs und öffnet ihn beim Klick. Fahr am Schreibtisch mit der Maus darüber oder halte ihn auf dem Handy gedrückt, und eine Vorschaukarte zeigt Status, Priorität und zugewiesene Person, ohne dass du die Seite verlässt.
-- Ein **Artikel-Chip** verlinkt eine andere Seite und zeigt ihr Symbol und ihren Titel.
-- Ein **Personen-Chip** zeigt Avatar und Vornamen, damit *„frag @Lena“* auch dann noch stimmt, wenn Lenas Position sich ändert.
+- **Vorgang:** zeigt Typ, Schlüssel und aktuellen Titel, öffnet per Klick. Maus darüber (Desktop) oder gedrückt halten (Handy) zeigt Status, Priorität und zugewiesene Person.
+- **Artikel:** zeigt Symbol und Titel der Seite.
+- **Person:** zeigt Avatar und Vornamen, auch wenn sich die Position ändert.
 
-Verschwindet das Ziel eines Chips, sagt der Chip das, statt so zu tun als ob — ein toter Link wird rot gezeichnet und nicht still zu gewöhnlichem Text.
+Verschwindet das Ziel, wird der Chip rot.
 
 !!! warning "HIN-42 von Hand zu tippen ist bloß Text"
-    Nur Chips, die du mit **@** einfügst, zählen als Link. Bloße Zeichen sehen ähnlich aus und verhalten sich völlig anders: Sie öffnen nichts, sie erscheinen nicht unter **Verknüpfte Aufgaben**, und der Vorgang erfährt nie, dass er dokumentiert ist. Ein Tastendruck ist der ganze Unterschied.
+    Nur mit **@** eingefügte Chips sind Links. Getippter Text öffnet nichts und erscheint nicht unter **Verknüpfte Aufgaben**.
 
 ## Dokumentation, die weiß, was sie beschreibt
 
-Weil Chips Links sind, kann Hinata die Verbindung von beiden Enden zeigen — und genau das macht aus einem Wiki etwas, dem das Team traut.
+Chips wirken in beide Richtungen, ganz automatisch:
 
-- Am Fuß eines Artikels listet **Verknüpfte Aufgaben** jeden Vorgang, den die Seite erwähnt, als Karte mit aktuellem Status. Ein Runbook zeigt dir den Stand der Arbeit, die es beschreibt, ohne dass du nachsehen gehst.
-- An einem Vorgang listet **Dokumentiert in** jeden Artikel, der ihn verlinkt. Wer kalt auf einem Ticket landet, findet die Seite, die das dahinterliegende Subsystem erklärt.
+- **Verknüpfte Aufgaben** am Ende eines Artikels listet jeden erwähnten Vorgang mit aktuellem Status.
+- **Dokumentiert in** am Vorgang listet jeden Artikel, der ihn verlinkt.
 
 ![Ein Vorgangs-Chip im Artikeltext mit geöffneter Vorschaukarte](/assets/img/shot-kb-chip-preview.png)
-*Zwei Chips in einem gewöhnlichen Satz — ein Vorgang und eine Person. Fährst du über den Vorgangs-Chip, öffnet sich eine Vorschaukarte mit Status, Titel, zugewiesener Person, Priorität und Label des Vorgangs, unten __Aufgabe öffnen__. Derselbe Vorgang steht am Fuß der Seite noch einmal unter __Verknüpfte Aufgaben__, ohne dass ihn dort jemand eingetragen hätte.*
+*Die Vorschaukarte eines Vorgangs.*
 
-Keine der beiden Listen wird von Hand gepflegt. Beide leiten sich aus den Chips im Text ab, sie können also gar nicht veralten — schreib den Link einmal, und die Beziehung existiert in beide Richtungen, dauerhaft.
+Die Vorschaukarte zeigt Status, Titel, zugewiesene Person, Priorität und Label, unten **Aufgabe öffnen**.
 
 ![Ein Artikel mit Seitenbaum links, Text in der Mitte sowie Mitwirkenden und Details rechts](/assets/img/shot-knowledge-article.png)
-*Die Artikelansicht: links Bereichsauswahl und Seitenbaum, in der Mitte der Artikel mit Bereichs-Chip, Zeile zur Urheberschaft, Labels und Text — beachte die Infobox und den Personen-Chip im Fließtext — und rechts Mitwirkende und Details. __Bearbeiten__ und der Löschknopf sitzen neben der Autorenzeile.*
+*Die Artikelansicht.*
 
 ## Sich in einem Artikel zurechtfinden
 
-Die Artikelansicht hat drei Spalten, und beide Randspalten lassen sich über die kleinen Schalter an ihren Innenkanten wegklappen, wenn du in voller Breite lesen willst.
+Drei Spalten. Die äußeren klappst du über die Schalter an ihren Innenkanten weg.
 
-**Links** stehen Bereichsauswahl und Seitenbaum. Der Baum zeigt die gesamte Verschachtelung des aktuellen Bereichs; der Artikel, den du liest, ist hervorgehoben, und seine Unterseiten hängen darunter.
-
-**In der Mitte** steht der Artikel: sein Bereichs-Chip, Titel, Autor und wann er zuletzt aktualisiert wurde, seine Labels und der Text.
-
-**Rechts** steht die Randspalte:
-
-- **Auf dieser Seite** — eine Gliederung aus den Überschriften, die nur erscheint, wenn der Artikel mehr als eine hat. Ein Klick springt zur Überschrift.
-- **Mitwirkende** — die Personen, die der Seite zugeschrieben sind.
-- **Verwandte Artikel** — andere Seiten, die diese verlinkt.
-- **Details** — wann sie erstellt wurde, in welchem Bereich sie liegt und ihr Status.
-
-Auf dem Handy wandert der Baum in eine Schublade, die du bei Bedarf öffnest — der Artikel bekommt so die volle Breite.
+- **Links:** Bereichsauswahl und Seitenbaum. Der aktuelle Artikel ist hervorgehoben.
+- **Mitte:** Bereichschip, Titel, Autor, letzte Aktualisierung, Labels und Text. **Bearbeiten** und Löschen stehen neben der Autorenzeile.
+- **Rechts:** **Auf dieser Seite** (Gliederung, nur bei mehr als einer Überschrift), **Mitwirkende**, **Verwandte Artikel** (Seiten, die dieser Artikel verlinkt) und **Details** (Erstellungsdatum, Bereich, Status).
 
 ## Auf dem Handy schreiben
 
-Alles funktioniert auf dem Handy, mit drei sinnvollen Unterschieden:
+- Die **Werkzeugleiste scrollt seitwärts**, Rückgängig und Wiederholen stehen vorn.
+- Der **Seitenbaum liegt in einer Schublade**, der Artikel hat die volle Breite.
+- **Halte einen Chip gedrückt** für die Vorschaukarte.
 
-- Die **Werkzeugleiste scrollt seitwärts**. Rückgängig und Wiederholen stehen vorn, weil es auf einem Touchgerät kein Tastenkürzel dafür gibt und man am schnellsten danach greift.
-- Der **Seitenbaum wohnt in einer Schublade**, damit der Artikel die volle Breite bekommt; öffne sie, wenn du zwischen Seiten wechseln willst.
-- **Halte einen Chip gedrückt**, statt mit der Maus darüberzufahren, um die Vorschaukarte zu sehen.
-
-Lesen ist auf dem Handy angenehm; eine lange Seite zu schreiben ist es auf keinem Gerät. Handys sind dafür da, den Absatz zu korrigieren, der dir in der Bahn aufgefallen ist. Siehe [Auf dem Handy](/de/guide-mobile.html).
+Siehe [Auf dem Handy](/de/guide-mobile.html).
 
 ## Umsortieren: ziehen, verschachteln, verschieben
 
-Der Baum ist keine Dekoration — er ist die Bearbeitungsfläche für Struktur:
+- **Zieh eine Seite auf eine andere**, um sie einzuhängen. Unterseiten wandern mit.
+- **Lass sie auf der Wurzelzone** oben im Baum fallen, um sie auf die oberste Ebene zu holen.
+- **Anderer Bereich:** Seite öffnen, **Bearbeiten**, Bereich in der Kopfzeile ändern.
 
-- **Zieh eine Seite auf eine andere**, um sie darunter zu hängen. Ihre eigenen Unterseiten reisen mit; du musst nie einen Teilbaum von Hand wieder anhängen.
-- **Lass sie auf der Wurzelzone** oben im Baum fallen, um sie zurück auf die oberste Ebene zu holen.
-- Um eine Seite in einen *anderen Bereich* zu verschieben, öffne sie, drücke **Bearbeiten** und ändere den Bereich in der Kopfzeile.
-
-Fährst du über eine Zeile, erscheinen an ihrem rechten Rand zwei Bedienelemente: ein **+** für **Unterseite hinzufügen** und darunter das Menü.
+Fährst du über eine Zeile, erscheinen **+** (**Unterseite hinzufügen**) und das Menü.
 
 ![Das Zeilenmenü einer Seite im Wissensbaum](/assets/img/shot-kb-tree-menu.png)
-*Das Menü der Zeile selbst. __Auf oberste Ebene verschieben__ löst die Seite aus ihrem Elternartikel, ganz ohne Ziehen, und __Löschen__ ist der einzige Weg, eine Seite aus dem Baum zu entfernen — hat sie noch Unterseiten, liest sich dieselbe Zeile als __Löschen (zuerst Unterseiten verschieben)__ und tut nichts.*
+*Das Menü einer Seite im Baum.*
+
+- **Auf oberste Ebene verschieben** löst die Seite ohne Ziehen aus ihrem Elternartikel.
+- **Löschen** entfernt die Seite. Hat sie Unterseiten, heißt der Eintrag **Löschen (zuerst Unterseiten verschieben)** und tut nichts.
 
 !!! warning "Löschen ist endgültig, und Elternseiten sind geschützt"
-    **Löschen** fragt nach und nennt den Artikel beim Namen, denn es gibt kein Rückgängig und keinen Papierkorb. Eine Seite mit Unterseiten lässt sich überhaupt nicht löschen, solange die nicht woandershin verschoben sind — das Menü sagt das, statt eine Aktion anzubieten, die Waisen hinterließe.
+    **Löschen** fragt mit dem Artikelnamen nach. Es gibt kein Rückgängig und keinen Papierkorb. Seiten mit Unterseiten lassen sich erst löschen, wenn die Unterseiten verschoben sind.
 
-## Wer was sieht — und wer was ändern darf
-
-Die Sichtbarkeit eines Artikels folgt dem Rahmen, in dem er entstanden ist:
+## Wer was sieht und ändern darf
 
 | Rahmen | Wer ihn sieht |
 | --- | --- |
@@ -203,24 +180,23 @@ Die Sichtbarkeit eines Artikels folgt dem Rahmen, in dem er entstanden ist:
 | **Projekt** | Alle mit Zugriff auf dieses Projekt |
 | **Team** | Die Mitglieder dieses Teams |
 
-In der App geschriebene Artikel sind standardmäßig **global**, also organisationsweit. Projekt- und teamgebundene Artikel stammen aus Integrationen, die sie mit einem Rahmen anlegen, und sie folgen exakt dem Zugriff, den du auf dieses Projekt oder Team ohnehin hast: Ist ein Projekt für dich unsichtbar, sind es auch seine Seiten — sie tauchen weder in der Suche noch in irgendeiner Liste auf. Administratorinnen und Administratoren sehen alles. Der Zugriff auf Projekte selbst kommt aus Mitgliedschaft und Teams — siehe [Projekte & Teams](/de/guide-projects.html).
+- In der App geschriebene Artikel sind **global**.
+- Artikel mit Rahmen Projekt oder Team kommen aus Integrationen. Siehst du das Projekt oder Team nicht, siehst du auch die Seiten nicht, weder in der Suche noch in Listen.
+- Administratorinnen und Administratoren sehen alles.
+
+Projektzugriff: [Projekte & Teams](/de/guide-projects.html).
 
 !!! warning "Wer eine Seite lesen kann, kann sie bearbeiten und löschen"
-    Es gibt keine Rechte pro Artikel und keinen Nur-Lesen-Modus. Das ist ein Wiki: Derselbe Zugriff, mit dem du eine Seite öffnest, erlaubt dir, sie zu verbessern — und sie zu entfernen. Vertraue dem Team und verlass dich darauf, dass dort, wo Rechte nicht schützen, die Struktur schützt (eine Elternseite lässt sich nicht löschen, solange sie Kinder hat).
+    Es gibt keine Rechte pro Artikel und keinen reinen Lesezugriff. Nur Elternseiten mit Unterseiten sind vor dem Löschen geschützt.
 
 ## Die Wissensdatenbank durchsuchen
 
-Zwei Suchen erreichen deine Artikel, und sie sind in Verschiedenem gut.
+- **Suchfeld auf der Startseite von Wissen:** Artikeltitel, Bereichsnamen und Labels.
+- **Palette (⌘K):** zusätzlich der Text in Artikeln und alles andere in Hinata. Siehe [Dinge finden](/de/guide-search.html).
 
-Das **Suchfeld auf der Wissens-Startseite** passt auf Artikeltitel, Bereichsnamen und Labels. Nimm es, wenn du durch die eigene Dokumentation stöberst und dich halb an einen Titel erinnerst.
-
-Die **⌘K-Palette** durchsucht zusätzlich den *Text in* den Artikeln — und alles andere gleich mit. Nimm sie, wenn du dich an einen Satz erinnerst, aber nicht daran, auf welcher Seite er stand. Siehe [Dinge finden](/de/guide-search.html).
-
-Labels helfen beiden. Ein Artikel, der welche trägt, zeigt sie als Chips unter seinem Titel, und sowohl die Startseiten-Suche als auch die Palette passen darauf; ein konsistentes Label wie `runbook` macht also eine ganze Kategorie mit einer Abfrage abrufbar. Der Editor hat heute kein Feld für Labels — sie kommen deshalb meist von dem, was den Artikel angelegt hat, und nicht von deiner Tastatur.
+Labels stehen als Chips unter dem Titel, beide Suchen finden sie. Ein Label wie `runbook` holt eine ganze Kategorie. Der Editor hat noch kein Feld für Labels, sie kommen meist von dem, was den Artikel angelegt hat.
 
 ## Was hierher gehört und was in einen Vorgang
-
-Die beiden Hälften von Hinata beantworten verschiedene Fragen, und etwas in die falsche zu legen ist der häufigste Weg, auf dem Dokumentation veraltet.
 
 | Schreib einen Artikel, wenn … | Schreib einen Vorgang, wenn … |
 | --- | --- |
@@ -229,23 +205,24 @@ Die beiden Hälften von Hinata beantworten verschiedene Fragen, und etwas in die
 | es beschreibt, wie etwas funktioniert | es eine Änderung beschreibt, die gemacht werden soll |
 | niemand dafür zuständig sein muss | jemand es besitzen und abschließen muss |
 
-Ein brauchbarer Test: Bräuchte die Seite einen *Status*, ist es ein Vorgang. Bräuchte sie ein *Datum der letzten Durchsicht*, ist es ein Artikel.
+Faustregel: Braucht die Seite einen *Status*, ist es ein Vorgang. Braucht sie ein *Datum der letzten Durchsicht*, ist es ein Artikel.
 
-## Eine Seite ehrlich halten
+## Eine Seite aktuell halten
 
-Ein Artikel trägt seine eigene kleine Spur: Die Autorenzeile sagt, wer ihn geschrieben hat und wann er zuletzt aktualisiert wurde; **Mitwirkende** in der Randspalte nennt seinen Autor; **Details** hält fest, wann er erstellt wurde.
+Autorenzeile, **Mitwirkende** und **Details** zeigen Autor, letzte Aktualisierung und Erstellungsdatum. Eine Versionshistorie gibt es nicht. Deshalb:
 
-Es gibt keine Versionshistorie und keinen Weg, eine frühere Fassung wiederherzustellen — deshalb lohnen sich zwei Gewohnheiten. Bearbeite an Ort und Stelle, statt Text komplett zu ersetzen; die Sperre gegen das Speichern einer leeren Seite fängt eine Katastrophe ab, aber kein gut gemeintes Neuschreiben. Und ist eine Seite nicht falsch, sondern überholt, schreib das oben hin und verlinke die Seite, die sie ablöst, statt sie zu löschen: Ein Link, der irgendwohin führt, schlägt einen, der ins Leere läuft.
+- **Bearbeite gezielt**, statt den ganzen Text zu ersetzen.
+- **Ist eine Seite überholt**, schreib das oben hin und verlinke die neue Seite, statt sie zu löschen.
 
-Die Liste **Kürzlich aktualisiert** auf der Startseite ist das, was einer Wissensdatenbank am nächsten an einem Herzschlag kommt. Hat sich dort seit Monaten nichts bewegt, folgt die Dokumentation der Wirklichkeit nicht mehr — und das sieht man meist lange, bevor sich jemand daran verbrennt.
+Tut sich unter **Kürzlich aktualisiert** monatelang nichts, ist die Dokumentation vermutlich veraltet.
 
 ## Gewohnheiten, die eine Wissensdatenbank am Leben halten
 
-- **Eine Seite, ein Thema.** Braucht eine Seite zwei Überschriften, die je ein Titel sein könnten, sind es zwei Seiten — und eine davon ist Unterseite der anderen.
-- **Verlinke den Vorgang, statt ihn nachzuerzählen.** Ein `@`-Chip bleibt richtig, während die Arbeit weitergeht; ein Absatz, der das Ticket zusammenfasst, ist binnen einer Woche falsch.
-- **Schreib die Warnung zuerst.** Der Satz, den jemand am dringendsten braucht, gehört in eine farbige Box weit oben, nicht ans Ende einer Textwand.
-- **Repariere, was dir auffällt.** Du darfst es ohnehin bearbeiten. Ein Wiki verfällt viel häufiger an Höflichkeit als an Vandalismus.
-- **Lass die Gliederung navigieren.** Echte Überschriften ergeben die Liste *Auf dieser Seite* — und Überschriften sind ohnehin das, was Überfliegende zuerst lesen.
+- **Eine Seite, ein Thema.** Sonst teile sie in Seite und Unterseite.
+- **Verlinke den Vorgang, statt ihn nachzuerzählen.** Ein Chip mit `@` bleibt aktuell.
+- **Schreib die Warnung zuerst**, in einer farbigen Box weit oben.
+- **Repariere, was dir auffällt.** Du darfst jede Seite bearbeiten, die du lesen kannst.
+- **Nutze echte Überschriften.** Sie ergeben *Auf dieser Seite*.
 
 ## Nächste Schritte
 

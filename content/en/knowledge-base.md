@@ -1,44 +1,48 @@
 ---
 title: Knowledge base
-description: A built-in, Confluence-style knowledge base — hierarchical Markdown articles, global or per project, with smart links that resolve real issues and people.
+description: A built-in, Confluence-style wiki with nested Markdown articles, global or per project.
 ---
 
 # Knowledge base
 
-Not everything belongs in an issue. Runbooks, onboarding guides, architecture decisions, meeting notes and product specs need a home of their own — and Hinata gives them one. The **knowledge base** is a built-in, Confluence-style wiki that lives right next to your work, so documentation and delivery never drift apart.
-
+Runbooks, onboarding guides, architecture decisions, meeting notes and product specs do not fit into an issue. That is what the **knowledge base** is for: a built-in, Confluence-style wiki right next to your work.
 
 ![Hinata knowledge base](/assets/img/shot-knowledge.png)
-*The knowledge base — spaces and hierarchical Markdown articles next to your work.*
+*Spaces and nested Markdown articles next to your work.*
 
 ## Articles
 
-Articles are written in **Markdown** using the same shared editor and toolbar you know from issue descriptions — headings, lists, code blocks, tables, callouts and images. They nest into a **hierarchy**, so you can build a real structure: a space, its sections, and the pages within them.
+You write articles in **Markdown**, with the same editor and toolbar as issue descriptions: headings, lists, code blocks, tables, callouts and images. Articles nest into a **hierarchy**: a space, its sections and the pages inside them.
 
-- **Global articles** — workspace-wide documentation everyone (with access) can read: company handbook, engineering standards, incident playbooks.
-- **Per-project articles** — documentation scoped to a single project, sitting alongside that project's board and issues.
+- **Global articles:** documentation for the whole workspace, readable by everyone with access. For example a company handbook, engineering standards or incident playbooks.
+- **Per-project articles:** documentation for a single project, right next to its board and issues.
 
 !!! info "Backed by real data"
-    The knowledge base is a first-class backend feature (`/api/v1/articles`), not a static bundle. Articles are stored, versioned in your database and served through the API like everything else — so they're searchable, access-controlled and always current.
+    The knowledge base is a full backend feature (`/api/v1/articles`). Articles are stored and versioned in your database and served through the API like everything else. That makes them searchable, access-controlled and always current.
 
 ## Smart links
 
-The knowledge base isn't a walled garden. As you write, **smart links** resolve live references:
+As you write, **smart links** resolve references live:
 
-- Mention an issue (`MOB-42`) and it becomes a live link that shows the issue's real title and state.
-- Mention a person and it resolves to their actual profile.
+- Mention an issue like `MOB-42` and it becomes a link showing its current title and state.
+- Mention a person and it links to their profile.
 
-Because the links are live, a runbook that references `INF-7` always points at the real, current issue — no stale copies, no broken cross-references.
+A runbook that references `INF-7` always shows the current issue.
 
 ## Access control
 
-Articles respect the same [team and project visibility](/en/projects-teams.html) as the rest of Hinata. A per-project space is visible to the people who can see that project; global spaces follow workspace access. There's nothing extra to configure — the people who should see a page already can.
+Articles follow the same [team and project visibility](/en/projects-teams.html) as the rest of Hinata:
+
+- A per-project space is visible to anyone who can see that project.
+- Global spaces follow workspace access.
+
+There is nothing extra to configure.
 
 !!! tip "Link docs and delivery both ways"
-    Reference an article from an issue comment and an issue from an article. That two-way linking is what keeps a knowledge base alive instead of rotting in a forgotten wiki.
+    Reference an article from an issue comment and the issue from the article. That keeps the knowledge base alive.
 
 ## Next steps
 
-- Learn the [issue](/en/issues.html) references that smart links resolve.
-- Understand [projects & teams](/en/projects-teams.html) that scope article access.
-- Find anything fast with the [command palette](/en/search.html).
+- [Issues](/en/issues.html): the references smart links resolve.
+- [Projects & teams](/en/projects-teams.html): who sees which articles.
+- [Command palette](/en/search.html): find anything fast.

@@ -1,15 +1,15 @@
 ---
 title: Nutzungsbedingungen
-description: Nutzungsbedingungen der Hinata-App — Geltungsbereich, Pflichten der Nutzer, Haftung, Schlussbestimmungen.
+description: Nutzungsbedingungen der App Hinata mit Geltungsbereich, Pflichten der Nutzer, Haftung und Schlussbestimmungen.
 ---
 
 # Nutzungsbedingungen
 
 *Stand: 15. Juli 2026*
 
-Diese Nutzungsbedingungen regeln die Nutzung der Anwendung Hinata („App"). Mit der Installation bzw. Nutzung der App erklären Sie sich mit diesen Bedingungen einverstanden.
+Diese Nutzungsbedingungen regeln die Nutzung der Anwendung Hinata („App“). Mit der Installation oder Nutzung der App erklären Sie sich mit diesen Bedingungen einverstanden.
 
-**Wichtig — Geltungsbereich:** Diese Bedingungen gelten ausschließlich für die App als Software. Hinata ist eine Client-Anwendung für selbst gehostete Server-Instanzen: Der Anbieter stellt nur die App bereit und betreibt **keine** Server-Instanz. Server-Instanzen werden von Dritten (z. B. Ihrer Organisation) in eigener Verantwortung selbst gehostet und betrieben; für die Nutzung einer konkreten Instanz gelten allein die Bedingungen des jeweiligen Betreibers.
+**Wichtiger Hinweis zum Geltungsbereich:** Diese Bedingungen gelten ausschließlich für die App als Software. Hinata ist ein Client für selbst gehostete Serverinstanzen. Der Anbieter stellt nur die App bereit und betreibt **keine** Serverinstanz. Serverinstanzen hosten und betreiben Dritte (z. B. Ihre Organisation) in eigener Verantwortung. Für die Nutzung einer konkreten Instanz gelten allein die Bedingungen ihres Betreibers.
 
 ## § 1 Anbieter und Geltungsbereich
 
@@ -21,18 +21,18 @@ Weberstr. 58
 Deutschland
 E-Mail: mail@ahmadre.com
 
-Diese Bedingungen gelten für die Bereitstellung der App über die App-Stores bzw. als Web-Anwendung. Sie gelten nicht für die von Dritten betriebenen Server-Instanzen und die dort erbrachten Dienste.
+Diese Bedingungen gelten für die Bereitstellung der App über die App Stores oder als Webanwendung. Sie gelten nicht für Serverinstanzen, die Dritte betreiben, und nicht für die dort erbrachten Dienste.
 
 ## § 2 Leistungsbeschreibung
 
-Die App ist ein Client für die Projekt- und Vorgangsverwaltung, mit dem Sie sich mit einer selbst gewählten, von einem Dritten betriebenen Hinata-Server-Instanz verbinden. Der Funktionsumfang (u. a. Projekte, Vorgänge, Boards, Zeiterfassung, Kommentare, Wissensdatenbank, Benachrichtigungen) hängt von der jeweiligen Instanz, deren Version und Konfiguration ab. Der Anbieter ist berechtigt, die App weiterzuentwickeln, zu ändern oder einzelne Funktionen einzustellen, soweit dies für Sie zumutbar ist.
+Die App ist ein Client für die Projekt- und Vorgangsverwaltung. Mit ihr verbinden Sie sich mit einer Serverinstanz von Hinata, die Sie selbst wählen und die ein Dritter betreibt. Der Funktionsumfang (u. a. Projekte, Vorgänge, Boards, Zeiterfassung, Kommentare, Wissensdatenbank, Benachrichtigungen) hängt von der jeweiligen Instanz, ihrer Version und ihrer Konfiguration ab. Der Anbieter darf die App weiterentwickeln, ändern oder einzelne Funktionen einstellen, soweit das für Sie zumutbar ist.
 
-## § 3 Keine Verantwortung für Server-Instanzen
+## § 3 Keine Verantwortung für Serverinstanzen
 
-Der Anbieter betreibt keine Server-Instanzen und ist an dem Verhältnis zwischen Ihnen und dem Betreiber einer Instanz nicht beteiligt. Insbesondere ist der Anbieter nicht verantwortlich für:
+Der Anbieter betreibt keine Serverinstanzen und ist am Verhältnis zwischen Ihnen und dem Betreiber einer Instanz nicht beteiligt. Insbesondere ist der Anbieter nicht verantwortlich für:
 
-- den Betrieb, die Verfügbarkeit, die Sicherheit und die Konfiguration einer Instanz (einschließlich E-Mail-Versand, Speicher- und Hosting-Infrastruktur),
-- die auf einer Instanz gespeicherten oder über sie verbreiteten Inhalte,
+- den Betrieb, die Verfügbarkeit, die Sicherheit und die Konfiguration einer Instanz (einschließlich E-Mail-Versand und Infrastruktur für Speicher und Hosting),
+- die Inhalte, die auf einer Instanz gespeichert oder über sie verbreitet werden,
 - Konten, Zugriffsrechte und deren Verwaltung auf einer Instanz,
 - die Einhaltung gesetzlicher Pflichten (z. B. Datenschutz) durch den Betreiber.
 
@@ -40,7 +40,7 @@ Ansprüche im Zusammenhang mit dem Betrieb einer Instanz sind an deren Betreiber
 
 ## § 4 Nutzerkonto
 
-Konten werden auf der jeweiligen Server-Instanz durch deren Betreiber geführt. Soweit Sie über die App ein Konto anlegen oder verwenden, sind Sie verpflichtet, wahrheitsgemäße Angaben zu machen und Ihre Zugangsdaten geheim zu halten. Für alle Handlungen, die über Ihr Konto vorgenommen werden, sind Sie verantwortlich.
+Konten führt der Betreiber der jeweiligen Serverinstanz. Wenn Sie über die App ein Konto anlegen oder verwenden, müssen Sie wahrheitsgemäße Angaben machen und Ihre Zugangsdaten geheim halten. Sie sind für alle Handlungen verantwortlich, die über Ihr Konto vorgenommen werden.
 
 ## § 5 Zulässige und verbotene Nutzung
 
@@ -49,7 +49,7 @@ Sie dürfen die App nur im Rahmen der geltenden Gesetze und dieser Bedingungen n
 - rechtswidrige, beleidigende, diskriminierende oder rechteverletzende Inhalte über die App einzustellen oder zu verbreiten,
 - Schadsoftware zu verbreiten oder die Sicherheit, Integrität oder Verfügbarkeit der App oder verbundener Systeme zu beeinträchtigen,
 - sich unbefugten Zugang zu Systemen, Daten oder Konten anderer zu verschaffen,
-- die App in einer Weise zu nutzen, die Rechte Dritter, insbesondere Urheber-, Marken- oder Persönlichkeitsrechte, verletzt.
+- die App so zu nutzen, dass Rechte Dritter verletzt werden, insbesondere Urheber-, Marken- oder Persönlichkeitsrechte.
 
 Ergänzende oder abweichende Nutzungsregeln des jeweiligen Instanzbetreibers bleiben unberührt.
 
@@ -59,33 +59,33 @@ Der Anbieter räumt Ihnen ein einfaches, nicht übertragbares, widerrufliches Re
 
 ## § 7 Inhalte
 
-An den von Ihnen erstellten Inhalten behalten Sie sämtliche Rechte. Die Inhalte werden nicht beim Anbieter, sondern auf der von Ihnen gewählten Server-Instanz gespeichert; deren Betreiber bestimmt über Speicherung, Sichtbarkeit und Löschung nach Maßgabe seiner eigenen Bedingungen. Sie sichern zu, dass Sie über die erforderlichen Rechte an den von Ihnen eingestellten Inhalten verfügen.
+An den Inhalten, die Sie erstellen, behalten Sie sämtliche Rechte. Die Inhalte werden auf der von Ihnen gewählten Serverinstanz gespeichert und nicht beim Anbieter. Der Betreiber dieser Instanz entscheidet nach seinen eigenen Bedingungen über Speicherung, Sichtbarkeit und Löschung. Sie sichern zu, dass Sie die erforderlichen Rechte an den Inhalten haben, die Sie einstellen.
 
-## § 8 Verfügbarkeit; Push-Zustellung
+## § 8 Verfügbarkeit und Push-Benachrichtigungen
 
-Die App wird ohne Zusage einer bestimmten Verfügbarkeit bereitgestellt. Die Verfügbarkeit der von Ihnen genutzten Server-Instanz liegt allein beim jeweiligen Betreiber. Soweit der Anbieter für die Zustellung von Push-Benachrichtigungen eine zentrale Relay-Komponente betreibt, bemüht er sich um deren Verfügbarkeit; ein Anspruch auf ununterbrochene Push-Zustellung besteht nicht.
+Die App wird ohne Zusage einer bestimmten Verfügbarkeit bereitgestellt. Für die Verfügbarkeit der Serverinstanz, die Sie nutzen, ist allein ihr Betreiber zuständig. Soweit der Anbieter eine zentrale Weiterleitungskomponente für die Zustellung von Push-Benachrichtigungen betreibt, bemüht er sich um deren Verfügbarkeit. Einen Anspruch auf ununterbrochene Zustellung von Push-Benachrichtigungen gibt es nicht.
 
-## § 9 Drittanbieter-Dienste
+## § 9 Dienste von Drittanbietern
 
-Die App kann Verknüpfungen zu Diensten Dritter (z. B. Single Sign-On, Git-Dienste, Push-Dienste der Plattformbetreiber) ermöglichen. Für diese Dienste gelten die Bedingungen und Datenschutzhinweise des jeweiligen Dritten. Für Inhalte und Verfügbarkeit von Drittdiensten übernimmt der Anbieter keine Verantwortung.
+Die App kann Verknüpfungen zu Diensten Dritter ermöglichen (z. B. Single Sign-On, Git-Dienste, Push-Dienste der Plattformbetreiber). Für diese Dienste gelten die Bedingungen und Datenschutzhinweise des jeweiligen Dritten. Für Inhalte und Verfügbarkeit von Diensten Dritter übernimmt der Anbieter keine Verantwortung.
 
 ## § 10 Gewährleistung und Haftung
 
 Die App wird unentgeltlich bereitgestellt. Der Anbieter haftet daher nur bei Vorsatz und grober Fahrlässigkeit sowie nach den Grundsätzen, die für unentgeltliche Leistungen gelten.
 
-Im Übrigen haftet der Anbieter unbeschränkt bei Vorsatz und grober Fahrlässigkeit sowie bei der Verletzung von Leben, Körper oder Gesundheit. Bei einfacher Fahrlässigkeit haftet der Anbieter nur bei Verletzung einer wesentlichen Vertragspflicht (Kardinalpflicht) und der Höhe nach begrenzt auf den vertragstypischen, vorhersehbaren Schaden. Eine weitergehende Haftung ist ausgeschlossen. Zwingende gesetzliche Haftungsregelungen, insbesondere nach dem Produkthaftungsgesetz, bleiben unberührt. Für den Betrieb der Server-Instanzen haftet der Anbieter nicht (§ 3).
+Im Übrigen haftet der Anbieter unbeschränkt bei Vorsatz und grober Fahrlässigkeit sowie bei der Verletzung von Leben, Körper oder Gesundheit. Bei einfacher Fahrlässigkeit haftet der Anbieter nur bei Verletzung einer wesentlichen Vertragspflicht (Kardinalpflicht), und zwar der Höhe nach begrenzt auf den vertragstypischen, vorhersehbaren Schaden. Eine weitergehende Haftung ist ausgeschlossen. Zwingende gesetzliche Haftungsregelungen, insbesondere nach dem Produkthaftungsgesetz, bleiben unberührt. Für den Betrieb der Serverinstanzen haftet der Anbieter nicht (§ 3).
 
 ## § 11 Beendigung
 
-Sie können die Nutzung jederzeit durch Deinstallation der App beenden. Die Beendigung eines Kontos auf einer Server-Instanz richtet sich nach den Regeln des jeweiligen Betreibers.
+Sie können die Nutzung jederzeit beenden, indem Sie die App deinstallieren. Die Beendigung eines Kontos auf einer Serverinstanz richtet sich nach den Regeln des jeweiligen Betreibers.
 
 ## § 12 Datenschutz
 
-Informationen zur Datenverarbeitung durch die App entnehmen Sie bitte der Datenschutzerklärung der App. Für die serverseitige Datenverarbeitung gelten die Datenschutzhinweise des jeweiligen Instanzbetreibers.
+Informationen zur Datenverarbeitung durch die App finden Sie in der Datenschutzerklärung der App. Für die serverseitige Datenverarbeitung gelten die Datenschutzhinweise des jeweiligen Instanzbetreibers.
 
 ## § 13 Änderungen dieser Nutzungsbedingungen
 
-Der Anbieter kann diese Bedingungen mit Wirkung für die Zukunft ändern, wenn dies aus sachlichen Gründen (z. B. Änderung des Funktionsumfangs oder der Rechtslage) erforderlich ist. Über wesentliche Änderungen wird in geeigneter Weise informiert. Widersprechen Sie nicht innerhalb einer angemessenen Frist oder nutzen Sie die App weiter, gelten die Änderungen als angenommen.
+Der Anbieter kann diese Bedingungen mit Wirkung für die Zukunft ändern, wenn sachliche Gründe das erfordern (z. B. eine Änderung des Funktionsumfangs oder der Rechtslage). Über wesentliche Änderungen informiert er in geeigneter Weise. Widersprechen Sie nicht innerhalb einer angemessenen Frist oder nutzen Sie die App weiter, gelten die Änderungen als angenommen.
 
 ## § 14 Anwendbares Recht und Gerichtsstand
 
@@ -93,8 +93,8 @@ Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrec
 
 ## § 15 Schlussbestimmungen
 
-Sollten einzelne Bestimmungen dieser Nutzungsbedingungen unwirksam sein oder werden, so bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. An die Stelle der unwirksamen Bestimmung tritt die gesetzliche Regelung.
+Sollten einzelne Bestimmungen dieser Nutzungsbedingungen unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. An die Stelle der unwirksamen Bestimmung tritt die gesetzliche Regelung.
 
 ## § 16 Kontakt
 
-Bei Fragen zu diesen Nutzungsbedingungen erreichen Sie uns unter: mail@ahmadre.com
+Bei Fragen zu diesen Nutzungsbedingungen erreichen Sie uns unter mail@ahmadre.com.

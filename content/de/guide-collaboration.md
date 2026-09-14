@@ -1,151 +1,152 @@
 ---
 title: Kommentare & Anhänge
-description: Über Arbeit dort sprechen, wo sie liegt: Kommentare, @-Erwähnungen, Antwort-Threads, Reaktionen, Sprachnachrichten und Dateien zum Ablegen, Ansehen, Laden — live.
+description: Kommentare, Erwähnungen, Threads, Reaktionen, Sprachnachrichten und Dateien direkt am Vorgang.
 ---
 
 # Kommentare & Anhänge
 
-Entscheidungen, die in einem Chat-Kanal leben, sind im nächsten Quartal weg. Entscheidungen, die am Vorgang leben, sind noch da, wenn in zwei Jahren jemand fragt „warum haben wir das so gemacht?“. Genau darum geht es auf dieser Seite: Jede Unterhaltung, jede Datei und jede Sprachnachricht gehört zu dem Stück Arbeit, um das es geht.
+Was am Vorgang besprochen wird, ist auch in zwei Jahren noch auffindbar. Deshalb gehören Kommentare, Dateien und Sprachnachrichten direkt an den Vorgang.
 
 ## Wo die Unterhaltung liegt
 
-Scroll an einem Vorgang nach unten, dann findest du zwei Dinge übereinander: die Ablagefläche **Anhänge** und darunter den Abschnitt **Aktivität** mit der Diskussion.
+Ganz unten an einem Vorgang findest du die Ablagefläche **Anhänge** und darunter den Abschnitt **Aktivität**.
 
-Die Aktivität hat drei Tabs — **Alle**, **Kommentare** und **Verlauf**. Ein Vorgang öffnet auf **Kommentare**, denn meistens ist das der Grund, warum du gekommen bist. Rechts schaltet eine Sortierung zwischen **Neueste zuerst** und **Älteste zuerst** um; neueste zuerst zum Aufholen, älteste zuerst, um einen langen Vorgang als Geschichte zu lesen.
-
-Der Composer schwebt unten am Bildschirm und bleibt dort, während der Verlauf dahinter scrollt — du musst ihn an einem langen Vorgang also nie suchen.
+- Die Aktivität hat drei Tabs: **Alle**, **Kommentare** und **Verlauf**. Ein Vorgang öffnet auf **Kommentare**.
+- Rechts sortierst du nach **Neueste zuerst** (zum Aufholen) oder **Älteste zuerst** (zum Lesen von vorn).
+- Der Composer bleibt unten am Bildschirm, während der Verlauf dahinter scrollt.
 
 ![Ein Kommentar-Thread an einem Hinata-Vorgang](/assets/img/shot-comments.png)
-*Ein Thread: ein Ausgangskommentar mit einer Reaktion __👍 3__, darunter seine eingerückten Antworten, unter jeder davon __Antworten__, __Reagieren__ und das Chevron __Mehr__. Über allem schwebt der Composer mit seinem __+__ und dem Mikrofon.*
+*Ein Thread mit Reaktion, eingerückten Antworten und dem Composer darüber.*
 
 ## Einen Kommentar schreiben
 
-Klick ins Feld **Kommentar…**, tippe, sende. Alles, was du in eine Beschreibung schreiben kannst, kannst du auch in einen Kommentar schreiben: Überschriften, Fett und Kursiv, Listen, Aufgabenlisten, Zitate, Tabellen, Codeblöcke mit Sprache, Infoboxen, Links und Bilder. **Textformatierung** klappt den Composer zum vollen Editor mit dem Umschalter **Editor** / **Vorschau** auf — so kannst du einen langen Kommentar prüfen, bevor er rausgeht.
+Klick ins Feld **Kommentar…**, tippe, sende.
+
+Im Kommentar geht alles, was auch in einer Beschreibung geht: Überschriften, Fett und Kursiv, Listen, Aufgabenlisten, Zitate, Tabellen, Codeblöcke mit Sprache, Infoboxen, Links und Bilder. **Textformatierung** öffnet den vollen Editor mit dem Umschalter **Editor** / **Vorschau**.
 
 ![Das +-Menü neben dem Kommentar-Composer](/assets/img/shot-comment-attach-menu.png)
-*Das __+__ links neben dem Feld __Kommentar…__. Die beiden Bild-Einträge setzen das Bild in den Kommentartext, an die Cursorposition; __Anhang__ lädt die Datei stattdessen in die Anhangliste des Vorgangs, wo sie alle finden, ohne den Thread zu durchsuchen.*
+*Die Bild-Einträge setzen das Bild in den Text, __Anhang__ legt die Datei in die Anhangliste.*
 
 !!! tip "⌘↵ sendet"
-    Der Composer zeigt seinen Hinweis selbst an: **⌘↵ zum Senden** — auf dem Mac ⌘ und Return, sonst **Strg** und Return. Ein einfaches Return macht einen Zeilenumbruch; Kommentare sind oft mehr als ein Satz, deshalb ist die sichere Taste die, die weniger tut.
+    Auf dem Mac sendet ⌘ und Return, sonst **Strg** und Return. Ein einfaches Return macht einen Zeilenumbruch.
 
 !!! note "Nicht jeder Eintrag erscheint auf jeder Plattform"
-    Der Kamera-Eintrag wird nur angeboten, wo es eine Kamera gibt — unter Linux gibt es keine Webcam-Unterstützung, deshalb fehlt der Eintrag ganz, statt beim Tippen zu scheitern. Was welche Plattform kann, steht unter [Download](/de/download.html).
+    Den Kamera-Eintrag gibt es nur, wo es eine Kamera gibt. Unter Linux fehlt er, weil Webcams dort nicht unterstützt werden. Was welche Plattform kann, steht unter [Download](/de/download.html).
 
 ## Jemanden erwähnen
 
-Tippe irgendwo im Kommentar ein `@` und wähl aus dem Menü, das aufgeht. Was in deinem Text landet, ist ein Chip, keine Zeichen.
+Tippe `@` und wähl aus dem Menü. Im Text landet ein Chip.
 
 ![Das Erwähnungs-Menü im Kommentar-Composer nach der Eingabe von @ke](/assets/img/shot-comment-mention.png)
-*Ein Menü durchsucht Vorgänge, Artikel der Wissensdatenbank und Personen gemeinsam, unter der Überschrift __Verknüpfen mit …__. Zwei Buchstaben genügen: `@ke` bringt drei Vorgänge, den Artikel __Auth & token refresh__ und Jonas Becker zurück, jede Zeile rechts als __ISSUE__, __DOC__ oder __USER__ ausgezeichnet.*
+*Das Menü sucht Vorgänge, Artikel und Personen gleichzeitig.*
 
-Was die drei Arten bewirken:
+Das Menü heißt **Verknüpfen mit …**, jede Zeile ist als **ISSUE**, **DOC** oder **USER** markiert. Zwei Buchstaben reichen.
 
-- **Eine Person** — sie bekommt eine direkte Benachrichtigung: in der App, per E-Mail und als Push, wenn ihr Gerät das unterstützt. So holst du jemanden dazu, der den Vorgang nicht beobachtet.
-- **Ein Vorgang** — der Chip zeigt Schlüssel und aktuellen Status, live. Wandert der Vorgang auf Fertig, zeigt der Chip in deinem Kommentar Fertig, ohne dass jemand etwas bearbeitet.
-- **Ein Artikel** — ein Link in die [Wissensdatenbank](/de/guide-knowledge.html), der auch nach einer Umbenennung noch funktioniert.
+- **Person:** Sie bekommt eine Benachrichtigung in der App, per E-Mail und als Push, wenn ihr Gerät das kann. So holst du jemanden dazu, der den Vorgang nicht beobachtet.
+- **Vorgang:** Der Chip zeigt Schlüssel und aktuellen Status, live. Wandert der Vorgang auf Fertig, zeigt der Chip Fertig.
+- **Artikel:** Ein Link in die [Wissensdatenbank](/de/guide-knowledge.html), der auch nach einer Umbenennung funktioniert.
 
 !!! info "Niemand wird doppelt angestupst"
-    Hinata sortiert überlappende Gründe für dieselbe Benachrichtigung. Eine Erwähnung sticht eine Antwort, und eine Antwort sticht den allgemeinen Hinweis „neuer Kommentar an diesem Vorgang“ — erwähnst du also die zugewiesene Person in einer Antwort auf ihren Kommentar, bekommt sie genau eine Benachrichtigung, die spezifischste. Und du benachrichtigst nie dich selbst, egal wie oft du deinen eigenen Namen erwähnst.
+    Eine Erwähnung sticht eine Antwort, eine Antwort sticht den Hinweis „neuer Kommentar“. Jede Person bekommt nur die spezifischste Benachrichtigung. Dich selbst benachrichtigst du nie.
 
 ## In einem Thread antworten
 
-Unter jedem Kommentar steht **Antworten**. Das öffnet den Composer mit „Antwort an …“ darüber, und die Antwort landet eingerückt unter dem Kommentar, den du beantwortet hast.
+Unter jedem Kommentar steht **Antworten**. Der Composer zeigt dann „Antwort an …“, und die Antwort erscheint eingerückt darunter.
 
-Threads sind bewusst **eine Ebene tief**. Antwortest du auf eine Antwort, landet sie im selben Thread, statt einen neuen Ast zu beginnen — sie zitiert aber weiterhin genau die Nachricht, die du beantwortet hast. So bleibt auch ein schneller Thread lesbar, ohne zu einem Baum zu werden, dem niemand folgen kann.
+- Threads sind **eine Ebene tief**. Eine Antwort auf eine Antwort landet im selben Thread, zitiert aber die beantwortete Nachricht.
+- **3 Antworten anzeigen** lädt die Antworten, **Antworten verbergen** klappt sie ein.
+- Lange Threads laden seitenweise über **Weitere Antworten laden**.
+- Die Person, der du antwortest, wird benachrichtigt, auch wenn sie den Vorgang nicht beobachtet.
 
-- Ein Ausgangskommentar mit Antworten zeigt **3 Antworten anzeigen** — anklicken lädt sie, **Antworten verbergen** klappt sie wieder ein.
-- Lange Threads laden seitenweise, unten steht **Weitere Antworten laden**.
-- Eine Antwort benachrichtigt die Person, deren Kommentar du beantwortest, auch wenn sie den Vorgang nicht beobachtet.
-
-Antworten werden erst geladen, wenn du sie aufklappst — deshalb öffnet sich auch ein Vorgang mit Hunderten Kommentaren sofort.
+Antworten laden erst beim Aufklappen. Deshalb öffnet auch ein Vorgang mit Hunderten Kommentaren sofort.
 
 ## Auf einen Kommentar reagieren
 
-Neben **Antworten** sitzt ein Smiley-Button. Anklicken, bei Bedarf im Emoji-Picker suchen, und deine Reaktion erscheint unter dem Kommentar.
+Klick auf den Smiley neben **Antworten** und wähl ein Emoji.
 
 ![Die Schnellreaktions-Leiste, geöffnet unter einem Kommentar](/assets/img/shot-comment-reactions.png)
-*Ein Klick öffnet sechs Emoji — ❤️ 👍 😂 😮 😢 🙏 — und ein __…__ für den vollen Picker. Der Kommentar darunter trägt schon sein eigenes __👍 3__: Reaktionen sitzen unter dem Text, über der Aktionszeile, und die Zahl sagt, wie viele Personen genau dieses Emoji gewählt haben.*
+*Sechs schnelle Emoji und __…__ für den vollen Picker.*
 
-- **Eine Reaktion pro Person und Kommentar.** Ein anderes Emoji ersetzt deins; dasselbe noch einmal entfernt es.
+- **Eine Reaktion pro Person und Kommentar.** Ein anderes Emoji ersetzt deins, dasselbe noch einmal entfernt es.
+- Die Zahl zeigt, wie viele Personen dieses Emoji gewählt haben.
 - Reagieren darf jede Person im Projekt.
-- Reaktionen sind der billigste Weg, eine Schleife zu schließen. Ein „👍“ auf „ich übernehme das“ spart einen Kommentar, der sonst nichts sagt.
+- Ein „👍“ auf „ich übernehme das“ spart einen eigenen Kommentar.
 
 ## Wichtiges anpinnen
 
-Jedes Projektmitglied kann einen Kommentar über sein Menü **fixieren**. Fixierte Kommentare sammelt der Abschnitt **Angepinnt** oben im Thread — dorthin gehören die Zusammenfassung einer langen Diskussion, die getroffene Entscheidung oder die Schritte zum Nachstellen. **Lösen** stellt den Kommentar zurück in den Fluss.
+Jedes Projektmitglied kann einen Kommentar über sein Menü **fixieren**. Er erscheint dann oben im Abschnitt **Angepinnt**. Gut für Zusammenfassungen, Entscheidungen oder Schritte zum Nachstellen. **Lösen** holt ihn zurück in den Verlauf.
 
 ## Eigene Kommentare bearbeiten oder löschen
 
-Öffne das Menü eines Kommentars — am Desktop über das Chevron **Mehr**, auf dem Touchscreen per langem Druck. Was darin steht, hängt davon ab, wessen Kommentar es ist.
+Öffne das Menü: am Desktop über das Chevron **Mehr**, auf dem Touchscreen per langem Druck.
 
 ![Das Kommentarmenü offen unter einem Kommentar im Thread](/assets/img/shot-comment-menu.png)
-*Das Menü an einem eigenen Kommentar. __Antworten__, __Kopieren__, __Link kopieren__ und __Fixieren__ gibt es an jedem Kommentar; __Auswählen__, __Bearbeiten__ und das rote __Löschen__ am Fuß nur am eigenen.*
+*Bearbeiten, Auswählen und Löschen gibt es nur an eigenen Kommentaren.*
 
-- **Bearbeiten** — nur die verfassende Person darf ihren Kommentar bearbeiten. Ein bearbeiteter Kommentar ist mit **bearbeitet** markiert, niemand muss sich also fragen, ob er sich beim ersten Lesen getäuscht hat. Sprachnachrichten lassen sich nicht bearbeiten; lösch sie und nimm neu auf.
-- **Löschen** — deine eigenen kannst du immer löschen. Administratorinnen und Administratoren dürfen zur Moderation jeden Kommentar löschen.
-- **Auswählen** — schaltet die Mehrfachauswahl ein, um mehrere eigene Kommentare auf einmal aufzuräumen.
+**Antworten**, **Kopieren**, **Link kopieren** und **Fixieren** gibt es an jedem Kommentar.
+
+- **Bearbeiten:** Nur die verfassende Person darf das. Der Kommentar wird als **bearbeitet** markiert. Sprachnachrichten lassen sich nicht bearbeiten.
+- **Löschen:** Eigene Kommentare kannst du immer löschen. Admins dürfen zur Moderation jeden Kommentar löschen.
+- **Auswählen:** Mehrfachauswahl, um mehrere eigene Kommentare auf einmal zu löschen.
 
 !!! warning "Löschen ist endgültig, und ein Ausgangskommentar nimmt seine Antworten mit"
-    Ein gelöschter Kommentar ist sofort für alle weg, ohne Zurück. Löschst du einen **Kommentar der obersten Ebene**, verschwindet auch jede Antwort in seinem Thread — die von anderen eingeschlossen. Ist eine Diskussion entgleist, ist eine Antwort mit einer Richtigstellung oft die bessere Wahl: Der Beleg, was tatsächlich gesagt wurde, ist meist mehr wert als eine aufgeräumte Seite.
+    Ein gelöschter Kommentar ist sofort für alle weg. Löschst du einen **Kommentar der obersten Ebene**, verschwinden auch alle Antworten darunter, auch die von anderen. Oft ist eine Richtigstellung als Antwort die bessere Wahl.
 
 ## Einen Kommentar kopieren
 
-**Kopieren** legt den Text des Kommentars mitsamt Formatierung in die Zwischenablage, bereit fürs Dokument oder den Chat. Besteht der Kommentar nur aus einem Bild, kopiert Hinata **das Bild selbst** statt eines Links darauf — es lässt sich also direkt in jede andere App einfügen.
+**Kopieren** legt den Text mit Formatierung in die Zwischenablage. Besteht der Kommentar nur aus einem Bild, kopiert Hinata **das Bild selbst**.
 
 ## Einen langen Vorgang aufholen
 
-Ein Vorgang, der seit Monaten läuft, ist ein anderes Leseproblem als einer von gestern. Drei Bedienelemente erledigen das meiste:
+- **Älteste zuerst sortieren**, um den Vorgang von vorn zu lesen. Praktisch, wenn er dir gerade zugewiesen wurde.
+- **Auf Alle umschalten**, um Kommentare und Feldänderungen gemischt zu sehen.
+- **Zuerst Angepinnt lesen.** Dort stehen meist die Entscheidungen.
 
-- **Älteste zuerst sortieren** und den Thread von vorn als Geschichte lesen. Der richtige Modus, wenn dir gerade etwas zugewiesen wurde und dir der Hintergrund fehlt.
-- **Auf Alle umschalten**, um Kommentare und Feldänderungen verwoben zu sehen. Ein „In Review verschoben“ zwischen zwei Kommentaren erklärt vieles, was keiner der beiden allein erklärt.
-- **Zuerst den Abschnitt Angepinnt lesen.** Pinnt das Team seine Entscheidungen, ist die Zusammenfassung einer Diskussion mit 60 Kommentaren genau drei Nachrichten weit oben.
-
-Kommentare laden seitenweise, während du weiterscrollst — ein langer Vorgang lässt dich also nie auf Geschichte warten, die du gar nicht lesen wolltest. Die Tabs **Alle** und **Verlauf** blättern genauso, dort steht am Ende ein **Mehr laden**.
+Kommentare laden seitenweise beim Scrollen. **Alle** und **Verlauf** haben am Ende **Mehr laden**.
 
 ## Gewohnheiten, die einen Thread lesbar halten
 
-Nichts davon wird erzwungen, und alles davon lernen Teams auf die harte Tour, nachdem sie 80 Kommentare nach einer einzigen Zahl durchsucht haben.
-
-- **Erwähne die Person, die handeln muss.** Ein Kommentar, in dem niemand genannt wird, ist an alle gerichtet — und damit meistens an niemanden.
-- **Antworte im Thread, statt einen neuen Ausgangskommentar zu schreiben.** Ein Ausgangskommentar sagt „neues Thema“, eine Antwort sagt „zu der Sache oben“.
-- **Pinn das Ergebnis an.** Endet eine Diskussion in einer Entscheidung, schreib einen Kommentar, der sie festhält, und fixier ihn. Wer später dazukommt, liest drei Zeilen statt vierzig.
-- **Verschieb Dauerhaftes in die Beschreibung.** Schritte zum Nachstellen, der abgestimmte Umfang, die API-Form — was morgen noch gilt, gehört in die Beschreibung, wo alle zuerst hinsehen, nicht in Kommentar 30. Kommentare sind die Unterhaltung, die Beschreibung ist der aktuelle Stand.
-- **Nimm einen Codeblock für Logs und Stacktraces.** Als Fließtext eingefügt werden sie zur Wand; im Codeblock bleiben sie lesbar und scrollen für sich.
-- **Häng die Datei an, statt sie zu beschreiben.** Ein Screenshot des kaputten Layouts beendet eine Diskussion, die drei Absätze nicht beenden.
+- **Erwähne die Person, die handeln muss.**
+- **Antworte im Thread**, statt einen neuen Ausgangskommentar zu schreiben.
+- **Pinn das Ergebnis an.** Schreib die Entscheidung in einen Kommentar und fixier ihn.
+- **Dauerhaftes gehört in die Beschreibung:** Schritte zum Nachstellen, abgestimmter Umfang, API-Form.
+- **Logs und Stacktraces in einen Codeblock.**
+- **Häng Dateien an**, statt sie zu beschreiben.
 
 ## Direkt auf einen Kommentar verlinken
 
-**Link kopieren** im Menü eines Kommentars kopiert einen Permalink auf genau diesen Kommentar. Wer ihn öffnet, landet im Vorgang, scrollt automatisch zum Kommentar, und der blitzt kurz auf, damit das Auge ihn findet.
-
-Das ist der Link, den du einfügst, wenn du in einem Statusbericht oder einer E-Mail eine Entscheidung zitierst — deutlich besser als „siehe die Kommentare an HIN-42, irgendwo in der Mitte“.
+**Link kopieren** im Menü kopiert einen Permalink auf genau diesen Kommentar. Wer ihn öffnet, landet im Vorgang, springt zum Kommentar, und der blinkt kurz auf. Ideal für Statusberichte und E-Mails.
 
 ## Sprachnachrichten
 
-Manchmal ist es schneller, es zu sagen. Tipp auf das **Mikrofon** rechts im Composer, und die Aufnahme startet sofort.
+Tipp auf das **Mikrofon** rechts im Composer. Die Aufnahme startet sofort.
 
-Während du sprichst, wird der Composer zur Aufnahmeleiste: ein pulsierender Punkt, eine laufende Zeit und eine Live-Wellenform dessen, was das Mikrofon hört. Zwei Buttons rahmen sie ein — der Papierkorb links verwirft die Aufnahme, der Senden-Button rechts postet sie.
+- Während der Aufnahme siehst du einen pulsierenden Punkt, die Zeit und eine Wellenform.
+- Der Papierkorb links verwirft die Aufnahme, der Senden-Button rechts postet sie.
+- Die Nachricht erscheint als Blase mit Wellenform und Länge und spielt direkt im Thread ab.
+- Antworten, reagieren, anpinnen und löschen geht wie bei jedem Kommentar. Bearbeiten geht nicht.
 
-Die gesendete Nachricht erscheint als Blase im Thread, mit Wellenform und Länge, und spielt für alle, die den Vorgang öffnen, direkt dort ab. Auf Sprachnachrichten lässt sich antworten, reagieren, sie lassen sich anpinnen und löschen wie jeder andere Kommentar; nur bearbeiten geht nicht.
-
-Eine Sprachnachricht lohnt sich, wenn der Ton wichtig ist, wenn du etwas Kniffliges laut beschreibst, oder wenn du am Handy bist und Tippen fünf Minuten dauern würde. Sie lohnt sich *nicht*, wenn der Inhalt eine Entscheidung, eine Zahl oder eine Liste ist — das muss durchsuchbar sein, und Audio ist es nicht.
+Sprachnachrichten passen, wenn der Ton zählt oder Tippen am Handy zu lange dauert. Entscheidungen, Zahlen und Listen schreibst du besser, denn Audio ist nicht durchsuchbar.
 
 !!! note "Das Mikrofon muss erlaubt sein"
-    Bei der ersten Aufnahme wird nach der Mikrofon-Berechtigung gefragt. Lehnst du ab, sagt Hinata dir, warum nichts passiert ist, statt still zu scheitern — erlaube es in den Systemeinstellungen und versuch es erneut.
+    Bei der ersten Aufnahme fragt das System nach der Berechtigung. Lehnst du ab, sagt Hinata dir das. Erlaube es dann in den Systemeinstellungen und versuch es erneut.
 
 !!! warning "Linux braucht ein paar zusätzliche Pakete"
-    Unter Linux läuft die Aufnahme über `parecord` und `ffmpeg`, die Wiedergabe braucht die GStreamer-Basis-Plugins. Fehlen sie, nennt die App genau das fehlende Paket, statt so zu tun, als sei der Ton kaputt. [Download](/de/download.html) listet auf, was zu installieren ist; auf allen anderen Plattformen läuft es ohne Zutun.
+    Unter Linux braucht die Aufnahme `parecord` und `ffmpeg`, die Wiedergabe die GStreamer-Basis-Plugins. Fehlt etwas, nennt die App das Paket. [Download](/de/download.html) listet alles auf. Andere Plattformen brauchen nichts extra.
 
 ## Dateien anhängen
 
-Der Block **Anhänge** sitzt direkt über der Diskussion. Zwei Wege, ihn zu füllen:
+Der Block **Anhänge** sitzt über der Diskussion.
 
-- **Dateien darauf ziehen.** Die Fläche hebt sich hervor und liest sich als **Zum Anhängen ablegen**; loslassen startet den Upload.
-- **Draufklicken** öffnet deine Dateiauswahl. Auf Handy und Tablet öffnet sich zuerst das Blatt **Anhang hinzufügen** mit **Fotomediathek**, **Foto aufnehmen**, **Video aufnehmen** und **Datei auswählen**.
+- **Dateien darauf ziehen.** Die Fläche zeigt **Zum Anhängen ablegen**, loslassen startet den Upload.
+- **Draufklicken** öffnet die Dateiauswahl. Auf Handy und Tablet kommt zuerst **Anhang hinzufügen** mit **Fotomediathek**, **Foto aufnehmen**, **Video aufnehmen** und **Datei auswählen**.
 
 ![Der Block „Anhänge“ an einem Vorgang, mit vier Dateien gefüllt](/assets/img/shot-attachments.png)
-*Sobald Dateien im Block liegen, wird aus der Ablagefläche __Dateien hinzufügen__, das dieselbe Auswahl öffnet. Das Bild bekommt eine echte Miniatur, ZIP, Log und PDF je ein farbcodiertes Glyph — und die Kachel unter dem Cursor bekommt einen Herunterladen- und einen Entfernen-Knopf.*
+*Mit Dateien wird die Fläche zu __Dateien hinzufügen__.*
 
-Die Fläche selbst nennt die Regeln, die dein Server durchsetzt — etwa „Bilder, PDFs & Text werden direkt angezeigt · beliebiger Dateityp · bis zu 25 MB“. Drei Grenzen gelten, und alle drei legt fest, wer deinen Server betreibt:
+Bilder bekommen eine Miniatur, andere Dateien ein farbiges Symbol. Beim Überfahren erscheinen Herunterladen und Entfernen.
+
+Die Fläche nennt die Regeln deines Servers, etwa „Bilder, PDFs & Text werden direkt angezeigt · beliebiger Dateityp · bis zu 25 MB“. Die Grenzen legt fest, wer den Server betreibt:
 
 | Grenze | Was sie bedeutet |
 | --- | --- |
@@ -153,94 +154,91 @@ Die Fläche selbst nennt die Regeln, die dein Server durchsetzt — etwa „Bild
 | **Dateien je Upload** | Wie viele auf einmal gehen. Legst du mehr ab, nimmt Hinata den ersten Schwung und sagt es dir |
 | **Summe je Upload** | Die Gesamtgröße einer Auswahl |
 
-Schränkt dein Server Dateitypen ein, wird eine blockierte Datei namentlich abgelehnt: „Dateityp nicht erlaubt“. Alles landet in eurem eigenen Objektspeicher — nichts geht an Dritte. Die Betreiber-Seite steht unter [Objektspeicher](/de/storage.html).
+Sind Dateitypen eingeschränkt, wird eine blockierte Datei mit „Dateityp nicht erlaubt“ abgelehnt. Alles liegt in eurem eigenen Objektspeicher, nichts geht an Dritte. Mehr unter [Objektspeicher](/de/storage.html).
 
 ### Während der Upload läuft
 
-Sofort erscheint eine Kachel mit Fortschrittsanzeige, du kannst also weiter am Kommentar tippen, während eine große Datei hochlädt. Ist sie fertig, wird die Kachel zum echten Anhang und eine kurze Bestätigung erscheint. Schlägt es fehl — abgerissene Verbindung, Datei unter dir verändert — sagt die Kachel **Upload fehlgeschlagen** und bietet **Erneut versuchen** an, du musst die Datei also nicht wieder in deinen Ordnern suchen.
-
-Mehrere Dateien auf einmal sind normal: Leg die ganze Auswahl ab, sie laden gemeinsam hoch, jede mit eigener Kachel.
+- Sofort erscheint eine Kachel mit Fortschritt. Du kannst weitertippen.
+- Ist der Upload fertig, wird die Kachel zum Anhang und du siehst eine kurze Bestätigung.
+- Schlägt er fehl, zeigt die Kachel **Upload fehlgeschlagen** und **Erneut versuchen**.
+- Mehrere Dateien laden gemeinsam hoch, jede mit eigener Kachel.
 
 ### Bilder im Text vs. Anhänge
 
-Ein Bild kann an zwei verschiedenen Stellen an einem Vorgang landen, und es lohnt sich zu wissen, welche du gerade erzeugst:
+- **Im Text:** Das Bild steht in Beschreibung oder Kommentar genau an seiner Stelle. Im Anhangraster taucht es nicht auf.
+- **In der Anhangliste:** Die Datei gehört zum ganzen Vorgang, steht im Raster und ist im gemeinsamen Archiv enthalten.
 
-- **Im Text** — ein Bild, das du in eine Beschreibung oder einen Kommentar einsetzt. Es ist Teil dessen, was du geschrieben hast, sitzt genau dort, wo der Satz es braucht, und taucht nicht im Anhang-Raster auf.
-- **In der Anhangliste** — eine Datei, die zum Vorgang als Ganzem gehört. Sie erscheint im Raster, alle finden sie, ohne den Thread zu lesen, und sie lässt sich mit den anderen in einem Archiv herunterladen.
-
-Faustregel: Illustriert es einen Satz, gehört es in den Text. Ist es ein Beleg, ein Dokument, ein Log oder etwas, wonach eine Kollegin suchen wird, häng es an.
+Faustregel: Illustriert es einen Satz, gehört es in den Text. Belege, Dokumente und Logs hängst du an.
 
 ## Ansehen, öffnen und herunterladen
 
-Anhänge erscheinen als Kacheln in einem Raster. Bilder und PDFs bekommen eine echte Miniatur (beim PDF die erste Seite), alles andere ein farbcodiertes Glyph für seinen Typ.
+Anhänge erscheinen als Kacheln. Bilder und PDFs zeigen eine Miniatur (beim PDF die erste Seite), alles andere ein farbiges Symbol.
 
 ![Das Anhang-Raster mit geöffnetem Menü „Weitere Aktionen“](/assets/img/shot-attachment-actions.png)
-*Vier Dateien an einem Vorgang, jede Kachel mit Größe, hochladender Person und Alter. __Dateien hinzufügen__ lädt weitere hoch; das __…__ daneben ist __Weitere Aktionen__ mit __Alle herunterladen (4)__ — jede Datei des Vorgangs in einem ZIP — und __Alle löschen (4)__.*
+*__Weitere Aktionen__ bietet __Alle herunterladen (4)__ als ZIP und __Alle löschen (4)__.*
 
-Ein Klick auf eine Kachel öffnet die **Vorschau**, eine dunkle Vollbildbühne mit der Datei in der Mitte.
+Jede Kachel zeigt Größe, hochladende Person und Alter. Ein Klick öffnet die **Vorschau** im Vollbild.
 
 ![Eine Logdatei in der Vollbild-Vorschau](/assets/img/shot-attachment-viewer.png)
-*Eine Logdatei in der Vorschau, mit eingeschalteten __Zeilennummern__ und __Lange Zeilen umbrechen__, daneben __Gesamten Text kopieren__. Der Zähler steht auf 2 / 4: Die Pfeile und der Streifen am unteren Rand blättern durch das ganze Raster, ohne zum Vorgang zurückzugehen.*
+*Eine Logdatei mit __Zeilennummern__, __Lange Zeilen umbrechen__ und __Gesamten Text kopieren__.*
 
-Nicht jeder Typ lässt sich anzeigen, und die Vorschau sagt das, statt zu scheitern:
+Pfeile und der Streifen unten blättern durch alle Anhänge, ohne zum Vorgang zurückzugehen.
 
 | Datei | In der Vorschau |
 | --- | --- |
 | Bilder (PNG, JPEG, GIF, WebP …) | In voller Größe, zoombar, mit Miniatur im Raster |
-| PDF | Seite für Seite; die Miniatur im Raster ist Seite eins |
+| PDF | Seite für Seite, die Miniatur im Raster ist Seite eins |
 | Text, Code, Logs, Markdown, Konfiguration | Als reiner Text mit Zeilennummern, Umbruch und Kopieren |
-| Office-Dokumente, Archive, Video | Eine Karte mit Name und Typ — zum Öffnen herunterladen |
+| Office-Dokumente, Archive, Video | Eine Karte mit Name und Typ, zum Öffnen herunterladen |
 
-Textdateien jenseits einiger Megabyte werden gar nicht erst in die Vorschau geholt: Sie melden, dass sie zu groß sind, und verweisen auf den Download — ein Vorschaufenster ist kein Ort für ein riesiges Log.
+Textdateien über einigen Megabyte zeigt die Vorschau nicht an. Sie verweist dann auf den Download.
 
-Wo ein Download landet — eine einzelne Datei oder das ganze ZIP — hängt von der Plattform ab: iOS, Android, macOS und Windows öffnen das System-Teilen-Menü, du wählst also das Ziel; Linux schreibt direkt in deinen Downloads-Ordner und nennt den Dateinamen; der Web-Build übergibt die Datei deinem Browser.
+Wohin ein Download geht:
+
+- **iOS, Android, macOS, Windows:** Das Teilen-Menü öffnet sich, du wählst das Ziel.
+- **Linux:** Die Datei landet im Downloads-Ordner, die App nennt den Namen.
+- **Web:** Der Browser übernimmt.
 
 !!! warning "Entfernen entfernt für alle"
-    **Entfernen** löscht den Anhang vom Vorgang und aus dem Speicher — für jede Person, die diesen Vorgang ansieht, dauerhaft. Für Dateien gibt es keinen Archivierungsschritt wie für Vorgänge, lies den Dateinamen also zweimal, bevor du bestätigst.
+    **Entfernen** löscht den Anhang dauerhaft vom Vorgang und aus dem Speicher, für alle. Einen Archivschritt gibt es bei Dateien nicht.
 
 ## Wer eine Datei sehen kann
 
-Anhänge folgen dem Vorgang. Wer den Vorgang öffnen darf, sieht seine Dateien, kann sie ansehen und herunterladen; wer nicht, kann es nicht — es gibt keine separate Freigabe-Einstellung, die man falsch setzen könnte.
+Anhänge folgen dem Vorgang. Wer den Vorgang öffnen darf, darf seine Dateien ansehen und herunterladen. Eine eigene Freigabe gibt es nicht.
 
-Es gibt auch keinen öffentlichen Link. Jede Vorschau und jeder Download läuft über deinen Server, der zuerst deinen Zugriff auf diesen Vorgang prüft, und die Dateien selbst liegen im Speicher eurer Organisation unter Namen, die sich nicht erraten lassen. Eine URL, die du aus der App kopierst, ist also kein Link, den du außerhalb des Projekts weitergeben kannst — schick lieber den [Link zum Vorgang](/de/guide-issues.html) und sorg für Projektzugriff.
+Öffentliche Links gibt es auch nicht. Jeder Zugriff läuft über deinen Server, der deine Rechte am Vorgang prüft. Die Dateien liegen unter nicht erratbaren Namen im Speicher eurer Organisation. Eine kopierte URL funktioniert außerhalb des Projekts also nicht. Schick stattdessen den [Link zum Vorgang](/de/guide-issues.html) und sorg für Projektzugriff.
 
 !!! note "Das gilt auch für Sprachnachrichten"
-    Eine Sprachnachricht ist eine Audiodatei im selben Speicher, erreichbar auf demselben Weg. Löschst du den Kommentar, verschwindet die Aufnahme mit ihm.
+    Sprachnachrichten liegen als Audiodatei im selben Speicher. Löschst du den Kommentar, ist auch die Aufnahme weg.
 
 ## Alles aktualisiert sich live
 
-Du musst nie etwas neu laden. Neue Kommentare, Bearbeitungen, Reaktionen, Löschungen und Änderungen an Anhängen kommen an, während du hinsiehst.
-
-Das hat eine praktische Folge: Seid ihr während eines Telefonats zu zweit am selben Vorgang, könnt ihr euch bei der Arbeit zusehen. Jemand wirft einen Screenshot hinein, und er erscheint in deinem Raster; jemand reagiert auf deinen Kommentar, und das Emoji taucht darunter auf. Es heißt aber auch, dass die Datei, die du gerade öffnen wolltest, unter deinem Cursor verschwinden kann, wenn eine Kollegin sie entfernt — selten, aber kein Fehler.
+Neue Kommentare, Bearbeitungen, Reaktionen, Löschungen und Änderungen an Anhängen erscheinen sofort, ohne Neuladen. Entfernt jemand eine Datei, kann sie dir also auch direkt vor dem Öffnen verschwinden.
 
 !!! info "Per E-Mail antworten"
-    Macht dein Server aus eingehenden E-Mails Vorgänge, bekommt ein so entstandener Vorgang im Menü **…** den zusätzlichen Eintrag **Per E-Mail antworten**, der deine Antwort an die ursprüngliche absendende Person schickt, statt nur einen internen Kommentar zu schreiben. Ob es das gibt, hängt von der Konfiguration deines Servers ab — die Betreiber-Seite ist [E-Mail zu Vorgang](/de/email-to-ticket.html).
+    Macht dein Server aus eingehenden E-Mails Vorgänge, gibt es an solchen Vorgängen im Menü **…** den Eintrag **Per E-Mail antworten**. Die Antwort geht dann an die ursprüngliche absendende Person. Ob es das gibt, hängt von der Serverkonfiguration ab, siehe [E-Mail zu Vorgang](/de/email-to-ticket.html).
 
 ## Wenn ein Thread zu laut wird
 
-Ein reger Vorgang kann deine Benachrichtigungen fluten, und dafür gibt es drei getrennte Regler statt einem:
+- **Beobachtung beenden** (Menü **…** → **Beobachten**). Als zugewiesene oder erstellende Person wirst du weiter benachrichtigt.
+- **Kommentare zu meinen Vorgängen** oder **Beobachtete Vorgänge** in den Benachrichtigungseinstellungen herunterdrehen, pro Kanal (App, E-Mail, Push).
+- **Erwähnungen & Antworten** anlassen. Die melden sich nur, wenn dich jemand direkt anspricht.
 
-- **Beobachtung beenden** (Menü **…** → **Beobachten**). Als zugewiesene oder erstellende Person wirst du weiterhin benachrichtigt, aber das allgemeine Rauschen hört auf.
-- Dreh **Kommentare zu meinen Vorgängen** oder **Beobachtete Vorgänge** in den Benachrichtigungseinstellungen deines Kontos herunter, pro Kanal — in der App, per E-Mail, per Push.
-- Lass **Erwähnungen & Antworten** an. Das ist die eine Kategorie, die laut bleiben sollte: Sie feuert nur, wenn dich wirklich jemand angesprochen hat.
-
-Diese Schalter liegen unter [Dein Konto](/de/guide-account.html), und [Auf dem Laufenden bleiben](/de/guide-notifications.html) erklärt, was jeder davon abdeckt.
+Die Schalter liegen unter [Dein Konto](/de/guide-account.html). [Auf dem Laufenden bleiben](/de/guide-notifications.html) erklärt sie.
 
 ## Auf dem Handy
 
-Alles auf dieser Seite funktioniert auch am Handy, ein paar Dinge sehen nur anders aus.
+- Der Composer klebt unten und schiebt sich beim Tippen über die Tastatur.
+- Das Kommentarmenü öffnest du per **langem Druck**.
+- **+** bietet zuerst Kamera und Fotomediathek an.
+- Downloads laufen über das Teilen-Menü.
 
-- Der Composer klebt unten am Bildschirm und hebt sich beim Tippen über die Tastatur — das Feld, in das du schreibst, ist nie verdeckt.
-- Das Menü eines Kommentars öffnet ein **langer Druck** statt eines Chevrons beim Überfahren.
-- Der **+**-Button bietet zuerst Kamera und Fotomediathek an, weil das am Handy meistens gemeint ist.
-- Downloads laufen über das System-Teilen-Menü, eine Datei kann also in Dateien, einer anderen App oder einer Nachricht landen.
-
-[Auf dem Handy](/de/guide-mobile.html) beschreibt das mobile Layout vollständig.
+Mehr unter [Auf dem Handy](/de/guide-mobile.html).
 
 ## Verwandte Seiten
 
-- **[Mit Vorgängen arbeiten](/de/guide-issues.html)** — die Felder, die Hierarchie, Verknüpfungen, Klonen, Archivieren und Export.
-- **[Auf dem Laufenden bleiben](/de/guide-notifications.html)** — was eine Erwähnung, eine Antwort oder eine Änderung wirklich auslöst und wie du es leiser stellst.
-- **[Dokumentation schreiben](/de/guide-knowledge.html)** — wenn eine Diskussion einem Vorgang entwachsen ist und einen Artikel verdient.
-- **[Auf dem Handy](/de/guide-mobile.html)** — Composer, Auswahl und Vorschau auf kleinem Bildschirm.
-- **[Download](/de/download.html)** — was jede Plattform kann, inklusive der Audio-Pakete für Linux.
+- **[Mit Vorgängen arbeiten](/de/guide-issues.html):** Felder, Hierarchie, Verknüpfungen, Klonen, Archivieren und Export.
+- **[Auf dem Laufenden bleiben](/de/guide-notifications.html):** Was Erwähnungen, Antworten und Änderungen auslösen und wie du es leiser stellst.
+- **[Dokumentation schreiben](/de/guide-knowledge.html):** Wenn aus einer Diskussion ein Artikel werden sollte.
+- **[Auf dem Handy](/de/guide-mobile.html):** Composer, Auswahl und Vorschau auf kleinem Bildschirm.
+- **[Download](/de/download.html):** Was jede Plattform kann, inklusive Audiopaketen für Linux.

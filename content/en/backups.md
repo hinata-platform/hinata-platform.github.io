@@ -1,25 +1,23 @@
 ---
 title: Backups & upgrades
-description: Operate a Hinata stack over time — back up MongoDB, MinIO and your secrets, restore safely, and upgrade or roll back the server and app without touching the data services.
+description: Back up MongoDB, MinIO and your secrets, restore them, and upgrade or roll back the server and app without touching the data services.
 ---
 
 # Backups & upgrades
 
-Standing a Hinata stack up is a one-time job; keeping it healthy is the ongoing
-one. Three things carry all your state — **MongoDB** (all data), **MinIO/S3**
-(attachments and avatars) and your **secrets** (`.env`, the Mongo keyfile and the
-X.509 PKI). Back up all three, and know how to bump image tags without recreating
-the data services. This page covers exactly that.
+All your state lives in three places. Back up all three:
 
-!!! danger "The three things that will ruin your day if lost"
-    - **`HINATA_JWT_SECRET`** — lose it and every issued token becomes invalid;
-      **all users are logged out** and must sign in again.
-    - **The Mongo keyfile + X.509 PKI** (`deploy/mongo-keyfile`, `deploy/x509/prod`)
-      — lose them and the replica set can't authenticate members and the server
-      can't connect. **Auth breaks.** These are not regenerable to match existing
-      data.
-    - **`MONGO_ROOT_PASSWORD` / `MINIO_ROOT_PASSWORD`** — lose them and you can't
-      administer the databases you just restored.
+- **MongoDB:** all data
+- **MinIO/S3:** attachments and avatars
+- **Secrets:** `.env`, the Mongo keyfile and the X.509 PKI
+
+Upgrades only bump image tags. The data services are never recreated.
+
+!!! danger "Secrets you must never lose"
+
+    - **`HINATA_JWT_SECRET`:** without it every issued token becomes invalid. **All users are logged out** and must sign in again.
+    - **The Mongo keyfile and X.509 PKI** (`deploy/mongo-keyfile`, `deploy/x509/prod`): without them the replica set can't authenticate its members and the server can't connect. **Auth breaks.** You cannot regenerate them to match existing data.
+    - **`MONGO_ROOT_PASSWORD` / `MINIO_ROOT_PASSWORD`:** without them you can't administer the databases you just restored.
 
     A database backup without these secrets is only half a backup.
 
@@ -35,10 +33,7 @@ the data services. This page covers exactly that.
 
 ## Backing up MongoDB
 
-Production runs a replica set with **TLS + X.509**, so `mongodump` must speak TLS
-and authenticate. The simplest reliable approach is to run it **inside** a Mongo
-container with the SCRAM root account (the same credentials the healthcheck and
-`init-prod-user.sh` use), dumping to a mounted path.
+Production uses **TLS + X.509**, so `mongodump` must speak TLS and authenticate. The simplest way is to run it **inside** a Mongo container with the SCRAM root account, the same credentials the healthcheck and `init-prod-user.sh` use.
 
 ```bash
 # Dump the 'hinata' database from the primary, over TLS, into ./backups on the host
@@ -53,19 +48,14 @@ docker exec hinata-mongo1-1 sh -c '
     --archive' > "backups/hinata-$(date +%F).archive"
 ```
 
-This streams a single compressed-friendly archive to the host. Adjust the
-container name to match your project (`docker compose ps` shows it — the compose
-project is named `hinata`).
+This streams a single archive that compresses well to the host. Adjust the container name: `docker compose ps` shows it, and the compose project is named `hinata`.
 
 !!! tip "Dumping against a live replica set is safe"
-    `mongodump` reads a consistent snapshot without stopping the server, so you
-    can run it on a schedule against the running primary. There's no need to take
-    the stack offline for a backup.
+    `mongodump` reads a consistent snapshot while the server runs. You can schedule it against the primary without taking the stack offline.
 
 ## Backing up MinIO / S3
 
-Attachments and avatars live in the S3 bucket, not in MongoDB — Mongo only stores
-the object keys. Back up the bucket separately with the MinIO client `mc`:
+Attachments and avatars live in the S3 bucket. MongoDB only stores the object keys. Back up the bucket with the MinIO client `mc`:
 
 ```bash
 # Configure an alias for your MinIO once (use your MINIO_ROOT_USER / _PASSWORD)
@@ -75,13 +65,11 @@ mc alias set hinata http://127.0.0.1:9000 "$MINIO_ROOT_USER" "$MINIO_ROOT_PASSWO
 mc mirror --overwrite --remove hinata/hinata ./backups/minio/hinata
 ```
 
-For off-site durability, mirror to another S3 target (e.g. a second MinIO or a
-cloud bucket) instead of a local path. See [Object storage (S3/MinIO)](/en/storage.html).
+For an off-site copy, mirror to another S3 target, such as a second MinIO or a cloud bucket. See [Object storage (S3/MinIO)](/en/storage.html).
 
 ## Backing up secrets & PKI
 
-These are small, static and irreplaceable — copy them somewhere safe (a secrets
-manager, an encrypted vault):
+These files are small and irreplaceable. Keep them somewhere safe, such as a secrets manager or an encrypted vault:
 
 ```bash
 # From the server repo root
@@ -92,18 +80,15 @@ tar czf backups/hinata-secrets-$(date +%F).tar.gz \
 ```
 
 !!! warning "Store secrets separately from data dumps"
-    Keep the secrets archive in a different, access-controlled location from your
-    MongoDB/MinIO dumps. Anyone with `.env` + the PKI + a data dump has your whole
-    platform. Encrypt at rest and restrict who can read it.
+    Keep the secrets archive in a different, access-controlled place from your MongoDB and MinIO dumps. Anyone with `.env`, the PKI and a data dump has your whole platform. Encrypt it at rest and restrict who can read it.
 
 ## A recommended cron backup
 
-Put the three backups behind one script and schedule it. This keeps 14 daily
-snapshots and prunes older ones:
+One script for all three backups. It keeps 14 daily snapshots and prunes older ones:
 
 ```bash
 #!/usr/bin/env bash
-# /opt/hinata/backup.sh — run daily via cron
+# /opt/hinata/backup.sh: run daily via cron
 set -euo pipefail
 cd /opt/hinata/hinata-server
 DEST="/opt/hinata/backups/$(date +%F)"
@@ -135,8 +120,7 @@ find /opt/hinata/backups -maxdepth 1 -type d -mtime +14 -exec rm -rf {} +
 
 ## Restoring
 
-The high-level order is: **restore secrets → bring up Mongo + MinIO → restore
-data → start the server + app**.
+The order: **restore secrets → start Mongo and MinIO → restore data → start the server and app**.
 
 ```bash
 # 1) Restore secrets & PKI into the repo (so the cluster can authenticate)
@@ -162,15 +146,11 @@ docker compose up -d hinata-server hinata-app
 ```
 
 !!! note "Restore onto matching PKI"
-    Because the X.509 subject DN is registered as a Mongo user, restore your data
-    onto the **same** PKI you backed up (or re-register the DN with
-    `./deploy/x509/init-prod-user.sh`). Restoring data with a mismatched
-    certificate leaves the server unable to authenticate.
+    The X.509 subject DN is registered as a Mongo user. Restore onto the **same** PKI you backed up, or re-register the DN with `./deploy/x509/init-prod-user.sh`. Otherwise the server can't authenticate.
 
 ## Upgrading
 
-Upgrades are just an image-tag bump. The server and app are pulled from GHCR; the
-data services (Mongo, MinIO) stay exactly as they are.
+An upgrade is just an image tag bump. The server and app come from GHCR, and the data services (Mongo, MinIO) stay as they are.
 
 ```bash
 # 1) Pin the versions you want (in .env)
@@ -185,19 +165,18 @@ docker compose up -d --no-deps hinata-server hinata-app
 ```
 
 !!! danger "Never recreate or prune the data services on an upgrade"
-    A production redeploy touches **only** `hinata-server` and `hinata-app`. Keep
-    the MongoDB replica set and MinIO **online** — do not run a full
-    `docker compose up` that recreates every service, and never pass a
-    prune/down-and-up that could wipe the `mongo*-data` or `minio-data` volumes.
-    Use `--no-deps` so Compose doesn't restart Mongo/MinIO as dependencies.
+    A production redeploy touches **only** `hinata-server` and `hinata-app`. The MongoDB replica set and MinIO stay **online**.
+
+    - Don't run a full `docker compose up` that recreates every service.
+    - Never run a prune or down and up that could wipe the `mongo*-data` or `minio-data` volumes.
+    - Use `--no-deps` so Compose doesn't restart Mongo and MinIO as dependencies.
 
 !!! tip "Take a backup right before upgrading"
-    Run your backup script first. A fresh MongoDB dump plus the current `.env`
-    lets you roll back instantly if a new tag misbehaves.
+    Run your backup script first. With a fresh MongoDB dump and the current `.env` you can roll back right away if a new tag misbehaves.
 
 ### Rolling back
 
-Rollback is the same operation with the previous tag:
+The same steps with the previous tag:
 
 ```bash
 # Set HINATA_SERVER_TAG / HINATA_APP_TAG back to the last known-good release, then:
@@ -205,12 +184,11 @@ docker compose pull hinata-server hinata-app
 docker compose up -d --no-deps hinata-server hinata-app
 ```
 
-Because you pin explicit tags rather than relying on `latest`, a known-good
-version is always one edit away.
+With explicit tags instead of `latest`, a working version is always one edit away.
 
 ## Health checks
 
-After any upgrade or restore, confirm the server is up before declaring victory:
+After every upgrade or restore, check that the server is up:
 
 ```bash
 # Local (inside the host)
@@ -221,14 +199,11 @@ curl -s http://127.0.0.1:3356/actuator/health
 curl -s https://api.track.example.com/actuator/health
 ```
 
-`/actuator/health` is a public endpoint (no token) and is ideal for orchestrator
-liveness/readiness probes. A `DOWN` status usually points at MongoDB or MinIO
-connectivity — check that the data services are running and that your PKI and
-credentials match.
+`/actuator/health` needs no token and works well for orchestrator liveness and readiness probes. `DOWN` usually means MongoDB or MinIO can't be reached. Check that the data services are running and that your PKI and credentials match.
 
 ## Next steps
 
-- [Production deployment](/en/deployment.html) — the full stack and deploy flow
-- [Configuration reference](/en/configuration.html) — every environment variable
-- [MongoDB & X.509](/en/database.html) — the replica set and PKI in depth
-- [Object storage (S3/MinIO)](/en/storage.html) — buckets, keys and presigned downloads
+- [Production deployment](/en/deployment.html): the full stack and deploy flow
+- [Configuration reference](/en/configuration.html): every environment variable
+- [MongoDB & X.509](/en/database.html): the replica set and PKI in depth
+- [Object storage (S3/MinIO)](/en/storage.html): buckets, keys and presigned downloads

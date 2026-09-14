@@ -1,334 +1,165 @@
 ---
 title: Zeit erfassen
-description: Arbeit an einem Vorgang erfassen, die richtige Tätigkeitsart wählen, Aufwand gegen Schätzung lesen und den Stundenzettel schnell füllen.
+description: Arbeitszeit an Vorgängen erfassen, korrigieren und im Stundenzettel prüfen.
 ---
 
 # Zeit erfassen
 
-Die Zeiterfassung in Hinata ist bewusst klein gehalten. Du erfasst eine Dauer an
-dem Vorgang, an dem du gearbeitet hast, sagst dazu, welche Art von Arbeit es war
-— und das war das ganze Ritual. Alles andere — dein Stundenzettel, das
-Fokuszeit-Diagramm auf deiner Startseite, die Aufwandsauswertung in den Berichten
-— entsteht aus diesen Einträgen. Kein zweites Werkzeug, keine separate Tabelle,
-nichts, was am Monatsende abgeglichen werden muss.
-
-Das heißt aber auch: Die Zahlen sind nur so gut wie das Erfassen. Auf dieser
-Seite geht es darum, das Erfassen billig genug zu machen, dass du es wirklich
-tust.
+Du erfasst eine Dauer am Vorgang und wählst die Art der Arbeit. Daraus entstehen dein Stundenzettel, die Fokuszeit auf deiner Startseite und die Aufwandsauswertung in den Berichten.
 
 ## Zeit an einem Vorgang erfassen
 
-Öffne den Vorgang, an dem du gearbeitet hast, und suche die Karte **Timeline** —
-sie enthält Start- und Fälligkeitsdatum, die Zeile mit Aufwand gegen Schätzung
-und die letzten Arbeitseinträge. In einem breiten Fenster steht sie in der
-rechten Spalte unter Details, auf dem Handy weiter unten auf der Seite. Oben
-rechts auf dieser Karte steht **Zeit erfassen**.
-
-Tippe darauf, und ein kleines Glass-Sheet fährt hoch.
+1. Öffne den Vorgang und suche die Karte **Timeline**. Im breiten Fenster steht sie rechts unter Details, auf dem Handy weiter unten.
+2. Tippe oben rechts auf der Karte auf **Zeit erfassen**.
+3. Trag die Dauer ein und drücke **Speichern**.
 
 ![Das Sheet „Zeit erfassen“](/assets/img/shot-time-log.png)
-*„Zeit erfassen“, ausgefüllt: „Stunden“ und „Minuten“ als zwei getrennte Felder — hier 1 und 30 —, „Tätigkeitsart“ auf „Testen“, ein „Datum“, das auf heute steht, und eine „Notiz (optional)“. Pflicht ist nur die Dauer; die Notiz ist das Feld, das die fünf Sekunden extra wert ist.*
+*Das ausgefüllte Sheet mit 1 Stunde 30 Minuten und der Tätigkeitsart „Testen“.*
 
-Drücke **Speichern**, und der Eintrag ist sofort erfasst. Der Aufwand am Vorgang
-steigt, der Eintrag erscheint in der Liste unten auf der Timeline-Karte, und dein
-Stundenzettel für diese Woche bekommt die Minuten gutgeschrieben.
+Pflicht ist nur die Dauer, die Notiz ist optional. Nach dem Speichern steigt der Aufwand am Vorgang, der Eintrag erscheint auf der Karte und dein Stundenzettel zählt ihn mit.
 
-!!! tip "Die Zwei-Felder-Dauer ist schneller, als sie aussieht"
-    Die Felder starten bei `1` und `0`, eine glatte Stunde ist also einen Tipp
-    entfernt. Lass **Stunden** auf `1` und tippe `30` in **Minuten** für
-    anderthalb Stunden; für einen 20-Minuten-Job setzt du **Stunden** auf `0` und
-    schreibst `20` in **Minuten**. Sie nehmen nur Ziffern an — es gibt also kein
-    Format zu merken.
-
-Dasselbe Sheet auf dem Handy:
+!!! tip "Dauer schnell eintippen"
+    **Stunden** startet bei `1`, **Minuten** bei `0`. Für anderthalb Stunden tippst du `30` in **Minuten**. Für 20 Minuten setzt du **Stunden** auf `0` und **Minuten** auf `20`. Die Felder nehmen nur Ziffern an.
 
 ![Das Sheet „Zeit erfassen“ auf dem Handy](/assets/img/shot-mobile-time-log.png)
-*Auf dem Handy fährt das Sheet von der Unterkante hoch, die Felder nehmen die volle Breite, und der Vorgang dahinter tritt abgeblendet zurück. „Stunden“ und „Minuten“ bleiben nebeneinander — eine Dauer wird also genau so eingetippt wie auf dem Desktop.*
+*Auf dem Handy fährt das Sheet von unten hoch, Stunden und Minuten bleiben nebeneinander.*
 
 ### Was du eingeben kannst und was nicht
 
-- **Ein einzelner Eintrag muss mindestens eine Minute und darf höchstens 24
-  Stunden umfassen.** Wenn du wirklich über Mitternacht durchgearbeitet hast,
-  erfasse zwei Einträge an den beiden Tagen, zu denen sie gehören — das ist
-  ohnehin genauer.
-- **Du kannst bis zu ein Jahr rückdatieren** — und keine Zeit in der Zukunft
-  erfassen. Die Zeiterfassung hält fest, was passiert ist, nicht, was du
-  vorhast; dafür sind [Start- und Fälligkeitsdatum](/de/guide-timeline.html) da.
-- **Einträge addieren sich.** Zweimal am selben Tag am selben Vorgang zu
-  erfassen ist völlig normal und ergibt zwei Zeilen statt einer größeren.
+- Ein Eintrag dauert mindestens eine Minute und höchstens 24 Stunden. Arbeit über Mitternacht teilst du auf zwei Tage auf.
+- Du kannst bis zu ein Jahr rückdatieren, aber nichts in der Zukunft erfassen. Für Pläne gibt es [Start- und Fälligkeitsdatum](/de/guide-timeline.html).
+- Mehrere Einträge am selben Tag und Vorgang sind normal und addieren sich.
 
 ![Der Datumsauswähler im Sheet „Zeit erfassen“](/assets/img/shot-time-date.png)
-*Beide Datumsregeln sind gezeichnet statt beim Speichern erzwungen: Der Auswähler öffnet auf heute, heute ist der letzte wählbare Tag, alles danach ist ausgegraut. Nach hinten endet er 365 Tage zurück.*
+*Der Auswähler öffnet auf heute, graut die Zukunft aus und reicht 365 Tage zurück.*
 
 ### Die Eintragsliste
 
 ![Die Timeline-Karte eines Vorgangs mit ihren Arbeitseinträgen](/assets/img/shot-time-entries.png)
-*Die Timeline-Karte vollständig: Start- und Fälligkeitsdatum, die Zeile mit Aufwand gegen Schätzung, darunter die acht jüngsten Arbeitseinträge — Dauer · Tätigkeitsart, rechts das Datum.*
+*Die Karte Timeline mit Aufwandszeile und den acht jüngsten Einträgen.*
 
-Das sind die Einträge aller Beteiligten, nicht nur deine, und genau das willst
-du, wenn du herausfinden willst, warum eine Aufgabe, die einen Tag dauern
-sollte, drei verschlungen hat. Von fremden Einträgen siehst du die Arbeit: wie
-lange sie gedauert hat und welcher Art sie war. Wem sie gehört und welche Notiz
-dransteht, steht an deinen eigenen Einträgen — und bei der Projektleitung, die
-sie korrigieren kann.
+Jede Zeile zeigt Dauer · Tätigkeitsart und rechts das Datum. Die Liste enthält die Einträge aller Beteiligten.
 
-!!! note "Warum am Eintrag einer Kollegin kein Name steht"
-    Stunden an einem Vorgang beantworten eine Frage über den Vorgang. Ein Name
-    und ein Datum an jedem einzelnen beantworten eine andere, nämlich eine über
-    eine Person — und eine laufende Aufzeichnung, wer wann wie lange gearbeitet
-    hat, ist genau die Auswertung von Beschäftigtendaten, die bewusst eingeführt
-    werden muss statt standardmäßig zu laufen, mit Betriebsvereinbarung, wo eine
-    gilt. Eine Betreiber-Richtlinie, die das für Projektleitungen öffnet, kommt
-    noch; bis dahin gilt für alle dieselbe Antwort.
+- Bei fremden Einträgen siehst du nur Dauer und Tätigkeitsart.
+- Name und Notiz siehst du an deinen eigenen Einträgen. Die Projektleitung sieht sie auch und kann Einträge korrigieren.
 
-Die Karte zeigt die jüngsten Einträge; darunter öffnet **Alle Einträge (24)** ein
-Sheet mit der vollständigen Historie und der bisher erfassten Gesamtzeit, das
-beim Scrollen weitere Seiten nachlädt. Ein Vorgang, an dem seit einem Jahr
-gearbeitet wird, öffnet damit genauso schnell wie einer mit zwei Einträgen.
+!!! note "Warum an fremden Einträgen kein Name steht"
+    Name und Datum an jedem Eintrag ergäben eine Aufzeichnung, wer wann wie lange gearbeitet hat. So eine Auswertung von Beschäftigtendaten muss bewusst eingeführt werden, wo nötig mit Betriebsvereinbarung. Eine Richtlinie für Betreiber, die das für Projektleitungen freigibt, ist geplant. Bis dahin gilt die Regel für alle.
+
+**Alle Einträge (24)** unter der Liste öffnet die ganze Historie mit der bisher erfassten Gesamtzeit. Weitere Einträge laden beim Scrollen nach.
 
 ## Die richtige Tätigkeitsart wählen
 
-Die sechs Tätigkeitsarten sind fest — und zwar mit Absicht. Eine kurze,
-gemeinsame Liste sorgt dafür, dass „Testen“ auch in einem halben Jahr für alle
-dasselbe bedeutet und die Zahlen sich tatsächlich addieren lassen.
+Es gibt sechs feste Tätigkeitsarten. So bedeuten sie für alle dasselbe und die Zahlen lassen sich addieren.
 
 ![Das Menü „Tätigkeitsart“](/assets/img/shot-time-activity.png)
-*Das Menü „Tätigkeitsart“, geöffnet. Sechs Einträge und kein „Sonstiges“ — die Liste ist das ganze Vokabular, und genau deshalb lässt sich in einem Bericht überhaupt etwas addieren.*
+*Das Menü „Tätigkeitsart“ mit sechs Einträgen und ohne „Sonstiges“.*
 
-- **Entwicklung** — die Sache selbst schreiben und verändern.
-- **Testen** — sie überprüfen, manuell oder indem du Tests baust.
-- **Dokumentation** — sie aufschreiben, in der [Wissensdatenbank](/de/guide-knowledge.html) oder anderswo.
-- **Design** — entscheiden, wie sie aussehen oder sich verhalten soll.
-- **Meeting** — Zeit mit anderen Menschen, zu diesem Vorgang.
-- **Support** — jemand anderem helfen, die Sache zu nutzen oder wieder
-  weiterzukommen.
+- **Entwicklung**: die Sache bauen und ändern.
+- **Testen**: sie prüfen, von Hand oder mit Tests.
+- **Dokumentation**: sie aufschreiben, in der [Wissensdatenbank](/de/guide-knowledge.html) oder anderswo.
+- **Design**: festlegen, wie sie aussieht oder sich verhält.
+- **Meeting**: Zeit mit anderen zu diesem Vorgang.
+- **Support**: anderen helfen, die Sache zu nutzen oder weiterzukommen.
 
-Die Tätigkeitsart ist es, die den Bericht **Zeit pro Tätigkeit** aussagekräftig
-macht. Ein Team, das feststellt, dass es mehr Stunden in Meetings über ein
-Feature gesteckt hat als in dessen Bau, hat etwas Nützliches gelernt — aber nur,
-wenn alle Meetings auch als Meetings erfassen.
-
-!!! note "Deine Sprache, ein gemeinsamer Wert"
-    Die Tätigkeitsnamen sind in der App übersetzt — englischsprachige Kolleginnen
-    und Kollegen sehen *Development*, *Testing*, *Documentation*. Darunter liegt
-    ein gemeinsamer Wert, ein Bericht liest sich also gleich, egal in welcher
-    Sprache wer erfasst hat.
+Daraus entsteht der Bericht **Zeit pro Tätigkeit**. Er stimmt nur, wenn alle Meetings auch als Meeting erfassen. In der englischen App heißen die Arten *Development*, *Testing* und so weiter. Dahinter steckt derselbe Wert, Berichte zählen also sprachunabhängig.
 
 ## Schätzung, Aufwand und der Unterschied dazwischen
 
-Die Timeline-Karte trägt eine Zeile, die still sehr viel leistet — das
-`9h 30m von 10h aufgewendet` in [der Eintragsliste](#die-eintragsliste) weiter
-oben.
+Die Karte **Timeline** zeigt eine Zeile wie `9h 30m von 10h aufgewendet` (siehe [die Eintragsliste](#die-eintragsliste)).
 
-Die erste Zahl ist die Summe aller Arbeitseinträge an diesem Vorgang, von allen
-Beteiligten. Die zweite ist die **Zeitschätzung** des Vorgangs — die
-ursprüngliche Annahme, wie lange die ganze Sache dauert. Zuzusehen, wie die erste
-Zahl auf die zweite zuläuft, ist die früheste ehrliche Warnung, die du bekommst.
+- Die erste Zahl ist die Summe aller Einträge am Vorgang, von allen Beteiligten.
+- Die zweite ist die **Zeitschätzung**, die ursprüngliche Annahme für die ganze Aufgabe.
 
-Wo ein Vorgang eine Zeitschätzung trägt, taucht sie an zwei weiteren Stellen auf:
+Nähert sich die erste Zahl der zweiten, wird es knapp. Eine Zeitschätzung siehst du außerdem:
 
-- **Auf einer Board-Karte** als kleiner Timer-Chip mit dem bisher aufgewendeten
-  Aufwand — so siehst du Aufwand anwachsen, ohne etwas zu öffnen.
-- **In der [Timeline-Ansicht](/de/guide-timeline.html)** als gefüllter Anteil im
-  Balken des Vorgangs. Ein Balken, der optisch voll ist, während im Kalender noch
-  Tage übrig sind, sagt dir, dass die Schätzung optimistisch war.
+- **Auf der Karte im Board** als kleiner Chip mit dem bisherigen Aufwand.
+- **In der [Timeline](/de/guide-timeline.html)** als gefüllter Anteil im Balken. Ist er voll, obwohl noch Tage übrig sind, war die Schätzung zu optimistisch.
 
 !!! note "Eine Schätzung ist kein Story Point"
-    Der Auswähler **Schätzen**, dem du in der Sprint-Planung begegnest — das Deck
-    mit den Fibonacci-Karten — setzt **Story Points**, eine relative Größe für
-    Planung und Velocity. Das ist ein anderes Feld als die Zeitschätzung, und es
-    ist das, das die meisten Teams im Alltag nutzen. Hat niemand eine
-    Zeitschätzung gesetzt, steht dort schlicht `9h 30m von — aufgewendet`
-    — und das ist in Ordnung. Deine erfasste Zeit zählt überall sonst trotzdem.
+    **Schätzen** in der Sprintplanung (die Karten mit Fibonacci-Zahlen) setzt **Story Points**, eine relative Größe für Planung und Velocity. Das ist ein anderes Feld als die Zeitschätzung, und die meisten Teams nutzen es im Alltag. Ohne Zeitschätzung steht dort `9h 30m von — aufgewendet`. Deine erfasste Zeit zählt trotzdem überall.
 
 ## Der wöchentliche Stundenzettel
 
-**Stundenzettel** in der Seitenleiste ist die Wochenansicht über alles, was
-erfasst wurde. Auf dem Handy liegt sie hinter dem Tab **Mehr**.
+**Stundenzettel** findest du in der Seitenleiste, auf dem Handy unter **Mehr**.
 
 ![Der Hinata-Stundenzettel mit einer Woche und ihrer Navigation](/assets/img/shot-timesheet.png)
-*Die Seite „Stundenzettel“. Eine Zeile je Person und Projekt — fünf Personen über MOB, HIN und INF, bis hin zu den beiden mit je einem einzigen Eintrag —, eine Spalte je Tag von Montag bis Sonntag, am Ende jeder Zeile eine __Gesamt__-Spalte und ein Strich, wo nichts erfasst wurde. Die angezeigte Woche steht oben rechts zwischen ihren beiden Pfeilen.*
+*Eine Woche im Stundenzettel, eine Zeile je Person und Projekt.*
 
 ### Eine Zeile lesen
 
-Jede **Zeile** ist eine Person in einem Projekt. Die Tage laufen von Montag bis
-Sonntag und enden in einer Spalte **Gesamt** für die Zeile; ein Tag ohne
-Einträge zeigt einen Strich statt einer Null, damit die Tage hervorstechen, an
-denen du wirklich gearbeitet hast.
-
-Das Projekt wird aus dem Vorgang abgeleitet: Wenn du diese Woche an drei
-Projekten gearbeitet hast, bekommst du drei Zeilen, ohne dass jemand etwas von
-Hand verschlagworten muss. Genau darum geht es — die Frage „Wo ist meine Woche
-hin?“ wird beantwortet.
+- Jede Zeile ist eine Person in einem Projekt. Das Projekt kommt automatisch aus dem Vorgang.
+- Die Spalten laufen von Montag bis Sonntag, am Ende steht **Gesamt**.
+- Tage ohne Einträge zeigen einen Strich statt einer Null.
 
 ### Zwischen Wochen wechseln
 
-Der Wochenbereich steht oben rechts auf der Seite, mit je einem Chevron links und
-rechts. Die Pfeile springen eine Woche zurück oder vor. Wochen beginnen immer
-montags, das Raster passt also zu der Art, wie die meisten Menschen über eine
-Woche sprechen — und eine Sonntagssitzung landet am Ende der Woche, zu der sie
-gehörte, statt am Anfang der nächsten.
-
-**Heute** im Seitenkopf holt dich von überall in die laufende Woche zurück und
-liest sie dabei neu ein — die Schaltfläche ist also zugleich der
-Aktualisieren-Knopf. Sie leuchtet nur auf, wenn du tatsächlich woanders bist.
+- Die Woche steht oben rechts. Die Pfeile daneben springen eine Woche zurück oder vor.
+- Wochen beginnen am Montag. Arbeit vom Sonntag landet am Ende ihrer Woche.
+- **Heute** im Seitenkopf springt zur aktuellen Woche und lädt sie neu. Der Knopf ist nur aktiv, wenn du eine andere Woche ansiehst.
 
 ### Wessen Zeit du siehst
 
-Dein Stundenzettel zeigt **deine eigene** Arbeit, und der Server setzt das durch,
-statt dass die Seite den Rest nur ausblendet: Wer nach fremden Stunden fragt,
-bekommt eine Absage, nicht stillschweigend die eigenen. Administratorinnen und
-Administratoren sehen alle Zeilen — das macht die Seite für eine Teamleitung beim
-Rückblick auf eine Woche nützlich — und haben zwei durchsuchbare Filter, einen
-für die Person und einen fürs Projekt, um eine volle Woche auf die Frage
-einzugrenzen, die sie wirklich haben. Niemand sonst kann hier deine Stunden
-durchblättern.
+- Du siehst nur **deine eigene** Arbeit. Der Server lehnt Anfragen nach fremden Stunden ab.
+- Administratorinnen und Administratoren sehen alle Zeilen. Sie haben je einen durchsuchbaren Filter für Person und Projekt.
 
-Zeit, die an einem inzwischen verschobenen Vorgang erfasst wurde oder deren
-Projekt es nicht mehr gibt, gehört weiter dir und wird weiter angezeigt —
-gesammelt unter **Nicht zugeordnet**.
+Zeit an einem verschobenen Vorgang oder einem Projekt, das es nicht mehr gibt, bleibt deine. Sie steht unter **Nicht zugeordnet**.
 
 !!! note "Leer heißt nicht kaputt"
-    „In dieser Woche wurden keine Arbeitszeiten erfasst“ bedeutet genau das — in
-    der Woche, die du gerade ansiehst, wurde nichts erfasst. Geh mit dem linken
-    Pfeil eine Woche zurück, bevor du annimmst, dass etwas nicht stimmt.
+    „In dieser Woche wurden keine Arbeitszeiten erfasst“ gilt nur für die angezeigte Woche. Geh mit dem linken Pfeil zurück, bevor du einen Fehler vermutest.
 
 ## Eine Woche schnell füllen
 
-Der Trick zu einem Stundenzettel, der die Realität abbildet, ist, ihn nie als
-Stundenzettel auszufüllen. Erfasse unterwegs, aus dem Vorgang heraus, an dem du
-gerade gearbeitet hast — dann setzt sich die Woche von selbst zusammen.
-
-**Erfasse in dem Moment, in dem du aufhörst, nicht am Ende des Tages.** Du bist
-ohnehin schon im Vorgang. Das Sheet kostet vier Tipps.
-
-**Hol dir einen ganzen gestrigen Tag in einer Sitzung zurück.** Wenn dir doch
-einmal ein Tag verloren geht, öffne jeden Vorgang, den du angefasst hast, erfasse
-dort und stelle das **Datum** auf gestern. Du rekonstruierst aus den Vorgängen
-selbst, und das ist deutlich genauer als aus der Erinnerung.
-
-**Lass deine Commits die Arbeit machen.** Ist dein Projekt mit einem
-Git-Repository verbunden und sind Smart Commits aktiv, erfasst ein Trailer in der
-Commit-Nachricht die Arbeit, ohne dass du den Editor verlässt:
+- **Erfasse, sobald du aufhörst.** Du bist schon im Vorgang, das Sheet braucht vier Tipps.
+- **Gestern vergessen?** Öffne die Vorgänge von gestern, erfasse dort und stell das **Datum** auf gestern.
+- **Erfasse per Commit.** Ist dein Projekt mit einem Git-Repository verbunden und sind Smart Commits aktiv, reicht diese Zeile in der Nachricht:
 
 ```text
 MOB-42 #time 2h 30m
 ```
 
-Dauern verstehen `w`, `d`, `h` und `m` und folgen der üblichen Konvention, dass
-ein Tag acht Stunden und eine Woche fünf Tage hat — `1d 4h` sind also zwölf
-Stunden. Ob das zur Verfügung steht, hängt davon ab, ob eine Administratorin oder
-ein Administrator dein Projekt mit einem Repository verbunden hat; siehe
-[Git-Integration](/de/git-integration.html).
+Erlaubt sind `w`, `d`, `h` und `m`. Ein Tag hat 8 Stunden, eine Woche 5 Tage, `1d 4h` sind also zwölf Stunden. Das Repository verbindet eine Administratorin oder ein Administrator, siehe [Git-Integration](/de/git-integration.html).
 
-Ein Trailer erzeugt einen echten Arbeitseintrag, und zwar für **die Autorin oder
-den Autor des Commits** — aufgelöst über die Autor-E-Mail, die Git ohnehin
-mitführt. Er landet damit auf deren Stundenzettel, in deren Fokuszeit-Diagramm
-und im Bericht „Zeit pro Tätigkeit“, genau wie ein in der App getippter Eintrag.
-Datiert wird er auf den Tag, an dem der Commit geschrieben wurde, in der
-Zeitzone dieser Person; die Notiz hält die kurze SHA und die Commit-Betreffzeile
-fest, sodass sich jeder Eintrag zu seiner Arbeit zurückverfolgen lässt. Ohne
-ausdrückliche Tätigkeitsart zählt er als **Entwicklung**.
+Der Eintrag gehört **der Autorin oder dem Autor des Commits**, erkannt an der E-Mail-Adresse im Commit. Er erscheint in deren Stundenzettel, Fokuszeit und im Bericht „Zeit pro Tätigkeit“. Datum ist der Tag des Commits in der Zeitzone dieser Person. Die Notiz enthält kurze SHA und Betreffzeile. Ohne Tätigkeitsart zählt er als **Entwicklung**.
 
-!!! note "Ein Commit bucht nur auf ein Konto, das er erkennt"
-    Die Autor-E-Mail muss zu einem aktiven Hinata-Konto gehören, und diese Person
-    muss Mitglied des Projekts sein. Passt sie zu niemandem — ein Commit von
-    einer privaten Adresse, von einem Bot oder von jemandem außerhalb des
-    Projekts —, wird der Trailer übersprungen und im Serverprotokoll vermerkt;
-    es wird gar keine Zeit gebucht. Niemals landet sie bei der Person, die das
-    Repository verbunden hat. Wenn deine Commits nicht auftauchen, schau zuerst
-    auf die Adresse in `git config user.email`.
+!!! note "Ein Commit bucht nur auf ein bekanntes Konto"
+    Die Adresse muss zu einem aktiven Hinata-Konto gehören, und die Person muss Mitglied des Projekts sein. Sonst wird die Zeile übersprungen, im Serverprotokoll vermerkt und keine Zeit gebucht, auch nicht bei der Person, die das Repository verbunden hat. Fehlen deine Commits, prüfe zuerst `git config user.email`.
 
 ## Einen Eintrag korrigieren
 
-Eine falsch getippte Dauer ist nichts mehr, wovor man sich in Acht nehmen müsste.
-Jeder Eintrag auf der Timeline-Karte — und jeder Eintrag im Sheet **Alle
-Einträge** — trägt rechts ein kleines Menü.
+Jeder Eintrag auf der Karte und im Sheet **Alle Einträge** hat rechts ein Menü.
 
-**Eintrag bearbeiten** öffnet dasselbe Sheet, in dem du die Zeit erfasst hast,
-gefüllt mit dem, was gerade drinsteht. Ändere Dauer, Datum, Tätigkeitsart oder
-Notiz, drücke **Speichern**, und der **Aufwand** am Vorgang wird aus seinen
-Einträgen neu berechnet. Die Datumsregeln gelten weiter: nichts in der Zukunft,
-nichts weiter als ein Jahr zurück.
-
-**Löschen** fragt vorher nach — es nennt Dauer und Tag, um die es geht — und
-lässt sich nicht rückgängig machen. Der Eintrag verschwindet, und der **Aufwand**
-am Vorgang sinkt um genau diesen Betrag.
+- **Eintrag bearbeiten** öffnet das Sheet mit den aktuellen Werten. Nach **Speichern** wird der **Aufwand** neu berechnet. Die Datumsregeln gelten weiter.
+- **Löschen** fragt mit Dauer und Tag nach und lässt sich nicht rückgängig machen. Der **Aufwand** sinkt um genau diese Dauer.
 
 ### Wessen Einträge du ändern darfst
 
-- **Deine eigenen**, immer: Bearbeiten und Löschen gehören beide dir.
-- **Fremde**, wenn du das Projekt leitest oder Administratorin bzw. Administrator
-  bist: Du darfst den Eintrag **löschen**, aber nicht umschreiben. Die Stunden
-  einer anderen Person in deren Namen zu korrigieren hinterließe eine Aufzeichnung,
-  die etwas behauptet, das diese Person nie gesagt hat; ihn zu entfernen und um
-  eine neue Erfassung zu bitten hält die Historie ehrlich darüber, wer was
-  geschrieben hat. Jede solche Entfernung steht mit beiden Namen im Audit-Log.
+- **Deine eigenen** darfst du immer bearbeiten und löschen.
+- **Fremde** darfst du als Projektleitung oder Administration löschen, aber nicht bearbeiten. So steht unter einem Namen nie etwas, das die Person nicht selbst erfasst hat. Bitte sie danach, neu zu erfassen. Jede Löschung steht mit beiden Namen im Audit-Protokoll.
 
-!!! tip "Zu wenig erfasst? Dann musst du gar nicht bearbeiten"
-    Einträge am selben Vorgang und Tag addieren sich. Die fehlenden 30 Minuten
-    als zweiten Eintrag zu erfassen liest sich genau wie ein Eintrag über 1h 30m.
-    Bearbeiten ist für eine Dauer da, die schlicht falsch ist, nicht fürs
-    Nachlegen.
+!!! tip "Zu wenig erfasst?"
+    Erfasse die fehlende Zeit als zweiten Eintrag. Einträge am selben Vorgang und Tag addieren sich. Bearbeiten ist für falsche Dauern gedacht.
 
-Eine Sorte Eintrag gehört niemandem: Zeit, die ältere Versionen direkt aus
-`#time`-Commits gebucht haben, bevor Smart Commits echte Einträge schrieben. Sie
-steht als **Smart Commits (vor 2.0)** ohne Namen daneben — die Stunden zählen
-also weiter und bleiben nachvollziehbar. Entfernen kann sie nur eine Projektleitung
-oder die Administration.
+Einträge mit **Smart Commits (vor 2.0)** stammen aus älteren Versionen, die Zeit aus Commits mit `#time` direkt gebucht haben. Sie haben keinen Namen, zählen aber weiter. Entfernen können sie nur Projektleitung oder Administration.
 
 ## Wo deine erfasste Zeit landet
 
-Jeder gespeicherte Eintrag speist fünf verschiedene Stellen — das ist das
-Argument dafür, auch die kleinen Dinge zu erfassen.
-
-**Der Vorgang selbst.** Der Aufwand wird aus allen seinen Einträgen neu berechnet
-und ist damit immer die echte Summe statt eines mitlaufenden Zählers, der
-abdriften kann.
-
-**Fokuszeit auf deiner Startseite.** Das Balkendiagramm auf dem
-[Dashboard](/de/guide-reports.html) zeigt deine eigenen erfassten Minuten der
-letzten sieben Tage, der heutige Balken in Bernstein hervorgehoben. Stell es auf
-**Monat**, und es gruppiert dieselben Daten in die letzten fünf Kalenderwochen.
-Dieses Diagramm zählt ausschließlich *deine* Einträge — es ist ein persönlicher
-Spiegel, keine Team-Rangliste.
-
-**Dein wöchentlicher Stundenzettel**, wie oben beschrieben.
-
-**Der Bericht „Zeit pro Tätigkeit“.** In den [Berichten](/de/guide-reports.html)
-schlüsselt eine Karte die letzten 30 Tage erfasster Zeit eines Projekts nach
-Tätigkeitsart auf, als Dauern statt als Anzahl. Das ist die Team-Sicht auf alles,
-was alle erfasst haben.
-
-**Deine Wochenübersicht.** Die wöchentliche Zusammenfassung enthält eine
-Fokuszeit-Angabe — die Summe, die du über die Woche erfasst hast — neben dem, was
-du abgeschlossen hast. Siehe [Auf dem Laufenden bleiben](/de/guide-notifications.html).
+1. **Am Vorgang**: Der Aufwand wird aus allen Einträgen neu berechnet und ist immer die echte Summe.
+2. **Fokuszeit im [Dashboard](/de/guide-reports.html)**: deine Minuten der letzten sieben Tage, heute in Bernstein. **Monat** zeigt die letzten fünf Kalenderwochen. Es zählt nur *deine* Einträge.
+3. **Dein Stundenzettel**, wie oben beschrieben.
+4. **Bericht „Zeit pro Tätigkeit“** in den [Berichten](/de/guide-reports.html): die Zeit des ganzen Projekts aus den letzten 30 Tagen nach Tätigkeitsart, als Dauer.
+5. **Deine Wochenübersicht**: deine Fokuszeit der Woche neben dem, was du abgeschlossen hast. Siehe [Auf dem Laufenden bleiben](/de/guide-notifications.html).
 
 ## Gewohnheiten, die die Zahlen wertvoll halten
 
-- **Runde sanft, erfinde nicht.** 25 Minuten als 30 zu erfassen, ist in Ordnung.
-  Zwei Stunden als ganzen Tag zu erfassen, ist es nicht — und es vergiftet still
-  jede Schätzung, die das Team danach macht.
-- **Erfasse die Meetings.** Sie sind die Stunden, die am häufigsten unter den
-  Tisch fallen, und die, die man am dringendsten sehen sollte.
-- **Erfasse an dem Stück, an dem du wirklich gearbeitet hast.** Gehört die Arbeit
-  zu einer [Unteraufgabe](/de/guide-issues.html), erfasse sie an der
-  Unteraufgabe. Aufwand bleibt an dem Vorgang, an dem er erfasst wurde — er
-  rollt nicht zum übergeordneten Vorgang hoch —, der gewählte Vorgang trägt die
-  Zahl also für immer.
-- **Erfasse nichts an einem Epic.** Ein Epic ist ein Behälter. Dort erfasste Zeit
-  ist Zeit, die du nichts Konkretem mehr zuordnen kannst und die nie bei der
-  Arbeit auftaucht, die sie tatsächlich verbraucht hat.
-- **Niemand bewertet dich nach Stunden.** Fokuszeit steht auf deinem eigenen
-  Dashboard, und das Team-Ranking zählt gelöste Vorgänge — nicht erfasste
-  Minuten. Erfasse ehrlich; nichts in Hinata belohnt Aufblähen.
+- **Runde maßvoll.** 25 Minuten als 30 sind in Ordnung. Zwei Stunden als ganzer Tag verfälschen jede spätere Schätzung.
+- **Erfasse Meetings.** Sie gehen am häufigsten verloren.
+- **Erfasse am richtigen Vorgang.** Arbeit an einer [Unteraufgabe](/de/guide-issues.html) erfasst du dort. Aufwand wird nicht an den übergeordneten Vorgang weitergegeben.
+- **Erfasse nichts an einem Epic.** Dort lässt sich die Zeit keiner konkreten Arbeit zuordnen.
+- **Niemand bewertet dich nach Stunden.** Fokuszeit steht nur auf deinem eigenen Dashboard. Das Ranking im Team zählt gelöste Vorgänge.
 
-!!! info "Zeiterfassen ist leise"
-    Das Speichern eines Arbeitseintrags benachrichtigt die Beobachter des
-    Vorgangs nicht. Zeiterfassung tickt ständig hoch und würde jede andere
-    Mitteilung ertränken, deshalb ist sie bewusst ausgenommen. Wenn die Stunden
-    eine Nachricht sind — die Sache war dreimal so groß wie gedacht —, sag es in
-    einem [Kommentar](/de/guide-collaboration.html).
+!!! info "Zeiterfassung benachrichtigt niemanden"
+    Beobachter eines Vorgangs erfahren nichts von neuen Einträgen. War die Aufgabe viel größer als gedacht, schreib einen [Kommentar](/de/guide-collaboration.html).
 
 ## Nächste Schritte
 

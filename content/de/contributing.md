@@ -1,40 +1,28 @@
 ---
 title: Mitwirken
-description: Wie du zu Hinata beitragen kannst — die beiden Repositories, Coding-Konventionen, die i18n-Anforderung, der Commit-Stil und wie du Probleme meldest oder einen Pull Request öffnest.
+description: Wie du zu Hinata beiträgst, mit Repositories, Konventionen, Übersetzungen, Commits und Fehlerberichten.
 ---
 
 # Mitwirken
 
-Hinata ist **Open Source unter der GPL-3.0-Lizenz**, und Beiträge sind sehr
-willkommen — Fehlerberichte, Übersetzungen, Doku und Code bringen das Projekt alle
-voran. Diese Seite erklärt, wo der Code liegt, wie du dich einrichtest, und die
-Konventionen, die Pull Requests leicht überprüf- und mergebar halten.
+Hinata ist **Open Source unter der GPL-3.0-Lizenz**. Beiträge sind willkommen: Fehlerberichte, Übersetzungen, Doku und Code.
 
-Du musst kein Experte sein, um zu helfen. Ein klarer Fehlerbericht, das Beheben
-eines Tippfehlers oder eine kleine Verbesserung an einer deutschen Zeichenkette ist
-ein wirklich nützlicher Beitrag.
+Du musst kein Experte sein. Ein klarer Fehlerbericht, ein behobener Tippfehler oder eine bessere deutsche Formulierung helfen schon.
 
 ## Die beiden Repositories
 
-Hinata ist in einen Server und einen Client aufgeteilt, jeder mit eigenem
-Issue-Tracker und eigenen Pull Requests:
+Server und Client haben jeweils eigene Issues und Pull Requests.
 
 | Repository | Was es ist | Link |
 | --- | --- | --- |
 | **hinata-server** | Spring Boot 4 / Java 21 REST-API, MongoDB, S3/MinIO, SMTP. | [github.com/hinata-platform/hinata-server](https://github.com/hinata-platform/hinata-server) |
-| **hinata-app** | Der Flutter-Client — Android, iOS, Web, macOS, Windows und Linux aus einer Codebasis. | [github.com/hinata-platform/hinata-app](https://github.com/hinata-platform/hinata-app) |
+| **hinata-app** | Der Flutter-Client für Android, iOS, Web, macOS, Windows und Linux aus einer Codebasis. | [github.com/hinata-platform/hinata-app](https://github.com/hinata-platform/hinata-app) |
 
-Öffne dein Issue oder deinen Pull Request gegen das Repository, dem der Code
-gehört, den du änderst. Eine Änderung, die beide betrifft (ein neuer Endpunkt plus
-seine UI), sind zwei koordinierte PRs — erwähne jeden im jeweils anderen, damit ein
-Reviewer dem Faden folgen kann.
+Öffne Issue oder PR in dem Repository, dem der geänderte Code gehört. Betrifft eine Änderung beide (etwa ein neuer Endpunkt plus UI), öffnest du zwei PRs und verlinkst sie gegenseitig.
 
 ## Einrichtung
 
-Der schnellste Weg zu einer laufenden Dev-Umgebung ist die Seite
-[Entwicklung](/de/development.html) — sie behandelt JDK 21 und die
-Compose-Infrastruktur für den Server sowie die Flutter-Toolchain für die App, plus
-die genauen Befehle. Kurz gesagt:
+Die vollständige Anleitung steht unter [Entwicklung](/de/development.html): JDK 21 und Compose für den Server, die Flutter-Toolchain für die App. Kurz:
 
 ```bash
 # Server
@@ -46,96 +34,58 @@ flutter pub get
 flutter run
 ```
 
-Bevor du einen PR öffnest, stelle sicher, dass die Quality Gates lokal durchlaufen
-— es sind dieselben Checks, die die CI ausführt:
+Lass vor dem PR lokal dieselben Checks laufen wie die CI:
 
 ```bash
 ./gradlew build                   # Server
 flutter analyze && flutter test   # App
 ```
 
-## Coding-Konventionen
+## Konventionen
 
-- **Passe dich dem umgebenden Code an.** Folge dem Stil, der bereits in der Datei
-  vorhanden ist, die du bearbeitest; formatiere keine unbeteiligten Zeilen neu.
-- **Server** — idiomatisches Spring Boot: Controller bleiben schlank,
-  Geschäftsregeln leben in Services, Datenzugriff in Repositories. Halte
-  Autorisierungsprüfungen und lokalisierte Fehler-Keys dort, wo der bestehende Code
-  sie ablegt.
-- **App** — der feature-first, unidirektionale Fluss, der in
-  [Entwicklung](/de/development.html) beschrieben ist: Screens dispatchen an einen
-  **Bloc/Cubit**, der **`HinataRepository`** aufruft, das den **`ApiClient`** nutzt.
-  Rufe `dio` niemals aus einem Widget auf.
-- **Icons** — die App verwendet **ausschließlich Lucide-Icons**
-  (`lucide_icons_flutter`), niemals Material- oder Cupertino-Icon-Sets.
-- **Halte Änderungen fokussiert.** Eine logische Änderung pro PR lässt sich weit
-  leichter überprüfen als ein großer gemischter Diff.
+- **Passe dich dem umgebenden Code an.** Übernimm den Stil der Datei und formatiere keine unbeteiligten Zeilen um.
+- **Server:** idiomatisches Spring Boot. Controller bleiben schlank, Geschäftsregeln gehören in Services, Datenzugriff in Repositories. Autorisierungsprüfungen und lokalisierte Fehler-Keys legst du dort ab, wo der bestehende Code sie hat.
+- **App:** der nach Features gegliederte Datenfluss in eine Richtung aus [Entwicklung](/de/development.html). Screens rufen einen **Bloc/Cubit** auf, der ruft **`HinataRepository`** auf, und das nutzt den **`ApiClient`**. Rufe `dio` nie aus einem Widget auf.
+- **Icons:** nur **Lucide-Icons** (`lucide_icons_flutter`), nie Material oder Cupertino.
+- **Kleine PRs.** Eine logische Änderung pro PR lässt sich viel leichter prüfen als ein großer, gemischter Diff.
 
-### Die i18n-Anforderung (nicht verhandelbar)
+### Übersetzungen sind Pflicht
 
-Die App ist mehrsprachig und wird mit **Englisch und Deutsch** ausgeliefert. Jede
-für den Benutzer sichtbare Zeichenkette muss als Key in **beiden** Sprachen
-existieren und über die Lokalisierungsschicht aufgelöst werden — niemals fest in
-einem Widget verdrahtet.
+Die App gibt es auf **Englisch und Deutsch**. Jeder sichtbare Text braucht einen Key in **beiden** Sprachen und läuft über die Lokalisierung. Fest in ein Widget geschriebener Text wird nicht angenommen.
 
-!!! warning "Jede neue UI-Zeichenkette braucht einen en- + de-Key"
-    Wenn du Text hinzufügst, füge den Key sowohl zu `assets/i18n/en/` **als auch**
-    zu `assets/i18n/de/` hinzu und rendere ihn über die Übersetzungsfunktion. Ein
-    PR, der eine nackte Zeichenkette einführt oder einen englischen Key ohne sein
-    deutsches Gegenstück hinzufügt, wird zur Korrektur zurückgeschickt. Ein
-    fehlender Key rendert den Benutzern stillschweigend den rohen Key-Namen.
+!!! warning "Jeder neue Text braucht einen Key in en und de"
+    Lege den Key in `assets/i18n/en/` **und** `assets/i18n/de/` an und rendere ihn über die Übersetzungsfunktion. PRs mit festem Text oder ohne deutschen Key gehen zur Korrektur zurück. Fehlt ein Key, sehen Nutzer den rohen Key-Namen.
 
-Wenn du kein Deutsch sprichst, füge trotzdem den deutschen Key hinzu — eine
-Best-Effort-Übersetzung, die ein Reviewer oder ein Muttersprachler verfeinern kann,
-ist weit besser als ein fehlender Key. Siehe
-[Entwicklung → Internationalisierung](/de/development.html).
+Du sprichst kein Deutsch? Leg den deutschen Key trotzdem an. Eine grobe Übersetzung ist viel besser als ein fehlender Key, und jemand kann sie später verbessern. Siehe [Entwicklung → Internationalisierung](/de/development.html).
 
-## Commit- und Pull-Request-Stil
+## Commits und Pull Requests
 
-- Schreibe Commit-Nachrichten im Imperativ und beschreibe die Änderung in
-  **neutralen, produkteigenen Begriffen** — beschreibe, *was das Feature tut*, z. B.
-  „add issue linking“, statt die UI eines anderen Produkts zu benennen.
-- Halte die Betreffzeile kurz; nutze den Text, um das *Warum* zu erklären, wenn es
-  nicht offensichtlich ist.
-- Sage in der PR-Beschreibung, was sich geändert hat und warum, und wie du es
-  verifiziert hast. Verlinke das Issue, das es behandelt. Wenn die Änderung in der
-  UI sichtbar ist, hilft ein Screenshot sehr.
-- Stelle sicher, dass die CI grün ist (Build, Analyze, Tests), bevor du um Review
-  bittest.
+- Schreib Commit-Nachrichten im Imperativ und mit **neutralen Begriffen aus Hinata selbst**. Beschreibe, *was das Feature tut*, z. B. „add issue linking“. Nenne nicht die UI eines anderen Produkts.
+- Halte die Betreffzeile kurz. Das *Warum* gehört in den Text, wenn es nicht offensichtlich ist.
+- Die PR-Beschreibung sagt, was sich geändert hat, warum und wie du es geprüft hast. Verlinke das Issue. Bei sichtbaren Änderungen hilft ein Screenshot sehr.
+- Bitte erst um Review, wenn die CI grün ist (Build, Analyze, Tests).
 
 ## Probleme melden
 
-Ein guter Fehlerbericht spart allen Zeit. Wenn du ein Issue öffnest, gib an:
+Ein gutes Issue enthält:
 
 - **Was du erwartet hast** und **was tatsächlich passiert ist**.
-- **Schritte zur Reproduktion** — je kleiner und präziser, desto besser.
-- **Umgebung** — Server-Image-Tag / App-Version, Plattform (Android, iOS, Web,
-  macOS, Windows, Linux) und alles Relevante zu deinem Deployment (Reverse Proxy,
-  SSO-Provider). Nenne unter Linux zusätzlich die Distribution, die Desktop-Sitzung
-  (GNOME oder Plasma, X11 oder Wayland) und wie du die App installiert hast —
-  Snap, Flatpak, AppImage oder ein eigenes `flutter build linux`. Dateiauswahl,
-  Schlüsselbund und die Audio-Werkzeuge kommen dort alle vom System, deshalb sind
-  diese drei Angaben oft schon der halbe Fehlerbericht.
-- Relevante **Logs oder Fehlermeldungen** — aber **schwärze Secrets** (Tokens,
-  Passwörter, Connection-Strings), bevor du einfügst.
+- **Schritte zur Reproduktion**, so kurz und genau wie möglich.
+- **Umgebung:** Server-Image-Tag bzw. App-Version, Plattform (Android, iOS, Web, macOS, Windows, Linux) und Wichtiges zum Deployment (Reverse Proxy, SSO-Provider).
+- **Unter Linux zusätzlich:** Distribution, Desktopsitzung (GNOME oder Plasma, X11 oder Wayland) und wie du installiert hast (Snap, Flatpak, AppImage oder eigenes `flutter build linux`). Dateiauswahl, Schlüsselbund und Audiowerkzeuge kommen vom System. Diese Angaben sind daher oft schon der halbe Fehlerbericht.
+- **Logs oder Fehlermeldungen**, aber **schwärze vorher Secrets** (Tokens, Passwörter, Connection-Strings).
 
-Prüfe zuerst die [FAQ & Fehlerbehebung](/de/faq.html) — viele „Bugs“ sind
-Konfigurationsprobleme mit bekannter Lösung (CORS, Proxy-Buffering, Mail-Relay,
-Trusted Proxies).
+Schau vorher in die [FAQ & Fehlerbehebung](/de/faq.html). Viele „Bugs“ sind bekannte Konfigurationsprobleme (CORS, Proxy-Buffering, Mail-Relay, Trusted Proxies).
 
-!!! danger "Niemals Secrets in ein öffentliches Issue aufnehmen"
-    Füge keine echten JWT-Secrets, Datenbank-Passwörter, OAuth-Client-Secrets oder
-    Access-Tokens in ein Issue, einen PR oder einen Screenshot ein. Wenn ein Secret
-    offengelegt wurde, rotiere es.
+!!! danger "Niemals Secrets in ein öffentliches Issue"
+    Keine echten JWT-Secrets, Datenbankpasswörter, OAuth-Client-Secrets oder Access-Tokens in Issues, PRs oder Screenshots. Wurde ein Secret offengelegt, rotiere es.
 
 ## Lizenz
 
-Mit deinem Beitrag stimmst du zu, dass deine Beiträge unter der **GPL-3.0**-Lizenz
-des Projekts lizenziert sind, denselben Bedingungen wie der Rest von Hinata. Siehe
-die Datei `LICENSE` in jedem Repository.
+Mit deinem Beitrag stimmst du zu, dass er unter der **GPL-3.0** des Projekts steht, wie der Rest von Hinata. Details stehen in der Datei `LICENSE` jedes Repositorys.
 
 ## Wie es weitergeht
 
-- [Entwicklung](/de/development.html) — vollständiges lokales Setup, Projektstruktur und CI.
-- [API-Referenz](/de/api.html) — die REST-Oberfläche, die du möglicherweise erweiterst.
-- [FAQ & Fehlerbehebung](/de/faq.html) — häufige Probleme und ihre Lösungen.
+- [Entwicklung](/de/development.html): lokales Setup, Projektstruktur und CI.
+- [API-Referenz](/de/api.html): die REST-Schnittstelle, die du vielleicht erweiterst.
+- [FAQ & Fehlerbehebung](/de/faq.html): häufige Probleme und ihre Lösungen.
