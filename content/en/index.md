@@ -1,104 +1,104 @@
 ---
 title: Introduction
-description: Hinata is an open-source, self-hosted project and issue tracker with one published client app for your own server — no user, team or board limits, ever. Meet the platform.
+description: Hinata is an open-source, self-hosted project and issue tracker with no user, team or board limits.
 ---
 
 # Hinata
 
-Hinata is an **independent, open-source, self-hosted project & issue tracker** — a modern alternative to hosted trackers that you run entirely on your own infrastructure. It follows the **one app, self-hosted servers** model: operators run their own server instance, and the single published client app connects to it — with your organization's name and logo applied at runtime. Licensed under **GPL-3.0**, current platform version **{{version}}**.
+Hinata is an open-source project and issue tracker that runs on your own server. One published app connects to your server and picks up your organization's name and logo at runtime.
 
-No user limits. No team limits. No board limits. Ever. What you self-host is yours.
+- License: **GPL-3.0**
+- Current version: **{{version}}**
+- No limits on users, teams or boards
 
 !!! tip "Two ways in"
-    New here? Jump straight to the [Quick start](/en/quick-start.html) to get a stack running in three commands. Ready to run it for real? Head to [Self-hosting](/en/self-hosting.html) for the production path.
+    New here? The [Quick start](/en/quick-start.html) gets a stack running in three commands. For real use, head to [Self-hosting](/en/self-hosting.html).
 
 
 ![Hinata dashboard](/assets/img/shot-dashboard.png)
-*The Hinata dashboard — today's focus, active sprint progress and team performance.*
+*The dashboard with today's focus, sprint progress and team performance.*
 
 ## What is Hinata?
 
-Hinata is a full agile project-management suite: projects and teams, issues with a real Epic → Story → Sub-task hierarchy, agile boards, sprints, a Gantt timeline, time tracking, reports, and a Confluence-style knowledge base. It is built to feel modern and fast, and to be operated by a single team on a single server — or scaled out behind a reverse proxy for an entire organization.
+Everything for agile project management: projects and teams, issues with a hierarchy (Epic → Story → Sub-task), boards, sprints, a Gantt timeline, time tracking, reports and a Confluence-style knowledge base. It runs for one team on one server, or behind a reverse proxy for a whole organization.
 
-Two things make it different from most self-hosted trackers:
+What sets Hinata apart from most self-hosted trackers:
 
-- **It ships a real cross-platform app.** Not just a web UI — one Flutter codebase compiled six ways, for Android, iOS, Web, macOS, Windows and Linux, with live updates over Server-Sent Events, offline-friendly navigation, and a ⌘K command palette.
-- **You bring your own server.** The client carries no baked-in backend. You point the published app at your own server, save and switch between multiple servers, and branding comes from your server at runtime — or build and publish your own client with your package id, name, icons and accent color.
+- **A real app for every platform.** One Flutter codebase for six platforms, with live changes over Server-Sent Events, offline-friendly navigation and a ⌘K command palette.
+- **Your own server.** The app has no built-in backend. You add one or more servers and switch between them. Branding comes from your server at runtime. Or you publish your own client with your own package id, name, icons and accent color.
 
 !!! info "Design language"
-    Hinata wears a navy navigation rail, a warm-paper workspace, and a honey-amber accent (`#D9A032`) that reads the same in light and dark. Liquid-glass surfaces appear on the mobile navigation, the ⌘K palette and the attachment lightbox. It is meant to be a joy to look at every day.
+    A navy navigation rail, a warm paper workspace and a honey amber accent (`#D9A032`) that looks the same in light and dark. Liquid glass appears on the mobile navigation, the ⌘K palette and the attachment lightbox.
 
 ## Who it's for
 
-- **Self-hosters & privacy-first teams** who want their project data on hardware they control, under a copyleft license, with no seat-based pricing.
-- **Agencies and product studios** who want to ship a branded tracker to their own clients — same engine, your brand.
-- **Operators & platform teams** who need real infrastructure controls: MongoDB replica sets, S3 object storage, SMTP, SSO, rate limiting and an audited security model.
-- **Developers** who value an approachable, well-documented codebase (Spring Boot 4 + Flutter) they can read, extend and contribute to.
+- **Self-hosters and privacy-first teams:** data on your own hardware, a copyleft license, no per-seat pricing.
+- **Agencies and product studios:** a tracker under your own brand for your own clients.
+- **Operators and platform teams:** MongoDB replica sets, S3 object storage, SMTP, SSO, rate limiting and an audited security model.
+- **Developers:** a well-documented codebase (Spring Boot 4 + Flutter) to read, extend and contribute to.
 
 ## The two repositories
 
-Hinata is split into two open-source repositories:
-
 | Repository | What it is | Stack |
 | --- | --- | --- |
-| [hinata-server](https://github.com/hinata-platform/hinata-server) | The backend API, business logic and data layer. Publishes a Docker image to GHCR. | Spring Boot 4, Java 21, MongoDB (replica set), S3/MinIO, SMTP |
+| [hinata-server](https://github.com/hinata-platform/hinata-server) | Backend API, business logic and data layer. Publishes a Docker image to GHCR. | Spring Boot 4, Java 21, MongoDB (replica set), S3/MinIO, SMTP |
 | [hinata-app](https://github.com/hinata-platform/hinata-app) | The client for every platform, from one codebase. | Flutter, bloc/cubit, go_router, dio, i18next (en + de), fl_chart |
 
-The app talks to the server over a versioned REST API at `/api/v1`. See [Architecture](/en/architecture.html) for how the pieces fit together.
+The app talks to the server over a versioned REST API at `/api/v1`. More in [Architecture](/en/architecture.html).
 
 ## Platforms
 
-One Flutter codebase, six targets:
+One Flutter codebase, six targets. Details live on [The apps](/en/clients.html).
 
-- **Android** — phones and tablets, App Links for `https://track.example.com`.
-- **iOS** — iPhone and iPad, Universal Links via Associated Domains.
-- **Web** — a full-featured Flutter-web build served by the web container.
-- **macOS** — a native desktop client.
-- **Windows** — a native desktop client, packaged as an MSIX for the Microsoft Store, with push delivered over Windows Push Notification Services (WNS).
-- **Linux** — a native GTK 3 desktop client (application id `com.ahmadre.hinata`), installed with `snap install hinata` — a strictly confined snap for amd64 and arm64 on the [Snap Store](https://snapcraft.io/hinata), with Flatpak and AppImage recipes in the repository for anyone who prefers to build it themselves ([The apps](/en/clients.html#hinata-on-linux) has the detail, including the two permissions snap asks you to connect). A `hinata://` link — an SSO callback, an invite, a password reset — reaches the window that is already open, because the app registers the scheme handler and runs as a single instance.
+- **Android:** phones and tablets, App Links for `https://track.example.com`.
+- **iOS:** iPhone and iPad, Universal Links via Associated Domains.
+- **Web:** a full Flutter web build, served by the web container.
+- **macOS:** a native desktop app.
+- **Windows:** a native desktop app, packaged as MSIX for the Microsoft Store, with push over Windows Push Notification Services (WNS).
+- **Linux:** a native GTK 3 desktop app (application id `com.ahmadre.hinata`), installed with `snap install hinata` from the [Snap Store](https://snapcraft.io/hinata) as a strictly confined snap for amd64 and arm64. Flatpak and AppImage recipes are in the repository. [The apps](/en/clients.html#hinata-on-linux) explains the two permissions snap asks you to connect. A `hinata://` link (SSO callback, invite, password reset) reaches the open window, because the app registers the scheme handler and runs as a single instance.
 
 !!! note "What Linux does differently"
-    There is no desktop push service on Linux to register with, so notifications arrive in the app and by e-mail rather than as system banners — your notification settings stay exactly where they are, because they still govern your phone. There is no webcam capture either, so the composer simply doesn't offer "take a photo"; attaching a photo, or any other file you already have, works as it does everywhere else. And staying signed in between launches needs a keyring (GNOME Keyring, KWallet — anything that speaks the Secret Service): without one the app says so, and the session ends when you close the window.
+    There is no desktop push service. Notifications arrive in the app and by e-mail instead of as system banners. Your notification settings still govern your phone.
 
-Platform-by-platform detail lives on [The apps](/en/clients.html).
+    There is no webcam capture, so the composer doesn't offer "take a photo". Attaching a photo or any other file you already have works as usual.
+
+    Staying signed in needs a keyring (GNOME Keyring, KWallet or anything that speaks the Secret Service). Without one, the app tells you, and the session ends when you close the window.
 
 ## What's inside
 
-A tour of the platform, each with a deeper page:
+Each area has its own page:
 
-- **[Projects & teams](/en/projects-teams.html)** — per-project workflows and issue keys (like `ASTA-42`), reusable colored labels, and teams whose per-member project access gates what each person can even see.
-- **[Issues & hierarchy](/en/issues.html)** — types, priorities, tags, comments, attachments and dependencies, with a Jira-style three-level hierarchy: **Epic → Story/Task/Bug/Feature → Sub-task**.
-- **[Boards & sprints](/en/boards-sprints.html)** — agile boards with columns mapped to workflow states, WIP limits and a backlog, plus a Board / Backlog / Timeline switcher and full sprint planning with burndown.
-- **[Gantt & time tracking](/en/timeline.html)** — a timeline read model with start/due dates and dependencies, and work items with activity types and weekly timesheets.
-- **[Reports & dashboard](/en/reports.html)** — burndown, velocity, cycle time, distributions and created-vs-resolved, exportable to PDF, plus a focus dashboard.
-- **[Knowledge base](/en/knowledge-base.html)** — hierarchical Markdown articles, global or per project, with smart links that resolve real issues and people.
-- **[Notifications](/en/notifications.html)** — in-app and e-mail, plus push delivered through the Hinata Connect gateway.
-- **[Search & palette](/en/search.html)** — a ⌘K liquid-glass command palette with triggers, recents and a responsive sheet.
-- **[Git integration](/en/git-integration.html)** — connect projects to GitHub, GitLab or Bitbucket for real development info, smart commits and workflow automation.
-- **[Single sign-on](/en/sso.html)** — OpenID Connect, OAuth 2.0, SAML 2.0 and LDAP, configured at runtime with no restart.
+- **[Projects & teams](/en/projects-teams.html):** per-project workflows and issue keys (like `ASTA-42`), reusable colored labels, and teams whose per-member project access decides what each person sees.
+- **[Issues & hierarchy](/en/issues.html):** types, priorities, tags, comments, attachments, dependencies and three levels like in Jira: **Epic → Story/Task/Bug/Feature → Sub-task**.
+- **[Boards & sprints](/en/boards-sprints.html):** columns mapped to workflow states, WIP limits, a backlog, a Board / Backlog / Timeline switcher and sprint planning with burndown.
+- **[Gantt & time tracking](/en/timeline.html):** a timeline with start and due dates and dependencies, work items with activity types and weekly timesheets.
+- **[Reports & dashboard](/en/reports.html):** burndown, velocity, cycle time, distributions and created vs. resolved, exportable to PDF, plus a focus dashboard.
+- **[Knowledge base](/en/knowledge-base.html):** hierarchical Markdown articles, global or per project, with smart links to real issues and people.
+- **[Notifications](/en/notifications.html):** in the app, by e-mail and as push through the Hinata Connect gateway.
+- **[Search & palette](/en/search.html):** a ⌘K liquid glass command palette with triggers, recents and a responsive sheet.
+- **[Git integration](/en/git-integration.html):** connect GitHub, GitLab or Bitbucket for development info, smart commits and workflow automation.
+- **[Single sign-on](/en/sso.html):** OpenID Connect, OAuth 2.0, SAML 2.0 and LDAP, configured at runtime with no restart.
 
-Want the full walkthrough? Read the [Feature tour](/en/features.html).
+The full walkthrough is in the [Feature tour](/en/features.html).
 
 ## Why self-host Hinata
 
-!!! note "The short version"
-    You own the server, the data and the brand. It's GPL-3.0, so it stays open. There are no seat limits or paywalled features, and everything from SSO to push works without handing your data to a third party.
-
-- **Your data, your rules.** Everything lives in your MongoDB and your S3 bucket. Attachments use randomized object keys and presigned downloads.
-- **No Firebase required.** Push notifications and universal links are relayed through the [Hinata Connect gateway](/en/connect-gateway.html), so a single published app can serve many servers and self-hosters need no Firebase project of their own.
-- **Runtime configuration.** SSO, e-mail ingest, push and Git OAuth apps are stored in MongoDB and managed from the Admin area — the database overrides the environment, and changes apply **without a restart**.
-- **Serious security.** Stateless JWT (HS512), BCrypt password hashing, database-backed login blocking, per-IP rate limiting, hardened HTTP headers and a model mapped to the OWASP Top 10. See the [Security model](/en/security.html).
+- **Your data.** You own the server, the data and the brand. Everything lives in your MongoDB and your S3 bucket. Attachments use randomized object keys and presigned downloads.
+- **Open, no paywall.** GPL-3.0, no seat limits, no paywalled features. Everything from SSO to push works without handing your data to a third party.
+- **No Firebase required.** Push and universal links are relayed through the [Hinata Connect gateway](/en/connect-gateway.html). One published app can serve many servers, and you need no Firebase project of your own.
+- **Runtime configuration.** SSO, e-mail ingest, push and Git OAuth apps are stored in MongoDB and managed in the Admin area. The database overrides the environment, and changes apply **without a restart**.
+- **Security.** Stateless JWT (HS512), BCrypt password hashing, database-backed login blocking, per-IP rate limiting and hardened HTTP headers, mapped to the OWASP Top 10. See the [Security model](/en/security.html).
 
 ## Get started
 
 <div class="cta-row">
 
-Two clear paths, depending on what you need next:
+Two paths, depending on what you need next:
 
 </div>
 
-- **[Get started →](/en/quick-start.html)** — the fastest path to a running server and app, in three commands with Docker Compose.
-- **[Self-host it →](/en/self-hosting.html)** — the production path: deployment, configuration, database, storage, mail and reverse proxy.
+- **[Get started →](/en/quick-start.html)** A running server and app in three commands with Docker Compose.
+- **[Self-host it →](/en/self-hosting.html)** The production path: deployment, configuration, database, storage, mail and reverse proxy.
 
-!!! tip "Prefer to understand the moving parts first?"
-    Read [Architecture](/en/architecture.html) for the data-flow picture and [Core concepts](/en/concepts.html) for the vocabulary — organizations, projects, issues, sprints, teams and more.
+!!! tip "Want to understand how it fits together first?"
+    [Architecture](/en/architecture.html) shows the data flow. [Core concepts](/en/concepts.html) explains the vocabulary: organizations, projects, issues, sprints, teams and more.

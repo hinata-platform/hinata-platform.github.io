@@ -1,52 +1,54 @@
 ---
 title: Berichte & Dashboard
-description: Das Dashboard gibt jedem seinen täglichen Fokus; Berichte verwandeln deine Vorgänge und Sprints in Burndown-, Velocity-, Zykluszeit- und Verteilungsdiagramme, die du als PDF exportieren kannst.
+description: Das Dashboard zeigt deinen Fokus für heute, Berichte machen aus Vorgängen und Sprints Diagramme mit PDF-Export.
 ---
 
 # Berichte & Dashboard
 
-Hinata verwandelt die Arbeit, die du ohnehin schon verfolgst, in Erkenntnisse — ohne zusätzliche Dateneingabe. Das **Dashboard** ist der persönliche Startbildschirm mit dem Überblick auf einen Blick; **Berichte** sind die Analysen auf Team-Ebene für Planung und Retrospektiven.
+Hinata macht aus der Arbeit, die du ohnehin erfasst, Auswertungen. Zusätzliche Eingaben brauchst du nicht.
 
+- Das **Dashboard** ist dein persönlicher Startbildschirm mit dem Überblick.
+- **Berichte** sind Auswertungen für das ganze Team, für Planung und Retrospektiven.
 
 ![Hinata-Berichte](/assets/img/shot-reports.png)
-*Berichte — Burndown, Verteilungen nach Status, Priorität und Bearbeiter, mit PDF-Export.*
+*Berichte mit Burndown, Verteilungen nach Status, Priorität und Bearbeiter sowie PDF-Export.*
 
 ## Dashboard
 
-Das Dashboard ist das Erste, was du nach der Anmeldung siehst. Es ist rund um *heute* aufgebaut:
+Das Dashboard siehst du direkt nach der Anmeldung. Es dreht sich um *heute*:
 
-- **Fokus für heute** — die Vorgänge, die jetzt deine Aufmerksamkeit brauchen.
-- **Fertigstellung** — wie viel deiner aktuellen Arbeit erledigt ist.
-- **Wochen-Tracker** — deine erfasste Aktivität über die Woche hinweg.
-- **Team-Ranking** — eine leichte, motivierende Ansicht des Beitrags über das Team hinweg.
+- **Fokus für heute**: die Vorgänge, die jetzt deine Aufmerksamkeit brauchen.
+- **Fertigstellung**: wie viel deiner aktuellen Arbeit erledigt ist.
+- **Wochen-Tracker**: deine erfasste Aktivität über die Woche.
+- **Team-Ranking**: ein lockerer, motivierender Blick darauf, was das Team beiträgt.
 
-Es ist darauf ausgelegt, die Frage „Was sollte ich als Nächstes tun?“ mit einem einzigen Blick zu beantworten — auf dem Handy wie auf dem Desktop.
+Mit einem Blick weißt du, was als Nächstes dran ist, auf dem Handy wie am Desktop.
 
 ## Berichte
 
-Der Berichtsbereich aggregiert Vorgänge, Sprints und Arbeitseinträge zu den Diagrammen, auf die sich Teams verlassen. Jedes davon ist interaktiv und liest dieselben Live-Daten wie der Rest der App.
+Der Berichtsbereich fasst Vorgänge, Sprints und Arbeitseinträge zu Diagrammen zusammen. Alle sind interaktiv und nutzen dieselben aktuellen Daten wie der Rest der App.
 
 | Bericht | Was er dir sagt |
 | --- | --- |
-| **Burndown** | Verbleibende Arbeit über den aktiven Sprint hinweg vs. die Ideallinie — liegst du im Takt, um fertig zu werden? |
-| **Velocity** | Pro Sprint abgeschlossene Story Points über die Zeit — der nachhaltige Durchsatz deines Teams und die Grundlage für die Planung des nächsten Sprints. |
-| **Zykluszeit** | Wie lange Vorgänge von Start bis Fertig brauchen — eine Durchlaufzeit-Gesundheitsprüfung. |
-| **Vorgänge nach Status** | Die Verteilung der Arbeit über deinen Workflow — erkenne Engpässe (z. B. einen Stau *In Review*). |
-| **Vorgänge nach Priorität** | Wo die dringende Arbeit sitzt. |
-| **Vorgänge nach zugewiesener Person** | Auslastung im Team — wer ist überlastet, wer hat Kapazität. |
-| **Erstellt vs. gelöst** | Schließt du Arbeit schneller ab, als sie hereinkommt, oder fällst du zurück? |
+| **Burndown** | Verbleibende Arbeit im aktiven Sprint im Vergleich zur Ideallinie. Schaffst du den Sprint rechtzeitig? |
+| **Velocity** | Abgeschlossene Story Points pro Sprint über die Zeit. Zeigt den dauerhaften Durchsatz deines Teams und ist die Grundlage für die Planung des nächsten Sprints. |
+| **Zykluszeit** | Wie lange Vorgänge von Start bis Fertig brauchen. Zeigt, ob die Durchlaufzeit gesund ist. |
+| **Vorgänge nach Status** | Wie sich die Arbeit über deinen Workflow verteilt. Zeigt Engpässe, zum Beispiel einen Stau *In Review*. |
+| **Vorgänge nach Priorität** | Wo die dringende Arbeit liegt. |
+| **Vorgänge nach zugewiesener Person** | Auslastung im Team: Wer ist überlastet, wer hat noch Luft? |
+| **Erstellt vs. gelöst** | Schließt du Arbeit schneller ab, als neue hereinkommt, oder fällst du zurück? |
 
 !!! tip "Nutze Velocity zur Kapazitätsplanung"
-    Sobald du ein paar Sprints Historie hast, ist deine durchschnittliche Velocity die ehrliche Zahl, gegen die du das Commitment des nächsten Sprints planst — weit besser als Optimismus.
+    Nach ein paar Sprints ist deine durchschnittliche Velocity die verlässliche Zahl, mit der du das Commitment für den nächsten Sprint planst. Sie ist weit besser als Optimismus.
 
 ### Export
 
-Jeder Bericht kann als **PDF** für Stakeholder, Steuerungsmeetings oder ein Archiv exportiert werden — direkt aus der App, druckfertig formatiert.
+Jeden Bericht kannst du direkt aus der App als **PDF** exportieren, druckfertig formatiert. Das eignet sich für Stakeholder, Steuerungsmeetings oder ein Archiv.
 
 !!! info "Berichte respektieren den Zugriff"
-    Berichte enthalten immer nur Projekte, die du sehen kannst. Die Diagramme eines Mitglieds spiegeln den [Projektzugriff seines Teams](/de/projects-teams.html) wider; nichts sickert über Sichtbarkeitsgrenzen hinweg durch.
+    Berichte enthalten nur Projekte, die du sehen kannst. Die Diagramme eines Mitglieds richten sich nach dem [Projektzugriff seines Teams](/de/projects-teams.html). Über Grenzen der Sichtbarkeit hinweg gelangt nichts.
 
 ## Nächste Schritte
 
-- Verstehe die Eingaben: [Sprints & Story Points](/de/boards-sprints.html) und [Zeiterfassung](/de/timeline.html).
-- Halte Schätzungen ehrlich, damit Velocity und Burndown nützlich bleiben.
+- Die Grundlagen verstehen: [Sprints & Story Points](/de/boards-sprints.html) und [Zeiterfassung](/de/timeline.html).
+- Halte Schätzungen realistisch, damit Velocity und Burndown nützlich bleiben.

@@ -1,41 +1,41 @@
 ---
 title: Search & palette
-description: One keystroke — ⌘K — opens a liquid-glass command palette to jump to any issue, project, article or person and run quick actions from anywhere.
+description: ⌘K opens a command palette to jump to any issue, project, article or person and run quick actions.
 ---
 
 # Search & command palette
 
-The fastest way around Hinata isn't the mouse — it's **⌘K** (**Ctrl+K** on Windows/Linux). One keystroke opens a liquid-glass command palette that searches everything and runs quick actions, from any screen, without losing your place.
+**⌘K** (**Ctrl+K** on Windows and Linux) opens the glass command palette on any screen. It searches everything and runs quick actions without leaving your current view.
 
 ## Search everything
 
-Start typing and the palette searches across your workspace in real time:
+The palette searches your whole workspace as you type:
 
-- **Issues** — by key (`MOB-42`) or by words in the title.
-- **Projects** — jump straight to a board or backlog.
-- **Knowledge-base articles** — find that runbook in a second.
-- **People** — open a teammate's profile.
+- **Issues** by key (`MOB-42`) or by words in the title.
+- **Projects**, to jump straight to a board or backlog.
+- **Knowledge base articles**, such as a runbook.
+- **People**, to open a teammate's profile.
 
-Results are ranked so the best match is already selected — press **Enter** to go. Everything the palette surfaces respects your [project access](/en/projects-teams.html); you can only find what you're allowed to see.
+The best match is already selected. Press **Enter** to open it. The palette only shows what your [project access](/en/projects-teams.html) lets you see.
 
 !!! tip "Keys are the fastest jump"
-    If you know the issue key, just type it. `INF-7` + Enter lands you on the issue — quicker than any amount of clicking through boards.
+    If you know the issue key, just type it. `INF-7` and Enter takes you straight to the issue.
 
 ## Quick actions & triggers
 
-The palette is a command bar, not just a search box. Alongside results it offers **actions** — create an issue, switch project, change theme, jump to settings — so common tasks are a couple of keystrokes away.
+Alongside results the palette offers **actions**: create an issue, switch project, change theme or open settings. Common tasks take just a few keystrokes.
 
 ## Recents
 
-The palette remembers where you've been. Open it with an empty query and it shows your **recent** issues and destinations, so bouncing between the two things you're working on is instant.
+Open the palette with an empty query and it shows your **recent** issues and destinations. Switching between two tasks is quick.
 
 ## Anywhere, any device
 
-- **Keyboard** — `⌘K` / `Ctrl+K` to open, arrow keys to move, `Enter` to go, `Esc` to close.
-- **Mobile** — the palette adapts into a responsive sheet, so the same fast search is a tap away on your phone.
+- **Keyboard:** `⌘K` / `Ctrl+K` to open, arrow keys to move, `Enter` to go, `Esc` to close.
+- **Mobile:** the palette opens as a sheet, so search is one tap away on your phone.
 
 !!! info "It's the same palette everywhere"
-    Whether you're on the dashboard, deep in an issue or reading an article, ⌘K behaves identically — a single, predictable way to get anywhere in Hinata.
+    Dashboard, issue or article: ⌘K works the same way everywhere.
 
 ## Next steps
 

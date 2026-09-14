@@ -1,31 +1,36 @@
 ---
 title: E-Mail zu Vorgang
-description: Verwandle eingehende E-Mails per IMAP-Polling in Hinata-Vorgänge, vollständig zur Laufzeit im Adminbereich konfiguriert — kein Neustart erforderlich.
+description: Mach eingehende E-Mails per IMAP zu Vorgängen, eingestellt im Adminbereich und ohne Neustart.
 ---
 
 # E-Mail zu Vorgang
 
-Hinata kann ein Postfach überwachen und jede eingehende Nachricht in einen Vorgang
-verwandeln. Richte eine Support- oder Eingangsadresse auf ein IMAP-Postfach aus, und
-jede ungelesene E-Mail wird zu einem neuen Vorgang im Projekt deiner Wahl — Betreff als
-Titel, Textkörper als Beschreibung, Absender als Melder erfasst. Es ist die
-**eingehende** Hälfte von Hinatas E-Mail-Geschichte; die **ausgehende** Hälfte
-(Verifizierung, Passwort-Reset, Benachrichtigungen) wird auf der Seite
-[E-Mail & SMTP](/de/email.html) behandelt.
+Hinata kann ein Postfach überwachen und aus jeder ungelesenen E-Mail einen Vorgang
+machen. Du richtest eine Support- oder Eingangsadresse auf ein IMAP-Postfach aus.
+Jede neue Mail wird dann ein Vorgang im Projekt deiner Wahl:
+
+- Betreff wird Titel.
+- Text wird Beschreibung.
+- Absender wird als Melder gespeichert.
+
+Das ist der **eingehende** Teil. Ausgehende Mails (Verifizierung, Passwort-Reset,
+Benachrichtigungen) erklärt [E-Mail & SMTP](/de/email.html).
 
 !!! info "Zur Laufzeit konfiguriert, kein Neustart"
-    Der E-Mail-Eingang wird im **Adminbereich** der App konfiguriert, und die
-    Einstellungen liegen in **MongoDB**. Das Aktivieren, das Ändern des Postfachs oder
-    das Umstellen des Zielprojekts greifen alle **ohne Neustart des Servers** — der
-    Poller liest die aktuellen Einstellungen in jedem Zyklus.
+    Du stellst den E-Mail-Eingang im **Adminbereich** ein. Die Einstellungen
+    liegen in **MongoDB**. Einschalten, Postfach ändern oder Zielprojekt wechseln
+    wirkt **ohne Serverneustart**, weil der Poller die Einstellungen in jedem
+    Durchlauf neu liest.
 
 ## So funktioniert es
 
-Der Server betreibt einen geplanten Poller. In jedem Zyklus liest er die aktuellen
-Eingangseinstellungen und verbindet sich, wenn der Eingang aktiviert und ein Host sowie
-ein Standardprojekt konfiguriert sind, über IMAP (oder IMAPS) mit dem Postfach, scannt
-den gewählten Ordner nach **ungelesenen** Nachrichten, erzeugt aus jeder einen Vorgang
-und markiert die Nachricht als **gelesen**, sodass sie nie zweimal importiert wird.
+Der Server fragt das Postfach regelmäßig ab. Ist der Eingang aktiviert und sind
+Host und Standardprojekt gesetzt, passiert in jedem Durchlauf Folgendes:
+
+1. Verbindung per IMAP oder IMAPS.
+2. Der gewählte Ordner wird nach **ungelesenen** Nachrichten durchsucht.
+3. Aus jeder Nachricht entsteht ein Vorgang.
+4. Die Nachricht wird als **gelesen** markiert und nie doppelt importiert.
 
 ```text
 geplanter Poll (respektiert dein Poll-Intervall)
@@ -43,88 +48,83 @@ UNSEEN-Nachrichten suchen
 für jede: Vorgang im Standardprojekt erstellen, dann als SEEN markieren
 ```
 
-Schlägt ein Poll fehl (Postfach nicht erreichbar, falsche Zugangsdaten), wird der Fehler
-protokolliert und der nächste Zyklus versucht es einfach erneut — ein vorübergehender
-Ausfall verliert nie eine E-Mail, weil ungelesene Nachrichten beim nächsten
-erfolgreichen Poll abgeholt werden.
+Schlägt ein Durchlauf fehl (Postfach nicht erreichbar, falsche Zugangsdaten), wird
+der Fehler geloggt. Der nächste Durchlauf versucht es erneut. Es geht keine Mail
+verloren, weil ungelesene Nachrichten beim nächsten erfolgreichen Abruf importiert
+werden.
 
 ## Was erstellt wird
 
-Jede importierte Nachricht wird zu einem Vorgang im **Standardprojekt**, das du
-ausgewählt hast:
+Jede Nachricht wird ein Vorgang im gewählten **Standardprojekt**:
 
 | Vorgangsfeld | Stammt aus |
 | --- | --- |
 | **Titel** | Der **Betreff** der E-Mail (oder `(no subject)`, falls leer), auf eine sichere Länge gekürzt |
-| **Beschreibung** | Ein kurzer Header, der vermerkt, von wem er erstellt wurde, dann der Klartext-Textkörper der Nachricht (der HTML-Teil wird zu Text reduziert, falls kein Klartext-Teil existiert) |
+| **Beschreibung** | Ein kurzer Kopf mit dem Absender, dann der Klartext der Nachricht. Gibt es keinen Klartextteil, wird der HTML-Teil zu Text umgewandelt |
 | **Typ** | **Task** |
-| **Melder** | Die E-Mail-Adresse des Absenders wird am Vorgang erfasst |
-| **Autor** | Der Absender, wenn seine Adresse zu einem aktiven Hinata-Konto gehört — so wird er wie jeder andere Beobachter über jede Änderung an seiner eigenen Anfrage benachrichtigt. Gehört die Adresse niemandem auf der Plattform, bleibt der Vorgang ohne Autor (der Beschreibungs-Header nennt den Absender weiterhin) |
+| **Melder** | Die E-Mail-Adresse des Absenders |
+| **Autor** | Der Absender, falls seine Adresse zu einem aktiven Hinata-Konto gehört. Dann bekommt er wie jeder Beobachter Benachrichtigungen zu jeder Änderung. Gehört die Adresse niemandem, bleibt der Vorgang ohne Autor. Der Kopf der Beschreibung nennt den Absender trotzdem |
 
 !!! note "Ein Autor ohne Projektmitgliedschaft"
-    Autor eines Vorgangs zu sein gewährt keinen Zugriff: allein die Projektmitgliedschaft
-    entscheidet, wer ein Ticket öffnen darf. Ein Autor außerhalb des Projekts erhält
-    E-Mail- und Push-Benachrichtigungen zu seiner Anfrage weiterhin — aber ohne Link,
-    weil dieser nur auf einen „kein Mitglied“-Fehler führen würde. Nimm ihn ins Projekt
-    auf, wenn er den Vorgang verfolgen können soll.
+    Autor zu sein gibt keinen Zugriff. Nur wer Projektmitglied ist, kann den
+    Vorgang öffnen. Ein Autor außerhalb des Projekts bekommt weiter E-Mail- und
+    Push-Benachrichtigungen, aber ohne Link, denn der würde nur zum Fehler „kein
+    Mitglied“ führen. Soll er den Vorgang verfolgen, nimm ihn ins Projekt auf.
 
-Da es ein normaler Vorgang ist, gilt sofort alles andere in Hinata: Er landet im
-Standard-Workflow-Status des Projekts, erscheint auf Board und Backlog, kann zugewiesen,
-mit Labels versehen, verlinkt und kommentiert werden und — wenn das Projekt mit Git
-verbunden ist — Entwicklungsinformationen aufnehmen, sobald jemand seinen Schlüssel
-referenziert.
+Es ist ein normaler Vorgang. Er startet im Standardstatus des Workflows und
+erscheint auf Board und Backlog. Du kannst ihn zuweisen, labeln, verlinken und
+kommentieren. Ist das Projekt mit Git verbunden, sammelt er
+Entwicklungsinformationen, sobald jemand seinen Schlüssel erwähnt.
 
 !!! tip "Wähle ein dediziertes Eingangsprojekt"
-    Richte den Eingang auf ein Projekt aus, das existiert, um rohe eingehende E-Mails zu
-    empfangen (zum Beispiel ein *Support-Posteingang*). Eine Person triagiert jeden neuen
-    Vorgang — weist ihn zu, setzt Typ und Priorität oder verschiebt ihn ins richtige
-    Projekt — statt ungefilterte E-Mails auf einem aktiven Lieferboard landen zu lassen.
+    Leite eingehende Mails in ein eigenes Projekt, zum Beispiel einen
+    *Support-Posteingang*. Dort sichtet jemand jeden neuen Vorgang, weist ihn zu,
+    setzt Typ und Priorität oder verschiebt ihn ins richtige Projekt. So landen
+    keine ungefilterten Mails auf einem aktiven Board.
 
 ## Konfiguration
 
-Öffne den **Adminbereich → E-Mail-Eingang** und gib die Postfachdetails an. Die
-verfügbaren Einstellungen und ihre Standardwerte:
+Öffne **Adminbereich → E-Mail-Eingang** und trag die Postfachdaten ein:
 
 | Einstellung | Standard | Bedeutung |
 | --- | --- | --- |
 | **Aktiviert** | `false` | Hauptschalter für den Poller |
-| **Host** | — | Hostname des IMAP-Servers |
+| **Host** | (leer) | Hostname des IMAP-Servers |
 | **Port** | `993` | IMAP-Port |
-| **SSL** | `true` | IMAPS verwenden (implizites TLS); der Standardport dafür ist `993` |
-| **Benutzername** | — | Postfach-Login |
-| **Passwort** | — | Postfach-Passwort (write-only — wird von der API nie zurückgegeben) |
+| **SSL** | `true` | IMAPS verwenden (implizites TLS). Der Standardport dafür ist `993` |
+| **Benutzername** | (leer) | Postfach-Login |
+| **Passwort** | (leer) | Postfach-Passwort. Nur schreibbar, die API gibt es nie zurück |
 | **Ordner** | `INBOX` | Welcher Ordner gescannt wird |
-| **Standardprojekt** | — | Das Projekt, das die erstellten Vorgänge empfängt |
-| **Poll-Intervall** | `60` s | Mindestsekunden zwischen Postfach-Scans |
+| **Standardprojekt** | (leer) | Das Projekt, in dem die Vorgänge landen |
+| **Poll-Intervall** | `60` s | Mindestabstand zwischen zwei Abrufen in Sekunden |
 
-Der Eingang bleibt untätig, bis **Aktiviert** an ist **und** sowohl ein **Host** als auch
-ein **Standardprojekt** gesetzt sind — so tut eine halbfertige Konfiguration nie etwas
-Unerwartetes.
+Der Eingang tut nichts, solange nicht **Aktiviert** an ist **und** **Host** und
+**Standardprojekt** gesetzt sind. Eine halbfertige Konfiguration bleibt also
+wirkungslos.
 
 !!! warning "Verwende ein dediziertes Postfach"
-    Jede **ungelesene** Nachricht im gewählten Ordner wird importiert und dann als gelesen
-    markiert. Richte den Eingang auf ein Postfach aus, das nur diesem Zweck dient, nicht
-    auf einen gemeinsam genutzten menschlichen Posteingang — sonst würden gewöhnliche
-    ungelesene E-Mails in Vorgänge verwandelt und als gelesen markiert.
+    Jede **ungelesene** Nachricht im Ordner wird importiert und als gelesen
+    markiert. Nutze ein Postfach nur für diesen Zweck. In einem gemeinsamen
+    Posteingang würden sonst normale ungelesene Mails zu Vorgängen und als gelesen
+    markiert.
 
 ## Wie es ausgehendes SMTP ergänzt
 
-Die beiden Richtungen sind unabhängig und werden separat konfiguriert:
+Beide Richtungen sind unabhängig und werden getrennt eingestellt:
 
-- **Eingehend (diese Seite)** — IMAP-Polling, im Adminbereich (MongoDB) konfiguriert,
-  verwandelt empfangene E-Mails *in* Vorgänge.
-- **Ausgehend — [E-Mail & SMTP](/de/email.html)** — das SMTP-Relay, das Hinata nutzt, um
-  Verifizierungs-, Passwort-Reset- und Benachrichtigungs-E-Mails zu *senden*.
+- **Eingehend (diese Seite):** IMAP-Abruf, eingestellt im Adminbereich (MongoDB).
+  Macht aus empfangenen Mails Vorgänge.
+- **Ausgehend ([E-Mail & SMTP](/de/email.html)):** das SMTP-Relay, über das Hinata
+  Mails zu Verifizierung, Passwort-Reset und Benachrichtigungen *sendet*.
 
-Du kannst jede ohne die andere betreiben. Eine schreibgeschützte Statusseite sendet
-vielleicht nur ausgehende E-Mails; eine Eingangsadresse nimmt vielleicht nur E-Mails
-entgegen. Die meisten Produktiv-Deployments betreiben beide: SMTP, damit Nutzer ihre
-E-Mails erhalten, und den Eingang, damit Support-Anfragen zu nachverfolgten Vorgängen
-werden.
+Du kannst jede Richtung allein nutzen. Eine reine Statusseite sendet vielleicht
+nur, eine Eingangsadresse empfängt vielleicht nur. Die meisten
+Produktivinstallationen nutzen beides: SMTP für die Mails an Nutzer und den
+Eingang für Supportanfragen.
 
 ## Verwandte Seiten
 
-- [E-Mail & SMTP](/de/email.html) — Konfiguration ausgehender E-Mails.
-- [Adminbereich](/de/admin-area.html) — wo der Eingang zur Laufzeit konfiguriert wird.
-- [Projekte & Teams](/de/projects-teams.html) — Auswahl und Triage des Eingangsprojekts.
-- [Benachrichtigungen](/de/notifications.html) — wie Personen über neue Vorgänge informiert werden.
+- [E-Mail & SMTP](/de/email.html): ausgehende E-Mails einrichten.
+- [Adminbereich](/de/admin-area.html): hier stellst du den Eingang ein.
+- [Projekte & Teams](/de/projects-teams.html): das Eingangsprojekt wählen und sichten.
+- [Benachrichtigungen](/de/notifications.html): wie Personen von neuen Vorgängen erfahren.

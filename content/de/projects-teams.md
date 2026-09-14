@@ -1,50 +1,51 @@
 ---
 title: Projekte & Teams
-description: Projekte gruppieren deine Arbeit unter einem Schlüssel wie ASTA-42; Teams gewähren Zugriff pro Mitglied und entscheiden, wer im gesamten Workspace was sieht.
+description: Projekte bündeln Arbeit unter einem Schlüssel wie ASTA-42, und Teams legen pro Mitglied fest, wer welche Projekte sieht.
 ---
 
 # Projekte & Teams
 
-Alles in Hinata lebt innerhalb eines **Projekts**, und wer ein Projekt sehen darf, entscheiden **Teams**. Zusammen geben sie dir eine saubere Trennung zwischen, sagen wir, einer mobilen App, einem Backend-Dienst und einer Initiative für interne Tools — jeweils mit eigenem Board, eigenem Workflow, eigenen Labels und eigener Vorgangs-Nummerierung, sichtbar nur für die Personen, die sie sehen sollen.
+Alles in Hinata liegt in einem **Projekt**. Wer ein Projekt sehen darf, legen **Teams** fest.
 
+So trennst du etwa eine mobile App, einen Backend-Dienst und interne Tools sauber voneinander. Jedes Projekt hat eigenes Board, eigenen Workflow, eigene Labels und eine eigene Nummerierung der Vorgänge. Sehen können es nur die Leute, die es sehen sollen.
 
 ![Hinata Teams](/assets/img/shot-teams.png)
-*Teams gewähren pro Mitglied Projektzugriff über den gesamten Workspace.*
+*Teams geben Mitgliedern Zugriff auf Projekte im ganzen Workspace.*
 
 ## Projekte
 
-Ein Projekt ist ein in sich geschlossener Workspace für ein Arbeitsvolumen. Jedes Projekt besitzt:
+Ein Projekt ist ein abgeschlossener Arbeitsbereich. Jedes Projekt hat:
 
-- **Einen Projektschlüssel** — ein kurzes Präfix in Großbuchstaben wie `HIN`, `MOB` oder `INF`. Jeder Vorgang im Projekt wird von diesem Schlüssel ausgehend nummeriert (`MOB-42`), und die Nummer wird nie wiederverwendet, sodass ein Schlüssel ein stabiler, überall einfügbarer Bezeichner ist.
-- **Eigene Workflow-Status** — die Spalten, durch die Vorgänge wandern (z. B. *To Do → In Progress → In Review → Done*). Status sind pro Projekt, sodass ein Forschungsprojekt und ein Lieferprojekt Arbeit unterschiedlich abbilden können. Siehe [Projekteinstellungen](/de/project-settings.html).
-- **Wiederverwendbare Labels** — farbige Tags (`frontend`, `needs-design`), die du einmal definierst und über jeden Vorgang im Projekt hinweg wiederverwendest.
-- **Mitglieder** — die Personen, die im Projekt arbeiten, sichtbar in Zuweisungs-Auswahlen, Berichten und dem Personenfilter des Boards.
-- **Git-Verbindungen** — ein oder mehrere verknüpfte Repositories (siehe [Git-Integration](/de/git-integration.html)).
+- **Einen Projektschlüssel:** ein kurzes Präfix in Großbuchstaben wie `HIN`, `MOB` oder `INF`. Vorgänge werden danach nummeriert (`MOB-42`). Eine Nummer wird nie neu vergeben, der Schlüssel bleibt also überall eindeutig.
+- **Eigene Status:** die Spalten, durch die Vorgänge laufen (z. B. *To Do → In Progress → In Review → Done*). Sie gelten pro Projekt. Ein Forschungsprojekt kann so anders arbeiten als ein Lieferprojekt. Siehe [Projekteinstellungen](/de/project-settings.html).
+- **Wiederverwendbare Labels:** farbige Tags (`frontend`, `needs-design`), einmal angelegt und für alle Vorgänge im Projekt nutzbar.
+- **Mitglieder:** die Leute im Projekt. Sie erscheinen bei der Zuweisung, in Berichten und im Personenfilter des Boards.
+- **Git-Verbindungen:** ein oder mehrere verknüpfte Repositories (siehe [Git-Integration](/de/git-integration.html)).
 
-!!! tip "Wähle Schlüssel, die du gern tippst"
-    Schlüssel tauchen den ganzen Tag in Commit-Nachrichten, Branch-Namen und im Chat auf (`git commit -m "MOB-42 fix crash"`). Kurze, einprägsame Schlüssel zahlen sich aus.
+!!! tip "Wähle Schlüssel, die sich leicht tippen"
+    Schlüssel stehen ständig in Commit-Nachrichten, Branch-Namen und im Chat (`git commit -m "MOB-42 fix crash"`). Kurze, einprägsame Schlüssel lohnen sich.
 
 ### Ein Projekt erstellen
 
-Öffne **Projekte → Neues Projekt**, gib ihm einen Namen und einen Schlüssel, und du bist startklar. Du kannst die Workflow-Status, Labels und Mitglieder jederzeit in den Projekteinstellungen anpassen, ohne bestehende Vorgänge zu stören — Umbenennungen werden sicher über das gesamte Projekt kaskadiert.
+Öffne **Projekte → Neues Projekt** und vergib Namen und Schlüssel. Status, Labels und Mitglieder änderst du jederzeit in den Projekteinstellungen, ohne bestehende Vorgänge zu stören. Umbenennungen werden sicher im ganzen Projekt übernommen.
 
 ## Teams
 
-Ein **Team** ist eine Gruppe von Personen mit Zugriff auf eine definierte Menge von Projekten. Teams sind das Rückgrat der Sichtbarkeit in Hinata: Ein Mitglied sieht immer nur die Projekte, die ihm sein Team gewährt. Jemand im *Mobile*-Team sieht das `MOB`-Projekt; `INF` sieht er nicht, es sei denn, ein Team gewährt es ebenfalls.
+Ein **Team** ist eine Gruppe von Leuten mit Zugriff auf bestimmte Projekte. Ein Mitglied sieht nur die Projekte, die sein Team freigibt. Wer im *Mobile*-Team ist, sieht `MOB`. `INF` sieht er nur, wenn ein Team es ebenfalls freigibt.
 
-Diese Zugriffsprüfung läuft **workspace-weit** — sie steuert das Board, die Vorgangslisten, die Suchergebnisse, die Berichte und sogar die Benachrichtigungen. Es gibt keinen separaten „Teilen“-Schritt, den man vergessen könnte; die Mitgliedschaft *ist* die Berechtigung.
+Diese Prüfung gilt **im ganzen Workspace**: für Board, Vorgangslisten, Suchergebnisse, Berichte und sogar Benachrichtigungen. Einen extra Schritt zum Teilen gibt es nicht. Wer Mitglied ist, hat Zugriff.
 
 !!! info "Wie der Zugriff durchgesetzt wird"
-    Die Projektsichtbarkeit wird auf dem Server für jede Anfrage ausgewertet (eine Zusicherung, dass der Aufrufer Mitglied des Projekts ist). Die App zeigt schlicht nie an, was der Server nicht zurückgibt, sodass der Zugriff nicht durch Herumstochern am Client umgangen werden kann.
+    Der Server prüft die Sichtbarkeit bei jeder Anfrage (der Aufrufer muss Mitglied des Projekts sein). Die App zeigt nur, was der Server liefert. Am Client lässt sich der Zugriff also nicht umgehen.
 
 ### Rollen
 
-- **Mitglieder** erledigen die alltägliche Arbeit: Vorgänge erstellen und bearbeiten, kommentieren, Zeit erfassen, Karten verschieben.
-- **Admins** erreichen zusätzlich den [Admin-Bereich](/de/admin-area.html) — Benutzer, SSO, E-Mail-zu-Ticket, Git-OAuth-Apps und app-weite Einstellungen. Admin ist eine Workspace-Rolle (`ADMIN`), durchgesetzt an jedem `/api/v1/admin/**`-Endpunkt.
+- **Mitglieder** erledigen die tägliche Arbeit: Vorgänge anlegen und bearbeiten, kommentieren, Zeit erfassen, Karten verschieben.
+- **Admins** haben zusätzlich Zugang zum [Adminbereich](/de/admin-area.html) mit Benutzern, SSO, E-Mail zu Ticket, Git-OAuth-Apps und Einstellungen für die ganze App. Admin ist eine Workspace-Rolle (`ADMIN`) und wird an jedem `/api/v1/admin/**`-Endpunkt geprüft.
 
 ### Mitglieder verwalten
 
-Füge Personen zu einem Team oder zu einem einzelnen Projekt hinzu oder entferne sie in den Team-/Projekteinstellungen. Änderungen greifen sofort — ein entferntes Mitglied verliert bei seiner nächsten Anfrage die Sichtbarkeit.
+In den Team- und Projekteinstellungen fügst du Leute einem Team oder einem einzelnen Projekt hinzu oder entfernst sie. Änderungen wirken sofort. Ein entferntes Mitglied verliert die Sichtbarkeit bei seiner nächsten Anfrage.
 
 ## Wie Projekte und Teams zusammenpassen
 
@@ -55,10 +56,10 @@ Team "Platform"──gewährt──▶  Projekt INF  ──enthält──▶  Vo
         └────gewährt ebenfalls───┘   (ein Team kann mehrere Projekte gewähren)
 ```
 
-Ein Benutzer kann mehreren Teams angehören und sieht daher mehrere Projekte; ein Projekt kann von mehreren Teams gewährt werden. Modelliere deine Organisation, wie du magst — nach Squad, nach Abteilung, nach Kunde — und die richtigen Personen sehen einfach die richtige Arbeit.
+Ein Benutzer kann in mehreren Teams sein und sieht dann mehrere Projekte. Ein Projekt kann von mehreren Teams freigegeben werden. Bilde deine Organisation so ab, wie es passt, etwa nach Squad, Abteilung oder Kunde.
 
 ## Nächste Schritte
 
-- Konfiguriere die Status und Labels eines Projekts in den [Projekteinstellungen](/de/project-settings.html).
-- Lerne das Vokabular in den [Kernkonzepten](/de/concepts.html).
-- Verbinde ein Repository in der [Git-Integration](/de/git-integration.html).
+- Status und Labels eines Projekts einrichten: [Projekteinstellungen](/de/project-settings.html).
+- Die wichtigsten Begriffe: [Kernkonzepte](/de/concepts.html).
+- Ein Repository verbinden: [Git-Integration](/de/git-integration.html).

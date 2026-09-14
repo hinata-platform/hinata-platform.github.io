@@ -1,56 +1,60 @@
 ---
 title: Dinge finden
-description: Mit der Befehlspalette in zwei Tastendrücken zu jedem Vorgang, Projekt, Artikel oder jeder Person springen — und mit der Vorgangsliste genau die Menge an Arbeit bauen, die du sehen musst.
+description: Mit der Befehlspalette schnell zu Vorgängen, Projekten, Artikeln und Personen springen und mit der Vorgangsliste passende Arbeit filtern.
 ---
 
 # Dinge finden
 
-An ein Tracker-System stellst du zwei sehr verschiedene Fragen. Die erste lautet *„Wo ist dieses eine Ding?“* — ein Ticket, das jemand im Meeting erwähnt hat, das Runbook vom letzten Frühjahr, der Name einer Kollegin. Die zweite lautet *„Wie sieht alle Arbeit einer bestimmten Form aus?“* — jeder offene Bug in zwei Projekten, alles, was diese Woche fällig ist, alles, was niemand übernommen hat.
+Zum Finden gibt es in Hinata zwei Werkzeuge:
 
-Hinata beantwortet die erste mit der **Befehlspalette** und die zweite mit der Liste **Issues**. Zu wissen, wann du zu welcher greifst, ist der größte Teil der Übung.
+- **Befehlspalette:** wenn du ein bestimmtes Ding suchst, etwa ein Ticket, ein Runbook oder eine Person.
+- **Liste Issues:** wenn du alle Arbeit mit bestimmten Merkmalen sehen willst, etwa alle offenen Bugs oder alles, was diese Woche fällig ist.
 
 ## Die Palette von überall öffnen
 
-Drücke **⌘K** auf dem Mac, **Strg+K** unter Windows und Linux. Beide Kombinationen funktionieren auf jeder Plattform — der Hinweis auf dem Bildschirm nennt einfach die Taste, die deine Tastatur tatsächlich hat.
+Drücke **⌘K** auf dem Mac oder **Strg+K** unter Windows und Linux. Beide Kürzel gehen auf jeder Plattform. Der Hinweis auf dem Bildschirm zeigt die Taste deiner Tastatur.
 
-Du kannst auch auf das Feld **Suchen oder springen zu…** in der oberen Leiste klicken. Es sieht aus wie ein Textfeld, verhält sich aber wie ein Knopf: Ein Klick öffnet dieselbe Palette. Auf dem Handy wird aus dem Feld ein Lupensymbol in der oberen Leiste, und die Palette fährt als bildschirmfüllendes Sheet von oben herein, statt mitten im Fenster zu schweben.
+Alternativ klickst du oben auf **Suchen oder springen zu…**. Das Feld öffnet dieselbe Palette. Auf dem Handy ist es ein Lupensymbol, und die Palette füllt den ganzen Bildschirm.
 
-Die Palette öffnet sich *über* dem, was du gerade tust. Nichts halb Getipptes geht verloren, nichts scrollt dahinter weg. Drücke **Esc** oder klicke auf den abgedunkelten Hintergrund, und du bist genau dort, wo du warst.
+Die Palette liegt über deiner aktuellen Seite. Halb Getipptes bleibt erhalten. Mit **Esc** oder einem Klick auf den dunklen Hintergrund bist du wieder dort, wo du warst.
 
 !!! tip "Sie funktioniert auch mitten in etwas"
-    Das Tastenkürzel gehört der App selbst, nicht einem bestimmten Bildschirm. Beim Lesen eines Vorgangs, beim Ziehen einer Karte, mitten in einem Kommentar — ⌘K öffnet trotzdem. Die einzige Ausnahme: Liegt bereits ein anderer Dialog obenauf, stapelt die Palette kein zweites Fenster darüber.
+    Das Kürzel gilt in der ganzen App: beim Lesen eines Vorgangs, beim Ziehen einer Karte, mitten in einem Kommentar. Nur wenn schon ein anderer Dialog offen ist, öffnet sich die Palette nicht zusätzlich.
 
 ![Die Befehlspalette über dem Dashboard, mit gruppierten Ergebnissen für die Suche „board"](/assets/img/shot-search.png)
-*Eine Eingabe, alles auf einmal: Jeder Bereichs-Chip trägt seine Anzahl (9 Befehle, 57 Vorgänge, 3 Projekte, 6 Personen), Treffer sind überall hervorgehoben, und jede Zeile zeigt, was sie unterscheidet — ein Vorgang Schlüssel und Status, ein Sprint sein Ziel, ein Artikel Bereich und Alter. Eine Zeile ist immer ausgewählt, __Enter__ öffnet sie also. Die Leiste unten nennt die einzigen drei Tasten, die du brauchst.*
+*Eine Suche, gruppierte Treffer: Die Chips zeigen Anzahlen, und __Enter__ öffnet die ausgewählte Zeile.*
 
 ## Was sie durchsucht
 
-Fang an zu tippen, und die Treffer kommen gruppiert an, immer in derselben Reihenfolge, damit dein Auge weiß, wo es hinschauen muss:
+Die Treffer kommen gruppiert, immer in derselben Reihenfolge:
 
 | Gruppe | Was passt |
 | --- | --- |
-| **Befehle** | Aktionen und Ziele in der App — siehe [Sie ist auch eine Befehlsleiste](#sie-ist-auch-eine-befehlsleiste) |
-| **Vorgänge** | Titel, Vorgangsschlüssel (`HIN-42`) und Labels — dazu Wörter aus der Beschreibung |
+| **Befehle** | Aktionen und Ziele in der App, siehe [Sie ist auch eine Befehlsleiste](#sie-ist-auch-eine-befehlsleiste) |
+| **Vorgänge** | Titel, Vorgangsschlüssel (`HIN-42`) und Labels, dazu Wörter aus der Beschreibung |
 | **Projekte** | Projektname und Projektschlüssel, dazu die Projektbeschreibung |
 | **Personen** | Anzeigename, Benutzername und Position |
 | **Boards & Sprints** | Board-Namen, Sprint-Namen und Sprint-Ziele |
 | **Wissen** | Artikeltitel und Labels, dazu der Text im Artikel |
 
-Zwei Arten von Treffern laufen gleichzeitig, und der Unterschied lohnt sich, weil er Ergebnisse erklärt, die sonst inkonsistent wirken. **Teiltreffer** greifen auf den kurzen Feldern — `len` findet *Lena*, `HIN-2` findet `HIN-241`, ein halber Projektname findet das Projekt. **Ganze Wörter** werden zusätzlich in den langen Feldern gesucht: in Beschreibungen und Artikeltexten. Ein Wortfragment findet also einen Titel, aber nicht den Satz, der in einer Beschreibung steckt; dafür tippst du das ganze Wort.
+So wird gesucht:
 
-In der Standardansicht **Alle** zeigt jede Gruppe bis zu fünf Treffer. Wählst du eine einzelne Gruppe, sind es bis zu vierundzwanzig.
+- **Kurze Felder** (Titel, Schlüssel, Namen, Labels) finden auch Teile. `len` findet *Lena*, `HIN-2` findet `HIN-241`.
+- **Lange Felder** (Beschreibungen, Artikeltexte) finden nur ganze Wörter. Für einen Satz aus einer Beschreibung tippst du also ganze Wörter.
+
+Unter **Alle** zeigt jede Gruppe bis zu fünf Treffer. In einer einzelnen Gruppe sind es bis zu vierundzwanzig.
 
 ## Auf eine Art von Treffern eingrenzen
 
-Die Reihe von Chips unter dem Suchfeld — **Alle**, **Befehle**, **Vorgänge**, **Projekte**, **Personen**, **Boards & Sprints**, **Wissen** — schränkt die Suche auf eine Kategorie ein.
+Die Chips unter dem Suchfeld beschränken die Suche auf eine Kategorie: **Alle**, **Befehle**, **Vorgänge**, **Projekte**, **Personen**, **Boards & Sprints**, **Wissen**.
 
 ![Die Palette mit gewähltem Bereich „Wissen“ und leerem Suchfeld](/assets/img/shot-search-scope-knowledge.png)
-*Jeder Chip trägt die Anzahl der Objekte dieser Art: 57 Vorgänge, 3 Projekte, 6 Personen, 4 Boards, 8 Artikel. Mit gewähltem __Wissen__ und leerem Feld stöbert die Palette, statt zu suchen — die zuletzt bearbeiteten Artikel, jeder mit seinem Bereich und seinem Alter.*
+*Bereich __Wissen__ bei leerem Feld: die zuletzt bearbeiteten Artikel mit Bereich und Alter.*
 
-Klicke einen Chip an oder drücke **Tab**, um vorwärts durch sie zu wandern, und **Umschalt+Tab** zurück. Deine Suchanfrage bleibt dabei im Feld stehen, du kannst also einmal tippen und dann zwischen „meinte ich den Vorgang oder den Artikel?“ hin- und herspringen.
+Klicke einen Chip an oder wechsle mit **Tab** vorwärts und **Umschalt+Tab** zurück. Deine Suche bleibt dabei im Feld stehen.
 
 !!! tip "Eine leere Anfrage in einem Bereich ist eine Stöberliste"
-    Das ist der schnellste Weg zurück zu dem, woran das Team heute Morgen gearbeitet hat — ganz ohne ein Wort aus dem Titel zu kennen.
+    Ohne Suchbegriff zeigt ein Bereich die zuletzt bearbeiteten Einträge. So findest du wieder, woran das Team heute gearbeitet hat.
 
 ## Alles über die Tastatur
 
@@ -61,184 +65,204 @@ Klicke einen Chip an oder drücke **Tab**, um vorwärts durch sie zu wandern, un
 | **Tab / Umschalt+Tab** | Zum nächsten / vorherigen Bereichs-Chip |
 | **Esc** | Palette schließen |
 
-Der beste Treffer ist bereits ausgewählt, wenn die Ergebnisse eintreffen. Der Normalfall lautet also: ⌘K drücken, vier Zeichen tippen, Enter drücken. Auch die Maus wählt eine Zeile aus, wenn du darüberfährst — du kannst also auf der Tastatur anfangen und mit einem Klick enden, ohne dass die Markierung springt.
+Der beste Treffer ist schon ausgewählt. Meist reicht also: ⌘K, ein paar Zeichen, Enter. Fährst du mit der Maus über eine Zeile, wird sie ebenfalls ausgewählt.
 
 ## Ergebnisse lesen, bevor du sie öffnest
 
-Jede Zeile trägt genug Kontext, um „ist das der richtige?“ zu beantworten, ohne dass du etwas öffnest — und die Form der Zeile verrät, um welche Art Objekt es sich handelt:
+Jede Zeile zeigt genug, um den richtigen Treffer zu erkennen:
 
-- **Ein Vorgang** zeigt sein Typ-Symbol, seinen Schlüssel in Monospace, einen farbigen Statuspunkt samt Statusnamen und rechts das Avatar der zugewiesenen Person. Drei Tickets mit fast identischem Titel unterscheidest du direkt in der Liste an Status und Besitzer.
-- **Ein Projekt** zeigt ein farbiges Sechseck mit dem Projektschlüssel, wie viele Vorgänge offen und wie viele erledigt sind, und die Gesichter seiner Mitglieder.
-- **Eine Person** zeigt Avatar und Position.
-- **Ein Board oder Sprint** zeigt seinen Namen und beim Sprint zusätzlich sein Ziel — das erkennt man meist besser als die Sprint-Nummer.
-- **Ein Artikel** zeigt, in welchem Bereich er liegt und wann er zuletzt aktualisiert wurde. Ein veraltetes Duplikat fällt so auf, bevor du es liest.
+- **Vorgang:** Typsymbol, Schlüssel, farbiger Statuspunkt mit Statusname und rechts der Avatar der zugewiesenen Person.
+- **Projekt:** farbiges Sechseck mit Projektschlüssel, Zahl der offenen und erledigten Vorgänge und die Mitglieder.
+- **Person:** Avatar und Position.
+- **Board oder Sprint:** Name, beim Sprint zusätzlich das Ziel.
+- **Artikel:** Bereich und wann er zuletzt aktualisiert wurde. So fallen veraltete Duplikate auf.
 
 ## Letzte Suchen
 
-Öffne die Palette mit leerem Feld, und sie zeigt die letzten sechs Begriffe, die du tatsächlich benutzt hast.
+Öffnest du die Palette mit leerem Feld, siehst du deine letzten sechs Suchbegriffe.
 
 ![Die Palette mit den letzten Suchen bei leerem Suchfeld](/assets/img/shot-search-recents.png)
-*Unter __Letzte Suchen__, der jüngste zuerst, rechts __Leeren__. Ein Begriff wird festgehalten, wenn du einen seiner Treffer öffnest, nicht schon beim Tippen — in der Liste stehen also die Suchen, die irgendwohin geführt haben.*
+*__Letzte Suchen__, der jüngste Begriff zuerst, rechts __Leeren__.*
 
-Ein Klick setzt den Begriff zurück ins Feld und führt ihn erneut aus; er springt nicht direkt zu einem Treffer, denn eine Suche, die du wiederholst, willst du meistens noch einmal durchsehen. Die Liste liegt auf dem Gerät, an dem du sitzt — Handy und Laptop merken sich also Verschiedenes.
+- Gespeichert wird ein Begriff erst, wenn du einen seiner Treffer öffnest.
+- Ein Klick setzt den Begriff ins Feld und sucht erneut. Er springt nicht direkt zu einem Treffer.
+- Die Liste liegt auf dem jeweiligen Gerät. Handy und Laptop haben also eigene Listen.
 
 ## Sie ist auch eine Befehlsleiste
 
-Die Palette ist nicht nur ein Suchfeld. Tippe, was du *tun* willst, und sie bietet es an:
+Tippe, was du tun willst, und die Palette bietet es an:
 
-- **Zum Dashboard**, **Zu Projekte**, **Zu Vorgänge**, **Zum Board**, **Zur Timeline**, **Zu Berichte**, **Zu Wissen** — die ganze Navigation, ohne auf die Seitenleiste zu zielen.
-- **Neuen Vorgang erstellen** — bringt dich aufs Board, wo jede Spalte an ihrem Fuß ein **Aufgabe hinzufügen**-Eingabefeld trägt.
-- **Hell / Dunkel umschalten** — dreht das Erscheinungsbild. Dieser Befehl lässt die Palette bewusst offen, damit du das Ergebnis ansiehst und bei Nichtgefallen sofort zurückschaltest.
+- **Zum Dashboard**, **Zu Projekte**, **Zu Vorgänge**, **Zum Board**, **Zur Timeline**, **Zu Berichte**, **Zu Wissen**: die ganze Navigation.
+- **Neuen Vorgang erstellen:** öffnet das Board. Dort hat jede Spalte unten ein Feld **Aufgabe hinzufügen**.
+- **Hell / Dunkel umschalten:** wechselt das Erscheinungsbild. Die Palette bleibt dabei offen, damit du sofort zurückschalten kannst.
 
-Befehle werden auf deinem Gerät abgeglichen und erscheinen sofort, noch bevor der Server antwortet. Die Beschriftung musst du nicht exakt treffen: *„dunkel“*, *„Erscheinungsbild“* und *„Hell“* finden alle denselben Schalter.
+Befehle werden auf deinem Gerät abgeglichen und erscheinen sofort. Die Beschriftung musst du nicht genau treffen: *„dunkel“*, *„Erscheinungsbild“* und *„Hell“* finden denselben Schalter.
 
 ## Woher die Antworten kommen
 
-Alles, was die Palette zeigt, kommt von deinem eigenen Server. Es gibt keinen externen Suchindex, nichts wird woandershin geschickt, und die Treffer sind so frisch wie die Daten — ein Vorgang, den jemand vor einer Minute umbenannt hat, ist unter seinem neuen Titel auffindbar.
+Alle Treffer (außer Befehlen) kommen von deinem eigenen Server. Es gibt keinen externen Suchindex, und nichts wird woandershin geschickt. Die Treffer sind aktuell: Ein eben umbenannter Vorgang ist unter dem neuen Titel auffindbar.
 
-Die App wartet nach deinem letzten Tastendruck einen Sekundenbruchteil, bevor sie fragt, und wirft Antworten weg, die ein neuerer Tastendruck bereits überholt hat. Deshalb setzen sich die Ergebnisse einen Wimpernschlag nach dem Tippen, statt durch jedes Zwischenwort zu flackern — und deshalb lässt dich eine langsame Verbindung nie auf die Treffer für `Kar` schauen, während du längst `Karbon` getippt hast.
-
-Die Ausnahme sind Befehle: Sie werden auf deinem Gerät abgeglichen und erscheinen im selben Moment, in dem du tippst.
+Die App fragt erst kurz nach deinem letzten Tastendruck und verwirft veraltete Antworten. Die Ergebnisse flackern also nicht beim Tippen. Auch bei langsamer Verbindung siehst du nie Treffer für `Kar`, wenn du schon `Karbon` getippt hast.
 
 ## Wenn nichts zurückkommt
 
-Sagt die Palette, sie habe keine Treffer, arbeite das der Reihe nach ab:
+Prüfe der Reihe nach:
 
-1. **Ist noch ein Bereichs-Chip aktiv?** Ein Chip, den du vorhin gedrückt hast, bleibt gedrückt. **Alle** macht wieder weit.
-2. **Ist es ein Fragment eines langen Wortes?** Fragmente greifen auf Titeln, Schlüsseln und Labels — nicht im Text von Beschreibungen und Artikeln. Versuche das ganze Wort.
-3. **Ist es archiviert?** Stelle der Anfrage `archiviert` voran.
-4. **Liegt es in einem Projekt, das du erreichst?** Zugriff auf Projekte kommt aus deiner Projektmitgliedschaft und aus deinen Teams. Wenn eine Kollegin etwas sieht, das du nicht siehst, ist das der Grund — lass dich hinzufügen oder lies [Projekte & Teams](/de/guide-projects.html).
+1. **Ist noch ein Bereichs-Chip aktiv?** Ein gewählter Chip bleibt aktiv. Klicke auf **Alle**.
+2. **Ist es ein Teil eines langen Wortes?** Teile findet die Suche nur in Titeln, Schlüsseln und Labels, nicht in Beschreibungen und Artikeln. Tippe das ganze Wort.
+3. **Ist es archiviert?** Stelle `archiviert` voran.
+4. **Liegt es in einem Projekt, auf das du Zugriff hast?** Zugriff bekommst du über Projektmitgliedschaft und Teams. Sieht eine Kollegin etwas, das du nicht siehst, lass dich hinzufügen oder lies [Projekte & Teams](/de/guide-projects.html).
 
 ## Die Palette auf dem Handy
 
-Auf dem Handy nimmt die Palette den ganzen Bildschirm ein und fährt von oben herein: das Feld oben unter deinem Daumen, die Tastatur schon offen. Die Bereichs-Chips scrollen seitwärts, die Treffer füllen den Rest, und die Fußzeile mit den Tastaturhinweisen entfällt — es gibt ja keine Tastatur, auf die sie hinweisen könnte. Alles andere — Bereiche, letzte Suchen, das Archiv-Stichwort, Befehle — verhält sich genau wie am Schreibtisch. Mehr zum Handy-Layout in [Auf dem Handy](/de/guide-mobile.html).
+Auf dem Handy füllt die Palette den Bildschirm und kommt von oben. Das Suchfeld ist oben, die Tastatur ist schon offen. Die Chips scrollen seitwärts. Die Fußzeile mit Tastenhinweisen fehlt.
+
+Bereiche, letzte Suchen, das Stichwort fürs Archiv und Befehle funktionieren wie am Rechner. Mehr in [Auf dem Handy](/de/guide-mobile.html).
 
 ## Sechs Dinge, die Leute wirklich suchen
 
-**„Jemand hat HIN-42 erwähnt, das will ich lesen.“**
-Tippe den Schlüssel. Groß- und Kleinschreibung ist egal, und du brauchst ihn nicht ganz — `hin-4` grenzt schon ein. Enter auf dem obersten Treffer.
+**„Jemand hat HIN-42 erwähnt.“**
+Tippe den Schlüssel. Groß und klein ist egal, und ein Teil reicht: `hin-4` grenzt schon ein. Enter öffnet den obersten Treffer.
 
-**„Ich erinnere mich an einen Satz aus der Beschreibung, nicht an den Titel.“**
-Tippe den Satz als ganze Wörter. Beschreibungen und Artikeltexte werden mitdurchsucht, *„Zertifikat Rotation“* findet also das Ticket, dessen Titel davon nichts sagt. Kommt nichts zurück, reduziere auf das eine markanteste Wort — in den langen Feldern wird Wort für Wort gesucht, nicht Fragment für Fragment.
+**„Ich kenne einen Satz aus der Beschreibung, nicht den Titel.“**
+Tippe ganze Wörter, etwa *„Zertifikat Rotation“*. Beschreibungen und Artikeltexte werden mitdurchsucht. Kommt nichts, nimm nur das markanteste Wort. In langen Feldern wird Wort für Wort gesucht, nicht nach Teilen.
 
 **„Ich will alles aus einem Projekt.“**
-Suche das Projekt über seinen Namen, drücke Enter, und du landest in der Issues-Liste, bereits auf dieses Projekt gefiltert. Von dort schneidest du sie mit **Filter** und **Gruppieren nach** zurecht.
+Suche das Projekt und drücke Enter. Du landest in der Liste Issues, schon auf dieses Projekt gefiltert. Dort grenzt du mit **Filter** und **Gruppieren nach** weiter ein.
 
-**„Das hat doch niemand übernommen, oder?“**
-Öffne **Issues**, dann **Filter → Zugewiesen → Nicht zugewiesen**. Nimm **Status** dazu, wenn dich nur bereits begonnene Arbeit interessiert. Das ist die Abfrage, die findet, was still am Boden des Backlogs vor sich hin gammelt.
+**„Hat das jemand übernommen?“**
+Öffne **Issues**, dann **Filter → Zugewiesen → Nicht zugewiesen**. Nimm **Status** dazu, wenn dich nur begonnene Arbeit interessiert.
 
 **„Was habe ich letzte Woche angefasst?“**
-**Filter → Zugewiesen → du**, **Sortieren → Änderungsdatum (neu)**, **Zeitraum → Letzte 7 Tage**. Gruppiere nach Projekt, wenn du über mehrere hinweg arbeitest und die Antwort nach Bereichen getrennt willst.
+**Filter → Zugewiesen → du**, **Sortieren → Änderungsdatum (neu)**, **Zeitraum → Letzte 7 Tage**. Arbeitest du in mehreren Projekten, gruppiere nach Projekt.
 
-**„Das wurde gelöscht — oder doch nicht?“**
-Was du archivierst, ist nie wirklich weg. Tippe `archiviert` und dahinter, was du suchst — `archiviert Login Bug` — und die Palette durchsucht das Archiv statt des aktiven Workspace: archivierte Vorgänge und archivierte Projekte. Tippe `archiviert` allein, um die zuletzt archivierten Objekte zu sehen. Das englische Wort `archived` funktioniert genauso, egal in welcher Sprache deine App läuft.
+**„Wurde das gelöscht?“**
+Archiviertes ist nicht weg. Tippe `archiviert` und dahinter den Suchbegriff, etwa `archiviert Login Bug`. Die Palette durchsucht dann archivierte Vorgänge und Projekte. `archiviert` allein zeigt die zuletzt archivierten Objekte. Das englische `archived` funktioniert genauso, egal in welcher Sprache die App läuft.
 
 !!! note "Archivierte Vorgänge tragen ein Abzeichen"
-    Treffer aus dem Archiv sind markiert, du verwechselst ein archiviertes Ticket also nie mit einem aktiven. Wiederhergestellt wird es aus dem Vorgang selbst — siehe [Mit Vorgängen arbeiten](/de/guide-issues.html).
+    Treffer aus dem Archiv sind markiert. Wiederherstellen kannst du sie im Vorgang selbst, siehe [Mit Vorgängen arbeiten](/de/guide-issues.html).
 
 ## Vorgangsschlüssel sind Adressen
 
-Jeder Vorgang hat einen kurzen, dauerhaften Schlüssel: Projektschlüssel, Bindestrich, Nummer — `HIN-42`. Genau den paste man in eine Chat-Nachricht, eine Commit-Message oder ein Dokument, weil er kurz genug ist, um ihn vorzulesen, und auf dem ganzen Server eindeutig.
+Jeder Vorgang hat einen festen Schlüssel: Projektschlüssel, Bindestrich, Nummer, also `HIN-42`. Er ist auf dem ganzen Server eindeutig und eignet sich für Chatnachrichten, Commits und Dokumente.
 
-In der Web-App kommst du direkt über `…/browse/HIN-42` zu diesem Vorgang. In der Desktop- und der Handy-App erledigt der Schlüssel in der Palette dasselbe mit weniger Tastendrücken.
+- **Im Browser** öffnet `…/browse/HIN-42` den Vorgang direkt.
+- **In den Apps für Desktop und Handy** tippst du den Schlüssel in die Palette.
 
-Schlüssel überleben einen Umzug. Wird ein Vorgang in ein anderes Projekt verschoben, bekommt er eine neue Nummer — aber der alte Schlüssel funktioniert weiter: in der Palette, in `browse`-Links und in jedem Artikel und jedem Vorgang, der ihn schon referenziert. Ein Link, den du vor einem Jahr geschrieben hast, verrottet nicht, nur weil jemand die Projekte umsortiert hat.
+Wird ein Vorgang in ein anderes Projekt verschoben, bekommt er eine neue Nummer. Der alte Schlüssel funktioniert weiter: in der Palette, in `browse`-Links und in Artikeln und Vorgängen, die ihn schon nennen.
 
 !!! tip "Klicke den Schlüssel, um einen Link zu kopieren"
-    Klickst du bei einem geöffneten Vorgang auf seinen Schlüssel, landet ein teilbarer Link in der Zwischenablage — beim Darüberfahren erscheint ein Kopiersymbol, und der Schlüssel bestätigt anschließend. Dieser Link löst in beide Richtungen auf: Wo die App installiert ist, öffnet er den Vorgang in der App, sonst im Browser.
+    Klick in einem geöffneten Vorgang auf den Schlüssel, und ein Link landet in der Zwischenablage. Beim Darüberfahren erscheint ein Kopiersymbol, danach eine Bestätigung. Der Link öffnet den Vorgang in der App, wenn sie installiert ist, sonst im Browser.
 
 ## Wenn du eine Liste brauchst, keinen Sprung
 
-Die Seite **Issues** ist die andere Hälfte des Findens. Sie zeigt jeden Vorgang aus jedem Projekt, auf das du Zugriff hast, zuletzt bearbeitete zuerst, und lädt beim Scrollen nach. Vier Bedienelemente formen sie.
+Die Seite **Issues** zeigt alle Vorgänge aus allen Projekten, auf die du Zugriff hast. Zuletzt bearbeitete stehen oben, beim Scrollen wird nachgeladen. Vier Bedienelemente formen die Liste.
 
 ![Die Issues-Liste mit Gruppieren nach, Sortieren, Filter und Zeitraum über der Tabelle](/assets/img/shot-issues.png)
-*Die Seite Issues: 57 Aufgaben aus allen sichtbaren Projekten, die vier Ansichts-Bedienelemente über der Tabelle und rechts Exportieren. Das Feld __Suchen oder springen zu…__ mit seinem ⌘K-Abzeichen sitzt auf jedem Bildschirm in der oberen Leiste.*
+*Die Seite Issues mit den vier Bedienelementen über der Tabelle und rechts Exportieren.*
 
 ### Eine Zeile lesen
 
-Jede Zeile ist ein Vorgang: sein **Schlüssel**, der **Titel** mit einem Symbol für seinen Typ, sein **Status**, seine **Priorität**, seine zugewiesene Person und sein **Fälligkeitsdatum**. Zwei dieser Spalten arbeiten mehr, als sie aussehen:
+Jede Zeile zeigt **Schlüssel**, **Titel** mit Typsymbol, **Status**, **Priorität**, zugewiesene Person und **Fälligkeitsdatum**.
 
-- **Fällig** spricht relativ, solange das hilft, und in Daten, sobald es das nicht mehr tut — *3 T. überfällig* und *Heute* in Rot, dann *Morgen*, dann *in 5 T.* für alles innerhalb der kommenden Woche, danach ein schlichtes Datum. Du kannst hundert Zeilen nach Ärger absuchen, ohne ein einziges Kalenderdatum zu lesen.
-- **Titel** trägt einen kleinen Zähler, wenn der Vorgang Sub-Tasks hat — `0/1`, `3/4` — damit ein Elternvorgang, der fertig aussieht, es aber nicht ist, das sagt, bevor du ihn öffnest.
+- **Fällig** zeigt relative Angaben: *3 T. überfällig* und *Heute* in Rot, dann *Morgen*, dann *in 5 T.* für die kommende Woche. Danach steht ein Datum.
+- **Titel** zeigt bei Sub-Tasks einen Zähler wie `0/1` oder `3/4`. So siehst du, ob ein Vorgang wirklich fertig ist.
 
-Ein Klick irgendwo auf die Zeile öffnet den Vorgang.
+Ein Klick auf die Zeile öffnet den Vorgang.
 
 ### Die Liste formen
 
-**Filter** öffnet ein Popover mit fünf Facetten — **Status**, **Priorität**, **Zugewiesen**, **Projekt** und **Typ** — dazu einen Schalter **Archiviert**. Innerhalb einer Facette sind die Auswahlen Alternativen: *Bug* und *Task* zeigt beides. Zwischen Facetten addieren sie sich: *Bug* plus *In Arbeit* plus *Lena* zeigt nur Lenas laufende Bugs.
+**Filter** öffnet ein Popover mit fünf Facetten (**Status**, **Priorität**, **Zugewiesen**, **Projekt**, **Typ**) und dem Schalter **Archiviert**.
+
+- Innerhalb einer Facette gilt ODER: *Bug* und *Task* zeigt beides.
+- Zwischen Facetten gilt UND: *Bug* plus *In Arbeit* plus *Lena* zeigt nur Lenas laufende Bugs.
 
 ![Das Filter-Popover mit geöffneter Facette „Zugewiesen“](/assets/img/shot-issues-filter.png)
-*Je eine Auswahl in __Status__ und __Zugewiesen__: Jeder Facetten-Chip trägt seinen eigenen Zähler, die Fußzeile sagt __2 aktiv__, und die Kopfzeile zählt, was übrig bleibt — 3 von 11 Aufgaben. Lange Facetten bekommen ein eigenes Suchfeld, und __Zurücksetzen__ in der Fußzeile leert alle Facetten auf einmal.*
+*Je eine Auswahl in __Status__ und __Zugewiesen__: Die Fußzeile zeigt __2 aktiv__, die Kopfzeile 3 von 11 Aufgaben.*
 
-**Gruppieren nach** teilt die Liste in beschriftete Abschnitte. Vor dem Daily nach Person gruppiert, wird aus der Liste eine Agenda pro Kopf; nach Projekt gruppiert, eine Portfolio-Ansicht.
+Lange Facetten haben ein eigenes Suchfeld. **Zurücksetzen** in der Fußzeile leert alle Facetten.
+
+**Gruppieren nach** teilt die Liste in Abschnitte, etwa nach Person für das Daily oder nach Projekt. Der Knopf trägt den Namen der aktiven Gruppierung.
 
 ![Das Menü „Gruppieren nach“ über der Vorgangsliste](/assets/img/shot-issues-groupby.png)
-*Ein Dropdown statt einer Knopfreihe, mit einem Haken an der geltenden Gruppierung. Der Knopf liest sich als __Gruppieren nach__, solange __Keine__ gilt, und übernimmt den Namen der Gruppierung, sobald du eine wählst.*
+*Das Menü „Gruppieren nach“ mit Haken an der aktiven Gruppierung.*
 
-**Sortieren** ordnet die gesamte Ergebnismenge, nicht nur die Zeilen, bis zu denen du gescrollt hast: neueste zuerst, älteste zuerst oder nach Änderungsdatum in beide Richtungen. Voreingestellt ist zuletzt bearbeitet zuerst.
+**Sortieren** ordnet die gesamte Ergebnismenge, nicht nur die geladenen Zeilen: neueste oder älteste zuerst oder nach Änderungsdatum. Standard ist zuletzt bearbeitet zuerst.
 
-**Zeitraum** grenzt nach Datum ein. Er liest Daten so, wie du es tätest: Ein Vorgang mit Start *und* Fälligkeit passt, wenn seine Spanne das Fenster überlappt; einer mit nur einem der beiden passt, wenn dieses Datum im Fenster liegt; einer ohne beides fällt auf seine letzte Aktivität zurück, damit ungeplante Arbeit trotzdem auftaucht.
+**Zeitraum** grenzt nach Datum ein:
+
+- Mit Start und Fälligkeit: passt, wenn die Spanne den Zeitraum überschneidet.
+- Mit nur einem Datum: passt, wenn es im Zeitraum liegt.
+- Ohne Datum: zählt die letzte Aktivität.
 
 ![Das Menü „Zeitraum“ über der Vorgangsliste](/assets/img/shot-issues-timerange.png)
-*Überfälliges und Heutiges oben, rollende Fenster in der Mitte, unten __Eigener Zeitraum…__ — diese letzte Zeile öffnet einen Kalender, in dem du das Fenster selbst setzt. Wie __Gruppieren nach__ benennt sich auch dieser Knopf nach dem gerade aktiven Zeitraum um.*
+*Überfälliges und Heutiges oben, rollende Zeiträume in der Mitte, __Eigener Zeitraum…__ öffnet einen Kalender.*
+
+Auch dieser Knopf trägt den Namen des aktiven Zeitraums.
 
 !!! note "Filter halten für den Besuch, nicht für immer"
-    Gespeicherte Ansichten gibt es noch nicht. Was du einstellst, bleibt, bis du die Seite verlässt; beim nächsten Mal öffnet die Liste ungefiltert. Für eine Ansicht, die du täglich brauchst, behalte den Link — siehe unten — oder baue sie als [Board](/de/guide-boards.html), das seine Konfiguration sehr wohl behält.
+    Gespeicherte Ansichten gibt es noch nicht. Deine Einstellungen gelten, bis du die Seite verlässt. Für eine tägliche Ansicht behalte den Link (siehe unten) oder baue ein [Board](/de/guide-boards.html), das seine Einstellungen speichert.
 
 ## Filter, die mit dem Link kommen
 
-Manche Links bringen ihren Filter mit. Die Kacheln auf deinem Dashboard sind das klarste Beispiel: Ein Klick auf **Heutige Aufgaben** öffnet die Issues-Liste bereits auf das eingegrenzt, was bis heute fällig ist — und die Zahl, die du angeklickt hast, entspricht der Zahl der Zeilen, die du bekommst. Über eine Projektkarte gilt dasselbe für dieses Projekt.
+Manche Links bringen einen Filter mit. Ein Klick auf die Kachel **Heutige Aufgaben** im Dashboard öffnet die Liste Issues mit allem, was bis heute fällig ist. Die Zahl auf der Kachel entspricht der Zahl der Zeilen. Eine Projektkarte filtert genauso auf ihr Projekt.
 
-In der Web-App trägt die Adresszeile diesen Zuschnitt mit, ein Link, den du von dort kopierst, öffnet sich bei Kolleginnen also genauso gefiltert wie bei dir.
+Im Browser steht der Filter in der Adresszeile. Kopierst du den Link, sehen Kolleginnen dieselbe gefilterte Liste.
 
 ## Ergebnisse mitnehmen
 
-**Exportieren** schreibt die vollständige gefilterte Menge, nicht nur die Zeilen, die du hereingescrollt hast — die App blättert zuerst die ganze Ergebnismenge auf dem Server durch.
+**Exportieren** schreibt die komplette gefilterte Menge, nicht nur die geladenen Zeilen. Die App holt dafür erst alle Seiten vom Server.
 
 ![Das Export-Menü in der Werkzeugleiste der Vorgangsliste](/assets/img/shot-issues-export.png)
-*Drei Formate hinter der Pille __Exportieren__ rechts in der Werkzeugleiste: __Als PDF exportieren__ ist eine druckbare Tabelle mit Name und Logo deiner Organisation, __Als CSV exportieren__ ist für die Tabellenkalkulation, __Als JSON exportieren__ für alles, was es wieder einlesen soll.*
+*Das Menü __Exportieren__ mit drei Formaten.*
 
-Die Datei landet in deinem Downloads-Ordner, und die App nennt dir den verwendeten Dateinamen.
+- **Als PDF exportieren:** druckbare Tabelle mit Name und Logo deiner Organisation.
+- **Als CSV exportieren:** für Tabellenkalkulationen.
+- **Als JSON exportieren:** für Programme, die die Daten wieder einlesen.
+
+Die Datei landet im Ordner Downloads. Die App zeigt dir den Dateinamen.
 
 ## Über die Hierarchie navigieren statt suchen
 
-Manches läuft man schneller ab, als man es sucht. Arbeit ist in Hinata drei Ebenen tief verschachtelt — ein **Epic** hält Stories, Tasks, Bugs und Features, und jedes davon kann **Sub-Tasks** halten — und jede Ebene ist begehbar:
+Arbeit ist in Hinata drei Ebenen tief: Ein **Epic** enthält Stories, Tasks, Bugs und Features, und diese können **Sub-Tasks** enthalten. Du kannst dich durch alle Ebenen klicken:
 
-- Jeder Vorgang zeigt über seinem Titel einen **Breadcrumb**. Die übergeordneten Einträge sind anklickbar: ein Sprung von einem Sub-Task zum Elternvorgang, noch einer zum Epic, das beide rahmt.
-- Ein Elternvorgang listet seine **untergeordneten Vorgänge** und seine **Sub-Tasks** in eigenen Panels, mit Fortschrittszähler. Wer das Epic kennt, muss darin nie etwas suchen.
-- Auf dem Board macht **Gruppieren nach → Epic** aus den Spalten Swimlanes, eine pro Epic. Das ist der schnellste Blick auf eine ganze Initiative — inklusive der Teile, an denen niemand arbeitet.
+- Über jedem Titel steht ein **Breadcrumb**. Die übergeordneten Einträge sind anklickbar, vom Sub-Task zum Elternvorgang und weiter zum Epic.
+- Ein Elternvorgang listet **untergeordnete Vorgänge** und **Sub-Tasks** in eigenen Panels, mit Fortschrittszähler.
+- Auf dem Board macht **Gruppieren nach → Epic** eine Swimlane pro Epic. Du siehst eine ganze Initiative, auch die Teile, an denen niemand arbeitet.
 
-Und wenn du etwas doch an einen Elternvorgang hängst, öffnen die Epic- und Eltern-Auswahl mit **Letzte Epics** und **Aktuelle Vorgänge** — meistens ist das Gesuchte einer der letzten, die du angefasst hast.
+Die Auswahl für Epic und Elternvorgang zeigt zuerst **Letzte Epics** und **Aktuelle Vorgänge**.
 
 ## Nach einer Person suchen
 
-Personentreffer passen auf Anzeigename, Benutzername und Position — *„Vogt“*, *„lvogt“* und *„Designerin“* finden also dieselbe Kollegin. Ein schneller Weg, um zu klären, wer eine Rolle innehat, die du nur der Beschreibung nach kennst.
+Personen findest du über Anzeigename, Benutzername und Position. *„Vogt“*, *„lvogt“* und *„Designerin“* finden dieselbe Kollegin.
 
-Um die *Arbeit* einer Person zu sehen statt ihres Profils, geh andersherum vor: **Issues** öffnen, nach **Zugewiesen** filtern und nach Projekt oder Status gruppieren. Der **Personen**-Filter des Boards tut dasselbe für ein einzelnes Board — und das ist meistens genau das, was ein Daily braucht.
+Die *Arbeit* einer Person siehst du so: **Issues** öffnen, nach **Zugewiesen** filtern und nach Projekt oder Status gruppieren. Auf einem Board macht der Personenfilter dasselbe.
 
 !!! note "Eine Person zu öffnen braucht Adminrechte"
-    Ein Personentreffer führt in die Benutzerverwaltung, die nur Administratorinnen und Administratoren öffnen können. Finden können alle Personen; die Verzeichnisseite öffnen nicht.
+    Ein Personentreffer führt in die Benutzerverwaltung. Die können nur Administratorinnen und Administratoren öffnen. Finden können alle.
 
 ## Einmal verlinken, seltener suchen
 
-Die beste Suche ist die, die du nie ausführen musst. Wann immer du eine Beschreibung, einen Kommentar oder einen Artikel schreibst: Tippe **@** und wähle den Vorgang, den Artikel oder die Person, die du meinst. Was im Text landet, ist ein lebendiger Link: Er zeigt den echten Titel und Status des Vorgangs, er öffnet ihn beim Klick, und er speist die Panels, die Dinge verbinden — **Verknüpfte Aufgaben** am Fuß eines Artikels, **Dokumentiert in** am Vorgang selbst.
+Tippe beim Schreiben einer Beschreibung, eines Kommentars oder Artikels **@** und wähle Vorgang, Artikel oder Person. Daraus wird ein Link, der:
 
-`HIN-42` als bloße Zeichen zu tippen bringt nichts davon. Es ist lesbar, und jemand kann es in die Palette kopieren, aber die beiden Dinge bleiben Fremde. Ein einziger Tastendruck macht aus einer Erwähnung eine Verbindung, und der zahlt sich jedes Mal aus, wenn jemand anderes suchen geht. Was diese Links können, sobald es sie gibt, steht in [Dokumentation schreiben](/de/guide-knowledge.html).
+- den echten Titel und Status des Vorgangs zeigt,
+- beim Klick den Vorgang öffnet,
+- die Panels **Verknüpfte Aufgaben** (am Artikel) und **Dokumentiert in** (am Vorgang) füllt.
+
+Tippst du `HIN-42` nur als Text, passiert nichts davon. Mehr in [Dokumentation schreiben](/de/guide-knowledge.html).
 
 ## Suchen an anderen Stellen
 
-Suche wohnt nicht nur in der Palette:
-
-- Das **Board** hat einen eigenen Filter mit Facetten, die die globale Liste nicht braucht — Sprint, Autor, Stichwort und Epic — dazu einen Personen-Filter, um auf ein oder zwei Kolleginnen einzugrenzen. Siehe [Boards & Sprints](/de/guide-boards.html).
-- Die **Wissensdatenbank** hat über ihrem Bereichsraster ein eigenes Suchfeld für Artikeltitel, Bereichsnamen und Labels. Siehe [Dokumentation schreiben](/de/guide-knowledge.html).
-- **Beobachtet** sammelt die Vorgänge, denen du folgst — oft der kürzeste Weg zurück in laufende Arbeit. Siehe [Auf dem Laufenden bleiben](/de/guide-notifications.html).
-- In einem Vorgang durchsucht das **@**-Menü Vorgänge, Artikel und Personen, damit du beim Schreiben das eine mit dem anderen verknüpfst.
+- Das **Board** hat einen eigenen Filter mit Sprint, Autor, Stichwort und Epic sowie einen Personenfilter. Siehe [Boards & Sprints](/de/guide-boards.html).
+- Die **Wissensdatenbank** hat über den Bereichen ein Suchfeld für Artikeltitel, Bereichsnamen und Labels. Siehe [Dokumentation schreiben](/de/guide-knowledge.html).
+- **Beobachtet** sammelt die Vorgänge, denen du folgst. Siehe [Auf dem Laufenden bleiben](/de/guide-notifications.html).
+- In einem Vorgang durchsucht das **@**-Menü Vorgänge, Artikel und Personen.
 
 !!! tip "Die Faustregel"
-    Kannst du das Ding benennen, nimm ⌘K. Kannst du es nur beschreiben — *offen, meine, überfällig* — nimm die Issues-Liste. Brauchst du es morgen wieder, mach ein Board daraus.
+    Kannst du das Ding benennen, nimm ⌘K. Kannst du es nur beschreiben (*offen, meine, überfällig*), nimm die Liste Issues. Brauchst du es morgen wieder, mach ein Board daraus.
 
 ## Nächste Schritte
 
-- Was du mit dem Gefundenen anstellst, steht in [Mit Vorgängen arbeiten](/de/guide-issues.html).
-- Dieselbe Arbeit visuell formen: [Boards & Sprints](/de/guide-boards.html).
-- Schreibe das Runbook, das die Palette beim nächsten Mal findet: [Dokumentation schreiben](/de/guide-knowledge.html).
+- Was du mit dem Gefundenen machst: [Mit Vorgängen arbeiten](/de/guide-issues.html).
+- Dieselbe Arbeit visuell ordnen: [Boards & Sprints](/de/guide-boards.html).
+- Das Runbook schreiben, das die Palette nächstes Mal findet: [Dokumentation schreiben](/de/guide-knowledge.html).

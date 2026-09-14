@@ -3,7 +3,7 @@
   "name": "Hinata",
   "tagline": {
    "en": "Open-source, self-hosted project management",
-   "de": "Open-Source, selbst-gehostetes Projektmanagement"
+   "de": "Projektmanagement, Open Source und selbst gehostet"
   },
   "app_repo": "hinata-platform/hinata-app",
   "accent": "#D9A032",

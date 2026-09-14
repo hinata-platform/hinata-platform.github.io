@@ -1,100 +1,91 @@
 ---
 title: Writing documentation
-description: Write articles in the knowledge base, nest them into spaces and sub-pages, and link them to the issues and people they describe.
+description: Write knowledge base articles, organize them and link them to issues and people.
 ---
 
 # Writing documentation
 
-Issues describe work that is happening. Documentation describes how things *are* — the runbook you follow at three in the morning, the decision nobody remembers making, the onboarding page that saves a new colleague a week of asking.
+Issues describe work that is happening. Documentation describes how things *are*: runbooks, decisions, onboarding pages.
 
-Hinata's **knowledge base** is where that lives. It is a wiki, in the honest sense: pages nest inside pages, everyone who can read a page can improve it, and every article can point at the issues and people it is about, so the documentation and the work stay attached to each other.
+That is what the **knowledge base** is for. It's a wiki: pages nest inside pages, anyone who can read a page can edit it, and articles link to the issues and people they are about.
 
 ## Spaces, articles and sub-pages
 
-Three levels, and no more than three, because a filing system deeper than that is one nobody maintains:
-
-- A **space** is a shelf — *Engineering*, *Product*, *Design*, *Operations*. It has a name, an icon, a colour and a one-line description of what belongs in it.
+- A **space** is a shelf, such as *Engineering*, *Product*, *Design* or *Operations*. It has a name, an icon, a colour and a one-line description.
 - An **article** is a page in a space.
-- Any article can have **sub-pages**, and those can have sub-pages of their own. This is where the real structure lives: a handbook at the top, its chapters beneath it.
+- Any article can have **sub-pages**, as deep as you like. For example, a handbook at the top and its chapters beneath it.
 
 ![The knowledge base home: search, a card per space, and the most recently updated articles](/assets/img/shot-knowledge.png)
-*The knowledge base home. Each card is a space with its own colour, description and article count; the __New space__ tile beside them creates another. Below, __Recently updated__ shows what the team has been writing, with the space and author on every row.*
+*The knowledge base home.*
 
-The home screen shows every space as a card, plus a **Recently updated** list — which is, in practice, how most people re-find a page they read last week.
+Each card shows a space's colour, description and article count. Below, **Recently updated** lists the latest changes with space and author.
 
 ### Creating a space
 
-Click the **New space** tile.
+Click the **New space** tile, enter a name and description, and pick an icon and colour.
 
 ![The New space dialog with a name and description filled in](/assets/img/shot-kb-new-space.png)
-*Name, description, an icon grid and a colour row in one dialog. __Create space__ stays dead until the space has a name; the space then appears on the grid immediately, empty and ready.*
+*The New space dialog.*
 
-Keep spaces few and broad. A space per team or per discipline works; a space per project usually does not, because most documentation is about a *subject* that outlives any single project.
+**Create space** only becomes active once there is a name. The space then appears on the grid right away.
+
+Prefer a few broad spaces, such as one per team or discipline. One per project rarely fits, because topics outlive projects.
 
 !!! warning "A space can only be deleted while it is empty"
-    **Delete space** is offered on a space that still has no articles. Once it holds pages, move or delete them first. This is deliberate: deleting a shelf should never quietly delete the books on it.
+    **Delete space** is only offered on a space with no articles. Move or delete its pages first.
 
 ## Write an article
 
-Press **New article** — from the knowledge base home, or from the article view where it sits next to **All spaces**.
+Press **New article**, on the home screen or in the article view next to **All spaces**.
 
 ![The article editor on a new page, with a title typed and the body still empty](/assets/img/shot-kb-new-article.png)
-*The title sits above the toolbar; the space picker beside it decides which shelf the article lands on, and can be changed later at any time. The button on the right reads __Publish__ on a new page and __Save__ on one you are editing.*
+*The editor on a new page.*
 
-Type the title first: it becomes the page's heading, the row in the tree, and the thing everyone will search for later, so it is worth a moment's thought. *"Release checklist & version gating"* is findable. *"Notes"* is not.
+- **Title** above the toolbar. It becomes the heading, the row in the tree and what people search for. *"Release checklist"* is findable, *"Notes"* is not.
+- **Space picker** next to it. You can change it at any time.
+- **Button on the right:** **Publish** on new pages, **Save** when editing.
 
-There is no separate draft state to remember — an article is either written or it is not.
+There is no draft state.
 
 !!! tip "Start it as a sub-page"
-    If the article belongs under an existing one, do not create it from the home screen. Hover the parent's row in the tree and press the **+** that appears — **Add sub-page**. It is created in the right place, in the right space, with no tidying afterwards.
+    Hover the parent in the tree and press the **+** (**Add sub-page**). The article is created in the right place.
 
 ## A first page, start to finish
 
-If you have never written one, this is the whole loop in six steps:
-
 1. Open **Knowledge** in the sidebar and press **New article**.
-2. Title it for the question it answers — *"How to roll a release"*, not *"Release"*.
-3. Pick the space it belongs in from the dropdown next to the title.
-4. Write the body. Use **Heading 2** for each stage, a **numbered list** for the steps inside a stage, and a **Warning** panel for the one thing that goes wrong if you skip it.
-5. Type **@** where you mention the ticket this came out of, and pick it from the list.
+2. Title it for the question it answers: *"How to roll a release"*, not *"Release"*.
+3. Pick the space from the dropdown next to the title.
+4. Write the body with **Heading 2** per stage, a **numbered list** for the steps and a **Warning** panel for what can go wrong.
+5. Type **@** and pick the related ticket.
 6. Press **Publish**.
 
-That page is now searchable by title and by the words inside it, it appears in **Recently updated** for the team, and the issue you linked now shows this article under **Documented in**. Two minutes of writing, permanently attached to the work.
+The page is now searchable by title and text, shows up in **Recently updated**, and the issue lists it under **Documented in**.
 
 ## The editor
 
-The body is a rich-text editor: what you type is what the page will look like, so there is no markup to learn and no preview pane to flip to.
-
-Above the text sits the toolbar, in the order you reach for things:
+You write with formatting applied as you go, with no markup and no preview. The toolbar:
 
 | Group | Buttons |
 | --- | --- |
 | **History** | Undo, Redo |
-| **Text style** | A dropdown: Body text, Heading 1–3, Quote, Bullet list, Numbered list, Task list, Code block |
+| **Text style** | A dropdown: Body text, Heading 1 to 3, Quote, Bullet list, Numbered list, Task list, Code block |
 | **Formatting** | Bold, Italic, Underline, Strikethrough, Inline code, Link |
 | **Alignment** | Left, Centre, Right, Justify |
 | **Blocks** | Info panel, Warning, Note, Tip, Divider |
 | **Insert** | Insert image, Mention / link (@) |
 
-A few of these are worth knowing about specifically.
-
-**Text style is a dropdown, not a row of toggles**, because a line can only be one of those things at a time.
-
 ![The Text style dropdown open over the article editor](/assets/img/shot-kb-text-style.png)
-*The nine shapes a line can take, with a tick on the one the cursor is in. The button carries that name too, and reads __Mixed__ where a selection spans several of them.*
+*The Text style dropdown with nine styles.*
 
-**The four coloured panels** — Info, Warning, Note and Tip — are the fastest way to make a page skimmable. Put the one sentence that saves someone an outage in a Warning and it will be read; leave it in the fourth paragraph and it will not.
-
-**Task lists** are real checkboxes. They are for checklists that are followed, not tracked — if the items need owners and dates, they want to be [issues](/en/guide-issues.html) instead.
-
-**Code blocks** carry a language, so a shell snippet and a JSON payload are coloured differently and are easy to tell apart at a glance.
+- **Text style** is a dropdown because a line can only have one style. A tick marks the current one. If a selection spans several, it reads **Mixed**.
+- **Coloured panels** (Info, Warning, Note, Tip) make important points stand out.
+- **Task lists** have real checkboxes and are meant for checklists. If items need owners and dates, use [issues](/en/guide-issues.html).
+- **Code blocks** carry a language and are coloured to match.
 
 !!! tip "Select text and the tools come to you"
-    Highlight a phrase and a small glass toolbar appears above it with the formatting you are most likely to want, including the link editor. The address is typed right over the words being linked, so you can still see what you are linking while you type where it goes.
+    Highlight text and a small toolbar appears above it with the most common formatting and the link editor. You type the address right above the selected words.
 
 ### Keyboard shortcuts
-
-On a desktop the usual ones work, so your hands never have to leave the text:
 
 | Shortcut | Does |
 | --- | --- |
@@ -104,98 +95,84 @@ On a desktop the usual ones work, so your hands never have to leave the text:
 | **⌘Z / Ctrl+Z** | Undo |
 | **⇧⌘Z / Ctrl+Y** | Redo |
 
-Everything else lives on the toolbar. There is no shortcut for the coloured panels or for **@** — but **@** is a character you type anyway, which is the point of choosing it.
+There is no shortcut for coloured panels or **@**. You just type **@**.
 
 ### Links, images and dividers
 
-**Links** are added from the toolbar or the selection toolbar. Type or paste the address; **Remove link** takes it off again. Addresses that are not safe to follow are rejected rather than silently stored.
-
-**Images** are uploaded from your device with the image button and land where the cursor is. Drag the handles at their corners to resize, and add a caption underneath if the picture needs one. PNG, JPEG, GIF and WebP files are accepted — SVG is not, on purpose, because an SVG can carry code. How large an image may be is set by whoever runs your server; see [Object storage](/en/storage.html) if that is you.
-
-**Dividers** separate sections of a long page. Use them sparingly — headings do the job better and feed the outline.
+- **Links** come from the toolbar or the selection toolbar. **Remove link** takes one off. Unsafe addresses are rejected.
+- **Images** are uploaded with the image button and land at the cursor. Resize with the corner handles and add a caption below. PNG, JPEG, GIF and WebP are accepted. SVG is not, because it can carry code. The size limit is set by whoever runs the server, see [Object storage](/en/storage.html).
+- **Dividers** are best used sparingly. Headings also feed the outline.
 
 !!! warning "Saving an empty page over a full one is blocked"
-    If something goes wrong while loading an article, the editor refuses to save an empty body over content that already exists and tells you why. It is the one action here that could destroy a page of writing with a single click, so it is made impossible rather than merely unlikely.
+    If loading goes wrong, the editor won't save an empty body over existing content, and tells you why.
 
-## Smart links: @ is the important key
+## Smart links with @
 
-Type **@** anywhere in an article — or press the **@** button at the end of the toolbar. Pick a candidate and a *chip* is inserted: not text that looks like a reference, but a live link.
+Type **@** in the text or press the **@** button at the end of the toolbar. Pick a suggestion and it becomes a *chip*, a real link.
 
 ![The Mention / link picker open over the article editor](/assets/img/shot-kb-mention-picker.png)
-*One picker across issues, articles and people, narrowing as you type. Every row names its kind with a glyph and carries the issue key or the article's space underneath. Two letters reach all three kinds here: `ok` finds four issues, two articles and Amara Okafor.*
+*The picker for issues, articles and people.*
 
-That distinction is the whole point:
+The list narrows as you type. Each row shows an icon for its kind and the issue key or space. In the example, `ok` finds four issues, two articles and Amara Okafor.
 
-- An **issue chip** shows the issue's type, its key and its real title, and it opens the issue when clicked. Hover it on a desktop, or long-press on a phone, and a preview card shows its status, priority and assignee without leaving the page.
-- An **article chip** links to another page and shows its icon and title.
-- A **person chip** shows an avatar and their first name, so *"ask @Lena"* stays meaningful when Lena's job title changes.
+- **Issue:** shows type, key and current title, and opens on click. Hover (desktop) or long-press (phone) to see status, priority and assignee.
+- **Article:** shows the page's icon and title.
+- **Person:** shows avatar and first name, even if their job title changes.
 
-If a chip's target disappears, the chip says so instead of pretending — a broken link is drawn in red rather than quietly becoming ordinary text.
+If the target disappears, the chip turns red.
 
 !!! warning "Typing HIN-42 by hand is just text"
-    Only chips inserted with **@** count as links. Plain characters look similar and behave completely differently: they will not open anything, they will not appear in **Linked issues**, and the issue will never know it is documented. One keystroke is the whole difference.
+    Only chips inserted with **@** are links. Typed text opens nothing and doesn't appear in **Linked issues**.
 
 ## Documentation that knows what it describes
 
-Because chips are links, Hinata can show the connection from both ends — and this is what turns a wiki into something the team trusts.
+Chips work in both directions, automatically:
 
-- At the foot of an article, **Linked issues** lists every issue the page mentions, each as a card with its current status. A runbook shows you the state of the work it describes without your having to go looking.
-- On an issue, **Documented in** lists every article that links to it. Someone landing on a ticket cold can find the page explaining the subsystem it belongs to.
+- **Linked issues** at the foot of an article lists every issue it mentions, with current status.
+- **Documented in** on an issue lists every article that links to it.
 
 ![An issue chip in an article body with its hover preview open](/assets/img/shot-kb-chip-preview.png)
-*Two chips in one sentence of ordinary prose — an issue and a person. Hovering the issue chip opens a preview card with the issue's status, title, assignee, priority and label, and __Open issue__ at its foot. The same issue is listed once more under __Linked issues__ at the end of the page, without anyone having put it there.*
+*An issue's preview card.*
 
-Neither list is maintained by hand. Both are derived from the chips in the text, so they cannot drift out of date — write the link once and the relationship exists in both directions, forever.
+The preview card shows status, title, assignee, priority and label, with **Open issue** at the bottom.
 
 ![An article with its space tree on the left, the body in the centre, and contributors and details on the right](/assets/img/shot-knowledge-article.png)
-*The article view: the space picker and page tree on the left, the article with its space chip, byline, labels and body in the centre — note the Info panel and the inline person chip — and Contributors plus Details on the right. __Edit__ and the delete button sit next to the byline.*
+*The article view.*
 
 ## Finding your way around an article
 
-The article view has three columns, and both side columns can be folded away with the small toggles on the inner edges when you want to read full-width.
+Three columns. Fold away the side columns with the toggles on their inner edges.
 
-**On the left** is the space picker and the page tree. The tree shows the whole nesting for the current space; the article you are reading is highlighted, and its sub-pages hang beneath it.
-
-**In the middle** is the article: its space chip, title, author and when it was last updated, its labels, and the body.
-
-**On the right** is the aside:
-
-- **On this page** — an outline built from the headings, appearing only when the article has more than one. Clicking a heading jumps to it.
-- **Contributors** — the people credited on the page.
-- **Related articles** — other pages this one links to.
-- **Details** — when it was created, which space it is in, and its status.
-
-On a phone, the tree moves into a drawer you open when you need it, so the article itself gets the full width.
+- **Left:** space picker and page tree. The current article is highlighted.
+- **Middle:** space chip, title, author, last update, labels and body. **Edit** and delete sit next to the byline.
+- **Right:** **On this page** (outline, only with more than one heading), **Contributors**, **Related articles** (pages this one links to) and **Details** (created, space, status).
 
 ## Writing on a phone
 
-Everything works on a phone, with three sensible differences:
+- The **toolbar scrolls sideways**, with Undo and Redo first.
+- The **page tree lives in a drawer**, so the article gets the full width.
+- **Long-press a chip** for its preview card.
 
-- The **toolbar scrolls sideways**. Undo and Redo sit first because there is no keyboard shortcut for them on a touch device, and they are what you reach for fastest.
-- The **page tree lives in a drawer**, so the article gets the full width; open it when you need to move between pages.
-- **Long-press a chip** instead of hovering it to see the preview card.
-
-Reading is comfortable on a phone; writing a long page is not, on any device. Phones are for fixing the paragraph you noticed was wrong on the train. See [On your phone](/en/guide-mobile.html).
+See [On your phone](/en/guide-mobile.html).
 
 ## Reorganising: drag, nest, move
 
-The tree is not decoration — it is the editing surface for structure:
+- **Drag a page onto another** to nest it. Sub-pages move with it.
+- **Drop it on the root zone** at the top of the tree to move it to the top level.
+- **Different space:** open the page, press **Edit** and change the space in the header.
 
-- **Drag a page onto another page** to nest it underneath. Its own sub-pages travel with it; you never have to reattach a subtree by hand.
-- **Drop it on the root zone** at the top of the tree to pull it back out to the top level.
-- To move a page to a *different space*, open it, press **Edit** and change the space in the header.
-
-Hovering a row reveals two controls at its right edge: a **+** for **Add sub-page**, and the menu below.
+Hovering a row shows **+** (**Add sub-page**) and the menu.
 
 ![The row menu of a page in the knowledge tree](/assets/img/shot-kb-tree-menu.png)
-*The row's own menu. __Move to top level__ un-nests the page without dragging it anywhere, and __Delete__ is the only way to remove a page from the tree — on a page that still has sub-pages that row reads __Delete (move sub-pages first)__ and does nothing.*
+*The menu of a page in the tree.*
+
+- **Move to top level** takes the page out of its parent without dragging.
+- **Delete** removes the page. If it has sub-pages, the entry reads **Delete (move sub-pages first)** and does nothing.
 
 !!! warning "Deleting is permanent, and parents are protected"
-    **Delete** asks for confirmation and names the article, because there is no undo and no wastebasket. A page that has sub-pages cannot be deleted at all until they are moved somewhere else — the menu says so rather than offering an action that would orphan them.
+    **Delete** asks for confirmation and names the article. There is no undo and no wastebasket. Pages with sub-pages can only be deleted once those are moved.
 
-## Who can see what — and who can change it
-
-An article's visibility follows the scope it was created in:
+## Who can see and change what
 
 | Scope | Who can see it |
 | --- | --- |
@@ -203,24 +180,23 @@ An article's visibility follows the scope it was created in:
 | **Project** | Everyone who has access to that project |
 | **Team** | Members of that team |
 
-Articles written in the app are **global** by default — organisation-wide. Project- and team-scoped articles come from integrations that create them with a scope, and they follow exactly the access you already have to that project or team: if a project is invisible to you, so are its pages, and they do not appear in search or in any list. Administrators see everything. Access to projects itself comes from membership and from teams — see [Projects and teams](/en/guide-projects.html).
+- Articles written in the app are **global**.
+- Project and team scoped articles come from integrations. If you can't see the project or team, you can't see its pages either, not in search and not in lists.
+- Administrators see everything.
+
+Project access: [Projects and teams](/en/guide-projects.html).
 
 !!! warning "Anyone who can read a page can edit or delete it"
-    There is no per-article permission and no read-only mode. This is a wiki: the same access that lets you open a page lets you improve it — and lets you remove it. Trust the team, and lean on the fact that structure protects you where permissions do not (a parent page cannot be deleted while it has children).
+    There are no per-article permissions and no read-only mode. Only parent pages with sub-pages are protected from deletion.
 
 ## Searching the knowledge base
 
-Two searches reach your articles, and they are good at different things.
+- **Search field on the knowledge home:** article titles, space names and labels.
+- **⌘K palette:** also the text inside articles, plus everything else in Hinata. See [Finding things](/en/guide-search.html).
 
-The **search field on the knowledge home** matches article titles, space names and labels. It is the one to use when you are browsing your own documentation and half-remember a title.
-
-The **⌘K palette** additionally searches the *text inside* articles, and it searches everything else at the same time. It is the one to use when you remember a sentence but not which page it was on. See [Finding things](/en/guide-search.html).
-
-Labels help both. An article that carries them shows them as chips under its title, and the home search and the palette both match them, so a consistent label like `runbook` makes a whole category retrievable in one query. The editor has no label field today, so labels usually arrive from whatever created the article rather than from your keyboard.
+Labels appear as chips under the title, and both searches match them. A label like `runbook` brings up a whole category. The editor has no label field yet, so labels usually come from whatever created the article.
 
 ## What belongs here, and what belongs in an issue
-
-The two halves of Hinata answer different questions, and putting something in the wrong one is the most common way documentation goes stale.
 
 | Write an article when… | Write an issue when… |
 | --- | --- |
@@ -229,23 +205,24 @@ The two halves of Hinata answer different questions, and putting something in th
 | It describes how a thing works | It describes a change to be made |
 | Nobody needs to be assigned to it | Somebody needs to own it and finish it |
 
-A useful test: if the page would need a *status*, it is an issue. If it would need a *last reviewed* date, it is an article.
+Rule of thumb: if the page needs a *status*, it's an issue. If it needs a *last reviewed* date, it's an article.
 
-## Keeping a page honest
+## Keeping a page current
 
-An article carries its own small audit trail. The byline says who wrote it and how long ago it was last updated; **Contributors** in the aside credits its author; **Details** records when it was created.
+The byline, **Contributors** and **Details** show the author, last update and creation date. There is no revision history. So:
 
-There is no revision history and no way to restore an earlier version of an article, so two habits are worth having. Edit in place rather than replacing wholesale — the guard against saving an empty page will catch a catastrophe, but not a well-meant rewrite. And when a page is superseded rather than wrong, say so at the top and link the page that replaces it instead of deleting it; a link that leads somewhere beats a link that leads nowhere.
+- **Edit selectively** instead of replacing the whole text.
+- **When a page is outdated**, say so at the top and link the page that replaces it, instead of deleting it.
 
-The **Recently updated** list on the home screen is the closest thing the knowledge base has to a heartbeat. If nothing on it has changed in months, the documentation has stopped tracking reality — and that is usually visible long before anyone gets burned by it.
+If **Recently updated** hasn't moved in months, the documentation has probably fallen behind.
 
 ## Habits that keep a knowledge base alive
 
-- **One page, one subject.** When a page needs two headings that could each be a title, it is two pages, and one should be a sub-page of the other.
-- **Link to the issue instead of retelling it.** An `@` chip stays correct as the work moves; a paragraph summarising the ticket is wrong within a week.
-- **Write the warning first.** The sentence a reader most needs belongs in a coloured panel near the top, not at the end of a wall of text.
-- **Fix what you notice.** You can already edit it. A wiki decays through politeness far more often than through vandalism.
-- **Let the outline do the navigating.** Real headings give you the *On this page* list, and headings are what someone skimming reads first anyway.
+- **One page, one subject.** Otherwise split it into a page and a sub-page.
+- **Link the issue instead of retelling it.** An `@` chip stays current.
+- **Write the warning first**, in a coloured panel near the top.
+- **Fix what you notice.** You can edit any page you can read.
+- **Use real headings.** They build *On this page*.
 
 ## Next steps
 

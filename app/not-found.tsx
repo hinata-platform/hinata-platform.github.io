@@ -7,7 +7,7 @@ export default function NotFound() {
     <main className="notfound">
       <div>
         <h1>404</h1>
-        <p>This page drifted off the board.</p>
+        <p>This page does not exist.</p>
         <p>
           <Link href="/en/">← Documentation (EN)</Link> ·{' '}
           <Link href="/de/">Dokumentation (DE) →</Link>

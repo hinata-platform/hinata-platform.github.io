@@ -1,126 +1,100 @@
 ---
 title: Timeline & Abhängigkeiten
-description: Dein Projekt als Gantt-Diagramm lesen — Balken, Meilensteine und Fortschritt — dann die Abhängigkeiten zwischen Vorgängen ziehen und sehen, wo der Plan nicht aufgeht.
+description: Dein Projekt als Gantt-Diagramm lesen, Abhängigkeiten ziehen und Terminkonflikte finden.
 ---
 
 # Timeline & Abhängigkeiten
 
-Die Zeitachse beantwortet eine Frage, die ein Board nicht beantworten kann: *wann*. Ein Board sagt dir, in welchem Status alles ist; die Zeitachse legt dieselbe Arbeit auf einen Kalender, zeichnet die Verbindungen zwischen den Teilen und zeigt dir, wo zwei davon für denselben Zeitraum zugesagt wurden.
+Die Zeitachse zeigt, *wann* Arbeit passiert: als Balken im Kalender, mit Abhängigkeiten und Warnungen bei Terminkonflikten.
 
-Das Wichtigste vorweg: Die Zeitachse **speichert nichts Eigenes**. Jeder Balken ist das Start- und Fälligkeitsdatum eines Vorgangs. Jeder Verbinder ist eine Verknüpfung zwischen zwei Vorgängen. Ändere ein Datum am Vorgang, und der Balken wandert; entferne eine Verknüpfung, und der Pfeil verschwindet. Es gibt keinen zweiten Plan, den man synchron halten müsste — und genau deshalb kann man dem Bild trauen.
+Sie **speichert nichts Eigenes**. Balken sind Startdatum und Fälligkeitsdatum eines Vorgangs, Pfeile sind Verknüpfungen. Änderst du das am Vorgang, ändert sich das Diagramm.
 
 ## Die Zeitachse öffnen
 
-Wähle **Gantt** in der Seitenleiste. Die Seite heißt **Zeitachse** und hat oben rechts eine Projektauswahl: Das Diagramm zeigt immer ein Projekt.
-
-In dieser Auswahl findest du nur Projekte, in denen du Mitglied bist. Fehlt ein Projekt, das du erwartest, ist das eine Frage der Projekt- oder Team-Mitgliedschaft und hat mit der Zeitachse nichts zu tun — [Projekte & Teams](/de/guide-projects.html) erklärt, wie der Zugriff funktioniert.
-
-Es gibt einen zweiten Weg hinein. Auf einem Kanban-Board legt die Ansicht **Timeline** die Vorgänge dieses Boards aus — genau so gefiltert, wie du das Board gefiltert hast. Beide Diagramme lesen sich identisch; sie starten nur von unterschiedlichen Mengen an Vorgängen. Zum Umschalter siehe [Boards & Sprints](/de/guide-boards.html).
-
-Wann was: die **Gantt-Seite**, wenn du das ganze Projekt willst, auch Arbeit, die kein Board abdeckt; die **Timeline des Boards**, wenn du den Ausschnitt willst, den du schon eingegrenzt hast.
+- **Gantt** in der Seitenleiste öffnet die Seite **Zeitachse** für ein Projekt. Oben rechts wählst du das Projekt. Du siehst nur Projekte, in denen du Mitglied bist (siehe [Projekte & Teams](/de/guide-projects.html)).
+- Die Ansicht **Timeline** auf einem Kanban-Board zeigt nur die Vorgänge dieses Boards, mit dessen Filtern (siehe [Boards & Sprints](/de/guide-boards.html)).
 
 ## Was du da vor dir hast
 
 ![Die Hinata-Zeitachse](/assets/img/shot-gantt.png)
-*Die Seite „Zeitachse“. Links eine fixierte Spalte mit den Vorgängen — Typ, Schlüssel und Titel. Oben der Monat mit seinen Tagesziffern, heute (der 21.) blau eingekreist, dazu eine blaue Linie quer durchs Diagramm. Meilensteine sind Rauten; das rote Paar in der Mitte ist ein Terminkonflikt. Unten rechts die schwebende Steuerung: Verknüpfungen, Heute, Woche und Monat.*
+*Vorgänge links, heute blau markiert, Meilensteine als Rauten, ein Konflikt in Rot.*
 
-Vier Teile, jeder mit einer Aufgabe:
+- **Vorgangsspalte** links: Typ, Schlüssel, Titel. Bleibt beim Scrollen stehen, Klick öffnet den Vorgang.
+- **Datumsachse** oben: Monate, im Zoom **Woche** auch Tage. Wochenenden sind hinterlegt.
+- **Heute**: eingekreist und als senkrechte Linie. Beim Öffnen scrollt das Diagramm dorthin.
+- **Schwebende Steuerung** unten rechts: **Verknüpfungen**, **Heute**, **Woche** und **Monat**. Auf dem Handy nur als Symbole.
 
-- **Die Vorgangsspalte** links ist fixiert — sie bleibt stehen, während das Diagramm seitwärts scrollt, damit du nie den Überblick verlierst, welche Zeile du liest. Ein Klick auf einen Titel öffnet den Vorgang.
-- **Die Datumsachse** oben zeigt das Monatsband und in der Zoomstufe **Woche** darunter die einzelnen Tagesziffern. Wochenenden sind hinterlegt, damit eine Woche wie eine Woche aussieht.
-- **Heute** ist doppelt markiert: eingekreist in der Achse und als senkrechte Linie durchs Diagramm. Beim Öffnen scrollt die Zeitachse auf heute, weil man fast immer dort anfangen will.
-- **Die schwebende Steuerung** unten rechts trägt **Verknüpfungen** (welche Verbinder gezeichnet werden), **Heute** (zurück zum Jetzt) und den Zoom **Woche** / **Monat**. Woche liefert Tagesgenauigkeit; Monat presst mehrere Quartale auf einen Bildschirm.
-
-!!! tip "Es scrollt in beide Richtungen"
-    Das Diagramm scrollt seitwärts durch die Zeit und nach unten durch die Vorgänge; Achse und Vorgangsspalte laufen mit. Auf dem Handy schrumpft die schwebende Steuerung zu Symbolen, damit dem Diagramm jeder Pixel bleibt.
+Das Diagramm scrollt seitwärts durch die Zeit und nach unten durch die Vorgänge.
 
 ### Zwischen Wochen und Monaten zoomen
 
-Die zwei Zoomstufen sind nicht bloß größer und kleiner — sie beantworten unterschiedliche Fragen.
+- **Woche**: eine Spalte pro Tag, Schlüssel im Balken. Für die Tagesplanung.
+- **Monat**: eine Spalte pro Monat, ohne Beschriftung im Balken. Ein Jahr auf einem Bildschirm.
+- **Heute** springt in beiden Stufen zurück.
 
-**Woche** ist die Arbeitsstufe. Jeder Tag bekommt eine eigene Spalte, Wochenenden sind hinterlegt, und jeder Balken trägt seinen Vorgangsschlüssel im Inneren. Nimm sie, wenn du entscheidest, was an welchem Tag passiert, prüfst, ob zwei Personen gegeneinander verplant sind, oder das Diagramm in einer Planung laut vorliest.
-
-**Monat** presst jeden Monat in eine Spalte. Einzelne Tage verschwinden, die Beschriftungen in den Balken ebenso, dafür passt ein Jahr Arbeit auf einen Bildschirm. Nimm sie für die Form eines Plans: wo das volle Quartal liegt, ob die Meilensteine gleichmäßig verteilt sind, wie weit der letzte Balken wirklich reicht.
-
-**Heute** bringt dich in beiden Stufen zurück ins Jetzt — der schnellste Weg zurück, wenn du bis ins nächste Frühjahr gescrollt bist.
-
-Die Zeilen sind nach Startdatum sortiert, das Diagramm liest sich also grob von links oben nach rechts unten, so wie ein Gantt-Diagramm gemeint ist.
+Die Zeilen sind nach Startdatum sortiert.
 
 ## Was einen Vorgang auf die Zeitachse bringt
 
-Ein Vorgang erscheint, sobald er **ein Startdatum, ein Fälligkeitsdatum oder beides** hat und nicht archiviert ist. Das ist die ganze Regel. Jeder Typ zählt — Epics, Stories, Tasks, Bugs, Features und Sub-Tasks gleichermaßen — solange ein Datum dranhängt.
-
-Ein Vorgang ohne Daten steht nicht im Diagramm. Das ist kein Fehler; es heißt, dass noch niemand gesagt hat, wann er stattfindet. Ist die Zeitachse leer, sagt sie dir das — und was zu tun ist.
+Ein Vorgang jeden Typs erscheint, sobald er **ein Startdatum, ein Fälligkeitsdatum oder beides** hat und nicht archiviert ist. Ist die Zeitachse leer, zeigt sie dir, was zu tun ist.
 
 ### Die Daten setzen
 
-Öffne den Vorgang und such die Karte **Timeline**. Das **Startdatum** ist der erste Tag, den die Arbeit abdeckt, das **Fälligkeitsdatum** der letzte, einschließlich.
+In der Karte **Timeline** am Vorgang: **Startdatum** ist der erste, **Fälligkeitsdatum** der letzte Tag, einschließlich.
 
 ![Der Datumsauswähler, geöffnet aus der Timeline-Karte eines Vorgangs](/assets/img/shot-issue-dates.png)
-*Ein Tipp auf die Zeile „Startdatum“ öffnet einen Monatskalender: heute eingekreist, das aktuelle Startdatum des Vorgangs ausgefüllt, „Abbrechen“ lässt das Datum, wie es war. Das kleine × auf der Zeile selbst — hier hinter dem Dialog — löscht das Datum sofort, ohne diesen Auswähler zu öffnen; ziel also auf die Beschriftung statt auf die Mitte der Zeile.*
+*Tipp auf die Beschriftung öffnet den Kalender, das × löscht das Datum sofort.*
 
-Das geht direkt aus dem Diagramm: Balken lange drücken (oder den Titel in der linken Spalte anklicken), und der Vorgang öffnet sich über der Zeitachse. Datum setzen, wieder schließen — das Diagramm wird neu gezeichnet, mit Scrollposition und Zoom genau dort, wo du sie verlassen hast.
+Aus dem Diagramm: Balken lange drücken oder Titel links anklicken. Der Vorgang öffnet sich darüber. Nach dem Schließen bleiben Zoom und Scrollposition.
 
 !!! tip "Zwei Daten für Arbeit, eines für einen Termin"
-    Gib einem Vorgang beide Daten, wenn er einen Zeitraum belegt. Gib ihm nur ein Fälligkeitsdatum, wenn er ein Moment ist und kein Zeitraum — siehe *Ein Fälligkeitsdatum allein ist ein Meilenstein* weiter unten.
+    Für einen Zeitraum beide Daten setzen, für einen Stichtag nur das Fälligkeitsdatum.
 
 ## Einen Balken lesen
 
-Ein Balken läuft vom Start- bis zum Fälligkeitsdatum, beide Tage eingeschlossen; ein Vorgang von Montag bis Freitag ist also fünf Tage breit.
+- **Länge**: Startdatum bis Fälligkeitsdatum, beide eingeschlossen. Montag bis Freitag sind fünf Tage.
+- **Farbe**: der Status, wie auf dem Board. Erledigte Vorgänge bekommen die Farbe für erledigt, ein fertiger Plan wird grün.
+- **Hellere Füllung**: der Fortschritt, also **gebuchte Zeit im Verhältnis zur Schätzung** (2 von 4 Stunden sind 50 %). Offene Vorgänge zeigen höchstens 99 %, erst erledigt 100 %. Ohne Schätzung 0 %.
 
-**Die Farbe ist der Workflow-Status des Vorgangs** — dieselbe Farbe wie seine Spalte auf dem Board und sein Status-Chip im Vorgang. Erreicht der Vorgang einen Status, den dein Projekt als erledigt zählt, wechselt der Balken auf die Erledigt-Farbe; ein fertiger Plan wird also sichtbar von links nach rechts grün.
+Ein leerer Balken heißt also „nicht angefangen“ oder „nicht geschätzt“. Zeit buchen: [Zeit erfassen](/de/guide-time.html).
 
-**Die hellere Füllung von der linken Kante ist der Fortschritt.** Woher diese Zahl kommt, lohnt sich zu wissen — sie ist kein Regler, den jemand zieht:
+!!! tip "Füllung mit heute vergleichen"
+    Nach einem Drittel der Zeit 80 % voll: Schätzung zu klein. Kurz vor Schluss kaum gefüllt: Die Arbeit hat nicht richtig begonnen.
 
-- Fortschritt ist **gebuchte Zeit gegen die Schätzung**. Zwei Stunden auf eine Vier-Stunden-Schätzung sind 50 %.
-- Solange der Vorgang offen ist, ist er bei 99 % gedeckelt, egal wie viel gebucht wurde. Erst ein Erledigt-Status bringt ihn auf 100 %.
-- Ein Vorgang ohne Schätzung zeigt 0 %, ganz gleich, wie viel Arbeit hineingeflossen ist.
-
-Ein leerer Balken kann also „noch nicht angefangen“ heißen oder „hat niemand geschätzt“. Beides ist wissenswert, keines ist ein Fehler. Das Buchen von Aufwand steht unter [Zeit erfassen](/de/guide-time.html).
-
-!!! tip "Ein Balken, der voller ist als der Kalender, ist eine Warnung"
-    Vergleiche die Füllung damit, wo die Heute-Linie den Balken kreuzt. Ein Balken, der nach einem Drittel der Strecke zu 80 % gefüllt ist, hatte eine zu kleine Schätzung; einer, der zwei Tage vor Schluss kaum gefüllt ist, wurde noch gar nicht wirklich begonnen. Beides steht in keiner Statusliste — es ist das Nützlichste, was dir das Diagramm nebenbei erzählt.
-
-Im Zoom **Woche** steht der Vorgangsschlüssel im Balken, damit auch ein Screenshot lesbar bleibt. Fährst du über einen Balken, nennt dir ein Tooltip Schlüssel, Status, Prozentwert, jede Beziehung, die dieser Vorgang im Diagramm hat, und eine Warnung, falls sein Termin kollidiert.
+Der Tooltip beim Überfahren zeigt Schlüssel, Status, Prozent, Beziehungen und eine Warnung bei Konflikt.
 
 ### Daten, Schätzungen und Story Points sind drei verschiedene Dinge
 
-Sie werden leicht verwechselt, und die Zeitachse interessiert sich nur für eines davon. Es lohnt sich, festzuhalten, welche Zahl was tut:
-
 | Was du setzt | Was es bedeutet | Wo es auftaucht |
 | --- | --- | --- |
-| **Start- & Fälligkeitsdatum** | *Wann* die Arbeit stattfindet | Der Balken auf der Zeitachse, die Spalte „Fällig“ in Vorgangslisten, das rote Datum auf einer überfälligen Karte |
-| **Schätzung & gebuchte Zeit** | *Wie viel Aufwand* nötig ist und war | Die Fortschrittsfüllung im Balken, „aufgewendet von“ am Vorgang, Stundenzettel |
-| **Story Points** | *Wie groß* er relativ zu anderer Arbeit ist | Sprint-Kapazität, Burndown und Velocity — nie die Zeitachse |
-| **Sprint** | *Welches Zeitfenster* er belegt | Board und Backlog — ebenfalls nie die Zeitachse |
-
-Ein Vorgang kann mit acht Story Points in einem Sprint stecken und trotzdem auf der Zeitachse fehlen, weil ihm niemand Daten gegeben hat. Umgekehrt genauso. Keines ist falsch; es sind Antworten auf verschiedene Fragen, und du brauchst nur die, die dein Team wirklich nutzt.
+| **Start- & Fälligkeitsdatum** | *Wann* die Arbeit stattfindet | Balken auf der Zeitachse, Spalte „Fällig“, rotes Datum bei Überfälligkeit |
+| **Schätzung & gebuchte Zeit** | *Wie viel Aufwand* nötig ist und war | Füllung im Balken, „aufgewendet von“ am Vorgang, Stundenzettel |
+| **Story Points** | *Wie groß* er relativ ist | Sprintkapazität, Burndown, Velocity, nie die Zeitachse |
+| **Sprint** | *Welches Zeitfenster* er belegt | Board und Backlog, nie die Zeitachse |
 
 ## Ein Fälligkeitsdatum allein ist ein Meilenstein
 
-Ein Vorgang mit Fälligkeitsdatum, aber ohne Startdatum hat keine Länge — er ist ein Termin, kein Arbeitszeitraum. Die Zeitachse zeichnet ihn so, wie es jedes Gantt-Diagramm tut: als **Raute** an diesem einen Tag, umrandet solange der Vorgang offen ist, gefüllt sobald er erledigt ist.
-
-Nimm sie für die Fixpunkte, an denen ein Plan hängt: ein Launch, eine Übergabe, eine Prüfung, der Tag, an dem der Raum gebucht ist. Weil ein Meilenstein ein ganz normaler Vorgang ist, lässt er sich zuweisen, diskutieren, beobachten und — am nützlichsten — verknüpfen, sodass alles, was vorher passieren muss, als Pfeil auf ihn zeigt.
+Nur Fälligkeitsdatum, kein Startdatum: Der Vorgang wird als **Raute** gezeichnet, umrandet solange offen, gefüllt wenn erledigt. Gut für Launch, Übergabe oder Prüfung. Verknüpf die vorherige Arbeit damit, dann zeigen Pfeile darauf.
 
 ## Eine Abhängigkeit ziehen
 
-Eine **Abhängigkeit** ist ein Vorgang, der einen anderen blockiert: Der zweite kann nicht beginnen, bevor der erste fertig ist. Im Diagramm ist das ein durchgezogener Verbinder aus der rechten Kante des Blockierers, mit einer Pfeilspitze in die linke Kante des blockierten Vorgangs.
+Eine **Abhängigkeit**: Vorgang B kann erst beginnen, wenn A fertig ist. Im Diagramm ein durchgezogener Pfeil vom rechten Ende von A zum linken Ende von B.
 
-Zum Anlegen öffnest du den Vorgang und gehst zum Abschnitt **Verknüpfte Vorgänge**.
+1. Vorgang öffnen, Abschnitt **Verknüpfte Vorgänge**.
+2. **Vorgang hinzufügen**, Art **wird blockiert von** oder **blockiert** wählen.
+3. Vorgänge suchen (auch mehrere), **Verknüpfen**.
 
 ![Das Verknüpfungsfeld an einem Vorgang](/assets/img/shot-issue-link-composer.png)
-*„Vorgang hinzufügen“ öffnet unter den bestehenden Verknüpfungen eine Zeile: links die Verknüpfungsart, rechts ein Suchfeld. „capacity“ trifft auch Titel, nicht nur Schlüssel, und listet HIN-9, HIN-19 und HIN-12 unter „Aktuelle Vorgänge“. „Verknüpfen“ bestätigt, „Abbrechen“ bricht ab.*
+*Verknüpfungsart links, Suche nach Titel oder Schlüssel rechts.*
 
-**wird blockiert von** und **blockiert** sind die beiden Arten, die einen Terminplan einschränken; die übrigen stehen weiter unten. Du kannst vor dem Bestätigen mehrere Vorgänge wählen.
+Die Verknüpfung erscheint sofort an beiden Vorgängen und auf der Zeitachse.
 
-Die Verknüpfung erscheint sofort an beiden Vorgängen — der andere zeigt dieselbe Beziehung aus seiner Sicht formuliert — und der Verbinder erscheint auf der Zeitachse.
+### Jede Beziehung und was das Diagramm damit macht
 
-### Jede Beziehung — und was das Diagramm damit macht
-
-Nur eine der sieben Verknüpfungsarten sagt etwas über *Reihenfolge*. Der Rest sagt, wie Vorgänge zusammengehören — am Vorgang nützlich, auf einem Kalender meist Rauschen. Deshalb zeichnet die Zeitachse sie als blasse Striche und lässt sie ausgeschaltet, bis du sie einschaltest.
+Nur *blockiert* bestimmt die Reihenfolge. Alle anderen Arten sind blasse Striche und standardmäßig ausgeblendet.
 
 ![Die Auswahlliste der Verknüpfungsarten](/assets/img/shot-issue-link-types.png)
-*Die Liste der Verknüpfungsarten. Beide Richtungen einer Art sind eigene Einträge — „wird blockiert von“ und „blockiert“, „wird geklont von“ und „klont“ —, weil du eine Verknüpfung immer von dem Vorgang aus formulierst, den du offen hast. Die Liste scrollt; „aufgeteilt aus“ und „aufgeteilt in“ liegen darunter.*
+*Jede Richtung ist ein eigener Eintrag, die Liste scrollt.*
 
 | Verknüpfungsart | Liest sich als | Auf der Zeitachse |
 | --- | --- | --- |
@@ -132,111 +106,94 @@ Nur eine der sieben Verknüpfungsarten sagt etwas über *Reihenfolge*. Der Rest 
 | **Aufteilung** | *aufgeteilt in* / *aufgeteilt aus* | Blasser Strich |
 | **Erstellt** | *hat erstellt* / *erstellt von* | Blasser Strich |
 
-Die Richtung zählt bei allen außer *hängt zusammen mit*, das sich von beiden Enden gleich liest. Nimm die Formulierung von dem Vorgang aus, den du gerade offen hast — „HIN-12 **wird blockiert von** HIN-9“ und „HIN-9 **blockiert** HIN-12“ erzeugen exakt dieselbe Verknüpfung.
+„HIN-12 **wird blockiert von** HIN-9“ und „HIN-9 **blockiert** HIN-12“ sind dieselbe Verknüpfung.
 
 !!! tip "Blockieren nur für echte Zwänge"
-    Es ist verlockend, *blockiert* für „das sollten wir wohl zuerst machen“ zu nehmen. Tu es nicht — es ist die eine Beziehung, die das Diagramm ernst nimmt, und ein Plan voller weicher Blockaden erzeugt Konflikte, die niemand beheben will, und einen kritischen Pfad, der nichts bedeutet. Ist die Reihenfolge eine Vorliebe, nimm *hängt zusammen mit* und schreib die Begründung in einen Kommentar.
+    Für eine bloße Wunschreihenfolge nimm *hängt zusammen mit*. Sonst entstehen sinnlose Konflikte und ein falscher kritischer Pfad.
 
 !!! note "Beide Enden müssen im Diagramm sein"
-    Ein Verbinder braucht zwei Balken, zwischen denen er laufen kann. Verknüpfst du einen Vorgang mit einem ohne Daten — oder mit einem aus einem anderen Projekt — wird nichts gezeichnet, weil der Pfeil nirgends landen kann. Die Verknüpfung existiert weiterhin an beiden Vorgängen, sie hat nur keine Linie. Fehlt eine Abhängigkeit, die du erwartest, prüf zuerst die Daten des anderen Vorgangs.
+    Hat der andere Vorgang keine Daten oder liegt er in einem anderen Projekt, fehlt der Pfeil. Die Verknüpfung existiert trotzdem.
 
 ## Auswählen, was gezeichnet wird
 
-Die Schaltfläche **Verknüpfungen** auf der schwebenden Steuerung öffnet die Ansichtsoptionen.
+**Verknüpfungen** öffnet drei Schalter, die sofort wirken. Auf breiten Bildschirmen als Popover, auf dem Handy von unten.
 
 ![Das Panel „Verknüpfungen“ der Zeitachse](/assets/img/shot-gantt-links.png)
-*„Abhängigkeiten“ an, „Weitere Verknüpfungen“ aus, „Kritischer Pfad“ aus — drei Schalter, jeder sofort wirksam. Jede Zeile nennt, wie viel dieses Diagramm überhaupt enthält, 4 blockierende gegen 5 weitere Verknüpfungen; du siehst also vorher, ob ein Einschalten etwas ändert, und „0 blockierende Verknüpfungen in diesem Diagramm“ ist für sich schon eine Antwort. Darunter der rote Konfliktbalken und die Legende der Linienarten.*
+*„Abhängigkeiten“, „Weitere Verknüpfungen“ und „Kritischer Pfad“, jeweils mit Anzahl im Diagramm.*
 
-Auf breiten Bildschirmen öffnet sich das Panel als Popover neben der Schaltfläche, auf dem Handy fährt es von unten hoch. Es gibt nichts zu bestätigen — jeder Schalter wirkt beim Umlegen.
-
-!!! note "Diese Schalter gehören dir, und sie sind vorübergehend"
-    Den kritischen Pfad einzuschalten ändert, was *du* siehst, nicht was andere sehen, und am Projekt ändert sich gar nichts. Die Einstellungen setzen sich außerdem zurück, wenn du die Seite verlässt — die Zeitachse öffnet also immer in ihrem schlichtesten, lesbarsten Zustand.
+!!! note "Die Schalter gelten nur für dich"
+    Sie ändern nur deine Ansicht und setzen sich beim Verlassen der Seite zurück.
 
 ## Wenn ein Plan nicht aufgeht: Terminkonflikte
 
-Ein **Terminkonflikt** ist eine Abhängigkeit, deren Daten ihr widersprechen: Der blockierte Vorgang soll an oder vor dem Tag beginnen, an dem sein Blockierer endet.
-
-Es ist genau der Widerspruch, der jedes Status-Meeting überlebt, bis ihn jemand aufzeichnet — deshalb wird die Zeitachse laut: Ein leiser Konflikt ist ein verpasster Termin drei Wochen später.
+Ein **Terminkonflikt**: Der blockierte Vorgang beginnt an oder vor dem Tag, an dem sein Blockierer endet.
 
 ![Ein Terminkonflikt auf der Zeitachse](/assets/img/shot-gantt-conflict.png)
-*HIN-7 wird von HIN-6 blockiert und beginnt, bevor HIN-6 endet. Vier Signale sagen das gleichzeitig: der rote gestrichelte Verbinder, die rote Umrandung des HIN-7-Balkens, das Warndreieck neben HIN-7 in der fixierten Vorgangsspalte und der Tooltip beim Darüberfahren — „wird blockiert von HIN-6 · Beginnt, bevor der blockierende Vorgang abgeschlossen ist“. Das Verknüpfungs-Panel zählt denselben Konflikt.*
+*HIN-7 beginnt, bevor der blockierende HIN-6 endet.*
 
-Es gibt nur zwei ehrliche Auswege, und Hinata nimmt dir bewusst keinen davon ab: die Daten so verschieben, dass der blockierte Vorgang nach seinem Blockierer beginnt — oder entscheiden, dass die Abhängigkeit gar keine war, und die Verknüpfung entfernen. Den Vorgang von jemandem still umzuplanen wäre der dritte Weg, und es ist der, der Vertrauen kostet.
+Du erkennst ihn am roten gestrichelten Pfeil, der roten Umrandung, dem Warndreieck in der Vorgangsspalte und am Tooltip („Beginnt, bevor der blockierende Vorgang abgeschlossen ist“). Das Panel **Verknüpfungen** zählt die Konflikte.
+
+Hinata löst sie nicht selbst. Verschieb die Daten oder entferne die Verknüpfung.
 
 ## Der kritische Pfad
 
-Schalte **Kritischer Pfad** ein, und die Zeitachse hebt die längste Kette blockierender Abhängigkeiten im Projekt hervor — in Tagen gemessen, vom ersten Vorgang der Kette bis zum letzten.
+**Kritischer Pfad** hebt die längste Kette blockierender Abhängigkeiten hervor, gemessen in Tagen.
 
 ![Der kritische Pfad auf der Zeitachse](/assets/img/shot-gantt-critical-path.png)
-*Dasselbe Diagramm mit eingeschaltetem kritischem Pfad: Die Verbinder entlang HIN-4 → HIN-2 → HIN-5 → HIN-6 → HIN-7 → HIN-8 werden dicker und bernsteinfarben, während jede Verknüpfung abseits dieser Kette dünn und grau bleibt.*
+*Die Kette HIN-4 → HIN-2 → HIN-5 → HIN-6 → HIN-7 → HIN-8 in Bernstein.*
 
-Was dieser Ring praktisch heißt: **Diese Vorgänge haben keinen Puffer.** Rutscht einer davon um einen Tag, rutscht das Ende der ganzen Kette um einen Tag, weil nichts das abfängt. Vorgänge abseits des kritischen Pfads haben Luft; die darauf nicht. Es ist die kürzeste Antwort auf „wo sollten die zusätzlichen Hände hin?“.
+**Diese Vorgänge haben keinen Puffer.** Verzögert sich einer um einen Tag, verzögert sich das Ende der Kette. Zusätzliche Leute helfen hier am meisten.
 
 !!! note "Der Pfad ist nur so gut wie die Verknüpfungen"
-    Der kritische Pfad wird aus den blockierenden Verknüpfungen zwischen den Vorgängen dieses Diagramms berechnet. Arbeit, die niemand verknüpft hat, und Arbeit, die niemand datiert hat, ist für ihn unsichtbar. Sieht das Ergebnis falsch aus, fehlt meist eine Abhängigkeit, die in jemandes Kopf statt im Vorgang steht.
+    Er kennt nur blockierende Verknüpfungen zwischen datierten Vorgängen in diesem Diagramm.
 
 ## Einen Vorgang in den Fokus nehmen
 
-Klick oder tipp einen Balken an, und er ist **angeheftet**: Dieser Vorgang und alles, was eine Verknüpfung entfernt ist, bleiben hell, der Rest des Diagramms wird blass. Es ist der schnellste Weg zur Frage „worauf wartet das, und was wartet darauf?“, ohne jede Zeile zu lesen.
-
-Alle Gesten, die das Diagramm versteht, auf einen Blick:
-
 | Das tust du | Das passiert |
 | --- | --- |
-| Balken klicken oder antippen | Heftet den Vorgang an — er und seine verknüpften Nachbarn bleiben hell, der Rest wird blass |
+| Balken klicken oder antippen | Heftet den Vorgang an. Er und seine verknüpften Nachbarn bleiben hell, der Rest wird blass |
 | Erneut klicken oder antippen | Hebt die Anheftung auf |
 | Auf leeres Raster klicken oder tippen | Hebt sie ebenfalls auf |
-| Über einen Balken fahren | Tooltip mit Schlüssel, Status, Fortschritt, allen Beziehungen und einem etwaigen Konflikt |
+| Über einen Balken fahren | Tooltip mit Schlüssel, Status, Fortschritt, Beziehungen und Konflikt |
 | Balken lange drücken oder doppelklicken | Öffnet den Vorgang |
 | Titel in der linken Spalte anklicken | Öffnet den Vorgang |
-| Diagramm ziehen | Scrollt durch die Zeit oder nach unten durch die Vorgänge |
+| Diagramm ziehen | Scrollt durch Zeit oder Vorgänge |
 
-Der Vorgang öffnet sich *über* der Zeitachse statt sie zu ersetzen. Beim Schließen landest du also wieder bei demselben Projekt, demselben Zoom und derselben Scrollposition — und ein geändertes Datum ist bereits neu gezeichnet.
+Der Vorgang öffnet sich über der Zeitachse. Danach sind Projekt, Zoom und Scrollposition unverändert.
 
-## Die Timeline-Ansicht des Boards
+## Die Timeline im Board
 
-Die Ansicht **Timeline** eines Kanban-Boards ist dasselbe Diagramm, gebaut aus den Vorgängen dieses Boards:
-
-- Alles, was gerade auf dem Board liegt, erscheint — genau so gefiltert, wie du das Board gefiltert hast.
-- Vorgänge **ohne** Daten fallen nicht unter den Tisch: Sie stehen unter dem Raster, markiert als ohne Start- oder Fälligkeitsdatum, damit eine Planung sieht, was noch terminiert werden muss.
-- Sub-Tasks bleiben außen vor. Sie sind Detail, das in ihren übergeordneten Vorgang gehört, und auf einer Roadmap bringen sie Rauschen statt Information.
-- Abhängigkeiten, Konflikte, Meilensteine und der kritische Pfad lesen sich genau wie hier.
+Wie diese Seite, aber mit den Vorgängen und Filtern des Boards. Unterschiede: Vorgänge ohne Daten stehen unter dem Raster, Sub-Tasks fehlen.
 
 ## Ein Release planen, von Anfang bis Ende
 
-Die ganze Seite als eine durchgespielte Abfolge. Angenommen, ihr liefert in sechs Wochen.
-
-1. **Zuerst den Meilenstein anlegen.** Leg einen Vorgang *Release 2.4 geht live* an, gib ihm **nur ein Fälligkeitsdatum** — den Liefertag — und kein Startdatum. Er erscheint als Raute an diesem Tag, und alles andere hat jetzt ein Ziel.
-2. **Die Arbeit datieren.** Geh die Vorgänge durch, die bis dahin fertig sein müssen, und gib jedem ein Start- und ein Fälligkeitsdatum. Balken tauchen auf. Ob alles passt, ist noch egal.
-3. **Verknüpfen, was wirklich wartet.** Für jedes Paar, bei dem eines wirklich nicht beginnen kann, bevor das andere fertig ist, setz eine Verknüpfung **wird blockiert von**. Verknüpf auch das letzte Arbeitspaket mit dem Meilenstein, damit die Raute an der Kette hängt statt daneben zu schweben.
-4. **Nach Rot suchen.** Öffne **Verknüpfungen** und lies die Konfliktzahl. Jeder Konflikt ist eine Zusage, die der Kalender nicht halten kann — behebe jeden, indem du ein Datum verschiebst oder zugibst, dass die Abhängigkeit optional war.
-5. **Den kritischen Pfad einschalten.** Die bernsteinfarbene Kette ist die Abfolge, die euren Liefertermin bestimmt. Was darauf keine verantwortliche Person hat — oder eine mit drei weiteren bernsteinfarbenen Vorgängen — ist das Risiko, von dem du jetzt sechs Wochen vorher weißt.
-6. **Im Monatszoom gegenprüfen.** Tritt einen Schritt zurück und sieh dir die Form an. Eine Wand aus Balken in der letzten Woche ist das klassische Zeichen für optimistische Schätzungen — und auf einen Blick viel leichter zu sehen, als aus einer Liste zu argumentieren.
-7. **Wiederkommen.** Weil das Diagramm aus den Vorgängen entsteht, kostet ein erneuter Blick nichts. Wandern die Daten und wird Zeit gebucht, füllen sich die Balken und die Konflikte melden sich von allein.
+1. **Meilenstein**: Vorgang *Release 2.4 geht live* mit nur einem Fälligkeitsdatum.
+2. **Daten**: Jedem nötigen Vorgang Startdatum und Fälligkeitsdatum geben.
+3. **Abhängigkeiten**: **wird blockiert von** setzen, wo etwas warten muss. Das letzte Arbeitspaket mit dem Meilenstein verknüpfen.
+4. **Konflikte**: In **Verknüpfungen** die Zahl prüfen und jeden lösen.
+5. **Kritischer Pfad**: Vorgänge darauf ohne verantwortliche Person oder bei überlasteten Personen sind euer Risiko.
+6. **Zoom Monat**: Viele Balken in der letzten Woche deuten auf zu optimistische Schätzungen.
+7. **Regelmäßig reinschauen**: Das Diagramm aktualisiert sich von selbst.
 
 ## Warum steht mein Vorgang nicht auf der Zeitachse?
 
-Fast immer eines von fünf Dingen:
+- Er hat keine Daten (häufigste Ursache).
+- Er ist archiviert.
+- Oben rechts ist ein anderes Projekt gewählt.
+- Er ist ein Sub-Task und du bist in der Timeline eines Boards.
+- Ein Filter im Board versteckt ihn.
 
-- **Er hat keine Daten.** Die Zeitachse braucht ein Startdatum, ein Fälligkeitsdatum oder beides. Das ist mit Abstand die häufigste Ursache.
-- **Er ist archiviert.** Archivierte Vorgänge bleiben absichtlich draußen. Hol ihn zurück, dann ist er wieder da.
-- **Du schaust auf ein anderes Projekt.** Die Gantt-Seite zeigt ein Projekt zur Zeit — prüf die Auswahl oben rechts.
-- **Es ist ein Sub-Task in der Timeline-Ansicht eines Boards.** Dort bleiben Sub-Tasks außen vor. Auf der Gantt-Seite erscheinen sie, sofern sie datiert sind.
-- **Du bist in der Timeline eines Boards und ein Filter versteckt ihn.** Diese Ansicht respektiert die Board-Filter; setz sie zurück und schau erneut.
-
-Und wenn der Vorgang da ist, aber ein **Verbinder** fehlt, liegt es fast immer daran, dass der Vorgang am anderen Ende der Verknüpfung keine Daten hat — es gibt also nichts, wohin der Pfeil zeigen könnte.
+Fehlt nur ein Pfeil, hat meist der andere Vorgang keine Daten.
 
 ## Was die Zeitachse nicht tut
 
-Über die Grenzen Bescheid zu wissen erspart dir die Suche nach einem Bedienelement, das es nicht gibt:
-
-- **Du kannst keinen Balken ziehen, um umzuplanen.** Daten werden am Vorgang bearbeitet, wo die Änderung in seiner Historie landet und alle Beobachtenden davon erfahren. Den Vorgang aus dem Diagramm zu öffnen ist ein langer Druck.
-- **Sie zeigt ein Projekt zur Zeit.** Nutz die Projektauswahl zum Wechseln; für eine projektübergreifende Sicht leg die Projekte auf ein gemeinsames Board und nimm dessen Timeline.
-- **Sie plant nichts für dich.** Kein automatischer Ausgleich, kein Umplanen zur Konfliktlösung, keine aus Schätzungen erfundenen Daten. Das Diagramm zeigt, was dein Team tatsächlich aufgeschrieben hat — einschließlich der nützlichen Stellen, an denen zwei widersprüchliche Dinge dastehen.
+- **Balken ziehen**: geht nicht. Daten änderst du am Vorgang, dort landen sie im Verlauf und Beobachtende werden benachrichtigt.
+- **Mehrere Projekte**: nur über ein gemeinsames Board und dessen Timeline.
+- **Automatisch planen**: Hinata gleicht keine Auslastung aus, verschiebt keine Termine und leitet keine Daten aus Schätzungen ab.
 
 ## Wie es weitergeht
 
-- **[Mit Vorgängen arbeiten](/de/guide-issues.html)** — Daten, Verknüpfungen und Hierarchie am Vorgang selbst.
-- **[Boards & Sprints](/de/guide-boards.html)** — dieselbe Arbeit nach Status, samt der Timeline-Ansicht des Boards.
-- **[Zeit erfassen](/de/guide-time.html)** — Aufwand buchen, was den Fortschritt in einem Balken füllt.
-- **[Berichte & Dashboard](/de/guide-reports.html)** — wie der Plan sich gegen das schlägt, was tatsächlich passiert ist.
+- **[Mit Vorgängen arbeiten](/de/guide-issues.html)**: Daten, Verknüpfungen, Hierarchie
+- **[Boards & Sprints](/de/guide-boards.html)**: Arbeit nach Status, Timeline im Board
+- **[Zeit erfassen](/de/guide-time.html)**: Aufwand buchen für den Fortschritt
+- **[Berichte & Dashboard](/de/guide-reports.html)**: Plan gegen Wirklichkeit

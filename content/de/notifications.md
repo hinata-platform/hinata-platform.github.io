@@ -1,41 +1,44 @@
 ---
 title: Benachrichtigungen
-description: Bleib auf dem Laufenden mit In-App-, E-Mail- und Push-Benachrichtigungen — jede Nutzerin und jeder Nutzer stellt über eine ereignisbezogene Benachrichtigungsmatrix genau ein, was ankommt.
+description: Mitteilungen in der App, per E-Mail und per Push, pro Ereignis einstellbar.
 ---
 
 # Benachrichtigungen
 
-Hinata hält alle informiert, ohne sie zu überfluten. Benachrichtigungen kommen über drei Kanäle, und jede Person entscheidet genau, welche Ereignisse sie erreichen und wo.
+Hinata informiert über drei Kanäle. Jede Person legt selbst fest, welche Ereignisse sie wo erreichen.
 
 ## Kanäle
 
-- **In-App** — ein Live-Benachrichtigungscenter in der App, das aktualisiert wird, sobald etwas passiert.
-- **E-Mail** — zugestellt über das [SMTP-Relay](/de/email.html) deines Servers. Handlungsrelevante E-Mails (eine Zuweisung, eine Erwähnung) enthalten einen Deep Link, der genau das passende Issue in der App öffnet.
-- **Push** — Push-Benachrichtigungen auf Mobilgeräten und auf dem Windows-Desktop, zugestellt über das [Hinata Connect Gateway](/de/connect-gateway.html), sodass eine veröffentlichte App Nutzer jedes selbst gehosteten Servers benachrichtigen kann, ohne dass jeder Server eigene Firebase-Anmeldedaten besitzen muss.
+- **In-App**: ein Mitteilungscenter in der App, das sich sofort aktualisiert, wenn etwas passiert.
+- **E-Mail**: Versand über das [SMTP-Relay](/de/email.html) deines Servers. Mails zu Zuweisungen oder Erwähnungen enthalten einen Deep Link, der den passenden Vorgang direkt in der App öffnet.
+- **Push**: auf Android, iOS, macOS und Windows, zugestellt über das [Hinata Connect Gateway](/de/connect-gateway.html). So kann eine veröffentlichte App die Nutzer jedes selbst gehosteten Servers erreichen, ohne dass jeder Server eigene Zugangsdaten für Firebase braucht.
 
 !!! info "E-Mail braucht ein echtes Relay"
-    In-App-Benachrichtigungen funktionieren sofort. Damit E-Mails tatsächlich zugestellt werden — einschließlich Verifizierungs- und Passwort-Zurücksetzen-Links — braucht der Server ein echtes konfiguriertes SMTP-Relay. Siehe [E-Mail & SMTP](/de/email.html).
+    Mitteilungen in der App funktionieren sofort. Damit Mails wirklich ankommen, auch Links zur Verifizierung und zum Zurücksetzen des Passworts, braucht der Server ein konfiguriertes SMTP-Relay. Siehe [E-Mail & SMTP](/de/email.html).
 
 ## Was eine Benachrichtigung auslöst
 
-Typische Ereignisse sind:
+Typische Ereignisse:
 
-- **Zuweisung** — dir wird ein Issue zugewiesen.
-- **Erwähnungen** — jemand erwähnt dich per `@` in einer Beschreibung oder einem Kommentar.
-- **Kommentare** — neue Aktivität bei einem Issue, an dem du beteiligt bist.
-- **Statusänderungen** — ein von dir verfolgtes Issue durchläuft den Workflow.
-- **Sprint-Ereignisse** — Sprint-Start/-Abschluss und zugehörige Planungsänderungen.
-- **Einladungen** — du wirst in den Workspace oder ein Team eingeladen.
-- **Sicherheit** — Anmeldungen und Ereignisse zur Kontosicherheit (immer aktiv — diese kannst du nicht stummschalten).
+- **Zuweisung**: Dir wird ein Vorgang zugewiesen.
+- **Erwähnungen**: Jemand erwähnt dich per `@` in einer Beschreibung oder einem Kommentar.
+- **Kommentare**: Neue Aktivität an einem Vorgang, an dem du beteiligt bist.
+- **Statusänderungen**: Ein Vorgang, dem du folgst, wechselt im Workflow den Status.
+- **Sprintereignisse**: Start und Abschluss von Sprints und damit verbundene Änderungen an der Planung.
+- **Einladungen**: Du wirst in den Workspace oder ein Team eingeladen.
+- **Sicherheit**: Anmeldungen und Ereignisse zur Kontosicherheit. Sie sind immer aktiv und lassen sich nicht stummschalten.
 
 ## Die Benachrichtigungsmatrix
 
-Unter **Einstellungen → Benachrichtigungen** erhält jede Person eine Matrix: eine Zeile pro Ereignistyp, eine Spalte pro Kanal. Zwei Hauptschalter aktivieren oder deaktivieren E-Mail und Push komplett, und die Matrix feinjustiert den Rest. Schalte Kommentar-E-Mails ab, behalte aber Erwähnungs-E-Mails; erhalte Push für Zuweisungen, aber nicht für Zusammenfassungen — ganz so, wie es zu deiner Arbeitsweise passt.
+Unter **Einstellungen → Benachrichtigungen** hat jede Person eine Matrix: eine Zeile pro Ereignis, eine Spalte pro Kanal.
+
+- Zwei Hauptschalter schalten E-Mail und Push komplett ein oder aus.
+- Die Matrix regelt den Rest. Zum Beispiel: Mails zu Kommentaren aus, Mails zu Erwähnungen an. Oder Push für Zuweisungen, aber nicht für Zusammenfassungen.
 
 !!! tip "Einmal einstellen, dann vergessen"
-    Ermutige neue Teammitglieder, während des Onboardings dreißig Sekunden in ihre Matrix zu investieren. Gut abgestimmte Benachrichtigungen sind der Unterschied zwischen einem Tool, dem Menschen vertrauen, und einem, das sie komplett stummschalten.
+    Neue Teammitglieder sollten beim Onboarding dreißig Sekunden in ihre Matrix stecken. Wer gut eingestellte Benachrichtigungen hat, vertraut dem Tool. Wer das nicht tut, schaltet es oft ganz stumm.
 
-Sicherheitsrelevante Benachrichtigungen sind bewusst fest aktiviert, sodass Ereignisse zur Kontosicherheit dich immer erreichen.
+Benachrichtigungen zur Sicherheit sind fest aktiviert. Ereignisse zur Kontosicherheit erreichen dich also immer.
 
 ## Nächste Schritte
 

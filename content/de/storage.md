@@ -1,28 +1,18 @@
 ---
 title: Objektspeicher (S3, GCS, Azure)
-description: Hinata bewahrt Anhänge und Avatare in Objektspeicher auf — das mitgelieferte MinIO, jeder S3-kompatible Anbieter (AWS S3, Google Cloud Storage, R2, Spaces, …) oder Azure Blob Storage — mit presigned Downloads und zufällig erzeugten Schlüsseln.
+description: Hinata legt Anhänge und Avatare in MinIO, einem S3-kompatiblen Anbieter oder Azure Blob Storage ab, mit presignten Downloads und zufälligen Schlüsseln.
 ---
 
 # Objektspeicher (S3, GCS, Azure)
 
-Vorgangsanhänge und Benutzer-Avatare werden nicht in MongoDB gespeichert — sie leben in
-**Objektspeicher**. Hinata unterstützt zwei Backends, ausgewählt über
-`HINATA_STORAGE_PROVIDER`:
+Anhänge und Avatare liegen im **Objektspeicher**, nicht in MongoDB. `HINATA_STORAGE_PROVIDER` wählt eines von zwei Backends:
 
-- **`s3`** (Standard) — jeder S3-kompatible Speicher: das **mitgelieferte MinIO**,
-  **AWS S3**, **Google Cloud Storage** (S3-interoperable XML-API), **Cloudflare R2**,
-  **DigitalOcean Spaces**, Backblaze B2, Wasabi, Ceph, ein verwaltetes MinIO, …
-- **`azure`** — **Azure Blob Storage** über dessen native API (Azure spricht kein
-  S3-Protokoll).
-
-Diese Seite behandelt die Standardeinrichtung, wie Downloads sicher bleiben und wie du
-einen externen Anbieter einbindest.
+- **`s3`** (Standard): jeder S3-kompatible Speicher, also das **mitgelieferte MinIO**, **AWS S3**, **Google Cloud Storage** (über die S3-kompatible XML-API), **Cloudflare R2**, **DigitalOcean Spaces**, Backblaze B2, Wasabi, Ceph, ein verwaltetes MinIO, …
+- **`azure`**: **Azure Blob Storage** über die eigene API von Azure (Azure spricht kein S3).
 
 ## MinIO im Standard-Stack
 
-Die produktive `docker-compose.yml` betreibt einen MinIO-Container neben dem Server.
-Er hängt am Compose-**Profil `local-storage`**, das standardmäßig aktiv ist
-(`COMPOSE_PROFILES=local-storage` in `.env.example`):
+Die `docker-compose.yml` für die Produktion startet MinIO neben dem Server. Der Container hängt am Compose-**Profil `local-storage`**, das standardmäßig aktiv ist (`COMPOSE_PROFILES=local-storage` in `.env.example`):
 
 ```yaml
 minio:
@@ -36,8 +26,7 @@ minio:
     - minio-data:/data
 ```
 
-Der Server verbindet sich über das interne Docker-Netzwerk mit ihm und verwendet die
-MinIO-Root-Zugangsdaten als seine S3-Access-/Secret-Keys wieder:
+Der Server erreicht MinIO über das interne Docker-Netzwerk und nutzt die Root-Zugangsdaten von MinIO als S3-Schlüssel:
 
 ```yaml
 HINATA_S3_ENDPOINT: ${HINATA_S3_ENDPOINT:-http://minio:9000}
@@ -46,7 +35,7 @@ HINATA_S3_SECRET_KEY: ${HINATA_S3_SECRET_KEY:-${MINIO_ROOT_PASSWORD:-}}
 HINATA_S3_BUCKET: ${HINATA_S3_BUCKET:-hinata}
 ```
 
-Im Standard-Stack setzt du also nur vier Dinge in `.env`:
+In `.env` setzt du nur vier Werte:
 
 ```properties
 COMPOSE_PROFILES=local-storage
@@ -55,63 +44,38 @@ MINIO_ROOT_PASSWORD=change-me-to-a-long-random-value
 HINATA_S3_BUCKET=hinata
 ```
 
-Die MinIO-**Weboberfläche** ist auf Port `9001` verfügbar und die **S3-API** auf `9000`.
-In der lokalen Entwicklung (`docker-compose.dev.yml`) werden beide auf Loopback veröffentlicht —
-`http://localhost:9001` (Konsole) und `http://localhost:9000` (API) — mit den Dev-Schlüsseln
-`hinata` / `hinata-dev-secret`.
+Die **Weboberfläche** von MinIO läuft auf Port `9001`, die **S3-API** auf `9000`. Lokal (`docker-compose.dev.yml`) sind beide auf Loopback erreichbar, unter `http://localhost:9001` (Konsole) und `http://localhost:9000` (API), mit den Dev-Schlüsseln `hinata` / `hinata-dev-secret`.
 
 !!! warning "Ändere das MinIO-Passwort vor der Produktion"
-    `hinata-dev-secret` ist ein Entwicklungsstandard. Setze ein langes, zufälliges
-    `MINIO_ROOT_PASSWORD` (z. B. aus `./deploy/generate-secrets.sh`) für jedes reale
-    Deployment und veröffentliche die MinIO-Ports niemals im öffentlichen Internet — nur der
-    Server muss sie erreichen.
+    `hinata-dev-secret` ist nur für die Entwicklung. Setze in jedem echten Deployment ein langes, zufälliges `MINIO_ROOT_PASSWORD` (z. B. aus `./deploy/generate-secrets.sh`). Veröffentliche die MinIO-Ports nie im Internet, nur der Server muss sie erreichen.
 
 ## Der Bucket wird für dich erstellt
 
-Du musst den Bucket nicht vorab anlegen. Beim ersten Upload prüft der Server, ob
-`HINATA_S3_BUCKET` existiert, und ruft `makeBucket` auf, falls nicht. Der Bucket bleibt
-**privat** — nichts wird jemals öffentlich lesbar gemacht. Jeder Download wird vom Server
-vermittelt (siehe unten), sodass Objekte nie direkt aus dem Bucket ausgeliefert werden.
+Beim ersten Upload prüft der Server, ob `HINATA_S3_BUCKET` existiert, und ruft sonst `makeBucket` auf. Der Bucket bleibt **privat**, nichts wird öffentlich lesbar. Jeder Download läuft über den Server (siehe unten), nie direkt aus dem Bucket.
 
 !!! tip
-    Wenn du den Bucket lieber selbst anlegst (zum Beispiel, um vorab eine Lifecycle-Regel
-    oder eine Bucket-Policy zu setzen), tue dies mit dem Standardnamen `hinata` oder setze
-    `HINATA_S3_BUCKET` auf den von dir erstellten Namen. Der Server verwendet einen
-    vorhandenen Bucket gerne wieder.
+    Du kannst den Bucket auch selbst anlegen, etwa um vorher eine Lifecycle-Regel oder Bucket-Policy zu setzen. Nimm dann den Standardnamen `hinata` oder setze `HINATA_S3_BUCKET` auf deinen Namen. Ein vorhandener Bucket wird einfach mitgenutzt.
 
 ## Presigned Downloads und zufällig erzeugte Schlüssel
 
-Zwei Design-Entscheidungen halten den Objektspeicher standardmäßig sicher:
+- **Zufällige Objektschlüssel.** Jeder Anhang liegt unter einer zufälligen UUID (optional mit Präfix wie `media/` oder `avatars/`), nie unter dem Dateinamen vom Nutzer. Schlüssel lassen sich nicht erraten, und der Originalname taucht im Bucket nicht auf.
+- **Kurzlebige presignte Downloads.** Fordert ein Client einen Anhang an, gibt der Server eine **presignte GET-URL** zurück. Sie gilt **10 Minuten** und setzt `Content-Disposition: attachment`, damit Dateien heruntergeladen statt im Browser angezeigt werden.
 
-- **Zufällig erzeugte Objektschlüssel.** Ein vom Nutzer angegebener Dateiname wird nie zum
-  Objektschlüssel. Der Server speichert jeden Anhang unter einer zufälligen UUID (optional
-  hinter einem Präfix wie `media/` oder `avatars/`), sodass ein Bucket-Schlüssel nicht
-  erraten werden kann und der ursprüngliche Dateiname nie das Bucket-Layout berührt.
-- **Presigned, kurzlebige Downloads.** Wenn ein Client einen Anhang anfordert, gibt der
-  Server eine **presigned GET-URL** zurück, die **10 Minuten** gültig ist und einen
-  `Content-Disposition: attachment`-Header trägt (sodass Dateien heruntergeladen statt inline
-  gerendert werden). Der Bucket selbst muss nie öffentlich sein.
+Die S3-Zugangsdaten bleiben so auf dem Server. Clients sehen nur zeitlich begrenzte URLs, und der Bucket muss nie öffentlich sein.
 
-Das bedeutet, dass die S3-Zugangsdaten vollständig serverseitig bleiben; Clients sehen immer nur
-zeitlich begrenzte URLs.
+## Anhänge in Echtzeit (SSE)
 
-## Live-Anhang-Ereignisse (SSE)
-
-Anhang-Änderungen werden allen, die einen Vorgang betrachten, in Echtzeit über
-**Server-Sent Events** gepusht:
+Änderungen an Anhängen gehen per **Server-Sent Events** sofort an alle, die den Vorgang geöffnet haben:
 
 ```text
 GET /api/v1/issues/{issueId}/attachments/stream
 ```
 
-Wenn jemand eine Datei hochlädt oder entfernt — oder mehrere auf einmal ablegt — sieht jeder
-offene Betrachter das Raster live aktualisiert, ohne Polling. Der Stream läuft in-process pro
-Server-Instanz; für ein geclustertes Deployment würdest du ihn mit einem gemeinsamen Broker
-vorschalten.
+Lädt jemand Dateien hoch oder entfernt sie, sehen alle das Raster ohne Polling aktualisiert, auch bei mehreren Dateien auf einmal. Der Stream läuft im Prozess jeder Serverinstanz. Für ein Deployment im Cluster bräuchtest du davor einen gemeinsamen Broker.
 
 ## Größen- und Content-Type-Limits
 
-Uploads werden auf mehreren Achsen validiert. Die Standardwerte:
+Die Standardwerte:
 
 | Einstellung | Env / Property | Standard |
 | --- | --- | --- |
@@ -119,33 +83,24 @@ Uploads werden auf mehreren Achsen validiert. Die Standardwerte:
 | Maximale Anzahl Dateien pro Anfrage | `hinata.storage.max-files-per-request` | `10` |
 | Maximale Gesamtgröße einer Anfrage | `HINATA_STORAGE_MAX_REQUEST_MB` | `100` MB |
 
-Erlaubte Content-Types sind eine explizite Allow-List — PNG, JPEG, GIF, WebP, PDF, reiner
-Text, CSV, ZIP, JSON und die OOXML-Word-/Excel-Dokumente. Ein paar wichtige Schutzmaßnahmen:
+Erlaubt sind nur Content-Types aus einer festen Liste: PNG, JPEG, GIF, WebP, PDF, reiner Text, CSV, ZIP, JSON und Word- und Excel-Dokumente im OOXML-Format. Außerdem:
 
-- **`image/svg+xml` ist absichtlich ausgeschlossen**, weil SVG JavaScript einbetten kann
-  (ein Stored-XSS-Risiko).
-- **Magic-Byte-Verifizierung.** Bei Binärtypen prüft der Server die führenden Bytes der Datei
-  gegen den deklarierten Content-Type, sodass sich eine Datei nicht etwa als PNG ausgeben kann.
-- Ein abgelehnter Upload gibt einen lokalisierten, stabilen Fehler zurück
-  (`error.storage.fileTooLarge`, `error.storage.fileTypeNotAllowed`,
-  `error.storage.contentMismatch`).
+- **`image/svg+xml` ist bewusst ausgeschlossen.** SVG kann JavaScript enthalten (Risiko für Stored XSS).
+- **Prüfung der Magic Bytes.** Bei Binärtypen vergleicht der Server die ersten Bytes mit dem angegebenen Content-Type. Eine Datei kann sich also nicht als PNG ausgeben.
+- Ein abgelehnter Upload liefert einen stabilen, lokalisierten Fehler (`error.storage.fileTooLarge`, `error.storage.fileTypeNotAllowed`, `error.storage.contentMismatch`).
 
 !!! note "Zwei Größenobergrenzen arbeiten zusammen"
-    Springs Multipart-Limits (`max-file-size` / `max-request-size`, gesteuert von denselben
-    MB-Werten) sind die äußere Schutzschicht; die App erzwingt dann obendrauf die Dateianzahl
-    und die aggregierte Größe. Erhöhe sie alle gemeinsam, wenn du größere Uploads brauchst.
+    Die Multipart-Limits von Spring (`max-file-size` / `max-request-size`, aus denselben MB-Werten) sind die äußere Grenze. Die App prüft zusätzlich Dateianzahl und Gesamtgröße. Für größere Uploads erhöhst du alle Werte gemeinsam.
 
 ## Einen externen Anbieter statt MinIO verwenden
 
-Um einen externen Speicher zu verwenden, schalte das mitgelieferte MinIO ab, indem du das
-Compose-Profil in `.env` leerst —
+Leere das Compose-Profil in `.env`, um das mitgelieferte MinIO abzuschalten:
 
 ```properties
 COMPOSE_PROFILES=
 ```
 
-— und konfiguriere einen der Anbieter unten. Die `MINIO_ROOT_*`-Variablen können dann
-entfernt werden.
+Konfiguriere dann einen der Anbieter unten. Die Variablen `MINIO_ROOT_*` kannst du entfernen.
 
 ### AWS S3
 
@@ -159,9 +114,7 @@ HINATA_S3_REGION=eu-central-1
 
 ### Google Cloud Storage
 
-GCS spricht S3 über seine **interoperable XML-API**. Erzeuge **HMAC-Schlüssel** in der
-Cloud Console unter *Cloud Storage → Einstellungen → Interoperabilität* (für ein
-Service-Konto, empfohlen) und richte Hinata auf den Interop-Endpunkt:
+GCS spricht S3 über seine **interoperable XML-API**. Erzeuge **HMAC-Schlüssel** in der Cloud Console unter *Cloud Storage → Einstellungen → Interoperabilität* (empfohlen für ein Dienstkonto) und trage den Interop-Endpunkt ein:
 
 ```properties
 HINATA_S3_ENDPOINT=https://storage.googleapis.com
@@ -173,10 +126,7 @@ HINATA_S3_ADDRESSING_STYLE=path
 
 ### Azure Blob Storage
 
-Azure hat keine S3-API, daher spricht Hinata nativ mit ihm. Wechsle den Provider und
-übergib den **Connection String** des Speicherkontos (Portal → Speicherkonto →
-*Zugriffsschlüssel*). Ein Connection String mit Kontoschlüssel ist erforderlich —
-presigned Downloads werden als SAS-URLs ausgestellt:
+Azure hat keine S3-API, deshalb spricht Hinata direkt mit Azure. Stelle den Provider um und gib den **Connection String** des Speicherkontos an (Portal → Speicherkonto → *Zugriffsschlüssel*). Er muss den Kontoschlüssel enthalten, weil presignte Downloads als SAS-URLs ausgestellt werden:
 
 ```properties
 HINATA_STORAGE_PROVIDER=azure
@@ -186,32 +136,18 @@ HINATA_S3_BUCKET=hinata   # wird als Name des Blob-Containers verwendet
 
 ### Andere S3-kompatible Anbieter
 
-Cloudflare R2, DigitalOcean Spaces, Backblaze B2, Wasabi, Ceph, Hetzner, ein verwaltetes
-MinIO, … funktionieren alle mit denselben `HINATA_S3_*`-Variablen — Endpunkt, Schlüssel
-und Region kommen aus dem Dashboard des Anbieters.
+Cloudflare R2, DigitalOcean Spaces, Backblaze B2, Wasabi, Ceph, Hetzner, ein verwaltetes MinIO, … funktionieren mit denselben Variablen `HINATA_S3_*`. Endpunkt, Schlüssel und Region stehen im Dashboard des Anbieters.
 
 Hinweise:
 
-- **`HINATA_S3_REGION`** ist standardmäßig `us-east-1`; setze es bei AWS und Anbietern, denen
-  es wichtig ist, auf die Region deines Buckets.
-- **`HINATA_S3_ADDRESSING_STYLE`** (Standard `auto`) steuert die S3-URL-Adressierung:
-  `auto` wählt Virtual-Host-Style für AWS-Endpunkte und Path-Style überall sonst — richtig
-  für fast alle; setze `path` oder `virtual-host` explizit, wenn dein Anbieter es verlangt.
-- Verwende HTTPS für jeden Endpunkt, der das Netzwerk überquert.
-- Die Zugangsdaten brauchen Berechtigung für `PutObject`, `GetObject`, `DeleteObject`,
-  `ListBucket` und (sofern du den Bucket nicht vorab anlegst) `CreateBucket` — bzw. die
-  Azure-Äquivalente (auch der Container wird automatisch angelegt).
-- Wenn der Speicher unkonfiguriert bleibt (leerer Access-Key bzw. leerer Connection String
-  bei `provider=azure`), antworten die Anhang- und Avatar-Endpunkte mit
-  `error.storage.notConfigured` — der Rest von Hinata funktioniert weiterhin, du kannst nur
-  keine Dateien hochladen.
-- **Ein Anbieterwechsel migriert keine vorhandenen Objekte.** Kopiere zuerst den
-  Bucket-Inhalt (`mc mirror`, `aws s3 sync`, `azcopy`), wenn die Instanz bereits Daten hält.
+- **`HINATA_S3_REGION`** ist standardmäßig `us-east-1`. Setze die Region deines Buckets bei AWS und bei Anbietern, die sie brauchen.
+- **`HINATA_S3_ADDRESSING_STYLE`** (Standard `auto`) steuert die Adressierung der S3-URLs. `auto` wählt Virtual Host Style für AWS und Path Style für alle anderen, das passt fast immer. Verlangt dein Anbieter etwas anderes, setze `path` oder `virtual-host`.
+- Nutze HTTPS für jeden Endpunkt, der über das Netzwerk geht.
+- Die Zugangsdaten brauchen `PutObject`, `GetObject`, `DeleteObject`, `ListBucket` und `CreateBucket` (Letzteres nur, wenn du den Bucket nicht selbst anlegst). Bei Azure gelten die entsprechenden Rechte, auch der Container wird automatisch angelegt.
+- Ohne Konfiguration (leerer Access Key oder leerer Connection String bei `provider=azure`) antworten die Endpunkte für Anhänge und Avatare mit `error.storage.notConfigured`. Der Rest von Hinata funktioniert, nur Uploads gehen nicht.
+- **Ein Anbieterwechsel verschiebt keine vorhandenen Objekte.** Hat die Instanz schon Daten, kopiere zuerst den Bucket (`mc mirror`, `aws s3 sync`, `azcopy`).
 
 !!! tip "Halte Buckets privat"
-    Welchen Anbieter du auch verwendest, halte den Bucket **privat**. Hinata braucht nie
-    öffentlichen Lesezugriff: Es gibt immer kurzlebige presigned URLs aus, sodass öffentlicher
-    Zugriff nur deine Angriffsfläche vergrößern würde.
+    Halte den Bucket bei jedem Anbieter **privat**. Hinata gibt immer kurzlebige presignte URLs aus und braucht nie öffentlichen Lesezugriff. Der würde nur die Angriffsfläche vergrößern.
 
-Siehe die [Konfigurationsreferenz](/de/configuration.html) für die vollständige Variablenliste
-und [MongoDB & X.509](/de/database.html) für die Datenbankseite des Stacks.
+Alle Variablen stehen in der [Konfigurationsreferenz](/de/configuration.html), die Datenbank unter [MongoDB & X.509](/de/database.html).

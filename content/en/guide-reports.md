@@ -1,265 +1,214 @@
 ---
 title: Reports & dashboard
-description: Read your dashboard — focus, the active sprint, progress, focus time — then the reports page, what each chart honestly says, and how to export it.
+description: How to read your dashboard and reports, and how to export them.
 ---
 
 # Reports & dashboard
 
-Two screens turn the work you are already tracking into something you can read.
-The **dashboard** is personal and answers *what should I do next?*; it is the
-screen you land on every morning. **Reports** is shared and answers *how is this
-project actually going?*
+- The **dashboard** is personal and shows what to do next.
+- **Reports** show everyone how a project is going.
 
-Neither asks you to enter anything extra. Both are only as honest as the issues
-underneath them — which is the theme of this page.
+Neither needs extra input, and both are only as accurate as your issues.
 
 ## Your dashboard
 
-**Home** in the sidebar. It opens with your name, today's date, and — if a sprint
-is running — which day of it you are on.
+Open **Home** in the sidebar. At the top you see your name, the date and, if a
+sprint is running, which day of it you are on.
 
-![The Hinata dashboard with the active sprint card, today's focus list, key figures, project progress and focus time](/assets/img/shot-dashboard.png)
-*The dashboard. The dark card at the top is the running sprint; the four small tiles on the right are counts you can click through to; the donut and the bar chart below them summarise the project and your own week.*
+![The Hinata dashboard](/assets/img/shot-dashboard.png)
+*The dashboard.*
 
 ### The active-sprint card
 
-The large dark card is whichever board matters to you right now. When a Scrum
-board has a sprint running, you get the sprint: its name, its goal underneath,
-and three chips: the day you are on in the sprint's calendar, story points
-completed out of story points committed, and issues finished out of issues in
-the sprint.
+When a Scrum board has a sprint running, the large dark card shows:
 
-The ring on the right is the same story as a single percentage, and the row of
-avatars is who has issues assigned in this sprint. **To board** takes you
-straight there.
+- the sprint's name and goal
+- chips for the sprint day, story points completed out of committed, and issues
+  finished out of all issues
+- a ring with the progress as a percentage
+- avatars of everyone with issues assigned in the sprint
 
-If no sprint is running, the card falls back to a Kanban overview of a board,
-with progress driven by issue completion instead of points. If you have no board
-at all, it offers to plan a sprint.
+**To board** opens the board. Without a sprint, the card shows a Kanban overview
+whose progress counts finished issues instead of points. Without a board, it
+offers to plan a sprint.
 
-!!! tip "Pin the board you care about"
-    By default the card picks the first running sprint it finds among your
-    projects. If you work across several, use **Customize** to pin one board so
-    the card stops changing under you.
+!!! tip "Pin a board"
+    By default the card picks the first running sprint among your projects. Use
+    **Customize** to pin a fixed board.
 
 ### The four key figures
 
-The small tiles are counts, and each one is a link — tapping it opens the Issues
-list already filtered to exactly the set that was counted, in the same projects.
+Tapping a tile opens the Issues list filtered to exactly those issues.
 
 | Tile | What it counts |
 | --- | --- |
-| **Today's tasks** | *Your* open issues that are due today or already overdue, ordered by priority. |
-| **In Progress** | Every issue in scope that has started but is not done and is not in the backlog. |
-| **Backlog** | Every issue in scope still sitting in Backlog or Open. |
+| **Today's tasks** | *Your* open issues due today or overdue, ordered by priority. |
+| **In Progress** | Every started issue in scope that is not done and not in the backlog. |
+| **Backlog** | Every issue in scope in Backlog or Open. |
 | **Done** | Every issue in scope in one of your project's resolved states. |
 
 !!! warning "Only the first tile is about you"
-    **Today's tasks** counts your own work. The other three count the whole
-    team's, across every project in the dashboard's scope. A Backlog of 33 is not
-    33 things waiting for you.
+    The other three count the whole team's work across every project on the
+    dashboard.
 
 ### Today's focus
 
-The list underneath is the same set as the first tile — your open issues due
-today or overdue — highest priority first, showing the first five. Each row
-gives you the issue type as a glyph, the title, the key, and how overdue it is
-in red. The thin bar to the right is time spent against the issue's time
-estimate, where one exists.
+The list shows the first five issues from **Today's tasks**, highest priority
+first. Each row has the type, title, key and, in red, how overdue it is. The thin
+bar on the right is time spent against the estimate, if there is one.
 
-Tap a row and the issue opens over the dashboard; close it and you are back
-where you were. **All issues →** opens the full filtered list.
-
-If the list is empty you get "No urgent tasks for today — enjoy!", which is a
-real answer and not a placeholder.
+Tap a row to open the issue over the dashboard. **All issues →** opens the full
+list. If nothing is due, Hinata shows a short note.
 
 ### Project progress
 
-The donut is a completion breakdown across every project in scope. The number in
-the middle is the percentage resolved; the legend splits the same total into
-**Done**, **In Progress** and **Backlog**, with the total issue count in the
-corner.
-
-Read it as a shape rather than a number. A backlog slice that dominates the ring
-means intake is outrunning delivery — which is worth knowing long before a
-deadline says so.
+The donut shows the percentage resolved across every project in scope. The
+legend splits it into **Done**, **In Progress** and **Backlog**, with the total
+count in the corner. If Backlog is the biggest slice, more is coming in than
+going out.
 
 ### Focus time
 
-Your logged hours, and only yours. Seven bars for the last seven days with
-today's bar in amber, a total in hours at the top, and a **Week** / **Month**
-toggle that re-buckets the same data into the last five calendar weeks.
-
-It reads `0.0 h` until somebody logs work — see [Tracking your time](/en/guide-time.html)
-for how the entries get there, and note that time recorded through a Git commit
-does not reach this chart.
+Only your logged hours: seven bars for the last seven days (today's in amber)
+and the total at the top. **Week** / **Month** shows the last five calendar
+weeks. It reads `0.0 h` until work is logged. Time from Git commits is not
+included. See [Tracking your time](/en/guide-time.html).
 
 ### Team ranking and Git activity
 
-Two further cards, both off to the side of the daily job:
-
-- **Team ranking** counts issues resolved in the last 30 days per person, top ten.
-  It is a light-hearted card, and it deliberately counts issues rather than
-  hours — nothing here rewards logging more time.
-- **Git activity** lists recent commits, pull requests and merges across the
-  repositories your projects are connected to. It only appears if an
-  administrator has set up [Git integration](/en/git-integration.html).
+- **Team ranking**: the ten people who resolved the most issues in the last 30
+  days. It is meant light-heartedly and deliberately ignores hours.
+- **Git activity**: recent commits, pull requests and merges from connected
+  repositories. Only shown once [Git integration](/en/git-integration.html) is
+  set up.
 
 ### Customize
 
-**Customize** in the top-right turns the dashboard into an editable layout.
+**Customize** in the top-right starts edit mode.
 
-![The dashboard in edit mode, with the hero board, dashboard data and team ranking pickers above the cards](/assets/img/shot-dashboard-customize.png)
-*Edit mode. A hint strip and three fields sit above the cards — "Hero board", "Dashboard data" and "Team ranking" — every card grows an eye button that hides it, and the amber "Done" has taken the place of "Customize".*
+![The dashboard in edit mode](/assets/img/shot-dashboard-customize.png)
+*Edit mode.*
 
-Scoping **Dashboard data** is the setting that moves the numbers: restrict it to
-your own projects and the key figures, the donut and Today's focus stop counting
-work you have no part in.
+- The fields "Hero board", "Dashboard data" and "Team ranking" appear above the
+  cards.
+- "Hero board" picks the board for the large card. The default is "Automatic
+  (active sprint)".
+- "Dashboard data" sets which projects the key figures, donut and Today's focus
+  count.
+- The eye button on a card hides it.
 
-![The hero board picker open, with Automatic (active sprint) checked](/assets/img/shot-dashboard-hero-board-picker.png)
-*The "Hero board" field opens an anchored popover. "Automatic (active sprint)" carries the check; under it stands every board you can reach, here "Hinata Platform Board".*
+![The hero board picker](/assets/img/shot-dashboard-hero-board-picker.png)
+*"Hero board" lists every board you can reach.*
 
-Press **Done** to save. The layout belongs to your account rather than to this
-device, so it follows you to your phone — and leaving the page without pressing
-Done throws the changes away.
+**Done** saves. The layout belongs to your account, so it also applies on your
+phone. Without **Done**, your changes are lost.
 
 ## Reports
 
-**Reports** in the sidebar, or behind **More** on a phone. Reports look at **one
-project at a time**.
+Open **Reports** in the sidebar, or under **More** on a phone. A report always
+shows **one project**. The picker under the heading only lists projects your
+team access grants you.
 
-![The project picker open on the reports page, listing three projects](/assets/img/shot-reports-project-picker.png)
-*The picker under the heading, open. It lists only the projects your team access grants you, with a check on the one on screen; picking another redraws every card on the page.*
+![The project picker on the reports page](/assets/img/shot-reports-project-picker.png)
+*The project picker.*
 
 ### Burndown · last 30 days
 
-![The Hinata reports page with the 30-day burndown, total issues and the distribution by state](/assets/img/shot-reports.png)
-*The top of the page. The amber line is open issues on each of the last 30 days against a dashed ideal, with today's count in the corner; "Total issues" and "Issues by state" sit underneath.*
+![The reports page with burndown, total and states](/assets/img/shot-reports.png)
+*Burndown, total issues and states.*
 
-The amber line is how many issues were open on each of the last 30 days,
-anchored to today's real open count and reconstructed backwards from when issues
-were created and resolved. The dashed grey line is a straight reference from
-where you started to zero — the pace you would need to clear everything by
-today.
+- **Amber line**: open issues on each of the last 30 days, reconstructed
+  backwards from today's count.
+- **Dashed line**: a straight path from the starting value to zero. It is only a
+  reference.
+- **Count in the top-right**: today's figure. It is the only measured value.
 
-That reference line is a ruler, not a plan. Nobody committed to it. Its only job
-is to give the amber line something to be measured against.
+!!! tip "What the shape means"
 
-!!! tip "A burndown that never bends is telling you something"
-    - **Flat.** You are closing work at exactly the rate you open it. Nothing is
-      broken, but nothing is shrinking either — a queue in equilibrium.
-    - **Climbing.** Intake is beating delivery. Look at the Backlog slice on the
-      dashboard; the two agree, and neither is a scheduling problem you can
-      solve by working faster.
-    - **A cliff near the end.** Work was finished in a batch. Usually that means
-      issues sat in a review or QA state and were all marked done at once, which
-      hides where the delay really was.
-    - **Perfectly matching the dashed line.** Be suspicious rather than proud.
-      Real work is lumpy.
-
-The count in the top-right is today's figure, and it is the only number on this
-card that is measured rather than reconstructed.
+    - **Flat:** work gets done as fast as it comes in.
+    - **Climbing:** more comes in than gets done. Working faster will not fix
+      it.
+    - **A drop near the end:** issues sat in review or QA and were closed
+      together. Where the delay was stays hidden.
+    - **Exactly on the line:** be suspicious. Real work is uneven.
 
 ### Total issues
 
-Every issue that has ever existed in this project, resolved or not. It is a scale
-marker for reading everything else on the page: 7 issues *In Review* out of 53 is
-a queue; out of 5,000 it is a rounding error.
+Every issue that has ever existed in the project, resolved or not. Use it as the
+scale: 7 issues *In Review* out of 53 is a lot, out of 5,000 it barely matters.
 
 ### Issues by state
 
-One bar per workflow state, longest first, coloured to match the state and
-labelled with the count. The states are your project's own — whatever your board
-columns are called — so a project that added *In Parking* or *Signed off* sees
-those here too.
-
-This is the bottleneck detector. A pile-up in a single non-final state is the
-clearest signal the page produces: work is arriving in that state faster than
-anyone is taking it out.
+One bar per state of your project, longest first, in the state's colour and with
+the count. Custom states such as *In Parking* or *Signed off* appear too. A
+pile-up in one state before done points to a bottleneck.
 
 ### Issues by priority
 
-![The priority, assignee and activity breakdowns further down the reports page](/assets/img/shot-reports-breakdowns.png)
-*The three cards below the fold: "Issues by priority" with a flag on each row, "Issues by assignee" with an avatar on each row, and "Time per activity (30 days)", whose bars are durations rather than counts.*
+![Priority, assignee and activity further down the reports page](/assets/img/shot-reports-breakdowns.png)
+*Priority, assignee and time per activity.*
 
-Read priority as a proportion rather than a count: if most of the project is
-flagged urgent, the flag has stopped carrying information, and what that calls
-for is a triage pass rather than a bigger team.
+Look at the proportion. If nearly everything is urgent, it is time for a triage
+pass.
 
 ### Issues by assignee
 
-Issues nobody owns are collected under **unassigned** — usually the most
-interesting row on the card, because unowned work is work nobody is going to
-finish by accident.
+Issues nobody owns are collected under **unassigned**. Keep an eye on that row.
 
 !!! warning "Counting issues is not measuring effort"
-    Every distribution here counts issues, and issues are not the same size. A
-    person with twelve tiny bugs outranks a person carrying one three-week
-    migration on every one of these charts. Use them to spot shapes — a pile-up,
-    an empty column, an unowned heap — and use a conversation to interpret them.
+    Every distribution counts issues. Twelve tiny bugs outweigh one three-week
+    migration here. Use the charts to spot patterns, and talk to people to find
+    the reasons.
 
 ### Time per activity (30 days)
 
-Everyone's logged work on this project over the last 30 days, added up per
-activity type. It only contains work that people entered as
-[time entries](/en/guide-time.html); time recorded through a Git commit does not
-reach it.
+Everyone's logged time on this project over the last 30 days, per activity type.
+Only [time entries](/en/guide-time.html) count, not time from Git commits.
 
 ### Sprint burndown and velocity live on the board
 
-The reports page is project-wide and time-boxed to 30 days. The sprint-shaped
-metrics — the sprint burndown, velocity across finished sprints, average
-velocity, scope changes and the work breakdown by assignee — live on the
-**Insights** tab of the board itself, next to Planning and Active sprint. See
+Sprint metrics are on the board's **Insights** tab, next to Planning and Active
+sprint: sprint burndown, velocity across finished sprints, average velocity,
+scope changes and work breakdown by assignee. See
 [Boards & sprints](/en/guide-boards.html).
 
-## Reading any of this honestly
+## Reading the charts correctly
 
-A handful of habits that stop a dashboard from becoming decoration:
-
-- **Check what the window is.** The burndown and the activity breakdown cover 30
-  days; the team ranking covers 30 days; the distributions cover all time. A
-  project that changed direction two months ago will look inconsistent across
-  them, and that is the charts being right.
-- **Charts inherit your workflow.** "Issues by state" is only as meaningful as
-  your states. If everything sits in a single vague *In Progress*, no report can
-  invent the detail — that is a [project settings](/en/guide-projects.html)
-  conversation.
-- **Look for the missing bar.** An assignee with no bar, a state with no issues,
-  a day with no logged time — absences carry as much information as spikes.
-- **Never present a number without the question it answers.** "Fourteen issues
-  are In Review" is an observation. "Fourteen issues are In Review because one
-  person does every review" is something a team can act on.
+- **Check the time window.** The burndown, time per activity and team ranking
+  cover 30 days, the distributions all time. That is why they can seem to
+  disagree.
+- **Check your workflow.** If everything sits in one vague *In Progress*, no
+  report can show detail. Change that in the
+  [project settings](/en/guide-projects.html).
+- **Look for gaps.** Missing bars say as much as tall ones.
+- **Explain your numbers.** "Fourteen issues are In Review because one person
+  does every review" helps more than the number alone.
 
 ## Exporting a report
 
-![The export menu open in the top-right of the reports page](/assets/img/shot-reports-export-menu.png)
-*"Export" in the top-right opens three choices: "Export as PDF", "Export as CSV" and "Export as JSON". Each covers the project currently on screen, not all of them.*
+**Export** in the top-right. Each export covers only the project on screen.
 
-**Export as PDF** builds a printable A4 document from what you are looking at:
-your organisation's name and logo at the top, the project name, a generated-at
-timestamp, the total issue count, the burndown chart, and every breakdown card
-as a table of labels and values — including the time-per-activity durations.
-Pages are numbered in the footer. It arrives through your platform's normal
-share or save dialog, named like `hinata-report-Website-Relaunch-2026-08-20.pdf`,
-so it is ready to attach to a mail or drop into a steering pack without renaming.
+![The export menu on the reports page](/assets/img/shot-reports-export-menu.png)
+*The export menu.*
 
-**Export as CSV** and **Export as JSON** give you the same numbers as data, for a
-spreadsheet or a script. In the web app they open as a download; in the desktop
-and mobile apps they are copied to your clipboard, and a toast confirms it — so
-paste, rather than looking in a downloads folder.
+- **Export as PDF**: a printable A4 document with your organisation's name and
+  logo, the project name, a generated-at timestamp, the total count, the
+  burndown, every breakdown as a table (including time per activity) and page
+  numbers. It arrives through the share or save dialog, named like
+  `hinata-report-Website-Relaunch-2026-08-20.pdf`.
+- **Export as CSV** and **Export as JSON**: the same numbers as data. The web
+  app downloads them. The desktop and mobile apps copy them to your clipboard
+  and confirm with a toast.
 
-!!! tip "Export the moment you present"
-    Every export is a snapshot with the generation time printed on it. Export it
-    at the moment you are going to talk about it, and the version in the meeting
-    and the version on screen will agree.
+!!! tip "Export right before you present"
+    Every export is a snapshot with its generation time printed on it.
 
 !!! note "Reports show what you can see"
-    The reports you can build are bounded by the same visibility rules as the
-    rest of the app. See [Projects & teams](/en/guide-projects.html).
+    The same visibility rules apply as in the rest of the app. See
+    [Projects & teams](/en/guide-projects.html).
 
 ## Next steps
 
-- Improve the inputs: keep [issues](/en/guide-issues.html) in accurate states and give them owners.
-- Feed the effort numbers by [tracking your time](/en/guide-time.html).
-- Get sprint-level metrics from the Insights tab in [Boards & sprints](/en/guide-boards.html).
+- Keep [issues](/en/guide-issues.html) in accurate states and give them owners.
+- [Track your time](/en/guide-time.html) for accurate effort numbers.
+- Get sprint metrics from the Insights tab in [Boards & sprints](/en/guide-boards.html).
