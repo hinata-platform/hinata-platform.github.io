@@ -132,13 +132,13 @@ export function Landing({
             className="device device-mac"
             stem="frame-macbook"
             widths={frames['frame-macbook']!}
-            alt="Hinata on desktop — the dashboard shown in a MacBook"
+            alt="The Hinata dashboard on a MacBook"
           />
           <DeviceShot
             className="device device-phone"
             stem="frame-iphone"
             widths={frames['frame-iphone']!}
-            alt="Hinata on mobile — the dashboard shown on an iPhone"
+            alt="The Hinata dashboard on an iPhone"
           />
         </div>
 

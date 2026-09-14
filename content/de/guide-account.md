@@ -1,290 +1,205 @@
 ---
 title: Dein Konto
-description: Alles auf deinem Einstellungs-Bildschirm — Profil und Profilbild, E-Mail und Passwort, Zwei-Faktor-Authentifizierung, aktive Sitzungen, Sprache und Design sowie Datenexport und Kontolöschung.
+description: Profil, Anmeldung, 2FA, Sitzungen, Sprache und deine Daten in den Einstellungen.
 ---
 
 # Dein Konto
 
-Deine Kontoeinstellungen sind der einzige Bildschirm in Hinata, bei dem es
-ausschließlich um *dich* geht und nicht um die Arbeit. Dein Name und dein Bild,
-wie Kolleginnen und Kollegen sie sehen; wie du dich anmeldest; welche Geräte
-gerade angemeldet sind; in welcher Sprache die App mit dir spricht; und was mit
-deinen Daten passiert, wenn du gehst.
+Öffne **Einstellungen** unten in der Navigationsleiste oder klicke oben rechts auf
+dein Profilbild. Dort findest du auch **Profil bearbeiten** und **Abmelden**. Auf
+dem Handy liegt das Einstellungssymbol neben der Glocke.
 
-Du öffnest sie über **Einstellungen** unten in der Navigationsleiste oder über
-dein Profilbild oben rechts — dieses Menü hat außerdem ein schnelles
-**Profil bearbeiten** und **Abmelden**. Auf dem Handy sitzt das
-Einstellungs-Symbol neben der Glocke in der oberen Leiste.
+![Der Einstellungsbildschirm von Hinata](/assets/img/shot-settings.png)
+*Die Einstellungen auf dem Desktop.*
 
-![Der Einstellungs-Bildschirm von Hinata](/assets/img/shot-settings.png)
-*Die Einstellungen auf dem Desktop. Oben läuft das Profil-Banner mit „Profil bearbeiten“ und „Abmelden“. Darunter teilt sich die Seite: links beginnen E-Mail & Sicherheit und Aktive Sitzungen, rechts Zugriff und Darstellung & App. Deine Benachrichtigungsmatrix und die Datenfunktionen laufen in denselben zwei Spalten unterhalb des sichtbaren Bereichs weiter.*
+!!! tip "Auf dem Handy eine Liste"
+    Jede Karte wird zu einer Zeile, die sich als eigene Seite öffnet. Welche
+    Zeilen du siehst, hängt von deinem Konto ab. Der Zurückpfeil führt erst zur
+    Liste und dann zurück.
 
-!!! tip "Auf dem Handy ist das eine Liste, keine Wand"
-    Schmale Bildschirme machen aus demselben Inhalt ein Verzeichnis, und jeder
-    Eintrag öffnet sich als eigene Seite. Der Zurück-Pfeil bringt dich erst
-    zurück ins Verzeichnis und dann dorthin, wo du hergekommen bist.
-
-![Die Einstellungen auf dem Handy: das Profil-Banner über einer Liste von Bereichen](/assets/img/shot-mobile-settings-index.png)
-*Die Einstellungen auf dem Handy. Das Profil-Banner behält „Profil bearbeiten“ und „Abmelden“; darunter wird jede Karte des Desktop-Bildschirms zu einer Zeile — „E-Mail & Sicherheit“, „Aktive Sitzungen“, „Benachrichtigungen“, „Zugriff“, „Darstellung & App“ und für Administratoren „Adminbereich“. Welche Zeilen du bekommst, hängt von deinem Konto ab.*
+![Die Einstellungen auf dem Handy als Liste von Bereichen](/assets/img/shot-mobile-settings-index.png)
+*Die Einstellungen auf dem Handy.*
 
 ## Dein Profil
 
-Das Banner ganz oben zeigt, wie alle anderen dich sehen: dein Bild, deinen
-Anzeigenamen, deinen `@Benutzernamen`, deine Position, deine Rollen und den
-Monat, in dem du dazugekommen bist.
+Das Banner oben zeigt, wie andere dich sehen: Bild, Anzeigename, `@Benutzername`,
+Position, Rollen und den Monat, in dem du dazugekommen bist.
 
-![Der Dialog „Profil bearbeiten“ mit ausgegrautem Feld „Benutzername“](/assets/img/shot-account-edit-profile.png)
-*„Profil bearbeiten“ öffnet sich über dem Einstellungs-Bildschirm. „Anzeigename“ und „Position“ sind änderbar; „Benutzername“ liegt ausgegraut dazwischen, und die Unterzeile sagt, warum.*
+![Der Dialog „Profil bearbeiten“](/assets/img/shot-account-edit-profile.png)
+*„Profil bearbeiten“ mit ausgegrautem „Benutzername“.*
 
-Dein Anzeigename ist das, was Kolleginnen und Kollegen auf Karten, in Kommentaren
-und in der Bearbeiter-Auswahl sehen — ihn zu ändern kostet nichts. Die Position
-ist freier Text: „Maintainer“, „Design-Leitung“, „Werkstudentin“ — was auch immer
-jemandem hilft zu entscheiden, ob er dich fragen sollte.
-
-Der **Benutzername lässt sich nicht ändern**, weil `@`-Erwähnungen darauf auflösen
-und alte Kommentare weiter darauf zeigen. Ihn verschieben zu lassen würde die
-Geschichte still umschreiben.
+- **Anzeigename**: steht auf Karten, in Kommentaren und in der
+  Bearbeiterauswahl. Jederzeit änderbar.
+- **Position**: freier Text, etwa „Maintainer“.
+- **Benutzername**: nicht änderbar, weil `@`-Erwähnungen und alte Kommentare
+  darauf verweisen.
 
 ### Dein Bild
 
-Klicke auf das kleine Kamera-Abzeichen an deinem Profilbild oder öffne die Zeile
-für das Profilbild und wähle **Foto hochladen**. JPEG, PNG, GIF und BMP werden
-akzeptiert, bis 12 MB — ein Foto direkt vom Handy ist also kein Problem. Der
-Server verkleinert alles auf höchstens 512 Pixel an der langen Kante und legt es
-als JPEG ab; aus einem 9-MB-Upload wird also kein 9-MB-Download für alle, die
-das Board öffnen.
+Klicke auf das Kamerasymbol am Profilbild und wähle **Foto hochladen**. Erlaubt
+sind JPEG, PNG, GIF und BMP bis 12 MB. Der Server speichert das Bild als JPEG mit
+höchstens 512 Pixeln an der langen Kante.
 
-**Foto entfernen** setzt dich auf die farbigen Initialen zurück, die Hinata aus
-deinem Namen erzeugt. Kein Foto zu haben, wird nicht bestraft — aber ein Board
-voller Initialen ist tatsächlich schwerer zu überfliegen als eines voller
-Gesichter.
+**Foto entfernen** zeigt wieder deine farbigen Initialen.
 
 ## Deine Anmeldeadresse
 
-Die Karte **E-Mail & Sicherheit** beginnt mit der Adresse, mit der du dich
-anmeldest, markiert als **Verifiziert** oder **Nicht verifiziert**.
+Die Karte **E-Mail & Sicherheit** zeigt deine Anmeldeadresse als **Verifiziert**
+oder **Nicht verifiziert**.
 
-![Der Dialog „E-Mail ändern“, mit der aktuellen Adresse schreibgeschützt über der neuen](/assets/img/shot-account-change-email.png)
-*„Ändern“ in der Zeile E-Mail öffnet diesen Dialog. Die aktuelle Adresse steht schreibgeschützt über der neuen, und die Unterzeile trägt die Zusage: Deine Anmelde-E-Mail ändert sich erst nach der Bestätigung.*
+![Der Dialog „E-Mail ändern“](/assets/img/shot-account-change-email.png)
+*Der Dialog hinter „Ändern“.*
 
-Bis du den Link in dieser Mail anklickst, zeigt die Karte *Bestätigung ausstehend
-für …*, und nichts hat sich bewegt. Ein Tippfehler kostet dich also nichts — du
-bestätigst schlicht nie.
+1. Klicke auf **Ändern** und gib die neue Adresse ein.
+2. Klicke auf den Link in der Mail. Bis dahin zeigt die Karte *Bestätigung
+   ausstehend für …*, und die alte Adresse gilt weiter.
+3. Nach der Bestätigung wirst du auf allen Geräten abgemeldet. Ein
+   Sicherheitshinweis kommt in Glocke und Postfach.
 
-In dem Moment, in dem du *doch* bestätigst, passieren zwei Dinge: Jedes Gerät,
-das an deinem Konto angemeldet ist, wird abgemeldet, und ein Sicherheitshinweis
-landet in deiner Glocke und in deinem Postfach. Eine Adressänderung ist eine
-Änderung daran, wie das Konto wiederhergestellt wird — Hinata behandelt sie
-entsprechend.
-
-!!! note "Es sei denn, deine Organisation nutzt Single Sign-on"
-    Meldest du dich über einen Identitätsanbieter an, sagt die Karte das —
-    *E-Mail und Passwort werden von deinem Identitätsanbieter verwaltet* — und
-    die Buttons zum Ändern und Zurücksetzen sind weg. Beides lebt dort, wo die
-    Konten deiner Organisation leben. [Single Sign-on](/de/sso.html) beschreibt
-    die Konstruktion.
+!!! note "Mit Single Sign-on"
+    Meldest du dich über einen Identitätsanbieter an, steht auf der Karte
+    *E-Mail und Passwort werden von deinem Identitätsanbieter verwaltet*. Die
+    Buttons zum Ändern und Zurücksetzen fehlen dann. Siehe
+    [Single Sign-on](/de/sso.html).
 
 ## Dein Passwort
 
-Hinata fragt dich nicht in einem Formular nach deinem alten Passwort.
+**Zurücksetzen** in der Zeile Passwort schickt dir einen einmaligen Link per
+E-Mail. Er läuft nach 30 Minuten ab. Ein Formular zum Ändern gibt es nicht.
 
-![Der Bestätigungsdialog „Passwort zurücksetzen“](/assets/img/shot-account-password-reset.png)
-*„Zurücksetzen“ in der Zeile Passwort öffnet kein Formular zum Ändern. Es öffnet dies: eine Zeile, dass ein einmaliger Link in dein Postfach geht und nach 30 Minuten abläuft, und einen einzigen Knopf „Link per E-Mail senden“.*
+![Der Dialog „Passwort zurücksetzen“](/assets/img/shot-account-password-reset.png)
+*Der Dialog mit „Link per E-Mail senden“.*
 
-Das ist Absicht. Ein Passwort-ändern-Formular in einer angemeldeten Sitzung
-schützt nichts, wenn jemand an deinem entsperrten Laptop sitzt. Ein Link ins
-Postfach bedeutet, dass wer das Passwort ändert, auch das Postfach kontrollieren
-muss.
-
-Neue Passwörter müssen mindestens **10 Zeichen** lang sein. Ein abgeschlossenes
-Zurücksetzen meldet dich außerdem überall ab — auch in der Sitzung, aus der du
-es gestartet hast. Das Erste danach ist also die Anmeldung mit dem neuen
-Passwort.
-
-!!! tip "Länge schlägt Sonderzeichen"
-    Vier gewöhnliche Wörter, die du dir wirklich merkst, schlagen `P@ssw0rd!` in
-    jeder Hinsicht, die zählt. Nichts in Hinata verlangt ein Symbol oder eine
-    Ziffer — verlangt wird Länge, weil genau die das Raten teuer macht.
+- Das neue Passwort braucht mindestens **10 Zeichen**. Sonderzeichen und Ziffern
+  sind keine Pflicht. Vier normale Wörter sind sicherer als `P@ssw0rd!`.
+- Danach bist du überall abgemeldet, auch auf dem aktuellen Gerät.
 
 ## Zwei-Faktor-Authentifizierung
 
-Mit aktivierter Zwei-Faktor-Authentifizierung braucht die Anmeldung dein Passwort
-*und* einen sechsstelligen Code aus einer App auf deinem Handy. Wer das Passwort
-stiehlt, kommt trotzdem nicht hinein.
-
-Die Zeile zeigt **Aktivieren**, solange es aus ist, und *Aktiv · 10
-Wiederherstellungscodes übrig*, wenn es an ist.
+Mit 2FA brauchst du beim Anmelden zusätzlich einen sechsstelligen Code aus einer
+App auf dem Handy. Die Zeile zeigt **Aktivieren** oder *Aktiv · 10
+Wiederherstellungscodes übrig*.
 
 ### Aktivieren
 
-Drücke **Aktivieren**. Der Assistent hat drei Schritte und dauert etwa eine
-Minute.
+Drücke **Aktivieren**. Der Assistent dauert etwa eine Minute.
 
-![Schritt 1 des Zwei-Faktor-Assistenten, mit QR-Code und Schlüssel zur manuellen Eingabe](/assets/img/shot-2fa-scan.png)
-*Schritt 1 von 3. Scanne den Code mit einer Authenticator-App — Google Authenticator, 1Password, Authy. Sitzt du gerade auf genau dem Handy, das scannen würde, kopiere stattdessen den „Schlüssel zur manuellen Eingabe“ darunter. Beides ist hier verpixelt: Es ist ein echtes Geheimnis, und ein funktionierendes gehört nicht auf eine Webseite.*
+1. Scanne den QR-Code mit einer App wie Google Authenticator, 1Password oder
+   Authy. Auf demselben Handy kopierst du den „Schlüssel zur manuellen Eingabe“.
+2. Gib den sechsstelligen Code ein. „Bestätigen & aktivieren“ wird klickbar,
+   sobald alle sechs Felder gefüllt sind.
+3. **Wiederherstellungscodes speichern**: Du bekommst zehn Codes. Jeder ersetzt
+   genau einmal den Code aus der App. **Alle kopieren** legt sie in die
+   Zwischenablage.
 
-![Schritt 2 des Zwei-Faktor-Assistenten, fünf der sechs Felder gefüllt](/assets/img/shot-2fa-verify.png)
-*Schritt 2 von 3 sind sechs einzelne Felder statt eines Textfelds, und der Cursor springt von selbst weiter. „Bestätigen & aktivieren“ bleibt ausgegraut, bis alle sechs gefüllt sind — hier fehlt noch das letzte.*
+![Schritt 1 mit QR-Code und Schlüssel zur manuellen Eingabe](/assets/img/shot-2fa-scan.png)
+*Schritt 1, QR-Code und Schlüssel sind verpixelt.*
 
-Schritt 2 gibt es, damit bewiesen ist, dass deine Authenticator-App das richtige
-Geheimnis wirklich gespeichert hat, bevor Hinata anfängt, es zu verlangen. Genau
-das verhindert, dass du dich aus einem Konto aussperrst, das du nie sauber
-eingerichtet hast.
+![Schritt 2 mit fünf von sechs gefüllten Feldern](/assets/img/shot-2fa-verify.png)
+*Schritt 2, die letzte Ziffer fehlt noch.*
 
-**Schritt 3 von 3 · Wiederherstellungscodes speichern.** Du bekommst **zehn
-einmalig verwendbare Codes**. Jeder funktioniert genau einmal anstelle des
-sechsstelligen Codes, falls du den Zugriff auf deine Authenticator-App
-verlierst. **Alle kopieren** legt sie in die Zwischenablage.
-
-!!! warning "Die Wiederherstellungscodes werden genau einmal angezeigt"
-    Hinata zeigt sie nie wieder an — es speichert nur Hashes und kann es
-    schlicht nicht. Leg sie dorthin, wo du noch herankommst, wenn ausgerechnet
-    das Handy fehlt: in einen Passwort-Manager, als Ausdruck in eine Schublade.
-    Nicht als Notiz auf demselben Handy.
+!!! warning "Die Codes siehst du nur einmal"
+    Hinata speichert nur Hashes. Bewahre die Codes so auf, dass du ohne Handy
+    herankommst, etwa im Passwortmanager oder ausgedruckt.
 
 ### Im Alltag
 
-- **Beim Anmelden** wird der Code als zweiter Schritt nach dem Passwort
-  abgefragt. Er wechselt alle 30 Sekunden; ein gerade abgelaufener Code wird
-  noch einen Moment akzeptiert, damit langsames Tippen nicht bestraft wird.
-- **Codes** erzeugt einen frischen Satz von zehn und macht die alten ungültig.
-  Dafür brauchst du einen aktuellen Code — genau deshalb lohnt es sich *vor* dem
-  Handywechsel und nicht danach.
-- **Deaktivieren** schaltet es ab. Auch das verlangt einen aktuellen Code oder
-  einen Wiederherstellungscode: Eine Sicherheitsfunktion abzuschalten muss so
-  aufwendig sein wie sie zu benutzen.
+- Beim **Anmelden** fragt Hinata den Code nach dem Passwort ab. Er wechselt alle
+  30 Sekunden. Ein gerade abgelaufener Code gilt noch kurz.
+- **Codes** erzeugt zehn neue Wiederherstellungscodes und macht die alten
+  ungültig. Dafür brauchst du einen aktuellen Code, also vor dem Handywechsel.
+- **Deaktivieren** schaltet 2FA ab. Auch das braucht einen aktuellen Code oder
+  einen Wiederherstellungscode.
 
 ## Aktive Sitzungen
 
-Jedes an deinem Konto angemeldete Gerät steht hier, die zuletzt aktive Sitzung
-zuerst: was es ist (ein Browser, die Hinata-App), das Betriebssystem, eine
-maskierte IP-Adresse und wann es zuletzt aktiv war. Das Gerät, an dem du gerade
-sitzt, ist als **Dieses Gerät** markiert.
+Hier steht jedes angemeldete Gerät, das zuletzt aktive zuerst: Browser oder
+Hinata-App, Betriebssystem, maskierte IP-Adresse und letzte Aktivität. Dein Gerät
+ist als **Dieses Gerät** markiert.
 
-Zwei Wege, auf die Liste zu reagieren:
-
-- Der **Abmelden-Pfeil** in einer Zeile beendet genau diese Sitzung. Das Gerät
-  muss sich beim nächsten Versuch neu anmelden.
-- **Andere abmelden** beendet sofort jede Sitzung außer dieser.
+- Der Pfeil in einer Zeile meldet dieses Gerät ab.
+- **Andere abmelden** beendet sofort alle anderen Sitzungen.
 
 ### Was eine Sitzung von selbst beendet
 
-- **Ein abgeschlossenes Zurücksetzen des Passworts** meldet jedes Gerät ab.
-- **Eine bestätigte E-Mail-Änderung** meldet jedes Gerät ab.
-- **Ein Administrator, der dein Konto deaktiviert**, meldet jedes Gerät ab.
-- **Das Löschen deines Kontos** meldet jedes Gerät ab, endgültig.
+Alle Geräte werden abgemeldet, wenn du dein Passwort zurücksetzt, eine neue
+E-Mail-Adresse bestätigst oder dein Konto löschst. Dasselbe passiert, wenn ein
+Administrator dein Konto deaktiviert. App schließen, Neustart oder Netzverlust
+beenden keine Sitzung.
 
-Alles andere — die App schließen, den Rechner neu starten, das Netz verlieren —
-lässt die Sitzung unberührt. Genau deshalb lohnt ab und zu ein Blick in die
-Liste: Sitzungen laufen nicht aus Ordnungsliebe ab.
+!!! tip "Gerät verloren oder fremder Eintrag?"
+    Drücke zuerst **Andere abmelden** und setze danach dein Passwort
+    **zurück**. So ist niemand mehr angemeldet, wenn das neue Passwort gilt.
 
-!!! tip "Der Ein-Minuten-Sicherheitscheck"
-    Laptop verloren, eine Sitzung auf einem geteilten Rechner offen gelassen
-    oder einen Eintrag schlicht nicht wiedererkannt? Drücke
-    **Andere abmelden** und setze danach dein Passwort **zurück**. In dieser
-    Reihenfolge — erst abmelden heißt, dass das neue Passwort auf einem Konto
-    landet, an dem niemand mehr die Tür aufhält.
-
-Bei Sitzungen zahlt sich auch die Benachrichtigung **Sicherheitshinweise** aus:
-Eine Anmeldung, die nicht von dir kam, taucht in deiner Glocke und in deinem
-Postfach auf — und dieser Bildschirm ist der nächste, den du dann öffnest. Siehe
-[Auf dem Laufenden bleiben](/de/guide-notifications.html).
+Fremde Anmeldungen meldet dir die Benachrichtigung **Sicherheitshinweise** in
+Glocke und Postfach. Siehe [Auf dem Laufenden bleiben](/de/guide-notifications.html).
 
 ## Sprache und Darstellung
 
-Die Karte **Darstellung & App** enthält die kleinen Entscheidungen:
+Die Karte **Darstellung & App** enthält:
 
-- **Sprache** — eine von [neun](/de/features.html#sprachen): Englisch, Deutsch,
-  Französisch, Spanisch, Russisch, Chinesisch, Japanisch, Hindi oder Arabisch.
-  Sie ändert die Oberfläche sofort und ist zugleich die Sprache, in der der
-  Server dir E-Mails schickt und Fehlermeldungen zurückgibt. Eine Einstellung,
-  überall. Wer Arabisch wählt, bekommt außerdem das ganze Layout von rechts nach
-  links.
-- **Darstellung** — **System**, **Hell** oder **Dunkel**. System folgt dem, was
-  dein Betriebssystem tut, inklusive Umschalten bei Sonnenuntergang, wenn dein
-  System das macht.
-- **Der verbundene Server** — mit welchem Server diese App spricht, daneben
-  **Server verwalten**, falls du mehrere nutzt. Siehe
-  [Auf dem Handy](/de/guide-mobile.html#mehrere-server-eine-app).
-- **Datenschutzerklärung** — der Datenschutzhinweis deines Betreibers sowie die
-  Versionsnummern von App und Server, praktisch beim Melden eines Problems.
+- **Sprache**: eine von [neun](/de/features.html#sprachen) (Englisch, Deutsch,
+  Französisch, Spanisch, Russisch, Chinesisch, Japanisch, Hindi, Arabisch). Sie
+  gilt sofort für die Oberfläche und für E-Mails und Fehlermeldungen des
+  Servers. Mit Arabisch läuft das Layout von rechts nach links.
+- **Darstellung**: **System**, **Hell** oder **Dunkel**. System folgt deinem
+  Betriebssystem.
+- **Verbundener Server**, daneben **Server verwalten**, wenn du mehrere nutzt.
+  Siehe [Auf dem Handy](/de/guide-mobile.html#mehrere-server-eine-app).
+- **Datenschutzerklärung**: der Datenschutzhinweis deines Betreibers und die
+  Versionen von App und Server.
 
-!!! note "Das Branding deines Betreibers, kein Theme"
-    Organisationsname und Logo oben links kommen vom Server, nicht aus deinen
-    Einstellungen. Sie ändern sich für alle gleichzeitig, wenn ein Administrator
-    sie ändert — siehe [Adminbereich](/de/admin-area.html), falls du das bist.
+!!! note "Name und Logo kommen vom Server"
+    Organisationsname und Logo oben links ändert ein Administrator für alle.
+    Siehe [Adminbereich](/de/admin-area.html).
 
 ## Teams und Projekte, die du erreichst
 
-Die Karte **Zugriff** ist reine Anzeige und beantwortet eine Frage, die sonst
-ärgerlich schwer zu beantworten ist: *Wovon bin ich eigentlich Mitglied?*
-Wechsle zwischen **Teams** und **Projekte**; jede Zeile zeigt Name,
-Mitgliederzahl und deine Rolle dort.
-
-Wenn eine Kollegin schwört, dass es ein Projekt gibt, und du es nicht findest,
-schau zuerst hier. Eine leere Liste ist kein Fehler — Projektsichtbarkeit kommt
-über Teammitgliedschaft, und jemand muss dich hinzufügen.
-[Projekte & Teams](/de/guide-projects.html) erklärt, wie das funktioniert.
+Die Karte **Zugriff** ist nur eine Anzeige. Unter **Teams** und **Projekte**
+siehst du, wo du Mitglied bist, mit Mitgliederzahl und deiner Rolle. Fehlt ein
+Projekt, muss dich jemand zum passenden Team hinzufügen. Siehe
+[Projekte & Teams](/de/guide-projects.html).
 
 ## Zugriffstokens
 
-Hat dein Betreiber es aktiviert, erscheint eine Karte **Zugriffstokens**. Sie
-stellt Personal Access Tokens aus, mit denen KI-Assistenten und Skripte in
-deinem Namen mit Hinata arbeiten können — begrenzt auf das, was du ihnen
-erlaubst. Das Geheimnis wird einmal beim Erstellen angezeigt und danach nie
-wieder.
-
-Siehst du die Karte nicht, ist die Funktion auf deinem Server abgeschaltet, und
-du musst nichts tun. [MCP-Server](/de/mcp.html) hat die Details für alle, bei
-denen sie an ist.
+Hat dein Betreiber die Funktion aktiviert, erstellst du auf der Karte
+**Zugriffstokens** Personal Access Tokens für KI-Assistenten und Skripte. Sie
+dürfen nur, was du erlaubst. Das Geheimnis siehst du nur beim Erstellen. Fehlt
+die Karte, ist die Funktion aus. Siehe [MCP-Server](/de/mcp.html).
 
 ## Deine Daten
 
-Die letzten beiden Karten sind deine Rechte nach der DSGVO — als Buttons
-verdrahtet statt als E-Mail-Adresse, an die du schreiben müsstest.
+Deine Rechte aus der DSGVO sind hier als Buttons umgesetzt.
 
 ### Eine Kopie exportieren (Art. 15)
 
-**Daten & Datenschutz → Anfordern** bittet den Server, alles zusammenzustellen,
-was er über dich weiß. Du bekommst eine E-Mail mit einem sicheren Download-Link;
-der Bericht wird innerhalb von 24 Stunden erstellt, und der Link bleibt drei Tage
-gültig.
-
-Du brauchst keinen Grund, und niemand wird darüber informiert, dass du gefragt
-hast.
+**Daten & Datenschutz → Anfordern**. Innerhalb von 24 Stunden bekommst du eine
+E-Mail mit einem sicheren Downloadlink, der drei Tage gilt. Du brauchst keinen
+Grund, und niemand wird informiert.
 
 ### Konto löschen (Art. 17)
 
-**Gefahrenzone → Konto löschen** löscht dein Konto.
+**Gefahrenzone → Konto löschen**. Zur Bestätigung tippst du genau DELETE ins
+Feld.
 
-![Der Dialog zum Kontolöschen mit leerem Bestätigungsfeld und deaktiviertem Knopf](/assets/img/shot-account-delete-confirm.png)
-*Die Bestätigung. „Konto löschen“ bleibt wirkungslos, bis im Feld genau DELETE steht — und der Satz darüber ist der, den man zuerst liest: Profil, Zugangsdaten und Sitzungen gehen, erstellte Vorgänge und Kommentare werden anonymisiert.*
+![Der Dialog zum Kontolöschen mit leerem Feld](/assets/img/shot-account-delete-confirm.png)
+*Die Bestätigung, noch ohne DELETE.*
 
 !!! warning "Das lässt sich nicht rückgängig machen"
-    Das Löschen deines Kontos entfernt dauerhaft dein Profil, deine Zugangsdaten
-    und jede offene Sitzung — du bist in dem Moment überall abgemeldet, und eine
-    Bestätigung geht dir per E-Mail zu.
+    Profil, Zugangsdaten und Sitzungen werden dauerhaft gelöscht. Du bist sofort
+    überall abgemeldet und bekommst eine Bestätigung per E-Mail. Deine Vorgänge,
+    Kommentare und Historie bleiben, aber **anonymisiert**. Es gibt keine
+    Karenzzeit und keine Wiederherstellung.
 
-    Die **von dir erstellte Arbeit wird nicht gelöscht** — Vorgänge, Kommentare
-    und Historie bleiben, damit die Aufzeichnungen deines Teams keine Löcher
-    bekommen —, aber sie wird **anonymisiert**: Dein Name kommt herunter und
-    lässt sich nicht wieder anbringen. Es gibt kein Rückgängig, keine Karenzzeit
-    und keine Wiederherstellung. Willst du dich nur aus einem Projekt
-    zurückziehen, bitte stattdessen einen Administrator, dir den Zugriff zu
-    entziehen.
+    Willst du nur aus einem Projekt raus, bitte einen Administrator, dir den
+    Zugriff zu entziehen.
 
-Ein Fall, in dem der Button sich weigert: Bist du der **letzte aktive
-Administrator** des Workspace, lässt Hinata dich nicht löschen. Jemand muss die
-anderen wieder hereinlassen können. Gib zuerst jemand anderem Administrator-Rechte
-und lösche dann.
+Als **letzter aktiver Administrator** kannst du dein Konto nicht löschen. Mach
+vorher jemand anderen zum Administrator.
 
 ## Nächste Schritte
 
-- [Auf dem Laufenden bleiben](/de/guide-notifications.html) — die
-  Benachrichtigungsmatrix, die auf demselben Bildschirm sitzt.
-- [Erste Schritte](/de/guide-start.html) — Anmelden, das Layout und was am
-  ersten Tag zu tun ist.
-- [Auf dem Handy](/de/guide-mobile.html) — dieser Bildschirm im mobilen Layout
-  und wie sich mehrere Server eine App teilen.
-- [Authentifizierung](/de/authentication.html) — die Betreibersicht auf
-  Passwörter, Registrierung und 2FA-Richtlinien.
+- [Auf dem Laufenden bleiben](/de/guide-notifications.html): Benachrichtigungen einstellen
+- [Erste Schritte](/de/guide-start.html): Anmelden und der erste Tag
+- [Auf dem Handy](/de/guide-mobile.html): mobiles Layout und mehrere Server
+- [Authentifizierung](/de/authentication.html): Passwörter und 2FA aus Sicht des Betreibers

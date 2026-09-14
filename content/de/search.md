@@ -1,43 +1,43 @@
 ---
 title: Suche & Palette
-description: Ein Tastendruck — ⌘K — öffnet eine Liquid-Glass-Befehlspalette, um zu jedem Issue, Projekt, Artikel oder jeder Person zu springen und von überall aus Schnellaktionen auszuführen.
+description: ⌘K öffnet eine Befehlspalette, mit der du zu Issues, Projekten, Artikeln und Personen springst und Schnellaktionen ausführst.
 ---
 
 # Suche & Befehlspalette
 
-Der schnellste Weg durch Hinata ist nicht die Maus — es ist **⌘K** (**Strg+K** unter Windows/Linux). Ein Tastendruck öffnet eine Liquid-Glass-Befehlspalette, die alles durchsucht und Schnellaktionen ausführt, von jedem Bildschirm aus, ohne dass du deinen Platz verlierst.
+Mit **⌘K** (**Strg+K** unter Windows und Linux) öffnest du auf jedem Bildschirm die Befehlspalette im Glasdesign. Sie durchsucht alles und führt Schnellaktionen aus, ohne dass du deine aktuelle Ansicht verlässt.
 
 ## Alles durchsuchen
 
-Fang an zu tippen, und die Palette durchsucht deinen Workspace in Echtzeit:
+Die Palette sucht schon beim Tippen in deinem ganzen Workspace:
 
-- **Issues** — nach Schlüssel (`MOB-42`) oder nach Wörtern im Titel.
-- **Projekte** — spring direkt zu einem Board oder Backlog.
-- **Knowledge-Base-Artikel** — finde dieses Runbook in einer Sekunde.
-- **Personen** — öffne das Profil eines Teammitglieds.
+- **Issues** nach Schlüssel (`MOB-42`) oder nach Wörtern im Titel.
+- **Projekte**, um direkt zu Board oder Backlog zu springen.
+- **Artikel der Wissensdatenbank**, zum Beispiel ein Runbook.
+- **Personen**, um das Profil eines Teammitglieds zu öffnen.
 
-Ergebnisse werden so sortiert, dass der beste Treffer bereits ausgewählt ist — drücke **Enter**, um zu gehen. Alles, was die Palette anzeigt, respektiert deinen [Projektzugriff](/de/projects-teams.html); du kannst nur finden, was du sehen darfst.
+Der beste Treffer ist schon ausgewählt. Drücke **Enter**, um ihn zu öffnen. Die Palette zeigt nur, was du laut deinem [Projektzugriff](/de/projects-teams.html) sehen darfst.
 
 !!! tip "Schlüssel sind der schnellste Sprung"
-    Wenn du den Issue-Schlüssel kennst, tippe ihn einfach. `INF-7` + Enter bringt dich direkt zum Issue — schneller als jedes Durchklicken durch Boards.
+    Kennst du den Schlüssel, tippe ihn einfach. `INF-7` und Enter bringt dich direkt zum Issue.
 
 ## Schnellaktionen & Auslöser
 
-Die Palette ist eine Befehlsleiste, nicht nur ein Suchfeld. Neben Ergebnissen bietet sie **Aktionen** — ein Issue erstellen, das Projekt wechseln, das Design ändern, zu den Einstellungen springen — sodass gängige Aufgaben nur ein paar Tastendrücke entfernt sind.
+Neben Ergebnissen bietet die Palette **Aktionen**: ein Issue erstellen, das Projekt wechseln, das Design ändern oder die Einstellungen öffnen. Häufige Aufgaben erledigst du so mit wenigen Tastendrücken.
 
 ## Zuletzt verwendet
 
-Die Palette merkt sich, wo du warst. Öffne sie mit leerer Suchanfrage, und sie zeigt deine **zuletzt** verwendeten Issues und Ziele, sodass das Hin- und Herspringen zwischen den zwei Dingen, an denen du arbeitest, sofort geht.
+Öffnest du die Palette ohne Suchbegriff, zeigt sie deine **zuletzt** verwendeten Issues und Ziele. So wechselst du schnell zwischen zwei Aufgaben.
 
 ## Überall, auf jedem Gerät
 
-- **Tastatur** — `⌘K` / `Strg+K` zum Öffnen, Pfeiltasten zum Bewegen, `Enter` zum Gehen, `Esc` zum Schließen.
-- **Mobil** — die Palette passt sich zu einem responsiven Sheet an, sodass dieselbe schnelle Suche auf deinem Handy nur einen Fingertipp entfernt ist.
+- **Tastatur:** `⌘K` / `Strg+K` öffnet, Pfeiltasten wählen aus, `Enter` öffnet den Treffer, `Esc` schließt.
+- **Mobil:** Die Palette erscheint als Sheet. Die Suche ist auf dem Handy einen Fingertipp entfernt.
 
 !!! info "Es ist überall dieselbe Palette"
-    Egal ob du auf dem Dashboard bist, tief in einem Issue steckst oder einen Artikel liest — ⌘K verhält sich identisch: ein einziger, verlässlicher Weg, um überallhin in Hinata zu gelangen.
+    Ob Dashboard, Issue oder Artikel: ⌘K verhält sich überall gleich.
 
 ## Nächste Schritte
 
-- Durchstöbere Arbeit auf dem [Board](/de/boards-sprints.html) oder in den [Issues](/de/issues.html).
-- Halte Dokumentation auffindbar in der [Knowledge Base](/de/knowledge-base.html).
+- Arbeit durchsehen auf dem [Board](/de/boards-sprints.html) oder in den [Issues](/de/issues.html).
+- Dokumentation auffindbar halten in der [Wissensdatenbank](/de/knowledge-base.html).

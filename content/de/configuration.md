@@ -1,129 +1,133 @@
 ---
 title: Konfigurationsreferenz
-description: Die maßgebliche Referenz für jede Hinata-Umgebungsvariable, gruppiert nach Bereich, sowie wie Laufzeiteinstellungen aus der Datenbank die Umgebung überschreiben.
+description: Alle Umgebungsvariablen von Hinata nach Bereich und wie Einstellungen aus der Datenbank sie überschreiben.
 ---
 
 # Konfigurationsreferenz
 
-Dies ist die vollständige Referenz zur Konfiguration eines Hinata-Servers. Jede
-Einstellung ist eine Umgebungsvariable — gelesen aus `.env` (über Docker Compose)
-oder direkt am Container gesetzt. Nachfolgend sind sie nach Bereich gruppiert, mit
-Zweck, einem Standardwert oder Beispiel und ob die Variable erforderlich ist.
+Jede Einstellung eines Hinata-Servers ist eine Umgebungsvariable. Du setzt sie in
+`.env` (für Docker Compose) oder direkt am Container. Die Tabellen zeigen je
+Bereich den Zweck, einen Standardwert oder ein Beispiel und ob die Variable
+Pflicht ist.
 
-Eine zweite Klasse von Einstellungen — SSO, E-Mail-Ingest, Push, Git-OAuth-Apps —
-liegt in der Datenbank und wird aus dem Adminbereich der App verwaltet. Der letzte
-Abschnitt erklärt, wie die beiden zusammenhängen.
+SSO, eingehende E-Mails, Push und die OAuth-Apps für Git liegen dagegen in der
+Datenbank. Du verwaltest sie im Adminbereich der App. Wie beides zusammenhängt,
+steht im letzten Abschnitt.
 
-!!! tip "Alles kann eine einfache Umgebungsvariable sein"
-    `.env` ist nur ein bequemes Laden für Compose. Jeder Wert hier kann ebenso als
-    Umgebungsvariable am Container durch deinen Orchestrator gesetzt werden. Namen und
-    Semantik sind identisch.
+!!! tip "Alles geht auch ohne `.env`"
+    `.env` ist nur ein bequemer Weg für Compose. Jeden Wert kannst du genauso über
+    deinen Orchestrator als Umgebungsvariable am Container setzen, mit denselben
+    Namen und derselben Bedeutung.
 
 ## Kern / URLs
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
 | `SPRING_PROFILES_ACTIVE` | Aktives Profil: `prod` (Replikatset, X.509) oder `dev` (eigenständig) | `prod` | Ja |
-| `HINATA_BASE_URL` | Öffentliche API-Basis-URL — JWT-Aussteller und SSO-Redirect-Basis | `https://api.track.example.com` | Ja |
-| `HINATA_WEB_BASE_URL` | Flutter-Web-Basis-URL; E-Mail-Deep-Links zeigen hierher. Leer ⇒ fällt auf die Basis-URL zurück | `https://track.example.com` | Nein |
+| `HINATA_BASE_URL` | Öffentliche Basis-URL der API. Dient als JWT-Aussteller und als Basis für SSO-Redirects | `https://api.track.example.com` | Ja |
+| `HINATA_WEB_BASE_URL` | Basis-URL der Flutter-Web-App. E-Mail-Deep-Links zeigen hierher. Leer ⇒ fällt auf die Basis-URL zurück | `https://track.example.com` | Nein |
 
 ## Container-Images
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
 | `HINATA_SERVER_TAG` | Tag von `ghcr.io/hinata-platform/hinata-server`, das ausgeführt wird | `latest` (z. B. `{{version}}` pinnen) | Nein |
-| `HINATA_APP_TAG` | Tag von `ghcr.io/hinata-platform/hinata-app` (Web-App-Overlay) | `latest` (z. B. `{{version}}` pinnen) | Nein |
+| `HINATA_APP_TAG` | Tag von `ghcr.io/hinata-platform/hinata-app` (Web-App als Overlay) | `latest` (z. B. `{{version}}` pinnen) | Nein |
 
 !!! tip
-    Pinne beide Tags im Produktivbetrieb auf eine bestimmte Version, damit jeder Host
-    denselben Build ausführt und Rollbacks eine einzeilige Änderung sind.
+    Pinne im Produktivbetrieb beide Tags auf eine feste Version. Dann läuft auf
+    jedem Host derselbe Build, und ein Rollback ist eine einzeilige Änderung.
 
 ## Sicherheit / JWT
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
-| `HINATA_JWT_SECRET` | HS512-Signaturschlüssel, **≥ 64 Zeichen**. Erzeugen: `openssl rand -base64 64 \| tr -d '\n'` | *(leer)* | **Ja (prod)** |
+| `HINATA_JWT_SECRET` | Signaturschlüssel für HS512, **≥ 64 Zeichen**. Erzeugen: `openssl rand -base64 64 \| tr -d '\n'` | *(leer)* | **Ja (prod)** |
 
 !!! warning
-    Der Server startet im `prod`-Profil nicht ohne ein gültiges
-    `HINATA_JWT_SECRET`. Eine Rotation macht alle bestehenden Tokens ungültig.
+    Im `prod`-Profil startet der Server nicht ohne gültiges `HINATA_JWT_SECRET`.
+    Eine Rotation macht alle bestehenden Tokens ungültig.
 
 ## MongoDB
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
-| `MONGO_ROOT_USERNAME` | SCRAM-Root-Benutzername (nur intern/administrativ; die App authentifiziert sich mit X.509) | `hinata` | Ja |
+| `MONGO_ROOT_USERNAME` | SCRAM-Root-Benutzername (nur intern für die Administration, die App authentifiziert sich per X.509) | `hinata` | Ja |
 | `MONGO_ROOT_PASSWORD` | SCRAM-Root-Passwort | `hinata-dev-secret` (ändere es) | **Ja (prod)** |
-| `HINATA_MONGODB_URI` | Mongo-Verbindungszeichenkette. In Prod ist sie in `docker-compose.yml` auf die X.509-URI gesetzt; setze sie nur für Dev / externes Mongo explizit | *(in Compose gesetzt)* | Nein (prod) |
-| `HINATA_MONGO_TLS_ENABLED` | TLS für die Mongo-Verbindung aktivieren | `true` (prod, in Compose) | Nein |
+| `HINATA_MONGODB_URI` | Verbindungszeichenkette für Mongo. In Prod steht die X.509-URI in `docker-compose.yml`. Nur für Dev oder externes Mongo selbst setzen | *(in Compose gesetzt)* | Nein (prod) |
+| `HINATA_MONGO_TLS_ENABLED` | TLS für die Verbindung zu Mongo aktivieren | `true` (prod, in Compose) | Nein |
 | `HINATA_MONGO_TLS_KEYSTORE` | Pfad zum PKCS#12-Client-Keystore der App im Container | `/etc/hinata/x509/hinata-app.p12` | Nein (prod, in Compose) |
 | `HINATA_MONGO_TLS_KEYSTORE_PASSWORD` | Passwort für den Client-Keystore | `changeit` (ändere es) | **Ja (prod)** |
 | `HINATA_MONGO_TLS_TRUSTSTORE` | Pfad zum CA-Truststore im Container | `/etc/hinata/x509/truststore.p12` | Nein (prod, in Compose) |
 | `HINATA_MONGO_TLS_TRUSTSTORE_PASSWORD` | Passwort für den Truststore | `changeit` (ändere es) | **Ja (prod)** |
 
-Siehe [MongoDB & X.509](/de/database.html) dafür, wie die PKI erzeugt und der
-`$external`-Benutzer registriert wird.
+Wie du die PKI erzeugst und den `$external`-Benutzer registrierst, steht unter
+[MongoDB & X.509](/de/database.html).
 
 ## Reverse Proxies
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
-| `HINATA_TRUSTED_PROXIES` | Kommagetrennte CIDRs von Reverse Proxies, die `X-Forwarded-For` setzen dürfen. Leer = keinem vertrauen | `172.16.0.0/12` | Empfohlen |
+| `HINATA_TRUSTED_PROXIES` | Kommagetrennte CIDRs der Reverse Proxies, die `X-Forwarded-For` setzen dürfen. Leer = keinem vertrauen | `172.16.0.0/12` | Empfohlen |
 
 !!! warning
-    Setze dies auf genau den Adressbereich, aus dem dein Proxy den Container erreicht.
-    Leer bedeutet, dass der Server weitergeleitete Header ignoriert (Rate Limiting /
-    Logging sehen die Proxy-IP); zu weit gefasst erlaubt Clients, ihre Quell-IP zu fälschen.
+    Setze hier genau den Adressbereich, aus dem dein Proxy den Container erreicht.
+
+    - Leer: Der Server ignoriert weitergeleitete Header. Rate Limiting und Logs
+      sehen nur die IP des Proxys.
+    - Zu weit: Clients können ihre Quell-IP fälschen.
 
 ## SMTP (ausgehende Mail)
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
-| `HINATA_SMTP_HOST` | SMTP-Relay-Host | `smtp.example.com` (`mailpit` in Dev) | Ja (für Mail) |
+| `HINATA_SMTP_HOST` | Host des SMTP-Relays | `smtp.example.com` (`mailpit` in Dev) | Ja (für Mail) |
 | `HINATA_SMTP_PORT` | SMTP-Port | `587` (`1025` für Mailpit) | Ja (für Mail) |
-| `HINATA_SMTP_USERNAME` | SMTP-Auth-Benutzername | *(leer)* | Wenn Auth |
-| `HINATA_SMTP_PASSWORD` | SMTP-Auth-Passwort | *(leer)* | Wenn Auth |
+| `HINATA_SMTP_USERNAME` | Benutzername für SMTP-Auth | *(leer)* | Wenn Auth |
+| `HINATA_SMTP_PASSWORD` | Passwort für SMTP-Auth | *(leer)* | Wenn Auth |
 | `HINATA_SMTP_AUTH` | SMTP-Authentifizierung aktivieren | `true` (`false` in Dev) | Nein |
 | `HINATA_SMTP_STARTTLS` | STARTTLS aktivieren | `true` (`false` in Dev) | Nein |
-| `HINATA_MAIL_FROM` | Absenderadresse ausgehender Mail | `hinata@example.com` | Ja (für Mail) |
+| `HINATA_MAIL_FROM` | Absenderadresse ausgehender Mails | `hinata@example.com` | Ja (für Mail) |
 
-Deep-Link-E-Mails (Verifizierung, Passwort-Reset, Zuweisungsbenachrichtigungen) werden
-nur mit einem echten Relay zugestellt. Siehe [E-Mail & SMTP](/de/email.html).
+E-Mails mit Deep Links (Verifizierung, Passwort zurücksetzen,
+Zuweisungsbenachrichtigungen) kommen nur mit einem echten Relay an. Siehe
+[E-Mail & SMTP](/de/email.html).
 
 ## Objektspeicher (S3 / MinIO / GCS / Azure)
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
-| `HINATA_STORAGE_PROVIDER` | Backend: `s3` (MinIO, AWS S3, GCS-Interop, R2, Spaces, …) oder `azure` (Azure Blob Storage) | `s3` | Nein |
-| `COMPOSE_PROFILES` | `local-storage` betreibt das mitgelieferte MinIO; leer bei externem Speicher | `local-storage` | Nein |
-| `MINIO_ROOT_USER` | MinIO-Root-Benutzer (in Compose auch als S3-Access-Key verwendet) | `hinata` | Mit mitgeliefertem MinIO |
-| `MINIO_ROOT_PASSWORD` | MinIO-Root-Passwort (in Compose auch als S3-Secret-Key) | `hinata-dev-secret` (ändere es) | **Mit mitgeliefertem MinIO (prod)** |
+| `HINATA_STORAGE_PROVIDER` | Backend: `s3` (MinIO, AWS S3, GCS per Interop, R2, Spaces, …) oder `azure` (Azure Blob Storage) | `s3` | Nein |
+| `COMPOSE_PROFILES` | `local-storage` betreibt das mitgelieferte MinIO. Leer bei externem Speicher | `local-storage` | Nein |
+| `MINIO_ROOT_USER` | MinIO-Root-Benutzer (in Compose auch als S3 Access Key genutzt) | `hinata` | Mit mitgeliefertem MinIO |
+| `MINIO_ROOT_PASSWORD` | MinIO-Root-Passwort (in Compose auch als S3 Secret Key genutzt) | `hinata-dev-secret` (ändere es) | **Mit mitgeliefertem MinIO (prod)** |
 | `HINATA_S3_ENDPOINT` | S3-Endpunkt, mit dem der Server spricht | `http://minio:9000` (in Compose) | Externes S3 |
-| `HINATA_S3_ACCESS_KEY` | S3-Access-Key (Dev / externes S3) | `hinata` | Dev / extern |
-| `HINATA_S3_SECRET_KEY` | S3-Secret-Key (Dev / externes S3) | `hinata-dev-secret` | Dev / extern |
-| `HINATA_S3_BUCKET` | Bucket (S3) / Container (Azure) für Anhänge und Avatare | `hinata` | Nein |
-| `HINATA_S3_REGION` | Bucket-Region (AWS und regionssensible Anbieter) | `us-east-1` | Externes S3 |
-| `HINATA_S3_ADDRESSING_STYLE` | S3-URL-Adressierung: `auto`, `virtual-host` oder `path` | `auto` | Nein |
-| `HINATA_AZURE_CONNECTION_STRING` | Connection String des Azure-Speicherkontos (bei `provider=azure`) | — | Azure |
+| `HINATA_S3_ACCESS_KEY` | S3 Access Key (Dev / externes S3) | `hinata` | Dev / extern |
+| `HINATA_S3_SECRET_KEY` | S3 Secret Key (Dev / externes S3) | `hinata-dev-secret` | Dev / extern |
+| `HINATA_S3_BUCKET` | Bucket (S3) oder Container (Azure) für Anhänge und Avatare | `hinata` | Nein |
+| `HINATA_S3_REGION` | Region des Buckets (AWS und Anbieter mit Regionen) | `us-east-1` | Externes S3 |
+| `HINATA_S3_ADDRESSING_STYLE` | Adressierung der S3-URLs: `auto`, `virtual-host` oder `path` | `auto` | Nein |
+| `HINATA_AZURE_CONNECTION_STRING` | Connection String des Azure-Speicherkontos (bei `provider=azure`) | *(leer)* | Azure |
 
-Im Produktiv-Compose fallen `HINATA_S3_ACCESS_KEY` / `HINATA_S3_SECRET_KEY` automatisch auf
-`MINIO_ROOT_USER` / `MINIO_ROOT_PASSWORD` zurück. Siehe
-[Objektspeicher](/de/storage.html) für die Einrichtung je Anbieter (AWS, GCS, Azure, R2, …).
+Im Compose für den Produktivbetrieb fallen `HINATA_S3_ACCESS_KEY` /
+`HINATA_S3_SECRET_KEY` automatisch auf `MINIO_ROOT_USER` / `MINIO_ROOT_PASSWORD`
+zurück. Die Einrichtung je Anbieter (AWS, GCS, Azure, R2, …) steht unter
+[Objektspeicher](/de/storage.html).
 
 ## App-Integration
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
-| `HINATA_PRIVACY_POLICY_URL` | In der App angezeigte URL der Datenschutzerklärung (erforderlich für Store-Releases) | `https://example.com/privacy` | Empfohlen |
-| `HINATA_APP_MIN_VERSION` | Mindest-App-Version; ältere Clients werden zum Update gezwungen | `1.0.0` | Nein |
-| `HINATA_CORS_ALLOWED_ORIGINS` | Kommagetrennte Browser-Origins, die für CORS erlaubt sind (die Web-App ruft cross-origin auf) | `https://track.example.com` | **Ja (Web)** |
-| `HINATA_DOCS_ENABLED` | Die Scalar-API-Docs-Oberfläche freigeben | `false` | Nein |
+| `HINATA_PRIVACY_POLICY_URL` | URL der Datenschutzerklärung in der App (Pflicht für Store-Releases) | `https://example.com/privacy` | Empfohlen |
+| `HINATA_APP_MIN_VERSION` | Mindestversion der App. Ältere Clients müssen updaten | `1.0.0` | Nein |
+| `HINATA_CORS_ALLOWED_ORIGINS` | Kommagetrennte Browser-Origins, die per CORS zugreifen dürfen (die Web-App ruft von einer anderen Origin auf) | `https://track.example.com` | **Ja (Web)** |
+| `HINATA_DOCS_ENABLED` | Die API-Dokumentation mit Scalar freigeben | `false` | Nein |
 
 ## Hinata Connect Gateway
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
-| `HINATA_GATEWAY_BASE_URL` | Push- + Universal-Link-Gateway-URL. Standard ist das gehostete Gateway; überschreibe dies nur, wenn du deine eigene gebrandete App mit eigenem Gateway ausrollst | `https://connect.hinata.ahmadre.com` | Nein |
+| `HINATA_GATEWAY_BASE_URL` | URL des Gateways für Push und Universal Links. Standard ist das gehostete Gateway. Nur ändern, wenn du eine eigene App unter deiner Marke mit eigenem Gateway ausrollst | `https://connect.hinata.ahmadre.com` | Nein |
 
 Siehe [Hinata Connect Gateway](/de/connect-gateway.html).
 
@@ -131,7 +135,7 @@ Siehe [Hinata Connect Gateway](/de/connect-gateway.html).
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
-| `HINATA_SETUP_AUTO_COMPLETE` | Den In-App-Erststart-Assistenten überspringen | `false` | Nein |
+| `HINATA_SETUP_AUTO_COMPLETE` | Den Einrichtungsassistenten beim ersten Start überspringen | `false` | Nein |
 | `HINATA_SETUP_ORGANIZATION_NAME` | Organisationsname (mit Auto-Complete) | *(leer)* | Bei Auto-Complete |
 | `HINATA_SETUP_ADMIN_EMAIL` | E-Mail des ersten Admins | *(leer)* | Bei Auto-Complete |
 | `HINATA_SETUP_ADMIN_USERNAME` | Benutzername des ersten Admins | *(leer)* | Bei Auto-Complete |
@@ -144,13 +148,13 @@ Siehe [Setup & Erststart](/de/setup-wizard.html).
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
-| `HINATA_DEMO_SEED` | Einen realistischen englischen Demo-Workspace anlegen. Login `rebar` / `hinata-demo-2026`. Unter `prod` übersprungen (Seeder ist `@Profile("!prod")`) | `false` | Nein |
-| `HINATA_DEMO_RESET` | Den Workspace bei jedem Start löschen und neu anlegen. Erfordert `HINATA_DEMO_SEED=true` | `false` | Nein |
+| `HINATA_DEMO_SEED` | Legt einen realistischen Workspace mit englischen Demodaten an. Login `rebar` / `hinata-demo-2026`. Unter `prod` übersprungen (Seeder ist `@Profile("!prod")`) | `false` | Nein |
+| `HINATA_DEMO_RESET` | Löscht den Workspace bei jedem Start und legt ihn neu an. Erfordert `HINATA_DEMO_SEED=true` | `false` | Nein |
 
-!!! danger "Aktiviere den Demo-Seed niemals im Produktivbetrieb"
-    Er erstellt einen Admin mit bekanntem Passwort und Wegwerfdaten. Der Seeder wird
-    unter dem `prod`-Profil herauskompiliert, halte `HINATA_DEMO_SEED=false` im
-    Produktivbetrieb dennoch unabhängig davon.
+!!! danger "Demo-Seed nie im Produktivbetrieb aktivieren"
+    Er legt einen Admin mit bekanntem Passwort und Wegwerfdaten an. Unter dem
+    `prod`-Profil ist der Seeder herauskompiliert. Setze im Produktivbetrieb
+    trotzdem immer `HINATA_DEMO_SEED=false`.
 
 ## Rate Limiting / Brute Force
 
@@ -162,69 +166,69 @@ Siehe [Setup & Erststart](/de/setup-wizard.html).
 | `HINATA_MAX_LOGIN_FAILURES` | Fehlgeschlagene Logins, bevor ein Konto blockiert wird | `5` | Nein |
 | `HINATA_LOGIN_BLOCK_MINUTES` | Wie lange ein blockiertes Konto gesperrt bleibt (Minuten) | `15` | Nein |
 
-Login-Blockierung ist datenbankgestützt und übersteht daher Neustarts. Siehe das
-[Sicherheitsmodell](/de/security.html).
+Die Login-Sperre liegt in der Datenbank und übersteht deshalb Neustarts. Siehe
+das [Sicherheitsmodell](/de/security.html).
 
 ## Ports
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
-| `HINATA_PORT` | Veröffentlichter Host-Port für die API (Container `8080`); der Reverse Proxy leitet hierher weiter | `3356` | Nein |
-| `HINATA_APP_PORT` | Veröffentlichter Host-Port für die Web-App (Container `80`) | `3456` | Nein |
+| `HINATA_PORT` | Veröffentlichter Host-Port der API (Container `8080`). Der Reverse Proxy leitet hierher weiter | `3356` | Nein |
+| `HINATA_APP_PORT` | Veröffentlichter Host-Port der Web-App (Container `80`) | `3456` | Nein |
 
 ## Git-Integration
 
-Plattformweite OAuth-Zugangsdaten zum Verbinden von Projekten mit GitHub / GitLab /
-Bitbucket. Diese können auch zur Laufzeit unter Admin → Git-Integration gesetzt werden
-(was die Umgebung überschreibt). Siehe [Git-Integration](/de/git-integration.html).
+Plattformweite OAuth-Zugangsdaten, um Projekte mit GitHub, GitLab oder Bitbucket
+zu verbinden. Du kannst sie auch zur Laufzeit unter Admin → Git-Integration
+setzen. Diese Werte überschreiben die Umgebung. Siehe
+[Git-Integration](/de/git-integration.html).
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
-| `HINATA_GIT_GITHUB_CLIENT_ID` | GitHub-OAuth-App-Client-ID | *(leer)* | Wenn GitHub |
-| `HINATA_GIT_GITHUB_CLIENT_SECRET` | GitHub-OAuth-App-Client-Secret | *(leer)* | Wenn GitHub |
-| `HINATA_GIT_GITLAB_CLIENT_ID` | GitLab-OAuth-App-Client-ID | *(leer)* | Wenn GitLab |
-| `HINATA_GIT_GITLAB_CLIENT_SECRET` | GitLab-OAuth-App-Client-Secret | *(leer)* | Wenn GitLab |
-| `HINATA_GIT_BITBUCKET_CLIENT_ID` | Bitbucket-OAuth-Consumer-Key | *(leer)* | Wenn Bitbucket |
-| `HINATA_GIT_BITBUCKET_CLIENT_SECRET` | Bitbucket-OAuth-Consumer-Secret | *(leer)* | Wenn Bitbucket |
-| `HINATA_GIT_WEBHOOK_BASE_URL` | Öffentliche API-Basis für den OAuth-Callback und die Webhook-Registrierung. Fällt auf `HINATA_BASE_URL` + `/api/v1` zurück | `https://api.track.example.com/api/v1` | Nein |
-| `HINATA_GIT_TOKEN_SECRET` | AES-GCM-Schlüssel, der gespeicherte Access-Tokens im Ruhezustand verschlüsselt — **ändere den Standard im Produktivbetrieb** | *(Standard; ändere es)* | Empfohlen |
+| `HINATA_GIT_GITHUB_CLIENT_ID` | Client-ID der GitHub-OAuth-App | *(leer)* | Wenn GitHub |
+| `HINATA_GIT_GITHUB_CLIENT_SECRET` | Client-Secret der GitHub-OAuth-App | *(leer)* | Wenn GitHub |
+| `HINATA_GIT_GITLAB_CLIENT_ID` | Client-ID der GitLab-OAuth-App | *(leer)* | Wenn GitLab |
+| `HINATA_GIT_GITLAB_CLIENT_SECRET` | Client-Secret der GitLab-OAuth-App | *(leer)* | Wenn GitLab |
+| `HINATA_GIT_BITBUCKET_CLIENT_ID` | Consumer Key für Bitbucket OAuth | *(leer)* | Wenn Bitbucket |
+| `HINATA_GIT_BITBUCKET_CLIENT_SECRET` | Consumer Secret für Bitbucket OAuth | *(leer)* | Wenn Bitbucket |
+| `HINATA_GIT_WEBHOOK_BASE_URL` | Öffentliche Basis der API für OAuth-Callback und Webhook-Registrierung. Fällt auf `HINATA_BASE_URL` + `/api/v1` zurück | `https://api.track.example.com/api/v1` | Nein |
+| `HINATA_GIT_TOKEN_SECRET` | AES-GCM-Schlüssel, der gespeicherte Access Tokens verschlüsselt. **Im Produktivbetrieb den Standard ändern** | *(Standard; ändere es)* | Empfohlen |
 
 ## Laufzeiteinstellungen (DB) vs. Umgebung
 
-Hinata hat zwei Konfigurationsebenen, und es ist wichtig zu wissen, welche wo liegt.
+Hinata hat zwei Konfigurationsebenen.
 
-**Umgebungsvariablen (diese Seite)** werden beim Start gelesen. Sie decken
-Infrastruktur und Secrets ab: URLs, das JWT-Secret, Datenbank- und Speicherverbindung,
-TLS, SMTP-Transport, Ports, CORS, vertrauenswürdige Proxies, Rate Limits. Eine zu
-ändern bedeutet, `.env` zu bearbeiten und den Container neu zu starten.
+Umgebungsvariablen (diese Seite) liest der Server beim Start. Sie betreffen
+Infrastruktur und Secrets: URLs, JWT-Secret, Verbindung zu Datenbank und
+Speicher, TLS, SMTP, Ports, CORS, vertrauenswürdige Proxies und Rate Limits. Für
+eine Änderung bearbeitest du `.env` und startest den Container neu.
 
-**Laufzeiteinstellungen** sind in MongoDB gespeichert und werden aus dem
-**Adminbereich** der App bearbeitet, während der Server läuft. Sie decken
-Integrationen ab, die du betrieblich anpasst:
+Laufzeiteinstellungen liegen in MongoDB. Du bearbeitest sie im **Adminbereich**
+der App, während der Server läuft:
 
-- **SSO**-Anbieter — OpenID Connect, OAuth 2.0, SAML 2.0, LDAP
-  ([SSO](/de/sso.html)).
-- **E-Mail → Ticket** IMAP-Ingestion ([E-Mail zu Vorgang](/de/email-to-ticket.html)).
-- **Push**-Konfiguration über das Gateway.
-- **Git-Integration** OAuth-App-Zugangsdaten (die `HINATA_GIT_*`-Werte oben).
-- **App-Einstellungen** — `minVersion`, Datenschutz-URL und Feature-Flags
-  (`localAuthEnabled`, `registrationEnabled`, `requireAdminApproval`), bearbeitbar
-  unter Admin → App.
+- **SSO**-Anbieter: OpenID Connect, OAuth 2.0, SAML 2.0, LDAP
+  ([SSO](/de/sso.html))
+- IMAP-Abruf für **E-Mail → Ticket** ([E-Mail zu Vorgang](/de/email-to-ticket.html))
+- **Push** über das Gateway
+- OAuth-Zugangsdaten der **Git-Integration** (die `HINATA_GIT_*`-Werte oben)
+- **App-Einstellungen** unter Admin → App: `minVersion`, Datenschutz-URL und
+  Feature-Flags (`localAuthEnabled`, `registrationEnabled`,
+  `requireAdminApproval`)
 
-Drei Regeln bestimmen die beiden Ebenen:
+Dafür gelten drei Regeln:
 
-1. **DB überschreibt Umgebung.** Wo eine Einstellung in beiden existiert — insbesondere
-   Git-OAuth-Zugangsdaten und die App-Einstellungen (`hinata.app.*`) — gewinnt der in der
-   Datenbank gespeicherte Wert. Umgebungswerte fungieren als anfänglicher Standard /
-   Fallback.
-2. **Änderungen greifen ohne Neustart.** Das Bearbeiten einer Laufzeiteinstellung im
-   Adminbereich wird sofort wirksam; du deployst nicht neu.
-3. **Secrets sind nur schreibbar.** Secret-Felder in der Admin-API (OAuth-Secrets,
-   Tokens, Passwörter) werden nach dem Speichern nie zurückgegeben — du kannst sie setzen
-   oder ersetzen, aber nicht lesen.
+1. **DB überschreibt Umgebung.** Gibt es eine Einstellung in beiden, gewinnt der
+   Wert aus der Datenbank. Das betrifft vor allem die OAuth-Zugangsdaten für Git
+   und die App-Einstellungen (`hinata.app.*`). Umgebungswerte sind nur Startwert
+   und Rückfall.
+2. **Kein Neustart nötig.** Änderungen im Adminbereich wirken sofort, ohne neues
+   Deployment.
+3. **Secrets sind nur schreibbar.** OAuth-Secrets, Tokens und Passwörter gibt die
+   Admin-API nach dem Speichern nie zurück. Du kannst sie setzen oder ersetzen,
+   aber nicht lesen.
 
 !!! info "Faustregel"
-    Wenn es eine Verbindungszeichenkette, ein Transport-Secret oder etwas ist, das der
-    Prozess braucht, bevor er eine Anfrage bedienen kann, ist es eine
-    **Umgebungsvariable**. Wenn es eine Integration ist, die du auf einem laufenden
-    System neu konfigurieren würdest, ist es eine **Laufzeiteinstellung** im Adminbereich.
+    Ist es eine Verbindungszeichenkette, ein Transport-Secret oder etwas, das der
+    Prozess vor der ersten Anfrage braucht, ist es eine **Umgebungsvariable**.
+    Ist es eine Integration, die du im laufenden Betrieb änderst, ist es eine
+    **Laufzeiteinstellung** im Adminbereich.

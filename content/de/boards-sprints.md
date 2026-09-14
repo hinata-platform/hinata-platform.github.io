@@ -1,110 +1,129 @@
 ---
 title: Boards & Sprints
-description: Steuere deine Arbeit auf einem agilen Board — Spalten, die auf Workflow-Zustände abgebildet sind, WIP-Limits, Swimlanes und Filter — und führe Sprints von der Planung über den Start bis zum Abschluss mit Burndown.
+description: Arbeite auf einem agilen Board mit Spalten, WIP-Limits, Swimlanes und Filtern, und führe Sprints mit Burndown.
 ---
 
 # Boards & Sprints
 
-Das Board ist der Ort, an dem die Vorgänge eines Projekts zu einem lebendigen, beweglichen Abbild der Arbeit werden. Hinata gibt jedem Projekt ein agiles Board, dessen Spalten deine eigenen [Workflow-Zustände](/de/project-settings.html) sind, plus vollständige Sprint-Planung, wenn du in Timeboxen arbeiten möchtest. Diese Seite führt durch beides.
+Jedes Projekt hat ein agiles Board. Seine Spalten sind deine eigenen [Workflow-Zustände](/de/project-settings.html). Wenn du in Timeboxen arbeitest, planst du dazu Sprints.
 
 !!! info "Zwei Arten von Board"
-    Ein Board ist entweder **Kanban** — ein Board mit kontinuierlichem Fluss — oder **Scrum** — ein Board rund um Sprints mit den Tabs Planung, Aktiver Sprint und Insights. Beide teilen dieselben Karten, Filter und Swimlanes; sie unterscheiden sich darin, wie sie die Zeit organisieren. Wähle das Board, das zur Arbeitsweise deines Teams passt.
+    **Kanban** ist ein Board mit kontinuierlichem Fluss. **Scrum** baut auf Sprints auf und hat die Tabs Planung, Aktiver Sprint und Insights. Karten, Filter und Swimlanes sind bei beiden gleich.
 
 
 ![Hinata Agile Board](/assets/img/shot-board.png)
-*Sprint-Planung — Kapazität, Story Points und der aktive Sprint auf einen Blick.*
+*Sprintplanung mit Kapazität, Story Points und aktivem Sprint.*
 
 ## Das Board
 
-Jede **Spalte** ist einem oder mehreren Workflow-Zuständen zugeordnet und zeigt einen farbigen Punkt, den Spaltennamen und ein Zähler-Badge. Karten sind deine Vorgänge. Epics erscheinen nie als Karten — sie fungieren stattdessen als Swimlane-Überschriften und Filter — und Sub-Tasks erscheinen nur dann als Karten, wenn du nach Sub-Task gruppierst.
+Jede **Spalte** gehört zu einem oder mehreren Workflow-Zuständen. Sie zeigt einen farbigen Punkt, ihren Namen und ein Zähler-Badge.
+
+- Karten sind deine Vorgänge.
+- Epics sind nie Karten. Sie dienen als Swimlane-Überschriften und Filter.
+- Sub-Tasks erscheinen nur als Karten, wenn du nach Sub-Task gruppierst.
 
 ### Vorgänge verschieben
 
-Auf dem Desktop **ziehst du eine Karte** von einer Spalte in eine andere, um ihren Workflow-Zustand zu ändern — beim Ablegen wird der Vorgang auf den ersten Zustand dieser Spalte gesetzt, und die Zielspalte leuchtet beim Überfahren in Amber auf. Auf Smartphones und Tablets sind Karten **nur antippbar**: Öffne den Vorgang und ändere seinen Zustand über das Detail-Sheet. In beiden Fällen aktualisiert sich das Board live.
+- **Desktop:** Zieh eine Karte in eine andere Spalte. Der Vorgang bekommt den ersten Zustand dieser Spalte. Die Zielspalte leuchtet dabei in Amber.
+- **Smartphone und Tablet:** Karten sind **nur antippbar**. Öffne den Vorgang und ändere den Zustand im Detail-Sheet.
+
+Das Board aktualisiert sich in beiden Fällen live.
 
 ### WIP-Limits
 
-Eine Spalte kann ein **Work-in-Progress-Limit (WIP-Limit)** tragen. Wenn gesetzt, zeigt das Zähler-Badge `3/5` (aktuell / Limit) an; wenn eine Spalte ihr Limit überschreitet, wird das Badge rot, sodass eine Überlastung unmöglich zu übersehen ist.
+Eine Spalte kann ein **Work-in-Progress-Limit (WIP-Limit)** haben. Das Badge zeigt dann `3/5` (aktuell / Limit). Liegt die Spalte über dem Limit, wird das Badge rot.
 
 !!! note "WIP-Limits werden serverseitig konfiguriert"
-    Das Board zeigt WIP-Limits an, bearbeitet sie aber nicht in der App — sie sind Teil der Spaltenkonfiguration. Siehe [Projekteinstellungen](/de/project-settings.html) für die Einrichtung von Workflow und Spalten.
+    Die App zeigt WIP-Limits nur an. Sie gehören zur Spaltenkonfiguration, siehe [Projekteinstellungen](/de/project-settings.html).
 
 ### Ansichten
 
-Ein Kanban-Board bietet einen **Board / Timeline**-Umschalter — dieselben Vorgänge als Fluss-Board oder als [Timeline](/de/timeline.html). Auf dem Desktop ist dies ein segmentierter Umschalter; auf dem Smartphone klappt er zu einem kompakten Umschalter zusammen. **Backlog** ist ein Scrum-Konzept und erscheint daher als eigener Tab auf Scrum-Boards statt im Kanban-Umschalter.
+Ein Kanban-Board hat einen **Board / Timeline**-Umschalter. Er zeigt dieselben Vorgänge als Board oder als [Timeline](/de/timeline.html). Auf dem Desktop ist das ein segmentierter Umschalter, auf dem Smartphone ein kompakter.
+
+Der **Backlog** gehört zu Scrum und ist dort ein eigener Tab.
 
 ### Filtern
 
-Öffne das **Filter**-Popup (ein Liquid-Glass-Popover mit einem Badge, das die aktiven Kriterien zählt), um das Board einzugrenzen. Du kannst filtern nach:
+Öffne das **Filter**-Popup, um das Board einzugrenzen. Ein Badge zählt die aktiven Kriterien. Filtern kannst du nach:
 
 **Status · Bearbeiter · Priorität · Typ · Epic · Sprint · Autor · Label**
 
-Filter kombinieren sich als **UND über Facetten hinweg, ODER innerhalb einer Facette** — zum Beispiel "Bug ODER Story", die außerdem "Ana zugewiesen" sind. Die Facette Sprint enthält eine Option **Kein Sprint** für Backlog-Elemente. Ein **Personen**-Streifen mit Bearbeiter-Avataren sitzt über dem Board als schneller Kurzweg in die Facette Bearbeiter, und **Alles zurücksetzen** setzt alles zurück.
+- Zwischen Facetten gilt **UND**, innerhalb einer Facette **ODER**. Beispiel: „Bug ODER Story“, die außerdem „Ana zugewiesen“ sind.
+- Die Facette Sprint hat die Option **Kein Sprint** für Backlog-Elemente.
+- Der **Personen**-Streifen mit Avataren über dem Board filtert schnell nach Bearbeiter.
+- **Alles zurücksetzen** entfernt alle Filter.
 
 ### Swimlanes
 
-Nutze **Gruppieren nach**, um das Board in horizontale Swimlanes aufzuteilen:
+Mit **Gruppieren nach** teilst du das Board in horizontale Swimlanes:
 
 | Gruppieren nach | Lanes | Auffang-Lane |
 | --- | --- | --- |
-| **Keine** | Ein einzelnes flaches Board | — |
+| **Keine** | Ein einzelnes flaches Board | (keine) |
 | **Epic** | Eine Lane pro Epic | *Kein Epic* |
 | **Bearbeiter** | Eine Lane pro Person | *Nicht zugewiesen* |
 | **Sub-Task** | Arbeitselemente mit ihren Sub-Tasks gruppieren | *Eigenständig* |
 
-Kombiniert mit dem **Epic**-Filter erlauben dir Swimlanes, das ganze Board auf ein einzelnes Epic und seinen Baum herunterzuzoomen — eine saubere Art, ein epic-fokussiertes Standup abzuhalten.
+Zusammen mit dem **Epic**-Filter zeigt das Board nur ein Epic und seinen Baum. Das passt gut für ein Standup zu einem Epic.
 
 ### Der Backlog
 
-Der **Backlog** ist schlicht jeder Vorgang im Projekt, dem **kein Sprint** zugewiesen ist, sortiert nach Priorität. Er ist dein Sammelbereich: Alles, was aufgeworfen, aber noch nicht in eine Timebox eingeplant wurde, lebt hier, bis du es in einen Sprint ziehst.
+Der **Backlog** enthält alle Vorgänge des Projekts **ohne Sprint**, sortiert nach Priorität. Hier liegt alles, bis du es in einen Sprint ziehst.
 
 ## Einen Sprint durchführen
 
-Scrum-Boards organisieren die Arbeit in Sprints über drei Tabs — **Planung**, **Aktiver Sprint** und **Insights**. Hier ist der vollständige Zyklus Planen → Starten → Abschließen.
+Scrum-Boards haben drei Tabs: **Planung**, **Aktiver Sprint** und **Insights**. Ein Sprint läuft in drei Schritten.
 
 ### 1. Planen
 
-Wähle im Tab **Planung** die Option **Sprint erstellen**. Ein Dialog erlaubt dir zu setzen:
+Wähle im Tab **Planung** die Option **Sprint erstellen** und setze:
 
-- **Sprint-Name** — vorausgefüllt als `Sprint 3` (die nächste Nummer), bearbeitbar.
-- **Sprint-Ziel** — optional; das Ergebnis, das der Sprint liefern soll.
-- **Dauer** — 1 bis 4 Wochen (Standard 2), was das Enddatum automatisch aus dem Startdatum berechnet.
-- **Startdatum** — wann die Timebox beginnt.
+- **Sprint-Name:** vorausgefüllt mit der nächsten Nummer, z. B. `Sprint 3`. Änderbar.
+- **Sprint-Ziel:** optional. Was der Sprint liefern soll.
+- **Dauer:** 1 bis 4 Wochen (Standard 2). Das Enddatum wird aus dem Startdatum berechnet.
+- **Startdatum:** wann die Timebox beginnt.
 
-Nach dem Erstellen des Sprints ziehst du Vorgänge aus dem **Backlog** in den Sprint-Container (oder wählst auf Touch mehrere aus und nutzt **Verschieben nach…**). Schätze jeden Vorgang mit **Story Points** über einen Planning-Poker-Dialog auf der Fibonacci-Skala. Während du planst, zeigt eine **Kapazitätsleiste** `committed / capacity pts` an und wird rot, wenn du dich übernimmst, und Punkt-Buckets zeigen, wie sich die zugesagten Punkte auf To-do, In Bearbeitung und Erledigt aufteilen.
+Danach füllst du den Sprint:
+
+- Zieh Vorgänge aus dem **Backlog** in den Sprint. Auf Touchgeräten wählst du mehrere aus und nutzt **Verschieben nach…**.
+- Schätze Vorgänge mit **Story Points** per Planning Poker auf der Fibonacci-Skala.
+- Die **Kapazitätsleiste** zeigt `committed / capacity pts` und wird rot, wenn du dich übernimmst.
+- Punkt-Buckets zeigen, wie sich die Punkte auf To-do, In Bearbeitung und Erledigt verteilen.
 
 ### 2. Starten
 
-Wenn der Umfang stimmig aussieht, drücke **Sprint starten** auf dem Sprint-Container (deaktiviert, solange der Container leer ist). Der Start-Dialog fixiert den Umfang und zeigt, was du zusagst — Anzahl der Vorgänge und zugesagte Story Points, mit einer Warnung **über Kapazität**, wenn du das Ziel überschritten hast. Bestätige Ziel und Dauer, und der Sprint wird **Aktiv**.
+Drück **Sprint starten** am Sprint. Der Knopf ist deaktiviert, solange der Sprint leer ist.
 
-Der Tab **Aktiver Sprint** zeigt nun das laufende Board mit einer Sprint-Kopfzeile: ein amberfarbenes **Aktiv**-Badge, den Sprint-Namen und das Ziel sowie eine Tagesfortschrittsleiste, die `Tag 4/14` anzeigt.
+Der Dialog fixiert den Umfang und zeigt die Anzahl der Vorgänge und die zugesagten Story Points. Liegst du über dem Ziel, erscheint eine Warnung **über Kapazität**. Bestätige Ziel und Dauer, dann ist der Sprint **Aktiv**.
+
+Der Tab **Aktiver Sprint** zeigt jetzt das laufende Board. Oben stehen ein amberfarbenes **Aktiv**-Badge, Name und Ziel des Sprints und eine Fortschrittsleiste wie `Tag 4/14`.
 
 ### 3. Abschließen
 
-Wenn die Timebox endet, drücke **Sprint abschließen**. Der Abschluss-Dialog überprüft das Ergebnis:
+Drück am Ende **Sprint abschließen**. Der Dialog zeigt:
 
-- **Abgeschlossen** — erledigte Story Points, mit einem Prozentsatz.
-- **Nicht abgeschlossen** — noch offene Punkte.
-- **Wohin unfertige Arbeit geht** — wähle ein Ziel für offene Vorgänge: **übertrage sie** in einen anderen geplanten Sprint oder **gib sie in den Backlog zurück**.
+- **Abgeschlossen:** erledigte Story Points mit Prozentsatz.
+- **Nicht abgeschlossen:** noch offene Punkte.
+- **Wohin unfertige Arbeit geht:** offene Vorgänge **überträgst du** in einen anderen geplanten Sprint oder **gibst sie in den Backlog zurück**.
 
-Bestätige, und der Sprint wird geschlossen, wobei seine unfertigen Vorgänge genau dort neu untergebracht werden, wo du es gewählt hast.
+Nach dem Bestätigen wird der Sprint geschlossen. Die offenen Vorgänge landen dort, wo du es gewählt hast.
 
 !!! tip "An Sprint-Grenzen geht nichts verloren"
-    Der Abschluss eines Sprints löscht niemals Arbeit. Jeder offene Vorgang wird explizit verschoben — in den nächsten Sprint oder zurück in den Backlog — sodass dein Plan von einer Timebox zur nächsten ehrlich bleibt.
+    Ein Sprintabschluss löscht keine Arbeit. Jeder offene Vorgang wird in den nächsten Sprint oder in den Backlog verschoben.
 
 ## Insights & Burndown
 
-Der Tab **Insights** verwandelt einen Sprint in Diagramme:
+Der Tab **Insights** zeigt den Sprint als Diagramme:
 
-- **Sprint-Burndown** — eine gestrichelte *Richtlinie* (der ideale Pfad von den zugesagten Punkten auf null) gegen eine durchgezogene *Ist*-Linie, die bis heute gezeichnet wird. Die y-Achse beginnt bei den zu Sprint-Beginn zugesagten Punkten.
-- **Velocity** — zugesagte vs. erledigte Punkte, plus ein Durchschnitt über Sprints hinweg.
-- **Arbeitsaufteilung nach Bearbeiter** und **Umfangsänderungen** — netto seit Sprint-Beginn hinzugefügte oder entfernte Punkte.
+- **Sprint-Burndown:** eine gestrichelte *Richtlinie* (idealer Verlauf von den zugesagten Punkten auf null) und eine durchgezogene *Ist*-Linie bis heute. Die y-Achse beginnt bei den Punkten zu Sprintbeginn.
+- **Velocity:** zugesagte und erledigte Punkte, dazu ein Durchschnitt über mehrere Sprints.
+- **Arbeitsaufteilung nach Bearbeiter** und **Umfangsänderungen:** seit Sprintbeginn netto hinzugefügte oder entfernte Punkte.
 
-Für sprintübergreifende Auswertungen — Velocity-Trends, Zykluszeit, Verteilungen und PDF-Export — siehe [Berichte & Dashboard](/de/reports.html).
+Velocity-Trends, Zykluszeit, Verteilungen und PDF-Export über mehrere Sprints findest du unter [Berichte & Dashboard](/de/reports.html).
 
 ## Verwandte Seiten
 
-- **[Vorgänge & Hierarchie](/de/issues.html)** — die Karten auf deinem Board und wie sie sich verschachteln.
-- **[Projekteinstellungen](/de/project-settings.html)** — definiere die Workflow-Zustände, auf die deine Spalten abgebildet werden.
-- **[Gantt & Zeiterfassung](/de/timeline.html)** — die Timeline-Ansicht und das Erfassen von Arbeit.
-- **[Berichte & Dashboard](/de/reports.html)** — Velocity, Burndown-Historie und Exporte.
+- **[Vorgänge & Hierarchie](/de/issues.html):** die Karten auf deinem Board und wie sie sich verschachteln.
+- **[Projekteinstellungen](/de/project-settings.html):** die Workflow-Zustände hinter deinen Spalten.
+- **[Gantt & Zeiterfassung](/de/timeline.html):** die Timeline und das Erfassen von Arbeit.
+- **[Berichte & Dashboard](/de/reports.html):** Velocity, Burndown-Verlauf und Exporte.

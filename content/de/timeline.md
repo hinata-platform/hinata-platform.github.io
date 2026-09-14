@@ -1,55 +1,57 @@
 ---
 title: Gantt & Zeiterfassung
-description: Sieh deinen Plan auf einer Gantt-Timeline mit Abhängigkeiten und Fortschritt und erfasse den tatsächlichen Aufwand mit aktivitätstypisierten Arbeitseinträgen und wöchentlichen Timesheets.
+description: Der Plan als Timeline mit Abhängigkeiten und Fortschritt, dazu Zeiterfassung mit Tätigkeitsarten und Stundenzettel.
 ---
 
 # Gantt & Zeiterfassung
 
-Zwei Funktionen beantworten die beiden Fragen, die sich jedes Team stellt: *Wann ist es fertig?* und *Wohin ist die Zeit geflossen?* Die **Gantt-Timeline** verwandelt Start- und Fälligkeitsdaten in einen visuellen Plan; die **Zeiterfassung** hält den tatsächlich aufgewendeten Aufwand fest und speist die [Berichte](/de/reports.html).
+Zwei Funktionen beantworten zwei Fragen: *Wann ist es fertig?* und *Wohin ist die Zeit geflossen?*
 
+- Die **Timeline** (Gantt) macht aus Start- und Fälligkeitsdaten einen Plan.
+- Die **Zeiterfassung** hält den tatsächlichen Aufwand fest und liefert die Zahlen für die [Berichte](/de/reports.html).
 
 ![Hinata Gantt-Timeline](/assets/img/shot-gantt.png)
-*Die Gantt-Timeline — Start-/Fälligkeitsdaten, Abhängigkeiten und Fortschritt im Plan.*
+*Die Timeline mit Daten, Abhängigkeiten und Fortschritt.*
 
-## Die Gantt-/Timeline-Ansicht
+## Die Timeline
 
-Die Timeline ist ein aus deinen Vorgängen aufgebautes Lesemodell. Jeder Vorgang mit Daten erscheint als Balken, der von seinem **Startdatum** bis zu seinem **Fälligkeitsdatum** reicht, auf einem Kalender positioniert, sodass du Überschneidungen, Lücken und den kritischen Pfad auf einen Blick erkennst.
+Die Timeline wird aus deinen Vorgängen aufgebaut. Jeder Vorgang mit Daten erscheint als Balken vom **Startdatum** bis zum **Fälligkeitsdatum**. So erkennst du Überschneidungen, Lücken und den kritischen Pfad auf einen Blick.
 
-- **Abhängigkeiten** — Verknüpfungen zwischen Vorgängen werden als Verbinder gezeichnet, sodass ein Verzug stromaufwärts sichtbar alles stromabwärts nach hinten schiebt.
-- **Fortschritt** — jeder Balken spiegelt wider, wie weit sein Vorgang fortgeschritten ist, und gibt so sofort Auskunft darüber, ob der Plan im Zeitrahmen liegt.
-- **Gruppierung** — die Arbeit ist so organisiert, dass du einem Projekt, einem Epic oder einer zugewiesenen Person entlang der Timeline folgen kannst.
+- **Abhängigkeiten**: Verknüpfungen zwischen Vorgängen sind als Linien gezeichnet. Verzögert sich ein Vorgang, siehst du, was dahinter nach hinten rutscht.
+- **Fortschritt**: Jeder Balken zeigt, wie weit sein Vorgang ist. So siehst du sofort, ob der Plan hält.
+- **Gruppierung**: Du kannst einem Projekt, einem Epic oder einer zugewiesenen Person entlang der Timeline folgen.
 
 !!! info "Daten treiben die Timeline"
-    Ein Balken erscheint erst, wenn ein Vorgang ein **Start-** und/oder **Fälligkeitsdatum** hat. Setze sie in der Vorgangs-Detailansicht (siehe [Vorgänge](/de/issues.html)); die Timeline aktualisiert sich sofort.
+    Ein Balken erscheint erst, wenn ein Vorgang ein **Start-** und/oder **Fälligkeitsdatum** hat. Du setzt sie in der Detailansicht des Vorgangs (siehe [Vorgänge](/de/issues.html)). Die Timeline aktualisiert sich sofort.
 
-!!! tip "Plane auf dem Board, verifiziere auf der Timeline"
-    Nutze das [Board](/de/boards-sprints.html), um zu organisieren, *was* in einem Sprint ist, und die Timeline, um zu prüfen, *wann* alles passieren muss und ob die Abhängigkeiten zusammenpassen.
+!!! tip "Plane auf dem Board, prüfe auf der Timeline"
+    Auf dem [Board](/de/boards-sprints.html) legst du fest, *was* in einen Sprint kommt. Auf der Timeline prüfst du, *wann* alles passieren muss und ob die Abhängigkeiten zusammenpassen.
 
 ## Zeiterfassung
 
-Wo es bei der Timeline um den Plan geht, geht es bei der Zeiterfassung um die Realität. Jeder, der an einem Vorgang arbeitet, kann den aufgewendeten Aufwand erfassen.
+Die Timeline zeigt den Plan, die Zeiterfassung die Wirklichkeit. Alle, die an einem Vorgang arbeiten, können ihren Aufwand erfassen.
 
 ### Arbeit erfassen
 
-Öffne einen Vorgang und wähle **Zeit erfassen**. Ein Arbeitseintrag erfasst:
+Öffne einen Vorgang und wähle **Zeit erfassen**. Ein Arbeitseintrag enthält:
 
-- **Dauer** — Stunden und Minuten.
-- **Aktivitätstyp** — einer von **Development, Testing, Documentation, Design, Meeting** oder **Support**, sodass der Aufwand nach Art der Arbeit analysiert werden kann.
-- **Datum** — wann die Arbeit stattfand (jeder Tag bis heute).
-- **Notiz** — eine optionale Beschreibung dessen, was du getan hast.
+- **Dauer**: Stunden und Minuten.
+- **Tätigkeitsart**: **Entwicklung, Testen, Dokumentation, Design, Meeting** oder **Support**. So lässt sich der Aufwand nach Art der Arbeit auswerten.
+- **Datum**: wann die Arbeit stattfand (jeder Tag bis heute).
+- **Notiz**: optional, was du gemacht hast.
 
-Jeder Vorgang zeigt **aufgewendet vs. Schätzung**, sodass offensichtlich ist, wenn etwas den Rahmen sprengt.
+Jeder Vorgang zeigt **aufgewendet vs. Schätzung**. So fällt sofort auf, wenn etwas den Rahmen sprengt.
 
 !!! tip "Zeit direkt aus einem Commit erfassen"
-    Mit aktivierter [Git-Integration](/de/git-integration.html) erfasst ein Smart-Commit-Trailer Arbeit, ohne dass du deinen Editor verlässt: `MOB-42 #time 2h 30m` fügt `MOB-42` einen 2½-stündigen Arbeitseintrag hinzu.
+    Mit aktiver [Git-Integration](/de/git-integration.html) erfasst ein Smart Commit Arbeit, ohne dass du deinen Editor verlässt: `MOB-42 #time 2h 30m` legt an `MOB-42` einen Arbeitseintrag über 2½ Stunden an.
 
-### Wöchentliche Timesheets
+### Wöchentlicher Stundenzettel
 
-Arbeitseinträge werden zu einem **wöchentlichen Timesheet** zusammengefasst — ein Raster pro Person und pro Tag mit erfasstem Aufwand nach Aktivität. Es ist der schnelle Weg, eine Woche zu überprüfen, Lücken zu erkennen und Zeit ohne Tabellenkalkulationen zu melden.
+Arbeitseinträge ergeben einen **wöchentlichen Stundenzettel**: eine Zeile je Person und Projekt, eine Spalte je Tag. Damit prüfst du schnell eine Woche, findest Lücken und meldest Zeit ohne Tabellenkalkulation.
 
 ## Wohin die Zahlen fließen
 
-Erfasste Zeit und Schätzungen treiben die Liefermetriken: Kapazitätsplanung bei [Sprints](/de/boards-sprints.html) sowie Zykluszeit- und Aufwandsanalyse in den [Berichten](/de/reports.html).
+Erfasste Zeit und Schätzungen fließen in die Liefermetriken: Kapazitätsplanung bei [Sprints](/de/boards-sprints.html) sowie Auswertungen zu Zykluszeit und Aufwand in den [Berichten](/de/reports.html).
 
 ## Nächste Schritte
 

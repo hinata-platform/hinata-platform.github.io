@@ -1,81 +1,83 @@
 ---
 title: Boards & Sprints
-description: Arbeit über ein Board bewegen, auf das Wesentliche filtern, in Swimlanes aufteilen und einen Sprint von der Planung bis zum Abschluss führen.
+description: Karten über ein Board bewegen, filtern, in Swimlanes teilen und Sprints planen und abschließen.
 ---
 
 # Boards & Sprints
 
-Ein Board ist die Arbeit deines Teams, sichtbar ausgelegt. Jede Spalte ist ein Schritt in eurem Prozess, jede Karte ein Vorgang — und eine Karte zu verschieben heißt: „Das hier ist weiter.“ Alles andere auf dieser Seite — Filter, Swimlanes, Limits, Sprints — sorgt dafür, dass dieses eine Bild auch mit achtzig Karten noch lesbar bleibt statt nur mit acht.
+Ein Board zeigt die Arbeit deines Teams. Jede Spalte ist ein Schritt in eurem Prozess, jede Karte ein Vorgang. Verschiebst du eine Karte, ist der Vorgang einen Schritt weiter.
 
-Du musst vorher nichts einrichten. Wenn für dein Projekt schon ein Board existiert, öffne es und fang an, Karten zu bewegen.
+Einrichten musst du nichts. Gibt es für dein Projekt schon ein Board, öffne es und leg los.
 
 ## Ein Board öffnen
 
-Wähle **Board** in der Seitenleiste. Du siehst eine Liste aller Boards, die du sehen darfst, über alle Projekte hinweg; ein Menü oben grenzt sie auf ein Projekt ein. Tippe ein Board an, um es zu öffnen.
+Wähle **Board** in der Seitenleiste. Du siehst alle Boards, die du sehen darfst, über alle Projekte. Das Menü oben grenzt auf ein Projekt ein. Tippe ein Board an, um es zu öffnen.
 
 Ist die Liste leer, legst du mit **Neues Board** eines an.
 
 ![Der Dialog „Neues Board“](/assets/img/shot-board-new-dialog.png)
-*Der Dialog „Neues Board“. Der Board-Typ sind zwei Karten mit eigener Beschreibung — hier ist Kanban gewählt, Scrum liegt darunter —, dann „Board-Name“, dann eine Zeile „Projekte“, die schon „1 ausgewählt“ meldet. „Erstellen“ bleibt ausgegraut, bis das Board einen Namen hat.*
+*Der Dialog „Neues Board“ mit Typ, „Board-Name“ und „Projekte“. „Erstellen“ bleibt grau, bis das Board einen Namen hat.*
 
-Nur der Typ verdient einen kurzen Moment. In der App gibt es kein Bedienelement, um ein Board nachträglich von Kanban auf Scrum zu wechseln — lies also [Kanban oder Scrum](#kanban-oder-scrum) weiter unten, bevor du wählst. Der Name ist, wie euer Team das Board nennt, nicht wie das Projekt heißt. Und wählst du mehr als ein Projekt, werden deren gleichwertige Spalten zu einer einzigen Wand zusammengefasst, sodass zwei Teams nebeneinander arbeiten können, ohne ihr eigenes Projekt zu verlassen.
+Beim Anlegen wichtig:
+
+- **Typ:** Kanban oder Scrum. Nachträglich umstellen kannst du das in der App nicht. Lies vorher [Kanban oder Scrum](#kanban-oder-scrum).
+- **Name:** so, wie euer Team das Board nennt. Er muss nicht wie das Projekt heißen.
+- **Projekte:** Wählst du mehrere, werden ihre gleichwertigen Spalten zu einer Wand zusammengefasst. Zwei Teams arbeiten dann nebeneinander, jedes in seinem Projekt.
 
 !!! tip "Ein Projekt kann mehrere Boards haben"
-    Boards sind Ansichten, keine Behälter. Derselbe Vorgang kann auf einem Team-Board, einem Release-Board und einem persönlichen Board auftauchen, ohne kopiert zu werden. Nichts gehört *zu* einem Board — Vorgänge gehören zu Projekten.
+    Boards sind Ansichten. Derselbe Vorgang kann auf mehreren Boards erscheinen, ohne kopiert zu werden. Vorgänge gehören zu Projekten, nicht zu Boards.
 
 ## Spalten sind eure Workflow-Status
 
-Die Spalten, die du siehst, sind nicht allgemein. Jede bildet einen oder mehrere **Workflow-Status** deines Projekts ab — die benannten Schritte, die ein Vorgang durchläuft, etwa *To Do*, *In Arbeit*, *Im Review*, *Erledigt*. Der farbige Punkt neben dem Spaltennamen ist die Farbe dieses Status, und es ist dieselbe Farbe auf der Karte, im Vorgang und in den Berichten.
+Jede Spalte steht für einen oder mehrere **Workflowstatus** deines Projekts, etwa *To Do*, *In Arbeit*, *Im Review*, *Erledigt*. Der farbige Punkt neben dem Spaltennamen ist die Farbe des Status. Dieselbe Farbe siehst du auf der Karte, im Vorgang und in Berichten.
 
-Genau deshalb ist das Verschieben einer Karte eine echte Änderung und kein Aufräumen: Die Karte landet im Status der Spalte, und jede andere Ansicht in Hinata ist sofort derselben Meinung.
+Verschiebst du eine Karte, bekommt der Vorgang den Status der Spalte. Alle anderen Ansichten in Hinata zeigen das sofort.
 
-Das Abzeichen rechts in der Spaltenüberschrift zählt die Karten darin.
+Das Abzeichen rechts in der Spaltenüberschrift zählt die Karten.
 
 !!! note "Wer bestimmt, wie die Spalten heißen"
-    Die Status selbst liegen in den Projekteinstellungen, und eine Projektleitung kann sie umbenennen, umfärben und umsortieren. Die Doku dazu steht unter [Projekteinstellungen](/de/project-settings.html). Wenn eine Spalte auf deinem Board unglücklich heißt, wird das dort behoben — nicht auf dem Board.
+    Die Status liegen in den [Projekteinstellungen](/de/project-settings.html). Eine Projektleitung kann sie dort umbenennen, umfärben und umsortieren. Heißt eine Spalte unglücklich, wird das dort geändert, nicht auf dem Board.
 
-### Was als Karte erscheint — und was nicht
+### Was als Karte erscheint
 
-Boards nutzen dieselbe dreistufige Hierarchie wie der Rest von Hinata — siehe [Mit Vorgängen arbeiten](/de/guide-issues.html):
+Boards nutzen dieselbe dreistufige Hierarchie wie der Rest von Hinata (siehe [Mit Vorgängen arbeiten](/de/guide-issues.html)):
 
 - **Stories, Tasks, Bugs und Features** sind immer Karten.
-- **Epics** nie. Ein Epic ist ein Behälter für andere Arbeit; als Karte auf der Wand würde es doppelt zählen. Epics erscheinen stattdessen als Swimlane-Überschrift und als Filter.
-- **Sub-Tasks** sind standardmäßig ausgeblendet, weil sie zu ihrem übergeordneten Vorgang gehören. Gruppierst du das Board nach Sub-Task, erscheinen sie darunter.
+- **Epics** nie. Ein Epic enthält andere Arbeit und würde sonst doppelt zählen. Epics erscheinen als Überschrift einer Swimlane und als Filter.
+- **Sub-Tasks** sind standardmäßig ausgeblendet. Gruppierst du nach Sub-Task, erscheinen sie unter ihrem Vorgang.
 
 ### Was eine Karte verrät, ohne geöffnet zu werden
 
-Eine Karte ist bewusst dicht — sie soll aus drei Metern Entfernung die Frage „muss ich das anklicken?“ beantworten. Statusstreifen, Typ-Symbol, Vorgangsschlüssel, Prioritätspfeil, Titel, Stichwörter und der Avatar der zugewiesenen Person stehen alle darauf; drei Dinge lohnt es sich zu wissen:
+Auf jeder Karte stehen Statusstreifen, Typsymbol, Vorgangsschlüssel, Prioritätspfeil, Titel, Stichwörter und der Avatar der zugewiesenen Person. Gut zu wissen:
 
-- Das **Fälligkeitsdatum** wird rot, sobald es vorbei ist — eine überfällige Karte meldet sich also quer über die Wand.
-- Die **aufgewendete Zeit** erscheint nur, wenn der Vorgang eine Schätzung trägt. Eine Karte ohne Timer-Chip heißt: Niemand hat geschätzt, nicht: Niemand hat gearbeitet.
-- Die **Sub-Task-Leiste** unten klappt an Ort und Stelle auf — du siehst den Fortschritt, ohne das Board zu verlassen.
+- Das **Fälligkeitsdatum** wird rot, sobald es vorbei ist.
+- Die **aufgewendete Zeit** erscheint nur, wenn der Vorgang eine Schätzung hat. Fehlt sie, hat niemand geschätzt. Gearbeitet wurde vielleicht trotzdem.
+- Die **Leiste mit Sub-Tasks** unten klappt direkt auf der Karte auf. So siehst du den Fortschritt, ohne das Board zu verlassen.
 
 ## Einen Vorgang über das Board bewegen
 
-Am Rechner **ziehst du die Karte** in die gewünschte Spalte. Die Zielspalte hebt sich an und leuchtet bernsteinfarben, während du darüber schwebst, die Karte hinterlässt eine Lücke an ihrem alten Platz und setzt sich beim Loslassen an ihrem neuen Ort ab. Ziehst du an den Bildschirmrand, scrollt die Wand mit — eine Spalte, die gerade nicht sichtbar ist, bleibt also mitten im Ziehen erreichbar.
+Am Rechner ziehst du die Karte in die gewünschte Spalte. Die Zielspalte hebt sich und leuchtet bernsteinfarben. Am alten Platz bleibt eine Lücke, bis du loslässt. Ziehst du an den Bildschirmrand, scrollt die Wand mit.
 
-Auf Handy und Tablet lassen sich Karten **nicht** ziehen — mit dem Finger sind Kartendrag und Board-Scrollen dieselbe Geste, und eine von beiden muss gewinnen. Tippe stattdessen die Karte an, öffne den Vorgang und ändere den Status dort. Das Ergebnis ist identisch.
+Auf Handy und Tablet kannst du Karten nicht ziehen, weil Ziehen und Scrollen dieselbe Geste wären. Öffne stattdessen den Vorgang und ändere dort den Status. Das Ergebnis ist dasselbe.
 
-Ein Verschieben ändert genau eine Sache: den Status des Vorgangs. Zuweisung, Sprint, Termine, Story Points und alles andere bleiben, wie sie waren. Gespeichert wird im Moment des Loslassens — es gibt keinen Bestätigungsschritt und nichts nachträglich zu sichern — und die Änderung landet mit deinem Namen in der Historie des Vorgangs. Alle anderen bekommen sie mit, sobald ihr Board das nächste Mal lädt.
+Beim Verschieben ändert sich nur der Status. Zuweisung, Sprint, Termine, Story Points und alles andere bleiben. Gespeichert wird beim Loslassen, ohne Bestätigung. Die Änderung steht mit deinem Namen in der Historie des Vorgangs. Andere sehen sie, sobald ihr Board neu lädt.
 
 ### Wenn eine Spalte eine Karte ablehnt
 
-Auf einem Board über mehrere Projekte kann eine Spalte einen Status aus Projekt A und einen aus Projekt B halten — aber nicht zwingend einen aus Projekt C. Ziehst du eine C-Karte darauf, umrandet sich die Spalte rot statt bernsteinfarben, der Drop wird abgelehnt, solange die Karte noch in der Luft ist, und eine Meldung nennt dir das Projekt, das hier keinen Status hat.
-
-Das ist Absicht. Die Alternative wäre, den Drop anzunehmen und dann zu scheitern — und dich rätseln zu lassen, was du falsch gemacht hast. Eine Ablehnung, die du mitten im Ziehen siehst, ist eine, auf die du reagieren kannst.
+Auf einem Board mit mehreren Projekten kann eine Spalte Status aus Projekt A und B enthalten, aber keinen aus Projekt C. Ziehst du eine Karte aus C darauf, wird die Spalte rot umrandet. Der Drop wird schon beim Ziehen abgelehnt, und eine Meldung nennt das Projekt, das hier keinen Status hat.
 
 ### Einen Vorgang genau dort anlegen, wo er hingehört
 
 ![Das Direkteingabefeld am Fuß einer Board-Spalte](/assets/img/shot-board-quick-create.png)
-*„Aufgabe hinzufügen“ am Fuß der Spalte „Open“, aufgeklappt zum Direkteingabefeld: ein getippter Titel, noch nicht abgeschickt, darunter Chips für Typ, Fälligkeit und zugewiesene Person sowie die bernsteinfarbene Enter-Schaltfläche. Dahinter die Wand des aktiven Sprints — ein Statuspunkt je Spalte, die 4/4 auf „In Progress“ genau am WIP-Limit, „Tag 8/15“ in der Sprint-Kopfzeile.*
+*„Aufgabe hinzufügen“ am Fuß der Spalte „Open“, aufgeklappt mit getipptem Titel und Chips für Typ, Fälligkeit und zugewiesene Person.*
 
-Titel tippen, Enter drücken, fertig: Der Vorgang entsteht bereits im Projekt und im Status dieser Spalte. Er erbt außerdem, worin die Spalte steht — das Epic einer Epic-Swimlane, die Person einer Personen-Lane, den Sprint eines Sprint-Boards —, es ist also nichts doppelt zu setzen.
+Tippe unten in einer Spalte auf **Aufgabe hinzufügen**, gib einen Titel ein und drücke Enter. Der Vorgang entsteht im Projekt und im Status dieser Spalte.
 
-Das ist deutlich schneller als das vollständige Formular — und es sorgt dafür, dass ein Gedanke aus dem Daily auch im Daily notiert wird.
+Er übernimmt auch, worin die Spalte liegt: das Epic der Swimlane, die Person der Lane oder den Sprint des Boards. Das geht viel schneller als das vollständige Formular.
 
 ## Kanban oder Scrum
 
-Beide Board-Typen teilen dieselben Karten, dieselben Filter und dieselben Swimlanes. Sie unterscheiden sich darin, wie sie mit Zeit umgehen.
+Beide Typen haben dieselben Karten, Filter und Swimlanes. Sie unterscheiden sich im Umgang mit Zeit.
 
 | | Kanban | Scrum |
 | --- | --- | --- |
@@ -84,191 +86,203 @@ Beide Board-Typen teilen dieselben Karten, dieselben Filter und dieselben Swimla
 | Wo Ungestartetes wartet | In der ersten Spalte | Im Backlog, im Tab „Planung“ |
 | Schätzung | Optional | Story Points, pro Sprint |
 
-Auf einem **Kanban**-Board bietet der Umschalter neben dem Board-Namen **Board** und **Timeline** an. Board ist die Wand, die du schon kennst; Timeline legt dieselben Vorgänge auf einen Kalender — siehe [Timeline & Abhängigkeiten](/de/guide-timeline.html).
+Bei Kanban schaltest du neben dem Board-Namen zwischen **Board** und **Timeline** um. Timeline zeigt dieselben Vorgänge auf einem Kalender, siehe [Timeline & Abhängigkeiten](/de/guide-timeline.html).
 
-Auf einem **Scrum**-Board ersetzen die drei Tabs diesen Umschalter vollständig, und das Backlog liegt im Tab „Planung“ statt in einer eigenen Ansicht. Der Rest dieser Seite führt dich hindurch.
+Bei Scrum gibt es statt des Umschalters drei Tabs. Das Backlog liegt im Tab „Planung“.
 
 ## Das Board eingrenzen
 
-Ein Board mit zweihundert Karten ist eine Wand, kein Bild. Drei Bedienelemente über den Spalten schneiden es zurecht, und sie greifen ineinander.
+Drei Bedienelemente über den Spalten machen ein volles Board übersichtlich. Sie wirken zusammen.
 
 ### Die Personenleiste
 
-Die überlappenden Avatare oben rechts sind alle, die auf diesem Board Arbeit haben. Klick auf einen, um nur dessen Karten zu sehen; klick auf einen zweiten, um ihn hinzuzunehmen; noch ein Klick entfernt ihn wieder.
+Die Avatare oben rechts sind alle, die auf diesem Board Arbeit haben.
 
-Das ist dieselbe Einstellung wie die Facette „Zugewiesen“ im Filter-Popup — die Leiste ist schlicht die Abkürzung für das, wonach am häufigsten gefiltert wird.
+- Klick auf einen Avatar: nur dessen Karten.
+- Klick auf einen weiteren: kommt dazu.
+- Nochmal klicken: wieder weg.
 
-### Das Filter-Popup
+Das ist dieselbe Einstellung wie die Facette „Zugewiesen“ im Filter.
 
-**Filter** öffnet ein Glaspanel mit acht Facetten:
+### Der Filter
+
+**Filter** öffnet ein Panel mit acht Facetten:
 
 **Status · Typ · Priorität · Zugewiesen · Sprint · Autor · Stichwort · Epic**
 
 ![Das Filter-Popup des Boards mit zwei ausgewählten Personen](/assets/img/shot-board-filter.png)
-*Die Facette „Zugewiesen“ mit Häkchen bei Amara Okafor und Mei Lin. Die Fußzeile meldet „2 aktiv“, daneben steht „Zurücksetzen“, die Schaltfläche „Filter“ bekommt eine bernsteinfarbene 2, dieselben zwei Avatare leuchten in der Personenleiste auf — und die Wand dahinter ist auf ihre Karten geschrumpft, „Open“ steht bei eins.*
+*Zwei Personen unter „Zugewiesen“ gewählt: „2 aktiv“, und die Wand zeigt nur noch ihre Karten.*
 
-Jede Facette ist eine durchsuchbare Mehrfachauswahl. Wie sie zusammenwirken, lohnt sich zu merken — genau das macht den Filter brauchbar statt fummelig:
+In jeder Facette kannst du suchen und mehrere Einträge wählen. Die Regel:
 
 > Auswahlen **innerhalb** einer Facette sind ein ODER. Facetten **untereinander** sind ein UND.
 
-*Bug* und *Story* unter Typ, dazu *Ana* unter Zugewiesen, ergibt also „Bugs oder Stories, die Ana zugewiesen sind“. Nichts in einer Facette auszuwählen heißt: Diese Facette filtert gar nicht.
+Beispiel: *Bug* und *Story* unter Typ plus *Ana* unter Zugewiesen ergibt „Bugs oder Stories, die Ana zugewiesen sind“. Eine Facette ohne Auswahl filtert nicht.
 
-Die Sprint-Facette enthält den Eintrag **Kein Sprint** — so siehst du Backlog-Einträge zwischen dem Rest.
+Die Facette Sprint hat den Eintrag **Kein Sprint**. Damit siehst du Einträge aus dem Backlog.
 
 !!! tip "Der Filter gehört dir, nicht dem Board"
-    Filtern ändert, was *du* siehst. Es verschiebt, versteckt oder verändert für niemanden sonst etwas und wird auch nicht am Board gespeichert — filtere also unbesorgt.
+    Filtern ändert nur, was *du* siehst. Für andere ändert sich nichts, und am Board wird nichts gespeichert.
 
 ### Swimlanes
 
-**Gruppieren nach** teilt die Wand in waagerechte Lanes, von denen jede den vollständigen Spaltensatz trägt. Es ist das wirksamste Mittel, ein volles Board lesbar zu machen — welche Gruppierung hilft, hängt an deiner Frage.
+**Gruppieren nach** teilt die Wand in waagerechte Lanes. Jede Lane hat alle Spalten.
 
 ![Das Menü „Gruppieren nach“ auf einem Board](/assets/img/shot-board-group-by.png)
-*„Gruppieren nach“, neben „Filter“ über der Wand. Dieses Board umfasst ein Projekt, also bietet das Menü „Keine“, „Epic“, „Zugewiesene Person“ und „Sub-Task“ — „Projekt“ erscheint nur auf einem Board über mehrere Projekte.*
+*Das Menü „Gruppieren nach“. „Projekt“ erscheint nur auf einem Board mit mehreren Projekten.*
 
 | Gruppieren nach | Du bekommst | Nimm es, wenn |
 | --- | --- | --- |
-| **Keine** | Ein flaches Board | Standard — weniger als ~40 Karten |
-| **Epic** | Eine Lane pro Epic, dazu *Kein Epic* | Du sehen willst, wie ein großes Vorhaben als Ganzes vorankommt |
-| **Zugewiesene Person** | Eine Lane pro Person, dazu *Nicht zugewiesen* | Ihr ein Daily haltet oder prüfen wollt, ob die Last fair verteilt ist |
-| **Sub-Task** | Eine Lane pro übergeordnetem Vorgang, dessen Sub-Tasks als Karten, dazu *Eigenständig* | Ein paar große Themen parallel laufen und du das Klein-Klein brauchst |
+| **Keine** | Ein flaches Board | Standard, weniger als ~40 Karten |
+| **Epic** | Eine Lane pro Epic, dazu *Kein Epic* | Du den Fortschritt eines großen Vorhabens sehen willst |
+| **Zugewiesene Person** | Eine Lane pro Person, dazu *Nicht zugewiesen* | Ihr ein Daily haltet oder die Last prüfen wollt |
+| **Sub-Task** | Eine Lane pro übergeordnetem Vorgang, dessen Sub-Tasks als Karten, dazu *Eigenständig* | Mehrere große Themen parallel laufen und du Details brauchst |
 | **Projekt** | Eine Lane pro Projekt | Nur auf einem Board über mehrere Projekte |
 
-Jede Lane lässt sich einklappen — du kannst also die vier Epics wegfalten, über die ihr gerade nicht sprecht, und das fünfte offen lassen.
+Jede Lane lässt sich einklappen.
 
 !!! tip "Epic-Swimlanes plus Epic-Filter"
-    Gruppiere nach **Epic** und filtere dann auf ein einzelnes Epic: Das ganze Board wird zum Board dieses einen Epics — Spalten, Karten und alles. Das ist der sauberste Weg für ein fokussiertes Review, ohne dafür ein eigenes Board anzulegen.
+    Gruppiere nach **Epic** und filtere auf ein Epic. Dann zeigt das ganze Board nur dieses Epic. Praktisch für ein Review, ohne ein eigenes Board anzulegen.
 
 ## WIP-Limits
 
-Eine Spalte kann ein **WIP-Limit** tragen (Work in Progress): die größte Zahl an Karten, die gleichzeitig darin liegen sollte. Ist eines gesetzt, liest sich das Zählabzeichen als `3/5` statt `3`. Wird es überschritten, färben sich Abzeichen und Hintergrund rot.
+Eine Spalte kann ein **WIP-Limit** (Work in Progress) haben: die maximale Zahl an Karten darin. Dann zeigt das Abzeichen `3/5` statt `3`. Wird das Limit überschritten, färben sich Abzeichen und Hintergrund rot.
 
-Hinata hindert dich nicht daran, ein WIP-Limit zu überschreiten — mit Absicht. Das Limit ist ein Gesprächsanlass, kein Schloss: Der Sinn eines roten Abzeichens in *Im Review* ist, dass jemand bemerkt, dass nichts reviewt wird, nicht dass die siebte Karte an der Tür abgewiesen wird.
+Hinata blockiert keine weiteren Karten. Das rote Abzeichen soll zeigen, dass sich Arbeit staut.
 
 ![Der Spalten-Editor eines Boards](/assets/img/shot-board-columns.png)
-*„Board-Optionen → Spalten“. Eine Zeile je Spalte: ein Ziehgriff zum Sortieren, die enthaltenen Workflow-Status als Chips, ein Feld „Max.“ für das WIP-Limit — bei „In Progress“ und „In Review“ gefüllt, sonst leer — und eine Schaltfläche, die die Spalte ganz entfernt.*
+*„Board-Optionen → Spalten“: pro Spalte ein Ziehgriff, die Status als Chips, das Feld „Max.“ für das WIP-Limit und eine Schaltfläche zum Entfernen.*
 
-Dafür musst du das Board besitzen, eines seiner Projekte leiten, ein Team mit Zugriff leiten oder Administrator sein.
+Limits setzen darf, wer das Board besitzt, eines seiner Projekte leitet, ein Team mit Zugriff leitet oder Administrator ist.
 
 ## Das Backlog
 
-Das Backlog ist einfacher, als es klingt: Es sind **alle Vorgänge der Board-Projekte, die in keinem Sprint sind**, nach Priorität sortiert. Nichts legt einen Vorgang dort ab — ein Vorgang ist genau so lange im Backlog, wie kein Sprint ihn beansprucht.
+Das Backlog sind **alle Vorgänge der Projekte des Boards, die in keinem Sprint sind**, sortiert nach Priorität. Ein Vorgang bleibt dort, bis ein Sprint ihn aufnimmt.
 
-Dort warten Ideen. Ein Bug, der dienstags gemeldet wird, liegt im Backlog, bis eine Sprint-Planung entscheidet, ob er in die nächsten zwei Wochen gehört. Auf einem Scrum-Board findest du ihn unten im Tab **Planung**, seitenweise, mit eigenem Suchfeld.
+Bei Scrum findest du es unten im Tab **Planung**, seitenweise geladen und mit eigenem Suchfeld.
 
-!!! note "Kanban-Boards haben kein Backlog-Tab"
-    Ein Flussboard hat keine Zeitfenster, außerhalb derer man sein könnte — das Konzept greift dort nicht. Ungestartete Arbeit liegt schlicht in der ersten Spalte.
+!!! note "Kanban hat kein Backlog"
+    Ohne Zeitfenster gibt es kein „außerhalb“. Ungestartete Arbeit liegt in der ersten Spalte.
 
 ## Einen Sprint fahren
 
-Ein Sprint ist ein festes Zeitfenster — meist ein bis vier Wochen — mit einem vereinbarten Arbeitsumfang. Hinata bildet den ganzen Zyklus ab: planen, starten, durcharbeiten, abschließen. Alles passiert in den drei Tabs eines Scrum-Boards.
+Ein Sprint ist ein festes Zeitfenster, meist ein bis vier Wochen, mit vereinbarter Arbeit. Du planst, startest, arbeitest und schließt ab, alles in den drei Tabs eines Scrum-Boards.
 
 ![Der Planungs-Tab eines Hinata-Boards](/assets/img/shot-board.png)
-*Der Tab „Planung“: Sprint 24 ist aktiv, läuft vom 14. bis 28. August, und sein Kapazitätsbalken ist rot — 42 committete Story Points gegen eine Kapazität von 40. Jede Zeile zeigt Typ, Schlüssel, Titel, Stichwörter, Story Points und zugewiesene Person.*
+*Der Tab „Planung“: Sprint 24 hat 42 Story Points bei einer Kapazität von 40, der Balken ist rot.*
 
 ### 1. Den Sprint planen
 
-Wähle im Tab **Planung** die Schaltfläche **Sprint erstellen**. Der Dialog fragt nach:
+Wähle im Tab **Planung** die Schaltfläche **Sprint erstellen**. Der Dialog fragt:
 
-- **Sprint-Name** — vorbelegt mit der nächsten Nummer (*Sprint 24*, *Sprint 25* …), frei änderbar.
-- **Sprint-Ziel** — optional, und es lohnt sich. Ein Satz zum Ergebnis, das der Sprint liefern soll; er steht dann zwei Wochen lang in der Sprint-Kopfzeile und erinnert alle daran, worauf ihr euch geeinigt habt.
-- **Dauer** — eine bis vier Wochen. Das Enddatum ergibt sich automatisch aus dem Startdatum.
-- **Startdatum** — wann das Zeitfenster beginnt. Es ist vorbelegt: morgen beim ersten Sprint, danach kurz nach dem Enddatum des vorherigen Sprints.
+- **Sprint-Name:** vorbelegt mit der nächsten Nummer (*Sprint 24*, *Sprint 25* …), frei änderbar.
+- **Sprint-Ziel:** optional. Ein Satz zum gewünschten Ergebnis. Er steht während des Sprints in der Kopfzeile.
+- **Dauer:** eine bis vier Wochen. Das Enddatum wird aus dem Startdatum berechnet.
+- **Startdatum:** vorbelegt. Beim ersten Sprint morgen, danach kurz nach dem Ende des vorherigen Sprints.
 
 Der neue Sprint erscheint als leerer Container über dem Backlog.
 
 ### 2. Ihn aus dem Backlog füllen
 
-Zieh Vorgänge aus dem Backlog in den Sprint-Container. Auf dem Handy hakst du stattdessen die Kreise der gewünschten Zeilen an — unten erscheint eine Leiste mit der Anzahl und der Aktion **Verschieben nach…**.
+Zieh Vorgänge aus dem Backlog in den Sprint. Auf dem Handy hakst du die Kreise der Zeilen an. Unten erscheint dann eine Leiste mit der Anzahl und **Verschieben nach…**.
 
-Auf demselben Weg verschiebst du Vorgänge auch *zwischen* geplanten Sprints — so wird aus „das ist eigentlich ein Nächster-Sprint-Problem“ eine Handlung statt einer Diskussion.
+So verschiebst du Vorgänge auch zwischen geplanten Sprints.
 
 ### 3. Mit Story Points schätzen
 
-Tippe auf einer Sprint-Zeile den Punktebereich an, um den Schätzdialog zu öffnen.
+Tippe in einer Zeile des Sprints auf den Punktebereich. Der Schätzdialog öffnet sich.
 
 ![Der Schätzdialog](/assets/img/shot-board-estimate.png)
-*„Schätzen“, geöffnet aus der Zeile von HIN-4: ein Planning-Poker-Raster auf der Fibonacci-Skala — 1, 2, 3, 5, 8, 13, 21 — mit der aktuellen 5 des Vorgangs. Schlüssel und Titel unter der Überschrift sagen, welcher Vorgang gerade geschätzt wird, und genau das wird am häufigsten verwechselt; die letzte Karte, „—“, löscht die Schätzung wieder.*
+*„Schätzen“ für HIN-4: Werte 1, 2, 3, 5, 8, 13, 21, die letzte Karte (ein Strich) löscht die Schätzung.*
 
-Story Points messen relativen Aufwand, keine Stunden. Eine 5 ist spürbar größer als eine 3 und ungefähr halb so groß wie eine 13; mehr ist nicht vereinbart. Ihr Wert liegt in der Summe — und dafür gibt es die zwei Anzeigen in der Sprint-Kopfzeile:
+Schlüssel und Titel oben im Dialog zeigen, welchen Vorgang du gerade schätzt.
 
-- **Punkte-Töpfe** — drei Pillen, die zeigen, wie sich die committeten Punkte auf offen, in Arbeit und erledigt verteilen. Während des Sprints willst du zusehen, wie der grüne wächst.
-- **Kapazität** — committete Punkte gegen die Kapazität des Teams, als `42 / 40 pts` mit Balken darunter. Bei Überschreitung werden beide rot, wie im Screenshot oben.
+Story Points messen relativen Aufwand, keine Stunden. Eine 5 ist spürbar größer als eine 3 und etwa halb so groß wie eine 13. Wichtig ist die Summe. Die Kopfzeile des Sprints zeigt sie zweimal:
+
+- **Punktetöpfe:** drei Pillen für offen, in Arbeit und erledigt.
+- **Kapazität:** committete Punkte gegen die Kapazität des Teams, etwa `42 / 40 pts`, mit Balken. Bei Überschreitung wird beides rot.
 
 !!! note "Kapazität ist optional"
-    Ein Sprint ohne Kapazitätswert zeigt seine committeten Punkte allein, ohne Balken — ein Balken, der immer voll ist, sagt nichts. Die Kapazität wird über die API oder ein Admin-Werkzeug gesetzt, nicht im Erstellen-Dialog. Nutzt dein Team sie nicht, siehst du sie einfach nicht.
+    Ohne Kapazitätswert siehst du nur die committeten Punkte, ohne Balken. Die Kapazität wird über die API oder ein Werkzeug für Admins gesetzt, nicht im Dialog zum Erstellen.
 
 ### 4. Ihn starten
 
-Sieht der Umfang gut aus, drück **Sprint starten** am Sprint-Container. Die Schaltfläche bleibt deaktiviert, solange der Sprint leer ist — da gibt es nichts zu starten.
+Drück **Sprint starten** am Sprint. Solange der Sprint leer ist, bleibt die Schaltfläche deaktiviert.
 
-Der Dialog zeigt, worauf du dich festlegst: Anzahl der Vorgänge, committete Story Points und eine Warnung, falls das über der Kapazität liegt. Bestätige Ziel und Enddatum, und der Sprint ist **Aktiv**.
+Der Dialog zeigt Anzahl der Vorgänge, committete Story Points und eine Warnung, falls die Kapazität überschritten ist. Bestätige Ziel und Enddatum. Der Sprint ist dann **Aktiv**.
 
-Ein Sprintstart benachrichtigt alle Mitglieder der Board-Projekte — niemand muss also gesondert erfahren, dass das Zeitfenster begonnen hat.
+Alle Mitglieder der Projekte des Boards werden benachrichtigt.
 
 ### 5. Ihn durcharbeiten
 
-Der Tab **Aktiver Sprint** ist eine ganz normale Board-Wand, begrenzt auf den Sprint. Gleiches Ziehen, gleiche Filter, gleiche Swimlanes — dazu eine Glas-Kopfzeile mit bernsteinfarbenem **Aktiv**-Abzeichen, Sprint-Name und -Ziel sowie einem Tageszähler `Tag 8/15` mit Fortschrittsbalken.
+Der Tab **Aktiver Sprint** ist eine normale Wand, begrenzt auf den Sprint. Ziehen, Filter und Swimlanes funktionieren wie gewohnt.
 
-Dieser Zähler ist still das Nützlichste am Tab. „Wir sind an Tag 11 von 15, und die Hälfte der Punkte ist noch offen“ ist ein Gespräch, das du an Tag 11 führen willst, nicht an Tag 14.
+Die Kopfzeile zeigt das bernsteinfarbene Abzeichen **Aktiv**, Name und Ziel des Sprints und einen Tageszähler wie `Tag 8/15` mit Fortschrittsbalken. So merkst du früh, wenn noch viele Punkte offen sind.
 
 ### 6. Ihn abschließen
 
 Drück **Sprint abschließen**, wenn das Zeitfenster endet.
 
 ![Der Dialog „Sprint abschließen“](/assets/img/shot-board-complete-sprint.png)
-*„Sprint 24 abschließen“: fünf Vorgänge abgeschlossen für neun Story Points — 29 % — gegen zwölf nicht abgeschlossene und 33 noch offene Punkte, darunter das Ziel für ebendiese zwölf. Über „Backlog“ steht jeder geplante Sprint — hier __Sprint 25__ mit dem Datum, auf das die Übernahme fällt —, und „Backlog“ bleibt, wenn es nichts zum Übernehmen gibt.*
+*„Sprint 24 abschließen“: fünf erledigte, zwölf offene Vorgänge und darunter das Ziel für die offenen, etwa __Sprint 25__ oder „Backlog“.*
 
-Bestätige, und drei Dinge passieren. Der Sprint wird archiviert. Fertige Arbeit bleibt ihm zugerechnet, damit Historie und Zahlen ehrlich bleiben. Jeder offene Vorgang wandert an das gewählte Ziel, wird in seiner Historie als Sprint-Wechsel festgehalten, und seine Beobachter werden benachrichtigt.
+Im Dialog wählst du, wohin offene Vorgänge gehen. Zur Wahl stehen alle geplanten Sprints und darunter „Backlog“. Gibt es keinen geplanten Sprint, bleibt nur „Backlog“.
+
+Nach dem Bestätigen:
+
+- Der Sprint wird archiviert.
+- Erledigte Arbeit bleibt ihm zugerechnet. Historie und Zahlen stimmen also.
+- Jeder offene Vorgang wandert zum gewählten Ziel. Der Sprintwechsel steht in seiner Historie, und seine Beobachter werden benachrichtigt.
 
 !!! warning "Ein Sprintabschluss verschiebt die Arbeit anderer Leute"
-    Offene Vorgänge wechseln wirklich den Sprint — das ist kein Etikett. Wer einen davon beobachtet, wird informiert, und der Wechsel steht in der Historie des Vorgangs. Triff die Wahl bewusst und sag dem Team, wie du entschieden hast.
+    Offene Vorgänge wechseln wirklich den Sprint. Beobachter werden informiert, und der Wechsel steht in der Historie. Entscheide bewusst und sag dem Team Bescheid.
 
 !!! tip "An einer Sprintgrenze geht nie etwas verloren"
-    Es gibt keine Möglichkeit, einen Sprint abzuschließen und offene Vorgänge darin stranden zu lassen. Jeder einzelne bekommt ausdrücklich ein neues Zuhause — genau das erspart der nächsten Planung eine archäologische Ausgrabung.
+    Du kannst keinen Sprint abschließen, ohne jedem offenen Vorgang ein neues Ziel zu geben.
 
 ## Die Zahlen des Sprints lesen
 
-Der Tab **Auswertung** macht aus dem laufenden Sprint vier Diagramme:
+Der Tab **Auswertung** zeigt vier Diagramme:
 
-- **Sprint-Burndown** — eine gestrichelte *Richtlinie* von den committeten Punkten hinunter auf null, dagegen eine durchgezogene *Ist*-Linie bis heute. Der Abstand zwischen beiden ist die Geschichte.
-- **Velocity** — committete gegen erledigte Punkte für diesen und frühere Sprints, mit Durchschnitt.
-- **Arbeitsverteilung nach Bearbeiter** — wo der geschätzte Aufwand liegt.
-- **Umfangsänderungen** — die Netto-Punkte, die seit Sprintstart dazugekommen oder weggefallen sind. So wird aus „wir haben ständig etwas nachgeschoben“ ein Gefühl weniger und eine Zahl mehr.
+- **Sprint-Burndown:** eine gestrichelte *Richtlinie* von den committeten Punkten bis null und eine durchgezogene *Ist*-Linie bis heute.
+- **Velocity:** committete und erledigte Punkte für diesen und frühere Sprints, mit Durchschnitt.
+- **Arbeitsverteilung nach Bearbeiter:** wo der geschätzte Aufwand liegt.
+- **Umfangsänderungen:** Punkte, die seit Sprintstart netto dazukamen oder wegfielen.
 
-Für Trends über viele Sprints, Durchlaufzeit und Exporte geht es weiter zu [Berichte & Dashboard](/de/guide-reports.html).
+Trends über viele Sprints, Durchlaufzeit und Exporte findest du unter [Berichte & Dashboard](/de/guide-reports.html).
 
 ## Auf dem Handy
 
-Alles oben Beschriebene funktioniert auf dem Handy; das Layout faltet sich nur zusammen.
+Alles funktioniert auch auf dem Handy, nur kompakter.
 
 ![Der Planungs-Tab eines Hinata-Boards auf dem Handy](/assets/img/shot-mobile-board.png)
-*Derselbe Tab „Planung“ auf dem Handy: Ansichtsumschalter und Filter schrumpfen zu Symbolen, die Sprint-Kopfzeile stapelt Vorgangszahl, Punkte-Töpfe und Kapazitätsbalken untereinander, und „Sprint abschließen“ nimmt die volle Breite ein.*
+*Der Tab „Planung“ auf dem Handy: Umschalter und Filter als Symbole, die Kopfzeile des Sprints untereinander gestapelt.*
 
-Die Unterschiede, die du kennen solltest:
+Die Unterschiede:
 
-- Der Umschalter Board/Timeline und die Tabs Planung/Aktiver Sprint/Auswertung werden zu reinen Symbolschaltflächen — genau wie **Filter**.
-- Karten lassen sich nicht ziehen. Einen Status änderst du, indem du den Vorgang öffnest; in einen Sprint verschiebst du Vorgänge, indem du sie auswählst und **Verschieben nach…** nutzt.
-- Die Board-Wand scrollt seitwärts spaltenweise, sodass eine Spalte immer sauber im Bild landet.
+- Der Umschalter Board/Timeline, die Tabs Planung/Aktiver Sprint/Auswertung und **Filter** sind reine Symbolschaltflächen.
+- Karten lassen sich nicht ziehen. Den Status änderst du im Vorgang. In einen Sprint verschiebst du Vorgänge, indem du sie auswählst und **Verschieben nach…** nutzt.
+- Die Wand scrollt seitwärts Spalte für Spalte, sodass immer eine Spalte sauber im Bild steht.
 
-Mehr zum Arbeiten auf kleinen Bildschirmen steht unter [Auf dem Handy](/de/guide-mobile.html).
+Mehr unter [Auf dem Handy](/de/guide-mobile.html).
 
 ## Das Board pflegen
 
-Jedes Board in der Board-Liste trägt eine **⋮**-Schaltfläche — das sind die **Board-Optionen**, ebenso auf der Boards-Seite eines Projekts. Dahinter liegen die Verwaltungsaktionen:
+Die Schaltfläche **⋮** an jedem Board in der Liste öffnet die **Board-Optionen**. Du findest sie auch auf der Boards-Seite eines Projekts.
 
-- **Board umbenennen** — neuer Name, sonst ändert sich nichts.
-- **Projekte** — ändern, welche Projekte das Board umfasst. Gleichwertige Status der gewählten Projekte werden automatisch zu gemeinsamen Spalten zusammengefasst.
-- **Spalten** — der Editor [von oben](#wip-limits). Die automatische Zusammenführung rät gut, aber zwei Projekte können denselben Schritt unterschiedlich nennen; hier korrigierst du das.
-- **Board löschen** — entfernt das Board. Die Vorgänge darauf bleiben unangetastet: Sie gehören ihren Projekten, nicht dem Board.
+- **Board umbenennen:** nur der Name ändert sich.
+- **Projekte:** festlegen, welche Projekte das Board umfasst. Gleichwertige Status werden automatisch zu gemeinsamen Spalten.
+- **Spalten:** der Editor [von oben](#wip-limits). Nennen zwei Projekte denselben Schritt unterschiedlich, korrigierst du die Zuordnung hier.
+- **Board löschen:** entfernt das Board. Die Vorgänge bleiben, denn sie gehören zu ihren Projekten.
 
-Dafür musst du das Board besitzen, eines seiner Projekte leiten, ein Team mit Zugriff leiten oder Administrator sein. Siehst du das Menü nicht, bist du in keiner dieser Rollen — das ist normal und nichts, was du selbst reparieren müsstest.
+Dafür musst du das Board besitzen, eines seiner Projekte leiten, ein Team mit Zugriff leiten oder Administrator sein. Siehst du das Menü nicht, hast du keine dieser Rollen.
 
 !!! warning "Jeder Status braucht eine Spalte"
-    Bearbeitest du Spalten von Hand, achte darauf, dass jeder Workflow-Status in genau einer landet. Ein Status ohne Spalte bedeutet, dass seine Vorgänge stillschweigend nicht auf der Wand erscheinen. Der Editor warnt dich davor, bevor er speichern lässt.
+    Jeder Workflowstatus muss in genau einer Spalte liegen. Ein Status ohne Spalte heißt: Seine Vorgänge fehlen auf der Wand. Der Editor warnt dich davor, bevor du speicherst.
 
 ## Wie es weitergeht
 
-- **[Mit Vorgängen arbeiten](/de/guide-issues.html)** — was auf den Karten steht und wie Epics, Stories und Sub-Tasks zusammenhängen.
-- **[Timeline & Abhängigkeiten](/de/guide-timeline.html)** — dieselbe Arbeit auf einem Kalender, samt der Verknüpfungen dazwischen.
-- **[Zeit erfassen](/de/guide-time.html)** — Aufwand auf die Vorgänge buchen, die du bewegst.
-- **[Berichte & Dashboard](/de/guide-reports.html)** — Velocity, Durchlaufzeit und die Zahlen hinter mehreren Sprints.
+- **[Mit Vorgängen arbeiten](/de/guide-issues.html):** was auf den Karten steht und wie Epics, Stories und Sub-Tasks zusammenhängen.
+- **[Timeline & Abhängigkeiten](/de/guide-timeline.html):** dieselbe Arbeit auf einem Kalender, mit Verknüpfungen.
+- **[Zeit erfassen](/de/guide-time.html):** Aufwand auf Vorgänge buchen.
+- **[Berichte & Dashboard](/de/guide-reports.html):** Velocity, Durchlaufzeit und Zahlen über mehrere Sprints.

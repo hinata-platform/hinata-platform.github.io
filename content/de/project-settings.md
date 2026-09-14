@@ -1,99 +1,66 @@
 ---
 title: Projekteinstellungen
-description: Projektbezogene Konfiguration in Hinata — farbige Labels und Workflow-Status, der Entwurf-plus-Speicherleiste-Editor, Mitglieder und Team-Zugriff, der Projektschlüssel und Git-Verbindungen.
+description: Einstellungen pro Projekt, mit farbigen Labels und Status, Entwurf und Speicherleiste, Mitgliedern, Teamzugriff, Projektschlüssel und Git-Verbindungen.
 ---
 
 # Projekteinstellungen
 
-Während der [Adminbereich](/de/admin-area.html) die gesamte Instanz konfiguriert,
-konfigurieren die **Projekteinstellungen** ein einzelnes Projekt: seine Labels,
-seinen Workflow, wer es sehen kann und welche Repositories es verfolgt. Alles hier
-ist auf ein Projekt beschränkt und wird von dessen Projektleitung bearbeitet.
+Der [Adminbereich](/de/admin-area.html) konfiguriert die ganze Instanz. Die **Projekteinstellungen** gelten für ein einzelnes Projekt: Labels, Workflow, Sichtbarkeit und verbundene Repositories. Bearbeitet werden sie von der Projektleitung.
 
-## Labels & Workflow-Status
+## Labels & Status
 
-Das Herzstück der Konfiguration eines Projekts sind zwei Listen farbiger,
-benannter Elemente — **Labels** und **Workflow-Status**. Beide teilen sich dieselbe
-Form:
+Kern der Projektkonfiguration sind zwei Listen mit farbigen, benannten Einträgen: **Labels** und **Status** des Workflows. Beide haben dieselbe Form:
 
 ```json
 { "id": "…", "name": "In Progress", "hue": 210 }
 ```
 
-- **`name`** — das, was du siehst, und die Art, wie Vorgänge auf das Element
-  verweisen. Labels und Status sind **namensbasiert (name-keyed)**: Ein Vorgang
-  speichert den *Namen*, sodass Status und Labels projektweit über den Namen
-  zusammenpassen.
-- **`hue`** — eine Farbe, gespeichert als Farbton (Hue) in der gemeinsamen
-  **ProjectPalette**, sodass jedes Projekt seine eigene, konsistente Färbung
-  erhält, statt eines fest vorgegebenen globalen Sets.
+- **`name`**: was du siehst und worüber Vorgänge auf den Eintrag verweisen. Labels und Status sind **über den Namen verknüpft**. Ein Vorgang speichert den *Namen*, und die Zuordnung im Projekt läuft über diesen Namen.
+- **`hue`**: die Farbe, gespeichert als Farbton in der gemeinsamen **ProjectPalette**. So hat jedes Projekt eine eigene, einheitliche Färbung statt eines festen globalen Farbsatzes.
 
-**Workflow-Status** sind die Spalten, auf die dein [Board](/de/boards-sprints.html)
-abbildet — z. B. *To Do → In Progress → In Review → Done*. **Labels** sind die
-wiederverwendbaren Tags, die du Vorgängen über eine Mehrfachauswahl anhängst.
+**Status** sind die Spalten deines [Boards](/de/boards-sprints.html), z. B. *To Do → In Progress → In Review → Done*. **Labels** sind wiederverwendbare Tags, die du Vorgängen per Mehrfachauswahl anhängst.
 
-### Der Entwurf-plus-Speicherleiste-Editor
+### Entwurf und Speicherleiste
 
-Das Bearbeiten von Labels und Status speichert nicht bei jedem Tastenanschlag. Du
-bearbeitest einen **Entwurf** — hinzufügen, umbenennen, umfärben, umsortieren —
-und eine **Speicherleiste** erscheint, solange du ungespeicherte Änderungen hast,
-damit du sie alle auf einmal übernehmen oder verwerfen kannst. So verhindert ein
-halbfertiges Umbenennen, dass sich Änderungen sofort durch das Projekt ziehen.
+Änderungen an Labels und Status werden nicht bei jedem Tastendruck gespeichert. Du bearbeitest einen **Entwurf**: hinzufügen, umbenennen, umfärben, umsortieren. Solange Änderungen ungespeichert sind, erscheint eine **Speicherleiste**. Dort übernimmst oder verwirfst du alles auf einmal. So wirkt eine halb fertige Umbenennung nicht sofort im ganzen Projekt.
 
-!!! info "Das Umbenennen eines Status wirkt kaskadierend"
-    Weil Vorgänge über den Namen auf Status und Labels verweisen, löst das
-    Umbenennen eines Elements eine **serverseitige Umbenennungs-Kaskade** aus:
-    Bestehende Vorgänge werden auf den neuen Namen aktualisiert, sodass nichts
-    verwaist. Eine **Boot-Migration** hält ältere Daten konsistent mit der
-    aktuellen Form, während sich die Plattform weiterentwickelt. Du benennst einmal
-    um; das Projekt zieht nach.
+!!! info "Umbenennen wirkt auf bestehende Vorgänge"
+    Vorgänge verweisen per Namen auf Status und Labels. Eine Umbenennung löst deshalb eine **Kaskade auf dem Server** aus, die bestehende Vorgänge auf den neuen Namen aktualisiert. So verwaist nichts. Eine **Migration beim Serverstart** hält ältere Daten passend zur aktuellen Form.
 
-!!! tip "Farben sind projektbezogen"
-    Farbtöne liegen in der Palette des Projekts, sodass zwei Projekte dieselben
-    Statusnamen mit unterschiedlichen Farben verwenden können, ohne zu kollidieren.
-    Wähle Farbtöne, die sowohl im hellen als auch im dunklen Modus lesbar bleiben.
+!!! tip "Farben gelten pro Projekt"
+    Farbtöne liegen in der Palette des Projekts. Zwei Projekte können dieselben Statusnamen mit unterschiedlichen Farben nutzen, ohne sich in die Quere zu kommen. Wähle Farbtöne, die im hellen und dunklen Modus lesbar bleiben.
 
-## Mitglieder & Team-Zugriff
+## Mitglieder & Teamzugriff
 
-In den Projekteinstellungen steuerst du auch, **wer das Projekt sehen und darin
-arbeiten kann**. Die Sichtbarkeit wird auf zwei Wegen gesteuert:
+Hier legst du auch fest, **wer das Projekt sieht und darin arbeitet**. Dafür gibt es zwei Wege:
 
-- **Mitglieder** — die Personen, die direkt zum Projekt hinzugefügt wurden.
-- **Teams** — Hinatas [Teams](/de/projects-teams.html) gewähren pro Mitglied
-  Projektzugriff. Eine Person sieht nur ein Projekt, das ihr Team (oder eine
-  direkte Mitgliedschaft) gewährt; diese Zugriffsprüfung steuert die Sichtbarkeit
-  des Projekts app-weit, sodass das Einschränken eines Projekts hier es aus Boards,
-  Suche und Berichten aller entfernt, die keinen Zugriff haben.
+- **Mitglieder:** Personen, die direkt zum Projekt hinzugefügt wurden.
+- **Teams:** Hinatas [Teams](/de/projects-teams.html) geben pro Mitglied Zugriff auf Projekte.
+
+Eine Person sieht ein Projekt nur, wenn ihr Team oder eine direkte Mitgliedschaft es freigibt. Diese Prüfung gilt in der ganzen App. Schränkst du ein Projekt hier ein, verschwindet es für alle ohne Zugriff aus Boards, Suche und Berichten.
 
 ## Projektschlüssel
 
-Jedes Projekt hat einen kurzen **Schlüssel** (z. B. `ASTA`), der seinen
-Vorgangsnummern vorangestellt wird (`ASTA-42`). Der Schlüssel ist das, worauf
-Smart Commits, Branch-Namen und PR-Titel verweisen, um Arbeit mit einem Vorgang zu
-verknüpfen — siehe [Git-Integration](/de/git-integration.html).
+Jedes Projekt hat einen kurzen **Schlüssel** (z. B. `ASTA`), der vor den Vorgangsnummern steht (`ASTA-42`). Smart Commits, Branch-Namen und PR-Titel nutzen ihn, um Arbeit mit einem Vorgang zu verknüpfen. Siehe [Git-Integration](/de/git-integration.html).
 
 ## Git-Verbindungen
 
-Ein Projekt kann aus seinen Einstellungen **ein oder mehrere Repositories** auf
-GitHub, GitLab oder Bitbucket verbinden. Sobald der Betreiber die OAuth-Apps im
-[Adminbereich](/de/admin-area.html) registriert hat, fügt eine Projektleitung hier
-Repositories hinzu, konfiguriert Automatisierungsregeln und das Branch-Template
-(projektweit geteilt), und jedes verbundene Repo behält sein eigenes Token, seinen
-eigenen Webhook und seinen eigenen Standard-Branch. Alle Details findest du in der
-[Git-Integration](/de/git-integration.html).
+Ein Projekt kann in seinen Einstellungen **ein oder mehrere Repositories** auf GitHub, GitLab oder Bitbucket verbinden.
+
+- Voraussetzung: Der Betreiber hat die OAuth-Apps im [Adminbereich](/de/admin-area.html) registriert.
+- Die Projektleitung fügt hier Repositories hinzu und richtet Automatisierungsregeln und das Branch-Template ein (beides gilt für das ganze Projekt).
+- Jedes verbundene Repo hat ein eigenes Token, einen eigenen Webhook und einen eigenen Standard-Branch.
+
+Alle Details stehen unter [Git-Integration](/de/git-integration.html).
 
 ## Wie sich Änderungen ausbreiten
 
-- **Labels/Status** werden als Batch aus dem Entwurf gespeichert, wenn du die
-  Speicherleiste bestätigst; Umbenennungen kaskadieren serverseitig zu
-  bestehenden Vorgängen.
-- **Zugriffsänderungen** werden sofort wirksam — das Entfernen eines Mitglieds
-  oder der Team-Gewährung blendet das Projekt für sie app-weit aus.
-- **Git-Verbindungen** registrieren beim Verbinden ihren Webhook, sodass
-  Entwicklungsinformationen sofort auf Vorgänge fließen.
+- **Labels und Status** werden gesammelt aus dem Entwurf gespeichert, wenn du die Speicherleiste bestätigst. Umbenennungen überträgt der Server auf bestehende Vorgänge.
+- **Zugriffsänderungen** wirken sofort. Entfernst du ein Mitglied oder eine Teamfreigabe, ist das Projekt für diese Personen in der ganzen App ausgeblendet.
+- **Git-Verbindungen** registrieren beim Verbinden ihren Webhook. Entwicklungsinfos erscheinen dann sofort an den Vorgängen.
 
 ## Wie es weitergeht
 
-- [Projekte & Teams](/de/projects-teams.html) — Teams, Mitgliedschaft und Sichtbarkeit.
-- [Boards & Sprints](/de/boards-sprints.html) — wie Workflow-Status zu Board-Spalten werden.
-- [Git-Integration](/de/git-integration.html) — verbinde die Repositories eines Projekts.
+- [Projekte & Teams](/de/projects-teams.html): Teams, Mitgliedschaft und Sichtbarkeit.
+- [Boards & Sprints](/de/boards-sprints.html): wie Status zu Spalten im Board werden.
+- [Git-Integration](/de/git-integration.html): die Repositories eines Projekts verbinden.

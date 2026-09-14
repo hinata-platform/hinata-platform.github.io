@@ -1,45 +1,43 @@
 ---
 title: Git-Integration
-description: Verbinde Hinata-Projekte mit echten GitHub-, GitLab- und Bitbucket-Repositories für Dev-Infos je Vorgang, Smart Commits und Workflow-Automatisierung.
+description: Verbinde Hinata-Projekte mit GitHub, GitLab und Bitbucket für Entwicklungsinfos, Smart Commits und Automatisierung.
 ---
 
 # Git-Integration
 
-Verbinde jedes Hinata-Projekt mit **einem oder mehreren** Repositories auf **GitHub,
-GitLab oder Bitbucket** — und deine Vorgänge bekommen eine lebendige
-Entwicklungs-Timeline: Branches, Commits, Pull-/Merge-Requests und CI-Builds, die einen
-Vorgangsschlüssel referenzieren, erscheinen direkt am jeweiligen Vorgang. Dazu kommen
-**Smart Commits** (einen Vorgang direkt aus der Commit-Nachricht heraus bearbeiten) und
-**Status-Automatisierung** (echte Git-Ereignisse bewegen Vorgänge durch deinen
-Workflow).
+Verbinde ein Hinata-Projekt mit **einem oder mehreren** Repositories auf **GitHub,
+GitLab oder Bitbucket**. Branches, Commits, Pull oder Merge Requests und CI-Builds mit
+einem Vorgangsschlüssel erscheinen dann direkt am Vorgang.
 
-Alles hier ist **echt** — nichts wird emuliert oder vorgetäuscht. Der Server wickelt
-einen tatsächlichen OAuth-Flow mit dem Anbieter ab, registriert einen signierten
-Webhook und speichert ein Ereignis erst, nachdem dessen Signatur gegen das beim
-Verbinden hinterlegte Secret verifiziert wurde.
+Dazu kommen:
+
+- **Smart Commits**: Du bearbeitest einen Vorgang direkt aus der Commit-Nachricht.
+- **Automatisierung**: Git-Ereignisse bewegen Vorgänge durch deinen Workflow.
+
+Der Server führt einen echten OAuth-Flow mit dem Anbieter aus und registriert einen
+signierten Webhook. Ein Ereignis wird erst gespeichert, wenn seine Signatur zum Secret
+passt, das beim Verbinden hinterlegt wurde.
 
 !!! info "Wie Arbeit an einen Vorgang gebunden wird"
-    Hinata verknüpft über den **Vorgangsschlüssel** — die lesbare ID wie `ASTA-42`
+    Hinata verknüpft über den **Vorgangsschlüssel**, also die lesbare ID wie `ASTA-42`
     (Regex `[A-Z][A-Z0-9]+-\d+`). Ein Branch wird über den Schlüssel im **Namen**
-    verknüpft, ein Commit über den/die Schlüssel in seiner **Nachricht**, ein PR/MR über
-    seinen **Titel oder Quell-Branch**. Ein Commit wird *nie* nur deshalb mit einem
-    Vorgang verknüpft, weil er auf dessen Branch liegt — nur die Schlüssel in seiner
-    eigenen Nachricht zählen.
+    verknüpft, ein Commit über die Schlüssel in seiner **Nachricht** und ein PR/MR über
+    **Titel oder Quell-Branch**. Ein Commit wird *nie* verknüpft, nur weil er auf dem
+    Branch eines Vorgangs liegt.
 
 ## Was du am Vorgang bekommst
 
-Sobald ein Projekt verbunden ist, zeigt jeder Vorgang ein Dev-Info-Panel, das aus
-verifizierten Webhook-Ereignissen aufgebaut wird:
+Jeder Vorgang eines verbundenen Projekts zeigt ein Panel mit Entwicklungsinfos. Es
+entsteht aus verifizierten Webhook-Ereignissen:
 
 | Anzeige | Quellereignis | Hinweise |
 | --- | --- | --- |
 | **Branches** | `push` mit neuer Ref / `create` | Name, Basis (Default-Branch des Repos), Anbieter und Repo |
-| **Commits** | `push` | SHA, erste Zeile der Nachricht, Zeitstempel, „verified“-Flag; neueste zuerst (begrenzt) |
+| **Commits** | `push` | SHA, erste Zeile der Nachricht, Zeitstempel, „verified“-Flag. Neueste zuerst (begrenzt) |
 | **Pull-/Merge-Requests** | `pull_request` / Merge Request / `pullrequest:*` | Nummer, Titel, Status (`OPEN`, `DRAFT`, `MERGED`, `CLOSED`), Quell-/Ziel-Branch, Kommentarzahl |
 | **CI-Builds** | `workflow_run` / Pipeline | Workflow-Name, Branch und Status (`pending`, `running`, `passing`, `failing`) |
 
-Du kannst einen verknüpften PR/MR auch **direkt aus dem Vorgang** bearbeiten, ohne
-Hinata zu verlassen:
+Einen verknüpften PR/MR bearbeitest du direkt am Vorgang:
 
 ```text
 POST /api/v1/issues/{key}/dev-info/prs/{number}/merge   → mergen
@@ -47,48 +45,49 @@ POST /api/v1/issues/{key}/dev-info/prs/{number}/ready    → als bereit zur Revi
 GET  /api/v1/issues/{key}/dev-info                        → das Panel lesen
 ```
 
-Das Lesen von Dev-Infos oder das Bearbeiten eines PR erfordert **Projektmitgliedschaft**;
-das Ändern der Verbindung eines Projekts erfordert die Rolle **Project Lead oder Admin**.
+- Dev-Infos lesen und PRs bearbeiten: **Projektmitgliedschaft**.
+- Verbindung eines Projekts ändern: Rolle **Project Lead oder Admin**.
 
-## Betreiber-Einrichtung (einmalig, plattformweit)
+## Einrichtung für Betreiber (einmalig, plattformweit)
 
-Die Git-Integration wird **einmal pro Plattform** konfiguriert, nicht pro Projekt. Du
-registrierst **eine OAuth-App pro Anbieter** und gibst dem Server ihre Zugangsdaten;
-danach kann jeder Project Lead darüber Repos verbinden.
+Die Git-Integration richtest du **einmal für die ganze Plattform** ein. Du registrierst
+**eine OAuth-App pro Anbieter** und hinterlegst ihre Zugangsdaten. Danach kann jeder
+Project Lead Repos verbinden.
 
 ### 1. OAuth-App-Zugangsdaten hinterlegen
 
-Registriere bei jedem gewünschten Anbieter eine OAuth-App (GitHub / GitLab) bzw. einen
-OAuth-Consumer (Bitbucket) und gib Hinata Client-ID + Secret — entweder im
-**Adminbereich → Git-Integration** der App (in MongoDB gespeichert, ohne Neustart
-wirksam) oder per Umgebungsvariablen. Wie überall in Hinata **überschreibt die Datenbank
-die Umgebung**, und Secrets sind in der Admin-API **write-only** — sie werden nie
-zurückgegeben.
+Registriere bei jedem Anbieter eine OAuth-App (GitHub, GitLab) oder einen
+OAuth-Consumer (Bitbucket). Client-ID und Secret gibst du Hinata auf einem von zwei
+Wegen:
+
+- im **Adminbereich → Git-Integration** der App (in MongoDB gespeichert, ohne Neustart wirksam)
+- per Umgebungsvariablen
+
+Die **Datenbank überschreibt die Umgebung**. Secrets sind in der Admin-API
+**write-only** und werden nie zurückgegeben.
 
 | Variable | Zweck |
 | --- | --- |
-| `HINATA_GIT_GITHUB_CLIENT_ID` / `HINATA_GIT_GITHUB_CLIENT_SECRET` | GitHub-OAuth-App-Zugangsdaten |
-| `HINATA_GIT_GITLAB_CLIENT_ID` / `HINATA_GIT_GITLAB_CLIENT_SECRET` | GitLab-OAuth-App-Zugangsdaten |
-| `HINATA_GIT_BITBUCKET_CLIENT_ID` / `HINATA_GIT_BITBUCKET_CLIENT_SECRET` | Bitbucket-OAuth-Consumer-Zugangsdaten |
-| `HINATA_GIT_WEBHOOK_BASE_URL` | Öffentliche API-Basis für OAuth-Callback **und** Webhook-Registrierung; Fallback ist `HINATA_BASE_URL` + `/api/v1` |
-| `HINATA_GIT_TOKEN_SECRET` | AES-GCM-Schlüssel, der gespeicherte Access-Tokens und Webhook-Secrets im Ruhezustand verschlüsselt — **Standardwert in Produktion ändern** |
+| `HINATA_GIT_GITHUB_CLIENT_ID` / `HINATA_GIT_GITHUB_CLIENT_SECRET` | Zugangsdaten der GitHub-OAuth-App |
+| `HINATA_GIT_GITLAB_CLIENT_ID` / `HINATA_GIT_GITLAB_CLIENT_SECRET` | Zugangsdaten der GitLab-OAuth-App |
+| `HINATA_GIT_BITBUCKET_CLIENT_ID` / `HINATA_GIT_BITBUCKET_CLIENT_SECRET` | Zugangsdaten des Bitbucket-OAuth-Consumers |
+| `HINATA_GIT_WEBHOOK_BASE_URL` | Öffentliche API-Basis für OAuth-Callback **und** Webhook-Registrierung. Fallback ist `HINATA_BASE_URL` + `/api/v1` |
+| `HINATA_GIT_TOKEN_SECRET` | AES-GCM-Schlüssel, der gespeicherte Access-Tokens und Webhook-Secrets im Ruhezustand verschlüsselt. **Standardwert in Produktion ändern** |
 
 ### 2. Öffentliche API-Basis setzen
 
-Sowohl der OAuth-Callback als auch die Webhooks müssen **vom Anbieter aus** erreichbar
-sein, deshalb muss Hinata seine eigene öffentliche API-Basis kennen. Setze dafür
-`HINATA_GIT_WEBHOOK_BASE_URL`, z. B.:
+OAuth-Callback und Webhooks müssen **vom Anbieter aus** erreichbar sein. Hinata muss
+deshalb seine öffentliche API-Basis kennen. Setze dafür `HINATA_GIT_WEBHOOK_BASE_URL`:
 
 ```properties
 HINATA_GIT_WEBHOOK_BASE_URL=https://api.track.example.com/api/v1
 ```
 
-Bleibt sie leer, leitet Hinata sie aus `HINATA_BASE_URL` + `/api/v1` ab.
+Bleibt sie leer, nimmt Hinata `HINATA_BASE_URL` + `/api/v1`.
 
 ### 3. OAuth-Callback registrieren
 
-Trage bei jedem Anbieter als Autorisierungs-Callback-URL der OAuth-App den öffentlichen
-Callback des Servers ein:
+Trage bei jedem Anbieter diese Callback-URL in der OAuth-App ein:
 
 ```text
 <öffentliche-api-basis>/git/oauth/callback
@@ -97,19 +96,18 @@ Callback des Servers ein:
 Mit der Basis von oben ist das
 `https://api.track.example.com/api/v1/git/oauth/callback`.
 
-!!! warning "Token-Verschlüsselungs-Secret ändern"
-    `HINATA_GIT_TOKEN_SECRET` ist der AES-GCM-Schlüssel, der jeden gespeicherten
-    Access-Token und jedes verbindungseigene Webhook-Secret **im Ruhezustand**
-    verschlüsselt. Setze in Produktion einen echten, zufälligen Wert ein — niemals den
-    ausgelieferten Standard. Ändert er sich, lassen sich zuvor gespeicherte Tokens nicht
-    mehr entschlüsseln und betroffene Repos müssen neu verbunden werden.
+!!! warning "Secret für die Tokenverschlüsselung ändern"
+    `HINATA_GIT_TOKEN_SECRET` ist der AES-GCM-Schlüssel für jeden gespeicherten
+    Access-Token und jedes Webhook-Secret einer Verbindung **im Ruhezustand**. Setze in
+    Produktion einen zufälligen Wert, nie den ausgelieferten Standard. Ändert er sich,
+    lassen sich alte Tokens nicht mehr entschlüsseln. Betroffene Repos musst du dann neu
+    verbinden.
 
 ## Der OAuth-Flow (serverseitig vermittelt)
 
-Das Verbinden eines Repos durchläuft einen echten dreibeinigen OAuth-Flow, den der
-Server vermittelt, damit die App nie das Client-Secret des Anbieters hält. Der nicht
-erratbare, kurzlebige `state` (in MongoDB mit **15-Minuten-TTL** gespeichert) verbindet
-den Browser-Umweg wieder mit dem Projekt:
+Der Server vermittelt einen dreibeinigen OAuth-Flow. So hält die App nie das
+Client-Secret des Anbieters. Ein nicht erratbarer, kurzlebiger `state` (in MongoDB mit
+**15-Minuten-TTL**) ordnet den Umweg über den Browser wieder dem Projekt zu:
 
 ```text
 App   POST /projects/{id}/git/oauth/start   (Anbieter)
@@ -135,70 +133,68 @@ App     GET  /projects/{id}/git/owners        → Owner/Org wählen
         App  POST /projects/{id}/git/connect   → verbinden (registriert den Webhook)
 ```
 
-Der Callback-Endpunkt ist **öffentlich** — der Anbieter leitet den Browser des Nutzers
-ohne Bearer-Token dorthin — seine Sicherheit ruht daher vollständig auf dem nicht
-erratbaren `state`. Er liefert eine kleine HTML-Seite zurück, die dem Nutzer sagt, dass
-er den Tab schließen und zu Hinata zurückkehren kann.
+Der Callback ist **öffentlich**, weil der Anbieter den Browser ohne Bearer-Token
+dorthin leitet. Seine Sicherheit hängt deshalb allein am nicht erratbaren `state`. Er
+zeigt eine kleine HTML-Seite: Der Tab kann geschlossen werden, weiter geht es in Hinata.
 
 ### Selbst betriebene Server (Enterprise / Data Center)
 
-Selbst gehostete Instanzen von **GitHub Enterprise**, **GitLab** (self-managed) und
-**Bitbucket Data Center** überspringen den OAuth-Tanz komplett. Verbinde sie stattdessen
-mit einer Repo-URL und einem **Personal Access Token**:
+Selbst gehostetes **GitHub Enterprise**, **GitLab** (self-managed) und **Bitbucket
+Data Center** brauchen keinen OAuth-Flow. Verbinde sie mit Repo-URL und **Personal
+Access Token**:
 
 ```text
 POST /api/v1/projects/{id}/git/connect-token
 { "repoUrl": "https://git.example.com/team/app.git", "token": "<personal-access-token>" }
 ```
 
-Der Token wird genau wie ein OAuth-Token AES-GCM-verschlüsselt gespeichert, und dieselbe
-Webhook-Registrierung und dieselben Verknüpfungsregeln gelten.
+Der Token wird wie ein OAuth-Token mit AES-GCM verschlüsselt gespeichert.
+Webhook-Registrierung und Verknüpfungsregeln sind dieselben.
 
 ## Webhooks
 
-Beim Verbinden registriert der Server einen Hook (für `push`, Branch-`create`, PR/MR und
-CI-Ereignisse), der auf einen **öffentlichen**, signaturgeprüften Empfänger zeigt und
-mit einem **projektspezifischen Secret** signiert wird, das beim Verbinden erzeugt wird.
-Jede eingehende Zustellung wird verifiziert, bevor irgendetwas gespeichert wird:
+Beim Verbinden registriert der Server einen Hook für `push`, Branch-`create`, PR/MR und
+CI-Ereignisse. Er zeigt auf einen **öffentlichen** Empfänger und wird mit einem
+**projektspezifischen Secret** signiert, das beim Verbinden entsteht. Jede Zustellung
+wird geprüft, bevor etwas gespeichert wird:
 
 | Anbieter | Endpunkt | Verifizierung |
 | --- | --- | --- |
 | **GitHub** | `POST /api/v1/git/webhooks/github` | HMAC-SHA256 über den Rohbody (`X-Hub-Signature-256`) |
-| **GitLab** | `POST /api/v1/git/webhooks/gitlab` | Token-Vergleich (`X-Gitlab-Token`) |
+| **GitLab** | `POST /api/v1/git/webhooks/gitlab` | Tokenvergleich (`X-Gitlab-Token`) |
 | **Bitbucket** | `POST /api/v1/git/webhooks/bitbucket` | geteiltes Secret in der URL-Query (`?secret=…`) |
 
-Der Empfänger findet über das Repository im Payload das Projekt (und das exakt verbundene
-Repo), verifiziert das Secret **dieser Verbindung** und verknüpft das Ereignis erst dann
-mit Vorgangsschlüsseln. Ein unbekanntes Repository wird stillschweigend mit `200`
-ignoriert; ein bekanntes Repository, dessen Signatur nicht verifiziert, wird als nicht
-autorisiert abgewiesen.
+Der Empfänger findet über das Repository im Payload das Projekt und das verbundene
+Repo. Er prüft das Secret **dieser Verbindung** und verknüpft erst danach mit
+Vorgangsschlüsseln.
+
+- Unbekanntes Repository: wird ohne Fehler mit `200` ignoriert.
+- Bekanntes Repository mit falscher Signatur: wird als nicht autorisiert abgewiesen.
 
 ## Verknüpfungsregeln
 
-Die Regeln sind bewusst streng, damit deine Vorgänge ehrlich bleiben:
-
-- **Branch** → verknüpft über den Vorgangsschlüssel im **Branch-Namen**.
-- **Commit** → verknüpft nur über den/die Vorgangsschlüssel in der **Commit-Nachricht**.
-  Er wird *nie* nur deshalb verknüpft, weil er auf dem Branch eines Vorgangs liegt.
-- **PR / MR** → verknüpft über den/die Vorgangsschlüssel in **Titel oder Quell-Branch**.
-- Ein Schlüssel verknüpft nur mit einem **echten** Vorgang, der zum **Projekt dieses
-  Repos** gehört — ein Schlüssel, der auf einen nicht existierenden Vorgang oder einen
-  Vorgang in einem anderen Projekt zeigt, wird ignoriert.
+- **Branch**: über den Vorgangsschlüssel im **Branch-Namen**.
+- **Commit**: nur über die Vorgangsschlüssel in der **Commit-Nachricht**. Er wird *nie*
+  verknüpft, nur weil er auf dem Branch eines Vorgangs liegt.
+- **PR / MR**: über die Vorgangsschlüssel in **Titel oder Quell-Branch**.
+- Ein Schlüssel verknüpft nur mit einem **existierenden** Vorgang im **Projekt dieses
+  Repos**. Schlüssel zu fehlenden Vorgängen oder Vorgängen anderer Projekte werden
+  ignoriert.
 
 !!! note "Nebeneffekte genau einmal"
-    Anbieter stellen Webhooks erneut zu, und derselbe Commit wird erneut gelistet,
-    sobald ein Feature-Branch in den Default-Branch gemerged wird. Deshalb werden die
-    **Nebeneffekte** eines Commits — Smart Commits und die „Commit gepusht“-Transition —
-    **genau einmal** angewendet, abgesichert durch ein kleines Ledger
-    (`git_processed_commits`). Ohne dieses würde jede erneute Zustellung jeden Kommentar
-    erneut posten und jede Zeitbuchung erneut anlegen. (Das Aufnehmen eines
-    Branch/Commit/PR ins Panel ist selbst idempotent — derselbe SHA bzw. dieselbe
-    PR-Nummer wird aktualisiert, nicht dupliziert.)
+    Anbieter stellen Webhooks erneut zu. Außerdem taucht ein Commit wieder auf, wenn ein
+    Feature-Branch in den Default-Branch gemerged wird. Die **Nebeneffekte** eines
+    Commits (Smart Commits und die Transition „Commit gepusht“) laufen deshalb **genau
+    einmal**. Das sichert ein kleines Ledger (`git_processed_commits`). Ohne es würde
+    jede erneute Zustellung Kommentare und Zeitbuchungen doppelt anlegen.
+
+    Das Panel selbst ist idempotent: Derselbe SHA oder dieselbe PR-Nummer wird
+    aktualisiert und nicht dupliziert.
 
 ## Automatisierung
 
-Die Automatisierung wird **pro Projekt** gegen die **eigenen Workflow-Status** dieses
-Projekts konfiguriert und verbindet echte Git-Ereignisse mit Status-Übergängen:
+Die Automatisierung stellst du **pro Projekt** ein, passend zu den **Workflow-Status
+dieses Projekts**. Sie verbindet Git-Ereignisse mit Statusübergängen:
 
 | Auslöser | Regel |
 | --- | --- |
@@ -207,17 +203,16 @@ Projekts konfiguriert und verbindet echte Git-Ereignisse mit Status-Übergängen
 | **PR / MR geöffnet** (opened / reopened / ready-for-review) | referenzierten Vorgang bewegen (z. B. → *In Review*) |
 | **PR / MR gemerged** | referenzierten Vorgang bewegen (z. B. → *Erledigt*) |
 
-!!! tip "Nur vorwärts — kämpft nie gegen dich"
-    Die Automatisierung bewegt einen Vorgang immer nur **vorwärts** im Workflow, nie
-    rückwärts. Ein später Commit kann einen Vorgang in *In Review* oder *Erledigt* nicht
-    zurück nach *In Bearbeitung* ziehen, und ein bereits erfüllter Übergang ist ein
-    No-op. Konfiguriere die Regeln mit `PATCH /api/v1/projects/{id}/git/automation`.
+!!! tip "Nur vorwärts"
+    Die Automatisierung bewegt einen Vorgang nur **vorwärts** im Workflow. Ein später
+    Commit zieht einen Vorgang in *In Review* oder *Erledigt* nicht zurück nach *In
+    Bearbeitung*. Ein bereits erfüllter Übergang bewirkt nichts. Die Regeln setzt du mit
+    `PATCH /api/v1/projects/{id}/git/automation`.
 
 ## Smart Commits
 
-Trailer in einer Commit-Nachricht wirken direkt auf den referenzierten Vorgang. Smart
-Commits müssen in den Automatisierungs-Einstellungen des Projekts aktiviert sein; dann
-gilt für einen Vorgangsschlüssel in der Nachricht:
+Smart Commits aktivierst du in den Automatisierungseinstellungen des Projekts. Dann
+wirken Trailer in einer Commit-Nachricht direkt auf den genannten Vorgang:
 
 | Trailer | Wirkung |
 | --- | --- |
@@ -229,25 +224,23 @@ gilt für einen Vorgangsschlüssel in der Nachricht:
 ASTA-42 #comment Nullpointer bei leerer Suche behoben #time 45m #in-review
 ```
 
-Dieser eine Commit fügt einen Kommentar hinzu, bucht 45 Minuten und bewegt `ASTA-42`
-nach *In Review*. Ein unbekanntes `#word` (kein passender Status) oder ein Schlüssel
-ohne echten Vorgang wird stillschweigend übersprungen — der Rest der Nachricht greift
+Dieser Commit fügt einen Kommentar hinzu, bucht 45 Minuten und bewegt `ASTA-42` nach
+*In Review*. Ein unbekanntes `#word` (kein passender Status) oder ein Schlüssel ohne
+existierenden Vorgang wird ohne Fehler übersprungen. Der Rest der Nachricht greift
 trotzdem.
 
 ## Mehrere Repositories pro Projekt
 
-Ein Projekt kann **mehrere** Repositories verbinden — etwa ein App-Repo und ein
-Server-Repo, die dasselbe Team betreut. Was **projektweit geteilt** und was **pro Repo**
-ist:
+Ein Projekt kann **mehrere** Repositories verbinden, etwa ein App-Repo und ein
+Server-Repo desselben Teams.
 
-- **Projektweit geteilt**: die Automatisierungsregeln und die **Branch-Vorlage**
-  (Standard `{key}-{summary}`, um aus einem Vorgang einen Branch-Namen vorzuschlagen).
-- **Pro Repository**: der eigene Zugriffs-**Token**, der eigene **Webhook** samt
-  Signatur-Secret und der eigene **Default-Branch**.
+- **Für das ganze Projekt**: die Automatisierungsregeln und die **Branch-Vorlage**
+  (Standard `{key}-{summary}`, schlägt aus einem Vorgang einen Branch-Namen vor).
+- **Pro Repository**: eigener Zugriffs-**Token**, eigener **Webhook** mit
+  Signatur-Secret und eigener **Default-Branch**.
 
-Nur Arbeit, die in ein **verbundenes** Repo gepusht wird, erscheint an den Vorgängen des
-Projekts. Verwalte die zusätzlichen Repos neben dem primären; Trennen oder erneutes
-Synchronisieren kann ein einzelnes Repo per ID ansprechen:
+Am Vorgang erscheint nur Arbeit aus **verbundenen** Repos. Zusätzliche Repos verwaltest
+du neben dem primären. Trennen und Resync können ein einzelnes Repo per ID ansprechen:
 
 ```text
 POST   /api/v1/projects/{id}/git/connect         → Repo hinzufügen (OAuth)
@@ -259,21 +252,21 @@ PATCH  /api/v1/projects/{id}/git/branch-template → geteilte Branch-Vorlage set
 
 ## Sicherheit
 
-- **Verschlüsselung im Ruhezustand**: Access-Tokens und verbindungseigene
-  Webhook-Secrets werden mit `HINATA_GIT_TOKEN_SECRET` **AES-GCM-verschlüsselt** und
-  **nie von der API zurückgegeben** (Secrets sind im Adminbereich write-only).
-- **Signaturgeprüfte Aufnahme**: Kein Webhook-Ereignis wird gespeichert, wenn seine
-  Signatur (HMAC / Token / Query-Secret) nicht gegen das hinterlegte projektspezifische
-  Secret verifiziert. Unbekannte Repos werden ignoriert; falsche Signaturen abgewiesen.
-- **Least Privilege**: Dev-Infos lesen oder einen PR bearbeiten erfordert
-  Projektmitgliedschaft; Verbinden, Trennen oder Ändern der Automatisierung erfordert die
+- **Verschlüsselung im Ruhezustand**: Access-Tokens und Webhook-Secrets werden mit
+  `HINATA_GIT_TOKEN_SECRET` per **AES-GCM** verschlüsselt und **nie von der API
+  zurückgegeben** (im Adminbereich write-only).
+- **Signaturprüfung**: Ein Webhook-Ereignis wird nur gespeichert, wenn seine Signatur
+  (HMAC, Token oder Query-Secret) zum projektspezifischen Secret passt. Unbekannte
+  Repos werden ignoriert, falsche Signaturen abgewiesen.
+- **Minimale Rechte**: Dev-Infos lesen und PRs bearbeiten erfordert
+  Projektmitgliedschaft. Verbinden, Trennen und Automatisierung ändern erfordert die
   Rolle Project Lead oder Admin.
-- **Begrenzter Zustand**: Commits und Builds pro Vorgang sind gedeckelt und werden
-  getrimmt, damit ein aktives Repo kein unbegrenztes Panel wachsen lässt.
+- **Begrenzter Umfang**: Commits und Builds pro Vorgang sind gedeckelt und werden
+  gekürzt, damit das Panel bei aktiven Repos nicht unbegrenzt wächst.
 
 ## Verwandte Seiten
 
-- [Projekte & Teams](/de/projects-teams.html) — Vorgangsschlüssel, Workflows und Mitgliedschaft.
-- [Vorgänge & Hierarchie](/de/issues.html) — wo das Dev-Info-Panel erscheint.
-- [Adminbereich](/de/admin-area.html) — wo OAuth-App-Zugangsdaten zur Laufzeit liegen.
-- [Konfigurationsreferenz](/de/configuration.html) — der vollständige `HINATA_GIT_*`-Satz.
+- [Projekte & Teams](/de/projects-teams.html): Vorgangsschlüssel, Workflows und Mitgliedschaft.
+- [Vorgänge & Hierarchie](/de/issues.html): wo das Panel mit den Entwicklungsinfos erscheint.
+- [Adminbereich](/de/admin-area.html): wo die OAuth-Zugangsdaten zur Laufzeit liegen.
+- [Konfigurationsreferenz](/de/configuration.html): alle `HINATA_GIT_*`-Variablen.

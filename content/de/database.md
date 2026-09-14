@@ -1,54 +1,34 @@
 ---
 title: MongoDB & X.509
-description: Wie Hinata MongoDB betreibt — ein Produktiv-Replikatset mit TLS und X.509-Client-Authentifizierung, samt der PKI-Skripte, die jedes Zertifikat erzeugen.
+description: So betreibt Hinata MongoDB in der Produktion, als Replikatset mit TLS und X.509 samt den Skripten für alle Zertifikate.
 ---
 
 # MongoDB & X.509
 
-Hinata speichert alles — Projekte, Vorgänge, Kommentare, Wissensdatenbank-Artikel,
-Laufzeiteinstellungen — in **MongoDB**. In der Produktion läuft sie als
-**Replikatset** mit **TLS-Verschlüsselung** und **X.509-Client-Authentifizierung**,
-dem MongoDB-„Goldstandard" für ein selbstgehostetes Cluster. Diese Seite erklärt
-warum, wie die Topologie aufgebaut ist und was die Deploy-Skripte im Server-Repo
-genau tun, damit du das Setup nachvollziehen und ihm vertrauen kannst.
+Hinata speichert alles in **MongoDB**: Projekte, Vorgänge, Kommentare, Artikel der Wissensdatenbank und Laufzeiteinstellungen. In der Produktion läuft MongoDB als **Replikatset** mit **TLS** und **X.509** für die Anmeldung der Clients.
 
 !!! info
-    Alle folgenden Befehle liegen im Server-Repo unter `deploy/`. Es sind schlichte
-    `openssl`/`mongosh`-Skripte — nichts Magisches — du kannst sie also lesen, bevor
-    du sie ausführst.
+    Alle Befehle liegen im Server-Repo unter `deploy/`. Es sind einfache `openssl`- und `mongosh`-Skripte, die du vorher lesen kannst.
 
 ## Warum ein Replikatset
 
-Ein einzelnes `mongod` reicht, um Daten zu *speichern*, aber Hinata setzt in der
-Produktion bewusst auf ein Replikatset — aus zwei Gründen:
-
-- **Mehrdokumenten-Transaktionen.** Operationen, die alles-oder-nichts sein müssen —
-  etwa das Abschließen eines Sprints samt Verschieben seiner Vorgänge — nutzen
-  MongoDB-Transaktionen. Die bietet MongoDB nur auf einem Replikatset, nie auf einem
-  Einzelknoten.
-- **Hochverfügbarkeit.** Mit zwei datenhaltenden Knoten und einem Arbiter übersteht
-  das Cluster den Ausfall eines Datenknotens: Der verbleibende Knoten wird zum
-  Primary gewählt und der Server läuft weiter.
+- **Transaktionen über mehrere Dokumente.** Manches muss ganz oder gar nicht passieren, etwa einen Sprint abschließen und seine Vorgänge verschieben. MongoDB kann Transaktionen nur im Replikatset, nie auf einem Einzelknoten.
+- **Hochverfügbarkeit.** Zwei Datenknoten und ein Arbiter überstehen den Ausfall eines Datenknotens. Der andere wird Primary, und der Server läuft weiter.
 
 !!! note "SSE wird in der App verarbeitet, nicht von Mongo"
-    Hinatas Live-Anhang-Updates nutzen In-Process-Server-Sent-Events, keine
-    Mongo-Change-Streams — das SSE-Feature selbst hängt also nicht vom Replikatset
-    ab. Beim Replikatset geht es um Transaktionen und Verfügbarkeit.
+    Live-Updates für Anhänge laufen über Server-Sent Events im Serverprozess, nicht über Change Streams. SSE braucht also kein Replikatset.
 
 ## Produktiv-Topologie
 
-Die Produktiv-`docker-compose.yml` bringt drei MongoDB-Container in einem privaten
-Docker-Netzwerk hoch:
+Die `docker-compose.yml` für die Produktion startet drei MongoDB-Container in einem privaten Docker-Netzwerk:
 
 | Container | Rolle | Daten | Stimme |
 | --- | --- | --- | --- |
-| `mongo1` | Datenknoten (Priorität 2 — bevorzugter Primary) | ja (`mongo1-data`-Volume) | ja |
-| `mongo2` | Datenknoten (Priorität 1) | ja (`mongo2-data`-Volume) | ja |
-| `mongo-arbiter` | Arbiter — nur Wahl-Zünglein an der Waage | **keine** | ja |
+| `mongo1` | Datenknoten (Priorität 2, bevorzugter Primary) | ja (Volume `mongo1-data`) | ja |
+| `mongo2` | Datenknoten (Priorität 1) | ja (Volume `mongo2-data`) | ja |
+| `mongo-arbiter` | Arbiter, entscheidet nur bei Wahlen | **keine** | ja |
 
-Der Arbiter hält keine Daten; er existiert nur, damit Wahlen eine ungerade Anzahl
-Stimmberechtigter haben, ohne für eine dritte volle Kopie zu zahlen. Jeder Knoten
-läuft mit demselben Befehl:
+Der Arbiter hält keine Daten. Er sorgt nur für eine ungerade Zahl an Stimmen, ohne dritte volle Kopie. Alle Knoten starten mit demselben Befehl:
 
 ```yaml
 command: >-
@@ -58,47 +38,29 @@ command: >-
   --tlsCAFile /etc/mongo/certs/ca.crt
 ```
 
-Hier sind zwei unabhängige Authentifizierungsebenen im Spiel:
+Zwei unabhängige Ebenen der Authentifizierung:
 
-- **`--keyFile`** — ein geteiltes Geheimnis, mit dem sich die Replikatset-Mitglieder
-  *gegenseitig* authentifizieren (interne Cluster-Auth, SCRAM).
-- **`--tlsMode requireTLS` + `--tlsCAFile`** — jede *Client*-Verbindung muss TLS
-  verwenden **und** ein Zertifikat vorlegen, das von der CA des Clusters signiert
-  ist. Genau das ermöglicht die X.509-Client-Authentifizierung.
+- **`--keyFile`:** gemeinsames Geheimnis, mit dem sich die Mitglieder *untereinander* anmelden (interne Cluster-Auth, SCRAM).
+- **`--tlsMode requireTLS` + `--tlsCAFile`:** jede *Client*-Verbindung braucht TLS **und** ein Zertifikat, das die CA des Clusters signiert hat. Das ermöglicht X.509 für Clients.
 
-Das Replikatset wird beim ersten gesunden Start von `mongo1` automatisch
-initialisiert — sein Docker-Healthcheck ruft `rs.initiate(...)` mit den drei
-Mitgliedern auf, falls das Set noch nicht konfiguriert ist. Du musst das also nie
-von Hand tun.
+Beim ersten gesunden Start von `mongo1` ruft der Healthcheck `rs.initiate(...)` mit den drei Mitgliedern auf, falls das Set noch nicht eingerichtet ist. Von Hand musst du nichts tun.
 
 ## Zwei Wege der App-Authentifizierung: SCRAM-Root vs. App-X.509
 
-Es gibt zwei verschiedene MongoDB-Identitäten, die man nicht verwechseln sollte:
+- **`MONGO_ROOT_USERNAME` / `MONGO_ROOT_PASSWORD`:** ein klassisches SCRAM-Root-Konto aus dem Mongo-Image (`MONGO_INITDB_ROOT_*`). Es ist *nur zur Verwaltung* da: Es richtet das Replikatset ein und registriert den X.509-Benutzer. Der Hinata-Server nutzt es nie.
+- **Der X.509-Benutzer der Anwendung:** Der Server meldet sich mit einem **Client-Zertifikat** an, ohne Passwort. Sein Benutzername *ist* der Subject-DN des Zertifikats und liegt in der speziellen Datenbank `$external`.
 
-- **`MONGO_ROOT_USERNAME` / `MONGO_ROOT_PASSWORD`** — ein klassisches
-  SCRAM-Root-Konto, das das Mongo-Image erzeugt (`MONGO_INITDB_ROOT_*`). Es ist
-  *rein administrativ*: Es initialisiert das Replikatset und registriert den
-  X.509-Benutzer. Der Hinata-Server nutzt es nie.
-- **Der Anwendungs-X.509-Benutzer** — der Server authentifiziert sich mit einem
-  **Client-Zertifikat**, nicht mit einem Passwort. Sein Benutzername *ist* der
-  Subject-DN des Zertifikats und liegt in der speziellen
-  `$external`-Authentifizierungsdatenbank.
-
-Deshalb trägt der Produktiv-Verbindungsstring gar kein Passwort:
+Der Verbindungsstring enthält deshalb kein Passwort:
 
 ```text
 mongodb://mongo1:27017,mongo2:27017/hinata?replicaSet=rs0&tls=true&authMechanism=MONGODB-X509&authSource=$external
 ```
 
-Diese URI wird für dich in der `docker-compose.yml` gesetzt (als
-`HINATA_MONGODB_URI` am Server-Container). Das Zertifikat, das der Server vorlegt,
-stammt aus dem JVM-Keystore aus `HINATA_MONGO_TLS_KEYSTORE`, und er validiert das
-Cluster mit dem Truststore aus `HINATA_MONGO_TLS_TRUSTSTORE`.
+Die `docker-compose.yml` setzt ihn als `HINATA_MONGODB_URI` am Server-Container. Das Zertifikat des Servers kommt aus dem JVM-Keystore in `HINATA_MONGO_TLS_KEYSTORE`. Das Cluster prüft er mit dem Truststore aus `HINATA_MONGO_TLS_TRUSTSTORE`.
 
 ## Keyfile und PKI erzeugen
 
-Drei Skripte erzeugen alles. Führe sie für einen frischen Produktivhost in dieser
-Reihenfolge aus.
+Führe die drei Skripte auf einem neuen Produktivhost in dieser Reihenfolge aus.
 
 ### 1. Replikatset-Keyfile und Vorschläge für Geheimnisse
 
@@ -107,10 +69,7 @@ cp .env.example .env
 ./deploy/generate-secrets.sh
 ```
 
-`generate-secrets.sh` erstellt `deploy/mongo-keyfile` (`openssl rand -base64 756`,
-Modus `400`), falls es noch nicht existiert — ein bestehendes überschreibt es nicht —
-und gibt einfügefertige Werte für `HINATA_JWT_SECRET`, `MONGO_ROOT_PASSWORD` und
-`MINIO_ROOT_PASSWORD` aus. Kopiere diese in deine `.env`.
+`generate-secrets.sh` legt `deploy/mongo-keyfile` an (`openssl rand -base64 756`, Modus `400`), falls es fehlt. Ein vorhandenes überschreibt es nicht. Außerdem gibt es Werte für `HINATA_JWT_SECRET`, `MONGO_ROOT_PASSWORD` und `MINIO_ROOT_PASSWORD` aus, die du in `.env` kopierst.
 
 ### 2. Die X.509-Zertifizierungsstelle und die Zertifikate
 
@@ -118,30 +77,25 @@ und gibt einfügefertige Werte für `HINATA_JWT_SECRET`, `MONGO_ROOT_PASSWORD` u
 ./deploy/x509/generate-certs.sh prod
 ```
 
-Das baut eine in sich geschlossene PKI unter `deploy/x509/prod/`:
+Das erzeugt eine eigenständige PKI unter `deploy/x509/prod/`:
 
 | Datei | Was es ist |
 | --- | --- |
-| `ca.crt` / `ca.key` | Die private Zertifizierungsstelle (4096-Bit-RSA, 10 Jahre gültig) |
-| `server.pem` | Das TLS-Cert + Key von `mongod`; sein SAN deckt `mongo1`, `mongo2`, `mongo-arbiter` ab |
-| `hinata-app.p12` | JVM-**Keystore** — Client-Zertifikat + Key der App |
-| `truststore.p12` | JVM-**Truststore** — nur die CA |
-| `app-subject-dn.txt` | Der Subject-DN des Client-Certs = der Mongo-`$external`-Benutzername |
-| `keyfile` | Ein Replikatset-Internal-Auth-Keyfile (nur prod) |
+| `ca.crt` / `ca.key` | Die private Zertifizierungsstelle (RSA mit 4096 Bit, 10 Jahre gültig) |
+| `server.pem` | TLS-Zertifikat und Key von `mongod`. Das SAN deckt `mongo1`, `mongo2`, `mongo-arbiter` ab |
+| `hinata-app.p12` | JVM-**Keystore**: Client-Zertifikat und Key der App |
+| `truststore.p12` | JVM-**Truststore**: nur die CA |
+| `app-subject-dn.txt` | Subject-DN des Client-Zertifikats, gleich dem Benutzernamen in `$external` |
+| `keyfile` | Keyfile für die interne Auth im Replikatset (nur prod) |
 
-Das Anwendungszertifikat wird bewusst mit einer anderen Organizational Unit
-(`OU=Hinata Application`) ausgestellt als das Server-/Mitglieds-Zertifikat, sodass
-`mongod` es als normalen X.509-**Benutzer** behandelt und nicht als Cluster-Mitglied.
+Das App-Zertifikat hat bewusst eine andere Organizational Unit (`OU=Hinata Application`) als das Zertifikat der Server und Mitglieder. So behandelt `mongod` es als normalen X.509-**Benutzer**, nicht als Cluster-Mitglied.
 
 !!! warning "Die CA auf einem laufenden Cluster nicht neu erzeugen"
-    `generate-certs.sh` überschreibt eine bestehende CA nur mit `--force`, denn ein
-    Austausch der CA würde augenblicklich jedes Zertifikat ungültig machen, dem das
-    laufende Cluster bereits vertraut. Nutze `--force` nur bei einem frischen Setup.
+    `generate-certs.sh` überschreibt eine bestehende CA nur mit `--force`. Eine neue CA macht sofort alle Zertifikate ungültig, denen das laufende Cluster vertraut. Nutze `--force` nur bei einer frischen Einrichtung.
 
 ### 3. Den X.509-Benutzer registrieren
 
-Bring die Datenknoten hoch und erstelle dann den `$external`-Benutzer, der zum DN des
-App-Zertifikats gehört:
+Starte die Datenknoten und lege den Benutzer in `$external` an, der zum DN des App-Zertifikats passt:
 
 ```bash
 docker compose up -d mongo1 mongo2 mongo-arbiter
@@ -149,44 +103,32 @@ docker compose up -d mongo1 mongo2 mongo-arbiter
 docker compose up -d hinata-server
 ```
 
-`init-prod-user.sh` verbindet sich als SCRAM-Root-Konto (aus deiner `.env`) über TLS
-und ruft `createUser` in `$external` mit dem DN aus `app-subject-dn.txt` auf, wobei
-es `readWrite` und `dbAdmin` auf der `hinata`-Datenbank vergibt. Es ist idempotent —
-existiert der Benutzer bereits, sagt es das und macht weiter.
+`init-prod-user.sh` meldet sich per TLS mit dem SCRAM-Root-Konto aus deiner `.env` an. Es ruft `createUser` in `$external` mit dem DN aus `app-subject-dn.txt` auf und vergibt `readWrite` und `dbAdmin` auf der Datenbank `hinata`. Das Skript ist idempotent: Gibt es den Benutzer schon, meldet es das und macht weiter.
 
 ## Die Dev-Datenbank (standalone, trotzdem TLS + X.509)
 
-Die lokale Entwicklung läuft **nicht** als Replikatset.
-`docker-compose.dev.yml` startet ein einzelnes standalone `mongod` — behält aber
-dieselbe Sicherheitshaltung: `requireTLS`, `--auth` und nur X.509-Client-Zugriff. Ein
-Befehl richtet alles ein:
+Lokal startet `docker-compose.dev.yml` ein einzelnes `mongod`, **kein** Replikatset. Die Sicherheit bleibt gleich: `requireTLS`, `--auth` und Zugriff nur per X.509. Ein Befehl richtet alles ein:
 
 ```bash
 ./deploy/x509/setup-dev.sh
 SPRING_PROFILES_ACTIVE=dev ./gradlew bootRun
 ```
 
-`setup-dev.sh` erzeugt die Dev-PKI (`deploy/x509/dev/`), startet das Dev-Mongo,
-erstellt den `$external`-X.509-Benutzer über die Localhost-Ausnahme und prüft, dass
-der X.509-Login funktioniert. `application-dev.yml` zeigt bereits auf die
-TLS/X.509-Verbindung, du setzt `HINATA_MONGODB_URI` also nicht selbst.
+`setup-dev.sh` erzeugt die Dev-PKI (`deploy/x509/dev/`), startet das Dev-Mongo, legt den X.509-Benutzer in `$external` über die Localhost-Ausnahme an und prüft den Login per X.509. `application-dev.yml` nutzt diese Verbindung schon, `HINATA_MONGODB_URI` setzt du also nicht selbst.
 
 !!! note "Dev bindet nur an Loopback"
-    Das Dev-Mongo veröffentlicht `127.0.0.1:27017` — niemals `0.0.0.0` — eine
-    Entwicklungsdatenbank ist also nie aus dem Netzwerk erreichbar.
+    Das Dev-Mongo veröffentlicht `127.0.0.1:27017`, nie `0.0.0.0`. Aus dem Netzwerk ist es nicht erreichbar.
 
 ## Keystore- und Truststore-Passwörter
 
-Der JVM-Keystore und -Truststore sind PKCS#12-Dateien, geschützt durch Passwörter,
-die du kontrollierst:
+Keystore und Truststore der JVM sind PKCS#12-Dateien mit Passwörtern, die du festlegst:
 
 | Variable | Schützt | Standard |
 | --- | --- | --- |
-| `HINATA_MONGO_TLS_KEYSTORE_PASSWORD` | `hinata-app.p12` (Client-Cert + Key) | `changeit` |
+| `HINATA_MONGO_TLS_KEYSTORE_PASSWORD` | `hinata-app.p12` (Client-Zertifikat + Key) | `changeit` |
 | `HINATA_MONGO_TLS_TRUSTSTORE_PASSWORD` | `truststore.p12` (die CA) | `changeit` |
 
-`generate-certs.sh` liest diese beiden Variablen beim Bau der `.p12`-Dateien. Wenn du
-also andere Passwörter willst, exportiere sie **vor** dem Erzeugen der Zertifikate:
+`generate-certs.sh` liest beide Variablen beim Erzeugen der `.p12`-Dateien. Eigene Passwörter exportierst du also **vorher**:
 
 ```bash
 export HINATA_MONGO_TLS_KEYSTORE_PASSWORD='ein-langer-zufaelliger-wert'
@@ -194,30 +136,15 @@ export HINATA_MONGO_TLS_TRUSTSTORE_PASSWORD='ein-weiterer-langer-zufaelliger-wer
 ./deploy/x509/generate-certs.sh prod
 ```
 
-Setze dann dieselben Werte in `.env`, damit der Server die Stores zur Laufzeit öffnen
-kann.
+Setze danach dieselben Werte in `.env`, damit der Server die Stores zur Laufzeit öffnen kann.
 
 !!! danger "Ändere jeden Standard vor dem Livegang"
-    `changeit`, `hinata-dev-secret` und das Beispiel-`MONGO_ROOT_PASSWORD` in
-    `.env.example` sind Entwicklungs-Bequemlichkeiten. Erzeuge frische Geheimnisse mit
-    `./deploy/generate-secrets.sh` und setze echte Keystore-Passwörter für jedes ans
-    Internet gerichtete Deployment.
+    `changeit`, `hinata-dev-secret` und das Beispiel für `MONGO_ROOT_PASSWORD` in `.env.example` sind nur für die Entwicklung. Erzeuge für jedes Deployment im Internet neue Geheimnisse mit `./deploy/generate-secrets.sh` und setze echte Keystore-Passwörter.
 
 ## Datenpersistenz und Betriebssicherheit
 
-- **Benannte Volumes.** Jeder Datenknoten schreibt in ein benanntes Docker-Volume
-  (`mongo1-data`, `mongo2-data`), sodass deine Daten Container-Neustarts,
-  Image-Upgrades und `docker compose up`-Neuaufbauten überstehen. Das Entfernen
-  dieser Volumes (`docker compose down -v`) zerstört die Datenbank — tu das nicht.
-- **Mongo nie öffentlich exponieren.** Die Replikatset-Ports bleiben im internen
-  `hinata`-Docker-Netzwerk. Nichts im Standard-Compose veröffentlicht `27017` in der
-  Produktion zum Host. Nur der Server (hinter deinem Reverse Proxy) sollte die
-  Datenbank erreichen.
-- **Der Arbiter ist kein Backup.** Er speichert keine Daten. Echte Backups kommen aus
-  `mongodump`/Volume-Snapshots — siehe [Backups & Upgrades](/de/backups.html).
+- **Benannte Volumes.** Die Datenknoten schreiben in `mongo1-data` und `mongo2-data`. Deine Daten überstehen Neustarts, Image-Upgrades und Neuaufbauten mit `docker compose up`. `docker compose down -v` löscht diese Volumes und damit die Datenbank. Tu das nicht.
+- **Mongo nie öffentlich erreichbar machen.** Die Ports bleiben im internen Docker-Netzwerk `hinata`, das Standard-Compose veröffentlicht `27017` in der Produktion nicht auf dem Host. Nur der Server (hinter deinem Reverse Proxy) soll die Datenbank erreichen.
+- **Der Arbiter ist kein Backup.** Er speichert keine Daten. Backups kommen aus `mongodump` oder Snapshots der Volumes, siehe [Backups & Upgrades](/de/backups.html).
 
-Zum umgebenden Stack — Objektspeicher, Mail und Reverse Proxy — siehe
-[Objektspeicher (S3/MinIO)](/de/storage.html),
-[E-Mail & SMTP](/de/email.html) und
-[Reverse Proxy & TLS](/de/reverse-proxy.html). Jede Umgebungsvariable ist in der
-[Konfigurationsreferenz](/de/configuration.html) katalogisiert.
+Weiter geht es mit [Objektspeicher (S3/MinIO)](/de/storage.html), [E-Mail & SMTP](/de/email.html) und [Reverse Proxy & TLS](/de/reverse-proxy.html). Alle Umgebungsvariablen stehen in der [Konfigurationsreferenz](/de/configuration.html).

@@ -61,8 +61,19 @@ Intro paragraph (1–3 sentences, sets context).
 - **External links**: repos are
   `https://github.com/hinata-platform/hinata-app` and
   `https://github.com/hinata-platform/hinata-server`.
-- Keep a warm, expert, encouraging tone. Explain *why*, not just *how*. Prefer
-  short paragraphs, lots of concrete examples, and callouts.
+- **Writing style (mandatory, both languages):**
+  - Short and quick to read. Readers skim: most important thing first, short
+    sentences, short paragraphs, lists instead of walls of text.
+  - Plain, natural language, the way a person would write it. No filler, no
+    marketing tone, no long explanations of design philosophy.
+  - **No dashes as punctuation** (no "—", "–" or " - " between clauses). Use a
+    new sentence, a comma, a colon or brackets. Avoid hyphenated coinages where a
+    normal word works; required spellings (E-Mail, UI labels, code, keys) stay.
+  - German always with real umlauts (ä, ö, ü, ß), never ae/oe/ue.
+  - No AI slop ("seamless", "powerful", "quietly", "honest", "that's the whole
+    point", "not X but Y" as a device, rhythmic triples) and no mention of
+    AI-generated content.
+  - Image captions: one short sentence. Callouts only where they really help.
 
 ### Bilingual requirement
 For every assigned slug you write BOTH `content/en/<slug>.md` AND
@@ -122,10 +133,8 @@ page, and that URL answers 404 today.
   manifest and an **AppImage** script live beside the snap recipe in
   `packaging/linux/` and both still build; they are the build-it-yourself options,
   not a channel. Neither is published anywhere — CI attaches the AppImage to a
-  workflow run, not to a release — so never tell a reader to download one. **Flathub is not a channel this app can use**: its submission
-  requirements (https://docs.flathub.org/docs/for-app-authors/requirements) exclude
-  applications whose content was produced with an LLM. State that plainly if a page
-  needs the reason, link that page and nothing else.
+  workflow run, not to a release — so never tell a reader to download one. **Hinata is not on Flathub.** Say so plainly where
+  it matters, without giving a reason.
 - **Deep links work**: the desktop entry registers `x-scheme-handler/hinata`, and the
   app is a single-instance GTK application, so an SSO callback, an invite or a
   password-reset link reaches the window that is already open. There is no https

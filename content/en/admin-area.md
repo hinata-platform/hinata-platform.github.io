@@ -1,99 +1,110 @@
 ---
 title: Admin area
-description: The in-app Admin area — manage users, app settings, SSO, Git OAuth apps and mail-to-ticket. Runtime config lives in MongoDB, overrides env, applies without a restart.
+description: Manage users, app settings, SSO, Git and mail-to-ticket on a running server.
 ---
 
 # Admin area
 
-Most of Hinata's operational configuration is not frozen into environment
-variables at boot — it lives in the **Admin area**, an in-app control panel that
-writes its settings to MongoDB. This is a defining trait of the platform: the
-**database overrides the environment**, and changes apply **without a restart**.
-You configure a running instance live, from the same app your users are in.
+In the **Admin area** you configure most of Hinata directly in the app. Settings
+are stored in MongoDB, **override the environment** and apply **without a
+restart**.
 
 !!! info "Who can access it"
-    The Admin area requires the **`ADMIN`** role, and every endpoint under
-    `/api/v1/admin/**` is gated to admins server-side. Regular users never see it.
-
+    Only users with the **`ADMIN`** role. Every endpoint under `/api/v1/admin/**`
+    is also restricted to admins on the server. Other users never see it.
 
 ![Hinata admin area](/assets/img/shot-admin.png)
-*The admin area — users, app settings, SSO, Git and mail-to-ticket, all at runtime.*
+*Users, app settings, SSO, Git and mail-to-ticket in one place.*
 
 ## How runtime configuration works
 
-Bootstrapping a server needs only a handful of environment variables (a JWT
-secret, database connection, mail relay). Everything else — SSO providers, e-mail
-ingest, Git OAuth apps, app-level settings — is configured in the Admin area and
-stored in MongoDB. Three rules follow:
+To start, a server only needs a few environment variables: a JWT secret, the
+database connection and a mail relay. SSO providers, e-mail ingest, Git OAuth
+apps and app settings are set up in the Admin area and stored in MongoDB. The
+rules:
 
-- **DB overrides env.** Environment values such as `hinata.app.*` are *defaults*.
-  A value you set in the Admin area wins over the environment.
-- **No restart required.** Update a provider or a flag and it takes effect on the
-  next request — no redeploy, no container restart.
-- **Secrets are write-only.** OAuth client secrets, tokens and passwords can be
-  **set** but are never echoed back by the admin API. Stored Git tokens are
-  additionally AES-GCM-encrypted at rest.
+- **DB overrides env.** Environment values such as `hinata.app.*` are only
+  *defaults*. A value you set in the Admin area wins.
+- **No restart required.** Changes to a provider or flag apply from the next
+  request, with no redeploy or container restart.
+- **Secrets are write-only.** You can **set** OAuth client secrets, tokens and
+  passwords, but the admin API never returns them. Stored Git tokens are also
+  encrypted at rest with AES-GCM.
 
 ## The sections
 
-The Admin area is organized into groups: **General**, **App** and **Security**;
-**Authentication**, **E-mail** and **Git integration**; and **Audit log** and
-**Users**.
+The Admin area has three groups:
+
+- **General**, **App** and **Security**
+- **Authentication**, **E-mail** and **Git integration**
+- **Audit log** and **Users**
 
 ### Users
 
-Manage the people on your instance: **approve** pending registrations, **enable**
-or disable accounts, and assign **roles** (including `ADMIN`). When
-self-registration with admin approval is turned on (see below), new sign-ups
-queue here until an admin lets them in.
+Manage the people on your instance:
+
+- **approve** pending registrations
+- **enable** or disable accounts
+- assign **roles**, including `ADMIN`
+
+When self-registration with admin approval is on (see below), new sign-ups wait
+here until an admin lets them in.
 
 ### App settings
 
 Control how clients behave against your server:
 
-- **Minimum version** (`minVersion`) — the [version gate](/en/clients.html#version-gate).
-  Clients older than this are force-updated. Overrides `HINATA_APP_MIN_VERSION`.
-- **Privacy policy URL** — the link the app shows; required for App Store / Play
-  releases and GDPR. Overrides `HINATA_PRIVACY_POLICY_URL`.
-- **Feature flags** — toggle platform features, including the auth flags
-  `localAuthEnabled`, `registrationEnabled` and `requireAdminApproval`, plus
-  arbitrary `name → enabled` flags you add.
+- **Minimum version** (`minVersion`): the
+  [version gate](/en/clients.html#version-gate). Older clients are forced to
+  update. Overrides `HINATA_APP_MIN_VERSION`.
+- **Privacy policy URL**: the link the app shows. Required for App Store and
+  Play releases and for GDPR. Overrides `HINATA_PRIVACY_POLICY_URL`.
+- **Feature flags**: turn platform features on or off. This includes the sign-in
+  flags `localAuthEnabled`, `registrationEnabled` and `requireAdminApproval`,
+  plus any `name → enabled` flags you add.
 
-!!! tip "These override the matching env vars"
-    Anything you set here under App settings wins over the corresponding
-    `hinata.app.*` environment variable. Env values are just the starting point
-    for a fresh instance.
+!!! tip "These override the environment"
+    Anything under App settings wins over the matching `hinata.app.*`
+    environment variable. Env values are only the starting point for a fresh
+    instance.
 
 ### Authentication & SSO
 
-Configure how people sign in. Toggle **local authentication**, **self-registration**
-and **admin approval**, and register **SSO providers** — OpenID Connect,
-OAuth 2.0, SAML 2.0 and LDAP (Synology SSO, Keycloak, Authentik, Azure AD,
-Google, …). Providers are stored in Mongo and apply immediately. See
+Set how people sign in:
+
+- turn **local authentication**, **self-registration** and **admin approval**
+  on or off
+- register **SSO providers**: OpenID Connect, OAuth 2.0, SAML 2.0 and LDAP
+  (Synology SSO, Keycloak, Authentik, Azure AD, Google, …)
+
+Providers are stored in Mongo and apply immediately. See
 [Authentication](/en/authentication.html) and [Single sign-on](/en/sso.html).
 
 ### Git integration
 
 Register **one OAuth app per provider** (GitHub, GitLab, Bitbucket) so projects
-can connect their repositories. You enter the client id + secret, the public API
-base URL used for the OAuth callback and webhooks, and an optional
-token-encryption secret. This is the platform-wide, one-time setup; projects then
-connect individual repos in their own settings. See
-[Git integration](/en/git-integration.html).
+can connect their repositories. You enter:
+
+- the client id and secret
+- the public API base URL for the OAuth callback and webhooks
+- optionally, a secret for encrypting tokens
+
+You set this up once for the whole platform. Projects then connect individual
+repos in their own settings. See [Git integration](/en/git-integration.html).
 
 ### E-mail (mail-to-ticket)
 
-Configure **IMAP polling** so inbound e-mail is turned into issues. Like
-everything else here, it is stored in Mongo and applies without a restart. See
+Set up **IMAP polling** so inbound e-mail becomes issues. This is also stored in
+Mongo and applies without a restart. See
 [E-mail to ticket](/en/email-to-ticket.html).
 
 ### Audit log
 
-Review a record of administrative and security-relevant actions on the instance.
+Shows administrative and security-relevant actions on the instance.
 
 ## Where to go next
 
-- [Single sign-on](/en/sso.html) — connect an identity provider.
-- [Git integration](/en/git-integration.html) — OAuth apps and per-project repos.
-- [E-mail to ticket](/en/email-to-ticket.html) — turn inbound mail into issues.
-- [Authentication](/en/authentication.html) — accounts, registration and 2FA.
+- [Single sign-on](/en/sso.html): connect an identity provider.
+- [Git integration](/en/git-integration.html): OAuth apps and per-project repos.
+- [E-mail to ticket](/en/email-to-ticket.html): turn inbound mail into issues.
+- [Authentication](/en/authentication.html): accounts, registration and 2FA.
