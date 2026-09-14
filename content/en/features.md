@@ -1,71 +1,89 @@
 ---
 title: Feature tour
-description: A guided tour of everything Hinata does — dashboard, projects, issues, boards, sprints, Gantt, time tracking, knowledge base, notifications, search, Git and SSO.
+description: A tour of every area of Hinata, from the dashboard to Git and SSO.
 ---
 
 # Feature tour
 
-Hinata is a full agile project-management suite in one place: plan work, run sprints, track time, write documentation and keep everyone in sync — from a single self-hosted server and a cross-platform app. This page is the map. Each area gets a one-paragraph tour and a link to its detailed guide.
+Hinata brings agile project management into one place: plan work, run sprints, track time and write documentation. It all runs on a single self-hosted server with a cross-platform app. Each area below gets a short overview and a link to its detailed guide.
 
 !!! tip "New to Hinata?"
-    If you just want to get a stack running, start with the [Quick start](/en/quick-start.html). If you want to understand the vocabulary first — organizations, projects, issues, sprints, teams — read [Core concepts](/en/concepts.html).
+    To get a stack running, start with the [Quick start](/en/quick-start.html). The vocabulary (organizations, projects, issues, sprints, teams) is explained in [Core concepts](/en/concepts.html).
 
 
 ![Hinata dashboard](/assets/img/shot-dashboard.png)
-*One platform: dashboard, boards, sprints, Gantt, reports, knowledge base and more.*
+*One platform for dashboard, boards, sprints, Gantt, reports, knowledge base and more.*
 
 ## The feature map
 
 | Area | What it does | Guide |
 | --- | --- | --- |
-| **Dashboard & reports** | Your focus for today, completion and team ranking, plus burndown, velocity, cycle-time and distribution charts you can export to PDF. | [Reports & dashboard](/en/reports.html) |
-| **Projects & teams** | Projects with their own keys (`ASTA-42`), workflows and colored labels; teams that grant per-member project access and decide what each person can even see. | [Projects & teams](/en/projects-teams.html) |
-| **Issues & hierarchy** | The core work item — types, priorities, labels, Markdown descriptions, comments, attachments and dependencies — in a three-level Epic → Story → Sub-task hierarchy. | [Issues & hierarchy](/en/issues.html) |
-| **Boards & sprints** | An agile board with columns mapped to your workflow states, WIP limits, swimlanes and a backlog; plan, start and complete sprints with capacity and burndown. | [Boards & sprints](/en/boards-sprints.html) |
-| **Gantt & time tracking** | A timeline view of start/due dates and dependencies, plus work logging with activity types and weekly timesheets. | [Gantt & time tracking](/en/timeline.html) |
-| **Knowledge base** | Confluence-style hierarchical Markdown articles, global or per project, with smart links that resolve real issues and people. | [Knowledge base](/en/knowledge-base.html) |
-| **Notifications** | In-app and e-mail notifications, plus push delivered through the Hinata Connect gateway — no Firebase project of your own required. | [Notifications](/en/notifications.html) |
-| **Search & palette** | A ⌘K liquid-glass command palette to jump anywhere, run commands and reopen recent items, with a responsive sheet on mobile. | [Search & palette](/en/search.html) |
-| **Languages** | Nine complete translations — English, German, French, Spanish, Russian, Chinese, Japanese, Hindi and Arabic — with right-to-left layout throughout for Arabic. | [Languages](/en/features.html#languages) |
-| **Git integration** | Connect projects to GitHub, GitLab or Bitbucket for real development info, smart commits and workflow automation driven by signed webhooks. | [Git integration](/en/git-integration.html) |
-| **Single sign-on** | OpenID Connect, OAuth 2.0, SAML 2.0 and LDAP, configured at runtime from the Admin area with no restart. | [SSO](/en/sso.html) |
+| **Dashboard & reports** | Focus for today, completion and team ranking. Plus burndown, velocity, cycle time and distribution charts you can export to PDF. | [Reports & dashboard](/en/reports.html) |
+| **Projects & teams** | Projects with their own keys (`ASTA-42`), workflows and colored labels. Teams grant members access to projects and decide what each person can see. | [Projects & teams](/en/projects-teams.html) |
+| **Issues & hierarchy** | Types, priorities, labels, Markdown, comments, attachments and dependencies in an Epic → Story → Sub-task hierarchy. | [Issues & hierarchy](/en/issues.html) |
+| **Boards & sprints** | An agile board with columns per workflow state, WIP limits, swimlanes and a backlog. Plan, start and complete sprints with capacity and burndown. | [Boards & sprints](/en/boards-sprints.html) |
+| **Gantt & time tracking** | A timeline of start and due dates and dependencies. Plus work logging with activity types and weekly timesheets. | [Gantt & time tracking](/en/timeline.html) |
+| **Knowledge base** | Confluence-style hierarchical Markdown articles, global or per project, with smart links to real issues and people. | [Knowledge base](/en/knowledge-base.html) |
+| **Notifications** | In-app, e-mail and push through the Hinata Connect gateway. No Firebase project of your own required. | [Notifications](/en/notifications.html) |
+| **Search & palette** | A liquid-glass command palette (⌘K) to jump anywhere, run commands and reopen recent items. A sheet on mobile. | [Search & palette](/en/search.html) |
+| **Languages** | Nine complete translations: English, German, French, Spanish, Russian, Chinese, Japanese, Hindi and Arabic. Right-to-left layout throughout for Arabic. | [Languages](/en/features.html#languages) |
+| **Git integration** | Connect projects to GitHub, GitLab or Bitbucket for development info, smart commits and automation driven by signed webhooks. | [Git integration](/en/git-integration.html) |
+| **Single sign-on** | OpenID Connect, OAuth 2.0, SAML 2.0 and LDAP, configured at runtime in the Admin area with no restart. | [SSO](/en/sso.html) |
 
 ## Dashboard & reports
 
-The dashboard is where each person lands: today's focus, a completion view, a weekly tracker and a friendly team ranking. Beyond the personal view, Hinata ships a full reporting suite — burndown and velocity for sprints, cycle time, created-vs-resolved, and distributions by state, priority or assignee. Every report can be exported to PDF, so you can drop a sprint review straight into a slide deck. Read more in [Reports & dashboard](/en/reports.html).
+The dashboard is where each person lands. It shows today's focus, completion, a weekly tracker and a team ranking.
+
+On top of that come reports: burndown and velocity for sprints, cycle time, created vs. resolved, and distributions by state, priority or assignee. Every report exports to PDF, for example for a sprint review. Read more in [Reports & dashboard](/en/reports.html).
 
 ## Projects & teams
 
-Everything in Hinata lives inside a **project**. A project has a short **key** (like `ASTA`) that becomes the prefix for every issue number (`ASTA-42`), its own set of **workflow states**, and a palette of reusable **colored labels**. **Teams** are how you control who sees what: a team grants its members access to specific projects, and that access gates app-wide visibility — a person only ever sees the projects a team grants them. See [Projects & teams](/en/projects-teams.html).
+Everything in Hinata lives inside a **project**. A project has a short **key** (like `ASTA`) that prefixes every issue number (`ASTA-42`), its own **workflow states** and reusable **colored labels**.
+
+**Teams** control who sees what. A team grants its members access to specific projects. A person only sees the projects a team grants them, anywhere in the app. See [Projects & teams](/en/projects-teams.html).
 
 ## Issues & hierarchy
 
-The **issue** is the atom of work. Each one has a type (**Epic, Story, Task, Bug, Feature** or **Sub-task**), a priority, labels, a Markdown description, comments, attachments and dependencies. Issues nest into a Jira-style three-level hierarchy — **Epic → Story/Task/Bug/Feature → Sub-task** — with a breadcrumb, a parent picker, and child and sub-task panels right on the issue. Attachments stream in live over Server-Sent Events, and issue keys link straight into your Git history. See [Issues & hierarchy](/en/issues.html).
+Each **issue** has a type (**Epic, Story, Task, Bug, Feature** or **Sub-task**), a priority, labels, a Markdown description, comments, attachments and dependencies.
+
+Issues nest in three levels like in Jira: **Epic → Story/Task/Bug/Feature → Sub-task**. On the issue you get a breadcrumb, a parent picker, and child and sub-task panels. Attachments stream in live over Server-Sent Events, and issue keys link into your Git history. See [Issues & hierarchy](/en/issues.html).
 
 ## Boards & sprints
 
-The **board** turns a project's issues into a drag-and-drop agile board whose columns map to your workflow states, with optional WIP limits and swimlanes grouped by epic, assignee or sub-task. A **Board / Backlog / Timeline** switcher lets you plan and visualize the same work three ways, and the backlog holds everything not yet pulled into a sprint. **Sprints** run the familiar plan → start → complete cycle with capacity and story points, and feed the burndown report. See [Boards & sprints](/en/boards-sprints.html).
+The **board** shows a project's issues in columns by workflow state, with drag and drop. WIP limits and swimlanes (by epic, assignee or sub-task) are optional.
+
+- The **Board / Backlog / Timeline** switcher shows the same work three ways.
+- The backlog holds everything not yet in a sprint.
+- **Sprints** run plan → start → complete with capacity and story points, and feed the burndown report.
+
+See [Boards & sprints](/en/boards-sprints.html).
 
 ## Gantt & time tracking
 
-The **Gantt timeline** is a read model over your issues' start and due dates, dependencies and progress — a quick way to see the shape of a delivery and where the critical path runs. **Time tracking** lets people log work against issues with activity types, rolled up into weekly timesheets for reporting and capacity planning. See [Gantt & time tracking](/en/timeline.html).
+The **Gantt timeline** is a read model over your issues' start and due dates, dependencies and progress. It shows the shape of a delivery and where the critical path runs.
+
+**Time tracking** lets people log work against issues with activity types. It rolls up into weekly timesheets for reporting and capacity planning. See [Gantt & time tracking](/en/timeline.html).
 
 ## Knowledge base
 
-The **knowledge base** is a Confluence-style space for documentation: hierarchical Markdown articles that can be global or scoped to a project, with the same team/project access control as the rest of the app. Smart links resolve real issues and people as you type, so your docs stay wired to live data instead of going stale. See [Knowledge base](/en/knowledge-base.html).
+The **knowledge base** is a Confluence-style space for documentation. It holds hierarchical Markdown articles, global or scoped to a project, with the same team and project access control as the rest of the app. Smart links resolve issues and people as you type, so docs stay current. See [Knowledge base](/en/knowledge-base.html).
 
 ## Notifications
 
-Hinata keeps everyone in the loop with in-app notifications, e-mail (over your SMTP relay) and push wherever an operating system delivers it — Android, iOS, macOS and Windows. Push is relayed through the [Hinata Connect gateway](/en/connect-gateway.html), which means a single published app can serve many servers and self-hosters don't need a Firebase project of their own. Linux has no desktop push service to register with, so a Linux client hears the same news in the app and by e-mail, while the account's push preference keeps working for the phone in that person's pocket. Each person tunes what they receive from a notification matrix in [account settings](/en/authentication.html). See [Notifications](/en/notifications.html).
+Hinata notifies in the app, by e-mail (over your SMTP relay) and by push on Android, iOS, macOS and Windows.
+
+- Push is relayed through the [Hinata Connect gateway](/en/connect-gateway.html). A single published app can serve many servers, and self-hosters don't need a Firebase project of their own.
+- Linux has no desktop push service to register with. A Linux client gets the same news in the app and by e-mail. The account's push preference still applies to that person's phone.
+
+Each person picks what they receive from a notification matrix in [account settings](/en/authentication.html). See [Notifications](/en/notifications.html).
 
 ## Search & palette
 
-Press **⌘K** (or **Ctrl+K**) anywhere to open the liquid-glass command palette. It searches across projects, issues, people and articles, surfaces recent items, and exposes quick commands — all in a responsive sheet that works just as well on a phone. See [Search & palette](/en/search.html).
+Press **⌘K** (or **Ctrl+K**) anywhere to open the liquid-glass command palette. It searches projects, issues, people and articles, shows recent items and offers quick commands. On a phone it opens as a sheet. See [Search & palette](/en/search.html).
 
 ## Languages
 
-Hinata speaks **nine languages**, and all nine are complete — every string, not
-a translated menu bar over an English app.
+Hinata comes in **nine languages**. Each one is fully translated.
 
 | | Language | In its own words | Code |
 | --- | --- | --- | --- |
@@ -79,31 +97,26 @@ a translated menu bar over an English app.
 | 🇮🇳 | Hindi | हिन्दी | `hi` |
 | 🇸🇦 | Arabic | العربية | `ar` |
 
-Pick yours under **Appearance & app** in [your account](/en/guide-account.html).
-The choice follows you everywhere: the interface changes at once, and it is also
-the language the server writes its e-mails and error messages in.
+Pick yours under **Appearance & app** in [your account](/en/guide-account.html). The interface switches at once. The server also writes its e-mails and error messages in that language.
 
-**Arabic reads right to left**, and so does the app when you choose it — menus,
-lists, navigation, the arrows on every button. That is a layout, not a
-translation, and it is worth saying out loud because most software that offers
-Arabic stops at the words.
+**Arabic reads right to left**, and so does the app when you choose it: menus, lists, navigation and the arrows on buttons.
 
-!!! note "A flag is a country, not a language"
-    The flags above are signposts, nothing more. Spanish is not only Spain's and
-    Arabic belongs to more than twenty countries; no small picture gets that
-    right. They are here because they are quicker to scan than a list of names.
+!!! note "About the flags"
+    The flags are only there for quick scanning. A flag stands for a country. Spanish is spoken beyond Spain, and Arabic in more than twenty countries.
 
 ## Git integration
 
-Connect each project to one or more repositories on **GitHub, GitLab or Bitbucket**. Hinata brokers a real OAuth flow, registers a signed webhook, and turns push, pull-request and CI events into per-issue development information — branches, commits, PR/MRs and build status. Layer on **smart commits** (`ASTA-42 #comment shipped`, `#time 2h`) and workflow automation that moves issues forward as work progresses. See [Git integration](/en/git-integration.html).
+Connect a project to one or more repositories on **GitHub, GitLab or Bitbucket**. Hinata runs a real OAuth flow and registers a signed webhook. Push, pull request and CI events become development info on the issue: branches, commits, PR/MRs and build status.
+
+On top of that you get **smart commits** (`ASTA-42 #comment shipped`, `#time 2h`) and automation that moves issues forward as work progresses. See [Git integration](/en/git-integration.html).
 
 ## Single sign-on
 
-Bring your own identity provider. Hinata supports **OpenID Connect, OAuth 2.0, SAML 2.0 and LDAP** — Keycloak, Authentik, Azure AD, Google, Synology SSO and more — all configured at runtime from the Admin area, with no restart. See [SSO](/en/sso.html).
+Bring your own identity provider. Hinata supports **OpenID Connect, OAuth 2.0, SAML 2.0 and LDAP**, for example with Keycloak, Authentik, Azure AD, Google, Synology SSO and more. Everything is configured at runtime in the Admin area, with no restart. See [SSO](/en/sso.html).
 
 ## Where to go next
 
-- **[Projects & teams](/en/projects-teams.html)** — set up your first project and control who sees it.
-- **[Issues & hierarchy](/en/issues.html)** — the work item, end to end.
-- **[Boards & sprints](/en/boards-sprints.html)** — run an agile sprint from planning to review.
-- **[Core concepts](/en/concepts.html)** — the vocabulary that ties it all together.
+- **[Projects & teams](/en/projects-teams.html)**: set up your first project and control who sees it.
+- **[Issues & hierarchy](/en/issues.html)**: the work item, end to end.
+- **[Boards & sprints](/en/boards-sprints.html)**: run an agile sprint from planning to review.
+- **[Core concepts](/en/concepts.html)**: the key vocabulary.

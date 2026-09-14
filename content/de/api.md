@@ -1,23 +1,18 @@
 ---
 title: API-Referenz
-description: Orientierung für die Hinata-REST-API unter /api/v1 — das Bearer-Token-Authentifizierungsmodell, öffentliche Endpunkte, Live-SSE-Streams und die Scalar-Docs-UI.
+description: Einstieg in die Hinata-REST-API unter /api/v1 mit Bearer-Tokens, öffentlichen Endpunkten, SSE-Streams und der Scalar-Docs-UI.
 ---
 
 # API-Referenz
 
-Hinata stellt eine stabile, versionierte REST-API unter **`/api/v1`** bereit. Jedes
-Feature, das du in der App siehst — Projekte, Vorgänge, Boards, Sprints, die
-Wissensdatenbank — wird von genau dieser Fläche angetrieben, sodass alles, was der
-Client kann, auch deine eigenen Skripte und Integrationen können. Diese Seite ist
-eine **Orientierung**, kein erschöpfender Abzug jedes Endpunkts: Sie behandelt das
-Authentifizierungsmodell, die Handvoll öffentlicher Endpunkte, wie Live-Updates über
-SSE streamen und wie du die vollständige Fläche interaktiv erkundest.
+Hinata stellt eine stabile, versionierte REST-API unter **`/api/v1`** bereit. Die App
+nutzt genau diese API für alles, von Projekten und Vorgängen über Boards und Sprints
+bis zur Wissensdatenbank. Deine Skripte und Integrationen können also alles, was der
+Client kann.
 
-!!! info "Das ist eine Karte, nicht das Gelände"
-    Die API ist groß und entwickelt sich mit der Plattform. Statt hier jede Route zu
-    duplizieren (und zu veralten), lehrt dich diese Seite die überall geltenden
-    Regeln und verweist dich dann auf die [Scalar-Docs-UI](#die-vollstandige-flache-erkunden)
-    für die vollständige, stets aktuelle Endpunktliste.
+Diese Seite ist eine **Orientierung**. Sie erklärt die Regeln, die überall gelten.
+Die vollständige, stets aktuelle Endpunktliste zeigt die
+[Scalar-Docs-UI](#die-vollständige-fläche-erkunden).
 
 ## Basis-URL und Versionierung
 
@@ -27,36 +22,34 @@ Alle Endpunkte liegen unter dem Präfix `/api/v1` auf dem öffentlichen API-Host
 https://api.track.example.com/api/v1
 ```
 
-Das Segment `v1` ist die Vertragsversion. Breaking Changes würden unter einem neuen
-Präfix ausgeliefert, sodass du sicher auf `v1` pinnen kannst. In der App ist diese
-Basis das, was du pro Server konfigurierst; in deinen eigenen Clients behandle
-`https://api.track.example.com/api/v1` als Wurzel und hänge die unten stehenden Pfade an.
+`v1` ist die Vertragsversion. Breaking Changes kämen unter einem neuen Präfix, du
+kannst dich also auf `v1` festlegen. In der App konfigurierst du diese Basis pro
+Server. In eigenen Clients hängst du die Pfade unten an
+`https://api.track.example.com/api/v1` an.
 
 ## Authentifizierungsmodell
 
-Hinata verwendet **Stateless JWTs (HS512)**. Es gibt zwei Arten von Token, und die
-Unterscheidung ist wichtig:
+Hinata nutzt **zustandslose JWTs (HS512)** mit zwei Arten von Token:
 
 | Token | Lebensdauer | Wofür es da ist |
 | --- | --- | --- |
 | **Access-Token** | Kurzlebig | Das Bearer-Zugangsdatum, das du bei jeder authentifizierten Anfrage sendest. |
 | **Refresh-Token** | Länger lebend | Wird **nur** verwendet, um über `/auth/refresh` ein neues Access-Token auszustellen. |
 
-Du authentifizierst eine Anfrage, indem du das Access-Token in den `Authorization`-Header legst:
+Das Access-Token gehört in den `Authorization`-Header:
 
 ```text
 Authorization: Bearer <access-token>
 ```
 
 !!! warning "Refresh-Tokens werden für API-Zugriff abgelehnt"
-    Ein Refresh-Token kann **nur** an `/auth/refresh` gegen ein neues Access-Token
-    getauscht werden — es wird an keinem anderen Endpunkt als Bearer-Zugangsdatum
-    akzeptiert. Sendest du ein Refresh-Token als `Authorization: Bearer …` an etwa
-    `/issues`, wird die Anfrage abgelehnt. Rufe einen authentifizierten Endpunkt immer
-    mit einem frischen **Access**-Token auf.
+    Ein Refresh-Token lässt sich **nur** an `/auth/refresh` gegen ein neues
+    Access-Token tauschen. An jedem anderen Endpunkt wird es als Bearer-Zugangsdatum
+    abgelehnt, zum Beispiel als `Authorization: Bearer …` an `/issues`. Rufe
+    authentifizierte Endpunkte immer mit einem gültigen **Access**-Token auf.
 
-Wenn ein Access-Token abläuft, tausche dein Refresh-Token gegen ein neues, statt dich
-erneut anzumelden:
+Läuft das Access-Token ab, tauschst du dein Refresh-Token gegen ein neues, statt dich
+neu anzumelden:
 
 ```bash
 curl -sS -X POST https://api.track.example.com/api/v1/auth/refresh \
@@ -64,16 +57,15 @@ curl -sS -X POST https://api.track.example.com/api/v1/auth/refresh \
   -d '{"refreshToken":"<refresh-token>"}'
 ```
 
-Die App tut das transparent: Ihr `ApiClient` fängt ein `401` ab, ruft
-`/auth/refresh`, tauscht das neue Access-Token ein und wiederholt die ursprüngliche
-Anfrage einmal. Siehe [Authentifizierung](/de/authentication.html) für das vollständige Token-Modell.
+Die App macht das automatisch. Ihr `ApiClient` fängt ein `401` ab, ruft
+`/auth/refresh`, übernimmt das neue Access-Token und wiederholt die Anfrage einmal.
+Das vollständige Token-Modell steht unter [Authentifizierung](/de/authentication.html).
 
 ### Lokalisierte Fehler mit Accept-Language
 
-Sende einen **`Accept-Language`**-Header (`en` oder `de`) und der Server lokalisiert
-Fehlermeldungen für dich — sie werden serverseitig aus Ressourcen-Bundles aufgelöst,
-die anhand dieses Headers verschlüsselt sind. Ein deutscher Client erhält deutschen
-Fehlertext ohne jegliche Übersetzungslogik im Client:
+Sendest du den Header **`Accept-Language`** (`en` oder `de`), bekommst du
+Fehlermeldungen in dieser Sprache. Der Server löst sie aus Resource-Bundles auf, der
+Client braucht keine Übersetzungslogik:
 
 ```bash
 curl -sS https://api.track.example.com/api/v1/projects \
@@ -81,14 +73,14 @@ curl -sS https://api.track.example.com/api/v1/projects \
   -H 'Accept-Language: de'
 ```
 
-Fehler sind stabiles, maschinenlesbares JSON mit einer menschlichen `message` bereits
-in der angeforderten Sprache und enthalten niemals Stacktraces.
+Fehler sind stabiles, maschinenlesbares JSON. Die `message` ist schon in der
+angefragten Sprache. Stacktraces sind nie enthalten.
 
 ## Öffentliche Endpunkte (kein Token)
 
-Eine kleine Menge von Endpunkten ist **ohne** Bearer-Token erreichbar — alles, was
-die App braucht, bevor ein Benutzer angemeldet ist (den Server entdecken,
-Setup-Status prüfen, anmelden). Alles andere erfordert Authentifizierung.
+Diese Endpunkte gehen **ohne** Bearer-Token. Die App braucht sie, bevor jemand
+angemeldet ist: um den Server zu finden, den Setup-Status zu prüfen und sich
+anzumelden.
 
 | Methode | Endpunkt | Zweck |
 | --- | --- | --- |
@@ -101,16 +93,16 @@ Setup-Status prüfen, anmelden). Alles andere erfordert Authentifizierung.
 | `GET` | `/actuator/health` | Liveness-/Health-Probe für Load Balancer und Uptime-Checks. |
 
 !!! note "Alles andere braucht ein Bearer-Token"
-    Jeder Pfad, der nicht in der obigen Tabelle steht, erfordert ein gültiges
-    **Access**-Token. Admin-Routen unter `/api/v1/admin/**` erfordern zusätzlich die
+    Jeder Pfad, der nicht in der Tabelle steht, braucht ein gültiges
+    **Access**-Token. Admin-Routen unter `/api/v1/admin/**` brauchen zusätzlich die
     Rolle `ADMIN`.
 
 ## Anmelden, dann die API aufrufen
 
-Der Alltags-Flow: `POST /auth/login`, um Tokens zu erhalten, dann sende das
-zurückgegebene Access-Token als Bearer-Zugangsdatum bei nachfolgenden Aufrufen.
+Der normale Ablauf: Mit `POST /auth/login` holst du Tokens. Das Access-Token sendest
+du dann bei jedem weiteren Aufruf als Bearer-Zugangsdatum.
 
-**1. Anmelden** und ein Access-Token sowie ein Refresh-Token erhalten:
+**1. Anmelden** und Access-Token und Refresh-Token erhalten:
 
 ```bash
 curl -sS -X POST https://api.track.example.com/api/v1/auth/login \
@@ -120,9 +112,9 @@ curl -sS -X POST https://api.track.example.com/api/v1/auth/login \
 ```
 
 Die Antwort enthält die Tokens (Feldnamen können `accessToken` und `refreshToken`
-einschließen) plus den angemeldeten Benutzer. Kopiere das **Access-Token**.
+sein) und den angemeldeten Benutzer. Kopiere das **Access-Token**.
 
-**2. Rufe einen authentifizierten Endpunkt** mit diesem Token als Bearer-Zugangsdatum auf:
+**2. Authentifizierten Endpunkt aufrufen**, mit dem Token als Bearer-Zugangsdatum:
 
 ```bash
 curl -sS https://api.track.example.com/api/v1/projects \
@@ -130,8 +122,8 @@ curl -sS https://api.track.example.com/api/v1/projects \
 ```
 
 !!! tip "Erfasse das Token in einem Schritt"
-    Mit `jq` kannst du dich anmelden und das Access-Token zur Wiederverwendung in
-    einer Shell ablegen:
+    Mit `jq` meldest du dich an und legst das Access-Token in der Shell zur
+    Wiederverwendung ab:
 
     ```bash
     TOKEN=$(curl -sS -X POST https://api.track.example.com/api/v1/auth/login \
@@ -143,23 +135,23 @@ curl -sS https://api.track.example.com/api/v1/projects \
       -H "Authorization: Bearer $TOKEN"
     ```
 
-Ist TOTP-Zwei-Faktor für das Konto aktiviert, gibt `/auth/login` eine 2FA-Abfrage
-statt Tokens zurück; schließe die Abfrage ab, um sie zu erhalten. Siehe
+Ist TOTP-Zwei-Faktor für das Konto aktiv, liefert `/auth/login` statt Tokens eine
+2FA-Abfrage. Die Tokens gibt es, sobald die Abfrage abgeschlossen ist. Siehe
 [Authentifizierung](/de/authentication.html).
 
 ## Live-Updates mit Server-Sent Events
 
-Manche Ressourcen pushen Änderungen über **Server-Sent Events (SSE)** an verbundene
-Clients, statt dass du pollen musst. Das klarste Beispiel sind **Anhänge**: Wird eine
-Datei zu einem Vorgang hinzugefügt oder von ihm entfernt, wird jeder Client, der
-diesen Vorgang streamt, sofort benachrichtigt unter:
+Manche Ressourcen schicken Änderungen per **Server-Sent Events (SSE)** an verbundene
+Clients, du musst also nicht pollen. Das klarste Beispiel sind **Anhänge**: Kommt an
+einem Vorgang eine Datei dazu oder fällt weg, erfährt das jeder Client sofort, der
+diesen Vorgang streamt:
 
 ```text
 GET /api/v1/issues/{issueId}/attachments/stream
 ```
 
-Öffne den Stream mit `curl` (das Flag `-N` deaktiviert das Puffern, sodass Events
-ausgegeben werden, sobald sie eintreffen):
+Öffne den Stream mit `curl`. Das Flag `-N` schaltet das Puffern ab, damit Events
+sofort erscheinen:
 
 ```bash
 curl -N https://api.track.example.com/api/v1/issues/ASTA-42/attachments/stream \
@@ -167,52 +159,51 @@ curl -N https://api.track.example.com/api/v1/issues/ASTA-42/attachments/stream \
   -H 'Accept: text/event-stream'
 ```
 
-Die Verbindung bleibt offen und sendet ein Event, jedes Mal wenn sich die Anhänge des
-Vorgangs ändern. SSE ist ein einseitiger, langlebiger HTTP-Stream — kein
-WebSocket-Upgrade erforderlich.
+Die Verbindung bleibt offen und sendet bei jeder Änderung an den Anhängen ein Event.
+SSE ist ein einseitiger, langlebiger HTTP-Stream und braucht kein WebSocket-Upgrade.
 
 !!! warning "Deaktiviere Proxy-Puffern für SSE"
-    Ein Reverse Proxy, der Antworten puffert, hält SSE-Events zurück, bis die
-    Verbindung schließt, was so aussieht, als „funktionierten Live-Updates nicht".
-    Schalte das Puffern für den Stream-Pfad aus (zum Beispiel `proxy_buffering off;`
-    bei nginx). Siehe [Reverse Proxy & TLS](/de/reverse-proxy.html) und die
-    [FAQ](/de/faq.html).
+    Puffert ein Reverse Proxy die Antworten, hält er SSE-Events zurück, bis die
+    Verbindung schließt. Dann sieht es so aus, als „funktionierten Live-Updates
+    nicht“. Schalte das Puffern für den Stream-Pfad ab (zum Beispiel
+    `proxy_buffering off;` bei nginx). Siehe [Reverse Proxy & TLS](/de/reverse-proxy.html)
+    und die [FAQ](/de/faq.html).
 
 ## Rate Limiting
 
-Die API ist **pro Client-IP** mit bucket4j ratenlimitiert, mit einem strengen Budget
-auf Authentifizierungsrouten, um Brute-Force-Versuche abzuschwächen:
+Die API ist mit bucket4j **pro Client-IP** begrenzt. Für Anmelderouten gilt ein
+strenges Budget gegen Brute Force:
 
 | Bereich | Standardlimit | Umgebungsvariable |
 | --- | --- | --- |
 | Allgemeine API | **300** Anfragen/Minute | `HINATA_RATE_LIMIT_API` |
 | `/auth/**` | **10** Anfragen/Minute | `HINATA_RATE_LIMIT_AUTH` |
 
-Die einzige Ausnahme ist `GET /auth/sso/providers`: Der Anmeldebildschirm fragt bei
-jedem Aufruf ab, welche SSO-Buttons er zeichnen soll, und die Antwort verrät nichts
-Erratbares — deshalb zählt sie auf das allgemeine Budget statt auf das
-Anmelde-Budget.
+Einzige Ausnahme ist `GET /auth/sso/providers`. Es zählt zum allgemeinen Budget. Der
+Anmeldebildschirm fragt den Endpunkt bei jedem Aufruf ab, um die SSO-Buttons zu
+zeichnen, und die Antwort verrät nichts Erratbares.
 
-Rate Limiting wird über `HINATA_RATE_LIMIT_ENABLED` umgeschaltet (standardmäßig an).
-Wiederholt fehlgeschlagene Logins lösen zusätzlich eine **datenbankgestützte Sperre**
-aus (`HINATA_MAX_LOGIN_FAILURES`, Standard 5; `HINATA_LOGIN_BLOCK_MINUTES`, Standard
-15), die Neustarts übersteht.
+`HINATA_RATE_LIMIT_ENABLED` schaltet das Rate Limiting (standardmäßig an).
+Wiederholt fehlgeschlagene Logins lösen zusätzlich eine **Sperre in der Datenbank**
+aus, die Neustarts übersteht:
+
+- `HINATA_MAX_LOGIN_FAILURES`, Standard 5
+- `HINATA_LOGIN_BLOCK_MINUTES`, Standard 15
 
 !!! tip "Hinter einem Reverse Proxy: setze Trusted Proxies"
-    Rate Limiting schlüsselt auf die Client-IP. Sitzt dein Server hinter einem Proxy
-    und hast du `HINATA_TRUSTED_PROXIES` nicht auf die CIDR des Proxys gesetzt,
-    scheint jede Anfrage vom Proxy zu kommen und teilt sich einen Bucket. Siehe
-    [Reverse Proxy & TLS](/de/reverse-proxy.html).
+    Das Rate Limiting richtet sich nach der Client-IP. Steht dein Server hinter
+    einem Proxy und ist `HINATA_TRUSTED_PROXIES` nicht auf den CIDR des Proxys
+    gesetzt, kommt jede Anfrage scheinbar vom Proxy. Dann teilen sich alle einen
+    Bucket. Siehe [Reverse Proxy & TLS](/de/reverse-proxy.html).
 
 ## Die vollständige Fläche erkunden
 
-Die vollständige, stets aktuelle Endpunktliste wird von einer interaktiven
-**Scalar-API-Docs-UI** ausgeliefert, gesichert durch das Flag `HINATA_DOCS_ENABLED`.
-Sie ist **in Produktion standardmäßig aus**, sodass du deine gesamte API-Fläche nie
-an die Öffentlichkeit preisgibst — aber sie ist der beste Weg, jede Route, jedes
-Schema und jeden Parameter während der Entwicklung zu durchstöbern.
+Die vollständige, stets aktuelle Endpunktliste liefert eine interaktive
+**Scalar-API-Docs-UI**. Sie hängt am Flag `HINATA_DOCS_ENABLED` und ist **in
+Produktion standardmäßig aus**, damit deine API nicht öffentlich beschrieben wird. In
+der Entwicklung ist sie der beste Weg, Routen, Schemas und Parameter durchzusehen.
 
-Aktiviere sie lokal, indem du das Flag setzt, bevor du den Server startest:
+Aktiviere sie lokal, bevor du den Server startest:
 
 ```bash
 HINATA_DOCS_ENABLED=true ./gradlew bootRun
@@ -224,18 +215,16 @@ Oder in einer `.env`-/Compose-Umgebung:
 HINATA_DOCS_ENABLED=true
 ```
 
-Öffne dann die Docs-UI in deinem Browser unter der Basis-URL deines Servers. Weil sie
-die gesamte Fläche exponiert, **lasse `HINATA_DOCS_ENABLED=false` in Produktion** und
-nutze sie nur auf einer Dev-Instanz.
+Die Docs-UI öffnest du dann im Browser unter der Basis-URL deines Servers.
 
 !!! danger "Exponiere die Docs-UI nicht in Produktion"
-    Die Scalar-UI beschreibt jeden Endpunkt und jedes Schema. Halte sie auf
-    internetzugewandten Deployments deaktiviert; aktiviere sie nur auf
-    vertrauenswürdigen, lokalen Dev-Servern.
+    Die Scalar-UI beschreibt jeden Endpunkt und jedes Schema. Lass
+    `HINATA_DOCS_ENABLED=false` auf Servern, die aus dem Internet erreichbar sind.
+    Aktiviere sie nur auf vertrauenswürdigen, lokalen Dev-Instanzen.
 
 ## Wie geht es weiter
 
-- [Authentifizierung](/de/authentication.html) — der vollständige Token-Lebenszyklus, 2FA und SSO-Login.
-- [Single Sign-on (SSO)](/de/sso.html) — OIDC / OAuth2 / SAML / LDAP und `/auth/sso/providers`.
-- [Git-Integration](/de/git-integration.html) — OAuth-Flow und signaturverifizierte Webhook-Endpunkte.
-- [Entwicklung](/de/development.html) — den Server aus dem Quellcode betreiben, um die API mit der Docs-UI zu erkunden.
+- [Authentifizierung](/de/authentication.html): der vollständige Token-Lebenszyklus, 2FA und SSO-Login.
+- [Single Sign-on (SSO)](/de/sso.html): OIDC / OAuth2 / SAML / LDAP und `/auth/sso/providers`.
+- [Git-Integration](/de/git-integration.html): OAuth-Flow und Webhook-Endpunkte mit Signaturprüfung.
+- [Entwicklung](/de/development.html): den Server aus dem Quellcode starten und die API in der Docs-UI erkunden.

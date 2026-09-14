@@ -1,238 +1,218 @@
 ---
 title: Die Apps
-description: Eine Flutter-Codebasis für Android, iOS, Web, macOS, Windows und Linux — wie sich der Client verbindet, Versionen sperrt, sich anmeldet und mehrere Server aus einem Liquid-Glass-Server-Manager verwaltet.
+description: Wie sich die Hinata-App für Android, iOS, Web, macOS, Windows und Linux verbindet, anmeldet und mehrere Server verwaltet.
 ---
 
 # Die Apps
 
-Hinata liefert einen einzigen Flutter-Client, der aus **einer Codebasis** auf
-**Android**, **iOS**, im **Web** und auf allen drei Desktops — **macOS**,
-**Windows** und **Linux** — läuft. Es gibt keine separate Mobil- und Desktop-App,
-die synchron gehalten werden müssten — dieselben Bildschirme, derselbe State,
-dieselbe Netzwerkschicht passen sich an, worauf auch immer sie laufen. Diese
-Seite erklärt, wie sich die App mit deinem Server verbindet, wie sie entscheidet,
-ob sie aktuell ist, wie du dich anmeldest, wie eine einzige App mit vielen
-Servern gleichzeitig spricht und was du wissen solltest, wenn du sie unter Linux
-betreibst.
+Hinata hat einen einzigen Flutter-Client für **Android**, **iOS**, das **Web**,
+**macOS**, **Windows** und **Linux**. Es gibt keine getrennte Mobil- und
+Desktop-App. Dieselben Bildschirme, derselbe State und dieselbe Netzwerkschicht
+passen sich an die Plattform an.
 
+Diese Seite erklärt Verbindung, Versionssperre, Anmeldung, mehrere Server und
+den Betrieb unter Linux.
 
 ![Hinata auf dem Smartphone](/assets/img/shot-mobile-dashboard.png)
-*Eine Flutter-Codebasis — Android, iOS, Web, macOS, Windows und Linux aus einer App.*
+*Eine App aus einer Flutter-Codebasis für sechs Plattformen.*
 
 ## Eine Codebasis, sechs Plattformen
 
-Der Client ist mit Flutter gebaut. Der State wird mit bloc/cubit verwaltet, das
-Routing mit go_router, die Lokalisierung mit i18next, und jeder Netzwerkaufruf
-läuft über einen einzigen `ApiClient` auf Basis von **dio** (automatische
-Token-Erneuerung, `Accept-Language`-Header). Weil es nur eine Codebasis gibt,
-landet eine Funktion überall auf einmal.
+Der Client nutzt Flutter, bloc/cubit für den State, go_router fürs Routing und
+i18next für die Sprachen. Jeder Netzwerkaufruf läuft über einen `ApiClient` auf
+Basis von **dio** (automatische Token-Erneuerung, `Accept-Language`-Header).
+Eine neue Funktion landet damit überall gleichzeitig.
 
-- **Responsiv von Grund auf.** Das Layout passt sich über aus dem Goldenen Schnitt
-  abgeleitete Breakpoints an, statt über feste Pixelbreiten, sodass dieselbe
-  Oberfläche sauber vom Telefon zum Tablet zum Desktop-Fenster zum Browser-Tab
-  umfließt.
-- **Lokalisiert.** Die Oberfläche gibt es in **Englisch** und **Deutsch**
-  (i18next), und Fehlermeldungen werden **vom Server** über den
-  `Accept-Language`-Header lokalisiert — der Client sendet die Sprache des
-  Benutzers, der Server gibt die bereits übersetzte Meldung zurück.
-- **Hell & dunkel.** Eine navyblaue Navigationsleiste, ein warmes
-  Papier-Workspace und der charakteristische Honig-Amber-Akzent `#D9A032`, der im
-  hellen und dunklen Modus identisch wirkt, mit Liquid-Glass-Oberflächen auf der
-  mobilen Navigation, der ⌘K-Palette und der Anhang-Lightbox.
-- **Nativ auf dem Desktop.** Die drei Desktop-Ziele sind echte native Builds und
-  kein Browser im Rahmen: macOS, Windows (als MSIX paketiert) und Linux als
-  **GTK-3**-Anwendung. Was das praktisch bedeutet, steht unter
+- **Responsiv:** Breakpoints aus dem Goldenen Schnitt statt fester Pixelbreiten.
+  Dieselbe Oberfläche passt auf Telefon, Tablet, Desktopfenster und Browsertab.
+- **Lokalisiert:** Oberfläche auf **Englisch** und **Deutsch** (i18next).
+  Fehlermeldungen übersetzt **der Server**. Der Client schickt die Sprache per
+  `Accept-Language`, der Server antwortet mit der fertigen Meldung.
+- **Hell und dunkel:** navyblaue Navigationsleiste, warmer Papierton im
+  Arbeitsbereich und der honigfarbene Akzent `#D9A032`, der in beiden Modi
+  gleich wirkt. Glasflächen gibt es in der mobilen Navigation, der ⌘K-Palette
+  und der Anhang-Lightbox.
+- **Nativ auf dem Desktop:** echte native Builds statt eines Browsers im Rahmen.
+  macOS, Windows (als MSIX) und Linux als **GTK-3**-Anwendung. Details unter
   [Hinata unter Linux](#hinata-unter-linux).
 
 ## So funktioniert es: vom Start bis zum Workspace
 
-Jeder frische Start durchläuft einen kurzen, vorhersehbaren Weg, bevor du in deinem
-Workspace landest.
+Jeder frische Start läuft in dieser Reihenfolge ab:
 
 | Schritt | Was passiert |
 | --- | --- |
-| **Verbinden** | Beim ersten Start fragt die App nach deiner **Server-URL** und fährt erst fort, wenn der Server unter `/api/v1/meta` antwortet. |
-| **Versionssperre** | Die App vergleicht ihre eigene Version mit dem Minimum des Servers (`HINATA_APP_MIN_VERSION`, bereitgestellt als `minAppVersion`) und erzwingt ein Update, wenn der Client zu alt ist. |
-| **Setup-Assistent** | Ein brandneuer Server wird direkt in der App konfiguriert — Organisationsname und erster Admin — es sei denn, er wurde mit `HINATA_SETUP_*` gebootstrappt. |
+| **Verbinden** | Beim ersten Start fragt die App nach deiner **Server-URL** und geht erst weiter, wenn der Server unter `/api/v1/meta` antwortet. |
+| **Versionssperre** | Die App vergleicht ihre Version mit dem Minimum des Servers (`HINATA_APP_MIN_VERSION`, bereitgestellt als `minAppVersion`) und erzwingt ein Update, wenn der Client zu alt ist. |
+| **Setup-Assistent** | Ein neuer Server wird direkt in der App eingerichtet (Organisationsname und erster Admin), außer er wurde mit `HINATA_SETUP_*` vorkonfiguriert. |
 | **Onboarding** | Eine einmalige, illustrierte Tour durch die wichtigsten Funktionen. |
 | **Anmelden** | Lokale Zugangsdaten oder **SSO** (OpenID Connect, OAuth 2.0, SAML 2.0, LDAP). |
 
 ### Verbinden
 
-Das Allererste, wonach eine native App fragt, ist eine Server-URL. Sie prüft
-`/api/v1/meta` und weigert sich fortzufahren, bis der Server antwortet, sodass du
-nie mit einem Host „verbunden" enden kannst, der kein Hinata-Server ist. Zuvor
-verwendete Server erscheinen als Ein-Tipp-Verknüpfungen unter dem URL-Feld, was das
-Wiederverbinden nach einem kurz nicht erreichbaren Server zu einem einzigen Tipp
-macht.
+Die native App fragt zuerst nach der Server-URL. Sie prüft `/api/v1/meta` und
+geht erst weiter, wenn der Server antwortet. So landest du nie bei einem Host,
+der kein Hinata-Server ist.
 
-!!! info "Native Apps backen nie eine Server-URL ein"
-    Eine veröffentlichte native App hat keine Serveradresse einkompiliert. Genau
-    das ermöglicht es, dass eine App jedem Hinata-Betreiber dient. Nur der
-    **Web**-Build darf standardmäßig auf seinen eigenen Origin zeigen (über
-    `kIsWeb`), weil er bereits von einem bekannten Host ausgeliefert wird. Siehe
-    [Multi-Server](#multi-server-eine-app-viele-server) unten.
+Früher genutzte Server stehen als Verknüpfungen unter dem URL-Feld. Nach einem
+kurzen Ausfall verbindest du dich mit einem Tipp neu.
+
+!!! info "Native Apps haben keine feste Server-URL"
+    In einer veröffentlichten nativen App ist keine Serveradresse einkompiliert.
+    Deshalb kann eine App jedem Hinata-Betreiber dienen. Nur der **Web**-Build
+    darf standardmäßig seinen eigenen Origin nutzen (über `kIsWeb`), weil er
+    ohnehin von einem bekannten Host kommt. Siehe
+    [Multi-Server](#multi-server-eine-app-viele-server).
 
 ### Versionssperre
 
-Bei jedem Start liest die App die vom Server angegebene minimale Client-Version.
-Ist die installierte App älter, zeigt sie statt des Workspaces einen Bildschirm
-**Update erforderlich**. Betreiber steuern diesen Wert mit der Umgebungsvariable
-`HINATA_APP_MIN_VERSION` oder überschreiben ihn live im
-[Adminbereich](/de/admin-area.html) → App-Einstellungen (der Datenbankwert
-gewinnt). Das bedeutet, du kannst jeden Client in dem Moment auf einen neuen Build
-zwingen, in dem eine breaking Change ausgeliefert wird — ganz ohne clientseitige
-Koordination.
+Bei jedem Start liest die App die Mindestversion vom Server. Ist die installierte
+App älter, erscheint statt des Workspaces der Bildschirm **Update erforderlich**.
+
+Betreiber setzen den Wert mit `HINATA_APP_MIN_VERSION` oder live im
+[Adminbereich](/de/admin-area.html) → App-Einstellungen. Der Datenbankwert
+gewinnt. So bringst du alle Clients auf einen neuen Build, sobald eine
+inkompatible Änderung live geht, ohne Abstimmung auf Clientseite.
 
 ### Setup-Assistent
 
-Richte die App auf einen frisch deployten Server, und sie führt dich in der
-Oberfläche durch die Ersteinrichtung: den Namen deiner Organisation und das erste
-Administratorkonto. Wenn du lieber unbeaufsichtigt bootstrappen möchtest, setze
-`HINATA_SETUP_AUTO_COMPLETE=true` zusammen mit `HINATA_SETUP_ORGANIZATION_NAME` und
-den Admin-Zugangsdaten, und der Assistent wird übersprungen. Siehe
+Zeigt die App auf einen frisch installierten Server, führt sie dich durch die
+Ersteinrichtung: Name der Organisation und erstes Administratorkonto.
+
+Ohne Assistent geht es mit `HINATA_SETUP_AUTO_COMPLETE=true` zusammen mit
+`HINATA_SETUP_ORGANIZATION_NAME` und den Admin-Zugangsdaten. Siehe
 [Setup & Erststart](/de/setup-wizard.html).
 
 ### Anmelden
 
-Sobald ein Server eingerichtet ist, authentifizierst du dich entweder mit:
+Du meldest dich an mit:
 
-- **Lokalen Zugangsdaten** — Benutzername/E-Mail und Passwort.
-  Selbstregistrierung, E-Mail-Verifizierung, Passwort-vergessen und optionale
-  Admin-Genehmigung werden alle unterstützt und über Feature-Flags gesteuert (siehe
+- **Lokalen Zugangsdaten:** Benutzername oder E-Mail und Passwort.
+  Selbstregistrierung, E-Mail-Verifizierung, Passwort vergessen und optionale
+  Freigabe durch einen Admin laufen über Feature-Flags (siehe
   [Authentifizierung](/de/authentication.html)).
-- **SSO** — OpenID Connect, OAuth 2.0, SAML 2.0 oder LDAP, vom Betreiber im
-  Adminbereich konfiguriert. SSO kehrt über den Deep Link `hinata://auth-callback`
-  zur App zurück. Siehe [Single Sign-on](/de/sso.html).
+- **SSO:** OpenID Connect, OAuth 2.0, SAML 2.0 oder LDAP, eingerichtet im
+  Adminbereich. Zurück in die App geht es über den Deep Link
+  `hinata://auth-callback`. Siehe [Single Sign-on](/de/sso.html).
 
-Wenn die Zwei-Faktor-Authentifizierung (TOTP) für ein Konto aktiviert ist, fügt die
-Anmeldung nach dem Passwortschritt eine Einmalcode-Abfrage hinzu.
+Ist für das Konto Zwei-Faktor-Authentifizierung (TOTP) aktiv, folgt nach dem
+Passwort die Abfrage eines Einmalcodes.
 
 ## Multi-Server: eine App, viele Server
 
-Eine einzige Hinata-App kann mit beliebig vielen unabhängigen Servern sprechen und
-zwischen ihnen wechseln, ohne sich von den anderen abzumelden.
+Eine Hinata-App spricht mit beliebig vielen unabhängigen Servern. Du wechselst
+zwischen ihnen, ohne dich bei den anderen abzumelden.
 
-- **Mehrere Server speichern.** Füge jeden Server einmal hinzu; die App merkt sie
-  sich.
-- **Frei wechseln.** Bewege dich über den Umschalter zwischen den Servern; jeder
-  behält seine eigene Sitzung.
-- **Pro Server gescopte Tokens.** Access Tokens sind auf den Server beschränkt, der
-  sie ausgestellt hat — beim Serverwechsel gelangen nie Zugangsdaten zwischen
-  Instanzen.
+- Jeden Server fügst du einmal hinzu, die App merkt ihn sich.
+- Über den Umschalter wechselst du frei. Jeder Server behält seine eigene Sitzung.
+- Access Tokens gelten nur für den Server, der sie ausgestellt hat. Beim Wechsel
+  wandern keine Zugangsdaten zwischen Instanzen.
 
 ### Der Server-Manager
 
-Der Liquid-Glass-**Server-Manager** ist der Ort, an dem du deine gespeicherten
-Server verwaltest. Beim Öffnen prüft er jeden gespeicherten Server **parallel**,
-sodass jede Zeile einen Live-Status zeigt — einen pulsierenden Punkt und einen
-echten Ping in Millisekunden — und von *prüfe…* auf *online* (mit Latenz) oder
-*offline* umschaltet, sobald Ergebnisse eintreffen.
+Im **Server-Manager** (im Glasdesign) verwaltest du deine gespeicherten Server.
+Beim Öffnen prüft er alle **parallel**. Jede Zeile zeigt einen Live-Status mit
+pulsierendem Punkt und echtem Ping in Millisekunden. Sie springt von *prüfe…*
+auf *online* (mit Latenz) oder *offline*.
 
 Im Manager kannst du:
 
-- Einen Server **hinzufügen** — die App führt vor dem Speichern einen
-  **Verbindungstest** durch, sodass eine nicht erreichbare oder falsche URL sofort
-  erkannt wird.
-- Namen oder URL eines gespeicherten Servers **bearbeiten**.
-- Einen Server, den du nicht mehr nutzt, **löschen**.
-- Mit einem Tipp zu einem beliebigen Online-Server **wechseln**.
+- Einen Server **hinzufügen**. Vor dem Speichern läuft ein **Verbindungstest**,
+  eine falsche oder nicht erreichbare URL fällt sofort auf.
+- Name oder URL eines Servers **bearbeiten**.
+- Einen Server, den du nicht mehr brauchst, **löschen**.
+- Mit einem Tipp zu einem Online-Server **wechseln**.
 
-!!! tip "Self-hosted oder Cloud, nebeneinander"
-    Jede Zeile ist mit einem Badge versehen, sodass du deine eigene selbst
-    gehostete Instanz auf einen Blick von anderen unterscheiden kannst. Weil Tokens
-    pro Server gescopt sind, ist es völlig sicher, einen Arbeitsserver und einen
-    privaten Server in derselben App zu halten.
+!!! tip "Self-hosted oder Cloud nebeneinander"
+    Jede Zeile hat ein Badge, damit du deine selbst gehostete Instanz sofort
+    erkennst. Weil Tokens pro Server gelten, kannst du einen Server für die
+    Arbeit und einen privaten bedenkenlos in derselben App halten.
 
 ## Woher du die App bekommst
 
-Es gibt drei Wege, den Client auszuführen, je nachdem, wer du bist.
-
 | Du möchtest… | Verwende |
 | --- | --- |
-| **Einen Server einfach im Browser nutzen** | Die gehostete **Web-App** — ein Betreiber liefert sie unter `https://track.example.com` aus (das Overlay `docker-compose.app.yml`). Nichts zu installieren. |
+| **Einen Server einfach im Browser nutzen** | Die gehostete **Web-App**. Ein Betreiber stellt sie unter `https://track.example.com` bereit (Overlay `docker-compose.app.yml`). Keine Installation. |
 | **Den Client selbst aus dem Quellcode ausführen** | Klone [hinata-app](https://github.com/hinata-platform/hinata-app), `flutter pub get`, `flutter run`. GPL-3.0. |
-| **Eine gebrandete App in die Stores bringen** | Baue deinen **eigenen** Client — siehe [Branding & eigene Clients](/de/self-hosted-app.html). |
+| **Eine gebrandete App in die Stores bringen** | Baue deinen **eigenen** Client, siehe [Branding & eigene Clients](/de/self-hosted-app.html). |
 
-Die veröffentlichten Store-Builds folgen dem Bring-your-own-Server-Modell: Weil
-native Apps keine einkompilierte Server-URL tragen, kann eine veröffentlichte App
-über das
-[Hinata Connect Gateway](/de/connect-gateway.html) jedem Betreiber dienen. Dieses
-Gateway leitet auch Push-Benachrichtigungen weiter — an FCM für Android, iOS und
-macOS und an WNS für Windows. Unter Linux gibt es keinen solchen Dienst, an den
-sich weiterleiten ließe, deshalb erhält der Linux-Build gar kein Push;
-Benachrichtigungen erreichen dich stattdessen in der App und per E-Mail.
+Die Store-Builds haben keine einkompilierte Server-URL. Du bringst deinen eigenen
+Server mit, und eine veröffentlichte App dient über das
+[Hinata Connect Gateway](/de/connect-gateway.html) jedem Betreiber.
 
-Unter Linux führt der Weg über den **Snap Store**: `snap install hinata` bringt
-dir ein strikt isoliertes Snap für amd64 und arm64, von
+Das Gateway leitet auch Push weiter: an FCM für Android, iOS und macOS, an WNS
+für Windows. Unter Linux gibt es keinen solchen Dienst, der Linux-Build bekommt
+also kein Push. Benachrichtigungen kommen dort in der App und per E-Mail an.
+
+Linux gibt es über den **Snap Store**: `snap install hinata` installiert ein
+strikt isoliertes Snap für amd64 und arm64 von
 [snapcraft.io/hinata](https://snapcraft.io/hinata). Das **Flatpak**-Manifest und
-das **AppImage**-Skript liegen weiterhin daneben im Repository — dieselbe App,
-nur von dir gebaut statt von einem Store.
+das **AppImage**-Skript liegen im Repository, zum Selberbauen.
 
 !!! note "Open Source, GPL-3.0"
-    Die App ist unter **GPL-3.0** lizenziert. Es steht dir frei, sie zu bauen, zu
-    modifizieren und deinen eigenen gebrandeten Client auszuliefern — siehe den
-    [Leitfaden für eigene Clients](/de/self-hosted-app.html) für genau das, was zu ändern ist.
+    Die App steht unter **GPL-3.0**. Du darfst sie bauen, ändern und als eigenen
+    gebrandeten Client ausliefern. Was du dafür änderst, steht im
+    [Leitfaden für eigene Clients](/de/self-hosted-app.html).
 
 ## Hinata unter Linux
 
-Linux ist ein vollwertiges Ziel, keine Kompatibilitätsschicht. Die App wird als
-native **GTK-3**-Desktop-Anwendung gebaut — eine Binary, `hinata`, mit der
-Application-ID `com.ahmadre.hinata` — aus exakt derselben Flutter-Codebasis wie
-die Telefon- und die Web-Variante. Anmeldung, SSO, Multi-Server, Boards, Anhänge,
-Drucken und PDF-Export verhalten sich genau wie überall sonst.
+Linux ist ein vollwertiges Ziel. Die App ist eine native **GTK-3**-Anwendung mit
+dem Binary `hinata` und der Application-ID `com.ahmadre.hinata`, gebaut aus
+derselben Flutter-Codebasis wie Handy und Web. Anmeldung, SSO, Multi-Server,
+Boards, Anhänge, Drucken und PDF-Export funktionieren wie überall.
 
 ### Installieren
 
 | Format | Was du bekommst |
 | --- | --- |
-| **Snap** | Der Kanal, über den Hinata unter Linux ausgeliefert wird. `sudo snap install hinata` auf jeder Distribution mit snapd, für x86-64 und ARM64, streng isoliert. Zwei Berechtigungen verbinden sich nicht von selbst — siehe unten. |
-| **Flatpak** | Baust und installierst du selbst: mit `flatpak-builder` aus dem Manifest in `packaging/linux/flatpak/`. Es liegt auf keinem gehosteten Flatpak-Remote, und nach Flathub geht es auch nicht — siehe unten. |
-| **AppImage** | Eine portable Datei, die du selbst baust: `packaging/linux/appimage/build-appimage.sh` macht aus einem Release-Bundle eine, dann `chmod +x` und starten. Veröffentlicht ist sie nirgends — die CI hängt sie an einen Workflow-Lauf, nicht an ein Release. Sie linkt bewusst gegen GTK, GStreamer und libsecret deines Systems und behält so dein Desktop-Theme und die Codecs deiner Distribution, statt eigene Kopien einzufrieren. |
-| **Aus dem Quellcode** | `flutter build linux --release` erzeugt ein verschiebbares Bundle (die Binary `hinata` plus `data/` und `lib/`), das du installieren kannst, wo du möchtest. |
+| **Snap** | Der Kanal, über den Hinata unter Linux ausgeliefert wird. `sudo snap install hinata` auf jeder Distribution mit snapd, für x86-64 und ARM64, strikt isoliert. Zwei Berechtigungen musst du selbst verbinden (siehe unten). |
+| **Flatpak** | Baust und installierst du selbst: mit `flatpak-builder` aus dem Manifest in `packaging/linux/flatpak/`. Es liegt auf keinem gehosteten Flatpak-Remote und nicht auf Flathub. |
+| **AppImage** | Eine portable Datei zum Selberbauen: `packaging/linux/appimage/build-appimage.sh` erzeugt sie aus einem Release-Bundle, dann `chmod +x` und starten. Sie ist nirgends veröffentlicht, die CI hängt sie nur an einen Workflow-Lauf und an kein Release. Sie linkt absichtlich gegen GTK, GStreamer und libsecret deines Systems und behält so dein Desktop-Theme und die Codecs deiner Distribution. |
+| **Aus dem Quellcode** | `flutter build linux --release` erzeugt ein verschiebbares Bundle (Binary `hinata` plus `data/` und `lib/`), das du installieren kannst, wo du willst. |
 
 !!! info "Zwei Berechtigungen brauchen einen Klick"
-    Snap führt die App streng isoliert aus, und zwei der angeforderten
-    Schnittstellen verbinden sich nicht automatisch. Beides ist die Art von
-    Zugriff, die ein Store bewusst erteilen lässt statt beim Installieren
-    mitzugeben:
+    Snap führt die App strikt isoliert aus. Zwei Schnittstellen verbinden sich
+    nicht automatisch, weil ein Store diesen Zugriff bewusst erteilen lässt:
 
     ```bash
     sudo snap connect hinata:password-manager-service   # angemeldet bleiben
     sudo snap connect hinata:audio-record               # Sprachnachricht aufnehmen
     ```
 
-    Ohne die erste läuft die App, kann deine Sitzung aber nicht im
-    Schlüsselbund behalten — jeder Neustart landet auf der Anmeldung. Ohne die
-    zweite tut die Mikrofon-Schaltfläche nichts. Die App benennt die fehlende
-    Berechtigung, statt stillschweigend nichts zu tun, und dieselben Schalter
-    stehen in Ubuntus App Center unter „Berechtigungen“.
+    Ohne die erste läuft die App, speichert deine Sitzung aber nicht im
+    Schlüsselbund. Jeder Neustart landet dann auf der Anmeldung. Ohne die zweite
+    tut die Mikrofontaste nichts. Die App nennt die fehlende Berechtigung.
+    Dieselben Schalter findest du in Ubuntus App Center unter „Berechtigungen“.
+
+    Den verlässlichen Stand zeigt `snap info hinata`: welche Kanäle eine
+    Revision haben und welcher Build dort liegt. **stable** (das liest ein
+    einfaches `snap install hinata`) hat die veröffentlichte Version für beide
+    Architekturen. **edge** hat den Build des letzten Tags. Er ist neuer als
+    stable und weniger erprobt: `snap install hinata --edge`.
 
 Alle drei Rezepte liegen in `packaging/linux/` in
-[hinata-app](https://github.com/hinata-platform/hinata-app), und alle drei
-installieren denselben Desktop-Eintrag, dasselbe Icon und dieselbe
-AppStream-Metainfo. Flatpak und AppImage paketieren ein vorher gebautes Bundle;
-das Snap führt den Flutter-Build selbst aus, denn ein Snapcraft-Build-Schritt
-hat Netzwerk — und sowohl die Flutter-Engine-Artefakte als auch pdfium werden
-erst während eines Builds geladen. `flatpak-builder` lässt seine Module ganz
-ohne Netzwerk laufen; deshalb muss man dem Flatpak ein fertiges Bundle
-hinlegen.
+[hinata-app](https://github.com/hinata-platform/hinata-app). Sie installieren
+denselben Desktop-Eintrag, dasselbe Icon und dieselbe AppStream-Metainfo.
+
+- Flatpak und AppImage verpacken ein vorher gebautes Bundle. `flatpak-builder`
+  baut seine Module ohne Netzwerk, deshalb braucht das Flatpak ein fertiges
+  Bundle.
+- Das Snap führt den Flutter-Build selbst aus. Ein Snapcraft-Build-Schritt hat
+  Netzwerk, und die Flutter-Engine-Artefakte und pdfium werden erst beim Build
+  geladen.
 
 AppImage und rohes Bundle entstehen auf einem fest gepinnten
-`ubuntu-22.04`-Runner, wodurch ihre glibc-Untergrenze eine Entscheidung ist und
-kein Zufall: Ein Flutter-Bundle ist dynamisch gegen die glibc gelinkt, mit der
-es gebaut wurde, und glibc ist nur vorwärtskompatibel — ein neuerer Runner würde
-also still und leise eine Binary erzeugen, die auf älteren Distributionen nicht
-startet. Das Snap braucht diesen Pin nicht: Seine libc kommt aus seiner
-`core24`-Base, nicht von der Maschine, die es gebaut hat.
+`ubuntu-22.04`-Runner. Das legt ihre glibc-Untergrenze bewusst fest. Ein
+Flutter-Bundle ist dynamisch gegen die glibc des Build-Systems gelinkt, und glibc
+ist nur vorwärtskompatibel. Auf einem neueren Runner gebaut, würde die Binary auf
+älteren Distributionen nicht starten. Das Snap braucht diesen Pin nicht, seine
+libc kommt aus der `core24`-Base.
 
-!!! note "Warum nicht Flathub"
-    Die [Anforderungen an Einreichungen](https://docs.flathub.org/docs/for-app-authors/requirements)
-    von Flathub schließen Anwendungen aus, deren Inhalte mit einem LLM erzeugt
-    wurden — auf Hinata trifft das zu. Das Manifest bleibt trotzdem im
-    Repository, weil es baut und installiert: Es ist ein Rezept, kein Kanal.
+!!! note "Nicht auf Flathub"
+    Hinata wird nicht auf Flathub angeboten. Unter Linux kommt die App über den
+    Snap Store. Flatpak-Manifest und AppImage-Skript sind zum Selberbauen da.
 
-So baust du sie selbst unter Debian oder Ubuntu:
+So baust du selbst unter Debian oder Ubuntu:
 
 ```bash
 sudo apt install \
@@ -246,52 +226,49 @@ flutter build linux --release
 
 ### Deep Links landen im Fenster, aus dem du gestartet bist
 
-Der Desktop-Eintrag registriert das Schema `x-scheme-handler/hinata`, und die App
-läuft als **Single-Instance**-GTK-Anwendung: Ein zweiter Start von `hinata` gibt
-seine Argumente an die bereits laufende Kopie weiter, statt ein konkurrierendes
-Fenster zu öffnen. Genau das lässt `hinata://auth-callback` funktionieren — eine
-SSO-Rückkehr, eine Einladung oder ein Link zum Zurücksetzen des Passworts kommt
-in dem Fenster an, aus dem du gestartet bist, egal ob die App schon offen war
-oder der Link sie erst gestartet hat.
+Der Desktop-Eintrag registriert das Schema `x-scheme-handler/hinata`. Die App
+läuft als **Single-Instance**-GTK-Anwendung. Ein zweiter Start von `hinata` gibt
+seine Argumente an die laufende Kopie weiter und öffnet kein zweites Fenster.
+
+Deshalb funktioniert `hinata://auth-callback`. SSO-Rückkehr, Einladung oder Link
+zum Zurücksetzen des Passworts kommen in deinem Fenster an, egal ob die App schon
+offen war oder erst durch den Link startet.
 
 ### Was unter Linux anders ist
 
-Zwei Dinge sind unter Linux wirklich nicht verfügbar, und ein paar weitere
-stützen sich auf Programme, die deine Distribution installiert haben kann oder
-auch nicht. Die ehrliche Liste:
+Zwei Dinge fehlen unter Linux. Einige weitere brauchen Programme, die deine
+Distribution vielleicht nicht installiert hat.
 
 | Bereich | Unter Linux | Warum |
 | --- | --- | --- |
-| **Push-Benachrichtigungen** | Nicht verfügbar. Benachrichtigungen erreichen dich **in der App** und **per E-Mail**. | `firebase_messaging` hat keine Linux-Implementierung, und es gibt keinen Desktop-Push-Dienst, bei dem sich ein Token registrieren ließe — nichts übernimmt die Rolle, die FCM auf Mobilgeräten und WNS unter Windows spielt. |
-| **Kameraaufnahme** | Der Eintrag *Foto aufnehmen* wird gar nicht erst angeboten. Ein vorhandenes Bild oder eine vorhandene Datei anzuhängen funktioniert normal. | Für Linux existiert keine Kamera-Implementierung. Den Eintrag wegzulassen ist besser als eine Schaltfläche, deren einziges mögliches Ergebnis ein Fehlerdialog ist. |
-| **Angemeldet bleiben** | Braucht einen Schlüsselbund — siehe den Hinweis unten. | Sitzungs-Tokens werden über den freedesktop Secret Service geschrieben. |
-| **Sprachkommentare** | Die Wiedergabe braucht die GStreamer-Plugin-Pakete, die Aufnahme `pulseaudio-utils` und `ffmpeg`. | `just_audio` liefert keine Linux-Implementierung, deshalb läuft die Wiedergabe über ein für diese App geschriebenes GStreamer-Plugin. Der Recorder erzeugt AAC — genau deshalb ist `gstreamer1.0-libav` nötig und nicht optional. |
-| **Dateiauswahl für Anhänge** | Nutzt `zenity`, `qarma` oder `kdialog`. Ist keines davon installiert, nennt die App die Programme, die du installieren kannst, statt einfach nichts zu öffnen. | Die Flutter-Dateiauswahl hat kein natives Linux-Backend; sie steuert einen dieser Dialoge an. |
-| **Downloads** | Ein Anhang landet direkt in deinem Downloads-Ordner, und ein Toast nennt die Datei. | Unter Linux gibt es kein Share-Sheet, dem sich die Datei übergeben ließe — also sagt die App dir, wo sie gelandet ist. |
+| **Push-Benachrichtigungen** | Nicht verfügbar. Benachrichtigungen kommen **in der App** und **per E-Mail**. | `firebase_messaging` hat keine Linux-Implementierung, und es gibt keinen Desktop-Push-Dienst, bei dem sich ein Token registrieren ließe. Nichts übernimmt die Rolle von FCM auf Mobilgeräten oder WNS unter Windows. |
+| **Kameraaufnahme** | *Foto aufnehmen* wird nicht angeboten. Vorhandene Bilder oder Dateien anhängen geht normal. | Für Linux gibt es keine Kamera-Implementierung. Ein Eintrag, der nur einen Fehlerdialog zeigen könnte, bleibt weg. |
+| **Angemeldet bleiben** | Braucht einen Schlüsselbund, siehe Hinweis unten. | Sitzungs-Tokens werden über den freedesktop Secret Service gespeichert. |
+| **Sprachkommentare** | Die Wiedergabe braucht die GStreamer-Plugin-Pakete, die Aufnahme `pulseaudio-utils` und `ffmpeg`. | `just_audio` hat keine Linux-Implementierung, die Wiedergabe läuft über ein eigens geschriebenes GStreamer-Plugin. Der Recorder erzeugt AAC, deshalb ist `gstreamer1.0-libav` Pflicht. |
+| **Dateiauswahl für Anhänge** | Nutzt `zenity`, `qarma` oder `kdialog`. Fehlen alle, nennt die App die Programme, die du installieren kannst. | Die Flutter-Dateiauswahl hat kein natives Linux-Backend und steuert einen dieser Dialoge an. |
+| **Downloads** | Ein Anhang landet direkt im Downloads-Ordner, ein Toast nennt die Datei. | Linux hat kein Teilen-Menü, also sagt dir die App, wo die Datei liegt. |
 
-Deine **Benachrichtigungseinstellungen bleiben** auf einem Linux-Desktop
-**sichtbar und bearbeitbar**, obwohl dort nie ein Push ausgelöst wird. Die
-Einstellung gehört zu deinem Konto, nicht zu dem Rechner, an dem du gerade sitzt
-— sie unter Linux auszublenden, würde dir den Schalter nehmen, der dein Telefon
-steuert.
+Deine **Benachrichtigungseinstellungen bleiben** unter Linux **sichtbar und
+bearbeitbar**, obwohl dort nie ein Push kommt. Sie gehören zu deinem Konto und
+steuern auch dein Handy.
 
 !!! warning "Angemeldet bleiben braucht einen Schlüsselbund"
-    Hinata legt deine Sitzungs-Tokens über den freedesktop **Secret Service** im
-    Schlüsselbund des Systems ab — GNOME Keyring, KWallet oder alles andere, das
-    ihn implementiert. Ein minimaler Fenstermanager, ein Container oder eine
-    SSH-Sitzung auf einen Desktop, dessen Schlüsselbund nie entsperrt wurde, hat
-    nichts, worin sie sich speichern ließen. Die Anmeldung funktioniert trotzdem
-    und deine Sitzung hält, bis du die App schließt — und die App sagt dir das
-    sofort, statt es dich beim nächsten Start herausfinden zu lassen.
+    Hinata speichert Sitzungs-Tokens über den freedesktop **Secret Service** im
+    Schlüsselbund, also in GNOME Keyring, KWallet oder etwas Kompatiblem. Ein
+    minimaler Fenstermanager, ein Container oder eine SSH-Sitzung auf einen
+    Desktop mit nie entsperrtem Schlüsselbund hat keinen solchen Speicher.
+
+    Die Anmeldung klappt trotzdem, die Sitzung hält aber nur bis zum Schließen
+    der App. Das sagt dir die App sofort.
 
     ```bash
     sudo apt install gnome-keyring     # Debian / Ubuntu
     sudo dnf install gnome-keyring     # Fedora
     ```
 
-Alles in der Tabelle oben funktioniert auf einer normalen Desktop-Installation.
-Auf einem schlanken System — einem Container, einem nackten Fenstermanager — ist
-das hier die vollständige Liste:
+Auf einer normalen Desktop-Installation funktioniert alles aus der Tabelle. Auf
+einem schlanken System (Container, nackter Fenstermanager) ist das die
+vollständige Liste:
 
 ```bash
 sudo apt install \
@@ -301,14 +278,14 @@ sudo apt install \
   gstreamer1.0-plugins-bad gstreamer1.0-libav
 ```
 
-!!! tip "Die fertigen Pakete bringen das meiste davon mit"
-    Die Flatpak-Runtime enthält GTK, `zenity`, FFmpeg und die GStreamer-Plugins
-    bereits. Eine Flatpak-Installation braucht auf dem Host also nur noch einen
-    Schlüsselbund, damit du angemeldet bleibst. Das Snap bringt FFmpeg,
-    PulseAudios Aufnahme-Werkzeuge und die zusätzlichen GStreamer-Plugins selbst
-    mit und wählt Dateien über das Desktop-Portal statt über `zenity`. Zwei
-    seiner Berechtigungen verbinden sich nicht von allein, weil sie an
-    Schlüsselbund und Mikrofon reichen:
+!!! tip "Die fertigen Pakete bringen das meiste mit"
+    Die Flatpak-Runtime enthält GTK, `zenity`, FFmpeg und die GStreamer-Plugins.
+    Auf dem Host braucht ein Flatpak nur noch einen Schlüsselbund.
+
+    Das Snap bringt FFmpeg, die Aufnahmewerkzeuge von PulseAudio und die
+    zusätzlichen GStreamer-Plugins selbst mit. Dateien wählt es über das
+    Desktop-Portal statt über `zenity`. Zwei Berechtigungen reichen an
+    Schlüsselbund und Mikrofon und verbinden sich deshalb nicht von allein:
 
     ```bash
     sudo snap connect hinata:password-manager-service   # angemeldet bleiben
@@ -317,7 +294,7 @@ sudo apt install \
 
 ## Wie es weitergeht
 
-- [Branding & eigene Clients](/de/self-hosted-app.html) — Laufzeit-Branding oder dein eigener Client.
-- [Authentifizierung](/de/authentication.html) — lokale Konten, Registrierung, 2FA.
-- [Single Sign-on](/de/sso.html) — verbinde einen Identitätsanbieter.
-- [Setup & Erststart](/de/setup-wizard.html) — einen frischen Server konfigurieren.
+- [Branding & eigene Clients](/de/self-hosted-app.html): Laufzeit-Branding oder dein eigener Client.
+- [Authentifizierung](/de/authentication.html): lokale Konten, Registrierung, 2FA.
+- [Single Sign-on](/de/sso.html): einen Identitätsanbieter anbinden.
+- [Setup & Erststart](/de/setup-wizard.html): einen frischen Server einrichten.

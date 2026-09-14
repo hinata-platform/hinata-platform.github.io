@@ -1,6 +1,6 @@
 ---
 title: Terms of Service
-description: Terms of service for the Hinata app — scope, user obligations, liability, final provisions.
+description: Terms of service for the Hinata app, covering scope, user obligations, liability and final provisions.
 ---
 
 # Terms of Service
@@ -9,7 +9,7 @@ description: Terms of service for the Hinata app — scope, user obligations, li
 
 These Terms of Service govern the use of the Hinata application ("App"). By installing or using the App, you agree to these terms. The German version is authoritative.
 
-**Important — scope:** These terms apply solely to the App as software. Hinata is a client application for self-hosted server instances: the provider only supplies the App and does **not** operate any server instance. Server instances are self-hosted and operated by third parties (e.g. your organization) on their own responsibility; the use of a specific instance is governed solely by the terms of its operator.
+**Important note on scope:** These terms apply solely to the App as software. Hinata is a client application for self-hosted server instances. The provider only supplies the App and does **not** operate any server instance. Server instances are self-hosted and operated by third parties (e.g. your organization) on their own responsibility. The use of a specific instance is governed solely by the terms of its operator.
 
 ## 1. Provider and scope
 
@@ -25,7 +25,7 @@ These terms apply to the provision of the App via the app stores or as a web app
 
 ## 2. Description of the App
 
-The App is a client for project and issue management that connects to a Hinata server instance of your choice, operated by a third party. The available features (including projects, issues, boards, time tracking, comments, knowledge base, notifications) depend on the respective instance, its version and configuration. The provider is entitled to further develop or change the App or to discontinue individual features to the extent reasonable for you.
+The App is a client for project and issue management. It connects to a Hinata server instance of your choice, operated by a third party. The available features (including projects, issues, boards, time tracking, comments, knowledge base, notifications) depend on the respective instance, its version and its configuration. The provider may further develop or change the App or discontinue individual features to the extent reasonable for you.
 
 ## 3. No responsibility for server instances
 
@@ -59,11 +59,11 @@ The provider grants you a non-exclusive, non-transferable, revocable right to us
 
 ## 7. Content
 
-You retain all rights to the content you create. Content is not stored with the provider but on the server instance you selected; its operator decides on storage, visibility and deletion in accordance with its own terms. You warrant that you hold the necessary rights to the content you post.
+You retain all rights to the content you create. Content is stored on the server instance you selected and not with the provider. The operator of that instance decides on storage, visibility and deletion in accordance with its own terms. You warrant that you hold the necessary rights to the content you post.
 
-## 8. Availability; push delivery
+## 8. Availability and push delivery
 
-The App is provided without any commitment to a particular level of availability. The availability of the server instance you use lies solely with its operator. Where the provider operates a central relay component for the delivery of push notifications, he endeavours to keep it available; there is no entitlement to uninterrupted push delivery.
+The App is provided without any commitment to a particular level of availability. The availability of the server instance you use lies solely with its operator. Where the provider operates a central relay component for delivering push notifications, he endeavours to keep it available. There is no entitlement to uninterrupted push delivery.
 
 ## 9. Third-party services
 
@@ -73,7 +73,7 @@ The App may enable links to third-party services (e.g. single sign-on, Git servi
 
 The App is provided free of charge. The provider is therefore liable only for intent and gross negligence and in accordance with the principles applicable to gratuitous services.
 
-Otherwise, the provider is liable without limitation for intent and gross negligence and for injury to life, body or health. For slight negligence the provider is liable only for breach of a material contractual obligation (cardinal obligation) and limited in amount to the foreseeable damage typical for the contract. Any further liability is excluded. Mandatory statutory liability, in particular under product liability law, remains unaffected. The provider is not liable for the operation of server instances (Section 3).
+Otherwise, the provider is liable without limitation for intent and gross negligence and for injury to life, body or health. For slight negligence the provider is liable only for breach of a material contractual obligation (cardinal obligation), limited in amount to the foreseeable damage typical for the contract. Any further liability is excluded. Mandatory statutory liability, in particular under product liability law, remains unaffected. The provider is not liable for the operation of server instances (Section 3).
 
 ## 11. Termination
 
@@ -85,7 +85,7 @@ For information on data processing by the App, please see the App's Privacy Poli
 
 ## 13. Changes to these Terms
 
-The provider may amend these terms with effect for the future where this is necessary for objective reasons (e.g. a change in features or the legal framework). You will be informed of material changes in an appropriate manner. If you do not object within a reasonable period or continue to use the App, the changes are deemed accepted.
+The provider may amend these terms with effect for the future where objective reasons require it (e.g. a change in features or the legal framework). You will be informed of material changes in an appropriate manner. If you do not object within a reasonable period or continue to use the App, the changes are deemed accepted.
 
 ## 14. Governing law and jurisdiction
 
@@ -97,4 +97,4 @@ Should individual provisions of these terms be or become invalid, the validity o
 
 ## 16. Contact
 
-For questions about these terms, contact us at: mail@ahmadre.com
+For questions about these terms, contact us at mail@ahmadre.com.

@@ -15,8 +15,8 @@ export const FEATURES: Array<{ emoji: string; title: L; desc: L }> = [
     emoji: '📊',
     title: { en: 'Dashboard & reports', de: 'Dashboard & Berichte' },
     desc: {
-      en: 'Burndown, velocity, cycle time, distributions — plus a personal daily focus view.',
-      de: 'Burndown, Velocity, Cycle Time, Verteilungen — plus persönlicher Tagesfokus.',
+      en: 'Burndown, velocity, cycle time and distributions, plus your personal focus for the day.',
+      de: 'Burndown, Velocity, Cycle Time und Verteilungen, dazu dein persönlicher Tagesfokus.',
     },
   },
   {
@@ -24,7 +24,7 @@ export const FEATURES: Array<{ emoji: string; title: L; desc: L }> = [
     title: { en: 'Agile boards', de: 'Agile Boards' },
     desc: {
       en: 'Board, Backlog & Timeline views with drag-and-drop, WIP limits and swimlanes.',
-      de: 'Board-, Backlog- & Timeline-Ansichten mit Drag-and-drop, WIP-Limits und Swimlanes.',
+      de: 'Board, Backlog und Timeline mit Drag and Drop, WIP-Limits und Swimlanes.',
     },
   },
   {
@@ -32,7 +32,7 @@ export const FEATURES: Array<{ emoji: string; title: L; desc: L }> = [
     title: { en: 'Sprints', de: 'Sprints' },
     desc: {
       en: 'Plan, run and review sprints with capacity, story points and burndown.',
-      de: 'Sprints planen, starten und auswerten — mit Kapazität, Story Points und Burndown.',
+      de: 'Sprints planen, starten und auswerten, mit Kapazität, Story Points und Burndown.',
     },
   },
   {
@@ -47,8 +47,8 @@ export const FEATURES: Array<{ emoji: string; title: L; desc: L }> = [
     emoji: '🔗',
     title: { en: 'Git integration', de: 'Git-Integration' },
     desc: {
-      en: 'GitHub, GitLab & Bitbucket — real OAuth, signed webhooks, smart commits, automation.',
-      de: 'GitHub, GitLab & Bitbucket — echtes OAuth, signierte Webhooks, Smart Commits, Automation.',
+      en: 'GitHub, GitLab and Bitbucket with real OAuth, signed webhooks, smart commits and automation.',
+      de: 'GitHub, GitLab und Bitbucket mit echtem OAuth, signierten Webhooks, Smart Commits und Automatik.',
     },
   },
   {
@@ -56,7 +56,7 @@ export const FEATURES: Array<{ emoji: string; title: L; desc: L }> = [
     title: { en: 'SSO & security', de: 'SSO & Sicherheit' },
     desc: {
       en: 'OpenID Connect, OAuth 2.0, SAML, LDAP. JWT, BCrypt, rate limiting, OWASP-hardened.',
-      de: 'OpenID Connect, OAuth 2.0, SAML, LDAP. JWT, BCrypt, Rate-Limiting, OWASP-gehärtet.',
+      de: 'OpenID Connect, OAuth 2.0, SAML, LDAP. JWT, BCrypt, Rate Limiting, gehärtet nach OWASP.',
     },
   },
   {
@@ -71,16 +71,16 @@ export const FEATURES: Array<{ emoji: string; title: L; desc: L }> = [
     emoji: '⏱️',
     title: { en: 'Time tracking', de: 'Zeiterfassung' },
     desc: {
-      en: 'Work items by activity type and weekly timesheets, feeding reports.',
-      de: 'Arbeitszeiten nach Aktivität und wöchentliche Timesheets — direkt in den Berichten.',
+      en: 'Log work by activity type and see it in weekly timesheets and reports.',
+      de: 'Arbeitszeit nach Tätigkeit erfassen und im Stundenzettel und in Berichten sehen.',
     },
   },
   {
     emoji: '🎨',
-    title: { en: 'Bring your own server', de: 'Bring your own Server' },
+    title: { en: 'Bring your own server', de: 'Dein eigener Server' },
     desc: {
-      en: 'One app, your self-hosted server, runtime branding. One Flutter codebase, six platforms — mobile, web and desktop.',
-      de: 'Eine App, dein selbst gehosteter Server, Laufzeit-Branding. Eine Flutter-Codebasis, sechs Plattformen — Mobile, Web und Desktop.',
+      en: 'One app connects to your own server and shows your logo and name. Six platforms from one Flutter codebase.',
+      de: 'Eine App verbindet sich mit deinem Server und zeigt dein Logo und deinen Namen. Sechs Plattformen aus einer Flutter-Codebasis.',
     },
   },
 ];
@@ -115,31 +115,31 @@ export const T: Record<string, L> = {
   headline_1: { en: 'Project management', de: 'Projektmanagement,' },
   headline_2: { en: 'you actually own.', de: 'das dir gehört.' },
   sub: {
-    en: 'Hinata is an independent, self-hosted project & issue tracker — agile boards, sprints, Gantt, time tracking, a knowledge base and deep Git integration. One Flutter app, six platforms: Android, iOS, Web, macOS, Windows and Linux. No user, team or board limits. Ever.',
-    de: 'Hinata ist ein unabhängiger, selbst-gehosteter Projekt- & Issue-Tracker — agile Boards, Sprints, Gantt, Zeiterfassung, Wissensdatenbank und tiefe Git-Integration. Eine Flutter-App, sechs Plattformen: Android, iOS, Web, macOS, Windows und Linux. Keine Nutzer-, Team- oder Board-Limits. Niemals.',
+    en: 'Hinata is a project and issue tracker you run on your own server. Boards, sprints, Gantt, time tracking, a knowledge base and Git integration. One app for Android, iOS, Web, macOS, Windows and Linux. No limits on users, teams or boards.',
+    de: 'Mit Hinata verwaltest du Projekte und Vorgänge auf deinem eigenen Server. Boards, Sprints, Gantt, Zeiterfassung, Wissensdatenbank und Git-Integration. Eine App für Android, iOS, Web, macOS, Windows und Linux. Keine Grenzen bei Nutzern, Teams oder Boards.',
   },
   cta_start: { en: 'Get started', de: 'Loslegen' },
-  cta_host: { en: 'Self-hosting guide', de: 'Self-Hosting-Guide' },
+  cta_host: { en: 'Self-hosting guide', de: 'Selbst hosten' },
   features_title: {
     en: 'Everything a modern team needs',
     de: 'Alles, was ein modernes Team braucht',
   },
   features_sub: {
-    en: 'One platform, no add-ons, no seat pricing.',
-    de: 'Eine Plattform, keine Add-ons, keine Preise pro Sitzplatz.',
+    en: 'Everything in one platform. No add-ons, no price per user.',
+    de: 'Alles in einer Plattform. Keine Add-ons, kein Preis pro Nutzer.',
   },
   host_title: { en: 'Up and running in minutes', de: 'In Minuten einsatzbereit' },
   host_sub: {
-    en: 'Docker Compose brings up the server, a MongoDB replica set, object storage and mail. Point the app at your URL and finish the in-app setup wizard.',
-    de: 'Docker Compose startet Server, MongoDB-Replica-Set, Objektspeicher und Mail. Richte die App auf deine URL und schließe den In-App-Setup-Assistenten ab.',
+    en: 'Docker Compose starts the server, a MongoDB replica set, object storage and mail. Enter your URL in the app and follow the setup.',
+    de: 'Docker Compose startet den Server, ein MongoDB Replica Set, Objektspeicher und Mail. Gib deine URL in der App ein und folge der Einrichtung.',
   },
-  host_cta: { en: 'Full deployment guide →', de: 'Vollständiger Deployment-Guide →' },
-  mcp_badge: { en: 'AI-native · MCP', de: 'KI-nativ · MCP' },
+  host_cta: { en: 'Deployment guide →', de: 'Zur Deployment-Anleitung →' },
+  mcp_badge: { en: 'MCP', de: 'MCP' },
   mcp_title_1: { en: 'Talk to Hinata', de: 'Sprich mit Hinata' },
   mcp_title_2: { en: 'from Claude', de: 'über Claude' },
   mcp_sub: {
-    en: 'Hinata speaks the Model Context Protocol — a built-in /mcp endpoint, no sidecar to run. Connect Claude, Claude Code, Cursor or any MCP client and search issues, create work, log time or read the knowledge base, always within the connected user’s exact permissions.',
-    de: 'Hinata spricht das Model Context Protocol — ein eingebauter /mcp-Endpunkt, kein Sidecar nötig. Verbinde Claude, Claude Code, Cursor oder einen beliebigen MCP-Client und durchsuche Vorgänge, lege Arbeit an, buche Zeit oder lies die Wissensdatenbank — immer innerhalb der exakten Berechtigungen des verbundenen Nutzers.',
+    en: 'Hinata has a built-in /mcp endpoint for the Model Context Protocol. Connect Claude, Claude Code, Cursor or any MCP client to search issues, create work, log time or read the knowledge base. It only sees what the connected user may see.',
+    de: 'Hinata hat einen eingebauten /mcp-Endpunkt für das Model Context Protocol. Verbinde Claude, Claude Code, Cursor oder einen anderen MCP-Client, um Vorgänge zu suchen, Arbeit anzulegen, Zeit zu buchen oder die Wissensdatenbank zu lesen. Er sieht nur, was der verbundene Nutzer sehen darf.',
   },
   mcp_cta: { en: 'Explore the MCP server →', de: 'MCP-Server entdecken →' },
   mcp_clients: {
@@ -148,24 +148,24 @@ export const T: Record<string, L> = {
   },
   repos_title: { en: 'Two repositories, one platform', de: 'Zwei Repositories, eine Plattform' },
   app_desc: {
-    en: 'The Flutter client — Android, iOS, Web, macOS, Windows & Linux from one codebase.',
-    de: 'Der Flutter-Client — Android, iOS, Web, macOS, Windows & Linux aus einer Codebasis.',
+    en: 'The Flutter app for Android, iOS, Web, macOS, Windows and Linux.',
+    de: 'Die Flutter-App für Android, iOS, Web, macOS, Windows und Linux.',
   },
   server_desc: {
-    en: 'The Spring Boot 4 backend — Java 21, MongoDB, S3, SSO, Git integration.',
-    de: 'Das Spring-Boot-4-Backend — Java 21, MongoDB, S3, SSO, Git-Integration.',
+    en: 'The Spring Boot 4 backend with Java 21, MongoDB, S3, SSO and Git integration.',
+    de: 'Das Backend mit Spring Boot 4, Java 21, MongoDB, S3, SSO und Git-Integration.',
   },
   langs_title: {
     en: 'Nine languages, all of them complete',
     de: 'Neun Sprachen, alle vollständig',
   },
   langs_sub: {
-    en: 'Every string, not a translated menu bar over an English app — and Arabic turns the whole layout right to left, not only the words.',
-    de: 'Jede Zeichenkette, nicht eine übersetzte Menüleiste über einer englischen App — und Arabisch dreht das ganze Layout nach rechts-nach-links, nicht nur die Wörter.',
+    en: 'The whole app is translated. In Arabic the layout runs right to left, too.',
+    de: 'Die ganze App ist übersetzt. Auf Arabisch läuft auch das Layout von rechts nach links.',
   },
   langs_note: {
-    en: 'A flag is a country, not a language. They are signposts, because nine of them read faster than nine names.',
-    de: 'Eine Flagge ist ein Land, keine Sprache. Sie stehen hier als Wegweiser, weil neun Bilder schneller zu erfassen sind als neun Namen.',
+    en: 'The flags stand for languages, not countries. They are just quicker to scan than names.',
+    de: 'Die Flaggen stehen für Sprachen, nicht für Länder. Man erkennt sie nur schneller als Namen.',
   },
   langs_cta: { en: 'All nine, in detail →', de: 'Alle neun im Detail →' },
   docs: { en: 'Docs', de: 'Doku' },

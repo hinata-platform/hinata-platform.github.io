@@ -1,31 +1,27 @@
 ---
 title: Produktiv-Deployment
-description: Ein vollständiger, geordneter Durchlauf für das produktive Deployment von Hinata mit Docker Compose, X.509-MongoDB, TLS und sicherem Update-Ablauf.
+description: Hinata Schritt für Schritt produktiv betreiben, mit Docker Compose, X.509-MongoDB, TLS und sicheren Updates.
 ---
 
 # Produktiv-Deployment
 
-Dies ist der vollständige Produktiv-Durchlauf — jeder Schritt, in Reihenfolge, vom
-sauberen Host bis zur laufenden, geprüften Instanz hinter deinem Reverse Proxy. Er
-nutzt das `prod`-Profil: ein MongoDB-Replica-Set mit TLS und
-X.509-Client-Authentifizierung.
+Diese Anleitung führt vom leeren Host bis zur laufenden, geprüften Instanz hinter
+deinem Reverse Proxy. Sie nutzt das `prod`-Profil: ein MongoDB-Replica-Set mit TLS
+und X.509-Client-Authentifizierung.
 
-Falls noch nicht geschehen, lies zuerst den
-[Überblick zum Selbstbetrieb](/de/self-hosting.html) für das große Ganze. Für die
-Bedeutung jeder hier erwähnten Einstellung halte die
-[Konfigurationsreferenz](/de/configuration.html) daneben offen.
+Lies vorher den [Überblick zum Selbstbetrieb](/de/self-hosting.html). Was jede
+Einstellung bedeutet, steht in der [Konfigurationsreferenz](/de/configuration.html).
 
 ## Voraussetzungen
 
 - Ein Linux-Host mit **Docker Engine** und dem **Docker-Compose-Plugin**
   (`docker compose`, v2).
-- `openssl`, `keytool` (aus einem JRE/JDK) und eine POSIX-Shell für die
-  Hilfsskripte in `deploy/`.
-- Zwei DNS-Namen, die du kontrollierst — einen für die API und einen für die
-  Web-App. Auf dieser Seite verwenden wir `api.track.example.com` (API) und
-  `track.example.com` (Web).
-- Einen Reverse Proxy, der HTTPS terminiert (Nginx, Caddy, Traefik, ein
-  NAS-Reverse-Proxy …). Siehe [Reverse Proxy & TLS](/de/reverse-proxy.html).
+- `openssl`, `keytool` (aus einem JRE/JDK) und eine POSIX-Shell für die Skripte in
+  `deploy/`.
+- Zwei DNS-Namen: einer für die API, einer für die Web-App. Diese Seite nutzt
+  `api.track.example.com` (API) und `track.example.com` (Web).
+- Ein Reverse Proxy, der HTTPS terminiert (Nginx, Caddy, Traefik, der Reverse Proxy
+  eines NAS …). Siehe [Reverse Proxy & TLS](/de/reverse-proxy.html).
 - Ein SMTP-Relay für ausgehende Mail. Siehe [E-Mail & SMTP](/de/email.html).
 
 ## 1. Das Server-Repository holen
@@ -35,8 +31,8 @@ git clone https://github.com/hinata-platform/hinata-server.git
 cd hinata-server
 ```
 
-Spätere Updates sind ein `git pull` in diesem Verzeichnis — die Images selbst
-werden von GHCR gezogen, du baust also nie auf dem Host.
+Spätere Updates holst du mit `git pull` in diesem Verzeichnis. Die Images kommen
+fertig von GHCR, auf dem Host wird nie gebaut.
 
 ## 2. Deine .env anlegen
 
@@ -44,9 +40,8 @@ werden von GHCR gezogen, du baust also nie auf dem Host.
 cp .env.example .env
 ```
 
-`.env.example` ist vollständig kommentiert; jeder Wert kann auch als schlichte
-Umgebungsvariable am Container gesetzt werden. Wir füllen sie in den nächsten
-Schritten aus.
+`.env.example` ist vollständig kommentiert. Jeder Wert geht auch als normale
+Umgebungsvariable am Container.
 
 ## 3. Secrets erzeugen
 
@@ -54,46 +49,49 @@ Schritten aus.
 ./deploy/generate-secrets.sh
 ```
 
-Dieses Skript:
+Das Skript:
 
-- erzeugt `deploy/mongo-keyfile` (das Internal-Auth-Keyfile des Replica Sets),
-  falls noch nicht vorhanden, und
-- gibt vorgeschlagene Zufallswerte für `HINATA_JWT_SECRET`, `MONGO_ROOT_PASSWORD`
-  und `MINIO_ROOT_PASSWORD` aus.
+- erzeugt `deploy/mongo-keyfile` (das Keyfile für die interne Authentifizierung des
+  Replica Sets), falls es noch fehlt.
+- gibt Zufallswerte für `HINATA_JWT_SECRET`, `MONGO_ROOT_PASSWORD` und
+  `MINIO_ROOT_PASSWORD` aus.
 
-Kopiere die ausgegebenen Werte in deine `.env`.
+Kopiere die Werte in deine `.env`.
 
 !!! warning "Das JWT-Secret ist in Produktion erforderlich"
     `HINATA_JWT_SECRET` muss ein zufälliger String mit **mindestens 64 Zeichen**
-    sein (HS512). Der Server startet im prod-Profil ohne dieses Secret nicht. Falls
-    du den Generator nicht verwendet hast, erzeuge eines mit:
+    sein (HS512). Im prod-Profil startet der Server ohne ihn nicht. Ohne Generator
+    erzeugst du ihn so:
 
     ```bash
     openssl rand -base64 64 | tr -d '\n'
     ```
 
-    Das Rotieren dieses Secrets macht jedes ausgegebene Token ungültig — alle
-    Nutzer müssen sich neu anmelden.
+    Wer das Secret rotiert, macht alle ausgegebenen Tokens ungültig. Alle Nutzer
+    müssen sich dann neu anmelden.
 
 ## 4. Die MongoDB-X.509-PKI erzeugen
 
-Produktions-Mongo nutzt TLS plus X.509-Client-Authentifizierung — das
-Gold-Standard-Setup — es gibt also kein Datenbank-Passwort im Connection-String.
-Erzeuge die Zertifizierungsstelle, das Server-Zertifikat und das
-Client-Zertifikat der Anwendung:
+MongoDB nutzt in Produktion TLS und X.509-Client-Authentifizierung. Im
+Connection-String steht deshalb kein Passwort. Erzeuge CA, Server-Zertifikat und
+Client-Zertifikat der App:
 
 ```bash
 ./deploy/x509/generate-certs.sh prod
 ```
 
-Dies schreibt unter `deploy/x509/prod/`: die CA (`ca.crt`/`ca.key`), das
-mongod-Server-Zertifikat (`server.pem`), den JVM-Keystore der App
-(`hinata-app.p12`), den Truststore (`truststore.p12`), das Replica-Set-`keyfile`
-und `app-subject-dn.txt` — den Subject-DN des Client-Zertifikats, der zum
-Mongo-Benutzernamen wird.
+Unter `deploy/x509/prod/` entstehen:
 
-Die Keystore- und Truststore-Passwörter sind standardmäßig `changeit`. Ändere sie
-und setze die passenden Werte in `.env`:
+- die CA (`ca.crt`/`ca.key`)
+- das mongod-Server-Zertifikat (`server.pem`)
+- der JVM-Keystore der App (`hinata-app.p12`)
+- der Truststore (`truststore.p12`)
+- das `keyfile` des Replica Sets
+- `app-subject-dn.txt`: der Subject-DN des Client-Zertifikats, er wird zum
+  Mongo-Benutzernamen
+
+Keystore und Truststore haben standardmäßig das Passwort `changeit`. Ändere es und
+trage die passenden Werte in `.env` ein:
 
 ```properties
 HINATA_MONGO_TLS_KEYSTORE_PASSWORD=change-me-keystore
@@ -101,17 +99,16 @@ HINATA_MONGO_TLS_TRUSTSTORE_PASSWORD=change-me-truststore
 ```
 
 !!! tip
-    Führe den Zertifikatsgenerator **vor** dem Setzen der Passwörter aus, wenn du
-    den Standard willst — oder exportiere `HINATA_MONGO_TLS_KEYSTORE_PASSWORD` /
-    `HINATA_MONGO_TLS_TRUSTSTORE_PASSWORD`, bevor du ihn ausführst, damit die
-    PKCS#12-Dateien von Anfang an mit deinen gewählten Passwörtern gebaut werden.
-    Volle Details auf der Seite [MongoDB & X.509](/de/database.html).
+    Exportiere `HINATA_MONGO_TLS_KEYSTORE_PASSWORD` und
+    `HINATA_MONGO_TLS_TRUSTSTORE_PASSWORD` **vor** dem Zertifikatsgenerator. Dann
+    entstehen die PKCS#12-Dateien gleich mit deinen Passwörtern. Startest du ihn
+    vorher, bleibt der Standard. Details auf der Seite
+    [MongoDB & X.509](/de/database.html).
 
 ## 5. Eine realistische .env
 
-Hier eine repräsentative Produktions-`.env`. Platzhalter lauten `change-me…`;
-Secrets sind so gezeigt, als kämen sie vom Generator (deine werden abweichen).
-Passe die Hosts an deine an.
+Eine typische Produktions-`.env`. Platzhalter heißen `change-me…`. Die Secrets sehen
+aus wie vom Generator, deine sind andere. Passe die Hosts an.
 
 ```properties
 # Profil
@@ -125,19 +122,19 @@ HINATA_WEB_BASE_URL=https://track.example.com
 HINATA_SERVER_TAG={{version}}
 HINATA_APP_TAG={{version}}
 
-# JWT — aus ./deploy/generate-secrets.sh
+# JWT: aus ./deploy/generate-secrets.sh
 HINATA_JWT_SECRET=Kf3mS0pQ9xR2vN7wY1bZ8cH4dJ6gL5aT0eU3iO2rW9kP1sX4nC7mB6vD8fA2hQ0
 
-# MongoDB-SCRAM-Root (nur Admin/intern — die App nutzt X.509)
+# MongoDB-SCRAM-Root (nur Admin/intern, die App nutzt X.509)
 MONGO_ROOT_USERNAME=hinata
 MONGO_ROOT_PASSWORD=9f1c7a4e2b6d8039a5c1e7f2b4d6a8c0
 HINATA_MONGO_TLS_KEYSTORE_PASSWORD=change-me-keystore
 HINATA_MONGO_TLS_TRUSTSTORE_PASSWORD=change-me-truststore
 
-# Reverse Proxy — CIDR, aus dem der Proxy den Container erreicht (siehe Schritt 8)
+# Reverse Proxy: CIDR, aus dem der Proxy den Container erreicht (siehe Schritt 8)
 HINATA_TRUSTED_PROXIES=172.16.0.0/12
 
-# SMTP — ein echtes Relay, damit Mail zugestellt wird
+# SMTP: ein echtes Relay, damit Mail zugestellt wird
 HINATA_SMTP_HOST=smtp.example.com
 HINATA_SMTP_PORT=587
 HINATA_SMTP_USERNAME=hinata@example.com
@@ -146,7 +143,7 @@ HINATA_SMTP_AUTH=true
 HINATA_SMTP_STARTTLS=true
 HINATA_MAIL_FROM=hinata@example.com
 
-# Objektspeicher — mitgeliefertes MinIO (setze stattdessen COMPOSE_PROFILES=
+# Objektspeicher: mitgeliefertes MinIO (setze stattdessen COMPOSE_PROFILES=
 # und HINATA_STORAGE_* / HINATA_S3_* / HINATA_AZURE_* für AWS S3, GCS oder
 # Azure; siehe die Objektspeicher-Seite)
 COMPOSE_PROFILES=local-storage
@@ -160,13 +157,13 @@ HINATA_APP_MIN_VERSION={{version}}
 HINATA_CORS_ALLOWED_ORIGINS=https://track.example.com
 HINATA_DOCS_ENABLED=false
 
-# Push + Deep-Links — Standard-Gateway; nur überschreiben für ein eigenes
+# Push + Deep-Links: Standard-Gateway; nur überschreiben für ein eigenes
 HINATA_GATEWAY_BASE_URL=https://connect.hinata.ahmadre.com
 
 # Erststart (leer lassen, um den In-App-Assistenten zu nutzen)
 HINATA_SETUP_AUTO_COMPLETE=false
 
-# Demo-Seed — NIEMALS in Produktion aktivieren
+# Demo-Seed: NIEMALS in Produktion aktivieren
 HINATA_DEMO_SEED=false
 HINATA_DEMO_RESET=false
 
@@ -183,15 +180,15 @@ HINATA_APP_PORT=3456
 ```
 
 !!! warning "Ändere jeden Standardwert"
-    Die mitgelieferte `.env.example` enthält Entwicklungs-Defaults
-    (`MONGO_ROOT_PASSWORD=hinata-dev-secret`, `changeit`-Keystore-Passwörter, ein
-    leeres JWT-Secret). Jeder davon in Produktion unverändert gelassen ist eine
-    ernste Lücke. Erzeuge für alle echte Secrets.
+    `.env.example` enthält Standardwerte für die Entwicklung:
+    `MONGO_ROOT_PASSWORD=hinata-dev-secret`, `changeit` als Keystore-Passwort und
+    ein leeres JWT-Secret. Jeder davon ist in Produktion eine ernste Lücke. Erzeuge
+    überall echte Secrets.
 
 ## 6. Den Stack starten
 
-Starte zuerst MongoDB, damit das Replica Set initiieren kann und du den
-X.509-Nutzer registrieren kannst, und starte dann den Rest.
+Starte zuerst MongoDB. So kann das Replica Set initialisieren und du registrierst
+den X.509-Nutzer. Danach startest du den Rest.
 
 ```bash
 # Datenbank-Knoten starten
@@ -204,59 +201,59 @@ docker compose up -d mongo1 mongo2 mongo-arbiter
 docker compose up -d
 ```
 
-Um die Flutter-Web-App ebenfalls von diesem Host zu servieren, füge das
-App-Overlay hinzu:
+Soll dieser Host auch die Flutter-Web-App ausliefern, nimm das App-Overlay dazu:
 
 ```bash
 docker compose -f docker-compose.yml -f docker-compose.app.yml up -d
 ```
 
-`init-prod-user.sh` liest den Subject-DN aus
-`deploy/x509/prod/app-subject-dn.txt` und legt einen passenden
-`$external`-Nutzer mit `readWrite` und `dbAdmin` auf der `hinata`-Datenbank an,
-unter Verwendung des SCRAM-Root-Kontos aus `.env`. Führe es einmal aus, sobald das
-Replica Set gesund ist.
+`init-prod-user.sh` liest den Subject-DN aus `deploy/x509/prod/app-subject-dn.txt`.
+Mit dem SCRAM-Root-Konto aus `.env` legt es einen passenden `$external`-Nutzer mit
+`readWrite` und `dbAdmin` auf der Datenbank `hinata` an. Führe es einmal aus, sobald
+das Replica Set gesund ist.
 
 ## 7. Health prüfen
 
-Der Server stellt einen Health-Endpunkt bereit, den auch der `HEALTHCHECK` des
-Containers abfragt:
+Diesen Endpunkt fragt auch der `HEALTHCHECK` des Containers ab:
 
 ```bash
 curl -fsS https://api.track.example.com/actuator/health
 # {"status":"UP"}
 ```
 
-Lokal, bevor der Proxy verdrahtet ist, erreiche den veröffentlichten Port direkt:
+Solange der Proxy noch fehlt, prüfst du den Port direkt:
 
 ```bash
 curl -fsS http://localhost:3356/actuator/health
 ```
 
-Schau in die Logs, wenn es nicht `UP` ist:
+Ist der Status nicht `UP`, schau in die Logs:
 
 ```bash
 docker compose logs -f hinata-server
 ```
 
-Ein häufiger Erststart-Fehler ist die Mongo-Auth — bei
-X.509-Authentifizierungsfehlern wurde der `$external`-Nutzer nicht registriert
-(führe `./deploy/x509/init-prod-user.sh` erneut aus) oder das Keystore-Passwort in
-`.env` passt nicht zu dem, mit dem `hinata-app.p12` gebaut wurde.
+Beim ersten Start scheitert oft die Mongo-Authentifizierung. Bei X.509-Fehlern gibt
+es zwei übliche Ursachen:
+
+- Der `$external`-Nutzer wurde nicht registriert. Führe
+  `./deploy/x509/init-prod-user.sh` erneut aus.
+- Das Keystore-Passwort in `.env` passt nicht zu dem, mit dem `hinata-app.p12`
+  gebaut wurde.
 
 ## 8. DNS, Reverse Proxy und Ports
 
-Der Server veröffentlicht zwei Host-Ports; dein Reverse Proxy terminiert TLS und
-leitet an sie weiter:
+Der Server veröffentlicht zwei Host-Ports. Dein Reverse Proxy terminiert TLS und
+leitet dorthin weiter:
 
 | Öffentlicher Name | Zweck | Leitet an Host-Port | Env-Variable |
 | --- | --- | --- | --- |
 | `api.track.example.com` | REST-API + SSE | `3356` | `HINATA_PORT` |
 | `track.example.com` | Flutter-Web-App | `3456` | `HINATA_APP_PORT` |
 
-Zeige beide DNS-Einträge auf den Proxy, stelle Zertifikate aus und proxye jeden
-Hostnamen auf seinen Port. Eine minimale Nginx-Skizze (vollständige Konfiguration
-unter [Reverse Proxy & TLS](/de/reverse-proxy.html)):
+Richte beide DNS-Einträge auf den Proxy, stelle Zertifikate aus und leite jeden
+Hostnamen auf seinen Port. Eine minimale Nginx-Skizze (vollständig unter
+[Reverse Proxy & TLS](/de/reverse-proxy.html)):
 
 ```nginx
 location / {
@@ -268,36 +265,32 @@ location / {
 }
 ```
 
-Zwei Einstellungen müssen mit deinem Proxy übereinstimmen, damit das Deployment
-korrekt und sicher ist:
+Zwei Einstellungen müssen zu deinem Proxy passen:
 
-- **CORS** — `HINATA_CORS_ALLOWED_ORIGINS` muss die Browser-Origin der Web-App
-  aufführen (`https://track.example.com`). Der gehostete Web-Client ruft die API
-  cross-origin auf, eine fehlende Origin zeigt sich also als blockierte Anfragen im
-  Browser.
-- **Trusted Proxies** — `HINATA_TRUSTED_PROXIES` ist der CIDR, aus dem der Proxy
-  den Container erreicht. Nur von diesen Adressen vertraut der Server
-  `X-Forwarded-For`, sodass Rate-Limiting und Logging die echte Client-IP sehen.
-  Leer bedeutet niemandem vertrauen; zu weit gesetzt erlaubt Clients, ihre IP zu
-  fälschen.
+- **CORS**: `HINATA_CORS_ALLOWED_ORIGINS` muss die Origin der Web-App enthalten
+  (`https://track.example.com`). Der Web-Client ruft die API cross-origin auf. Fehlt
+  die Origin, blockiert der Browser die Anfragen.
+- **Trusted Proxies**: `HINATA_TRUSTED_PROXIES` ist der CIDR, aus dem der Proxy den
+  Container erreicht. Nur Adressen daraus glaubt der Server `X-Forwarded-For`. So
+  sehen Rate-Limiting und Logs die echte Client-IP. Leer heißt, niemandem zu
+  vertrauen. Ist der Bereich zu weit, können Clients ihre IP fälschen.
 
 !!! tip "Halte SSE durch den Proxy am Leben"
-    Live-Updates nutzen Server-Sent Events. Deaktiviere Response-Buffering an der
-    API-Location (`proxy_buffering off;` in Nginx), sonst erhalten Clients Updates
-    nicht zeitnah.
+    Live-Updates nutzen Server-Sent Events. Schalte das Response-Buffering an der
+    API-Location ab (`proxy_buffering off;` in Nginx), sonst kommen Updates
+    verspätet an.
 
 ## 9. Erststart
 
-Ist der Stack gesund, öffne `https://track.example.com` (oder richte eine native
-App auf `https://api.track.example.com`) und schließe den Setup-Assistenten ab, um
-die Organisation und den ersten Admin anzulegen. Um dies stattdessen zu
-automatisieren — praktisch für Infrastructure-as-Code — setze die
-`HINATA_SETUP_*`-Variablen; siehe [Setup & Erststart](/de/setup-wizard.html).
+Ist der Stack gesund, öffne `https://track.example.com` (oder richte eine native App
+auf `https://api.track.example.com`). Der Setup-Assistent legt die Organisation und
+den ersten Admin an. Automatisieren kannst du das, etwa für Infrastructure as Code,
+über die `HINATA_SETUP_*`-Variablen. Siehe [Setup & Erststart](/de/setup-wizard.html).
 
 ## Aktualisieren und neu ausrollen
 
-Updates sind nur ein neuer Image-Tag. Setze den Tag, ziehe ihn und erzeuge nur
-App und Server neu — niemals die Datendienste.
+Ein Update ist ein neuer Image-Tag. Setze den Tag, zieh die Images und erzeuge nur
+App und Server neu. Die Datendienste fasst du nicht an.
 
 ```bash
 # Das neue Release in .env pinnen
@@ -312,24 +305,23 @@ docker compose -f docker-compose.yml -f docker-compose.app.yml pull hinata-app
 docker compose -f docker-compose.yml -f docker-compose.app.yml up -d hinata-app
 ```
 
-!!! danger "Ein Redeploy darf nur App + Server aktualisieren — niemals Mongo oder MinIO neu erzeugen"
-    Deine Vorgänge, Anhänge und Nutzer liegen in den Docker-Volumes `mongo1-data`,
-    `mongo2-data` und `minio-data`. Das Neuerzeugen oder Entfernen der Datenbank-
-    oder Storage-Dienste (etwa ein vollständiges `down -v` oder ein Stack-Redeploy,
-    der Volumes prunt) **zerstört diese Daten**. Ziele beim Update explizit auf die
-    Dienste `hinata-server` und `hinata-app`, wie oben. Erstelle vor jeder Änderung,
-    die die Datendienste berührt, ein Backup — siehe
-    [Backups & Upgrades](/de/backups.html).
+!!! danger "Ein Redeploy aktualisiert nur App und Server, niemals Mongo oder MinIO"
+    Vorgänge, Anhänge und Nutzer liegen in den Docker-Volumes `mongo1-data`,
+    `mongo2-data` und `minio-data`. Werden Datenbank oder Speicher neu erzeugt oder
+    entfernt (etwa per `down -v` oder durch ein Stack-Redeploy, das Volumes
+    löscht), sind **diese Daten zerstört**. Nenne beim Update deshalb ausdrücklich
+    die Dienste `hinata-server` und `hinata-app`, wie oben. Mach vor jeder Änderung
+    an den Datendiensten ein Backup. Siehe [Backups & Upgrades](/de/backups.html).
 
 !!! tip "Tags pinnen für reproduzierbare Deployments"
-    `latest` ist bequem, verschiebt sich aber unter dir. Pinne `HINATA_SERVER_TAG`
-    und `HINATA_APP_TAG` auf eine bestimmte Version (z. B. `{{version}}`), sodass jeder
-    Host denselben, bekannten Build ausführt und Rollbacks eine einzeilige
-    Tag-Änderung sind.
+    `latest` ist bequem, ändert sich aber ohne dein Zutun. Pinne
+    `HINATA_SERVER_TAG` und `HINATA_APP_TAG` auf eine feste Version (z. B.
+    `{{version}}`). Dann läuft auf jedem Host derselbe bekannte Build, und ein
+    Rollback ist eine geänderte Zeile.
 
 ## Wie es weitergeht
 
-- [Konfigurationsreferenz](/de/configuration.html) — jede Einstellung erklärt.
-- [MongoDB & X.509](/de/database.html) — die PKI im Detail, plus Betrieb.
-- [Reverse Proxy & TLS](/de/reverse-proxy.html) — vollständige Proxy-Konfigurationen.
-- [Backups & Upgrades](/de/backups.html) — Daten über Updates hinweg schützen.
+- [Konfigurationsreferenz](/de/configuration.html): jede Einstellung erklärt.
+- [MongoDB & X.509](/de/database.html): die PKI im Detail und der Betrieb.
+- [Reverse Proxy & TLS](/de/reverse-proxy.html): vollständige Proxy-Konfigurationen.
+- [Backups & Upgrades](/de/backups.html): Daten über Updates hinweg schützen.

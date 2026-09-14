@@ -1,22 +1,15 @@
 ---
 title: Staying informed
-description: How Hinata tells you that something happened — the notification centre, the per-event settings matrix, e-mail, push, watching an issue, and your Monday weekly summary.
+description: How Hinata tells you about changes through the bell, e-mail and push, and how to tune it.
 ---
 
 # Staying informed
 
-A tracker is only useful if it reaches you when something actually needs you —
-and stays quiet the rest of the time. Hinata sends every notice through up to
-three channels, and you decide, event by event, which ones are allowed to
-interrupt you.
-
-This page explains what generates a notification, where notifications land, and
-how to tune them so the ones you get are the ones you read.
+Hinata reports events through the bell, e-mail and push. You decide, event by event, what may interrupt you.
 
 ## What Hinata notifies you about
 
-Ten kinds of thing can produce a notification. These are exactly the rows you
-will find in your settings, so it is worth knowing what each one covers:
+These ten events are also the rows in your settings.
 
 | Event | It fires when |
 | --- | --- |
@@ -31,105 +24,64 @@ will find in your settings, so it is worth knowing what each one covers:
 | **Weekly digest** | Your Monday summary of the week |
 | **Security alerts** | A new sign-in, a password change, an e-mail change |
 
-Two of these behave in ways worth spelling out.
+Good to know:
 
-**You do not have to watch an issue to hear about it.** If you are the assignee
-or the person who reported it, changes reach you anyway — that is what "Status
-changes" covers. "Watched issues" is the separate, deliberate subscription you
-add on top, for issues that are nobody's assignment but still yours to keep an
-eye on.
-
-**Due dates remind you once.** Every morning, Hinata looks two days ahead and
-notifies the assignees of anything unresolved that is about to come due. You
-get one reminder per due date, not one a day — and if the date is moved, the
-reminder re-arms for the new one.
-
-**You never hear about your own work.** Whatever you change, comment on or
-assign, you are removed from the list of recipients before anything is sent. The
-bell reflects what other people did.
-
-**Nobody hears about work they cannot see.** Before a notice goes out, Hinata
-checks that each recipient still reaches the project the issue is in *now* — not
-the one it was in when the change happened. Someone removed from a project this
-morning does not get an e-mail about it this afternoon.
+- **Assignees and reporters do not need to watch.** Changes reach them through "Status changes". "Watched issues" is for issues nobody is assigned to that you still want to follow.
+- **Due dates remind you once.** Every morning the server looks two days ahead and reminds the assignees of unresolved issues. There is one reminder per due date. If the date moves, a new one follows.
+- **You never hear about your own actions.** The bell shows what other people did.
+- **Nobody hears about work they cannot see.** When sending, Hinata checks that each recipient still reaches the project the issue is in *now*. Someone removed from a project gets no more e-mails about it.
 
 !!! note "New issues from e-mail depend on your server"
-    The "New issues from e-mail" event only ever fires if your operator has
-    connected a mailbox to a project. If nothing has been connected, the row is
-    simply never used. See [E-mail to ticket](/en/email-to-ticket.html) if you
-    are the person who would set that up.
+    This event only exists if your operator has connected a mailbox to a project. See [E-mail to ticket](/en/email-to-ticket.html).
 
 ## The bell and the notification centre
 
-The bell sits in the top bar on every screen. A small dot appears on it when
-you have something unread.
+The bell sits in the top bar on every screen. A dot shows that something is unread.
 
 ![The notification preview open under the bell with five entries](/assets/img/shot-notification-bell.png)
-*The preview under the bell: the five most recent notices, each with an icon for its kind — a person-with-a-tick for the assignment, speech bubbles for the comments, an "@" for the mention, a shield for the sign-in. Unread rows sit on an amber tint. "Mark all read" is top-right, "View all notifications" at the foot.*
+*The five most recent notices under the bell, unread ones on an amber tint.*
 
-The full centre keeps everything, grouped into **Today**, **Yesterday**,
-**This week**, **This month** and **Earlier**, and it loads more as you scroll.
+"Mark all read" is in the top right, "View all notifications" at the bottom. The full centre groups notices into **Today**, **Yesterday**, **This week**, **This month** and **Earlier**, and loads more as you scroll.
 
 ![The Hinata notification centre](/assets/img/shot-notifications.png)
-*The same notices in the full centre, under "Yesterday", with the unread count and "Mark all read" at the top. Every row carries the sentence that explains it — who commented and what they wrote — so most of them need no click at all.*
+*In the centre every row explains in one sentence what happened.*
 
-Three things you can do with a row:
-
-- **Tap it** to go where it points. Every notification carries a destination —
-  the issue, the team, the weekly summary — so a mention takes you to the
-  comment, not to a list you then have to search. Opening it also marks it read.
-- **Swipe it right** to flip it between read and unread. The row snaps back
-  rather than disappearing, so you can mark something unread to deal with later.
-- **Swipe it left** to delete it. This only removes your copy of the notice; it
-  changes nothing about the issue it referred to.
+- **Tap** a row to open its destination, such as the comment that mentions you, and mark it read.
+- **Swipe right** to flip it between read and unread.
+- **Swipe left** to delete your copy. Nothing changes on the issue.
 
 !!! tip "Unread as a to-do list"
-    Marking a notification unread again is the cheapest way to keep a "come back
-    to this" list without creating an issue for it. The dot on the bell stays
-    until you have actually dealt with it.
+    Mark a notice unread again to come back to it later. The dot on the bell stays until you have dealt with it.
 
 ## Three channels, and which ones you control
 
 | Channel | Where it shows | Can you turn it off? |
 | --- | --- | --- |
-| **In-app** | The bell and the notification centre | No — it is always recorded |
+| **In-app** | The bell and the notification centre | No, it is always recorded |
 | **E-mail** | Your inbox | Yes, per event |
 | **Push** | Your phone's or desktop's system notifications | Yes, per event |
 
-The in-app notice is always written, whatever your settings say. That is
-deliberate: the bell is the place you can always go to reconstruct what
-happened, even if you have silenced every mail and every push. What your
-settings govern is whether something also *interrupts* you.
+The bell always records everything. Your settings only decide whether something also *interrupts* you.
 
-E-mail needs your operator to have configured an outbound mail server; if
-nothing arrives even with the switch on, that is the first thing to ask about.
-Push works on Android, iOS, macOS and Windows and does not work on Linux or in
-the browser — [the download page](/en/download.html) has the full table of what
-each platform can do.
+- **E-mail** needs an outbound mail server set up by your operator.
+- **Push** works on Android, iOS, macOS and Windows, not on Linux or in the browser. See [Download](/en/download.html).
 
 !!! note "The push switch stays usable everywhere"
-    On a Linux desktop or in a browser tab, the push switch still works and
-    still saves. It has to: these preferences belong to your **account**, not to
-    the machine in front of you, and turning push off from your laptop would
-    otherwise silence the phone in your pocket without telling you. The app just
-    notes underneath that this particular device has no push service.
+    The setting belongs to your **account**. You can change it on Linux or in a browser, and it applies to your phone. The app just notes that this device has no push service.
 
 ## Tune what reaches you
 
 Open **Settings → Notifications**.
 
 ![The notification matrix in settings with the two master switches above the per-event grid](/assets/img/shot-notification-matrix.png)
-*The Notifications card. The two masters sit at the top — "Email notifications" and "Push notifications", the latter noting that this particular device has no push service — and under them one row per event, with an "Email" and a "Push" column.*
+*The master switches at the top, then one row per event with "Email" and "Push".*
 
-The masters are the blunt instrument: switch **E-mail notifications** off and no
-mail is sent for anything, while your per-event choices stay exactly as you left
-them, ready for when you turn it back on. Delivery happens when the master *and*
-the event's cell are both on.
+The masters **E-mail notifications** and **Push notifications** turn a channel off completely. Your per-event choices are kept. A notice is delivered only when the master *and* the cell are on.
 
 ![The same notification settings on a phone, one card per event](/assets/img/shot-mobile-notification-matrix.png)
-*The same screen on a phone. Each event becomes its own card with "Email" and "Push" listed inside it, so nothing has to be read across columns.*
+*On a phone each event becomes its own card.*
 
-These are the defaults a new account starts with:
+Defaults for a new account:
 
 | Event | E-mail | Push |
 | --- | :---: | :---: |
@@ -144,116 +96,67 @@ These are the defaults a new account starts with:
 | Weekly digest | on | off |
 | Security alerts | locked on | locked on |
 
-The pattern behind them: things aimed at *you personally* get both channels,
-things that are merely *nearby* get the glanceable one. Watching starts on for
-both because subscribing is something you did on purpose — unlike status
-changes, which every new assignment opts you into whether you asked or not.
+Security alerts cannot be switched off. Their row shows a padlock instead of a switch.
 
-**Security alerts cannot be switched off.** Their row shows a padlock instead of
-a switch. A new sign-in on your account is exactly the message that must not be
-losable in a preference you set eighteen months ago.
-
-!!! tip "Two minutes now saves an inbox later"
-    The people who end up muting a tracker entirely are usually the ones who
-    never touched this screen. Go through the ten rows once, honestly, and turn
-    off the two or three that you know you will never act on. Everything you
-    leave on then means something.
+!!! tip "Spend two minutes once"
+    Turn off the two or three rows you know you will never act on. Then every notice means something.
 
 ## Watch an issue to opt in
 
-Watching is how you subscribe to an issue that is not yours. Open it, use the
-**⋯** menu in the top bar and choose **Watch**.
+1. Open the issue.
+2. Tap **⋯** in the top bar.
+3. Choose **Watch**.
 
 ![The watch panel open on an issue, showing the toggle and the watcher list](/assets/img/shot-issue-watch-panel.png)
-*The panel behind "⋯ → Watch", anchored where the menu was. The toggle at the top reads "Stop watching" once you are subscribed; beneath it "You already get notifications as the reporter." and "Watchers of this issue", everyone already paying attention.*
+*The panel with the toggle, your status and "Watchers of this issue".*
 
-A toast confirms it: *You are now watching this issue.* From then on, every
-change to it can reach you through the "Watched issues" event.
+A toast confirms it: *You are now watching this issue.* The toggle then reads "Stop watching". A line such as "You already get notifications as the reporter." tells you whether you were covered anyway.
 
-That line about being the assignee or the reporter is worth reading before you
-subscribe: it separates "nobody is listening" from "you are already covered".
-
-Everything you have subscribed to is collected on one page: **Watched** in the
-sidebar (behind **More** on a phone).
+Everything you watch is listed under **Watched** in the sidebar (behind **More** on a phone).
 
 ![The Watched issues page](/assets/img/shot-watched.png)
-*The Watched page: one row per subscription, across every project you can reach, with state, priority, assignee and due date. Before you have subscribed to anything it holds a single line telling you how to fill it — open an issue and turn on "Watch".*
+*One row per subscription with state, priority, assignee and due date.*
+
+Before you watch anything, the page tells you how to fill it.
 
 !!! info "Why watched issues do not flood your inbox"
-    The bell and push fire the moment something changes, because you glance at
-    them and move on. Mail is different: one message per edit turns a busy issue
-    into a mailbox flood, and the only lesson anyone takes from a flood is to
-    stop watching.
+    The bell and push report every change right away. Mail is bundled: after about five minutes without edits you get **one** mail listing all changes, and after half an hour at the latest.
 
-    So the mail waits for the editing to settle — about five minutes of quiet —
-    and then sends **one** message listing everything that changed. If the
-    editing never stops, it goes out anyway after half an hour. You get a
-    summary of the afternoon, not a transcript of it.
-
-    Assignees and reporters are the exception: their mail is sent immediately,
-    because their relationship to the issue is stronger than a subscription. If
-    you are both — assigned *and* watching — you keep the immediate mail.
+    Assignees and reporters get their mail immediately, even if they also watch.
 
 ## Your weekly summary
 
-Every Monday morning, Hinata puts together a picture of the week for you: what
-the team finished, what you personally closed, how much focused time you logged,
-and what is waiting for you next. It arrives as a notification in the bell and,
-if you have left the "Weekly digest" e-mail on, as a mail with the same
-contents. Both open the same page in the app.
-
-If there is genuinely nothing to report — a quiet week, a new account, a holiday
-— you are skipped rather than sent an empty digest.
+Every Monday morning Hinata sums up your week: what the team and you closed, your focus time and what is next. It arrives in the bell and, if the "Weekly digest" e-mail is on, as a mail too. Both open the same page. If there is nothing to report, no digest is sent.
 
 ![The weekly summary page](/assets/img/shot-weekly-summary.png)
-*The weekly summary. The navy hero names the week and how many issues the team completed, with your own closed count and focus time beside it; "The week behind" holds completed, created and focus-time tiles plus the active sprint's progress, and "Your upcoming to-dos" lists what is next, with overdue items flagged in red.*
+*The weekly summary with key figures, sprint progress and your upcoming to-dos.*
 
-Two sections the screenshot does not reach:
+- **Header**: the week, issues the team completed, your own closed count and your focus time.
+- **The week behind**: completed, created and focus time tiles plus the active sprint's progress.
+- **Top contributors and completed highlights**: who moved what, and a sample of finished work.
+- **Your upcoming to-dos**: your open issues ordered by urgency. An **overdue** count sits at the top and overdue items are red. Tap a row to open the issue.
 
-- **Top contributors and completed highlights** — who moved what, and a sample
-  of the actual work that got finished. Useful for a Monday stand-up.
-- **Your upcoming to-dos** — everything open and assigned to you, ordered by
-  urgency, with an **overdue** count at the top. Tap any row to open the issue.
-
-You can reach the page any time from the notification, and you can turn the
-whole thing off in the **Weekly digest** row of your settings.
+Turn it off in the **Weekly digest** row of your settings.
 
 !!! tip "Read it before your Monday meeting"
-    The summary answers the two questions a stand-up always opens with — what
-    landed last week, and what is at risk this week — without anyone having to
-    prepare a report.
+    It shows what landed last week and what is at risk this week.
 
 ## When something does not arrive
 
-Work down this list; it is ordered by how often each turns out to be the answer.
+The most common causes are at the top.
 
-1. **Check the master switch.** A silenced channel silences every event under
-   it, and the switch says so: *Silenced — nothing is delivered.*
-2. **Check the event's row.** Comments and status changes in particular are off
-   for one channel by default.
-3. **Check that you are actually involved.** You hear about an issue if you are
-   an assignee, the reporter, or a watcher. Being in the project is not enough,
-   by design.
-4. **For push: check your device's own permission.** The app asks once, the
-   first time you sign in; if you declined, the operating system's settings for
-   the app are where you grant it. And confirm push works on that platform at
-   all — see [Download](/en/download.html).
-5. **For e-mail: ask your operator.** Mail needs a working outbound mail server
-   on the Hinata server. Nothing you can change in the app fixes that.
+1. **Check the master switch.** A silenced channel silences every event, and the app says so at the switch.
+2. **Check the event's row.** Comments and status changes are off for one channel each by default.
+3. **Check that you are involved.** You hear about issues as assignee, reporter or watcher. Being in the project is not enough.
+4. **For push: check your device's permission.** The app asks once at first sign-in. If you declined, allow it in the system settings. Check [Download](/en/download.html) to see whether your platform supports push.
+5. **For e-mail: ask your operator.** Without a working outbound mail server, no setting helps.
 
 !!! warning "Deleting a notification does not undo anything"
-    Swiping a notification away removes your copy of the message. The
-    assignment, the comment or the status change it announced is still there.
-    If you want the issue itself to stop bothering you, stop watching it — or
-    hand it to someone else.
+    You only delete your copy. If the issue should stop bothering you, stop watching it or hand it to someone else.
 
 ## Next steps
 
-- [Comments & attachments](/en/guide-collaboration.html) — mentions are the
-  single biggest source of notifications; this is how to write them.
-- [Working with issues](/en/guide-issues.html) — assignees, reporters and the
-  ⋯ menu the Watch panel lives in.
-- [Your account](/en/guide-account.html) — the rest of the settings screen,
-  including where the notification matrix sits.
-- [Reports & dashboard](/en/guide-reports.html) — the numbers behind the weekly
-  summary, on demand rather than on Mondays.
+- [Comments & attachments](/en/guide-collaboration.html): how to write mentions, the biggest source of notifications.
+- [Working with issues](/en/guide-issues.html): assignees, reporters and the ⋯ menu.
+- [Your account](/en/guide-account.html): the rest of the settings screen.
+- [Reports & dashboard](/en/guide-reports.html): the numbers behind the weekly summary, whenever you want them.

@@ -1,104 +1,106 @@
 ---
 title: Sicherheitsmodell
-description: Hinatas Härtungskonzept, abgebildet auf die OWASP Top 10 — JWT-Design, BCrypt, Login-Sperre, Rate Limiting, gehärtete Header, sichere Uploads und Verschlüsselung im Ruhezustand.
+description: So härtet Hinata die Plattform, abgebildet auf die OWASP Top 10, mit einer Checkliste für Betreiber.
 ---
 
 # Sicherheitsmodell
 
-Hinata ist dafür gebaut, dem öffentlichen Internet ausgesetzt zu werden. Diese Seite dokumentiert die Härtung der Plattform — die konkreten Maßnahmen, die Umgebungsvariablen, die sie einstellen, und eine **Betreiber-Checkliste** für ein sicheres Produktiv-Deployment. Alles Folgende ist auf die **OWASP Top 10** abgebildet, damit du die Abdeckung nachvollziehen kannst.
+Hinata ist für den Betrieb im öffentlichen Internet gebaut. Hier stehen die Schutzmaßnahmen, ihre Umgebungsvariablen und eine **Checkliste für Betreiber**, abgebildet auf die **OWASP Top 10**.
 
-Für die benutzerseitige Seite der Authentifizierung (Registrierung, 2FA, Sitzungen) siehe [Authentifizierung](/de/authentication.html), und für föderiertes Login siehe [Single Sign-on](/de/sso.html).
+Registrierung, 2FA und Sitzungen aus Nutzersicht: [Authentifizierung](/de/authentication.html). Föderierter Login: [Single Sign-on](/de/sso.html).
 
 ## Tokens und Passwörter
 
-- **Stateless JWT, HS512.** Access-Tokens sind kurzlebig; ein separates **Refresh-Token** stellt neue Access-Tokens aus. Entscheidend: Ein **Refresh-Token wird für normalen API-Zugriff abgelehnt** — es wird nur am Refresh-Endpunkt akzeptiert. Ein gestohlenes Access-Token läuft schnell ab; ein gestohlenes Refresh-Token kann nicht zum Lesen von Daten verwendet werden.
-- **Widerrufbare Sitzungen.** Jedes Token trägt eine Session-ID (`sid`), die an einen Datensatz in der `sessions`-Collection gebunden ist, sodass einzelne Sitzungen widerrufen werden können, ohne das Signaturgeheimnis zu rotieren. Siehe [Authentifizierung → Sitzungen](/de/authentication.html).
-- **BCrypt Stärke 12** für das Passwort-Hashing, mit einer **Mindestlänge von 10 Zeichen**. Länge plus ein bewusst langsamer Hash ist die Kernverteidigung gegen Brute Force von Zugangsdaten.
+- **Stateless JWT, HS512.** Access-Tokens sind kurzlebig, neue stellt ein separates **Refresh-Token** aus. Das **Refresh-Token wird für normalen API-Zugriff abgelehnt** und gilt nur am Refresh-Endpunkt. Ein gestohlenes Access-Token läuft schnell ab, ein gestohlenes Refresh-Token kann keine Daten lesen.
+- **Widerrufbare Sitzungen.** Jedes Token trägt eine Session-ID (`sid`) mit Eintrag in der Collection `sessions`. So lassen sich einzelne Sitzungen widerrufen, ohne das Signaturgeheimnis zu wechseln. Siehe [Authentifizierung → Sitzungen](/de/authentication.html).
+- **BCrypt mit Stärke 12** für Passwörter, **Mindestlänge 10 Zeichen**. Länge und ein bewusst langsamer Hash schützen vor Brute Force.
 
 !!! danger "Ändere das JWT-Secret, bevor du den Server exponierst"
-    `HINATA_JWT_SECRET` ist der HS512-Signaturschlüssel und muss in Produktion ein echtes Secret von **mindestens 64 Zeichen** sein. Generiere eines mit:
+    `HINATA_JWT_SECRET` ist der Signaturschlüssel für HS512 und braucht in der Produktion **mindestens 64 Zeichen**. Generiere ihn mit:
     ```bash
     openssl rand -base64 64 | tr -d '\n'
     ```
-    Wer dieses Secret kennt, kann Tokens für jeden Benutzer fälschen. Liefere niemals den Standardwert aus.
+    Wer das Secret kennt, kann Tokens für jeden Benutzer fälschen. Nutze nie den Standardwert.
 
 ## Login-Sperre und Rate Limiting
 
-Zwei unabhängige Schichten schützen die Zugangsdaten- und API-Angriffsfläche.
+Zwei unabhängige Schichten schützen Logins und API.
 
-**Datenbankgestützte Login-Sperre** zählt fehlgeschlagene Logins und sperrt das Konto/den Identifier nach einem Schwellwert. Da der Zähler in MongoDB lebt, **übersteht die Sperre Neustarts** und funktioniert über mehrere Serverinstanzen hinweg.
+**Login-Sperre in der Datenbank.** Fehlgeschlagene Logins werden gezählt. Ab einem Schwellwert wird Konto oder Identifier gesperrt. Der Zähler liegt in MongoDB, die Sperre **übersteht also Neustarts** und gilt über mehrere Serverinstanzen hinweg.
 
 | Variable | Standard | Zweck |
 | --- | --- | --- |
 | `HINATA_MAX_LOGIN_FAILURES` | `5` | Fehlversuche, bevor der Identifier gesperrt wird |
 | `HINATA_LOGIN_BLOCK_MINUTES` | `15` | Wie lange die Sperre andauert |
 
-**Rate Limiting pro IP** (über **bucket4j**) deckelt das Anfragevolumen pro Client-IP, mit einem **strengeren Budget auf `/auth/**`**, um Password Spraying und Enumeration abzuschwächen.
+**Rate Limiting pro IP** (mit **bucket4j**) begrenzt die Anfragen pro Client-IP. Für `/auth/**` gilt ein **strengeres Budget** gegen Password Spraying und das Ausprobieren von Konten.
 
 | Variable | Standard | Zweck |
 | --- | --- | --- |
 | `HINATA_RATE_LIMIT_ENABLED` | `true` | Hauptschalter für Rate Limiting |
 | `HINATA_RATE_LIMIT_API` | `300` | Anfragen pro Minute für die allgemeine API |
-| `HINATA_RATE_LIMIT_AUTH` | `10` | Anfragen pro Minute für `/auth/**` (streng; die öffentliche SSO-Anbieterabfrage zählt aufs API-Budget) |
+| `HINATA_RATE_LIMIT_AUTH` | `10` | Anfragen pro Minute für `/auth/**` (streng. Die öffentliche Abfrage der SSO-Anbieter zählt aufs API-Budget) |
 
 !!! warning "Rate Limiting braucht die echte Client-IP"
-    Hinter einem Reverse Proxy scheint jede Anfrage vom Proxy zu kommen, es sei denn, du sagst Hinata, welchen Proxies es vertrauen soll. Setze `HINATA_TRUSTED_PROXIES` auf die CIDR(s) deines Load Balancers/Proxys, damit `X-Forwarded-For` nur von diesen honoriert wird. Lässt du es leer, vertraut Hinata keinem weitergeleiteten Header — sicher, aber jeder Client sieht aus wie der Proxy. Siehe [Reverse Proxy & TLS](/de/reverse-proxy.html).
+    Hinter einem Reverse Proxy kommt sonst jede Anfrage scheinbar vom Proxy. Setze `HINATA_TRUSTED_PROXIES` auf die CIDR(s) deines Load Balancers oder Proxys, dann gilt `X-Forwarded-For` nur von dort. Ist die Variable leer, vertraut Hinata keinem weitergeleiteten Header. Das ist sicher, aber alle Clients sehen aus wie der Proxy. Siehe [Reverse Proxy & TLS](/de/reverse-proxy.html).
 
 ## Autorisierung
 
-- **Rollen-gesicherte Admin-Fläche.** Jede Route unter **`/api/v1/admin/**` erfordert die Rolle `ADMIN`**; ein normales Token kann keine Admin-Funktionen erreichen.
-- **Mandanten-/Projekt-Sichtbarkeit.** Team-Mitgliedschaft steuert die Projekt-Sichtbarkeit app-weit — ein Benutzer sieht nur Projekte, die sein Team gewährt (siehe [Projekte & Teams](/de/projects-teams.html)).
-- **Öffentliche Endpunkte sind explizit.** Nur eine kleine Allowlist ist ohne Token erreichbar: `/meta`, `/setup/status`, `/setup`, `/auth/login`, `/auth/refresh`, `/auth/sso/providers`, `/actuator/health`. Alles andere verlangt ein Bearer-Token.
+- **Adminbereich nur mit Rolle.** Jede Route unter **`/api/v1/admin/**` verlangt die Rolle `ADMIN`**. Ein normales Token erreicht keine Adminfunktionen.
+- **Sichtbarkeit von Mandanten und Projekten.** Die Teammitgliedschaft steuert in der ganzen App, welche Projekte jemand sieht: nur die, die sein Team freigibt (siehe [Projekte & Teams](/de/projects-teams.html)).
+- **Öffentliche Endpunkte sind festgelegt.** Ohne Token erreichbar ist nur diese kurze Liste: `/meta`, `/setup/status`, `/setup`, `/auth/login`, `/auth/refresh`, `/auth/sso/providers`, `/actuator/health`. Alles andere verlangt ein Bearer-Token.
 
 ## Gehärtete HTTP-Antworten
 
-- **Security-Header** auf jeder Antwort: **HSTS** (HTTPS erzwingen), eine restriktive **Content-Security-Policy** und **`Referrer-Policy: no-referrer`**, unter anderem.
-- **Stabile, lokalisierte JSON-Fehler ohne Stacktraces.** Fehler werden serverseitig aus Message-Bundles anhand des `Accept-Language` des Clients aufgelöst und in einer konsistenten Form zurückgegeben — keine internen Pfade, Klassennamen oder Stacktraces dringen zu Clients durch.
-- **Regex-escapte Sucheingabe.** Von Benutzern gelieferte Suchbegriffe werden escaped, bevor sie die Query-Schicht erreichen, sodass ein präparierter Begriff nicht zu einem injizierten/teuren regulären Ausdruck werden kann.
+- **Security-Header** auf jeder Antwort, unter anderem **HSTS** (erzwingt HTTPS), eine strenge **Content-Security-Policy** und **`Referrer-Policy: no-referrer`**.
+- **Stabile, lokalisierte JSON-Fehler ohne Stacktraces.** Der Server holt Fehlertexte passend zum `Accept-Language` des Clients aus Message-Bundles und liefert sie immer im selben Format. Interne Pfade, Klassennamen oder Stacktraces erreichen nie den Client.
+- **Escapte Sucheingaben.** Suchbegriffe werden escaped, bevor sie die Abfrageschicht erreichen. Ein präparierter Begriff wird so nie zu einem eingeschleusten oder teuren regulären Ausdruck.
 
 ## Datei-Uploads und Objektspeicher
 
-- **Content-Type und Größe werden validiert** beim Upload, sodass Clients keine unerlaubten oder überdimensionierten Dateien einschleusen können (Limits sind ENV-gesteuert).
-- **Randomisierte S3-Objektschlüssel**, sodass gespeicherte Objekte nicht per Name erratbar oder enumerierbar sind.
-- **Presigned Downloads** — Anhänge werden über kurzlebige Presigned-URLs statt über einen öffentlichen Bucket ausgeliefert, sodass der Zugriff eingegrenzt und zeitlich befristet ist.
+- **Content-Type und Größe werden beim Upload geprüft**, damit niemand unerlaubte oder zu große Dateien einschleust (Limits per ENV).
+- **Zufällige S3-Objektschlüssel.** Gespeicherte Objekte lassen sich über den Namen weder erraten noch auflisten.
+- **Presignte Downloads.** Anhänge kommen über kurzlebige presignte URLs statt aus einem öffentlichen Bucket. Der Zugriff ist so eingegrenzt und zeitlich begrenzt.
 
 ## Verschlüsselung im Ruhezustand für Integrations-Secrets
 
-Git-Access-Tokens und andere Integrations-Secrets werden **mit AES-GCM verschlüsselt**, bevor sie die Datenbank berühren, mit dem Schlüssel in **`HINATA_GIT_TOKEN_SECRET`**. Secrets sind **write-only in der Admin-API** — du kannst sie setzen, aber sie werden nie zurückgegeben. Ändere den Standardschlüssel in Produktion; das Rotieren re-keyt gespeicherte Tokens.
+Git-Access-Tokens und andere Secrets von Integrationen werden vor dem Speichern **mit AES-GCM verschlüsselt**, mit dem Schlüssel aus **`HINATA_GIT_TOKEN_SECRET`**. In der Admin-API sind Secrets **nur schreibbar** und werden nie zurückgegeben. Ändere den Standardschlüssel in der Produktion. Beim Rotieren werden gespeicherte Tokens neu verschlüsselt.
 
 ## OWASP-Top-10-Mapping
 
 | OWASP Top 10 (2021) | Wie Hinata darauf eingeht |
 | --- | --- |
-| A01 Broken Access Control | `ADMIN`-gesicherte Admin-Routen, explizite öffentliche Allowlist, Team-/Projekt-Sichtbarkeitssteuerung, pro Sitzung widerrufbare Tokens |
-| A02 Cryptographic Failures | JWT HS512, BCrypt-12-Passwörter, AES-GCM-Verschlüsselung von Integrations-Secrets im Ruhezustand, TLS überall (Betreiber) |
-| A03 Injection | Regex-escapte Suche, parametrisierter Mongo-Zugriff, Content-Type-/Größen-validierte Uploads |
-| A04 Insecure Design | Refresh-Tokens für API-Nutzung abgelehnt, write-only Secrets, Deep-Link-Auth-Callbacks, Mongo-gespeicherter Authorization-State |
-| A05 Security Misconfiguration | Gehärtete Header (HSTS/CSP/no-referrer), API-Docs-UI in Prod standardmäßig aus, Trusted-Proxy-Allowlist, stabile Fehler ohne Stacktraces |
-| A06 Vulnerable Components | Aktiv gepflegte Basis aus Spring Boot 4 / Java 21; Images aktuell halten (Betreiber) |
-| A07 Identification & Auth Failures | Passwort-Mindestlängen, DB-gestützte Login-Sperre, strenges `/auth/**`-Rate-Limiting, TOTP-2FA, widerrufbare Sitzungen |
-| A08 Software & Data Integrity | Signatur-verifizierte Git-Webhooks, Single-Apply-Commit-Ledger (siehe [Git-Integration](/de/git-integration.html)) |
-| A09 Logging & Monitoring | `/actuator/health` für Probes; Fehler serverseitig geloggt, ohne Internas an Clients preiszugeben |
-| A10 SSRF | Server-vermittelte Integrationen mit festen Provider-Endpunkten statt vom Client gelieferten URLs |
+| A01 Broken Access Control | Adminrouten nur mit `ADMIN`, feste Liste öffentlicher Endpunkte, Sichtbarkeit über Team und Projekt, Tokens pro Sitzung widerrufbar |
+| A02 Cryptographic Failures | JWT HS512, Passwörter mit BCrypt 12, Integrations-Secrets mit AES-GCM verschlüsselt, TLS überall (Betreiber) |
+| A03 Injection | Escapte Suche, parametrisierter Zugriff auf MongoDB, Uploads mit Prüfung von Content-Type und Größe |
+| A04 Insecure Design | Refresh-Tokens für die API abgelehnt, nur schreibbare Secrets, Auth-Callbacks per Deep Link, Authorization-State in MongoDB |
+| A05 Security Misconfiguration | Gehärtete Header (HSTS/CSP/no-referrer), Oberfläche der API-Docs in Prod standardmäßig aus, Liste vertrauenswürdiger Proxys, stabile Fehler ohne Stacktraces |
+| A06 Vulnerable Components | Aktiv gepflegte Basis aus Spring Boot 4 / Java 21. Images aktuell halten (Betreiber) |
+| A07 Identification & Auth Failures | Mindestlänge für Passwörter, Login-Sperre in der Datenbank, strenges Rate Limiting auf `/auth/**`, 2FA per TOTP, widerrufbare Sitzungen |
+| A08 Software & Data Integrity | Git-Webhooks mit geprüfter Signatur, Commit-Ledger, das jeden Commit nur einmal anwendet (siehe [Git-Integration](/de/git-integration.html)) |
+| A09 Logging & Monitoring | `/actuator/health` für Probes. Fehler werden auf dem Server geloggt, ohne Interna an Clients zu geben |
+| A10 SSRF | Integrationen laufen über den Server mit festen Endpunkten der Anbieter statt mit URLs vom Client |
 
-## Härtungs-Checkliste für Betreiber
+## Härtungscheckliste für Betreiber
 
 !!! danger "Erledige das, bevor du live gehst"
-    - **Ändere `HINATA_JWT_SECRET`** in ein frisches 64-Zeichen-Secret (`openssl rand -base64 64`).
-    - **Ändere jedes Standardpasswort** — `MONGO_ROOT_PASSWORD`, `MINIO_ROOT_PASSWORD` und die TLS-Keystore-/Truststore-Passwörter (`HINATA_MONGO_TLS_*_PASSWORD`, Standard `changeit`).
-    - **Ändere `HINATA_GIT_TOKEN_SECRET`**, sodass Integrations-Tokens mit deinem eigenen Schlüssel verschlüsselt werden.
+
+    - **Ändere `HINATA_JWT_SECRET`** in ein neues Secret mit 64 Zeichen (`openssl rand -base64 64`).
+    - **Ändere jedes Standardpasswort:** `MONGO_ROOT_PASSWORD`, `MINIO_ROOT_PASSWORD` und die Passwörter für TLS-Keystore und Truststore (`HINATA_MONGO_TLS_*_PASSWORD`, Standard `changeit`).
+    - **Ändere `HINATA_GIT_TOKEN_SECRET`**, damit Integrations-Tokens mit deinem eigenen Schlüssel verschlüsselt werden.
 
 !!! tip "Dann ziehe den Perimeter fester"
-    - **TLS überall** — terminiere HTTPS an deinem Reverse Proxy und nutze TLS zwischen Diensten; betreibe MongoDB in Produktion mit X.509-Client-Auth (siehe [MongoDB & X.509](/de/database.html)).
+
+    - **TLS überall:** HTTPS am Reverse Proxy terminieren und TLS zwischen den Diensten nutzen. MongoDB in der Produktion mit X.509 betreiben (siehe [MongoDB & X.509](/de/database.html)).
     - **Setze `HINATA_TRUSTED_PROXIES`** auf die CIDR deines Proxys, damit Rate Limiting und Login-Sperre die echte Client-IP sehen.
-    - **Deaktiviere die Docs-UI in Prod** — halte `HINATA_DOCS_ENABLED=false`, sodass die Scalar-API-Docs-UI nicht exponiert wird.
-    - **Grenze CORS ein** — setze `HINATA_CORS_ALLOWED_ORIGINS` auf genau deine Web-App-Origin(s), nichts Breiteres.
-    - **Halte Images aktuell** — ziehe regelmäßig neue `ghcr.io/hinata-platform`-Images für Security-Fixes; siehe [Backups & Upgrades](/de/backups.html).
-    - **Halte die Server-Uhr synchron** (NTP) — erforderlich für korrektes Token-Ablaufen und SAML-SSO.
+    - **Deaktiviere die Docs-UI in Prod:** Lass `HINATA_DOCS_ENABLED=false`, damit die Scalar-Oberfläche der API-Docs nicht erreichbar ist.
+    - **Grenze CORS ein:** Setze `HINATA_CORS_ALLOWED_ORIGINS` genau auf die Origin(s) deiner Web-App, nicht mehr.
+    - **Halte Images aktuell:** Ziehe regelmäßig neue Images von `ghcr.io/hinata-platform` für Sicherheitsfixes. Siehe [Backups & Upgrades](/de/backups.html).
+    - **Halte die Serveruhr synchron** (NTP). Das braucht der Tokenablauf und SAML-SSO.
 
 ## Wie geht es weiter
 
-- **[Authentifizierung](/de/authentication.html)** — das Zugangsdaten-System, 2FA und Sitzungswiderruf.
-- **[Single Sign-on](/de/sso.html)** — Authentifizierung an deinen IdP delegieren.
-- **[Konfigurationsreferenz](/de/configuration.html)** — jede Umgebungsvariable an einem Ort.
-- **[Reverse Proxy & TLS](/de/reverse-proxy.html)** — Trusted Proxies und TLS-Terminierung.
+- **[Authentifizierung](/de/authentication.html):** Zugangsdaten, 2FA und Widerruf von Sitzungen.
+- **[Single Sign-on](/de/sso.html):** Anmeldung an deinen IdP abgeben.
+- **[Konfigurationsreferenz](/de/configuration.html):** jede Umgebungsvariable an einem Ort.
+- **[Reverse Proxy & TLS](/de/reverse-proxy.html):** vertrauenswürdige Proxys und TLS-Terminierung.

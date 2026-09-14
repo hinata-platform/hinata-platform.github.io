@@ -8,11 +8,11 @@ import { latestAppVersion } from '@/lib/version';
 export const metadata: Metadata = {
   title: 'Hinata · Open-source, self-hosted project management',
   description:
-    'Hinata is an independent, self-hosted project & issue tracker — boards, sprints, Gantt, knowledge base and Git integration, on Android, iOS, Web, macOS, Windows and Linux.',
+    'Hinata is a self-hosted project and issue tracker with boards, sprints, Gantt, a knowledge base and Git integration. Runs on Android, iOS, Web, macOS, Windows and Linux.',
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
-    title: 'Hinata — project management you actually own',
+    title: 'Hinata: project management you actually own',
     description:
       'Open-source, self-hosted project & issue tracking. Boards, sprints, Gantt, Git integration. Android · iOS · Web · macOS · Windows · Linux.',
     url: String(SITE.base_url) + '/',

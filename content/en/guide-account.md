@@ -1,268 +1,200 @@
 ---
 title: Your account
-description: Everything on your settings screen — profile and avatar, e-mail and password, two-factor authentication, active sessions, language and theme, and your data-export and account-deletion rights.
+description: Profile, sign-in, 2FA, sessions, language and your data on the settings screen.
 ---
 
 # Your account
 
-Your account settings are the one screen in Hinata that is entirely about *you*
-rather than about the work. Your name and picture as colleagues see them, how
-you sign in, which devices are currently signed in, what language the app talks
-to you in, and what happens to your data if you leave.
-
-Open it from **Settings** at the bottom of the navigation rail, or from your
-avatar in the top-right corner — that menu also has a quick **Edit profile** and
-**Sign out**. On a phone, the settings icon lives beside the bell in the top bar.
+Open **Settings** at the bottom of the navigation rail, or click your avatar in
+the top-right corner. That menu also has **Edit profile** and **Sign out**. On a
+phone, the settings icon sits next to the bell.
 
 ![The Hinata settings screen](/assets/img/shot-settings.png)
-*Settings on a desktop. The profile banner runs along the top with "Edit profile" and "Sign out". Under it the page splits: E-mail & security and Active sessions open the left column, Access and Appearance & app the right. Your notification matrix and the data controls carry on below the fold in the same two columns.*
+*Settings on a desktop.*
 
-!!! tip "On a phone this is a list, not a wall"
-    Narrow screens turn the same content into an index, and each entry opens as
-    its own page. The back arrow returns you to the index first, then to
-    wherever you came from.
+!!! tip "On a phone it is a list"
+    Each card becomes a row that opens as its own page. Which rows you see
+    depends on your account. The back arrow goes to the list first, then back.
 
-![Settings on a phone: the profile hero above a list of section rows](/assets/img/shot-mobile-settings-index.png)
-*Settings on a phone. The profile hero keeps "Edit profile" and "Sign out"; below it every card of the desktop screen becomes one row — "Email & security", "Active sessions", "Notifications", "Access", "Appearance & app", and "Admin area" for an administrator. Which rows you get depends on your account.*
+![Settings on a phone as a list of sections](/assets/img/shot-mobile-settings-index.png)
+*Settings on a phone.*
 
 ## Your profile
 
-The banner at the top shows how you appear to everyone else: your picture, your
-display name, your `@username`, your job title, the roles you hold and the month
-you joined.
+The banner at the top shows how others see you: picture, display name,
+`@username`, job title, roles and the month you joined.
 
-![The Edit profile dialog with the username field greyed out](/assets/img/shot-account-edit-profile.png)
-*"Edit profile" opens over the settings screen. "Display name" and "Job title" are editable; "Username" sits greyed out between them, and the subtitle says why.*
+![The Edit profile dialog](/assets/img/shot-account-edit-profile.png)
+*"Edit profile" with "Username" greyed out.*
 
-Your display name is what colleagues see on cards, in comments and in assignee
-pickers, and changing it costs nothing. The job title is free text —
-"Maintainer", "Design lead", "Working student" — whatever helps someone decide
-whether to ask you.
-
-The **username cannot be changed** because `@`-mentions resolve to it and old
-comments still point at it. Letting it move would quietly rewrite history.
+- **Display name**: shown on cards, in comments and in assignee pickers. Change
+  it any time.
+- **Job title**: free text, such as "Maintainer".
+- **Username**: cannot be changed, because `@`-mentions and old comments point
+  to it.
 
 ### Your picture
 
-Click the small camera badge on your avatar, or open the picture row, and choose
-**Upload a photo**. JPEG, PNG, GIF and BMP files are accepted, up to 12 MB — a
-photo straight off a phone is fine. The server shrinks whatever you send to at
-most 512 pixels on the long edge and stores it as a JPEG, so a 9 MB upload does
-not become a 9 MB download for everyone who opens the board.
+Click the camera badge on your avatar and choose **Upload a photo**. JPEG, PNG,
+GIF and BMP up to 12 MB are accepted. The server stores the image as a JPEG of at
+most 512 pixels on the long edge.
 
-**Remove photo** puts you back to the coloured initials Hinata generates from
-your name. There is no penalty for having no photo, but a board full of initials
-is genuinely harder to scan than a board full of faces.
+**Remove photo** brings back your coloured initials.
 
 ## Your sign-in address
 
-The **E-mail & security** card starts with the address you sign in with, marked
-**Verified** or **Unverified**.
+The **E-mail & security** card shows your sign-in address as **Verified** or
+**Unverified**.
 
-![The Change email dialog, with the current address read-only above the new one](/assets/img/shot-account-change-email.png)
-*"Change" on the Email row opens this. The current address sits above the new one, read-only, and the subtitle carries the guarantee: your sign-in email only changes once you confirm it.*
+![The Change email dialog](/assets/img/shot-account-change-email.png)
+*The dialog behind "Change".*
 
-Until you click the link in that mail, the card shows *Pending confirmation for
-…* and nothing has moved. A typo therefore costs you nothing — you simply never
-confirm.
+1. Click **Change** and enter the new address.
+2. Click the link in the mail. Until then the card shows *Pending confirmation
+   for …*, and the old address still applies.
+3. Once you confirm, every device is signed out. A security alert lands in your
+   bell and inbox.
 
-The moment you *do* confirm, two things happen: every device signed in to your
-account is signed out, and a security alert lands in your bell and your inbox.
-An address change is a change to how the account is recovered, so Hinata treats
-it as one.
-
-!!! note "Unless your organisation uses single sign-on"
-    If you sign in through an identity provider, the card says so — *Email and
-    password are managed by your identity provider* — and the change and reset
-    buttons are gone. Both live wherever your organisation's accounts live.
-    [Single sign-on](/en/sso.html) covers the arrangement.
+!!! note "With single sign-on"
+    If you sign in through an identity provider, the card says *Email and
+    password are managed by your identity provider*, and the change and reset
+    buttons are gone. See [Single sign-on](/en/sso.html).
 
 ## Your password
 
-Hinata does not ask you for your old password in a form.
+**Reset** on the Password row mails you a one-time link. It expires in 30
+minutes. There is no change-password form.
 
-![The Reset password confirmation dialog](/assets/img/shot-account-password-reset.png)
-*"Reset" on the Password row does not open a change-password form. It opens this: one line saying a one-time link goes to your inbox and expires in 30 minutes, and a single "Email reset link" button.*
+![The Reset password dialog](/assets/img/shot-account-password-reset.png)
+*The dialog with "Email reset link".*
 
-That is deliberate. A change-password form in a signed-in session protects
-nothing if someone is sitting at your unlocked laptop. A link to your mailbox
-means the person changing the password has to control the mailbox.
-
-New passwords must be at least **10 characters** long. Completing a reset also
-signs you out everywhere — including the session you started it from — so the
-first thing you do afterwards is sign in with the new password.
-
-!!! tip "Length beats punctuation"
-    Four ordinary words you will actually remember beat `P@ssw0rd!` in every way
-    that matters. Nothing in Hinata demands a symbol or a digit — it demands
-    length, because that is the thing that makes guessing expensive.
+- New passwords need at least **10 characters**. Symbols and digits are not
+  required. Four ordinary words beat `P@ssw0rd!`.
+- Afterwards you are signed out everywhere, including the current device.
 
 ## Two-factor authentication
 
-With two-factor authentication on, signing in takes your password *and* a
-six-digit code from an app on your phone. Someone who steals the password still
-cannot get in.
-
-The row shows **Enable** when it is off, and *On · 10 recovery codes left* when
-it is on.
+With 2FA on, signing in also takes a six-digit code from an app on your phone.
+The row shows **Enable** or *On · 10 recovery codes left*.
 
 ### Turning it on
 
-Press **Enable**. The wizard has three steps and takes about a minute.
+Press **Enable**. The wizard takes about a minute.
 
-![Step 1 of the two-factor wizard, with the QR code and the manual entry key](/assets/img/shot-2fa-scan.png)
-*Step 1 of 3. Scan the code with an authenticator app — Google Authenticator, 1Password, Authy. If you are reading this on the phone that would be doing the scanning, copy the "Manual entry key" printed underneath instead. Both are pixelated here: they are a real secret, and one that works is not something to print on a web page.*
+1. Scan the QR code with an app such as Google Authenticator, 1Password or
+   Authy. On that same phone, copy the "Manual entry key" instead.
+2. Enter the six-digit code. "Verify & enable" becomes clickable once all six
+   boxes are filled.
+3. **Save your recovery codes**: you get ten codes. Each one replaces the app
+   code exactly once. **Copy all** puts them on your clipboard.
 
-![Step 2 of the two-factor wizard, with five of the six code boxes filled](/assets/img/shot-2fa-verify.png)
-*Step 2 of 3 is six separate boxes rather than a text field, and the cursor advances by itself. "Verify & enable" stays greyed out until all six are filled — here the last one is still empty.*
+![Step 1 with the QR code and manual entry key](/assets/img/shot-2fa-scan.png)
+*Step 1, with the QR code and key pixelated.*
 
-Step 2 is there to prove your authenticator really did store the right secret
-before Hinata starts requiring it. It is the step that stops you locking
-yourself out of an account you never enrolled properly.
+![Step 2 with five of six boxes filled](/assets/img/shot-2fa-verify.png)
+*Step 2, with the last digit still missing.*
 
-**Step 3 of 3 · Save your recovery codes.** You get **ten single-use codes**.
-Each one works exactly once, in place of the six-digit code, if you lose access
-to your authenticator. **Copy all** puts them on your clipboard.
-
-!!! warning "The recovery codes are shown exactly once"
-    Hinata never displays them again — it only keeps hashes, so it genuinely
-    cannot. Put them somewhere you will still have access to when your phone is
-    the thing that is missing: a password manager, a printout in a drawer.
-    Not a note on the phone itself.
+!!! warning "You see the codes only once"
+    Hinata only keeps hashes. Store the codes where you can reach them without
+    your phone, such as a password manager or a printout.
 
 ### Living with it
 
-- **Signing in** asks for the code as a second step after your password. The
-  code changes every 30 seconds; a code that just expired is still accepted for
-  a moment, so a slow typist is not punished.
-- **Codes** issues a fresh set of ten and invalidates the old ones. You need a
-  current code to do it — which is exactly why it is worth doing *before* you
-  replace your phone rather than after.
-- **Disable** switches it off. It also asks for a current or a recovery code:
-  turning off a security feature has to be as hard as using it.
+- **Signing in** asks for the code after your password. It changes every 30
+  seconds. A code that just expired still works for a moment.
+- **Codes** issues ten new recovery codes and invalidates the old ones. You need
+  a current code for this, so do it before you replace your phone.
+- **Disable** turns 2FA off. This also needs a current code or a recovery code.
 
 ## Active sessions
 
-Every device signed in to your account is listed here, newest activity first,
-with what it is (a browser, the Hinata app), the operating system, a masked IP
-address, and when it was last active. The one you are using right now is marked
+Every signed-in device is listed here, most recent first: browser or Hinata app,
+operating system, masked IP address and last activity. Your device is marked
 **This device**.
 
-Two ways to act on the list:
-
-- The **sign-out arrow** on a row ends that one session. The device is asked to
-  sign in again next time it tries anything.
-- **Sign out others** ends every session except this one, immediately.
+- The arrow on a row signs out that device.
+- **Sign out others** immediately ends every other session.
 
 ### What ends a session without you pressing anything
 
-- **Finishing a password reset** signs out every device.
-- **Confirming an e-mail change** signs out every device.
-- **An administrator deactivating your account** signs out every device.
-- **Deleting your account** signs out every device, permanently.
+Every device is signed out when you finish a password reset, confirm an e-mail
+change or delete your account. The same happens when an administrator
+deactivates your account. Closing the app, restarting or losing the network does
+not end a session.
 
-Everything else — closing the app, restarting the machine, losing the network —
-leaves the session alone. That is why the list is worth a glance now and then:
-sessions do not expire out of tidiness.
+!!! tip "Lost a device or see an unknown entry?"
+    Press **Sign out others** first, then **Reset** your password. That way
+    nobody is signed in when the new password takes effect.
 
-!!! tip "The one-minute security drill"
-    Lost a laptop, left a session open on a shared machine, or just do not
-    recognise an entry? Press **Sign out others**, then **Reset** your password.
-    In that order — signing out first means the new password lands on an account
-    nobody else is holding a door open on.
-
-Sessions are also where the **Security alerts** notification pays for itself: a
-sign-in you did not perform shows up in your bell and in your inbox, and this is
-the screen you come to next. See
-[Staying informed](/en/guide-notifications.html).
+The **Security alerts** notification tells you about sign-ins you did not make,
+in your bell and inbox. See [Staying informed](/en/guide-notifications.html).
 
 ## Language and appearance
 
-The **Appearance & app** card holds the small choices:
+The **Appearance & app** card contains:
 
-- **Language** — one of [nine](/en/features.html#languages): English, German,
-  French, Spanish, Russian, Chinese, Japanese, Hindi or Arabic. It changes the
-  interface immediately, and it is also the language the server uses for the
-  e-mails it sends you and for the error messages it returns. One setting,
-  everywhere. Choosing Arabic also turns the whole layout right to left.
-- **Appearance** — **System**, **Light** or **Dark**. System follows whatever
-  your operating system is doing, including switching at sunset if your OS does.
-- **The connected server** — which server this app is talking to, with
-  **Manage servers** beside it if you use more than one. See
-  [On your phone](/en/guide-mobile.html#several-servers-one-app).
-- **Privacy policy** — your operator's privacy notice, plus the app and server
-  version numbers, useful when you report a problem.
+- **Language**: one of [nine](/en/features.html#languages) (English, German,
+  French, Spanish, Russian, Chinese, Japanese, Hindi, Arabic). It applies to the
+  interface at once and to the server's e-mails and error messages. Arabic runs
+  the layout right to left.
+- **Appearance**: **System**, **Light** or **Dark**. System follows your
+  operating system.
+- **Connected server**, with **Manage servers** next to it if you use several.
+  See [On your phone](/en/guide-mobile.html#several-servers-one-app).
+- **Privacy policy**: your operator's privacy notice plus the app and server
+  versions.
 
-!!! note "Your operator's branding, not a theme"
-    The organisation name and logo in the top-left come from the server, not
-    from your settings. They change for everyone at once when an administrator
-    changes them — see [Admin area](/en/admin-area.html) if that is you.
+!!! note "Name and logo come from the server"
+    An administrator changes the organisation name and logo in the top-left for
+    everyone. See [Admin area](/en/admin-area.html).
 
 ## Teams and projects you can reach
 
-The **Access** card is read-only, and it answers a question that is otherwise
-annoyingly hard to answer: *what am I actually a member of?* Switch between
-**Teams** and **Projects**, and each row shows the name, the member count and
-the role you hold there.
-
-If a colleague swears a project exists and you cannot find it, look here first.
-An empty list is not a bug — project visibility comes through team membership,
-and somebody needs to add you. [Projects & teams](/en/guide-projects.html)
-explains how that works.
+The **Access** card is read-only. Under **Teams** and **Projects** you see what
+you are a member of, with member count and your role. If a project is missing,
+someone has to add you to the right team. See
+[Projects & teams](/en/guide-projects.html).
 
 ## Access tokens
 
-If your operator has enabled it, an **Access tokens** card appears. It issues
-personal access tokens for connecting AI assistants and scripts to Hinata on
-your behalf, scoped to what you allow them to do. The secret is shown once, at
-creation, and never again.
-
-If you do not see the card, the feature is switched off on your server, and
-there is nothing you need to do. [MCP server](/en/mcp.html) has the detail for
-those who do.
+If your operator has enabled it, the **Access tokens** card creates personal
+access tokens for AI assistants and scripts. They can only do what you allow.
+The secret is shown once, at creation. No card means the feature is off. See
+[MCP server](/en/mcp.html).
 
 ## Your data
 
-The last two cards are your rights under the GDPR, wired up as buttons rather
-than as an e-mail address you have to write to.
+Your GDPR rights are available here as buttons.
 
 ### Export a copy (Art. 15)
 
-**Data & privacy → Request** asks the server to compile everything it holds
-about you. You get an e-mail with a secure download link; the report is prepared
-within 24 hours and the link stays valid for three days.
-
-You do not need a reason, and nobody is notified that you asked.
+**Data & privacy → Request**. Within 24 hours you get an e-mail with a secure
+download link that stays valid for three days. You need no reason, and nobody is
+notified.
 
 ### Delete your account (Art. 17)
 
-**Danger zone → Delete account** erases your account.
+**Danger zone → Delete account**. To confirm, type exactly DELETE into the
+field.
 
-![The delete-account dialog with an empty confirmation field and a disabled button](/assets/img/shot-account-delete-confirm.png)
-*The confirmation. "Delete account" stays inert until the field reads exactly DELETE — and the sentence above it is the one to read first: profile, credentials and sessions go, authored issues and comments are anonymised.*
+![The delete-account dialog with an empty field](/assets/img/shot-account-delete-confirm.png)
+*The confirmation, with DELETE not yet typed.*
 
 !!! warning "This cannot be undone"
-    Deleting your account permanently removes your profile, your credentials and
-    every session you have open — you are signed out everywhere the moment it
-    completes, and a confirmation is mailed to you.
+    Your profile, credentials and sessions are removed permanently. You are
+    signed out everywhere at once, and a confirmation is mailed to you. Your
+    issues, comments and history stay, but **anonymised**. There is no grace
+    period and no recovery.
 
-    The **work you authored is not deleted** — issues, comments and history stay
-    where they are so your team's record does not develop holes — but it is
-    **anonymised**: your name comes off it and cannot be put back. There is no
-    undo, no grace period and no recovery. If you only want to step away from a
-    project, ask an administrator to remove your access instead.
+    If you only want to leave a project, ask an administrator to remove your
+    access.
 
-One case where the button refuses: if you are the **last active administrator**
-of the workspace, Hinata will not let you delete yourself. Somebody has to be
-able to let the others back in. Promote another administrator first, then delete.
+As the **last active administrator** you cannot delete your account. Make
+someone else an administrator first.
 
 ## Next steps
 
-- [Staying informed](/en/guide-notifications.html) — the notification matrix,
-  which lives on this same screen.
-- [Getting started](/en/guide-start.html) — signing in, the layout, and what to
-  do on day one.
-- [On your phone](/en/guide-mobile.html) — the mobile layout of this screen and
-  how several servers share one app.
-- [Authentication](/en/authentication.html) — the operator's view of passwords,
-  registration and 2FA policy.
+- [Staying informed](/en/guide-notifications.html): set up notifications
+- [Getting started](/en/guide-start.html): signing in and your first day
+- [On your phone](/en/guide-mobile.html): the mobile layout and several servers
+- [Authentication](/en/authentication.html): passwords and 2FA from the operator's side
