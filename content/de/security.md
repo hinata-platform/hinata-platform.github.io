@@ -79,7 +79,7 @@ Git-Access-Tokens und andere Secrets von Integrationen werden vor dem Speichern 
 | A07 Identification & Auth Failures | Mindestlänge für Passwörter, Login-Sperre in der Datenbank, strenges Rate Limiting auf `/auth/**`, 2FA per TOTP, widerrufbare Sitzungen |
 | A08 Software & Data Integrity | Git-Webhooks mit geprüfter Signatur, Commit-Ledger, das jeden Commit nur einmal anwendet (siehe [Git-Integration](/de/git-integration.html)) |
 | A09 Logging & Monitoring | `/actuator/health` für Probes. Fehler werden auf dem Server geloggt, ohne Interna an Clients zu geben |
-| A10 SSRF | Integrationen laufen über den Server mit festen Endpunkten der Anbieter statt mit URLs vom Client |
+| A10 SSRF | Integrationen laufen über den Server mit festen Endpunkten der Anbieter statt mit URLs vom Client, ein per URL eingetragenes Logo lädt der Server nur von öffentlichen Adressen auf Port 80 oder 443 und prüft jede Weiterleitung neu |
 
 ## Härtungscheckliste für Betreiber
 
@@ -95,6 +95,7 @@ Git-Access-Tokens und andere Secrets von Integrationen werden vor dem Speichern 
     - **Setze `HINATA_TRUSTED_PROXIES`** auf die CIDR deines Proxys, damit Rate Limiting und Login-Sperre die echte Client-IP sehen.
     - **Deaktiviere die Docs-UI in Prod:** Lass `HINATA_DOCS_ENABLED=false`, damit die Scalar-Oberfläche der API-Docs nicht erreichbar ist.
     - **Grenze CORS ein:** Setze `HINATA_CORS_ALLOWED_ORIGINS` genau auf die Origin(s) deiner Web-App, nicht mehr.
+    - **Vertraue keiner Anfrage nur wegen ihrer Herkunft:** Ein Logo, das per URL eingetragen ist, lädt der Server selbst herunter. Adressen auf dem eigenen Rechner und in privaten Netzen lehnt er ab, jede öffentliche Adresse auf Port 80 oder 443 erreicht er aber. Dazu gehören dein eigener Reverse Proxy und interne Dienste mit öffentlicher IPv4- oder IPv6-Adresse. Schütze deshalb jeden Dienst mit einer Anmeldung, der Anfragen nur nach ihrer Herkunft zulässt, etwa von der IP deines Servers oder aus deinem internen Netz.
     - **Halte Images aktuell:** Ziehe regelmäßig neue Images von `ghcr.io/hinata-platform` für Sicherheitsfixes. Siehe [Backups & Upgrades](/de/backups.html).
     - **Halte die Serveruhr synchron** (NTP). Das braucht der Tokenablauf und SAML-SSO.
 

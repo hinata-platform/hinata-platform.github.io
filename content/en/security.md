@@ -79,7 +79,7 @@ Git access tokens and other integration secrets are **encrypted with AES-GCM** b
 | A07 Identification & Auth Failures | Password minimums, database-backed login lockout, strict `/auth/**` rate limiting, TOTP 2FA, revocable sessions |
 | A08 Software & Data Integrity | Git webhooks with verified signatures, a commit ledger that applies each commit only once (see [Git integration](/en/git-integration.html)) |
 | A09 Logging & Monitoring | `/actuator/health` for probes. Errors are logged on the server without leaking internals to clients |
-| A10 SSRF | Integrations run through the server with fixed provider endpoints instead of client-supplied URLs |
+| A10 SSRF | Integrations run through the server with fixed provider endpoints instead of client-supplied URLs, and a logo set by URL is fetched only from public addresses on port 80 or 443, with every redirect checked again |
 
 ## Hardening checklist for operators
 
@@ -95,6 +95,7 @@ Git access tokens and other integration secrets are **encrypted with AES-GCM** b
     - **Set `HINATA_TRUSTED_PROXIES`** to your proxy's CIDR so rate limiting and lockout see the real client IP.
     - **Disable the docs UI in prod:** keep `HINATA_DOCS_ENABLED=false` so the Scalar API docs UI is not exposed.
     - **Scope CORS:** set `HINATA_CORS_ALLOWED_ORIGINS` to exactly your web app origin(s), nothing broader.
+    - **Don't trust a request because of where it comes from:** when a logo is set by URL, the server downloads it itself. It refuses addresses on its own machine and in private networks, but it reaches every public address on port 80 or 443, including your own reverse proxy and internal services with a public IPv4 or IPv6 address. So put a login in front of every service that lets requests in only because of where they come from, such as your server's IP or your internal network.
     - **Keep images updated:** pull new `ghcr.io/hinata-platform` images regularly for security fixes. See [Backups & upgrades](/en/backups.html).
     - **Keep the server clock in sync** (NTP). Token expiry and SAML SSO depend on it.
 
