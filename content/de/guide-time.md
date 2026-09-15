@@ -142,6 +142,20 @@ Jeder Eintrag auf der Karte und im Sheet **Alle Einträge** hat rechts ein Menü
 
 Einträge mit **Smart Commits (vor 2.0)** stammen aus älteren Versionen, die Zeit aus Commits mit `#time` direkt gebucht haben. Sie haben keinen Namen, zählen aber weiter. Entfernen können sie nur Projektleitung oder Administration.
 
+## Arbeitszeiten, Abwesenheiten und Feiertage
+
+Wenn deine Administration die erweiterte Zeiterfassung eingeschaltet hat, findest du in deinen **Einstellungen** den Abschnitt **Arbeitszeiten und Abwesenheiten**. Er dient nur der Planung. Du kannst an jedem Tag Zeit erfassen, auch an Feiertagen und an Tagen, an denen du nicht da bist.
+
+- **Geplante Stunden** sind deine Stunden je Wochentag. Solange du keine eigenen festlegst, gilt die Vorgabe des Servers. Eine Änderung gilt ab dem Datum, das du wählst, frühere Wochen behalten ihre Stunden. Hier wählst du auch den Feiertagskalender, nach dem du dich richtest.
+- **Abwesenheiten** sind Urlaub, Krankheit oder Sonstiges, für einen einzelnen Tag oder einen Zeitraum. Ein einzelner Tag kann ein halber Tag sein. Die Notiz ist freiwillig, sehen können sie nur du und die Administration.
+- **Feiertage** kommen aus den Kalendern, die deine Administration im Adminbereich unter **Feiertage** pflegt. Sie trägt Tage von Hand ein oder importiert ein Jahr aus einer Kalenderadresse.
+
+Was sich dadurch zeigt:
+
+- Eintragsliste und Kalender markieren Feiertage, Abwesenheiten und Tage ohne geplante Stunden. Die Markierung ist bewusst zurückhaltend, denn sie ist keine Sperre. Ein Tag, der sich wirklich nicht mehr ändern lässt, trägt ein Schloss.
+- Dein eigener Stundenzettel zeigt **Deine Kapazität**: deine geplanten Stunden im Zeitraum, abzüglich Feiertage und Abwesenheiten, neben dem, was du gebucht hast. Nur du siehst das.
+- Mit eingeschalteten Arbeitszeithinweisen bekommt ein Eintrag an einem Feiertag einen Hinweis, genau wie ein Eintrag an einem Sonntag.
+
 ## Wo deine erfasste Zeit landet
 
 1. **Am Vorgang**: Der Aufwand wird aus allen Einträgen neu berechnet und ist immer die echte Summe.

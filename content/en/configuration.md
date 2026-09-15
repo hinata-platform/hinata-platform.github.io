@@ -190,6 +190,20 @@ overrides env. See [Git integration](/en/git-integration.html).
 | `HINATA_GIT_WEBHOOK_BASE_URL` | Public API base for the OAuth callback and webhook registration. Falls back to `HINATA_BASE_URL` + `/api/v1` | `https://api.track.example.com/api/v1` | No |
 | `HINATA_GIT_TOKEN_SECRET` | AES-GCM key that encrypts stored access tokens at rest. **Change the default in production** | *(default; change it)* | Recommended |
 
+## Calendars, holidays and working hours
+
+Administrators keep holiday calendars in the Admin area and can import a year of holidays from a calendar address, for example a public holiday calendar from Google, Apple or Outlook. The server fetches that address itself. It never connects to a private or loopback address, whatever the lists below say. People plan their own working hours and absences in their settings. All of it needs extended time tracking (`HINATA_TIME_TRACKING_ADVANCED_ENABLED`). See [Tracking your time](/en/guide-time.html).
+
+| Variable | Purpose | Default / example | Required |
+| --- | --- | --- | --- |
+| `HINATA_ICS_SECRET` | Key that stored calendar addresses are encrypted with. Base64 of at least 32 bytes. Generate: `openssl rand -base64 32`. Without it the server refuses to store a calendar address, and holidays can only be entered by hand | *(empty)* | For calendar addresses |
+| `HINATA_ICS_ALLOWED_HOSTS` | Comma-separated hosts calendars may be fetched from: a host name or `*.example.org` for its subdomains. Empty means any public host | *(empty)* | No |
+| `HINATA_ICS_DENIED_HOSTS` | Comma-separated hosts calendars are never fetched from, in the same notation. Checked before the allow list | *(empty)* | No |
+| `HINATA_AVAILABILITY_DEFAULT_WEEKDAY_MINUTES` | Planned minutes per weekday, Monday first, for everyone who has not set their own hours | `480,480,480,480,480,0,0` | No |
+
+!!! warning "Keep the key"
+    A calendar address encrypted with one `HINATA_ICS_SECRET` cannot be read with another. If the key changes, imports from stored addresses fail until an administrator enters the address again. Holidays that were already imported stay.
+
 ## Runtime (DB) settings vs environment
 
 Hinata has two configuration planes.

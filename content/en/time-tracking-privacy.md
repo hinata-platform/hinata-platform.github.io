@@ -35,6 +35,11 @@ The module records working time. It serves statutory recording duties and projec
 | Days opened for a person | Span, who opened them, expiry, a message if there is one | Close again by themselves after two weeks and are recorded in the audit log (`TIME_BACKFILL_GRANTED`, `TIME_BACKFILL_REVOKED`). |
 | Personal timer preferences | For example pomodoro lengths and breaks | Stored on the account, only relevant to the person. |
 | Acknowledgement of the privacy notice | Timestamp (`timePrivacyAcknowledgedAt`) | Proof that the person was informed. Not consent. |
+| Working hours | Planned minutes per weekday, the day they apply from, the chosen holiday calendar, who set them and when | Planning data. When an administrator changes them for someone else, the audit log records it (`AVAILABILITY_SCHEDULE_CHANGED`). |
+| Absences | Type (vacation, sick, other), first and last day, half day, optional note | Planning data. An absence never stops anyone from recording time. When an administrator changes one for someone else, the audit log records it without the note (`AVAILABILITY_TIME_OFF_CHANGED`). |
+
+!!! warning "A sick day is health data"
+    The absence type *sick* says something about a person's health, which Art. 9 GDPR protects specially. Hinata stores no reason and no diagnosis, only the type and the days. Settle in the agreement whether sick days are entered here at all, or whether *other* is enough for planning.
 
 !!! info "Why the acknowledgement is not consent"
     In an employment relationship consent is rarely free, because the employee depends on the employer. The duty to record working time does not depend on consent anyway. Acknowledging the notice only proves that the information under Art. 13 GDPR was given. Not acknowledging it costs nobody a right and grants none.
@@ -79,7 +84,7 @@ For every policy, the assessment under § 87 BetrVG is for the parties to the wo
 | Policy | Default | Which evaluation of people it enables | Co-determination |
 | --- | --- | --- | --- |
 | **Extended time tracking** (`advancedEnabled`) | off | The module itself: timers with start and end time, submissions, correction requests and every policy below. Only with it do the start and end of a person's work become data. | This is the introduction of a technical device that is objectively suitable for monitoring (§ 87 Abs. 1 Nr. 6 BetrVG, or staff representation law in the public sector). Agree it with the works or staff council before switching it on. |
-| **Leads see members' entries** (`leadsSeeMemberEntries`) | off | Off: leads never see who booked what. On issues they see only day, duration and activity, like every other member, and they do not change other people's entries. Reports are per project. On: leads see members' entries, an entry's history, the entries behind a submission, and in the timesheet the rows of members of projects they lead. They may then change those entries too. | Supervisors can then read individual bookings. That is the key question of any agreement. |
+| **Leads see members' entries** (`leadsSeeMemberEntries`) | off | Off: leads never see who booked what. On issues they see only day, duration and activity, like every other member, and they do not change other people's entries. Reports are per project. On: leads see members' entries, an entry's history, the entries behind a submission, and in the timesheet the rows of members of projects they lead. They may then change those entries too. They also see which days those members are away, if the member recorded time on one of their projects in the last twelve months: vacation or other, never a note, a sick day only as other, never the planned hours, and nothing they could change. | Supervisors can then read individual bookings. That is the key question of any agreement. |
 | **Timesheet approvals** (`approvalsEnabled`) with **Approval period** | off, monthly rhythm | People submit a period. A lead or admin approves or rejects it with a note. Approving means reading the person's entries, so it needs the policy above. The rhythm decides how closely things are checked. | Settle the rhythm, the approvers and how rejections are handled. |
 | **Workload reports** (`workloadReportsEnabled`) | off | Booked time against capacity per person. That is a direct comparison between people. | Settle purpose, recipients and limits of use explicitly. |
 | **Budget alerts** (`alertsEnabled`) | off | Leads get a message when a project passes a threshold of booked time. This is per project, but in small projects it can be traced to individuals. | Settle thresholds and recipients. |
@@ -161,7 +166,7 @@ The built-in template exists in nine languages. Under **Administration → Time 
 
 ### Access and data portability (Art. 15 and 20 GDPR)
 
-The account's data export also contains the time data: time entries, the running timer, submissions, correction requests and requests for older days with their answers, days opened for the person, timer preferences and the time the notice was acknowledged.
+The account's data export also contains the time data: time entries, the running timer, submissions, correction requests and requests for older days with their answers, days opened for the person, timer preferences, the time the notice was acknowledged, and the person's working hours and absences.
 
 It comes as JSON via `GET /api/v1/me/export` and as a PDF report whose link arrives by e-mail. Very long histories are shortened there, and a note in the export then points to the CSV export.
 
@@ -189,7 +194,7 @@ In an entry's history, a project lead reads only the requests about submissions 
 
 ### Erasure and storage limitation (Art. 17 and Art. 5(1)(e) GDPR)
 
-When an account is deleted, Hinata removes the account, a running timer, submissions that are not yet approved, the person's requests and the days opened for them. After that, their name no longer appears in the history of entries, and Hinata no longer shows the text of their correction requests there to anyone.
+When an account is deleted, Hinata removes the account, a running timer, submissions that are not yet approved, the person's requests, the days opened for them, and their working hours and absences. After that, their name no longer appears in the history of entries, and Hinata no longer shows the text of their correction requests there to anyone.
 
 Approved submissions stay, because they are a business record. Time entries stay too, with the user id as a pseudonym, because the hours are part of the project's record.
 
@@ -219,11 +224,12 @@ Budget alerts, target reminders, working-time hints and late-entry hints are onl
 
 ## Working-time self-hints (ArbZG)
 
-With **Working-time hints** (`arbzgHintsEnabled`, default: off), Hinata shows a person on their own entries where they hit limits of the German Working Hours Act. Hinata only calculates this for the person themselves and for at most 31 days. There are three hints:
+With **Working-time hints** (`arbzgHintsEnabled`, default: off), Hinata shows a person on their own entries where they hit limits of the German Working Hours Act. Hinata only calculates this for the person themselves and for at most 31 days. There are four hints:
 
 - The day total is over 10 hours, the daily maximum under [§ 3 ArbZG](https://www.gesetze-im-internet.de/arbzg/__3.html).
 - There are fewer than 11 hours of rest between the end of one working day and the start of the next ([§ 5 ArbZG](https://www.gesetze-im-internet.de/arbzg/__5.html)). This needs entries with start and end times.
-- There are entries on a Sunday ([§ 9 ArbZG](https://www.gesetze-im-internet.de/arbzg/__9.html)). Public holidays follow in a later stage.
+- There are entries on a Sunday ([§ 9 ArbZG](https://www.gesetze-im-internet.de/arbzg/__9.html)).
+- There are entries on a public holiday of the calendar the person follows ([§ 9 ArbZG](https://www.gesetze-im-internet.de/arbzg/__9.html)).
 
 The hints are not stored, not passed to leads or administrators and not combined across people. They help the person themselves. They do not prove that your working hours comply with the ArbZG, and they are no verdict. The law has exceptions, for Sunday work for instance, that Hinata cannot know about.
 

@@ -142,6 +142,20 @@ Every entry on the card and in the **All entries** sheet has a menu on the right
 
 Entries labelled **Smart commits (pre-2.0)** come from older versions that booked time straight from commits with `#time`. They carry no name but still count. Only a lead or an administrator can remove them.
 
+## Working hours, absences and holidays
+
+When your administrators have switched on extended time tracking, your **Settings** have a section **Working hours and absences**. It is for planning only. You can record time on every day, holidays and days you are away included.
+
+- **Planned hours** are your hours per weekday. Until you set your own, the default of the server applies. A change applies from the date you pick, so earlier weeks keep the hours they had. This is also where you pick the holiday calendar you follow.
+- **Absences** are vacation, sick days or other time away, for a single day or a span. A single day can be half a day. The note is optional. Only you and the administrators see it.
+- **Holidays** come from the calendars your administrators keep in the Admin area under **Holidays**. They enter days by hand or import a year from a calendar address.
+
+What changes on screen:
+
+- The entry list and the calendar mark holidays, absences and days without planned hours. The marking is quiet on purpose, because it is not a lock. A day that really cannot be changed shows a padlock.
+- Your own timesheet shows **Your capacity**: your planned hours in the period, less holidays and absences, next to what you booked. Only you see it.
+- With working-time hints on, an entry on a holiday gets a hint, just like an entry on a Sunday.
+
 ## Where your logged time ends up
 
 1. **The issue**: the spent total is recomputed from all entries, so it is always the true sum.
