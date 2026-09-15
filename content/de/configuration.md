@@ -194,6 +194,20 @@ setzen. Diese Werte überschreiben die Umgebung. Siehe
 | `HINATA_GIT_WEBHOOK_BASE_URL` | Öffentliche Basis der API für OAuth-Callback und Webhook-Registrierung. Fällt auf `HINATA_BASE_URL` + `/api/v1` zurück | `https://api.track.example.com/api/v1` | Nein |
 | `HINATA_GIT_TOKEN_SECRET` | AES-GCM-Schlüssel, der gespeicherte Access Tokens verschlüsselt. **Im Produktivbetrieb den Standard ändern** | *(Standard; ändere es)* | Empfohlen |
 
+## Kalender, Feiertage und Arbeitszeiten
+
+Die Administration pflegt Feiertagskalender im Adminbereich und kann ein Jahr Feiertage aus einer Kalenderadresse importieren, zum Beispiel aus einem Feiertagskalender von Google, Apple oder Outlook. Diese Adresse ruft der Server selbst ab. Mit einer privaten oder Loopback-Adresse verbindet er sich nie, egal was in den Listen unten steht. Arbeitszeiten und Abwesenheiten plant jede Person in ihren Einstellungen. Das alles setzt die erweiterte Zeiterfassung voraus (`HINATA_TIME_TRACKING_ADVANCED_ENABLED`). Siehe [Zeit erfassen](/de/guide-time.html).
+
+| Variable | Zweck | Standard / Beispiel | Erforderlich |
+| --- | --- | --- | --- |
+| `HINATA_ICS_SECRET` | Schlüssel, mit dem gespeicherte Kalenderadressen verschlüsselt werden. Base64 von mindestens 32 Bytes. Erzeugen: `openssl rand -base64 32`. Ohne ihn speichert der Server keine Kalenderadresse, und Feiertage lassen sich nur von Hand eintragen | *(leer)* | Für Kalenderadressen |
+| `HINATA_ICS_ALLOWED_HOSTS` | Kommagetrennte Hosts, von denen Kalender abgerufen werden dürfen: ein Hostname oder `*.example.org` für dessen Subdomains. Leer heißt jeder öffentliche Host | *(leer)* | Nein |
+| `HINATA_ICS_DENIED_HOSTS` | Kommagetrennte Hosts, von denen nie abgerufen wird, in derselben Schreibweise. Wird vor der Erlaubnisliste geprüft | *(leer)* | Nein |
+| `HINATA_AVAILABILITY_DEFAULT_WEEKDAY_MINUTES` | Geplante Minuten je Wochentag, beginnend mit Montag, für alle, die keine eigenen Stunden festgelegt haben | `480,480,480,480,480,0,0` | Nein |
+
+!!! warning "Den Schlüssel aufbewahren"
+    Eine Kalenderadresse, die mit einem `HINATA_ICS_SECRET` verschlüsselt wurde, lässt sich mit einem anderen nicht lesen. Ändert sich der Schlüssel, scheitern Importe aus gespeicherten Adressen, bis die Administration die Adresse neu einträgt. Bereits importierte Feiertage bleiben.
+
 ## Laufzeiteinstellungen (DB) vs. Umgebung
 
 Hinata hat zwei Konfigurationsebenen.

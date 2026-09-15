@@ -33,6 +33,11 @@ Das Modul zeichnet Arbeitszeit auf. Es dient den gesetzlichen Aufzeichnungspflic
 | Für eine Person geöffnete Tage | Zeitraum, wer geöffnet hat, Ablaufzeitpunkt, gegebenenfalls eine Nachricht | Schließen sich nach zwei Wochen von selbst und stehen im Audit-Protokoll (`TIME_BACKFILL_GRANTED`, `TIME_BACKFILL_REVOKED`). |
 | Persönliche Einstellungen für den Timer | Zum Beispiel Länge von Pomodoros und Pausen | Am Konto gespeichert, nur für die Person selbst wichtig. |
 | Kenntnisnahme des Datenschutzhinweises | Zeitpunkt (`timePrivacyAcknowledgedAt`) | Beleg, dass informiert wurde. Keine Einwilligung. |
+| Arbeitszeiten | Geplante Minuten je Wochentag, der Tag, ab dem sie gelten, der gewählte Feiertagskalender, wer sie wann festgelegt hat | Planungsdaten. Ändert die Administration sie für eine andere Person, steht das im Audit-Protokoll (`AVAILABILITY_SCHEDULE_CHANGED`). |
+| Abwesenheiten | Art (Urlaub, Krankheit, Sonstiges), erster und letzter Tag, halber Tag, optionale Notiz | Planungsdaten. Eine Abwesenheit hindert niemanden daran, Zeit zu erfassen. Ändert die Administration eine für eine andere Person, steht das ohne die Notiz im Audit-Protokoll (`AVAILABILITY_TIME_OFF_CHANGED`). |
+
+!!! warning "Ein Krankheitstag ist ein Gesundheitsdatum"
+    Die Abwesenheitsart *Krankheit* sagt etwas über die Gesundheit einer Person, und die schützt Art. 9 DSGVO besonders. Hinata speichert keinen Grund und keine Diagnose, nur die Art und die Tage. Regelt in der Vereinbarung, ob Krankheitstage hier überhaupt eingetragen werden oder ob *Sonstiges* für die Planung reicht.
 
 !!! info "Warum die Kenntnisnahme keine Einwilligung ist"
     Im Arbeitsverhältnis ist eine Einwilligung wegen der Abhängigkeit selten freiwillig. Die Pflicht zur Arbeitszeiterfassung hängt ohnehin nicht von ihr ab. Der Klick auf **Verstanden** belegt deshalb nur, dass die Information nach Art. 13 DSGVO erfolgt ist. Wer nicht klickt, verliert dadurch kein Recht und gewinnt auch keins.
@@ -77,7 +82,7 @@ Die Bewertung nach § 87 BetrVG obliegt bei jeder Richtlinie den Betriebsparteie
 | Richtlinie | Standard | Welche Auswertung über Personen sie ermöglicht | Mitbestimmung |
 | --- | --- | --- | --- |
 | **Erweitertes Time-Tracking** (`advancedEnabled`) | aus | Das Modul selbst: Timer mit Start- und Endzeit, Einreichungen, Korrekturanfragen und alle Richtlinien darunter. Erst damit werden Beginn und Ende der Arbeit einer Person zu Daten. | Das ist die Einführung einer technischen Einrichtung, die objektiv zur Überwachung geeignet ist (§ 87 Abs. 1 Nr. 6 BetrVG, im öffentlichen Dienst das Personalvertretungsrecht). Vereinbare sie vor dem Einschalten mit Betriebs- oder Personalrat. |
-| **Leitungen sehen Einträge der Mitglieder** (`leadsSeeMemberEntries`) | aus | Aus: Leitungen sehen nie, wer was gebucht hat. An Vorgängen sehen sie wie alle anderen Mitglieder nur Tag, Dauer und Tätigkeit, und fremde Einträge ändern sie nicht. Berichte laufen je Projekt. Ein: Leitungen sehen die Einträge der Mitglieder, den Verlauf eines Eintrags, die Einträge hinter einer Einreichung und im Stundenzettel die Zeilen der Mitglieder von Projekten, die sie leiten. Diese Einträge dürfen sie dann auch ändern. | Damit können Vorgesetzte einzelne Buchungen lesen. Das ist die Kernfrage jeder Vereinbarung. |
+| **Leitungen sehen Einträge der Mitglieder** (`leadsSeeMemberEntries`) | aus | Aus: Leitungen sehen nie, wer was gebucht hat. An Vorgängen sehen sie wie alle anderen Mitglieder nur Tag, Dauer und Tätigkeit, und fremde Einträge ändern sie nicht. Berichte laufen je Projekt. Ein: Leitungen sehen die Einträge der Mitglieder, den Verlauf eines Eintrags, die Einträge hinter einer Einreichung und im Stundenzettel die Zeilen der Mitglieder von Projekten, die sie leiten. Diese Einträge dürfen sie dann auch ändern. Außerdem sehen sie, an welchen Tagen diese Mitglieder abwesend sind, sofern das Mitglied in den letzten zwölf Monaten Zeit auf eines ihrer Projekte gebucht hat: Urlaub oder Sonstiges, nie eine Notiz, einen Krankheitstag nur als Sonstiges, nie die geplanten Stunden, und ändern können sie nichts davon. | Damit können Vorgesetzte einzelne Buchungen lesen. Das ist die Kernfrage jeder Vereinbarung. |
 | **Stundenzettel-Freigaben** (`approvalsEnabled`) mit **Freigabe-Zeitraum** | aus, Rhythmus monatlich | Personen reichen einen Zeitraum ein. Eine Leitung oder ein Admin gibt ihn mit Notiz frei oder lehnt ihn ab. Wer freigibt, liest die Einträge der Person. Deshalb braucht es die Richtlinie darüber. Der Rhythmus bestimmt, wie eng geprüft wird. | Regelt Rhythmus, freigebende Personen und den Umgang mit Ablehnungen. |
 | **Auslastungsberichte** (`workloadReportsEnabled`) | aus | Gebuchte Zeit gegen Kapazität je Person. Das ist ein direkter Vergleich zwischen Menschen. | Regelt Zweck, Empfänger und Grenzen der Nutzung ausdrücklich. |
 | **Budget-Warnungen** (`alertsEnabled`) | aus | Leitungen bekommen eine Nachricht, wenn ein Projekt eine Schwelle gebuchter Zeit überschreitet. Das ist projektbezogen, lässt sich in kleinen Projekten aber auf Einzelne zurückführen. | Regelt Schwellen und Empfänger. |
@@ -159,7 +164,7 @@ Die eingebaute Vorlage gibt es in neun Sprachen. Unter **Adminbereich → Zeiter
 
 ### Auskunft und Datenübertragbarkeit (Art. 15 und 20 DSGVO)
 
-Der Datenexport des Kontos enthält auch die Zeitdaten: Zeiteinträge, laufenden Timer, Einreichungen, Korrekturanfragen und Bitten um ältere Tage samt Antworten, für die Person geöffnete Tage, Einstellungen für den Timer und den Zeitpunkt der Kenntnisnahme.
+Der Datenexport des Kontos enthält auch die Zeitdaten: Zeiteinträge, laufenden Timer, Einreichungen, Korrekturanfragen und Bitten um ältere Tage samt Antworten, für die Person geöffnete Tage, Einstellungen für den Timer, den Zeitpunkt der Kenntnisnahme sowie die Arbeitszeiten und Abwesenheiten der Person.
 
 Es gibt ihn als JSON über `GET /api/v1/me/export` und als PDF-Bericht, dessen Link per E-Mail kommt. Sehr lange Historien werden dort gekürzt. Ein Hinweis im Export verweist dann auf den CSV-Export.
 
@@ -187,7 +192,7 @@ Im Verlauf eines Eintrags sieht eine Projektleitung nur die Anfragen zu Einreich
 
 ### Löschung und Speicherbegrenzung (Art. 17 und Art. 5 Abs. 1 lit. e DSGVO)
 
-Wird ein Konto gelöscht, entfernt Hinata das Konto, einen laufenden Timer, noch nicht freigegebene Einreichungen, die Anfragen der Person und die für sie geöffneten Tage. Im Verlauf von Einträgen steht danach kein Name mehr für sie, und die Texte ihrer Korrekturanfragen zeigt Hinata dort niemandem mehr.
+Wird ein Konto gelöscht, entfernt Hinata das Konto, einen laufenden Timer, noch nicht freigegebene Einreichungen, die Anfragen der Person, die für sie geöffneten Tage sowie ihre Arbeitszeiten und Abwesenheiten. Im Verlauf von Einträgen steht danach kein Name mehr für sie, und die Texte ihrer Korrekturanfragen zeigt Hinata dort niemandem mehr.
 
 Freigegebene Einreichungen bleiben, weil sie ein Geschäftsnachweis sind. Auch die Zeiteinträge bleiben, mit der Nutzer-ID als Pseudonym, weil die Stunden zum Nachweis des Projekts gehören.
 
@@ -217,11 +222,12 @@ Budget-Warnungen, Ziel-Erinnerungen, Arbeitszeit-Hinweise und Hinweise auf spät
 
 ## ArbZG-Selbsthinweise
 
-Mit **Arbeitszeit-Hinweise** (`arbzgHintsEnabled`, Standard: aus) zeigt Hinata einer Person an ihren eigenen Einträgen, wo sie an Grenzen des Arbeitszeitgesetzes stößt. Hinata rechnet dabei nur für die Person selbst und für höchstens 31 Tage. Es gibt drei Hinweise:
+Mit **Arbeitszeit-Hinweise** (`arbzgHintsEnabled`, Standard: aus) zeigt Hinata einer Person an ihren eigenen Einträgen, wo sie an Grenzen des Arbeitszeitgesetzes stößt. Hinata rechnet dabei nur für die Person selbst und für höchstens 31 Tage. Es gibt vier Hinweise:
 
 - Die Tagessumme liegt über 10 Stunden, der Höchstgrenze nach [§ 3 ArbZG](https://www.gesetze-im-internet.de/arbzg/__3.html).
 - Zwischen dem Ende eines Arbeitstags und dem Beginn des nächsten liegen weniger als 11 Stunden Ruhezeit ([§ 5 ArbZG](https://www.gesetze-im-internet.de/arbzg/__5.html)). Dafür braucht es Einträge mit Start- und Endzeit.
-- Es gibt Einträge an einem Sonntag ([§ 9 ArbZG](https://www.gesetze-im-internet.de/arbzg/__9.html)). Feiertage folgen in einer späteren Stufe.
+- Es gibt Einträge an einem Sonntag ([§ 9 ArbZG](https://www.gesetze-im-internet.de/arbzg/__9.html)).
+- Es gibt Einträge an einem Feiertag des Kalenders, nach dem sich die Person richtet ([§ 9 ArbZG](https://www.gesetze-im-internet.de/arbzg/__9.html)).
 
 Die Hinweise werden nicht gespeichert, nicht an Leitungen oder die Administration gegeben und nicht über mehrere Personen zusammengefasst. Sie helfen der Person selbst. Sie beweisen nicht, dass eure Arbeitszeiten dem ArbZG entsprechen, und sind kein Urteil. Das Gesetz kennt Ausnahmen, etwa für Sonntagsarbeit, von denen Hinata nichts wissen kann.
 
