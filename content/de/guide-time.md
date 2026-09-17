@@ -156,6 +156,30 @@ Was sich dadurch zeigt:
 - Dein eigener Stundenzettel zeigt **Deine Kapazität**: deine geplanten Stunden im Zeitraum, abzüglich Feiertage und Abwesenheiten, neben dem, was du gebucht hast. Nur du siehst das.
 - Mit eingeschalteten Arbeitszeithinweisen bekommt ein Eintrag an einem Feiertag einen Hinweis, genau wie ein Eintrag an einem Sonntag.
 
+## Abwesenheitskonten
+
+Hat deine Administration zusätzlich die **Abwesenheitsverwaltung** eingeschaltet, steht in demselben Abschnitt, was dir in diesem Jahr zusteht.
+
+- **Konten** zeigen je Abwesenheitsart, was dir zusteht, was du genommen hast, was geplant ist und was bleibt. Eine Art ohne Kontingent, zum Beispiel Krankheit, sagt das statt einer Zahl: Entgeltfortzahlung ist kein Anspruch in Tagen.
+- **Journal** listet jede Bewegung eines Kontos, mit dem Tag, an dem sie wirkt, und der Begründung, wenn es eine gab. Dein Konto entsteht aus dieser Liste, nicht aus einer gespeicherten Zahl, und deshalb lässt sich jede Zahl darauf zurückführen.
+- **Kommende Abwesenheiten** sind die Tage, die schon eingetragen sind.
+
+Sehen kann das nur, wen es angeht: du selbst und die Personen, die deine Organisation als Abwesenheitsverwaltung benannt hat.
+
+!!! info "Eine Zahl, die noch nicht da ist"
+    Steht bei einer Art **Noch nicht zugeteilt**, ist für dieses Jahr noch kein Anspruch eingetragen. Das ist kein Fehler und keine Aussage über deinen Vertrag, sondern heißt nur: Die Verwaltung hat das Jahr noch nicht zugeteilt.
+
+## Abwesenheitsarten und Ansprüche verwalten
+
+Die folgenden beiden Seiten sieht, wer die Abwesenheitsverwaltung führt. Das muss keine Administration sein: Die Organisation kann Personen dafür benennen, und sie finden den Weg dorthin in ihren eigenen Einstellungen.
+
+**Abwesenheitsarten** ist der Katalog. Jede Art legt fest, ob sie bezahlt ist, ob sie gegen ein Kontingent zählt, wie ein Anspruch entsteht, was ins nächste Jahr übertragen wird, wer sie sieht und wer sie genehmigt. Die vier vorgegebenen Arten bleiben immer; ihre Gattung lässt sich nicht ändern, weil daran hängt, wie die Zeiterfassung sie behandelt. Eine Art, die schon benutzt wurde, wird stillgelegt statt gelöscht — sonst verlören vergangene Jahre ihren Bezug.
+
+**Ansprüche** ist das Verzeichnis neben dem Stand jeder Person für eine Art und ein Jahr. Von hier aus wird zugeteilt, für eine Person oder für viele auf einmal; vor dem Zuteilen zeigt eine Vorschau, was bei wem herauskäme und warum. Eine **Korrektur** verschiebt ein Konto um einen Betrag und verlangt immer eine Begründung — ein Saldo, der sich ohne genannten Grund bewegt hat, ist der, nach dem in einem Jahr jemand fragt.
+
+!!! warning "Was der Standard verspricht"
+    Urlaub steht auf 20 Tagen, nicht auf 30. Das ist der gesetzliche Mindesturlaub bei einer Fünftagewoche (§ 3 Abs. 1 BUrlG). Ein Standard soll nichts zusagen, was dein Arbeitgeber nicht zugesagt hat; was darüber hinausgeht, trägt die Verwaltung ein.
+
 ## Wo deine erfasste Zeit landet
 
 1. **Am Vorgang**: Der Aufwand wird aus allen Einträgen neu berechnet und ist immer die echte Summe.

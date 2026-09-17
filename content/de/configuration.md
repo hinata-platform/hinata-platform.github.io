@@ -204,6 +204,10 @@ Die Administration pflegt Feiertagskalender im Adminbereich und kann ein Jahr Fe
 | `HINATA_ICS_ALLOWED_HOSTS` | Kommagetrennte Hosts, von denen Kalender abgerufen werden dürfen: ein Hostname oder `*.example.org` für dessen Subdomains. Leer heißt jeder öffentliche Host | *(leer)* | Nein |
 | `HINATA_ICS_DENIED_HOSTS` | Kommagetrennte Hosts, von denen nie abgerufen wird, in derselben Schreibweise. Wird vor der Erlaubnisliste geprüft | *(leer)* | Nein |
 | `HINATA_AVAILABILITY_DEFAULT_WEEKDAY_MINUTES` | Geplante Minuten je Wochentag, beginnend mit Montag, für alle, die keine eigenen Stunden festgelegt haben | `480,480,480,480,480,0,0` | Nein |
+| `HINATA_TIME_TRACKING_ABSENCE_MANAGEMENT_ENABLED` | Schaltet die Abwesenheitsverwaltung ein: Arten, Ansprüche und Konten. Setzt die erweiterte Zeiterfassung voraus. Der Schalter unter **Adminbereich → Zeiterfassung** hat Vorrang vor diesem Wert | `false` | Nein |
+
+!!! info "Wer die Abwesenheiten führt"
+    Ohne weiteres Zutun führt sie die Administration. Unter **Adminbereich → Zeiterfassung** lassen sich daneben einzelne Personen als **Abwesenheitsverwaltung** benennen — sie pflegen Arten, teilen Ansprüche zu und buchen Korrekturen, ohne sonst Administrationsrechte zu haben. Der Weg dorthin steht in ihren eigenen Einstellungen, nicht im Adminbereich. Die Liste ist bewusst leer voreingestellt: Wer in ihr steht, sieht Krankheitstage als Krankheitstage (Art. 9 DSGVO), und der engere Kreis ist die richtige Vorgabe.
 
 !!! warning "Den Schlüssel aufbewahren"
     Eine Kalenderadresse, die mit einem `HINATA_ICS_SECRET` verschlüsselt wurde, lässt sich mit einem anderen nicht lesen. Ändert sich der Schlüssel, scheitern Importe aus gespeicherten Adressen, bis die Administration die Adresse neu einträgt. Bereits importierte Feiertage bleiben.
