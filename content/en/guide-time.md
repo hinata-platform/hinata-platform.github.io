@@ -156,6 +156,30 @@ What changes on screen:
 - Your own timesheet shows **Your capacity**: your planned hours in the period, less holidays and absences, next to what you booked. Only you see it.
 - With working-time hints on, an entry on a holiday gets a hint, just like an entry on a Sunday.
 
+## Absence balances
+
+If your administrators also turned on **absence management**, the same section shows what you are entitled to this year.
+
+- **Balances** show, per absence type, what you are entitled to, what you have taken, what is planned and what is left. A type without a quota — sickness, for instance — says so instead of showing a number: continued pay when ill is not an entitlement measured in days.
+- **Journal** lists every movement on a balance, with the day it takes effect and the reason, where there was one. Your balance is made from that list rather than from a stored number, which is why every figure on it can be traced back.
+- **Coming absences** are the days already entered.
+
+Only the people it concerns can see this: you, and whoever your organisation named to keep absences.
+
+!!! info "A number that is not there yet"
+    **Not granted yet** against a type means no entitlement has been entered for this year. It is not an error and says nothing about your contract — only that the year has not been granted.
+
+## Keeping types and entitlements
+
+The two pages below are for whoever keeps absences. That need not be an administrator: an organisation can name people for it, and they find their way there from their own settings.
+
+**Absence types** is the catalogue. Each type sets whether it is paid, whether it counts against a balance, how an entitlement accrues, what carries into next year, who can see it and who approves it. The four built-in types always remain, and their kind cannot be changed, because time tracking treats them by it. A type that has been used is retired rather than deleted — otherwise past years would lose what they refer to.
+
+**Entitlements** is the directory beside where each person stands for one type and one year. Granting happens here, for one person or for many at once, and a preview shows what each person would get and why before anything is written. A **correction** moves a balance by an amount and always asks for a reason — a balance that moved for no stated cause is the one somebody will ask about in a year.
+
+!!! warning "What the default promises"
+    Vacation starts at 20 days, not 30. That is the statutory minimum for a five-day week under German law (§ 3 Abs. 1 BUrlG). A default should not promise what your employer has not; anything beyond it is entered by whoever keeps absences.
+
 ## Where your logged time ends up
 
 1. **The issue**: the spent total is recomputed from all entries, so it is always the true sum.
