@@ -37,12 +37,19 @@ Das Modul zeichnet Arbeitszeit auf. Es dient den gesetzlichen Aufzeichnungspflic
 | Abwesenheiten | Art (Urlaub, Krankheit, Sonstiges), erster und letzter Tag, halber Tag, optionale Notiz | Planungsdaten. Eine Abwesenheit hindert niemanden daran, Zeit zu erfassen. Ändert die Administration eine für eine andere Person, steht das ohne die Notiz im Audit-Protokoll (`AVAILABILITY_TIME_OFF_CHANGED`). |
 | Abwesenheitskonten | Je Art und Jahr: Anspruch, Zuteilungen, Buchungen, Korrekturen, jeweils mit dem Tag, an dem sie wirken, der Begründung und der Person, die gehandelt hat | Planungsdaten. Das Journal ist die Quelle: kein Saldo wird gespeichert, jede Zahl auf jedem Bildschirm wird daraus gerechnet. Die Begründung einer Korrektur steht **nur** auf der Journalzeile. |
 | Beschäftigungsdaten für die Berechnung | Eintritts- und Austrittsdatum, optionale Notiz | Nur dafür da, einen anteiligen Anspruch zu rechnen (§ 5 BUrlG). Sehen kann sie die Abwesenheitsverwaltung. |
+| Abwesenheitsanträge | Art, Zeitraum, Anteil des ersten und letzten Tages, eingefrorene Tagesmenge, Status, optionale Notiz, die beim Einreichen ermittelten entscheidenden Personen, optionale Vertretung, die Historie jedes Schritts mit Zeitpunkt und handelnder Person | Der Antrag ist das Dokument, die Abwesenheit sein Ergebnis. Die Begründung einer Entscheidung steht **nur** hier, nie im Audit-Protokoll. Das Protokoll hält Art, Zeitraum und Menge fest (`TIME_OFF_REQUEST_SUBMITTED`, `_APPROVED`, `_REJECTED`, `_WITHDRAWN`, `_CANCELLED`). |
+| Krankmeldungen | Zeitraum, halber Tag, Art | Eine Meldung, kein Antrag: keine entscheidende Person, kein Status, kein Pflichtfeld und **kein Nachweis**. Das Protokoll hält nur fest, dass gemeldet wurde, und für welchen Zeitraum (`TIME_OFF_SICK_REPORTED`). |
 
-!!! danger "Die Begründung einer Korrektur bleibt im Journal"
-    Wenn jemand ein Konto berichtigt, verlangt Hinata einen Grund — und schreibt ihn auf die Journalzeile, **nicht** ins Audit-Protokoll. Das ist Absicht: Ein Grund kann eine Gesundheitsangabe oder eine Schwerbehinderung nennen (§ 208 SGB IX), also ein Datum nach Art. 9 DSGVO. Im Audit-Protokoll überlebte er das Löschen des Kontos, überstünde das Abschalten des Moduls und wäre für jede Administration lesbar. Das Audit-Protokoll hält fest, **dass** jemand korrigiert hat, für welche Art, welches Jahr und um wie viel.
+!!! danger "Eine Begründung bleibt beim Vorgang, nicht im Protokoll"
+    Wenn jemand ein Konto berichtigt, verlangt Hinata einen Grund — und schreibt ihn auf die Journalzeile, **nicht** ins Audit-Protokoll. Für die **Ablehnung eines Antrags** gilt dasselbe: Der Satz steht auf dem Antrag und verschwindet mit ihm. Das ist Absicht: Eine Begründung kann eine Gesundheitsangabe oder eine Schwerbehinderung nennen (§ 208 SGB IX), also ein Datum nach Art. 9 DSGVO. Im Audit-Protokoll überlebte sie das Löschen des Kontos, überstünde das Abschalten des Moduls und wäre für jede Administration lesbar. Das Audit-Protokoll hält fest, **dass** jemand korrigiert oder entschieden hat, für welche Art, welchen Zeitraum und um wie viel.
 
 !!! warning "Ein Krankheitstag ist ein Gesundheitsdatum"
     Die Abwesenheitsart *Krankheit* sagt etwas über die Gesundheit einer Person, und die schützt Art. 9 DSGVO besonders. Hinata speichert keinen Grund und keine Diagnose, nur die Art und die Tage. Regelt in der Vereinbarung, ob Krankheitstage hier überhaupt eingetragen werden oder ob *Sonstiges* für die Planung reicht.
+
+    Deshalb gibt es auch keinen Platz für ein Attest: Seit 2023 ruft der Arbeitgeber die Arbeitsunfähigkeitsbescheinigung bei der Krankenkasse ab (§ 109 SGB IV). Und deshalb nennt keine Benachrichtigung über eine Abwesenheit ihre Art — weder in der Glocke noch in der Mail noch auf dem Sperrbildschirm.
+
+!!! info "Wer erfährt, dass ein Urlaub kürzer wurde"
+    Fällt eine Krankheit auf genehmigten Urlaub, bucht Hinata die überschnittenen Tage zurück und kürzt den Urlaub (§ 9 BUrlG). Die entscheidenden Personen erfahren, **dass** der Urlaub kürzer wurde — nie, warum. Der Grund bliebe sonst eine Gesundheitsangabe, die über eine Planungsmeldung ihren Weg zur Führungskraft fände.
 
 !!! info "Warum die Kenntnisnahme keine Einwilligung ist"
     Im Arbeitsverhältnis ist eine Einwilligung wegen der Abhängigkeit selten freiwillig. Die Pflicht zur Arbeitszeiterfassung hängt ohnehin nicht von ihr ab. Der Klick auf **Verstanden** belegt deshalb nur, dass die Information nach Art. 13 DSGVO erfolgt ist. Wer nicht klickt, verliert dadurch kein Recht und gewinnt auch keins.
@@ -170,7 +177,7 @@ Die eingebaute Vorlage gibt es in neun Sprachen. Unter **Adminbereich → Zeiter
 
 ### Auskunft und Datenübertragbarkeit (Art. 15 und 20 DSGVO)
 
-Der Datenexport des Kontos enthält auch die Zeitdaten: Zeiteinträge, laufenden Timer, Einreichungen, Korrekturanfragen und Bitten um ältere Tage samt Antworten, für die Person geöffnete Tage, Einstellungen für den Timer, den Zeitpunkt der Kenntnisnahme, die Arbeitszeiten und Abwesenheiten der Person sowie ihre Abwesenheitskonten mit jeder Journalzeile und deren Begründung.
+Der Datenexport des Kontos enthält auch die Zeitdaten: Zeiteinträge, laufenden Timer, Einreichungen, Korrekturanfragen und Bitten um ältere Tage samt Antworten, für die Person geöffnete Tage, Einstellungen für den Timer, den Zeitpunkt der Kenntnisnahme, die Arbeitszeiten und Abwesenheiten der Person, ihre Abwesenheitskonten mit jeder Journalzeile und deren Begründung sowie ihre Abwesenheitsanträge mit jeder Notiz und jeder Entscheidungsbegründung. Gerade die Ablehnungsbegründung gehört dorthin: Sie steht bewusst in keinem Protokoll, also ist dieser Export der Ort, an dem die betroffene Person sie vollständig bekommt (Art. 15 DSGVO).
 
 Es gibt ihn als JSON über `GET /api/v1/me/export` und als PDF-Bericht, dessen Link per E-Mail kommt. Sehr lange Historien werden dort gekürzt. Ein Hinweis im Export verweist dann auf den CSV-Export.
 
@@ -198,7 +205,7 @@ Im Verlauf eines Eintrags sieht eine Projektleitung nur die Anfragen zu Einreich
 
 ### Löschung und Speicherbegrenzung (Art. 17 und Art. 5 Abs. 1 lit. e DSGVO)
 
-Wird ein Konto gelöscht, entfernt Hinata das Konto, einen laufenden Timer, noch nicht freigegebene Einreichungen, die Anfragen der Person, die für sie geöffneten Tage sowie ihre Arbeitszeiten und Abwesenheiten. Im Verlauf von Einträgen steht danach kein Name mehr für sie, und die Texte ihrer Korrekturanfragen zeigt Hinata dort niemandem mehr.
+Wird ein Konto gelöscht, entfernt Hinata das Konto, einen laufenden Timer, noch nicht freigegebene Einreichungen, die Anfragen der Person, die für sie geöffneten Tage, ihre Arbeitszeiten und Abwesenheiten sowie ihre Abwesenheitsanträge, über die nie entschieden wurde. Entschiedene Anträge bleiben pseudonymisiert stehen, wie genehmigte Einreichungen und Buchungen: Sie sind der Nachweis darüber, wem was gewährt wurde. Im Verlauf von Einträgen steht danach kein Name mehr für sie, und die Texte ihrer Korrekturanfragen zeigt Hinata dort niemandem mehr.
 
 Freigegebene Einreichungen bleiben, weil sie ein Geschäftsnachweis sind. Auch die Zeiteinträge bleiben, mit der Nutzer-ID als Pseudonym, weil die Stunden zum Nachweis des Projekts gehören.
 

@@ -39,12 +39,19 @@ The module records working time. It serves statutory recording duties and projec
 | Absences | Type (vacation, sick, other), first and last day, half day, optional note | Planning data. An absence never stops anyone from recording time. When an administrator changes one for someone else, the audit log records it without the note (`AVAILABILITY_TIME_OFF_CHANGED`). |
 | Absence balances | Per type and year: entitlement, grants, bookings and corrections, each with the day it takes effect, the reason and who acted | Planning data. The journal is the source: no balance is stored, and every figure on every screen is computed from it. A correction's reason lives **only** on the journal line. |
 | Employment dates used for the calculation | Joining and leaving date, optional note | There only to work out a pro-rata entitlement (§ 5 BUrlG). Whoever keeps absences can see them. |
+| Absence requests | Type, span, the share the first and last day count for, the frozen number of days, status, optional note, the people who could decide it as worked out at submission, an optional stand-in, and the history of every step with its time and who acted | The request is the document and the absence is its result. A decision's reason lives **only** here, never in the audit log. The log records the type, the span and the amount (`TIME_OFF_REQUEST_SUBMITTED`, `_APPROVED`, `_REJECTED`, `_WITHDRAWN`, `_CANCELLED`). |
+| Sick reports | Span, half day, type | A notification and not a request: no approver, no status, no required field and **no certificate**. The log records only that a report was made and for which span (`TIME_OFF_SICK_REPORTED`). |
 
-!!! danger "A correction's reason stays in the journal"
-    When somebody corrects a balance, Hinata asks for a reason — and writes it on the journal line, **not** into the audit log. That is deliberate: a reason can name an illness or a recognised disability (§ 208 SGB IX), which is data under Art. 9 GDPR. In the audit log it would outlive the deletion of the account, survive the module being switched off, and be readable by every administrator. The audit log records **that** somebody corrected, for which type, which year and by how much.
+!!! danger "A reason stays with the thing it is about, not in the log"
+    When somebody corrects a balance, Hinata asks for a reason — and writes it on the journal line, **not** into the audit log. The same holds for **rejecting a request**: the sentence sits on the request and goes when it does. That is deliberate: a reason can name an illness or a recognised disability (§ 208 SGB IX), which is data under Art. 9 GDPR. In the audit log it would outlive the deletion of the account, survive the module being switched off, and be readable by every administrator. The audit log records **that** somebody corrected or decided, for which type, which span and by how much.
 
 !!! warning "A sick day is health data"
     The absence type *sick* says something about a person's health, which Art. 9 GDPR protects specially. Hinata stores no reason and no diagnosis, only the type and the days. Settle in the agreement whether sick days are entered here at all, or whether *other* is enough for planning.
+
+    That is also why there is nowhere to attach a fit-note: since 2023 an employer retrieves it from the health insurer under § 109 SGB IV. And it is why no notification about an absence names its type — not in the bell, not in the mail, not on a lock screen.
+
+!!! info "Who learns that leave got shorter"
+    When sickness falls on approved leave, Hinata books the overlapping days back and shortens the leave (§ 9 BUrlG). The people who decided it learn **that** the leave got shorter, never why. The reason would otherwise be a health fact finding its way to a manager through a planning notice.
 
 !!! info "Why the acknowledgement is not consent"
     In an employment relationship consent is rarely free, because the employee depends on the employer. The duty to record working time does not depend on consent anyway. Acknowledging the notice only proves that the information under Art. 13 GDPR was given. Not acknowledging it costs nobody a right and grants none.
@@ -172,7 +179,7 @@ The built-in template exists in nine languages. Under **Administration → Time 
 
 ### Access and data portability (Art. 15 and 20 GDPR)
 
-The account's data export also contains the time data: time entries, the running timer, submissions, correction requests and requests for older days with their answers, days opened for the person, timer preferences, the time the notice was acknowledged, the person's working hours and absences, and their absence balances with every journal line and its reason.
+The account's data export also contains the time data: time entries, the running timer, submissions, correction requests and requests for older days with their answers, days opened for the person, timer preferences, the time the notice was acknowledged, the person's working hours and absences, their absence balances with every journal line and its reason, and their absence requests with every note and every decision's reason. The reason a rejection gave belongs there in particular: it is deliberately in no log, so this export is where the person it is about receives it in full (Art. 15 GDPR).
 
 It comes as JSON via `GET /api/v1/me/export` and as a PDF report whose link arrives by e-mail. Very long histories are shortened there, and a note in the export then points to the CSV export.
 
@@ -200,7 +207,7 @@ In an entry's history, a project lead reads only the requests about submissions 
 
 ### Erasure and storage limitation (Art. 17 and Art. 5(1)(e) GDPR)
 
-When an account is deleted, Hinata removes the account, a running timer, submissions that are not yet approved, the person's requests, the days opened for them, and their working hours and absences. After that, their name no longer appears in the history of entries, and Hinata no longer shows the text of their correction requests there to anyone.
+When an account is deleted, Hinata removes the account, a running timer, submissions that are not yet approved, the person's requests, the days opened for them, their working hours and absences, and the absence requests nobody ever decided. Decided ones stay, pseudonymised, like approved submissions and bookings: they are the record of who was granted what. After that, their name no longer appears in the history of entries, and Hinata no longer shows the text of their correction requests there to anyone.
 
 Approved submissions stay, because they are a business record. Time entries stay too, with the user id as a pseudonym, because the hours are part of the project's record.
 
