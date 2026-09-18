@@ -200,10 +200,14 @@ Administrators keep holiday calendars in the Admin area and can import a year of
 | `HINATA_ICS_ALLOWED_HOSTS` | Comma-separated hosts calendars may be fetched from: a host name or `*.example.org` for its subdomains. Empty means any public host | *(empty)* | No |
 | `HINATA_ICS_DENIED_HOSTS` | Comma-separated hosts calendars are never fetched from, in the same notation. Checked before the allow list | *(empty)* | No |
 | `HINATA_AVAILABILITY_DEFAULT_WEEKDAY_MINUTES` | Planned minutes per weekday, Monday first, for everyone who has not set their own hours | `480,480,480,480,480,0,0` | No |
-| `HINATA_TIME_TRACKING_ABSENCE_MANAGEMENT_ENABLED` | Turns absence management on: types, entitlements and balances. Needs extended time tracking. The switch under **Admin area → Time tracking** takes precedence over this value | `false` | No |
+| `HINATA_TIME_TRACKING_ABSENCE_MANAGEMENT_ENABLED` | Turns absence management on: types, entitlements, balances, requests and sick reports. Needs extended time tracking. The switch under **Admin area → Time tracking** takes precedence over this value | `false` | No |
+| `HINATA_RATE_LIMIT_TIME_OFF_REQUESTS_PER_DAY` | Absence requests and sick reports per person per day. A day rather than a minute, because filing leave is a deliberate act and a per-minute budget would let a loop through anyway | `50` | No |
 
 !!! info "Who keeps absences"
-    Administrators do, unless you say otherwise. Under **Admin area → Time tracking** you can also name individual people as **absence keepers** — they keep types, grant entitlements and book corrections without holding any other administrative right. Their way in is in their own settings, not in the admin area. The list is deliberately empty by default: whoever is on it sees sick days as sick days (Art. 9 GDPR), and the narrower circle is the right default.
+    Administrators do, unless you say otherwise. Under **Admin area → Time tracking** you can also name individual people as **absence keepers** — they keep types, grant entitlements, book corrections and decide requests without holding any other administrative right. Their way in is in their own settings, not in the admin area. The list is deliberately empty by default: whoever is on it sees sick days as sick days (Art. 9 GDPR), and the narrower circle is the right default.
+
+!!! info "The limit never blocks a sick report"
+    A sick report is counted against the same daily budget but is never refused by it: § 5 EFZG knows a notification, not a permission. Reaching the limit only refuses further **requests**.
 
 !!! warning "Keep the key"
     A calendar address encrypted with one `HINATA_ICS_SECRET` cannot be read with another. If the key changes, imports from stored addresses fail until an administrator enters the address again. Holidays that were already imported stay.

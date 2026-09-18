@@ -169,6 +169,39 @@ Only the people it concerns can see this: you, and whoever your organisation nam
 !!! info "A number that is not there yet"
     **Not granted yet** against a type means no entitlement has been entered for this year. It is not an error and says nothing about your contract — only that the year has not been granted.
 
+## Requesting an absence
+
+When an absence type says it has to be approved, it is requested rather than entered. The **Request absence** button sits beside your balances.
+
+The form asks for the type, the span and — where the type allows it — whether the first or the last day is a half day. As you pick the dates the server works out what the span costs and says so: how many working days are in it, how many public holidays it swallowed, and what would be left afterwards. Weekends, holidays and the days your pattern leaves empty cost nothing — a holiday that fell inside leave was never leave.
+
+Two fields are optional. The **note** is read by whoever decides. A **stand-in** is told and has nothing to confirm: your leave should not wait on somebody else's attention.
+
+What was worked out when you submitted is frozen. Moving later from a five-day week to a four-day one does not reinterpret a decision already made, in either direction.
+
+!!! info "You can see a requested day before it is decided"
+    A day you have asked for is hatched in the calendar and the timesheet and carries an hourglass. That is deliberately neither the quiet wash of an entered absence nor the padlock of a frozen day: the day is claimed, not closed, and time can still be recorded on it.
+
+## Reporting sickness
+
+Sickness is reported, not applied for. **Report sickness** asks only for the span, takes effect at once and works retroactively. There is no approver, no required field, and no path on which the server could refuse a sick report.
+
+You do not upload a certificate here, and that is deliberate: since 2023 an employer retrieves the fit-note from the health insurer under § 109 SGB IV. A health fact in a project tool is special-category data that has no business being there. You still have to report the sickness to your employer yourself (§ 5 EFZG); hinata is not that report.
+
+If the sickness falls on days already approved as leave, those days go back to your balance by themselves and the leave is shortened (§ 9 BUrlG). Whoever decided the leave learns that it got shorter, never why.
+
+## Requests and the inbox
+
+**My requests** lists what you asked for and what became of it: waiting, approved, rejected, withdrawn or cancelled. While nobody has decided you can **withdraw** a request. Once it is approved and still entirely ahead of you, you can **cancel** it yourself — the days come back and whoever decided is told. Once the absence has begun it takes whoever keeps absences, because by then it is a record of what happened rather than a plan.
+
+**To decide** is the inbox. It is empty for anybody who decides nothing, which is an honest answer rather than a hidden feature. Each card names the person, the span, the number of days and, where they apply, three warnings: that the balance does not cover it, that the notice is shorter than the type asks for, and how many other people are away over the same span. How many days somebody has left is not on it — the answer is a yes or a no, never a figure.
+
+**A rejection needs a reason.** § 7 (1) of the German Federal Leave Act allows a refusal only for urgent operational reasons or somebody else's prior claim, and a refusal that names neither is one nobody can check. The reason reaches the person who asked and stays in the request's history.
+
+**Nobody decides their own request**, administrators included. Whoever files one is struck from the circle of people who could decide it; if that leaves nobody, the request goes to the administrators. A request sitting unanswered in a visible inbox is a problem somebody can act on — a request that disappeared is not.
+
+Where a type is set to approve automatically, the request is decided as it arrives, you are told, and the history records that nobody judged it.
+
 ## Keeping types and entitlements
 
 The two pages below are for whoever keeps absences. That need not be an administrator: an organisation can name people for it, and they find their way there from their own settings.

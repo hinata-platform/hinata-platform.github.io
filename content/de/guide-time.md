@@ -169,6 +169,39 @@ Sehen kann das nur, wen es angeht: du selbst und die Personen, die deine Organis
 !!! info "Eine Zahl, die noch nicht da ist"
     Steht bei einer Art **Noch nicht zugeteilt**, ist für dieses Jahr noch kein Anspruch eingetragen. Das ist kein Fehler und keine Aussage über deinen Vertrag, sondern heißt nur: Die Verwaltung hat das Jahr noch nicht zugeteilt.
 
+## Abwesenheit beantragen
+
+Sagt eine Abwesenheitsart, dass sie genehmigt werden muss, wird sie beantragt statt eingetragen. Der Knopf **Abwesenheit beantragen** steht bei deinen Konten.
+
+Im Formular wählst du die Art, den Zeitraum und, wenn die Art es erlaubt, ob der erste oder der letzte Tag ein halber ist. Während du die Daten wählst, rechnet der Server mit und sagt dir, was die Spanne kostet: wie viele Arbeitstage darin liegen, wie viele Feiertage sie geschluckt hat und was dir danach bleibt. Wochenenden, Feiertage und Tage, an denen du laut deinem Muster nicht arbeitest, kosten nichts — ein Feiertag, der in den Urlaub fiel, war nie Urlaub.
+
+Zwei Felder sind freiwillig. Die **Notiz** liest, wer entscheidet. Eine **Vertretung** wird informiert und muss nichts bestätigen: Dein Urlaub soll nicht an der Aufmerksamkeit einer anderen Person hängen.
+
+Was beim Einreichen berechnet wurde, wird eingefroren. Wechselst du später von fünf auf vier Tage die Woche, deutet das einen entschiedenen Antrag nicht um — in keine Richtung.
+
+!!! info "Beantragte Tage sieht man, bevor sie entschieden sind"
+    Ein Tag, den du beantragt hast, ist in Kalender und Stundenzettel schraffiert und trägt eine Sanduhr. Das ist bewusst weder die stille Fläche einer eingetragenen Abwesenheit noch das Schloss eines gesperrten Tages: Der Tag ist beansprucht, nicht geschlossen, und Zeit lässt sich darauf weiterhin erfassen.
+
+## Krank melden
+
+Krankheit wird gemeldet, nicht beantragt. **Krank melden** verlangt nur den Zeitraum, ist sofort wirksam und geht auch rückwirkend. Es gibt keine genehmigende Person, kein Pflichtfeld und keinen Weg, auf dem der Server eine Krankmeldung ablehnen könnte.
+
+Einen Nachweis lädst du hier nicht hoch, und das ist Absicht: Seit 2023 holt der Arbeitgeber die Arbeitsunfähigkeitsbescheinigung bei der Krankenkasse ab (§ 109 SGB IV). Eine Gesundheitsangabe in einem Projektwerkzeug wäre ein besonders geschütztes Datum, das dort nichts zu suchen hat. Deinem Arbeitgeber musst du die Krankheit weiterhin selbst melden (§ 5 EFZG); hinata ist diese Meldung nicht.
+
+Fällt die Krankheit auf Tage, die du schon als Urlaub genehmigt bekommen hast, gehen diese Tage von selbst auf dein Konto zurück und der Urlaub wird gekürzt (§ 9 BUrlG). Wer den Urlaub entschieden hat, erfährt die Kürzung als Tatsache, nie ihren Grund.
+
+## Anträge und Posteingang
+
+Unter **Meine Anträge** stehen deine Anträge mit dem, was daraus wurde: offen, genehmigt, abgelehnt, zurückgezogen oder storniert. Solange niemand entschieden hat, kannst du einen Antrag **zurückziehen**. Ist er genehmigt und liegt noch ganz in der Zukunft, kannst du ihn selbst **stornieren** — die Tage gehen zurück, und wer entschieden hat, wird informiert. Hat die Abwesenheit schon begonnen, übernimmt das die Abwesenheitsverwaltung, weil es dann kein Plan mehr ist, sondern eine Aufzeichnung.
+
+**Zu entscheiden** ist der Posteingang. Er ist leer für alle, die nichts zu entscheiden haben, und das ist eine ehrliche Antwort, kein verstecktes Feature. Jede Karte nennt die Person, den Zeitraum, die Tagesmenge und, wo es zutrifft, drei Hinweise: dass der Saldo nicht reicht, dass die Frist kürzer ist als die Art verlangt, und wie viele andere im selben Zeitraum abwesend sind. Wie viele Urlaubstage jemand noch hat, steht dort nicht — die Antwort ist ein Ja oder Nein, keine Zahl.
+
+**Eine Ablehnung braucht eine Begründung.** § 7 Abs. 1 BUrlG lässt eine Ablehnung nur wegen dringender betrieblicher Belange oder vorrangiger Wünsche anderer zu, und eine Ablehnung, die keines von beidem nennt, kann niemand prüfen. Die Begründung erreicht die antragstellende Person und steht in der Historie des Antrags.
+
+**Über den eigenen Antrag entscheidet niemand selbst**, auch keine Administration. Wer einen Antrag stellt, wird aus dem Kreis der entscheidenden Personen gestrichen; findet sich danach niemand mehr, landet der Antrag bei den Administratoren. Ein Antrag, der in einem sichtbaren Posteingang liegen bleibt, ist ein Problem, um das sich jemand kümmern kann — ein Antrag, der verschwunden ist, nicht.
+
+Steht eine Art auf automatischer Genehmigung, wird der Antrag sofort entschieden, du wirst benachrichtigt, und in der Historie steht, dass niemand darüber geurteilt hat.
+
 ## Abwesenheitsarten und Ansprüche verwalten
 
 Die folgenden beiden Seiten sieht, wer die Abwesenheitsverwaltung führt. Das muss keine Administration sein: Die Organisation kann Personen dafür benennen, und sie finden den Weg dorthin in ihren eigenen Einstellungen.
