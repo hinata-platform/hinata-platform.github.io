@@ -196,7 +196,7 @@ setzen. Diese Werte überschreiben die Umgebung. Siehe
 
 ## Kalender, Feiertage und Arbeitszeiten
 
-Die Administration pflegt Feiertagskalender im Adminbereich und kann ein Jahr Feiertage aus einer Kalenderadresse importieren, zum Beispiel aus einem Feiertagskalender von Google, Apple oder Outlook. Diese Adresse ruft der Server selbst ab. Mit einer privaten oder Loopback-Adresse verbindet er sich nie, egal was in den Listen unten steht. Arbeitszeiten und Abwesenheiten plant jede Person in ihren Einstellungen. Das alles setzt die erweiterte Zeiterfassung voraus (`HINATA_TIME_TRACKING_ADVANCED_ENABLED`). Siehe [Zeit erfassen](/de/guide-time.html).
+Die Administration pflegt Feiertagskalender im Adminbereich und kann ein Jahr Feiertage aus einer Kalenderadresse importieren, zum Beispiel aus einem Feiertagskalender von Google, Apple oder Outlook. Diese Adresse ruft der Server selbst ab. Mit einer privaten oder Loopback-Adresse verbindet er sich nie, egal was in den Listen unten steht. Die Arbeitszeiten plant jede Person in ihren Einstellungen, die Abwesenheiten in der Zeiterfassung. Das alles setzt die erweiterte Zeiterfassung voraus (`HINATA_TIME_TRACKING_ADVANCED_ENABLED`). Siehe [Zeit erfassen](/de/guide-time.html).
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |

@@ -144,10 +144,10 @@ Einträge mit **Smart Commits (vor 2.0)** stammen aus älteren Versionen, die Ze
 
 ## Arbeitszeiten, Abwesenheiten und Feiertage
 
-Wenn deine Administration die erweiterte Zeiterfassung eingeschaltet hat, findest du in deinen **Einstellungen** den Abschnitt **Arbeitszeiten und Abwesenheiten**. Er dient nur der Planung. Du kannst an jedem Tag Zeit erfassen, auch an Feiertagen und an Tagen, an denen du nicht da bist.
+Wenn deine Administration die erweiterte Zeiterfassung eingeschaltet hat, findest du in deinen **Einstellungen** den Abschnitt **Arbeitszeiten** und in der Zeiterfassung die Ansicht **Abwesenheiten**. Beides ist Planung. Du kannst an jedem Tag Zeit erfassen, auch an Feiertagen und an Tagen, an denen du nicht da bist.
 
 - **Geplante Stunden** sind deine Stunden je Wochentag. Solange du keine eigenen festlegst, gilt die Vorgabe des Servers. Eine Änderung gilt ab dem Datum, das du wählst, frühere Wochen behalten ihre Stunden. Hier wählst du auch den Feiertagskalender, nach dem du dich richtest.
-- **Abwesenheiten** sind Urlaub, Krankheit oder Sonstiges, für einen einzelnen Tag oder einen Zeitraum. Ein einzelner Tag kann ein halber Tag sein. Die Notiz ist freiwillig, sehen können sie nur du und die Administration.
+- **Abwesenheiten** sind Urlaub, Krankmeldungen oder Sonstiges, für einen einzelnen Tag oder einen Zeitraum. Ein einzelner Tag kann ein halber Tag sein. Die Notiz ist freiwillig, sehen können sie nur du und die Abwesenheitsverwaltung. Du findest und pflegst sie in der Zeiterfassung unter **Abwesenheiten**.
 - **Feiertage** kommen aus den Kalendern, die deine Administration im Adminbereich unter **Feiertage** pflegt. Sie trägt Tage von Hand ein oder importiert ein Jahr aus einer Kalenderadresse.
 
 Was sich dadurch zeigt:
@@ -156,13 +156,26 @@ Was sich dadurch zeigt:
 - Dein eigener Stundenzettel zeigt **Deine Kapazität**: deine geplanten Stunden im Zeitraum, abzüglich Feiertage und Abwesenheiten, neben dem, was du gebucht hast. Nur du siehst das.
 - Mit eingeschalteten Arbeitszeithinweisen bekommt ein Eintrag an einem Feiertag einen Hinweis, genau wie ein Eintrag an einem Sonntag.
 
+## Abwesenheiten in der Zeiterfassung
+
+Deine Abwesenheiten stehen dort, wo auch deine Stunden stehen: in der Zeiterfassung, neben Liste, Kalender und Stundenzettel. Die Ansicht **Abwesenheiten** hat vier Bereiche.
+
+- **Meine** ist die Liste deiner Tage, mit einer Suche über die Notizen, einem Zeitraum, einer Art und der Reihenfolge. Was noch auf eine Entscheidung wartet, steht oben.
+- **Anträge** sind deine eigenen Anträge mit dem, was daraus wurde.
+- **Zu entscheiden** ist der Posteingang für alle, die entscheiden.
+- **Konten** zeigt dir, was dir in diesem Jahr zusteht, und das Journal dahinter.
+
+Eintragen kannst du von überall in der Zeiterfassung: im Kopf über **Abwesenheit beantragen** oder den Pfeil neben **Neuer Eintrag**, auf dem Telefon über das **+**, und im Kalender über das Tagesmenü — langer Druck oder Rechtsklick auf einen Tag. Das Formular startet dann auf dem Tag, den du angefasst hast.
+
+Ein Tipp auf eine Abwesenheit, ein Band im Kalender oder eine Markierung in Liste und Stundenzettel öffnet dasselbe Blatt. Es zeigt, woher die Abwesenheit kommt, und bietet genau das an, was noch geht: bearbeiten und löschen bei einer eingetragenen, zurückziehen und bearbeiten bei einem offenen Antrag, stornieren bei einem genehmigten, und einen neuen Antrag nach einer Ablehnung.
+
 ## Abwesenheitskonten
 
-Hat deine Administration zusätzlich die **Abwesenheitsverwaltung** eingeschaltet, steht in demselben Abschnitt, was dir in diesem Jahr zusteht.
+Hat deine Administration zusätzlich die **Abwesenheitsverwaltung** eingeschaltet, steht unter **Abwesenheiten** auf der Pille **Konten**, was dir in diesem Jahr zusteht.
 
-- **Konten** zeigen je Abwesenheitsart, was dir zusteht, was du genommen hast, was geplant ist und was bleibt. Eine Art ohne Kontingent, zum Beispiel Krankheit, sagt das statt einer Zahl: Entgeltfortzahlung ist kein Anspruch in Tagen.
+- **Konten** zeigen je Abwesenheitsart, was dir zusteht, was du genommen hast, was geplant ist und was bleibt. Eine Art ohne Kontingent, zum Beispiel Krankmeldungen, zeigt statt einer Zahl, was in diesem Jahr darauf entfallen ist: Entgeltfortzahlung ist kein Anspruch in Tagen.
 - **Journal** listet jede Bewegung eines Kontos, mit dem Tag, an dem sie wirkt, und der Begründung, wenn es eine gab. Dein Konto entsteht aus dieser Liste, nicht aus einer gespeicherten Zahl, und deshalb lässt sich jede Zahl darauf zurückführen.
-- **Kommende Abwesenheiten** sind die Tage, die schon eingetragen sind.
+- Die Tage selbst stehen auf der Pille **Meine**, vergangene wie kommende.
 
 Sehen kann das nur, wen es angeht: du selbst und die Personen, die deine Organisation als Abwesenheitsverwaltung benannt hat.
 
@@ -171,7 +184,7 @@ Sehen kann das nur, wen es angeht: du selbst und die Personen, die deine Organis
 
 ## Abwesenheit beantragen
 
-Sagt eine Abwesenheitsart, dass sie genehmigt werden muss, wird sie beantragt statt eingetragen. Der Knopf **Abwesenheit beantragen** steht bei deinen Konten.
+Sagt eine Abwesenheitsart, dass sie genehmigt werden muss, wird sie beantragt statt eingetragen. **Abwesenheit beantragen** steht im Kopf der Abwesenheiten und in jedem Menü, das die Zeiterfassung zum Hinzufügen anbietet.
 
 Im Formular wählst du die Art, den Zeitraum und, wenn die Art es erlaubt, ob der erste oder der letzte Tag ein halber ist. Während du die Daten wählst, rechnet der Server mit und sagt dir, was die Spanne kostet: wie viele Arbeitstage darin liegen, wie viele Feiertage sie geschluckt hat und was dir danach bleibt. Wochenenden, Feiertage und Tage, an denen du laut deinem Muster nicht arbeitest, kosten nichts — ein Feiertag, der in den Urlaub fiel, war nie Urlaub.
 
@@ -192,7 +205,7 @@ Fällt die Krankheit auf Tage, die du schon als Urlaub genehmigt bekommen hast, 
 
 ## Anträge und Posteingang
 
-Unter **Meine Anträge** stehen deine Anträge mit dem, was daraus wurde: offen, genehmigt, abgelehnt, zurückgezogen oder storniert. Solange niemand entschieden hat, kannst du einen Antrag **zurückziehen**. Ist er genehmigt und liegt noch ganz in der Zukunft, kannst du ihn selbst **stornieren** — die Tage gehen zurück, und wer entschieden hat, wird informiert. Hat die Abwesenheit schon begonnen, übernimmt das die Abwesenheitsverwaltung, weil es dann kein Plan mehr ist, sondern eine Aufzeichnung.
+Unter **Anträge** stehen deine Anträge mit dem, was daraus wurde: offen, genehmigt, abgelehnt, zurückgezogen oder storniert. Solange niemand entschieden hat, kannst du einen Antrag **zurückziehen** oder **bearbeiten**: Zeitraum, halbe Tage, Notiz und Vertretung lassen sich ändern, und die Tage werden neu gerechnet. Wechselst du dabei die Art, geht der Antrag an die Personen, die für die neue Art entscheiden, und die alten erfahren, dass er sie nicht mehr betrifft. Ist er genehmigt und liegt noch ganz in der Zukunft, kannst du ihn selbst **stornieren** — die Tage gehen zurück, und wer entschieden hat, wird informiert. Hat die Abwesenheit schon begonnen, übernimmt das die Abwesenheitsverwaltung, weil es dann kein Plan mehr ist, sondern eine Aufzeichnung.
 
 **Zu entscheiden** ist der Posteingang. Er ist leer für alle, die nichts zu entscheiden haben, und das ist eine ehrliche Antwort, kein verstecktes Feature. Jede Karte nennt die Person, den Zeitraum, die Tagesmenge und, wo es zutrifft, drei Hinweise: dass der Saldo nicht reicht, dass die Frist kürzer ist als die Art verlangt, und wie viele andere im selben Zeitraum abwesend sind. Wie viele Urlaubstage jemand noch hat, steht dort nicht — die Antwort ist ein Ja oder Nein, keine Zahl.
 
