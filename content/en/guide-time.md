@@ -215,6 +215,9 @@ If the sickness falls on days already approved as leave, those days go back to y
 
 Where a type is set to approve automatically, the request is decided as it arrives, you are told, and the history records that nobody judged it.
 
+!!! info "And if nobody is left?"
+    In an organisation of one the list of recipients stays empty: whoever files the request is the only person who could decide it, and nobody decides their own. The request is not lost for that. Anybody who keeps absences may decide any request, one without recipients included — so as soon as a second person joins, or somebody is named to keep absences, it appears in their inbox.
+
 ## Keeping types and entitlements
 
 The two pages below are for whoever keeps absences. That need not be an administrator: an organisation can name people for it, and they find their way there from their own settings.

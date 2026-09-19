@@ -50,6 +50,9 @@ The module records working time. It serves statutory recording duties and projec
 
     That is also why there is nowhere to attach a fit-note: since 2023 an employer retrieves it from the health insurer under § 109 SGB IV. And it is why no notification about an absence names its type — not in the bell, not in the mail, not on a lock screen.
 
+!!! warning "Only sickness is hidden, not every sensitive type"
+    A sick report reaches whoever decides as *other*. No other type works that way: somebody deciding a request reads the name of the type, so a type you add yourself — *parental leave*, *rehabilitation*, time off under § 208 SGB IX — says something about the person. Two roads are open: give the type no approval, and nobody decides it, or give it a name that says nothing. Settle that before you extend the catalogue.
+
 !!! info "Who learns that leave got shorter"
     When sickness falls on approved leave, Hinata books the overlapping days back and shortens the leave (§ 9 BUrlG). The people who decided it learn **that** the leave got shorter, never why. The reason would otherwise be a health fact finding its way to a manager through a planning notice.
 
