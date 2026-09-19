@@ -192,7 +192,7 @@ overrides env. See [Git integration](/en/git-integration.html).
 
 ## Calendars, holidays and working hours
 
-Administrators keep holiday calendars in the Admin area and can import a year of holidays from a calendar address, for example a public holiday calendar from Google, Apple or Outlook. The server fetches that address itself. It never connects to a private or loopback address, whatever the lists below say. People plan their own working hours and absences in their settings. All of it needs extended time tracking (`HINATA_TIME_TRACKING_ADVANCED_ENABLED`). See [Tracking your time](/en/guide-time.html).
+Administrators keep holiday calendars in the Admin area and can import a year of holidays from a calendar address, for example a public holiday calendar from Google, Apple or Outlook. The server fetches that address itself. It never connects to a private or loopback address, whatever the lists below say. People plan their own working hours in their settings, and their absences in time tracking. All of it needs extended time tracking (`HINATA_TIME_TRACKING_ADVANCED_ENABLED`). See [Tracking your time](/en/guide-time.html).
 
 | Variable | Purpose | Default / example | Required |
 | --- | --- | --- | --- |

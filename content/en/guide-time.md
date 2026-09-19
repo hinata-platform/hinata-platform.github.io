@@ -144,10 +144,10 @@ Entries labelled **Smart commits (pre-2.0)** come from older versions that booke
 
 ## Working hours, absences and holidays
 
-When your administrators have switched on extended time tracking, your **Settings** have a section **Working hours and absences**. It is for planning only. You can record time on every day, holidays and days you are away included.
+When your administrators have switched on extended time tracking, your **Settings** have a section **Working hours**, and time tracking has a view **Absences**. Both are planning. You can record time on every day, holidays and days you are away included.
 
 - **Planned hours** are your hours per weekday. Until you set your own, the default of the server applies. A change applies from the date you pick, so earlier weeks keep the hours they had. This is also where you pick the holiday calendar you follow.
-- **Absences** are vacation, sick days or other time away, for a single day or a span. A single day can be half a day. The note is optional. Only you and the administrators see it.
+- **Absences** are vacation, sick leave or other time away, for a single day or a span. A single day can be half a day. The note is optional. Only you and whoever keeps absences see it. You find and keep them in time tracking under **Absences**.
 - **Holidays** come from the calendars your administrators keep in the Admin area under **Holidays**. They enter days by hand or import a year from a calendar address.
 
 What changes on screen:
@@ -156,13 +156,26 @@ What changes on screen:
 - Your own timesheet shows **Your capacity**: your planned hours in the period, less holidays and absences, next to what you booked. Only you see it.
 - With working-time hints on, an entry on a holiday gets a hint, just like an entry on a Sunday.
 
+## Absences in time tracking
+
+Your absences sit where your hours sit: in time tracking, beside the list, the calendar and the timesheet. The **Absences** view has four parts.
+
+- **Mine** is the list of your days, with a search over the notes, a span, a type and the order. Whatever still waits for a decision stands above it.
+- **Requests** are your own requests and what became of them.
+- **To decide** is the inbox for everybody who decides.
+- **Balances** show what you are entitled to this year, with the journal behind it.
+
+You can enter one from anywhere in the module: from the head with **Request absence** or the arrow beside **New entry**, on a phone from the **+**, and in the calendar from the day menu — a long press or a right click on a day. The form then starts on the day you touched.
+
+A tap on an absence, on a band in the calendar or on a mark in the list or the timesheet opens the same sheet. It says where the absence came from and offers exactly what is still possible: edit and delete for one entered directly, withdraw and edit for a waiting request, cancel for an approved one, and a fresh request after a rejection.
+
 ## Absence balances
 
-If your administrators also turned on **absence management**, the same section shows what you are entitled to this year.
+If your administrators also turned on **absence management**, the **Balances** pill under **Absences** shows what you are entitled to this year.
 
-- **Balances** show, per absence type, what you are entitled to, what you have taken, what is planned and what is left. A type without a quota — sickness, for instance — says so instead of showing a number: continued pay when ill is not an entitlement measured in days.
+- **Balances** show, per absence type, what you are entitled to, what you have taken, what is planned and what is left. A type without a quota — sick leave, for instance — shows what went on it this year instead of a number: continued pay when ill is not an entitlement measured in days.
 - **Journal** lists every movement on a balance, with the day it takes effect and the reason, where there was one. Your balance is made from that list rather than from a stored number, which is why every figure on it can be traced back.
-- **Coming absences** are the days already entered.
+- The days themselves are on the **Mine** pill, past ones as well as coming ones.
 
 Only the people it concerns can see this: you, and whoever your organisation named to keep absences.
 
@@ -171,7 +184,7 @@ Only the people it concerns can see this: you, and whoever your organisation nam
 
 ## Requesting an absence
 
-When an absence type says it has to be approved, it is requested rather than entered. The **Request absence** button sits beside your balances.
+When an absence type says it has to be approved, it is requested rather than entered. **Request absence** sits in the head of the absences view and in every menu time tracking offers for adding something.
 
 The form asks for the type, the span and — where the type allows it — whether the first or the last day is a half day. As you pick the dates the server works out what the span costs and says so: how many working days are in it, how many public holidays it swallowed, and what would be left afterwards. Weekends, holidays and the days your pattern leaves empty cost nothing — a holiday that fell inside leave was never leave.
 
@@ -192,7 +205,7 @@ If the sickness falls on days already approved as leave, those days go back to y
 
 ## Requests and the inbox
 
-**My requests** lists what you asked for and what became of it: waiting, approved, rejected, withdrawn or cancelled. While nobody has decided you can **withdraw** a request. Once it is approved and still entirely ahead of you, you can **cancel** it yourself — the days come back and whoever decided is told. Once the absence has begun it takes whoever keeps absences, because by then it is a record of what happened rather than a plan.
+**Requests** lists what you asked for and what became of it: waiting, approved, rejected, withdrawn or cancelled. While nobody has decided you can **withdraw** a request or **edit** it: the span, the half days, the note and the stand-in can change, and the days are worked out again. Change the type while you are there and the request goes to the people who decide that type, while the earlier ones learn it no longer concerns them. Once it is approved and still entirely ahead of you, you can **cancel** it yourself — the days come back and whoever decided is told. Once the absence has begun it takes whoever keeps absences, because by then it is a record of what happened rather than a plan.
 
 **To decide** is the inbox. It is empty for anybody who decides nothing, which is an honest answer rather than a hidden feature. Each card names the person, the span, the number of days and, where they apply, three warnings: that the balance does not cover it, that the notice is shorter than the type asks for, and how many other people are away over the same span. How many days somebody has left is not on it — the answer is a yes or a no, never a figure.
 
