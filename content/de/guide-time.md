@@ -215,6 +215,9 @@ Unter **Anträge** stehen deine Anträge mit dem, was daraus wurde: offen, geneh
 
 Steht eine Art auf automatischer Genehmigung, wird der Antrag sofort entschieden, du wirst benachrichtigt, und in der Historie steht, dass niemand darüber geurteilt hat.
 
+!!! info "Und wenn niemand übrig bleibt?"
+    In einer Organisation aus einer einzigen Person bleibt die Empfängerliste leer: Wer den Antrag stellt, wäre die einzige Person, die ihn entscheiden könnte, und über den eigenen entscheidet niemand. Der Antrag ist deshalb nicht verloren. Wer die Abwesenheitsverwaltung führt, darf jeden Antrag entscheiden, auch einen ohne Empfänger — sobald also eine zweite Person dazukommt oder jemand dafür benannt wird, steht er in deren Posteingang.
+
 ## Abwesenheitsarten und Ansprüche verwalten
 
 Die folgenden beiden Seiten sieht, wer die Abwesenheitsverwaltung führt. Das muss keine Administration sein: Die Organisation kann Personen dafür benennen, und sie finden den Weg dorthin in ihren eigenen Einstellungen.

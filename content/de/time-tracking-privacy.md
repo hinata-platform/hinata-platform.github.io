@@ -48,6 +48,9 @@ Das Modul zeichnet Arbeitszeit auf. Es dient den gesetzlichen Aufzeichnungspflic
 
     Deshalb gibt es auch keinen Platz für ein Attest: Seit 2023 ruft der Arbeitgeber die Arbeitsunfähigkeitsbescheinigung bei der Krankenkasse ab (§ 109 SGB IV). Und deshalb nennt keine Benachrichtigung über eine Abwesenheit ihre Art — weder in der Glocke noch in der Mail noch auf dem Sperrbildschirm.
 
+!!! warning "Versteckt wird nur die Krankheit, nicht jede empfindliche Art"
+    Eine Krankmeldung erscheint für entscheidende Personen als *Sonstiges*. Für jede andere Art gilt das nicht: Wer über einen Antrag entscheidet, liest den Namen der Art, und eine selbst angelegte Art wie *Elternzeit*, *Kur* oder eine Freistellung nach § 208 SGB IX sagt damit etwas über die Person. Zwei Wege bleiben euch: Die Art braucht keine Genehmigung, dann entscheidet niemand über sie — oder ihr gebt ihr einen Namen, der nichts verrät. Regelt das, bevor ihr den Katalog erweitert.
+
 !!! info "Wer erfährt, dass ein Urlaub kürzer wurde"
     Fällt eine Krankheit auf genehmigten Urlaub, bucht Hinata die überschnittenen Tage zurück und kürzt den Urlaub (§ 9 BUrlG). Die entscheidenden Personen erfahren, **dass** der Urlaub kürzer wurde — nie, warum. Der Grund bliebe sonst eine Gesundheitsangabe, die über eine Planungsmeldung ihren Weg zur Führungskraft fände.
 
