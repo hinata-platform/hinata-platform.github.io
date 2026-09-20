@@ -71,7 +71,7 @@ Symptom, übliche Ursache und Lösung auf einen Blick. Darunter folgen Details.
 | Symptom | Wahrscheinliche Ursache | Lösung |
 | --- | --- | --- |
 | **App verbindet sich nicht mit dem Server** | Falsche Basis-URL, blockiertes CORS oder ein TLS-Problem | `HINATA_BASE_URL` muss die öffentliche API-URL sein und per HTTPS erreichbar. Origin der Web-App in `HINATA_CORS_ALLOWED_ORIGINS` eintragen. Zertifikat prüfen. |
-| **App hängt in einer erzwungenen Update-Schleife** | `HINATA_APP_MIN_VERSION` ist höher als die Version des Clients | `HINATA_APP_MIN_VERSION` auf die Version der installierten Clients oder darunter senken (oder Clients aktualisieren). Auch unter Admin → App änderbar, das überschreibt die Umgebung. |
+| **App hängt in einer erzwungenen Update-Schleife** | `HINATA_APP_MIN_VERSION` ist höher als die Version des Clients | `HINATA_APP_MIN_VERSION` auf die Version der installierten Clients oder darunter senken (oder Clients aktualisieren). Auch unter Admin → Plattform änderbar, das überschreibt die Umgebung. |
 | **E-Mails kommen nie an** | Kein echtes SMTP-Relay, falsche Absenderadresse oder fehlende Web-Basis-URL | Echtes `HINATA_SMTP_*`-Relay setzen (Mailpit nur für die Entwicklung). `HINATA_MAIL_FROM` auf eine Adresse setzen, die dein Relay senden darf. `HINATA_WEB_BASE_URL` setzen, damit Links in E-Mails auf den richtigen Host zeigen. |
 | **SSE / Live-Updates funktionieren nicht** | Der Reverse Proxy puffert den Stream | Response-Buffering für den Stream-Pfad abschalten (z. B. `proxy_buffering off;` bei nginx), damit Events sofort ankommen. |
 | **Zu strenges Rate-Limiting / falsche Client-IP** | Jede Anfrage scheint vom Proxy zu kommen | `HINATA_TRUSTED_PROXIES` auf das CIDR des Proxys setzen. Dann liest der Server die echte IP aus `X-Forwarded-For` und limitiert pro Nutzer statt pro Proxy. |
@@ -97,7 +97,7 @@ Siehe [Reverse Proxy & TLS](/de/reverse-proxy.html) und
 
 Die App vergleicht beim Start ihre Version mit dem Minimum des Servers und erzwingt
 ein Update, wenn sie älter ist. Senke `HINATA_APP_MIN_VERSION` auf die installierte
-Version oder darunter. Alternativ änderst du den Wert unter **Admin → App**, der die
+Version oder darunter. Alternativ änderst du den Wert unter **Admin → Plattform**, der die
 Umgebung überschreibt.
 
 ### E-Mails werden nicht zugestellt

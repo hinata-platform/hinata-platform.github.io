@@ -32,7 +32,7 @@ Die App speichert den Server und prüft ihn live. Später kannst du mehrere Serv
 - [Reverse Proxy & TLS](/de/reverse-proxy.html): wie der Hostname zum API-Container führt.
 
 !!! tip "Mit der Mindestversion erzwingst du Updates"
-    `HINATA_APP_MIN_VERSION` (Standard `1.0.0`) ist die älteste App-Version, die dein Server akzeptiert. Erhöhst du sie nach einer Breaking Change, werden ältere Apps zum Update aufgefordert. Der Wert kommt über `/api/v1/meta` und lässt sich live unter [Adminbereich → App](/de/admin-area.html) ändern (DB überschreibt Env).
+    `HINATA_APP_MIN_VERSION` (Standard `1.0.0`) ist die älteste App-Version, die dein Server akzeptiert. Erhöhst du sie nach einer Breaking Change, werden ältere Apps zum Update aufgefordert. Der Wert kommt über `/api/v1/meta` und lässt sich live unter [Adminbereich → Plattform](/de/admin-area.html) ändern (DB überschreibt Env).
 
 ## Interaktiver Setup-Assistent
 
@@ -101,6 +101,6 @@ Passwort:     hinata-demo-2026
 ## Nächste Schritte
 
 - [Authentifizierung](/de/authentication.html): Logins, Registrierung, 2FA und Passwort zurücksetzen
-- [Adminbereich](/de/admin-area.html): Feature-Flags, App-Einstellungen, Laufzeitkonfiguration
+- [Adminbereich](/de/admin-area.html): Plattform-Einstellungen, Laufzeitkonfiguration
 - [Projekte & Teams](/de/projects-teams.html): erstes Projekt anlegen und Leute einladen
 - [Backups & Upgrades](/de/backups.html): den laufenden Stack absichern

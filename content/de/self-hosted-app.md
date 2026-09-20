@@ -272,7 +272,7 @@ App Store, Google Play und Microsoft Store verlangen für die Prüfung eine
 erreichbare **URL zur Datenschutzerklärung**. Für die DSGVO brauchst du sie
 ohnehin. Hinata zeigt diese URL in der App über die Servereinstellung
 `HINATA_PRIVACY_POLICY_URL` an (auch live im [Adminbereich](/de/admin-area.html)
-→ App-Einstellungen änderbar). Setze sie vor dem Einreichen.
+→ Plattform änderbar). Setze sie vor dem Einreichen.
 
 Bei einem AppImage oder einem eigenen Flatpak-Remote prüft niemand. Bei Stores
 schon:

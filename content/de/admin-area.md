@@ -1,6 +1,6 @@
 ---
 title: Adminbereich
-description: Benutzer, App-Einstellungen, SSO, Git und E-Mail zu Vorgang im laufenden Betrieb verwalten.
+description: Benutzer, Plattform-Einstellungen, SSO, Git und E-Mail zu Vorgang im laufenden Betrieb verwalten.
 ---
 
 # Adminbereich
@@ -15,13 +15,13 @@ wirken **ohne Neustart**.
     Benutzer sehen den Bereich nie.
 
 ![Hinata-Adminbereich](/assets/img/shot-admin.png)
-*Nutzer, App-Einstellungen, SSO, Git und E-Mail zu Vorgang an einem Ort.*
+*Nutzer, Plattform-Einstellungen, SSO, Git und E-Mail zu Vorgang an einem Ort.*
 
 ## Wie die Laufzeitkonfiguration funktioniert
 
 Zum Starten braucht der Server nur wenige Umgebungsvariablen: ein JWT-Secret, die
 Datenbankverbindung und ein Mail-Relay. SSO-Anbieter, E-Mail-Ingest, OAuth-Apps
-für Git und App-Einstellungen richtest du im Adminbereich ein. Sie liegen in
+für Git und die Plattform-Einstellungen richtest du im Adminbereich ein. Sie liegen in
 MongoDB. Dabei gilt:
 
 - **DB überschreibt Env.** Umgebungswerte wie `hinata.app.*` sind nur
@@ -36,7 +36,7 @@ MongoDB. Dabei gilt:
 
 Der Adminbereich hat drei Gruppen:
 
-- **Allgemein**, **App** und **Sicherheit**
+- **Allgemein**, **Plattform** und **Sicherheit**
 - **Authentifizierung**, **E-Mail** und **Git-Integration**
 - **Audit-Protokoll** und **Benutzer**
 
@@ -51,9 +51,10 @@ Hier verwaltest du die Personen auf deiner Instanz:
 Ist die Selbstregistrierung mit Admin-Genehmigung aktiv (siehe unten), warten neue
 Anmeldungen hier, bis ein Admin sie freigibt.
 
-### App-Einstellungen
+### Plattform
 
-So verhalten sich die Clients gegenüber deinem Server:
+Drei Karten: welche Clients dein Server annimmt, wie sich Menschen anmelden und
+was diese Plattform anbietet.
 
 - **Mindestversion** (`minVersion`): die
   [Versionssperre](/de/clients.html#versionssperre). Ältere Clients müssen
@@ -61,18 +62,18 @@ So verhalten sich die Clients gegenüber deinem Server:
 - **URL der Datenschutzerklärung**: der Link in der App. Pflicht für Releases im
   App Store und bei Google Play sowie für die DSGVO. Überschreibt
   `HINATA_PRIVACY_POLICY_URL`.
-- **Feature-Flags**: schalten Funktionen ein oder aus. Dazu gehören die Flags für
-  die Anmeldung `localAuthEnabled`, `registrationEnabled` und
-  `requireAdminApproval` sowie beliebige eigene `name → enabled`-Flags.
-- **Projektvorlagen**: schaltet das Kopieren von Projekten, das
-  Vorlagen-Kennzeichen und Fristen als Versatz zum Termin des Projekts ein.
-  Aus lassen heißt: Projekte verhalten sich genau wie bisher. Der Schalter hat
-  drei Stellungen, denn leer bedeutet, dass
-  `HINATA_PROJECT_TEMPLATES_ENABLED` entscheidet. Siehe
-  [Projektvorlagen](/de/project-templates.html).
+- **Anmeldung**: lokale Anmeldung, Selbstregistrierung und Freigabe durch die
+  Administration.
+- **Plattform-Verhalten**: mehrere Personen an einem Vorgang, Antworten per
+  E-Mail und **Projektvorlagen** — Projekte kopieren, das Vorlagen-Kennzeichen
+  und Fristen als Versatz zum Termin des Projekts. Aus lassen heißt: Projekte
+  verhalten sich genau wie bisher. Dieser Schalter hat drei Stellungen, denn
+  leer bedeutet, dass `HINATA_PROJECT_TEMPLATES_ENABLED` entscheidet. Siehe
+  [Projektvorlagen](/de/project-templates.html). Die erweiterte Zeiterfassung
+  steht hier ebenfalls, eingestellt wird sie aber in ihrem eigenen Bereich.
 
 !!! tip "Gewinnt gegen die Umgebung"
-    Alles unter App-Einstellungen überschreibt die passende
+    Alles unter Plattform überschreibt die passende
     `hinata.app.*`-Umgebungsvariable. Umgebungswerte sind nur der Startpunkt
     einer neuen Instanz.
 

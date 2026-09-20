@@ -35,7 +35,7 @@ rules:
 
 The Admin area has three groups:
 
-- **General**, **App** and **Security**
+- **General**, **Platform** and **Security**
 - **Authentication**, **E-mail** and **Git integration**
 - **Audit log** and **Users**
 
@@ -50,26 +50,27 @@ Manage the people on your instance:
 When self-registration with admin approval is on (see below), new sign-ups wait
 here until an admin lets them in.
 
-### App settings
+### Platform
 
-Control how clients behave against your server:
+Three cards: what clients your server accepts, how people sign in, and what this
+platform offers.
 
 - **Minimum version** (`minVersion`): the
   [version gate](/en/clients.html#version-gate). Older clients are forced to
   update. Overrides `HINATA_APP_MIN_VERSION`.
 - **Privacy policy URL**: the link the app shows. Required for App Store and
   Play releases and for GDPR. Overrides `HINATA_PRIVACY_POLICY_URL`.
-- **Feature flags**: turn platform features on or off. This includes the sign-in
-  flags `localAuthEnabled`, `registrationEnabled` and `requireAdminApproval`,
-  plus any `name → enabled` flags you add.
-- **Project templates**: turns on copying a project, the template marker and
+- **Sign-in**: local authentication, self-registration and admin approval.
+- **Platform behaviour**: several people on one issue, replying to an issue by
+  e-mail, and **project templates** — copying a project, the template marker and
   deadlines kept as an offset from the project's event date. Left off, projects
-  behave exactly as they do today. The switch has three positions, because
+  behave exactly as they do today. That switch has three positions, because
   empty means `HINATA_PROJECT_TEMPLATES_ENABLED` decides. See
-  [Project templates](/en/project-templates.html).
+  [Project templates](/en/project-templates.html). Extended time tracking is
+  named here too but set in its own section, which owns it.
 
 !!! tip "These override the environment"
-    Anything under App settings wins over the matching `hinata.app.*`
+    Anything under Platform wins over the matching `hinata.app.*`
     environment variable. Env values are only the starting point for a fresh
     instance.
 

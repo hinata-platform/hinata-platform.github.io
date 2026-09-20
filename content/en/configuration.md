@@ -220,7 +220,7 @@ A project can be copied, marked as a template and given an event date that its i
 
 | Variable | Purpose | Default / example | Required |
 | --- | --- | --- | --- |
-| `HINATA_PROJECT_TEMPLATES_ENABLED` | Turns project templates and relative deadlines on: copy a project, mark one as a template, create a project from a template, and keep a deadline as an offset from the project's event date. The switch under **Admin area → App** takes precedence over this value | `false` | No |
+| `HINATA_PROJECT_TEMPLATES_ENABLED` | Turns project templates and relative deadlines on: copy a project, mark one as a template, create a project from a template, and keep a deadline as an offset from the project's event date. The switch under **Admin area → Platform** takes precedence over this value | `false` | No |
 
 !!! info "Working days need a holiday calendar"
     A deadline that counts in working days always skips weekends. It only skips public holidays when the project has a holiday calendar selected. Without one it counts a holiday like any other working day.
@@ -242,8 +242,9 @@ while the server runs:
 - IMAP ingestion for **E-mail → ticket** ([E-mail to ticket](/en/email-to-ticket.html))
 - **Push** configuration via the gateway
 - OAuth app credentials for **Git integration** (the `HINATA_GIT_*` values above)
-- **App settings** under Admin → App: `minVersion`, privacy URL and feature flags
-  (`localAuthEnabled`, `registrationEnabled`, `requireAdminApproval`)
+- **Platform settings** under Admin → Platform: `minVersion`, the privacy URL,
+  how people sign in (`localAuthEnabled`, `registrationEnabled`,
+  `requireAdminApproval`) and what the platform offers
 
 Three rules apply:
 

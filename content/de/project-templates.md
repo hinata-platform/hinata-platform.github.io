@@ -10,7 +10,7 @@ Manche Projekte wiederholen sich. Die Erstiwoche, die Mensaparty, der Aktionstag
 Dafür gibt es drei Dinge, die zusammengehören: ein **Termin am Projekt**, **Fristen als Versatz** zu diesem Termin, und das **Kopieren** eines ganzen Projekts.
 
 !!! info "Muss eingeschaltet sein"
-    Projektvorlagen sind ein eigenes Modul und auf einer frischen Instanz aus. Die Administration schaltet sie unter **Adminbereich → App** ein; siehe [Konfigurationsreferenz](/de/configuration.html). Solange sie aus sind, verhalten sich Projekte genau wie bisher.
+    Projektvorlagen sind ein eigenes Modul und auf einer frischen Instanz aus. Die Administration schaltet sie unter **Adminbereich → Plattform** ein; siehe [Konfigurationsreferenz](/de/configuration.html). Solange sie aus sind, verhalten sich Projekte genau wie bisher.
 
 ## Der Termin am Projekt
 

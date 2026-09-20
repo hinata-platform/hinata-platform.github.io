@@ -70,7 +70,7 @@ Bei jedem Start liest die App die Mindestversion vom Server. Ist die installiert
 App älter, erscheint statt des Workspaces der Bildschirm **Update erforderlich**.
 
 Betreiber setzen den Wert mit `HINATA_APP_MIN_VERSION` oder live im
-[Adminbereich](/de/admin-area.html) → App-Einstellungen. Der Datenbankwert
+[Adminbereich](/de/admin-area.html) → Plattform. Der Datenbankwert
 gewinnt. So bringst du alle Clients auf einen neuen Build, sobald eine
 inkompatible Änderung live geht, ohne Abstimmung auf Clientseite.
 

@@ -70,7 +70,7 @@ installed app is older, it shows an **update-required** screen instead of the
 workspace.
 
 Operators set the value with `HINATA_APP_MIN_VERSION` or override it live in the
-[Admin area](/en/admin-area.html) → App settings. The database value wins. This
+[Admin area](/en/admin-area.html) → Platform. The database value wins. This
 lets you move every client onto a new build as soon as a breaking change ships,
 with no client-side coordination.
 

@@ -32,7 +32,7 @@ The app stores the server and probes it live. Later you can save several servers
 - [Reverse proxy & TLS](/en/reverse-proxy.html): how that hostname maps to the API container.
 
 !!! tip "The minimum version forces updates"
-    `HINATA_APP_MIN_VERSION` (default `1.0.0`) is the oldest client version your server accepts. Raise it after a breaking change and older apps are prompted to update. The value is served through `/api/v1/meta` and can be edited live in [Admin area → App](/en/admin-area.html) (DB overrides env).
+    `HINATA_APP_MIN_VERSION` (default `1.0.0`) is the oldest client version your server accepts. Raise it after a breaking change and older apps are prompted to update. The value is served through `/api/v1/meta` and can be edited live in [Admin area → Platform](/en/admin-area.html) (DB overrides env).
 
 ## Interactive setup wizard
 
