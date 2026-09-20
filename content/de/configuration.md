@@ -224,7 +224,7 @@ Ein Projekt lässt sich kopieren, als Vorlage kennzeichnen und mit einem Termin 
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
-| `HINATA_PROJECT_TEMPLATES_ENABLED` | Schaltet Projektvorlagen und relative Fristen ein: Projekt kopieren, als Vorlage kennzeichnen, Projekt aus einer Vorlage anlegen und eine Frist als Versatz zum Termin des Projekts pflegen. Der Schalter unter **Adminbereich → App** hat Vorrang vor diesem Wert | `false` | Nein |
+| `HINATA_PROJECT_TEMPLATES_ENABLED` | Schaltet Projektvorlagen und relative Fristen ein: Projekt kopieren, als Vorlage kennzeichnen, Projekt aus einer Vorlage anlegen und eine Frist als Versatz zum Termin des Projekts pflegen. Der Schalter unter **Adminbereich → Plattform** hat Vorrang vor diesem Wert | `false` | Nein |
 
 !!! info "Werktage brauchen einen Feiertagskalender"
     Eine Frist, die in Werktagen rechnet, überspringt immer Wochenenden. Feiertage überspringt sie nur, wenn am Projekt ein Feiertagskalender gewählt ist. Ohne einen solchen Kalender zählt sie Feiertage wie gewöhnliche Werktage.
@@ -246,9 +246,9 @@ der App, während der Server läuft:
 - IMAP-Abruf für **E-Mail → Ticket** ([E-Mail zu Vorgang](/de/email-to-ticket.html))
 - **Push** über das Gateway
 - OAuth-Zugangsdaten der **Git-Integration** (die `HINATA_GIT_*`-Werte oben)
-- **App-Einstellungen** unter Admin → App: `minVersion`, Datenschutz-URL und
-  Feature-Flags (`localAuthEnabled`, `registrationEnabled`,
-  `requireAdminApproval`)
+- **Plattform-Einstellungen** unter Admin → Plattform: `minVersion`, die
+  Datenschutz-URL, wie sich Menschen anmelden (`localAuthEnabled`,
+  `registrationEnabled`, `requireAdminApproval`) und was die Plattform anbietet
 
 Dafür gelten drei Regeln:
 

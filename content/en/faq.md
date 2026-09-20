@@ -70,7 +70,7 @@ Symptom, usual cause and fix at a glance. Details follow below.
 | Symptom | Likely cause | Fix |
 | --- | --- | --- |
 | **App won't connect to the server** | Wrong base URL, blocked CORS, or a TLS problem | `HINATA_BASE_URL` must be the public API URL and reachable over HTTPS. Add the web app's origin to `HINATA_CORS_ALLOWED_ORIGINS`. Check that the certificate is valid. |
-| **App stuck in a forced-update loop** | `HINATA_APP_MIN_VERSION` is higher than the client's version | Lower `HINATA_APP_MIN_VERSION` to a version at or below your installed clients (or update the clients). Also editable in Admin → App, which overrides the env. |
+| **App stuck in a forced-update loop** | `HINATA_APP_MIN_VERSION` is higher than the client's version | Lower `HINATA_APP_MIN_VERSION` to a version at or below your installed clients (or update the clients). Also editable in Admin → Platform, which overrides the env. |
 | **E-mails never arrive** | No real SMTP relay, wrong sender address, or missing web base URL | Set a real `HINATA_SMTP_*` relay (Mailpit is dev only). Set `HINATA_MAIL_FROM` to an address your relay may send as. Set `HINATA_WEB_BASE_URL` so links in mail point at the right host. |
 | **SSE / live updates don't work** | The reverse proxy is buffering the stream | Disable response buffering for the stream path (e.g. `proxy_buffering off;` on nginx) so events arrive right away. |
 | **Rate-limited too aggressively / wrong client IP** | Every request looks like it comes from the proxy | Set `HINATA_TRUSTED_PROXIES` to the proxy's CIDR. The server then reads the real client IP from `X-Forwarded-For` and limits per user, not per proxy. |
@@ -96,7 +96,7 @@ See [Reverse proxy & TLS](/en/reverse-proxy.html) and
 
 On start, the app compares its version with the server's minimum and forces an
 update if it is lower. Lower `HINATA_APP_MIN_VERSION` to a version at or below what
-your users have installed. Or edit it in **Admin → App**, which overrides the
+your users have installed. Or edit it in **Admin → Platform**, which overrides the
 environment.
 
 ### E-mails not delivered

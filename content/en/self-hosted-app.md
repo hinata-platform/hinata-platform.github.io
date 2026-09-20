@@ -264,7 +264,7 @@ Apple's App Store, Google Play and the Microsoft Store all require a reachable
 **privacy policy** URL for review, and you need one for GDPR/DSGVO compliance
 anyway. Hinata shows this URL in the app from the server setting
 `HINATA_PRIVACY_POLICY_URL` (also editable live in the
-[Admin area](/en/admin-area.html) → App settings). Set it before you submit.
+[Admin area](/en/admin-area.html) → Platform). Set it before you submit.
 
 An AppImage or your own Flatpak remote goes through no review. Stores do:
 

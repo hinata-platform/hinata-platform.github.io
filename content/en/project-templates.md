@@ -10,7 +10,7 @@ Some projects come round again. Freshers' week, the summer action day, the party
 Three things work together here: a **project date**, **deadlines kept as an offset** from that date, and **copying** a whole project.
 
 !!! info "It has to be switched on"
-    Project templates are a module of their own and are off on a fresh instance. An administrator turns them on under **Admin area → App**; see the [configuration reference](/en/configuration.html). While they are off, projects behave exactly as they always have.
+    Project templates are a module of their own and are off on a fresh instance. An administrator turns them on under **Admin area → Platform**; see the [configuration reference](/en/configuration.html). While they are off, projects behave exactly as they always have.
 
 ## The project date
 
