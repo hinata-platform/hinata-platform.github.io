@@ -53,7 +53,7 @@ Remove the date and the deadlines stay where they are and keep their rules. Noth
 
 ## Copying a project
 
-From a project card's menu or from project settings: **Copy project**. You give a name, a key and optionally a date, and choose what comes along.
+From the button on a project card on a wide window, or from project settings: **Copy project**. On a phone the way in is project settings. You give a name, a key and optionally a date, and choose what comes along.
 
 ### What travels
 
