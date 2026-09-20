@@ -18,6 +18,9 @@ Jedes Projekt kann einen **Termin** tragen: den Tag der Veranstaltung, des Aktio
 
 Der Termin macht für sich genommen nichts. Er ist der Tag, von dem aus gerechnet wird.
 
+![Projekttermin, Vorlagen-Kennzeichen und Kopieren in den Projekteinstellungen](/assets/img/shot-project-templates-card.png)
+*Alles, was das Modul einem Projekt hinzufügt, steht in einer Karte: der Termin, das Kennzeichen und der Weg zur Kopie.*
+
 ## Fristen als Versatz
 
 Eine Frist lässt sich weiterhin als festes Datum setzen. Neu ist die zweite Betriebsart: **„Zum Termin“**. Du gibst eine Zahl an, eine Einheit und eine Richtung, und daneben steht sofort das Datum, das dabei herauskommt.
@@ -26,6 +29,9 @@ Eine Frist lässt sich weiterhin als festes Datum setzen. Neu ist die zweite Bet
 Frist   ( ) Datum      [ 14.10.2026 ]
         (•) Zum Termin [ 4 ] [ Wochen ] [ vorher ]  ->  15.10.2026
 ```
+
+![Eine Frist als Versatz zum Projekttermin](/assets/img/shot-issue-deadline-offset.png)
+*Eine Zahl, eine Einheit und eine Richtung — und darunter der Tag, der dabei herauskommt.*
 
 Zwei Dinge dazu sind wichtig:
 
@@ -47,6 +53,9 @@ Die Veranstaltung wird verlegt. Du änderst den Termin in den Projekteinstellung
 - wie viele es insgesamt sind
 - wie viele **stehen bleiben**, weil jemand sie von Hand gesetzt hat
 
+![Das Blatt zeigt, welche Fristen einem neuen Projekttermin folgen würden](/assets/img/shot-project-schedule-move.png)
+*Bevor etwas geschrieben wird: der alte Tag, der neue, wie weit es geht, und jede Frist, die mitzieht.*
+
 Erst „Verschieben“ schreibt. Abbrechen ändert nichts.
 
 Wird der Termin gelöscht, bleiben die Fristen stehen, wo sie sind, und behalten ihren Versatz. Es geht nichts verloren.
@@ -54,6 +63,9 @@ Wird der Termin gelöscht, bleiben die Fristen stehen, wo sie sind, und behalten
 ## Ein Projekt kopieren
 
 Auf einer Projektkarte am Rechner oder in den Projekteinstellungen: **Projekt kopieren**. Auf dem Telefon führt der Weg über die Projekteinstellungen. Du gibst Namen, Kürzel und wahlweise einen Termin an und wählst, was mitkommt.
+
+![Das Kopier-Blatt mit den Schaltern und den Zahlen des Servers](/assets/img/shot-project-copy.png)
+*Die Zahlen unter den Schaltern kommen vom Server: wie viele Vorgänge, wie viele Dateien, wie viel.*
 
 ### Was mitkommt
 
@@ -77,11 +89,22 @@ Das ist keine Sparsamkeit, sondern die Trennung von Plan und Geschichte: Eine Ko
 
 ## Eine Vorlage behalten
 
-Ein Projekt, das nur als Bauplan existiert, kennzeichnest du in den Projekteinstellungen als **Vorlage**. Dann steht es in der Projektliste unter „Vorlagen“ statt zwischen den laufenden Projekten und bietet als erste Aktion **„Projekt anlegen“**.
+Ein Projekt, das nur als Bauplan existiert, wird als **Vorlage** gekennzeichnet. Dafür gibt es zwei Wege, und sie beantworten zwei verschiedene Fragen:
+
+- **Das Projekt gibt es schon und es *ist* der Bauplan.** Schalte in seinen Einstellungen „Als Vorlage anbieten“ ein. Das Projekt wandert aus der laufenden Liste zu den Vorlagen; sonst ändert sich nichts daran.
+- **Du willst einen Bauplan *von* einem Projekt, das weiterläuft.** Öffne den Tab **Vorlagen** und drücke auf das Plus. Du wirst gefragt, aus welchem Projekt die Vorlage entstehen soll, und bekommst eine Kopie — das gewählte Projekt bleibt unangetastet.
+
+So oder so steht das Ergebnis unter „Vorlagen“ statt zwischen den laufenden Projekten und bietet als erste Aktion **„Projekt anlegen“**.
+
+![Der Tab „Vorlagen“ in der Projektübersicht](/assets/img/shot-project-templates.png)
+*Eine Vorlage ist ein gewöhnliches Projekt, das woanders steht — und hier steht es.*
 
 Sonst ändert sich nichts: gleiche Rechte, gleiche Suche, gleiche Boards.
 
 „Projekt anlegen“ fragt Name, Kürzel und Termin und erledigt Kopieren und Rechnen in einem Schritt. Der Umfang ist dabei vorbelegt — Struktur, Vorgänge, Mitglieder und Zeit-Einstellungen ja, Anhänge und Board nein. Wer es anders will, nimmt den Kopierweg.
+
+![Ein Projekt aus einer Vorlage anlegen](/assets/img/shot-project-instantiate.png)
+*Aus einer Vorlage bleiben nur drei Angaben: Name, Kürzel und der Termin, von dem alles gerechnet wird.*
 
 Eine Vorlage trägt üblicherweise gar keinen Termin: Ihre Vorgänge halten nur Versätze. Das Anlegen ist der Moment, in dem daraus Daten werden.
 

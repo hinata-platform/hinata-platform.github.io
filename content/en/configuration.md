@@ -160,6 +160,7 @@ See [Setup & first run](/en/setup-wizard.html).
 | `HINATA_RATE_LIMIT_ENABLED` | Enable per-IP rate limiting (bucket4j) | `true` | No |
 | `HINATA_RATE_LIMIT_API` | General API budget (requests / minute) | `300` | No |
 | `HINATA_RATE_LIMIT_AUTH` | Auth endpoints budget (requests / minute) | `10` | No |
+| `HINATA_RATE_LIMIT_REFRESH` | Budget for exchanging a refresh token (requests / minute). Its own, because presenting a token this server signed is not a guess at a password, and every client behind one address shares the sign-in budget | `60` | No |
 | `HINATA_RATE_LIMIT_SSO` | Budget for the two redirects of a single sign-on (requests / minute). Its own, because a whole office behind one address signs in through it while the callback is reachable by anybody | `60` | No |
 | `HINATA_MAX_LOGIN_FAILURES` | Failed logins before an account is blocked | `5` | No |
 | `HINATA_LOGIN_BLOCK_MINUTES` | How long a blocked account stays locked (minutes) | `15` | No |

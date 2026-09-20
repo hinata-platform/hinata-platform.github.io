@@ -1005,20 +1005,55 @@ def english_sso_name(access):
 
 
 def tap(page, name, *, exact=True, nth=0, after=2000, role="button", timeout=9000):
-    """Click a control by its accessible name, then let the UI settle."""
+    """Click a control by its accessible name, then let the UI settle.
+
+    Through the semantics node first — see [tap_re] for why — and through the
+    locator for anything the mirror cannot name.
+    """
+    if nth == 0:
+        pattern = f"^{re.escape(name)}$" if exact else re.escape(name)
+        try:
+            click_semantics(page, pattern, role=role, after=after)
+            return
+        except RuntimeError:
+            pass
     page.get_by_role(role, name=name, exact=exact).nth(nth).click(timeout=timeout)
     page.wait_for_timeout(after)
 
 
 def tap_re(page, pattern, *, nth=0, after=2000, timeout=9000):
-    """Click by regex — for the label+Text names an exact match never hits."""
+    """Click by regex — for the label+Text names an exact match never hits.
+
+    Through the semantics node when there is exactly one and the caller wants
+    the first: that path needs no hit test, and a synthetic mouse press inside
+    an open overlay lands on the scrim often enough that Playwright then spends
+    its whole timeout retrying an element that keeps being dismissed. Anything
+    the mirror cannot name falls back to the locator, which is still right for
+    the plain page.
+    """
+    if nth == 0:
+        try:
+            click_semantics(page, pattern, role="button", after=after)
+            return
+        except RuntimeError:
+            pass
     page.get_by_role("button", name=re.compile(pattern)).nth(nth).click(timeout=timeout)
     page.wait_for_timeout(after)
 
 
 def tap_text(page, text, *, exact=True, nth=0, after=2000, timeout=9000):
     """Click a text node. Rows that are a bare GestureDetector (a board card, a
-    tree row) expose their label as text without a button role."""
+    tree row) expose their label as text without a button role.
+
+    Same two-step as [tap_re]: the mirror first, the locator after.
+    """
+    if nth == 0:
+        pattern = f"^{re.escape(text)}$" if exact else re.escape(text)
+        try:
+            click_semantics(page, pattern, after=after)
+            return
+        except RuntimeError:
+            pass
     page.get_by_text(text, exact=exact).nth(nth).click(timeout=timeout)
     page.wait_for_timeout(after)
 
@@ -1026,7 +1061,17 @@ def tap_text(page, text, *, exact=True, nth=0, after=2000, timeout=9000):
 def tap_row(page, text, *, nth=0, after=1500, timeout=9000):
     """Click a list row by text it contains. A row carries every line of its
     content in one accessible name ("AO\nAmara Okafor\nFrontend Engineer"), so
-    an exact name never matches and the inner text is not a node of its own."""
+    an exact name never matches and the inner text is not a node of its own.
+
+    Through the semantics node first — see [tap_re] — because a row in an open
+    picker is exactly the case a synthetic mouse press gets wrong.
+    """
+    if nth == 0:
+        try:
+            click_semantics(page, re.escape(text), role="button", after=after)
+            return
+        except RuntimeError:
+            pass
     page.get_by_role("button", name=re.compile(re.escape(text))).nth(nth).click(timeout=timeout)
     page.wait_for_timeout(after)
 
@@ -1036,6 +1081,126 @@ def box_of(locator, what):
     if not box:
         raise RuntimeError(f"{what}: no bounding box — the control is not on screen")
     return box
+
+
+def click_mirror_node(page, selector, *, after=1500, what="target"):
+    """Clicks the centre of a semantics node by the rectangle it reports.
+
+    Some nodes in the mirror — a row whose name is an `aria-label` rather than
+    text — are never "visible" to Playwright, so `bounding_box` waits out its
+    timeout on an element that is plainly there. The rectangle read straight off
+    the DOM is the same one the engine hit-tests against.
+    """
+    rect = page.evaluate(
+        """(sel) => { const n = document.querySelector(sel); if (!n) return null;
+             const r = n.getBoundingClientRect();
+             return {x: r.x, y: r.y, w: r.width, h: r.height}; }""", selector)
+    if not rect or rect["w"] < 2 or rect["h"] < 2:
+        raise RuntimeError(f"{what} has no rectangle in the semantics mirror")
+    press_at(page, rect["x"] + rect["w"] / 2, rect["y"] + rect["h"] / 2)
+    page.wait_for_timeout(after)
+
+
+def click_semantics(page, pattern, *, role=None, after=1500, what="target"):
+    """Fire the semantics node's own click handler instead of aiming a mouse.
+
+    Flutter web puts a real DOM element behind every semantics node and wires it
+    to the same action a tap would trigger — it is how a screen reader drives the
+    app. Calling it needs no hit test, which is the point: inside an open glass
+    modal a synthetic mouse press lands on the scrim often enough that a run
+    photographs the page behind the dialog instead of the dialog.
+    """
+    for _ in range(12):
+        clicked = page.evaluate(
+            """({src, role}) => { const re = new RegExp(src);
+                 const name = e => (e.getAttribute('aria-label')
+                                    || e.textContent || '').trim();
+                 const n = [...document.querySelectorAll('flt-semantics')]
+                   .filter(e => (!role || e.getAttribute('role') === role)
+                             && re.test(name(e)))
+                   .sort((a, b) => { const x = a.getBoundingClientRect(),
+                                     y = b.getBoundingClientRect();
+                     return x.width * x.height - y.width * y.height; })[0];
+                 if (!n) return false;
+                 n.click();
+                 return true; }""",
+            {"src": pattern, "role": role})
+        if clicked:
+            page.wait_for_timeout(after)
+            return
+        page.wait_for_timeout(700)
+    raise RuntimeError(f"{what} is not in the semantics mirror")
+
+
+def press_at(page, x, y, *, settle=220):
+    """Move the pointer, let it land, then press.
+
+    `page.mouse.click(x, y)` moves and presses in the same instant, and Flutter
+    web hit-tests the *press* against the position it had already routed — which
+    is wherever the pointer was before. On a page that is all one canvas the
+    difference is invisible; over an open modal it is not, because the stale
+    position is the scrim, and every click inside a dialog dismissed it instead
+    of doing what it was aimed at. Hence the pause: the move is delivered, the
+    framework updates what is under the pointer, and only then does the button
+    go down.
+    """
+    page.mouse.move(x, y)
+    page.wait_for_timeout(settle)
+    page.mouse.down()
+    page.wait_for_timeout(60)
+    page.mouse.up()
+
+
+def mirror_rect(page, pattern, *, role=None):
+    """The rectangle of the semantics node whose text matches, or None.
+
+    [click_mirror_text] raises when there is nothing to click, which is right
+    for a step that must happen. This is for the steps that are allowed not to
+    be there — a picker's OK when the picker has already committed on the tap.
+
+    Two details that cost a whole afternoon. Flutter's mirror emits a wrapper
+    node beside the node that carries a control, with *the same text* and a
+    rectangle that spans something else entirely; taking the first match clicks
+    that instead, and in a modal a click that misses lands on the scrim and
+    dismisses it. So this takes the **smallest** match, and [role] narrows it
+    further — a day in a date picker is a `button`, and asking for one skips
+    every wrapper above it.
+    """
+    return page.evaluate(
+        """({src, role}) => { const re = new RegExp(src);
+             const name = e => (e.getAttribute('aria-label')
+                                || e.textContent || '').trim();
+             const hits = [...document.querySelectorAll('flt-semantics')]
+               .filter(e => (!role || e.getAttribute('role') === role)
+                         && re.test(name(e)))
+               .map(e => e.getBoundingClientRect())
+               .filter(r => r.width >= 2 && r.height >= 2)
+               .sort((a, b) => a.width * a.height - b.width * b.height);
+             const r = hits[0];
+             return r ? {x: r.x, y: r.y, w: r.width, h: r.height} : null; }""",
+        {"src": pattern, "role": role})
+
+
+def click_mirror_text(page, pattern, *, after=1500, what="target", role=None):
+    """As click_mirror_node, for a node the mirror names with its text.
+
+    The date picker's days and its OK are ordinary semantics buttons, and
+    Playwright still refuses to consider them visible — so they are hit the same
+    way: read the rectangle, click the middle of it. See [mirror_rect] for why
+    the smallest match wins and what [role] is for.
+    """
+    # Polled: the mirror is rebuilt as a dialog animates, and a node caught
+    # mid-rebuild reports a rectangle of nothing.
+    rect = None
+    for _ in range(12):
+        rect = mirror_rect(page, pattern, role=role)
+        if rect:
+            break
+        page.wait_for_timeout(700)
+    if not rect:
+        raise RuntimeError(f"{what} has no rectangle in the semantics mirror")
+    press_at(page, rect["x"] + rect["w"] / 2, rect["y"] + rect["h"] / 2)
+    page.wait_for_timeout(after)
 
 
 def tap_box(page, locator, *, fx=0.5, fy=0.5, dx=0, dy=0, after=1500, what="target"):
@@ -1330,6 +1495,123 @@ def _project_new(page, ids):
     # preview derive themselves — a blank dialog hides that they do.
     tap(page, "New project", after=3000)
     write(page, "Billing & Plans", after=1200)
+    return lambda: dismiss(page, "Cancel")
+
+
+# --- project templates & relative deadlines (HIN-120) -------------------------
+
+@action("shot-project-templates")
+def _project_templates(page, ids):
+    # The tab is the whole point of the marker: a template is an ordinary
+    # project that is listed somewhere else, and this is the somewhere else.
+    tap_re(page, r"^Templates", after=2600)
+    return None
+
+
+@action("shot-project-copy")
+def _project_copy(page, ids):
+    # The sheet the user who asked for this feature went looking for. Opened
+    # from a project card, where the button sits on a wide window; the numbers
+    # under the switches are the server's, which is the point of the shot.
+    # Copy really copies — never pressed.
+    #
+    # Clicked by the rectangle the mirror reports rather than through a locator:
+    # the button is named and has a node of its own, but it lies under the
+    # card's own tappable node, so Playwright waits forever for it to "receive
+    # events" and times out with the button plainly on screen.
+    click_mirror_text(page, "^Copy$", after=3200, what="a card's Copy button")
+    return lambda: dismiss(page, "Cancel")
+
+
+@action("shot-project-instantiate")
+def _project_instantiate(page, ids):
+    # The same sheet from the other way in: from a template, with the scope
+    # already decided, so only a name and a date are left to give.
+    tap_re(page, r"^Templates", after=2400)
+    tap_re(page, r"Create a project", after=3200)
+    # The sheet focuses its name field on open, so the text goes straight in;
+    # `fill` would have to find a label that the semantics mirror runs together
+    # with the rest of the form.
+    write(page, "Beers for Queers SoSe 27", after=1400)
+    return lambda: dismiss(page, "Cancel")
+
+
+@action("shot-project-templates-card")
+def _project_templates_card(page, ids):
+    # Where the project's date, its template marker and the copy live. Scrolled
+    # to rather than measured: the settings page spreads over golden columns, so
+    # the card sits at a different height on every width.
+    scroll_into_view(page, re.compile(r"Copy project"), exact=False,
+                     step=760, tries=12)
+    return None
+
+
+@action("shot-issue-deadline-offset")
+def _issue_deadline_offset(page, ids):
+    # The second mode of a deadline field: a number, a unit, a direction and the
+    # day it works out to. Opened on an issue that already carries a rule, so
+    # the editor comes up in that mode with the date beside it rather than
+    # empty. Apply would write — never pressed.
+    scroll_into_view(page, re.compile(r"Due date"), role="button", exact=False)
+    tap_re(page, r"Due date", after=2600)
+    return lambda: dismiss(page, "Cancel")
+
+
+@action("shot-project-schedule-move")
+def _project_schedule_move(page, ids):
+    # The sheet that stands between a date field and a hundred rewritten
+    # deadlines. Reached by picking a date in project settings; "Move" writes,
+    # so the run cancels out of it. The seed gives the project a date, so there
+    # is something to move.
+    scroll_into_view(page, re.compile(r"Copy project"), exact=False,
+                     step=760, tries=12)
+    # Everything here is clicked by the rectangle the mirror reports rather than
+    # through a locator. These nodes are named and sized, but they sit under the
+    # card's own tappable node, so Playwright waits for them to "receive events"
+    # until it times out with the control plainly on screen.
+    click_mirror_text(page, r"^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), [A-Z][a-z]{2} \d",
+                      after=2000, what="the project date row")
+    # Proof that the picker is really up before anything is aimed at it. Without
+    # this the next click can land on the scrim while the panel is still
+    # animating in, which dismisses it — and the run then photographs the
+    # settings page, which is exactly the picture this shot must never be.
+    page.wait_for_function(
+        """() => [...document.querySelectorAll('flt-semantics')]
+             .some(e => (e.textContent || '').trim() === 'OK')""",
+        timeout=12000)
+    page.wait_for_timeout(600)
+    # A day far enough from the stored date that every deadline in the sheet
+    # moves visibly. Named in full — "28, Wednesday, October 28, 2026" — because
+    # a looser pattern can match a cell the picker has already scrolled out of
+    # the month it is showing, and a click on its stale rectangle lands on the
+    # scrim.
+    # Driven through the semantics nodes rather than with a mouse: see
+    # [click_semantics]. A press inside this dialog lands on the scrim often
+    # enough that the run ends up photographing the settings page.
+    # A month on, so the move is always a real one: a day in the month the
+    # picker opens on can be the date the project already has, and then there is
+    # nothing to move and no sheet to photograph.
+    click_semantics(page, "^Next month$", role="button", after=1100,
+                    what="the picker's next month")
+    click_semantics(page, r"^2[0-8], \w+, \w+ \d{1,2}, \d{4}$",
+                    role="button", after=1000, what="a day in the picker")
+    # The day only selects; OK hands the date back. Skipped when the picker has
+    # already closed — a step that insisted on it would fail on the run it just
+    # completed.
+    if mirror_rect(page, "^OK$", role="button"):
+        click_semantics(page, "^OK$", role="button", after=1200,
+                        what="the picker's OK")
+    # The sheet is the shot, so the run waits for it rather than trusting a
+    # timeout: a slow preview must never ship a picture of the page behind it.
+    # Recognised by its content and not by its title — the header's words are
+    # drawn, not published to the semantics tree, so waiting for the title waits
+    # forever on a sheet that is plainly on screen.
+    page.wait_for_function(
+        """() => [...document.querySelectorAll('flt-semantics')]
+             .some(e => /deadlines follow|days (later|earlier)/
+                          .test(e.textContent || ''))""",
+        timeout=20000)
+    page.wait_for_timeout(1600)
     return lambda: dismiss(page, "Cancel")
 
 
@@ -2193,6 +2475,21 @@ def shots(ids):
             ("shot-workflow-state-migrate", DESKTOP, settings),
             ("shot-project-delete", DESKTOP, settings),
         ]
+    # Project templates. Only where the module is on and the demo pair exists;
+    # an instance without it drops these four rather than shipping a screenshot
+    # of a feature its readers do not have.
+    if ids.get("template_project_id") and ids.get("event_project_id"):
+        event_settings = f"/projects/{ids['event_project_id']}/settings"
+        lst += [
+            ("shot-project-templates", DESKTOP, "/projects"),
+            ("shot-project-copy", DESKTOP, "/projects"),
+            ("shot-project-instantiate", DESKTOP, "/projects"),
+            ("shot-project-templates-card", DESKTOP, event_settings),
+            ("shot-project-schedule-move", DESKTOP, event_settings),
+        ]
+    if ids.get("offset_issue_id"):
+        lst.append(("shot-issue-deadline-offset", DESKTOP,
+                    f"/issues/{ids['offset_issue_id']}"))
     if ids.get("team_id"):
         team = f"/teams/{ids['team_id']}"
         lst += [
@@ -2397,6 +2694,43 @@ def child_article(access):
     return None, None
 
 
+def template_ids(access, projects):
+    """The template, the project made from it, and one issue carrying a rule.
+
+    All three come from the demo seed's "Event (template)" pair, and all three
+    are looked up rather than pinned: the ids change on every reseed, and the
+    shots are only worth taking on an instance where project templates are on.
+    An instance without the module simply yields nothing and the four shots are
+    dropped from the plan.
+    """
+    by_key = {p.get("key"): p for p in projects if isinstance(p, dict)}
+    template = by_key.get("EVENT")
+    instance = by_key.get("BFQ")
+    found = {
+        "template_project_id": (template or {}).get("id"),
+        "template_project_name": (template or {}).get("name"),
+        "event_project_id": (instance or {}).get("id"),
+        "event_project_name": (instance or {}).get("name"),
+    }
+    if not instance:
+        return found
+    try:
+        r = requests.get(f"{API}/api/v1/issues?size=100&projectId={instance['id']}",
+                         headers={"Authorization": f"Bearer {access}"}, timeout=15)
+        r.raise_for_status()
+        data = r.json()
+        rows = data if isinstance(data, list) else data.get("content", [])
+    except (requests.RequestException, ValueError):
+        return found
+    # The one whose deadline is a rule: the field opens straight into the mode
+    # the page is about, with the day it works out to already beside it.
+    with_rule = [i for i in rows if i.get("dueOffset")]
+    if with_rule:
+        found["offset_issue_id"] = with_rule[0]["id"]
+        found["offset_issue_title"] = with_rule[0].get("title")
+    return found
+
+
 def resolve_ids(access):
     """Everything the shots address by id, resolved from the live seed.
 
@@ -2428,6 +2762,7 @@ def resolve_ids(access):
         "tree_article_title": tree_title,
         "text_attachment": TEXT_ATTACHMENT,
     }
+    ids.update(template_ids(access, projects))
     ids["estimate_targets"] = estimate_candidates(access, project_id)
     ids["estimate_key"] = ids["estimate_targets"][0][0] if ids["estimate_targets"] else None
     return ids
