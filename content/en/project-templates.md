@@ -18,6 +18,9 @@ Any project can carry a **date**: the day of the event, the action day, the part
 
 On its own the date does nothing. It is the day everything else is counted from.
 
+![The project date, the template marker and the copy button in project settings](/assets/img/shot-project-templates-card.png)
+*Everything the module adds to a project sits in one card: the date, the marker, and the way to copy.*
+
 ## Deadlines as an offset
 
 A deadline can still be a fixed date. What is new is the second mode: **"From the event"**. You give a number, a unit and a direction, and the date it works out to stands right beside it.
@@ -26,6 +29,9 @@ A deadline can still be a fixed date. What is new is the second mode: **"From th
 Due     ( ) Date         [ 14 Oct 2026 ]
         (•) From the event [ 4 ] [ weeks ] [ before ]  ->  15 Oct 2026
 ```
+
+![A deadline kept as an offset from the project's date](/assets/img/shot-issue-deadline-offset.png)
+*A number, a unit and a direction — and the day it works out to, right underneath.*
 
 Two things about it matter:
 
@@ -47,6 +53,9 @@ The event is postponed. You change the date in project settings, and before anyt
 - how many there are altogether
 - how many **stay where they are**, because somebody set them by hand
 
+![The sheet that shows which deadlines would follow a new project date](/assets/img/shot-project-schedule-move.png)
+*Before anything is written: the old day, the new one, how far it moved, and every deadline that follows it.*
+
 Only "Move" writes. Cancelling changes nothing.
 
 Remove the date and the deadlines stay where they are and keep their rules. Nothing is lost.
@@ -54,6 +63,9 @@ Remove the date and the deadlines stay where they are and keep their rules. Noth
 ## Copying a project
 
 From the button on a project card on a wide window, or from project settings: **Copy project**. On a phone the way in is project settings. You give a name, a key and optionally a date, and choose what comes along.
+
+![The copy sheet, with the scope switches and the server's own counts](/assets/img/shot-project-copy.png)
+*The numbers under the switches are the server's: how many issues, how many files, how much.*
 
 ### What travels
 
@@ -77,11 +89,22 @@ That is not thrift, it is the line between the plan and the history: a copy inhe
 
 ## Keeping a template
 
-A project that exists only as a blueprint gets marked as a **template** in project settings. It is then listed under "Templates" rather than among the running projects, and it leads with **"Create project"**.
+A project that exists only as a blueprint gets marked as a **template**. There are two ways to get one, and they answer two different questions:
+
+- **You already have the project and it is the blueprint.** Switch on "Offer as a template" in its settings. The project moves from the running list to Templates; nothing else about it changes.
+- **You want a blueprint *of* a project you are still running.** Open the **Templates** tab and press the plus. It asks which project to make the template from, and copies it — the project you picked keeps running, untouched.
+
+Either way the result is listed under "Templates" rather than among the running projects, and it leads with **"Create project"**.
+
+![The Templates tab in the projects overview](/assets/img/shot-project-templates.png)
+*A template is an ordinary project that is listed somewhere else, and this is the somewhere else.*
 
 Nothing else changes: same rights, same search, same boards.
 
 "Create project" asks for a name, a key and a date, and does the copying and the arithmetic in one step. The scope is decided for you — structure, issues, members and time settings yes, attachments and board no. If you want it different, use the copy route.
+
+![Creating a project from a template](/assets/img/shot-project-instantiate.png)
+*From a template only three things are left to give: a name, a key and the date everything counts from.*
 
 A template usually carries no date at all: its issues hold only rules. Creating a project from it is the moment those become days.
 
