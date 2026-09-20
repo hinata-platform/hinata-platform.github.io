@@ -213,6 +213,17 @@ Administrators keep holiday calendars in the Admin area and can import a year of
 !!! warning "Keep the key"
     A calendar address encrypted with one `HINATA_ICS_SECRET` cannot be read with another. If the key changes, imports from stored addresses fail until an administrator enters the address again. Holidays that were already imported stay.
 
+## Project templates and relative deadlines
+
+A project can be copied, marked as a template and given an event date that its issues' deadlines hang on. With this off, projects behave exactly as they do today and there is no way to copy one. See [Project templates](/en/project-templates.html).
+
+| Variable | Purpose | Default / example | Required |
+| --- | --- | --- | --- |
+| `HINATA_PROJECT_TEMPLATES_ENABLED` | Turns project templates and relative deadlines on: copy a project, mark one as a template, create a project from a template, and keep a deadline as an offset from the project's event date. The switch under **Admin area → App** takes precedence over this value | `false` | No |
+
+!!! info "Working days need a holiday calendar"
+    A deadline that counts in working days always skips weekends. It only skips public holidays when the project has a holiday calendar selected. Without one it counts a holiday like any other working day.
+
 ## Runtime (DB) settings vs environment
 
 Hinata has two configuration planes.

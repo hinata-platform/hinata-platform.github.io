@@ -64,6 +64,12 @@ So verhalten sich die Clients gegenüber deinem Server:
 - **Feature-Flags**: schalten Funktionen ein oder aus. Dazu gehören die Flags für
   die Anmeldung `localAuthEnabled`, `registrationEnabled` und
   `requireAdminApproval` sowie beliebige eigene `name → enabled`-Flags.
+- **Projektvorlagen**: schaltet das Kopieren von Projekten, das
+  Vorlagen-Kennzeichen und Fristen als Versatz zum Termin des Projekts ein.
+  Aus lassen heißt: Projekte verhalten sich genau wie bisher. Der Schalter hat
+  drei Stellungen, denn leer bedeutet, dass
+  `HINATA_PROJECT_TEMPLATES_ENABLED` entscheidet. Siehe
+  [Projektvorlagen](/de/project-templates.html).
 
 !!! tip "Gewinnt gegen die Umgebung"
     Alles unter App-Einstellungen überschreibt die passende
