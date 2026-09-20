@@ -62,6 +62,11 @@ Control how clients behave against your server:
 - **Feature flags**: turn platform features on or off. This includes the sign-in
   flags `localAuthEnabled`, `registrationEnabled` and `requireAdminApproval`,
   plus any `name → enabled` flags you add.
+- **Project templates**: turns on copying a project, the template marker and
+  deadlines kept as an offset from the project's event date. Left off, projects
+  behave exactly as they do today. The switch has three positions, because
+  empty means `HINATA_PROJECT_TEMPLATES_ENABLED` decides. See
+  [Project templates](/en/project-templates.html).
 
 !!! tip "These override the environment"
     Anything under App settings wins over the matching `hinata.app.*`

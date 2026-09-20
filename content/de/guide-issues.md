@@ -46,7 +46,7 @@ Pflicht sind nur Projekt und Titel.
 | **Epic** / **Übergeordnet** | Der Vorgang eine Ebene darüber („Übergeordnet“ bei Sub-Tasks). |
 | **Startdatum** / **Fälligkeitsdatum** | Der Balken auf der [Timeline](/de/guide-timeline.html). Überschrittene Fälligkeit ist in Listen rot. |
 
-!!! tip "Titel, die man wiederfindet"
+!!! tip “Titel, die man wiederfindet"
     Statt „Login kaputt“ lieber „Login schlägt mit 500 fehl, wenn die E-Mail ein Plus enthält“.
 
 ## Den richtigen Typ wählen
@@ -70,7 +70,7 @@ Epic
 
 Faustregel: Schiebst du es allein durch den Workflow, ist es Mitte. Ergibt es nur als Teil von etwas Sinn, ist es ein Sub-Task. Ist es zu groß zum Fertigwerden, ist es ein Epic.
 
-!!! note "Sub-Tasks reisen mit"
+!!! note “Sub-Tasks reisen mit"
     Archivierst oder stellst du den Vorgang darüber wieder her, gilt das auch für seine Sub-Tasks. Nimm sie also nicht für Arbeit, die du getrennt priorisieren willst.
 
 ### Die Hierarchie aufbauen
@@ -127,6 +127,14 @@ Klick auf einen Wert öffnet einen Picker für **Status**, **Zugewiesene Person*
 
 Die Karte **Timeline** enthält **Startdatum**, **Fälligkeitsdatum**, **Zeit erfassen** und nach dem Buchen etwa „1 Std. 30 Min. von 4 Std. aufgewendet“ (siehe [Zeit erfassen](/de/guide-time.html)). Ganz unten steht „Erstellt vor 3 Tagen“ oder „Aktualisiert vor …“.
 
+### Eine Frist zum Termin des Projekts
+
+Führt die Instanz [Projektvorlagen](/de/project-templates.html), haben beide Datumsfelder eine zweite Betriebsart: statt eines festen Tages ein Versatz zum Termin des Projekts, etwa „4 Wochen vorher“. Rechts daneben steht sofort das Datum, das dabei herauskommt.
+
+Kalendertage sind vorausgewählt. Werktage überspringen Wochenenden und, wenn am Projekt ein Feiertagskalender gewählt ist, dessen Feiertage — ohne einen solchen Kalender zählt ein Feiertag als Arbeitstag.
+
+In Listen und auf Board-Karten bleibt die Frist ein Datum; ein kleines Uhrzeichen sagt, dass sie am Termin hängt. Wer ein Datum von Hand wählt, löst den Versatz ab, und die nächste Terminverschiebung lässt die Frist dann in Ruhe.
+
 !!! note "Karte Deployment nur mit Repository"
     Ist das Projekt mit GitHub, GitLab oder Bitbucket verbunden, zeigt **Deployment** Branches, Commits und Pull Requests mit dem Schlüssel, dazu Abkürzungen für Namen von Branch oder Commit. Verbinden können Administration oder Projektleitung, siehe [Git-Integration](/de/git-integration.html).
 
@@ -159,7 +167,7 @@ Beschreibung und Kommentare nutzen denselben Editor. Die Werkzeugleiste bietet *
 - **`@`** sucht Vorgänge, Artikel der Wissensdatenbank und Personen. Ein Vorgang wird zum Chip, der Umbenennung und Status live mitzieht. Eine Person wird benachrichtigt.
 - **Bilder** einfügen oder einsetzen lädt sie auf deinen Server. Auf dem Handy bietet **+** Kamera und Fotomediathek.
 
-!!! tip "Markdown-Kürzel"
+!!! tip “Markdown-Kürzel"
     Bindestrich am Zeilenanfang für Aufzählung, `1.` für nummerierte Liste, `#` für Überschrift, Backticks für Inline-Code.
 
 ## Vorgänge miteinander verknüpfen
@@ -181,7 +189,7 @@ In der Karte **Verknüpfte Vorgänge**: **Vorgang hinzufügen**, links eine der 
 
 Der andere Vorgang zeigt die Gegenrichtung sofort live an.
 
-!!! info "Nur *blockiert* wirkt auf die Planung"
+!!! info “Nur *blockiert* wirkt auf die Planung"
     Nur **blockiert** zeichnet die [Timeline](/de/guide-timeline.html) als Pfeil und zählt für den kritischen Pfad. Alle anderen Arten verschieben nie ein Datum.
 
 ## Einen Vorgang beobachten
@@ -208,7 +216,7 @@ Der andere Vorgang zeigt die Gegenrichtung sofort live an.
 
 Der alte Schlüssel löst danach nicht mehr auf.
 
-!!! warning "Archivierte Vorgänge zuerst wiederherstellen"
+!!! warning “Archivierte Vorgänge zuerst wiederherstellen"
     Für archivierte Vorgänge ist der Eintrag deaktiviert.
 
 ## Archivieren und löschen

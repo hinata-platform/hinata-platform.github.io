@@ -46,6 +46,14 @@ Only project and title are required.
 | **Epic** / **Parent** | The issue one level up ("Parent" on sub-tasks). |
 | **Start date** / **Due date** | The bar on the [timeline](/en/guide-timeline.html). A past due date shows red in lists. |
 
+### A deadline that follows the project's date
+
+Where the instance runs [project templates](/en/project-templates.html), both date fields have a second mode: instead of a fixed day, an offset from the project's date — "4 weeks before", say. The date it works out to stands right beside it.
+
+Calendar days are preselected. Working days skip weekends and, where the project has a holiday calendar selected, its public holidays; without such a calendar a holiday counts as a working day.
+
+In lists and on board cards the deadline stays a date, with a small clock glyph saying that it hangs off the project's date. Pick a day by hand and the offset is dropped, so the next change to the project date leaves it alone.
+
 !!! tip "Titles you can find again"
     Instead of "Login broken", write "Login fails with 500 when the e-mail contains a plus sign".
 

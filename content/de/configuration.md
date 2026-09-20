@@ -217,6 +217,17 @@ Die Administration pflegt Feiertagskalender im Adminbereich und kann ein Jahr Fe
 !!! warning "Den Schlüssel aufbewahren"
     Eine Kalenderadresse, die mit einem `HINATA_ICS_SECRET` verschlüsselt wurde, lässt sich mit einem anderen nicht lesen. Ändert sich der Schlüssel, scheitern Importe aus gespeicherten Adressen, bis die Administration die Adresse neu einträgt. Bereits importierte Feiertage bleiben.
 
+## Projektvorlagen und relative Fristen
+
+Ein Projekt lässt sich kopieren, als Vorlage kennzeichnen und mit einem Termin versehen, an dem die Fristen seiner Vorgänge hängen. Ist das ausgeschaltet, verhalten sich Projekte genau wie bisher, und die Wege zum Kopieren gibt es nicht. Siehe [Projektvorlagen](/de/project-templates.html).
+
+| Variable | Zweck | Standard / Beispiel | Erforderlich |
+| --- | --- | --- | --- |
+| `HINATA_PROJECT_TEMPLATES_ENABLED` | Schaltet Projektvorlagen und relative Fristen ein: Projekt kopieren, als Vorlage kennzeichnen, Projekt aus einer Vorlage anlegen und eine Frist als Versatz zum Termin des Projekts pflegen. Der Schalter unter **Adminbereich → App** hat Vorrang vor diesem Wert | `false` | Nein |
+
+!!! info "Werktage brauchen einen Feiertagskalender"
+    Eine Frist, die in Werktagen rechnet, überspringt immer Wochenenden. Feiertage überspringt sie nur, wenn am Projekt ein Feiertagskalender gewählt ist. Ohne einen solchen Kalender zählt sie Feiertage wie gewöhnliche Werktage.
+
 ## Laufzeiteinstellungen (DB) vs. Umgebung
 
 Hinata hat zwei Konfigurationsebenen.
