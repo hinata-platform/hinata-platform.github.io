@@ -137,6 +137,13 @@
      }
     ],
     [
+     "project-templates",
+     {
+      "en": "Project templates",
+      "de": "Projektvorlagen"
+     }
+    ],
+    [
      "guide-issues",
      {
       "en": "Working with issues",

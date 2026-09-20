@@ -16,7 +16,7 @@ Der Client kann dann Vorgänge suchen und anlegen, die Wissensdatenbank lesen un
 
 Ein KI-Client verbindet sich mit einem **Personal Access Token (PAT)**, das du in der App erstellst. Ein PAT ist:
 
-- **Mit Scopes versehen.** Du vergibst nur die nötigen Rechte (`issues:read/write`, `projects:read`, `boards:read`, `sprints:write`, `teams:read`, `users:read`, `kb:read/write`, `worklog:read/write`, `search:read`, `notifications:read`). Ein Token nur zum Lesen kann nie schreiben.
+- **Mit Scopes versehen.** Du vergibst nur die nötigen Rechte (`issues:read/write`, `projects:read/write`, `boards:read`, `sprints:write`, `teams:read`, `users:read`, `kb:read/write`, `worklog:read/write`, `search:read`, `notifications:read`). Ein Token nur zum Lesen kann nie schreiben.
 - **Widerrufbar.** Jederzeit. Die nächste Anfrage mit dem Token wird sofort abgelehnt.
 - **Gehasht gespeichert.** Nur ein SHA-256-Hash wird gespeichert. Den Klartext siehst du **einmal** beim Erstellen.
 - **Auf `/mcp` beschränkt.** Die normale REST-API lehnt PATs ab. Ein Token mit Scopes wird so nie zum vollen Kontozugriff.
@@ -84,6 +84,8 @@ Jedes Tool trägt die MCP-Annotationen `readOnlyHint` und `destructiveHint`. Cli
 | `list_projects` / `get_project` | `projects:read` | Sichtbare Projekte inkl. Workflowstatus und Labels |
 | `list_project_members` | `projects:read` | Projektmitglieder, um Personen den IDs für Zuweisungen zuzuordnen |
 | `get_project_metrics` | `projects:read` | Vorgangszahlen: gesamt, gelöst, offen, je Workflowstatus |
+| `copy_project` | `projects:write` | Ein Projekt samt Plan kopieren; braucht [Projektvorlagen](/de/project-templates.html) |
+| `set_issue_deadline` | `issues:write` | Eine Frist als Versatz zum Termin des Projekts pflegen; braucht Projektvorlagen |
 | `list_boards` / `get_board` | `boards:read` | Zugängliche Boards mit Spalten, WIP-Limits und aktivem Sprint |
 | `list_sprints` | `boards:read` | Sprints eines Boards, auf Wunsch inkl. archivierter |
 | `get_sprint_report` | `boards:read` | Sprintauswertung: Burndown, Velocity, Scope-Änderungen, Auslastung |

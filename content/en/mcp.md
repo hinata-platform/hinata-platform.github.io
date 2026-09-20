@@ -16,7 +16,7 @@ The client can then search and create issues, read and write the knowledge base,
 
 An AI client connects with a **Personal Access Token (PAT)** you create in the app. A PAT is:
 
-- **Scoped.** You grant only the capabilities it needs (`issues:read/write`, `projects:read`, `boards:read`, `sprints:write`, `teams:read`, `users:read`, `kb:read/write`, `worklog:read/write`, `search:read`, `notifications:read`). A read-only token can never write.
+- **Scoped.** You grant only the capabilities it needs (`issues:read/write`, `projects:read/write`, `boards:read`, `sprints:write`, `teams:read`, `users:read`, `kb:read/write`, `worklog:read/write`, `search:read`, `notifications:read`). A read-only token can never write.
 - **Revocable.** Any time. The next request with that token is rejected immediately.
 - **Hashed at rest.** Only a SHA-256 hash is stored. You see the plaintext **once**, at creation.
 - **Confined to `/mcp`.** The regular REST API rejects PATs, so a scoped token can never become full account access.
@@ -84,6 +84,8 @@ Every tool carries the MCP annotations `readOnlyHint` and `destructiveHint`. Cli
 | `list_projects` / `get_project` | `projects:read` | Projects visible to the user, incl. workflow states and labels |
 | `list_project_members` | `projects:read` | A project's members, to resolve people to assignee ids |
 | `get_project_metrics` | `projects:read` | Issue counts: total, resolved, open, per workflow state |
+| `copy_project` | `projects:write` | Copy a project with its plan; needs [project templates](/en/project-templates.html) |
+| `set_issue_deadline` | `issues:write` | Keep a deadline as an offset from the project's date; needs project templates |
 | `list_boards` / `get_board` | `boards:read` | Agile boards the user can open, with columns, WIP limits and active sprint |
 | `list_sprints` | `boards:read` | A board's sprints, incl. archived on request |
 | `get_sprint_report` | `boards:read` | Sprint insights: burndown, velocity, scope changes, assignee load |

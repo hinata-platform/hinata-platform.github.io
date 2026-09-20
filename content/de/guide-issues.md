@@ -127,6 +127,14 @@ Klick auf einen Wert öffnet einen Picker für **Status**, **Zugewiesene Person*
 
 Die Karte **Timeline** enthält **Startdatum**, **Fälligkeitsdatum**, **Zeit erfassen** und nach dem Buchen etwa „1 Std. 30 Min. von 4 Std. aufgewendet“ (siehe [Zeit erfassen](/de/guide-time.html)). Ganz unten steht „Erstellt vor 3 Tagen“ oder „Aktualisiert vor …“.
 
+### Eine Frist zum Termin des Projekts
+
+Führt die Instanz [Projektvorlagen](/de/project-templates.html), haben beide Datumsfelder eine zweite Betriebsart: statt eines festen Tages ein Versatz zum Termin des Projekts, etwa „4 Wochen vorher". Rechts daneben steht sofort das Datum, das dabei herauskommt.
+
+Kalendertage sind vorausgewählt. Werktage überspringen Wochenenden und, wenn am Projekt ein Feiertagskalender gewählt ist, dessen Feiertage — ohne einen solchen Kalender zählt ein Feiertag als Arbeitstag.
+
+In Listen und auf Board-Karten bleibt die Frist ein Datum; ein kleines Uhrzeichen sagt, dass sie am Termin hängt. Wer ein Datum von Hand wählt, löst den Versatz ab, und die nächste Terminverschiebung lässt die Frist dann in Ruhe.
+
 !!! note "Karte Deployment nur mit Repository"
     Ist das Projekt mit GitHub, GitLab oder Bitbucket verbunden, zeigt **Deployment** Branches, Commits und Pull Requests mit dem Schlüssel, dazu Abkürzungen für Namen von Branch oder Commit. Verbinden können Administration oder Projektleitung, siehe [Git-Integration](/de/git-integration.html).
 
