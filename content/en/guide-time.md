@@ -249,6 +249,76 @@ The two pages below are for whoever keeps absences. That need not be an administ
 !!! warning "What the default promises"
     Vacation starts at 20 days, not 30. That is the statutory minimum for a five-day week under German law (§ 3 Abs. 1 BUrlG). A default should not promise what your employer has not; anything beyond it is entered by whoever keeps absences.
 
+## Time reports
+
+Under **Time tracking → Reports** you look at the time that was logged. At the top you pick the period, such as **This month** or one of your own, and next to it the **Filter** and the grouping. The reports have four parts: **Summary**, **Entries**, **Workload** and **Saved**.
+
+![The summary of the time reports](/assets/img/shot-time-reports.png)
+*The summary, grouped by project.*
+
+### What a report counts
+
+A report only counts what you are allowed to see anyway.
+
+- **Totals** per project, activity, tag, issue or period include your own entries and every entry of the projects you can see. Every member already sees on an issue that time was booked on it.
+- **People** appear only on your own entries. If you lead a project, its members are added, but only when the administration has switched on the policy **Leads see members' entries**. That applies to grouping by person or team, to the list of entries and to every export.
+- The administration sees everything.
+
+Filtering by people, teams, search term or approval therefore only takes effect where you may see the people's entries. The filter sheet says so too.
+
+### Summary
+
+The summary starts with the totals: **Total**, **Billable** and the number of **Entries**. When the report rounds, **As recorded** stands next to them, the time before rounding. Below come a chart and a list with each group's share.
+
+- You can group by project, person, team, activity, tag, issue, day, week or month.
+- You switch the chart at the top right of its card. Groups with names show as **Bars** or as a ring of **Shares**, days, weeks and months as columns or as a **Trend**. Switching does not ask the server again.
+- Tapping a group opens its entries: the same report, narrowed to that group.
+
+Each entry is rounded on its own, not the total at the end. The default is **As in the rules**, the rounding the administration set for time tracking. In the filter sheet you can round differently for one report, for example up to 15 minutes. That changes nothing about the entries themselves.
+
+### Entries
+
+**Entries** lists every entry of the report by day, with description, time of day, project and issue, activity, tags and, where you may see it, the person. When the rounded duration differs from the recorded one, the recorded one stands below it. The list loads more as you scroll.
+
+### Workload
+
+**Workload** exists only when the administration has switched on workload reports, and only for admins and project leads. For every person it puts the **Capacity** in the period next to what they **Booked**, and the **Difference**. Capacity is the planned hours minus public holidays and absences. How much of it was free or away stands under the name.
+
+- At the top you pick the group: **My projects** or a single project you lead.
+- A lead sees under **Booked** only the time on projects they lead.
+- The list is sorted by name, never by hours, and the bar is neutral. No colour says "too little" or "too much".
+
+!!! warning "A comparison between people"
+    The workload report puts people side by side. Which purposes it may serve belongs in the works or service agreement. See [Time tracking privacy](/en/time-tracking-privacy.html).
+
+### Export and print
+
+With **Export** you get the report as **PDF**, **Excel (XLSX)** or **CSV**, or you **Print** it. The export takes the report as it stands on screen, with period, filters, grouping and rounding. PDF and Excel contain the totals, the groups and the entries, CSV only the entries.
+
+A file has a ceiling: 5,000 entries in a PDF, 50,000 in Excel and 100,000 in CSV. When the report goes past it, the file is cut short, says so at its end, and the app tells you when it saves it. Narrow the period or the filters then. Every export is in the audit log, with format, number of rows and a fingerprint of the filters.
+
+You still get your own entries as CSV under Art. 20 GDPR in **Settings → Time tracking**. The report export does not replace that. See [Time tracking privacy](/en/time-tracking-privacy.html).
+
+### Import entries from a CSV file
+
+With **Import CSV** you bring in entries from a file, for example from another tool. A file may be up to 5 MB and 10,000 rows.
+
+1. Pick the file. The import recognises exports from Hinata and from toggl on its own, with German or English column names too.
+2. Check which column holds what: date, start, end, minutes, hours or duration, project, issue, activity, description, tags, billable and person. A column you do not map is not used.
+3. Look at the preview. Every row is checked like a typed entry: project and issue, lock date, approvals, required fields and allowed tags. Rows with errors are listed below with their line number and the reason.
+4. Import. Only the rows that passed are written, all of them or none. If the import breaks off half way, Hinata takes back the entries it had already written.
+
+You import your own entries. The administration can also import for others through **Import for**; that goes into the audit log.
+
+### Save, share and get reports by mail
+
+**Save report** keeps the report with its period, filters, grouping and rounding under **Saved**. A relative period such as **Last month** stays relative: opened in October, it shows September. From the menu on a saved report you can open, rename, share, send by mail or delete it.
+
+- **Share link** creates a link you can pass on. Whoever opens it has to be signed in and sees the report only with what they may see themselves, never with your view. **Revoke link** makes the link invalid at once.
+- **Send by mail** sends the report weekly on a day you choose or on the first of the month, at the hour you pick in your time zone. It covers the seven days before or the previous month. Every person on the list gets it with what they may see themselves, without an attachment and with a link into the app. You only get it yourself if you put yourself on the list.
+
+The mail belongs to the time tracking notifications and can be switched off there. See [Staying informed](/en/guide-notifications.html).
+
 ## Where your logged time ends up
 
 1. **The issue**: the spent total is recomputed from all entries, so it is always the true sum.
@@ -256,6 +326,7 @@ The two pages below are for whoever keeps absences. That need not be an administ
 3. **Your weekly timesheet**, as described above.
 4. **The Time per activity report** in [Reports](/en/guide-reports.html): a project's time from the last 30 days by activity type, as durations.
 5. **Your weekly summary**: the focus time you tracked over the week, next to what you closed. See [Staying informed](/en/guide-notifications.html).
+6. **The time reports** under **Time tracking → Reports**, as described above.
 
 ## Habits that make the numbers worth keeping
 
