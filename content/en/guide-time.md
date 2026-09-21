@@ -218,6 +218,26 @@ Where a type is set to approve automatically, the request is decided as it arriv
 !!! info "And if nobody is left?"
     In an organisation of one the list of recipients stays empty: whoever files the request is the only person who could decide it, and nobody decides their own. The request is not lost for that. Anybody who keeps absences may decide any request, one without recipients included — so as soon as a second person joins, or somebody is named to keep absences, it appears in their inbox.
 
+## Absences in your team
+
+If the administration has switched on the **team absence calendar**, the absences in time tracking gain a fifth part: **Team**. It shows who in a group is away when, as a planning view rather than an attendance register. You see spans of days, never times of day, and people are sorted by name, never by who was away the most.
+
+At the top you pick the group: **My projects**, one of your teams, or a project. A person appears in a group only if they recorded time on one of its projects themselves. Being a member is not enough, because whoever creates a project or a team can add anybody to it without asking. Beside it you switch between **Month** and **Quarter** and page with the arrows.
+
+What you learn about an absence is set by the administration, and every absence type can narrow it further:
+
+- **Only that somebody is away:** a neutral bar with the word *Away*.
+- **The absence type:** the bar carries the type's icon and name. A type kept to the person themselves does not appear for anybody else.
+- **Sickness** only ever shows as *Away*, on every level and in your own row too. It is health data (Art. 9 GDPR), and a calendar other people look at is no place for it.
+
+A **requested** span is hatched and marked with an hourglass, an approved one is filled. Weekends and public holidays are a wash behind both.
+
+Leads of a project, admins of a team and the absence keepers also see, above the rows, how much **capacity** the group has left each day: everybody's planned hours, less public holidays and approved absences. **Requested shows, approved counts:** an open request lowers no capacity, or a withdrawn request would have changed the plan after the fact. The figure is always a sum and never names a person.
+
+On a phone the calendar becomes a **list by week**: the hours available each week written out, and underneath the people who are away with their span and type. A grid of five visible days would not be readable there.
+
+On the dashboard, the **Away today** card lists up to five names from your projects and how many more there are.
+
 ## Keeping types and entitlements
 
 The two pages below are for whoever keeps absences. That need not be an administrator: an organisation can name people for it, and they find their way there from their own settings.
