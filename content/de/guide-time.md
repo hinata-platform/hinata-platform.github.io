@@ -249,6 +249,76 @@ Die folgenden beiden Seiten sieht, wer die Abwesenheitsverwaltung führt. Das mu
 !!! warning "Was der Standard verspricht"
     Urlaub steht auf 20 Tagen, nicht auf 30. Das ist der gesetzliche Mindesturlaub bei einer Fünftagewoche (§ 3 Abs. 1 BUrlG). Ein Standard soll nichts zusagen, was dein Arbeitgeber nicht zugesagt hat; was darüber hinausgeht, trägt die Verwaltung ein.
 
+## Zeitberichte
+
+Unter **Zeiterfassung → Berichte** wertest du erfasste Zeit aus. Oben wählst du den Zeitraum, etwa **Dieser Monat** oder einen eigenen, daneben die **Filter** und die Gruppierung. Die Berichte haben vier Bereiche: **Übersicht**, **Einträge**, **Auslastung** und **Gespeichert**.
+
+![Die Übersicht der Zeitberichte](/assets/img/shot-time-reports.png)
+*Die Übersicht, nach Projekt gruppiert.*
+
+### Was ein Bericht zählt
+
+Ein Bericht zählt nur, was du auch sonst sehen darfst.
+
+- **Summen** je Projekt, Tätigkeit, Tags, Vorgang oder Zeitraum enthalten deine eigenen Einträge und alle Einträge der Projekte, die du siehst. Dass an einem Vorgang Zeit gebucht wurde, sieht jedes Mitglied ohnehin.
+- **Personen** erscheinen nur bei deinen eigenen Einträgen. Leitest du ein Projekt, kommen dessen Mitglieder dazu, aber nur, wenn die Administration die Richtlinie **Leitungen sehen Einträge der Mitglieder** eingeschaltet hat. Das gilt für die Gruppierung nach Person oder Team, für die Liste der Einträge und für jeden Export.
+- Die Administration sieht alles.
+
+Filter nach Personen, Teams, Suchwort oder Freigabe wirken deshalb nur dort, wo du die Einträge der Personen sehen darfst. Das Filterblatt sagt das auch.
+
+### Übersicht
+
+Die Übersicht zeigt oben die Summen: **Gesamt**, **Abrechenbar** und die Zahl der **Einträge**. Rundet der Bericht, steht daneben **Wie erfasst**, also die Zeit vor dem Runden. Darunter folgt ein Diagramm und eine Liste mit dem Anteil jeder Gruppe.
+
+- Gruppieren kannst du nach Projekt, Person, Team, Tätigkeit, Tags, Vorgang, Tag, Woche oder Monat.
+- Das Diagramm wechselst du oben rechts in seiner Karte. Gruppen mit Namen zeigt es als **Balken** oder als Ring der **Anteile**, Tage, Wochen und Monate als Säulen oder als **Verlauf**. Der Wechsel fragt den Server nicht neu.
+- Ein Tipp auf eine Gruppe öffnet ihre Einträge: derselbe Bericht, auf diese Gruppe eingegrenzt.
+
+Gerundet wird jeder Eintrag für sich, nicht erst die Summe. Standard ist **Wie in den Regeln**, also die Rundung, die die Administration für die Zeiterfassung festgelegt hat. Im Filterblatt kannst du für einen Bericht anders runden, zum Beispiel auf 15 Minuten auf. An den Einträgen selbst ändert das nichts.
+
+### Einträge
+
+**Einträge** listet jeden Eintrag des Berichts, nach Tagen geordnet, mit Beschreibung, Uhrzeit, Projekt und Vorgang, Tätigkeit, Tags und, soweit du sie sehen darfst, der Person. Weicht die gerundete Dauer von der erfassten ab, steht die erfasste darunter. Die Liste lädt beim Scrollen nach.
+
+### Auslastung
+
+**Auslastung** gibt es nur, wenn die Administration Auslastungsberichte eingeschaltet hat, und nur für Admins und Projektleitungen. Er stellt für jede Person die **Kapazität** im Zeitraum neben das, was sie **gebucht** hat, und die **Differenz**. Die Kapazität sind die geplanten Stunden abzüglich Feiertage und Abwesenheiten. Wie viel davon frei oder abwesend war, steht unter dem Namen.
+
+- Oben wählst du die Gruppe: **Meine Projekte** oder ein einzelnes Projekt, das du leitest.
+- Eine Leitung sieht bei **Gebucht** nur die Zeit auf Projekten, die sie leitet.
+- Die Liste ist nach Namen sortiert, nie nach Stunden, und der Balken ist neutral. Keine Farbe sagt „zu wenig“ oder „zu viel“.
+
+!!! warning "Ein Vergleich zwischen Menschen"
+    Der Auslastungsbericht stellt Personen nebeneinander. Welche Zwecke er erfüllen darf, gehört in die Betriebs- oder Dienstvereinbarung. Siehe [Datenschutz der Zeiterfassung](/de/time-tracking-privacy.html).
+
+### Exportieren und drucken
+
+Über **Exportieren** holst du den Bericht als **PDF**, **Excel (XLSX)** oder **CSV**, oder du **druckst** ihn. Der Export nimmt den Bericht, wie er gerade auf dem Bildschirm steht, mit Zeitraum, Filtern, Gruppierung und Rundung. PDF und Excel enthalten die Summen, die Gruppen und die Einträge, CSV nur die Einträge.
+
+Eine Datei hat eine Obergrenze: 5 000 Einträge im PDF, 50 000 in Excel und 100 000 in CSV. Liegt der Bericht darüber, ist die Datei gekürzt, sagt das an ihrem Ende, und die App meldet es beim Speichern. Grenze dann den Zeitraum oder die Filter ein. Jeder Export steht im Audit-Protokoll, mit Format, Zahl der Zeilen und einem Fingerabdruck der Filter.
+
+Deine eigenen Einträge als CSV nach Art. 20 DSGVO holst du weiterhin unter **Einstellungen → Zeiterfassung**. Der Berichtsexport ersetzt das nicht. Siehe [Datenschutz der Zeiterfassung](/de/time-tracking-privacy.html).
+
+### Einträge aus einer CSV-Datei importieren
+
+Über **CSV importieren** übernimmst du Einträge aus einer Datei, zum Beispiel aus einem anderen Werkzeug. Eine Datei darf bis 5 MB groß sein und bis 10 000 Zeilen haben.
+
+1. Wähle die Datei. Exporte aus Hinata und aus toggl erkennt der Import selbst, auch mit deutschen oder englischen Spaltennamen.
+2. Prüfe die Zuordnung der Spalten: Datum, Beginn, Ende, Minuten, Stunden oder Dauer, Projekt, Vorgang, Tätigkeit, Beschreibung, Tags, Abrechenbar und Person. Eine Spalte, die du nicht zuordnest, wird nicht verwendet.
+3. Sieh dir die Vorschau an. Jede Zeile wird geprüft wie ein getippter Eintrag: Projekt und Vorgang, Sperrdatum, Freigaben, Pflichtfelder und erlaubte Tags. Zeilen mit Fehlern stehen mit Zeilennummer und Grund darunter.
+4. Importiere. Geschrieben werden nur die Zeilen, die die Prüfung bestanden haben, alle oder keine. Bricht der Import mittendrin ab, nimmt Hinata die schon geschriebenen Einträge wieder zurück.
+
+Du importierst deine eigenen Einträge. Die Administration kann über **Importieren für** auch für andere importieren; das steht im Audit-Protokoll.
+
+### Berichte speichern, teilen und per Mail bekommen
+
+**Bericht speichern** legt den Bericht mit Zeitraum, Filtern, Gruppierung und Rundung unter **Gespeichert** ab. Ein relativer Zeitraum wie **Letzter Monat** bleibt relativ: Öffnest du den Bericht im Oktober, zeigt er den September. Über das Menü an einem gespeicherten Bericht kannst du ihn öffnen, umbenennen, teilen, per Mail senden lassen oder löschen.
+
+- **Link teilen** erzeugt einen Link, den du weitergeben kannst. Wer ihn öffnet, muss angemeldet sein und sieht den Bericht nur mit dem, was er selbst sehen darf, nie mit deiner Sicht. **Link widerrufen** macht den Link sofort ungültig.
+- **Per Mail senden** schickt den Bericht wöchentlich an einem Tag deiner Wahl oder am Monatsersten, zur gewählten Stunde in deiner Zeitzone. Er deckt die sieben Tage davor oder den Vormonat ab. Jede Person auf der Liste bekommt ihn mit dem, was sie selbst sehen darf, ohne Anhang und mit einem Link in die App. Du selbst bekommst ihn nur, wenn du dich auf die Liste setzt.
+
+Die Mail gehört zu den Benachrichtigungen der Zeiterfassung und lässt sich dort abbestellen. Siehe [Auf dem Laufenden bleiben](/de/guide-notifications.html).
+
 ## Wo deine erfasste Zeit landet
 
 1. **Am Vorgang**: Der Aufwand wird aus allen Einträgen neu berechnet und ist immer die echte Summe.
@@ -256,6 +326,7 @@ Die folgenden beiden Seiten sieht, wer die Abwesenheitsverwaltung führt. Das mu
 3. **Dein Stundenzettel**, wie oben beschrieben.
 4. **Bericht „Zeit pro Tätigkeit“** in den [Berichten](/de/guide-reports.html): die Zeit des ganzen Projekts aus den letzten 30 Tagen nach Tätigkeitsart, als Dauer.
 5. **Deine Wochenübersicht**: deine Fokuszeit der Woche neben dem, was du abgeschlossen hast. Siehe [Auf dem Laufenden bleiben](/de/guide-notifications.html).
+6. **Die Zeitberichte** unter **Zeiterfassung → Berichte**, wie oben beschrieben.
 
 ## Gewohnheiten, die die Zahlen wertvoll halten
 
