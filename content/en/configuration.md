@@ -203,6 +203,7 @@ Administrators keep holiday calendars in the Admin area and can import a year of
 | `HINATA_ICS_DENIED_HOSTS` | Comma-separated hosts calendars are never fetched from, in the same notation. Checked before the allow list | *(empty)* | No |
 | `HINATA_AVAILABILITY_DEFAULT_WEEKDAY_MINUTES` | Planned minutes per weekday, Monday first, for everyone who has not set their own hours | `480,480,480,480,480,0,0` | No |
 | `HINATA_TIME_TRACKING_ABSENCE_MANAGEMENT_ENABLED` | Turns absence management on: types, entitlements, balances, requests and sick reports. Needs extended time tracking. The switch under **Admin area → Time tracking** takes precedence over this value | `false` | No |
+| `HINATA_TIME_TRACKING_ABSENCE_CALENDAR_VISIBILITY` | The team absence calendar: `OFF`, `BUSY_ONLY` (only that somebody is away) or `TYPE` (the type, never sickness). Only in force with absence management on. The choice under **Admin area → Time tracking** takes precedence over this value | `OFF` | No |
 | `HINATA_RATE_LIMIT_TIME_OFF_REQUESTS_PER_DAY` | Absence requests and sick reports per person per day. A day rather than a minute, because filing leave is a deliberate act and a per-minute budget would let a loop through anyway | `50` | No |
 
 !!! info "Who keeps absences"

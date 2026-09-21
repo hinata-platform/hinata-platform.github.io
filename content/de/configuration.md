@@ -207,6 +207,7 @@ Die Administration pflegt Feiertagskalender im Adminbereich und kann ein Jahr Fe
 | `HINATA_ICS_DENIED_HOSTS` | Kommagetrennte Hosts, von denen nie abgerufen wird, in derselben Schreibweise. Wird vor der Erlaubnisliste geprüft | *(leer)* | Nein |
 | `HINATA_AVAILABILITY_DEFAULT_WEEKDAY_MINUTES` | Geplante Minuten je Wochentag, beginnend mit Montag, für alle, die keine eigenen Stunden festgelegt haben | `480,480,480,480,480,0,0` | Nein |
 | `HINATA_TIME_TRACKING_ABSENCE_MANAGEMENT_ENABLED` | Schaltet die Abwesenheitsverwaltung ein: Arten, Ansprüche, Konten, Anträge und Krankmeldungen. Setzt die erweiterte Zeiterfassung voraus. Der Schalter unter **Adminbereich → Zeiterfassung** hat Vorrang vor diesem Wert | `false` | Nein |
+| `HINATA_TIME_TRACKING_ABSENCE_CALENDAR_VISIBILITY` | Der Team-Abwesenheitskalender: `OFF`, `BUSY_ONLY` (nur, dass jemand abwesend ist) oder `TYPE` (die Art, Krankheit nie). Wirkt nur mit eingeschalteter Abwesenheitsverwaltung. Die Auswahl unter **Adminbereich → Zeiterfassung** hat Vorrang vor diesem Wert | `OFF` | Nein |
 | `HINATA_RATE_LIMIT_TIME_OFF_REQUESTS_PER_DAY` | Abwesenheitsanträge und Krankmeldungen je Person und Tag. Ein Tag statt einer Minute, weil ein Antrag eine bewusste Handlung ist und ein Minutenbudget eine Schleife trotzdem durchließe | `50` | Nein |
 
 !!! info "Wer die Abwesenheiten führt"

@@ -218,6 +218,26 @@ Steht eine Art auf automatischer Genehmigung, wird der Antrag sofort entschieden
 !!! info "Und wenn niemand übrig bleibt?"
     In einer Organisation aus einer einzigen Person bleibt die Empfängerliste leer: Wer den Antrag stellt, wäre die einzige Person, die ihn entscheiden könnte, und über den eigenen entscheidet niemand. Der Antrag ist deshalb nicht verloren. Wer die Abwesenheitsverwaltung führt, darf jeden Antrag entscheiden, auch einen ohne Empfänger — sobald also eine zweite Person dazukommt oder jemand dafür benannt wird, steht er in deren Posteingang.
 
+## Abwesenheiten im Team
+
+Hat die Administration den **Team-Abwesenheitskalender** eingeschaltet, gibt es in der Zeiterfassung unter den Abwesenheiten einen fünften Bereich: **Team**. Er zeigt, wer in einer Gruppe wann abwesend ist, als Planungsansicht und nicht als Anwesenheitsliste. Du siehst Zeiträume, nie Uhrzeiten, und die Personen stehen nach Namen sortiert, nie danach, wer am meisten weg war.
+
+Oben wählst du die Gruppe: **Meine Projekte**, eines deiner Teams oder ein Projekt. In einer Gruppe erscheint nur, wer selbst Zeit auf einem ihrer Projekte erfasst hat. Mitglied zu sein reicht nicht, denn wer ein Projekt oder ein Team anlegt, kann dort jede Person aufnehmen, ohne zu fragen. Daneben schaltest du zwischen **Monat** und **Quartal** um und blätterst mit den Pfeilen.
+
+Was du über eine Abwesenheit erfährst, legt die Administration fest, und jede Abwesenheitsart kann es weiter einschränken:
+
+- **Nur, dass jemand abwesend ist:** ein neutraler Balken mit dem Wort *Abwesend*.
+- **Die Art der Abwesenheit:** der Balken trägt Symbol und Namen der Art. Eine Art, die nur für die Person selbst sichtbar ist, erscheint bei anderen gar nicht.
+- **Krankheit** steht auf jeder Stufe nur als *Abwesend* da, auch in deiner eigenen Zeile. Das ist eine Gesundheitsangabe (Art. 9 DSGVO), und ein Kalender, auf den andere schauen, ist nicht der Ort dafür.
+
+Ein **beantragter** Zeitraum ist schraffiert und mit einer Sanduhr markiert, ein genehmigter ist ausgefüllt. Wochenenden und Feiertage liegen als Fläche dahinter.
+
+Leitungen eines Projekts, Admins eines Teams und die Abwesenheitsverwaltung sehen über den Zeilen zusätzlich, wie viel **Kapazität** der Gruppe an jedem Tag bleibt: die geplanten Stunden aller, abzüglich Feiertagen und genehmigter Abwesenheiten. **Beantragt zeigt, genehmigt zählt:** ein offener Antrag senkt die Kapazität nicht, sonst hätte ein zurückgezogener Antrag die Planung rückwirkend verändert. Die Zahl ist immer eine Summe und nennt nie eine Person.
+
+Auf dem Telefon wird aus dem Kalender eine **Wochenliste**: je Woche die verfügbaren Stunden als Satz, darunter die Personen, die fehlen, mit Zeitraum und Art. Ein Raster aus fünf sichtbaren Tagen wäre dort nicht lesbar.
+
+Auf dem Dashboard zeigt die Karte **Heute abwesend** bis zu fünf Namen aus deinen Projekten und darunter, wie viele es noch sind.
+
 ## Abwesenheitsarten und Ansprüche verwalten
 
 Die folgenden beiden Seiten sieht, wer die Abwesenheitsverwaltung führt. Das muss keine Administration sein: Die Organisation kann Personen dafür benennen, und sie finden den Weg dorthin in ihren eigenen Einstellungen.
