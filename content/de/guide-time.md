@@ -222,7 +222,7 @@ Steht eine Art auf automatischer Genehmigung, wird der Antrag sofort entschieden
 
 Hat die Administration den **Team-Abwesenheitskalender** eingeschaltet, gibt es in der Zeiterfassung unter den Abwesenheiten einen fünften Bereich: **Team**. Er zeigt, wer in einer Gruppe wann abwesend ist, als Planungsansicht und nicht als Anwesenheitsliste. Du siehst Zeiträume, nie Uhrzeiten, und die Personen stehen nach Namen sortiert, nie danach, wer am meisten weg war.
 
-Oben wählst du die Gruppe: **Meine Projekte**, eines deiner Teams oder ein Projekt. In einer Gruppe erscheint nur, wer selbst Zeit auf einem ihrer Projekte erfasst hat. Mitglied zu sein reicht nicht, denn wer ein Projekt oder ein Team anlegt, kann dort jede Person aufnehmen, ohne zu fragen. Daneben schaltest du zwischen **Monat** und **Quartal** um und blätterst mit den Pfeilen.
+Oben wählst du die Gruppe: **Meine Projekte**, eines deiner Teams oder ein Projekt. In einer Gruppe erscheint nur, wer selbst Zeit auf einem ihrer Projekte erfasst hat. Mitglied zu sein reicht nicht, denn wer ein Projekt oder ein Team anlegt, kann dort jede Person aufnehmen, ohne zu fragen. Du selbst stehst in jeder Gruppe, zu der du gehörst, und die Abwesenheitsverwaltung sieht alle aktuellen Mitglieder. Daneben schaltest du zwischen **Monat** und **Quartal** um und blätterst mit den Pfeilen.
 
 Was du über eine Abwesenheit erfährst, legt die Administration fest, und jede Abwesenheitsart kann es weiter einschränken:
 
@@ -232,7 +232,7 @@ Was du über eine Abwesenheit erfährst, legt die Administration fest, und jede 
 
 Ein **beantragter** Zeitraum ist schraffiert und mit einer Sanduhr markiert, ein genehmigter ist ausgefüllt. Wochenenden und Feiertage liegen als Fläche dahinter.
 
-Leitungen eines Projekts, Admins eines Teams und die Abwesenheitsverwaltung sehen über den Zeilen zusätzlich, wie viel **Kapazität** der Gruppe an jedem Tag bleibt: die geplanten Stunden aller, abzüglich Feiertagen und genehmigter Abwesenheiten. **Beantragt zeigt, genehmigt zählt:** ein offener Antrag senkt die Kapazität nicht, sonst hätte ein zurückgezogener Antrag die Planung rückwirkend verändert. Die Zahl ist immer eine Summe und nennt nie eine Person.
+Leitungen eines Projekts und Admins eines Teams, sofern Leitungen die Abwesenheiten ihrer Mitglieder sehen dürfen, und die Abwesenheitsverwaltung sehen über den Zeilen zusätzlich, wie viel **Kapazität** der Gruppe an jedem Tag bleibt: die geplanten Stunden aller, abzüglich Feiertagen und genehmigter Abwesenheiten. **Beantragt zeigt, genehmigt zählt:** ein offener Antrag senkt die Kapazität nicht, sonst hätte ein zurückgezogener Antrag die Planung rückwirkend verändert. Die Zahl ist immer eine Summe über mindestens drei Personen und nennt nie eine Person.
 
 Auf dem Telefon wird aus dem Kalender eine **Wochenliste**: je Woche die verfügbaren Stunden als Satz, darunter die Personen, die fehlen, mit Zeitraum und Art. Ein Raster aus fünf sichtbaren Tagen wäre dort nicht lesbar.
 
