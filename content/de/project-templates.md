@@ -38,9 +38,9 @@ Zwei Dinge dazu sind wichtig:
 - **Das Datum wird trotzdem geschrieben.** Board, Zeitachse, Berichte, die Erinnerungsmail und die App lesen weiterhin ein Datum. Der Versatz ist die Regel, das Datum ihr Ergebnis.
 - **Ein Datum von Hand gewinnt.** Wer eine Frist direkt auf einen Tag setzt, löst den Versatz ab. Das steht vorher da, und die nächste Terminverschiebung lässt diese Frist dann in Ruhe.
 
-### Kalendertage oder Arbeitstage
+### Kalendertage oder Werktage
 
-„28 Tage vorher“ in Kalendertagen sind 28 Tage, Wochenende eingeschlossen. In Arbeitstagen zählen Wochenenden nicht mit. Welche Zählweise bei einer neuen Frist vorgewählt ist, entscheidet sich so:
+„28 Tage vorher“ in Kalendertagen sind 28 Tage, Wochenende eingeschlossen. In Werktagen zählen Wochenenden nicht mit. Welche Zählweise bei einer neuen Frist vorgewählt ist, entscheidet sich so:
 
 1. Hat das Projekt eine eigene Wahl unter **Fristen zählen in**, gilt sie. Du setzt sie beim Anlegen, beim Kopieren oder in den Projekteinstellungen.
 2. Sonst gilt der Standard der Organisation, den Organisationsadmins auf der Seite [Organisation](/de/organization.html) festlegen.
@@ -48,8 +48,8 @@ Zwei Dinge dazu sind wichtig:
 
 An jeder einzelnen Frist kannst du trotzdem umstellen. Die Vorwahl gilt nur für neue Fristen: Bestehende behalten ihre Zählweise und verschieben sich nicht, wenn sich der Standard ändert.
 
-!!! info "Arbeitstage brauchen einen Feiertagskalender"
-    Arbeitstage überspringen immer Wochenenden. Feiertage überspringen sie nur, wenn am Projekt ein Feiertagskalender gewählt ist. Ohne ihn zählt ein Feiertag wie ein gewöhnlicher Arbeitstag. Die Kalender pflegen Organisationsadmins auf der Seite [Organisation](/de/organization.html).
+!!! info "Werktage brauchen einen Feiertagskalender"
+    Werktage überspringen immer Wochenenden. Feiertage überspringen sie nur, wenn am Projekt ein Feiertagskalender gewählt ist. Ohne ihn zählt ein Feiertag wie ein gewöhnlicher Werktag. Die Kalender pflegen Organisationsadmins auf der Seite [Organisation](/de/organization.html).
 
 ## Den Termin verschieben
 
@@ -129,4 +129,4 @@ Mit eingeschaltetem Modul kennt der [MCP-Server](/de/mcp.html) zwei zusätzliche
 
 **Eine Frist ist beim Verschieben nicht mitgezogen.** Dann trägt sie keinen Versatz mehr — jemand hat sie von Hand gesetzt. Stelle sie im Fristfeld wieder auf „Zum Termin“.
 
-**Arbeitstage ergeben ein anderes Datum als erwartet.** Prüfe, ob am Projekt ein Feiertagskalender gewählt ist. Ohne ihn zählen Feiertage als Arbeitstage.
+**Werktage ergeben ein anderes Datum als erwartet.** Prüfe, ob am Projekt ein Feiertagskalender gewählt ist. Ohne ihn zählen Feiertage als Werktage.

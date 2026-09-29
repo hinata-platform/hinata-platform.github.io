@@ -101,16 +101,18 @@ Sicherheitshinweise lassen sich nicht abschalten. Ihre Zeile zeigt ein Schloss u
 !!! tip "Nimm dir einmal zwei Minuten"
     Schalte die zwei oder drei Zeilen ab, auf die du nie reagierst. Dann bedeutet jede Mitteilung etwas.
 
-### An welchen Tagen dich etwas erreicht
+### Wann dich etwas erreicht
 
-Unter **Benachrichtigungstage** wählst du die Wochentage, an denen E-Mails und Push-Nachrichten kommen dürfen.
+Unter **Benachrichtigungszeiten** legst du fest, wann E-Mails und Push-Nachrichten kommen dürfen.
 
-- **Voreingestellt** sind die Arbeitstage dort, wo du lebst. Hinata leitet sie aus der Region deiner Sprache oder aus deiner Zeitzone ab. Meist sind das Montag bis Freitag, in Saudi-Arabien zum Beispiel Sonntag bis Donnerstag. **Standard verwenden** stellt diese Auswahl wieder her.
-- **An anderen Tagen** kommen keine E-Mails und keine Push-Nachrichten. Die Glocke in der App zeigt trotzdem alles.
-- **Sicherheitshinweise und wichtige Hinweise**, zum Beispiel zu verfallendem Urlaub, kommen immer, egal welcher Tag ist. Das sagt dir auch der Hinweis unter der Einstellung.
+- **Immer**: Alles kommt sofort, an jedem Tag und zu jeder Uhrzeit.
+- **Benutzerdefiniert**: Wähle die Wochentage und dazu **Von** und **Bis**. Beim ersten Umschalten stehen dort die Werktage, wo du lebst, und 9 bis 17 Uhr. Die Uhrzeiten gelten in deiner Zeitzone. Ein Zeitraum über Mitternacht, etwa 22 bis 6 Uhr, gehört zu dem Tag, an dem er beginnt.
+- **Voreingestellt** ist, was deine Organisation festlegt: Rechnet sie in Werktagen, gilt für alle ohne eigene Wahl „Benutzerdefiniert“ mit den Werktagen und 9 bis 17 Uhr. Sonst gilt „Immer“. Die Werktage leitet Hinata aus der Region deiner Sprache oder aus deiner Zeitzone ab, meist Montag bis Freitag, in Saudi-Arabien zum Beispiel Sonntag bis Donnerstag. **Standard verwenden** stellt die Voreinstellung wieder her.
+- **Außerhalb deiner Zeiten** geht nichts verloren. Die Glocke in der App zeigt alles sofort. E-Mails und Push-Nachrichten warten und kommen zu Beginn deiner nächsten Zeit gesammelt, als eine E-Mail und eine Push-Nachricht. Was du in der App schon gelesen hast, fehlt darin.
+- **Sicherheitshinweise und wichtige Hinweise**, zum Beispiel zu verfallendem Urlaub, kommen immer, egal wann.
 - Mindestens ein Tag bleibt aktiv. Willst du gar nichts mehr bekommen, schalte oben die Kanäle aus.
 
-Nach dem Update auf eine Version mit Benachrichtigungstagen bekommst du einmal eine Mitteilung in der Glocke, die dich auf die neue Einstellung hinweist.
+Hattest du vorher eigene Benachrichtigungstage gewählt, bleiben sie erhalten, ganztägig. Nach dem Update bekommst du einmal eine Mitteilung in der Glocke, die dich auf die neue Einstellung hinweist.
 
 ## Vorgänge beobachten und bewusst zuhören
 
@@ -157,7 +159,7 @@ Abschalten kannst du die Übersicht in der Zeile **Wöchentliche Zusammenfassung
 Die häufigsten Ursachen stehen oben.
 
 1. **Prüfe den Hauptschalter.** Ein stummgeschalteter Kanal gilt für alle Ereignisse. Die App zeigt das am Schalter an.
-2. **Prüfe deine Benachrichtigungstage.** An Tagen, die nicht ausgewählt sind, kommen keine E-Mails und keine Push-Nachrichten. Die Glocke hat trotzdem alles.
+2. **Prüfe deine Benachrichtigungszeiten.** Außerhalb deiner Zeiten warten E-Mails und Push-Nachrichten und kommen gesammelt, sobald deine nächste Zeit beginnt. Die Glocke hat trotzdem alles sofort.
 3. **Prüfe die Zeile des Ereignisses.** Kommentare und Statusänderungen sind standardmäßig für je einen Kanal aus.
 4. **Prüfe, ob du beteiligt bist.** Du hörst von Vorgängen als Bearbeiter, Ersteller oder Beobachter. Mitglied im Projekt zu sein reicht nicht.
 5. **Für Push: Prüfe die Berechtigung am Gerät.** Die App fragt beim ersten Anmelden. Hast du abgelehnt, erlaube Push in den Systemeinstellungen. Prüfe unter [Download](/de/download.html), ob deine Plattform Push kann.

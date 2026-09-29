@@ -138,7 +138,7 @@ The **Appearance & app** card contains:
   interface at once and to the server's e-mails and error messages. Arabic runs
   the layout right to left. Hinata also uses your language region (or your
   time zone) to work out which
-  [notification days](/en/guide-notifications.html#which-days-reach-you) are
+  [working days for your notification times](/en/guide-notifications.html#when-things-reach-you) are
   preset.
 - **Appearance**: **System**, **Light** or **Dark**. System follows your
   operating system.
@@ -204,7 +204,7 @@ someone else an administrator first.
 
 ## Next steps
 
-- [Staying informed](/en/guide-notifications.html): set up notifications and notification days
+- [Staying informed](/en/guide-notifications.html): set up notifications and notification times
 - [Getting started](/en/guide-start.html): signing in and your first day
 - [On your phone](/en/guide-mobile.html): the mobile layout and several servers
 - [Authentication](/en/authentication.html): passwords and 2FA from the operator's side

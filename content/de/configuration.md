@@ -227,10 +227,10 @@ Ein Projekt lässt sich kopieren, als Vorlage kennzeichnen und mit einem Termin 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
 | `HINATA_PROJECT_TEMPLATES_ENABLED` | Schaltet Projektvorlagen und relative Fristen ein: Projekt kopieren, als Vorlage kennzeichnen, Projekt aus einer Vorlage anlegen und eine Frist als Versatz zum Termin des Projekts pflegen. Der Schalter unter **Adminbereich → Plattform** hat Vorrang vor diesem Wert | `false` | Nein |
-| `HINATA_PROJECT_TEMPLATES_DEFAULT_BASIS` | Worin neue relative Fristen zählen, solange weder die Organisation noch das Projekt etwas anderes festlegt: `CALENDAR` (Kalendertage) oder `WORKING` (Arbeitstage). Organisationsadmins wählen den Standard auf der Seite [Organisation](/de/organization.html), jedes Projekt kann davon abweichen. Bestehende Fristen behalten ihre Zählweise | `CALENDAR` | Nein |
+| `HINATA_PROJECT_TEMPLATES_DEFAULT_BASIS` | Worin neue relative Fristen zählen, solange weder die Organisation noch das Projekt etwas anderes festlegt: `CALENDAR` (Kalendertage) oder `WORKING` (Werktage). Organisationsadmins wählen den Standard auf der Seite [Organisation](/de/organization.html), jedes Projekt kann davon abweichen. Bestehende Fristen behalten ihre Zählweise | `CALENDAR` | Nein |
 
-!!! info "Arbeitstage brauchen einen Feiertagskalender"
-    Eine Frist, die in Arbeitstagen rechnet, überspringt immer Wochenenden. Feiertage überspringt sie nur, wenn am Projekt ein Feiertagskalender gewählt ist. Ohne einen solchen Kalender zählt sie Feiertage wie gewöhnliche Arbeitstage.
+!!! info "Werktage brauchen einen Feiertagskalender"
+    Eine Frist, die in Werktagen rechnet, überspringt immer Wochenenden. Feiertage überspringt sie nur, wenn am Projekt ein Feiertagskalender gewählt ist. Ohne einen solchen Kalender zählt sie Feiertage wie gewöhnliche Werktage.
 
 ## Laufzeiteinstellungen (DB) vs. Umgebung
 

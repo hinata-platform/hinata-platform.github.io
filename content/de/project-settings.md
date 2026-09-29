@@ -41,7 +41,7 @@ Eine Person sieht ein Projekt nur, wenn ihr Team oder eine direkte Mitgliedschaf
 
 ## Fristen
 
-Sind [Projektvorlagen](/de/project-templates.html) eingeschaltet, legst du unter **Fristen zählen in** fest, ob neue relative Fristen in diesem Projekt in **Kalendertagen** oder **Arbeitstagen** zählen. Ohne eigene Wahl folgt das Projekt dem Standard der Organisation, den Organisationsadmins auf der Seite [Organisation](/de/organization.html) setzen. Dieselbe Wahl gibt es beim Anlegen und beim Kopieren eines Projekts.
+Sind [Projektvorlagen](/de/project-templates.html) eingeschaltet, legst du unter **Fristen zählen in** fest, ob neue relative Fristen in diesem Projekt in **Kalendertagen** oder **Werktagen** zählen. Ohne eigene Wahl folgt das Projekt dem Standard der Organisation, den Organisationsadmins auf der Seite [Organisation](/de/organization.html) setzen. Dieselbe Wahl gibt es beim Anlegen und beim Kopieren eines Projekts.
 
 Die Einstellung wählt nur vor, womit eine neue Frist startet. Bestehende Fristen behalten ihre Zählweise und verschieben sich nicht.
 

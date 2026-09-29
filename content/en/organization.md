@@ -35,7 +35,7 @@ As an organization admin you find an **Organization** row in your **Settings**. 
 - **Holidays**: the holiday calendars, kept by hand or imported from a calendar address.
 - **Time tags**, **lock exceptions** and days opened for single people.
 - **Billing**: rates, costs and invoices.
-- **Deadlines**: whether new relative deadlines count calendar days or working days.
+- **Day count**: whether the organization counts in calendar days or working days, for new relative deadlines and as the default for notification times.
 - **Log**: the audit log records about working time, timesheets and absences. Administrators do not see them. More under [The organization's log](#the-organizations-log).
 
 There are day-to-day duties too: organization admins decide timesheets and absence requests when nobody else is there to do it, open locked days on request and may import entries for other people.
@@ -56,7 +56,7 @@ Time reports, exports, grouped summaries and timesheet approvals show you hours,
 
 ## Default for relative deadlines
 
-With [project templates](/en/project-templates.html) on, a deadline can be an offset from the project's event date, such as "4 weeks before". Under **Deadlines** you choose whether such deadlines count **calendar days** or **working days** for the whole organization. Until you choose, the server default applies, which is calendar days (see `HINATA_PROJECT_TEMPLATES_DEFAULT_BASIS` in the [configuration reference](/en/configuration.html#project-templates-and-relative-deadlines)).
+With [project templates](/en/project-templates.html) on, a deadline can be an offset from the project's event date, such as "4 weeks before". Under **Day count** you choose whether the organization counts in **calendar days** or **working days**. It applies to such deadlines and also as the default for [notification times](/en/guide-notifications.html#when-things-reach-you): with working days, everybody without a choice of their own gets e-mail and push only on working days from 9:00 to 17:00, with calendar days at any time. Until you choose, the server default applies, which is calendar days (see `HINATA_PROJECT_TEMPLATES_DEFAULT_BASIS` in the [configuration reference](/en/configuration.html#project-templates-and-relative-deadlines)).
 
 Each project can differ: when it is created, when it is copied, or later in its settings under **Deadlines count in**.
 

@@ -35,7 +35,7 @@ Als Organisationsadmin findest du in deinen **Einstellungen** die Zeile **Organi
 - **Feiertage**: die Feiertagskalender, von Hand gepflegt oder aus einer Kalenderadresse importiert.
 - **Zeit-Tags**, **Ausnahmen vom Sperrdatum** und für einzelne Personen geöffnete Tage.
 - **Abrechnung**: Sätze, Kosten und Rechnungen.
-- **Fristen**: ob neue relative Fristen in Kalendertagen oder Arbeitstagen zählen.
+- **Zählweise**: ob die Organisation in Kalendertagen oder Werktagen rechnet, für neue relative Fristen und als Standard für Benachrichtigungszeiten.
 - **Protokoll**: die Einträge des Audit-Protokolls zu Arbeitszeit, Stundenzetteln und Abwesenheiten. Administratoren sehen sie nicht. Mehr dazu unter [Das Protokoll der Organisation](#das-protokoll-der-organisation).
 
 Dazu kommen Aufgaben im Alltag: Organisationsadmins entscheiden Stundenzettel und Abwesenheitsanträge, wenn sonst niemand dafür da ist, öffnen gesperrte Tage auf Anfrage und dürfen Einträge für andere importieren.
@@ -56,7 +56,7 @@ In Zeitberichten, Exporten, gruppierten Übersichten und bei der Freigabe von St
 
 ## Standard für relative Fristen
 
-Mit eingeschalteten [Projektvorlagen](/de/project-templates.html) kann eine Frist als Versatz zum Termin des Projekts gelten, etwa „4 Wochen vorher“. Unter **Fristen** legst du fest, ob solche Fristen für die ganze Organisation in **Kalendertagen** oder **Arbeitstagen** zählen. Solange du nichts wählst, gilt der Standard des Servers, also Kalendertage (siehe `HINATA_PROJECT_TEMPLATES_DEFAULT_BASIS` in der [Konfigurationsreferenz](/de/configuration.html#projektvorlagen-und-relative-fristen)).
+Mit eingeschalteten [Projektvorlagen](/de/project-templates.html) kann eine Frist als Versatz zum Termin des Projekts gelten, etwa „4 Wochen vorher“. Unter **Zählweise** legst du fest, ob die Organisation in **Kalendertagen** oder **Werktagen** rechnet. Das gilt für solche Fristen und zugleich als Standard für die [Benachrichtigungszeiten](/de/guide-notifications.html#wann-dich-etwas-erreicht): Bei Werktagen bekommt jede Person ohne eigene Wahl E-Mail und Push nur an Werktagen von 9 bis 17 Uhr, bei Kalendertagen jederzeit. Solange du nichts wählst, gilt der Standard des Servers, also Kalendertage (siehe `HINATA_PROJECT_TEMPLATES_DEFAULT_BASIS` in der [Konfigurationsreferenz](/de/configuration.html#projektvorlagen-und-relative-fristen)).
 
 Jedes Projekt kann davon abweichen: beim Anlegen, beim Kopieren oder später in seinen Einstellungen unter **Fristen zählen in**.
 
