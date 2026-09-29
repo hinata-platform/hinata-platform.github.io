@@ -101,16 +101,18 @@ Security alerts cannot be switched off. Their row shows a padlock instead of a s
 !!! tip "Spend two minutes once"
     Turn off the two or three rows you know you will never act on. Then every notice means something.
 
-### Which days reach you
+### When things reach you
 
-Under **Notification days** you choose the weekdays on which e-mail and push may reach you.
+Under **Notification times** you choose when e-mail and push may reach you.
 
-- **By default** these are the working days where you live. Hinata works them out from your language region or your time zone. In most places that is Monday to Friday, in Saudi Arabia for example Sunday to Thursday. **Use default** brings that choice back.
-- **On other days** no e-mail and no push arrives. The bell in the app still shows everything.
-- **Security alerts and important notices**, for example about expiring leave, always arrive, whatever the day. The hint below the setting says so too.
+- **Always**: everything arrives at once, on any day and at any time.
+- **Custom**: choose the weekdays, then **From** and **Until**. The first time you switch, they show the working days where you live and 9:00 to 17:00. The times are in your time zone. A window over midnight, such as 22:00 to 6:00, belongs to the day it starts on.
+- **By default** your organisation decides: if it counts in working days, everybody without a choice of their own gets "Custom" with the working days and 9:00 to 17:00. Otherwise it is "Always". Hinata works the working days out from your language region or your time zone, in most places Monday to Friday, in Saudi Arabia for example Sunday to Thursday. **Use default** brings the default back.
+- **Outside your times** nothing is lost. The bell in the app shows everything at once. E-mail and push wait and arrive together when your next window begins, as one e-mail and one push. Whatever you already read in the app is left out.
+- **Security alerts and important notices**, for example about expiring leave, always arrive, whenever that is.
 - At least one day stays on. To get nothing at all, turn off the channels above.
 
-After the update to a version with notification days, you get one note in the bell that points you to the new setting.
+If you had picked your own notification days before, they stay, for the whole day. After the update you get one note in the bell that points you to the new setting.
 
 ## Watch an issue to opt in
 
@@ -157,7 +159,7 @@ Turn it off in the **Weekly digest** row of your settings.
 The most common causes are at the top.
 
 1. **Check the master switch.** A silenced channel silences every event, and the app says so at the switch.
-2. **Check your notification days.** On days you have not selected, no e-mail and no push arrives. The bell still has everything.
+2. **Check your notification times.** Outside your times, e-mail and push wait and arrive together when your next window begins. The bell still has everything at once.
 3. **Check the event's row.** Comments and status changes are off for one channel each by default.
 4. **Check that you are involved.** You hear about issues as assignee, reporter or watcher. Being in the project is not enough.
 5. **For push: check your device's permission.** The app asks once at first sign-in. If you declined, allow it in the system settings. Check [Download](/en/download.html) to see whether your platform supports push.

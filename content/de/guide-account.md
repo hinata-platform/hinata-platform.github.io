@@ -143,7 +143,7 @@ Die Karte **Darstellung & App** enthält:
   gilt sofort für die Oberfläche und für E-Mails und Fehlermeldungen des
   Servers. Mit Arabisch läuft das Layout von rechts nach links. Aus der Region
   deiner Sprache (oder aus deiner Zeitzone) leitet Hinata auch ab, welche
-  [Benachrichtigungstage](/de/guide-notifications.html#an-welchen-tagen-dich-etwas-erreicht)
+  [Werktage für deine Benachrichtigungszeiten](/de/guide-notifications.html#wann-dich-etwas-erreicht)
   voreingestellt sind.
 - **Darstellung**: **System**, **Hell** oder **Dunkel**. System folgt deinem
   Betriebssystem.
@@ -209,7 +209,7 @@ vorher jemand anderen zum Administrator.
 
 ## Nächste Schritte
 
-- [Auf dem Laufenden bleiben](/de/guide-notifications.html): Benachrichtigungen und Benachrichtigungstage einstellen
+- [Auf dem Laufenden bleiben](/de/guide-notifications.html): Benachrichtigungen und Benachrichtigungszeiten einstellen
 - [Erste Schritte](/de/guide-start.html): Anmelden und der erste Tag
 - [Auf dem Handy](/de/guide-mobile.html): mobiles Layout und mehrere Server
 - [Authentifizierung](/de/authentication.html): Passwörter und 2FA aus Sicht des Betreibers
