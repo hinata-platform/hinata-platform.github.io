@@ -34,6 +34,7 @@ In **Settings → Notifications** each user gets a matrix: one row per event typ
 
 - Two master switches turn e-mail and push on or off completely.
 - The matrix handles the rest. For example: comment e-mails off, mention e-mails on. Or push for assignments but not for digests.
+- **Notification days** set the weekdays on which e-mail and push may arrive. The default is the working days where the person lives, worked out from their language region or time zone. In most places that is Monday to Friday, in Saudi Arabia for example Sunday to Thursday. On other days e-mail and push stay quiet, the bell still shows everything, and security messages and important notices, such as expiring leave, always arrive. After the update everyone gets one note in the bell about the new setting.
 
 !!! tip "Set it once, forget it"
     Ask new team members to spend thirty seconds on their matrix during onboarding. People trust a tool with well-tuned notifications. Otherwise they tend to mute it entirely.

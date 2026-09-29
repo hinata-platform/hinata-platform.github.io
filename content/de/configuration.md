@@ -198,7 +198,7 @@ setzen. Diese Werte überschreiben die Umgebung. Siehe
 
 ## Kalender, Feiertage und Arbeitszeiten
 
-Die Administration pflegt Feiertagskalender im Adminbereich und kann ein Jahr Feiertage aus einer Kalenderadresse importieren, zum Beispiel aus einem Feiertagskalender von Google, Apple oder Outlook. Diese Adresse ruft der Server selbst ab. Mit einer privaten oder Loopback-Adresse verbindet er sich nie, egal was in den Listen unten steht. Die Arbeitszeiten plant jede Person in ihren Einstellungen, die Abwesenheiten in der Zeiterfassung. Das alles setzt die erweiterte Zeiterfassung voraus (`HINATA_TIME_TRACKING_ADVANCED_ENABLED`). Siehe [Zeit erfassen](/de/guide-time.html).
+Organisationsadmins pflegen Feiertagskalender auf der Seite [Organisation](/de/organization.html) und können ein Jahr Feiertage aus einer Kalenderadresse importieren, zum Beispiel aus einem Feiertagskalender von Google, Apple oder Outlook. Diese Adresse ruft der Server selbst ab. Mit einer privaten oder Loopback-Adresse verbindet er sich nie, egal was in den Listen unten steht. Die Arbeitszeiten plant jede Person in ihren Einstellungen, die Abwesenheiten in der Zeiterfassung. Das alles setzt die erweiterte Zeiterfassung voraus (`HINATA_TIME_TRACKING_ADVANCED_ENABLED`). Siehe [Zeit erfassen](/de/guide-time.html).
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
@@ -206,19 +206,19 @@ Die Administration pflegt Feiertagskalender im Adminbereich und kann ein Jahr Fe
 | `HINATA_ICS_ALLOWED_HOSTS` | Kommagetrennte Hosts, von denen Kalender abgerufen werden dürfen: ein Hostname oder `*.example.org` für dessen Subdomains. Leer heißt jeder öffentliche Host | *(leer)* | Nein |
 | `HINATA_ICS_DENIED_HOSTS` | Kommagetrennte Hosts, von denen nie abgerufen wird, in derselben Schreibweise. Wird vor der Erlaubnisliste geprüft | *(leer)* | Nein |
 | `HINATA_AVAILABILITY_DEFAULT_WEEKDAY_MINUTES` | Geplante Minuten je Wochentag, beginnend mit Montag, für alle, die keine eigenen Stunden festgelegt haben | `480,480,480,480,480,0,0` | Nein |
-| `HINATA_TIME_TRACKING_ABSENCE_MANAGEMENT_ENABLED` | Schaltet die Abwesenheitsverwaltung ein: Arten, Ansprüche, Konten, Anträge und Krankmeldungen. Setzt die erweiterte Zeiterfassung voraus. Der Schalter unter **Adminbereich → Zeiterfassung** hat Vorrang vor diesem Wert | `false` | Nein |
-| `HINATA_TIME_TRACKING_ABSENCE_CALENDAR_VISIBILITY` | Der Team-Abwesenheitskalender: `OFF`, `BUSY_ONLY` (nur, dass jemand abwesend ist) oder `TYPE` (die Art, Krankheit nie). Wirkt nur mit eingeschalteter Abwesenheitsverwaltung. Die Auswahl unter **Adminbereich → Zeiterfassung** hat Vorrang vor diesem Wert | `OFF` | Nein |
-| `HINATA_TIME_TRACKING_WORKLOAD_REPORTS_ENABLED` | Schaltet den Auslastungsbericht unter **Zeiterfassung → Berichte** ein: Kapazität gegen gebuchte Zeit je Person, nur für Admins und Projektleitungen. Setzt die erweiterte Zeiterfassung voraus. Der Schalter unter **Adminbereich → Zeiterfassung** hat Vorrang vor diesem Wert. Siehe [Datenschutz der Zeiterfassung](/de/time-tracking-privacy.html) | `false` | Nein |
+| `HINATA_TIME_TRACKING_ABSENCE_MANAGEMENT_ENABLED` | Schaltet die Abwesenheitsverwaltung ein: Arten, Ansprüche, Konten, Anträge und Krankmeldungen. Setzt die erweiterte Zeiterfassung voraus. Der Schalter unter **Organisation → Zeiterfassung** hat Vorrang vor diesem Wert | `false` | Nein |
+| `HINATA_TIME_TRACKING_ABSENCE_CALENDAR_VISIBILITY` | Der Team-Abwesenheitskalender: `OFF`, `BUSY_ONLY` (nur, dass jemand abwesend ist) oder `TYPE` (die Art, Krankheit nie). Wirkt nur mit eingeschalteter Abwesenheitsverwaltung. Die Auswahl unter **Organisation → Zeiterfassung** hat Vorrang vor diesem Wert | `OFF` | Nein |
+| `HINATA_TIME_TRACKING_WORKLOAD_REPORTS_ENABLED` | Schaltet den Auslastungsbericht unter **Zeiterfassung → Berichte** ein: Kapazität gegen gebuchte Zeit je Person, nur für Organisationsadmins und Projektleitungen. Setzt die erweiterte Zeiterfassung voraus. Der Schalter unter **Organisation → Zeiterfassung** hat Vorrang vor diesem Wert. Siehe [Datenschutz der Zeiterfassung](/de/time-tracking-privacy.html) | `false` | Nein |
 | `HINATA_RATE_LIMIT_TIME_OFF_REQUESTS_PER_DAY` | Abwesenheitsanträge und Krankmeldungen je Person und Tag. Ein Tag statt einer Minute, weil ein Antrag eine bewusste Handlung ist und ein Minutenbudget eine Schleife trotzdem durchließe | `50` | Nein |
 
 !!! info "Wer die Abwesenheiten führt"
-    Ohne weiteres Zutun führt sie die Administration. Unter **Adminbereich → Zeiterfassung** lassen sich daneben einzelne Personen als **Abwesenheitsverwaltung** benennen — sie pflegen Arten, teilen Ansprüche zu, buchen Korrekturen und entscheiden Anträge, ohne sonst Administrationsrechte zu haben. Der Weg dorthin steht in ihren eigenen Einstellungen, nicht im Adminbereich. Die Liste ist bewusst leer voreingestellt: Wer in ihr steht, sieht Krankheitstage als Krankheitstage (Art. 9 DSGVO), und der engere Kreis ist die richtige Vorgabe.
+    Ohne weiteres Zutun führen sie die Organisationsadmins. Unter **Organisation → Zeiterfassung** lassen sich daneben einzelne Personen als **Abwesenheitsverwaltung** benennen. Sie pflegen Arten, teilen Ansprüche zu, buchen Korrekturen und entscheiden Anträge, ohne sonst Adminrechte zu haben. Der Weg dorthin steht in ihren eigenen Einstellungen. Die Liste ist bewusst leer voreingestellt: Wer in ihr steht, sieht Krankheitstage als Krankheitstage (Art. 9 DSGVO), und der engere Kreis ist die richtige Vorgabe. Sobald jemand benannt ist, sehen Organisationsadmins bei einer Krankheit nur noch, dass die Person abwesend ist, aber nicht, warum. Ohne benannte Personen führen die Organisationsadmins die Abwesenheiten weiter selbst.
 
 !!! info "Das Limit sperrt keine Krankmeldung"
     Eine Krankmeldung zählt auf dasselbe Tagesbudget, wird davon aber nie abgewiesen: § 5 EFZG kennt eine Anzeige, keine Erlaubnis. Erreicht jemand die Grenze, werden nur weitere **Anträge** abgelehnt.
 
 !!! warning "Den Schlüssel aufbewahren"
-    Eine Kalenderadresse, die mit einem `HINATA_ICS_SECRET` verschlüsselt wurde, lässt sich mit einem anderen nicht lesen. Ändert sich der Schlüssel, scheitern Importe aus gespeicherten Adressen, bis die Administration die Adresse neu einträgt. Bereits importierte Feiertage bleiben.
+    Eine Kalenderadresse, die mit einem `HINATA_ICS_SECRET` verschlüsselt wurde, lässt sich mit einem anderen nicht lesen. Ändert sich der Schlüssel, scheitern Importe aus gespeicherten Adressen, bis ein Organisationsadmin die Adresse neu einträgt. Bereits importierte Feiertage bleiben.
 
 ## Projektvorlagen und relative Fristen
 
@@ -227,9 +227,10 @@ Ein Projekt lässt sich kopieren, als Vorlage kennzeichnen und mit einem Termin 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
 | `HINATA_PROJECT_TEMPLATES_ENABLED` | Schaltet Projektvorlagen und relative Fristen ein: Projekt kopieren, als Vorlage kennzeichnen, Projekt aus einer Vorlage anlegen und eine Frist als Versatz zum Termin des Projekts pflegen. Der Schalter unter **Adminbereich → Plattform** hat Vorrang vor diesem Wert | `false` | Nein |
+| `HINATA_PROJECT_TEMPLATES_DEFAULT_BASIS` | Worin neue relative Fristen zählen, solange weder die Organisation noch das Projekt etwas anderes festlegt: `CALENDAR` (Kalendertage) oder `WORKING` (Arbeitstage). Organisationsadmins wählen den Standard auf der Seite [Organisation](/de/organization.html), jedes Projekt kann davon abweichen. Bestehende Fristen behalten ihre Zählweise | `CALENDAR` | Nein |
 
-!!! info "Werktage brauchen einen Feiertagskalender"
-    Eine Frist, die in Werktagen rechnet, überspringt immer Wochenenden. Feiertage überspringt sie nur, wenn am Projekt ein Feiertagskalender gewählt ist. Ohne einen solchen Kalender zählt sie Feiertage wie gewöhnliche Werktage.
+!!! info "Arbeitstage brauchen einen Feiertagskalender"
+    Eine Frist, die in Arbeitstagen rechnet, überspringt immer Wochenenden. Feiertage überspringt sie nur, wenn am Projekt ein Feiertagskalender gewählt ist. Ohne einen solchen Kalender zählt sie Feiertage wie gewöhnliche Arbeitstage.
 
 ## Laufzeiteinstellungen (DB) vs. Umgebung
 
@@ -245,12 +246,18 @@ der App, während der Server läuft:
 
 - **SSO**-Anbieter: OpenID Connect, OAuth 2.0, SAML 2.0, LDAP
   ([SSO](/de/sso.html))
-- IMAP-Abruf für **E-Mail → Ticket** ([E-Mail zu Vorgang](/de/email-to-ticket.html))
+- IMAP-Abruf für **E-Mail → Ticket** ([E-Mail zu Vorgang](/de/email-to-ticket.html)).
+  Mails leiten Administratoren nur in Projekte, in denen sie selbst Mitglied sind
 - **Push** über das Gateway
 - OAuth-Zugangsdaten der **Git-Integration** (die `HINATA_GIT_*`-Werte oben)
 - **Plattform-Einstellungen** unter Admin → Plattform: `minVersion`, die
   Datenschutz-URL, wie sich Menschen anmelden (`localAuthEnabled`,
   `registrationEnabled`, `requireAdminApproval`) und was die Plattform anbietet
+
+Zeiterfassung, Abwesenheiten, Feiertage und der Standard für relative Fristen
+liegen ebenfalls in MongoDB. Sie gehören aber nicht zum Adminbereich, sondern
+zur Seite [Organisation](/de/organization.html), die Organisationsadmins
+bearbeiten.
 
 Dafür gelten drei Regeln:
 

@@ -101,7 +101,7 @@ When the first number gets close to the second, things are getting tight. A time
 ### Whose time you can see
 
 - You only see **your own** work. The server refuses requests for somebody else's hours.
-- Administrators see every row. They get a searchable filter for the person and one for the project.
+- Organization admins see every row. They get a searchable filter for the person and one for the project. Issue titles, issue keys, descriptions and project names they only see for projects they are a member of.
 
 Time on an issue that has since moved, or whose project is gone, is still yours. It shows under **Unassigned**.
 
@@ -118,7 +118,7 @@ Time on an issue that has since moved, or whose project is gone, is still yours.
 MOB-42 #time 2h 30m
 ```
 
-Durations understand `w`, `d`, `h` and `m`. A day is 8 hours and a week is 5 days, so `1d 4h` means twelve hours. An administrator connects the repository, see [Git integration](/en/git-integration.html).
+Durations understand `w`, `d`, `h` and `m`. A day is 8 hours and a week is 5 days, so `1d 4h` means twelve hours. A project lead connects the repository, see [Git integration](/en/git-integration.html).
 
 The entry belongs to **the author of the commit**, matched by the author e-mail. It shows on their timesheet, in their focus time and in the Time per activity report. It is dated the day the commit was authored, in that person's time zone. Its note holds the short sha and the commit subject. Without an explicit activity type it counts as **Development**.
 
@@ -135,20 +135,20 @@ Every entry on the card and in the **All entries** sheet has a menu on the right
 ### Whose entries you may change
 
 - **Your own**, always. You can edit and delete them.
-- **Somebody else's**, if you lead the project or are an administrator. You may delete them but not edit them, so nothing appears under a name that the person did not log. Ask them to log it again. Every removal goes to the audit log with both names.
+- **Somebody else's**, if you lead the project or are an organization admin. You may delete them but not edit them, so nothing appears under a name that the person did not log. Ask them to log it again. Every removal goes to the audit log with both names.
 
 !!! tip "Logged too little?"
     Log the missing time as a second entry. Entries on the same issue and day add up. Editing is for a duration that is plainly wrong.
 
-Entries labelled **Smart commits (pre-2.0)** come from older versions that booked time straight from commits with `#time`. They carry no name but still count. Only a lead or an administrator can remove them.
+Entries labelled **Smart commits (pre-2.0)** come from older versions that booked time straight from commits with `#time`. They carry no name but still count. Only a lead or an organization admin can remove them.
 
 ## Working hours, absences and holidays
 
-When your administrators have switched on extended time tracking, your **Settings** have a section **Working hours**, and time tracking has a view **Absences**. Both are planning. You can record time on every day, holidays and days you are away included.
+When your organization admins have switched on extended time tracking, your **Settings** have a section **Working hours**, and time tracking has a view **Absences**. Both are planning. You can record time on every day, holidays and days you are away included.
 
 - **Planned hours** are your hours per weekday. Until you set your own, the default of the server applies. A change applies from the date you pick, so earlier weeks keep the hours they had. This is also where you pick the holiday calendar you follow.
 - **Absences** are vacation, sick leave or other time away, for a single day or a span. A single day can be half a day. The note is optional. Only you and whoever keeps absences see it. You find and keep them in time tracking under **Absences**.
-- **Holidays** come from the calendars your administrators keep in the Admin area under **Holidays**. They enter days by hand or import a year from a calendar address.
+- **Holidays** come from the calendars your organization admins keep on the [Organization](/en/organization.html) page under **Holidays**. They enter days by hand or import a year from a calendar address.
 
 What changes on screen:
 
@@ -171,13 +171,13 @@ A tap on an absence, on a band in the calendar or on a mark in the list or the t
 
 ## Absence balances
 
-If your administrators also turned on **absence management**, the **Balances** pill under **Absences** shows what you are entitled to this year.
+If your organization admins also turned on **absence management**, the **Balances** pill under **Absences** shows what you are entitled to this year.
 
 - **Balances** show, per absence type, what you are entitled to, what you have taken, what is planned and what is left. A type without a quota — sick leave, for instance — shows what went on it this year instead of a number: continued pay when ill is not an entitlement measured in days.
 - **Journal** lists every movement on a balance, with the day it takes effect and the reason, where there was one. Your balance is made from that list rather than from a stored number, which is why every figure on it can be traced back.
 - The days themselves are on the **Mine** pill, past ones as well as coming ones.
 
-Only the people it concerns can see this: you, and whoever your organisation named to keep absences.
+Only the people it concerns can see this: you, and whoever your organization named to keep absences.
 
 !!! info "A number that is not there yet"
     **Not granted yet** against a type means no entitlement has been entered for this year. It is not an error and says nothing about your contract — only that the year has not been granted.
@@ -203,6 +203,8 @@ You do not upload a certificate here, and that is deliberate: since 2023 an empl
 
 If the sickness falls on days already approved as leave, those days go back to your balance by themselves and the leave is shortened (§ 9 BUrlG). Whoever decided the leave learns that it got shorter, never why.
 
+Who sees a sick report as sickness depends on whether your organization named people to keep absences. If it did, only those people see the sickness. Organization admins then only see that you are away, not why. If nobody is named, organization admins keep absences themselves and see them in full.
+
 ## Requests and the inbox
 
 **Requests** lists what you asked for and what became of it: waiting, approved, rejected, withdrawn or cancelled. While nobody has decided you can **withdraw** a request or **edit** it: the span, the half days, the note and the stand-in can change, and the days are worked out again. Change the type while you are there and the request goes to the people who decide that type, while the earlier ones learn it no longer concerns them. Once it is approved and still entirely ahead of you, you can **cancel** it yourself — the days come back and whoever decided is told. Once the absence has begun it takes whoever keeps absences, because by then it is a record of what happened rather than a plan.
@@ -211,20 +213,20 @@ If the sickness falls on days already approved as leave, those days go back to y
 
 **A rejection needs a reason.** § 7 (1) of the German Federal Leave Act allows a refusal only for urgent operational reasons or somebody else's prior claim, and a refusal that names neither is one nobody can check. The reason reaches the person who asked and stays in the request's history.
 
-**Nobody decides their own request**, administrators included. Whoever files one is struck from the circle of people who could decide it; if that leaves nobody, the request goes to the administrators. A request sitting unanswered in a visible inbox is a problem somebody can act on — a request that disappeared is not.
+**Nobody decides their own request**, organization admins included. Whoever files one is struck from the circle of people who could decide it. If that leaves nobody, the request goes to the organization admins. A request sitting unanswered in a visible inbox is a problem somebody can act on. A request that disappeared is not.
 
 Where a type is set to approve automatically, the request is decided as it arrives, you are told, and the history records that nobody judged it.
 
 !!! info "And if nobody is left?"
-    In an organisation of one the list of recipients stays empty: whoever files the request is the only person who could decide it, and nobody decides their own. The request is not lost for that. Anybody who keeps absences may decide any request, one without recipients included — so as soon as a second person joins, or somebody is named to keep absences, it appears in their inbox.
+    In an organization of one the list of recipients stays empty: whoever files the request is the only person who could decide it, and nobody decides their own. The request is not lost for that. Anybody who keeps absences may decide any request, one without recipients included. So as soon as a second person joins, or somebody is named to keep absences, it appears in their inbox.
 
 ## Absences in your team
 
-If the administration has switched on the **team absence calendar**, the absences in time tracking gain a fifth part: **Team**. It shows who in a group is away when, as a planning view rather than an attendance register. You see spans of days, never times of day, and people are sorted by name, never by who was away the most.
+If the organization admins have switched on the **team absence calendar**, the absences in time tracking gain a fifth part: **Team**. It shows who in a group is away when, as a planning view rather than an attendance register. You see spans of days, never times of day, and people are sorted by name, never by who was away the most.
 
 At the top you pick the group: **My projects**, one of your teams, or a project. A person appears in a group only if they recorded time on one of its projects themselves. Being a member is not enough, because whoever creates a project or a team can add anybody to it without asking. You are always in a group you belong to, and absence keepers see every current member. Beside it you switch between **Month** and **Quarter** and page with the arrows.
 
-What you learn about an absence is set by the administration, and every absence type can narrow it further:
+What you learn about an absence is set by the organization admins, and every absence type can narrow it further:
 
 - **Only that somebody is away:** a neutral bar with the word *Away*.
 - **The absence type:** the bar carries the type's icon and name. A type kept to the person themselves does not appear for anybody else.
@@ -240,7 +242,7 @@ On the dashboard, the **Away today** card lists up to five names from your proje
 
 ## Keeping types and entitlements
 
-The two pages below are for whoever keeps absences. That need not be an administrator: an organisation can name people for it, and they find their way there from their own settings.
+The two pages below are for whoever keeps absences. That need not be an organization admin: they can name people for it, and they find their way there from their own settings.
 
 **Absence types** is the catalogue. Each type sets whether it is paid, whether it counts against a balance, how an entitlement accrues, what carries into next year, who can see it and who approves it. The four built-in types always remain, and their kind cannot be changed, because time tracking treats them by it. A type that has been used is retired rather than deleted — otherwise past years would lose what they refer to.
 
@@ -261,8 +263,8 @@ Under **Time tracking → Reports** you look at the time that was logged. At the
 A report only counts what you are allowed to see anyway.
 
 - **Totals** per project, activity, tag, issue or period include your own entries and every entry of the projects you can see. Every member already sees on an issue that time was booked on it.
-- **People** appear only on your own entries. If you lead a project, its members are added, but only when the administration has switched on the policy **Leads see members' entries**. That applies to grouping by person or team, to the list of entries and to every export.
-- The administration sees everything.
+- **People** appear only on your own entries. If you lead a project, its members are added, but only when the organization admins have switched on the policy **Leads see members' entries**. That applies to grouping by person or team, to the list of entries and to every export.
+- **Organization admins** see hours, person and project key for everyone. Issue titles, issue keys, descriptions and project names they only see for projects they are a member of, and for their own entries. The same goes for every export. The description search only searches entries they may read.
 
 Filtering by people, teams, search term or approval therefore only takes effect where you may see the people's entries. The filter sheet says so too.
 
@@ -274,7 +276,7 @@ The summary starts with the totals: **Total**, **Billable** and the number of **
 - You switch the chart at the top right of its card. Groups with names show as **Bars** or as a ring of **Shares**, days, weeks and months as columns or as a **Trend**. Switching does not ask the server again.
 - Tapping a group opens its entries: the same report, narrowed to that group.
 
-Each entry is rounded on its own, not the total at the end. The default is **As in the rules**, the rounding the administration set for time tracking. In the filter sheet you can round differently for one report, for example up to 15 minutes. That changes nothing about the entries themselves.
+Each entry is rounded on its own, not the total at the end. The default is **As in the rules**, the rounding the organization admins set for time tracking. In the filter sheet you can round differently for one report, for example up to 15 minutes. That changes nothing about the entries themselves.
 
 ### Entries
 
@@ -282,7 +284,7 @@ Each entry is rounded on its own, not the total at the end. The default is **As 
 
 ### Workload
 
-**Workload** exists only when the administration has switched on workload reports, and only for admins and project leads. For every person it puts the **Capacity** in the period next to what they **Booked**, and the **Difference**. Capacity is the planned hours minus public holidays and absences. How much of it was free or away stands under the name.
+**Workload** exists only when the organization admins have switched on workload reports, and only for organization admins and project leads. For every person it puts the **Capacity** in the period next to what they **Booked**, and the **Difference**. Capacity is the planned hours minus public holidays and absences. How much of it was free or away stands under the name.
 
 - At the top you pick the group: **My projects** or a single project you lead.
 - A lead sees under **Booked** only the time on projects they lead.
@@ -295,7 +297,7 @@ Each entry is rounded on its own, not the total at the end. The default is **As 
 
 With **Export** you get the report as **PDF**, **Excel (XLSX)** or **CSV**, or you **Print** it. The export takes the report as it stands on screen, with period, filters, grouping and rounding. PDF and Excel contain the totals, the groups and the entries, CSV only the entries.
 
-A file has a ceiling: 5,000 entries in a PDF, 50,000 in Excel and 100,000 in CSV. When the report goes past it, the file is cut short, says so at its end, and the app tells you when it saves it. Narrow the period or the filters then. Every export is in the audit log, with format, number of rows and a fingerprint of the filters.
+A file has a ceiling: 5,000 entries in a PDF, 50,000 in Excel and 100,000 in CSV. When the report goes past it, the file is cut short, says so at its end, and the app tells you when it saves it. Narrow the period or the filters then. Every export is in the audit log, with format, number of rows and a fingerprint of the filters. Only organization admins see these records, in the log on the [Organization](/en/organization.html) page.
 
 You still get your own entries as CSV under Art. 20 GDPR in **Settings → Time tracking**. The report export does not replace that. See [Time tracking privacy](/en/time-tracking-privacy.html).
 
@@ -308,7 +310,7 @@ With **Import CSV** you bring in entries from a file, for example from another t
 3. Look at the preview. Every row is checked like a typed entry: project and issue, lock date, approvals, required fields and allowed tags. Rows with errors are listed below with their line number and the reason.
 4. Import. Only the rows that passed are written, all of them or none. If the import breaks off half way, Hinata takes back the entries it had already written.
 
-You import your own entries. The administration can also import for others through **Import for**; that goes into the audit log.
+You import your own entries. Organization admins can also import for others through **Import for**; that goes into the audit log.
 
 ### Save, share and get reports by mail
 

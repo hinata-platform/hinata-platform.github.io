@@ -43,7 +43,7 @@ When `GET /setup/status` reports setup as incomplete, the wizard appears. You pr
 - **Admin username** and **e-mail**.
 - **Admin password:** at least 10 characters (hashed with BCrypt, strength 12).
 
-Submitting calls `POST /api/v1/setup`, which creates the organization and the first `ADMIN` user in one atomic step and logs you straight in. From there you create projects and invite people, see [Projects & teams](/en/projects-teams.html).
+Submitting calls `POST /api/v1/setup`, which creates the organization and the first user in one atomic step and logs you straight in. That first user gets both roles, `ADMIN` and `ORG_ADMIN` (see [Organization](/en/organization.html)). From there you create projects and invite people, see [Projects & teams](/en/projects-teams.html).
 
 ## Non-interactive setup (automation)
 

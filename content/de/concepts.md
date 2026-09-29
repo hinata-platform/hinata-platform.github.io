@@ -17,13 +17,15 @@ Die **Organisation** ist der oberste Container auf einem Hinata-Server. Sie hat 
 
 ## Nutzer & Rollen
 
-Ein **Nutzer** ist eine Person mit Konto. Die Anmeldung läuft über lokale Zugangsdaten oder [SSO](/de/sso.html). Es gibt nur zwei Rollen:
+Ein **Nutzer** ist eine Person mit Konto. Die Anmeldung läuft über lokale Zugangsdaten oder [SSO](/de/sso.html). Auf Ebene der Plattform gibt es zwei Rollen, die unabhängig voneinander sind:
 
-- **ADMIN:** voller Zugriff, auch auf den Adminbereich (`/api/v1/admin/**` ist nur für ADMIN). Dazu gehören Servereinstellungen, Nutzer, SSO, Git-OAuth-Apps, E-Mail-Ingest und appweite Flags.
-- **Reguläre Nutzer:** alle anderen. Was sie sehen, hängt an ihrer **Teammitgliedschaft und dem Projektzugriff pro Mitglied** (siehe unten).
+- **ADMIN:** betreibt die Plattform im Adminbereich (`/api/v1/admin/**` ist nur für ADMIN). Dazu gehören Servereinstellungen, Nutzer, SSO, Git-OAuth-Apps, E-Mail-Ingest, appweite Flags und das Audit-Protokoll.
+- **ORG_ADMIN (Organisationsadmin):** verwaltet Arbeitszeit, Stundenzettel-Freigaben, Abwesenheiten, Feiertage, Zeit-Tags, Ausnahmen vom Sperrdatum, Abrechnung und den Standard für relative Fristen auf der Seite [Organisation](/de/organization.html). Kein Zugang zum Adminbereich.
+
+Alle anderen sind **reguläre Nutzer**. Welche Projekte jemand sieht, hängt an **Teammitgliedschaft und Projektzugriff pro Mitglied** (siehe unten), bei beiden Rollen genauso.
 
 !!! info "Sichtbarkeit hängt am Team"
-    Außer ADMIN gibt es keine Rollenhierarchie. Welche Projekte ein Nutzer sieht, bestimmen seine Teams. Siehe [Teams](/de/projects-teams.html).
+    Keine der beiden Rollen öffnet fremde Projekte. Auch ein Admin sieht nur Projekte, Teams, Vorgänge, Boards, Seiten und Zeiteinträge, bei denen er Mitglied ist. Welche Projekte jemand sieht, bestimmen seine Teams und direkten Mitgliedschaften. Siehe [Teams](/de/projects-teams.html).
 
 ## Projekte & Projekt-Keys
 
@@ -113,8 +115,8 @@ In der Oberfläche gibt es ein Raster mit Drag and Drop und eine Lightbox. Detai
 
 Die **Wissensdatenbank** ist ein Bereich mit hierarchischen **Markdown-Artikeln**, ähnlich wie Confluence.
 
-- Artikel sind global oder gehören zu einem Projekt.
-- Der Zugriff läuft über Teams und Projekte.
+- Eine Seite gehört zu einem Projekt, zu einem Team oder ist privat für ihren Autor.
+- Der Zugriff läuft über Projekt- und Teamrollen.
 - **Smart Links** verweisen auf echte Vorgänge und Personen.
 - Die Markdown-Symbolleiste ist dieselbe wie im Rest der App.
 - Die Daten liegen im Backend unter `/api/v1/articles`.

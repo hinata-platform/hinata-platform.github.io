@@ -76,7 +76,7 @@ Klick oben rechts auf **Neues Projekt**.
 ![Der Dialog „Neues Projekt“](/assets/img/shot-project-new.png)
 *Das Kürzel entsteht beim Tippen aus dem Namen, hier BP aus „Billing & Plans“.*
 
-Außerdem gibt es Beschreibung, Projektleitung und Farbe. Unten steht der Workflow, mit dem das Projekt startet.
+Außerdem gibt es Beschreibung, Projektleitung und Farbe. Unten steht der Workflow, mit dem das Projekt startet. Sind [Projektvorlagen](/de/project-templates.html) eingeschaltet, wählst du zusätzlich, ob neue Fristen in Kalendertagen oder Arbeitstagen zählen. Vorgewählt ist der Standard deiner Organisation.
 
 Den Vorschlag für das Kürzel kannst du überschreiben. Das Kürzel muss:
 
@@ -96,9 +96,9 @@ Du siehst ein Projekt, wenn **einer** dieser Punkte zutrifft:
 
 1. Du bist **direkt Mitglied dieses Projekts**.
 2. Ein **Team, in dem du bist, gewährt** dir dieses Projekt.
-3. Du bist **Administratorin oder Administrator der Plattform** und siehst alles.
+3. Du bist **Team-Admin eines Teams**, dem das Projekt gehört.
 
-Der Server prüft das bei jeder Anfrage. Ein Projekt ohne Zugriff taucht deshalb auch nicht in Vorgangsliste, Suche, Berichten, Boardfiltern oder Benachrichtigungen auf. Einen extra Freigabeschritt gibt es nicht: Die Gewährung ist der Zugriff.
+Auch Administratorinnen und Administratoren der Plattform sehen ein Projekt nur auf einem dieser Wege. Der Server prüft das bei jeder Anfrage. Ein Projekt ohne Zugriff taucht deshalb auch nicht in Vorgangsliste, Suche, Berichten, Boardfiltern oder Benachrichtigungen auf. Einen extra Freigabeschritt gibt es nicht: Die Gewährung ist der Zugriff.
 
 ### Was ein Team ist
 
@@ -120,7 +120,7 @@ Oben auf der Teamseite stehen „Mitglieder hinzufügen“ und „Projekt hinzuf
 
 | Rolle | Was sie darf |
 | --- | --- |
-| **Team-Admin** | Volle Kontrolle über dieses Team: Mitglieder, Projekte, Einstellungen. Dieselben Rechte wie die Plattformadministration, aber auf dieses eine Team begrenzt. Sieht immer jedes Projekt, das dem Team gehört. |
+| **Team-Admin** | Volle Kontrolle über dieses Team: Mitglieder, Projekte, Einstellungen und wer welche Seiten der Wissensdatenbank liest. Verwaltet auch die Einstellungen jedes Projekts, das dem Team gehört. Sieht immer jedes Projekt des Teams. |
 | **Mitglied** | Arbeitet an den gewährten Projekten. Kann Mitgliedschaft und Einstellungen des Teams nicht ändern. |
 
 ### Drei Stufen von Projektzugriff
@@ -137,6 +137,16 @@ Wenn du jemanden ins Team holst, legst du Rolle und Projektzugriff zusammen fest
 - **Noch keine Projekte:** Die Person ist im Team, sieht aber noch kein Projekt. Praktisch, wenn du den Zugriff später klären willst.
 
 **Team-Admins sind die Ausnahme:** Sie sehen immer alle Projekte ihres Teams, egal was eingestellt ist.
+
+### Zugriff auf die Seiten des Teams
+
+Im selben Schritt legst du fest, welche Seiten der [Wissensdatenbank](/de/guide-knowledge.html) die Person lesen darf, die dem Team gehören:
+
+- **Keine:** Die Seiten des Teams bleiben für sie geschlossen. Das ist die Voreinstellung.
+- **Alle Seiten des Teams:** auch Seiten, die später dazukommen.
+- **Ausgewählte Seiten:** nur die gewählten. Eine Seite schließt alles darunter ein, wähle also die oberste, die passt.
+
+Team-Admins lesen immer alle Seiten ihres Teams. Den Zugriff eines Mitglieds änderst du später im Reiter **Mitglieder**. Andere Mitglieder sehen dort nur, wie viele Seiten jemand bekommen hat, aber nicht welche. Welche es sind, sehen nur Team-Admins.
 
 ### Die Projekte, die einem Team gehören
 
@@ -158,7 +168,7 @@ Dann fehlt dir der Zugriff. Du hast drei Möglichkeiten:
 - Lass dich **in ein Team aufnehmen**, das es gewährt.
 - Bist du schon im Team, bitte einen Team-Admin, deinen Zugriff unter *Bestimmte Projekte* zu erweitern.
 
-Das können Team-Admins des Teams, Leitungen des Projekts und die Plattformadministration. Die Änderung wirkt sofort, ohne neue Anmeldung.
+Das können Team-Admins des Teams und Leitungen des Projekts. Die Änderung wirkt sofort, ohne neue Anmeldung.
 
 !!! warning "Zugriff zu entziehen entzieht ihn überall, auf einmal"
     Nimmst du jemanden aus einem Team oder löst ein Projekt vom Team, fällt alles weg, was diese Gewährung ermöglicht hat: Projekt, Boards, Vorgänge und Benachrichtigungen. Die Person beobachtet auch keine Vorgänge mehr, die sie nicht mehr erreicht. Die Arbeit selbst bleibt unangetastet.
@@ -177,7 +187,7 @@ Vier Personen:
 
 - **Nora** ist Mitglied von Core Platform mit *Alle Projekte*. Sie sieht `HIN` und `INF`.
 - **Sam** ist Mitglied von Design & Mobile und sieht nur `MOB`. `HIN` erscheint nirgends, auch nicht in Suche, Berichten oder Boardfiltern.
-- **Ida** ist Team-Admin von Core Platform. Sie sieht `HIN` und `INF` unabhängig von Zugriffseinstellungen. Sie leitet außerdem `INF`, deshalb zeigt ihr nur diese Karte „Einstellungen“.
+- **Ida** ist Team-Admin von Core Platform. Sie sieht `HIN` und `INF` unabhängig von Zugriffseinstellungen und kann die Einstellungen beider Projekte ändern. Weil sie `INF` außerdem leitet, darf sie dort auch Git verbinden oder das Projekt löschen.
 - **Ruben** ist Mitglied von Design & Mobile *und* direktes Mitglied von `HIN`, weil er dort einen Screen gestaltet. Er sieht `MOB` über das Team und `HIN` über die direkte Mitgliedschaft.
 
 Nach der Einrichtung braucht es dafür keine Administration mehr. Team-Admins gewähren Projekte, Leitungen konfigurieren sie.
@@ -187,7 +197,9 @@ Nach der Einrichtung braucht es dafür keine Administration mehr. Team-Admins ge
 
 ## Was eine Projektleitung ändern kann
 
-Die **Einstellungen** eines Projekts dürfen seine **Leitungen** und die Plattformadministration ändern. Normale Mitglieder sehen die Seite nicht, deshalb fehlt ihnen die Schaltfläche auf der Karte. Den Adminbereich braucht eine Leitung dafür nicht.
+Die **Einstellungen** eines Projekts dürfen seine **Leitungen** ändern und die **Team-Admins** jedes Teams, dem das Projekt gehört. Das gilt für Name, Workflow, Mitglieder, Termin und Fristen sowie die Zeit-Einstellungen. Normale Mitglieder sehen die Seite nicht, deshalb fehlt ihnen die Schaltfläche auf der Karte. Den Adminbereich braucht dafür niemand, und Plattformadmins haben hier keine eigenen Rechte.
+
+Vier Dinge bleiben bei den Leitungen: das Projekt **löschen**, **Git verbinden**, das Projekt **einem anderen Team anhängen** und festlegen, **wer das Projekt leitet**. Team-Admins können sich also nicht selbst zur Leitung machen.
 
 ![Projekteinstellungen](/assets/img/shot-project-settings.png)
 *Die Projekteinstellungen von „Hinata Platform“.*
@@ -202,7 +214,7 @@ Unter dem Kürzelfeld siehst du live, wie Vorgänge heißen werden, etwa *„Auf
 
 ### Leitung & Mitglieder
 
-- **Markiere ein Mitglied mit einem Stern, um es zur Projektleitung zu machen.**
+- **Markiere ein Mitglied mit einem Stern, um es zur Projektleitung zu machen.** Den Stern setzen und entfernen können nur Projektleitungen. Team-Admins verwalten die Mitglieder, ändern aber nicht, wer leitet.
 - Ein Projekt braucht immer mindestens eine Leitung. Ohne Leitung lässt sich nicht speichern.
 - **Mitglieder hinzufügen** durchsucht alle Personen auf dem Server. Neue Mitglieder werden benachrichtigt.
 
@@ -257,12 +269,14 @@ Die **Gefahrenzone** ganz unten hat eine Schaltfläche: **Projekt löschen**. Da
 | Aktion | Wer |
 | --- | --- |
 | In einem Projekt arbeiten: Vorgänge anlegen, kommentieren, Zeit buchen, Karten bewegen | Jedes Mitglied des Projekts |
-| Ein Projekt überhaupt sehen | Direkte Mitglieder, Personen, denen ein Team es gewährt, Plattformadministration |
-| Name, Kürzel, Stichwörter, Workflow, Mitglieder eines Projekts ändern | Projektleitungen und Plattformadministration |
-| Ein Projekt archivieren oder löschen | Projektleitungen und Plattformadministration |
-| Teammitglieder hinzufügen oder entfernen, Rolle und Zugriff setzen | Team-Admins und Plattformadministration |
-| Projekte eines Teams anhängen oder lösen | Team-Admins und Plattformadministration |
-| Name, Kürzel, Farbe oder Symbol eines Teams ändern | Team-Admins und Plattformadministration |
+| Ein Projekt überhaupt sehen | Direkte Mitglieder, Personen, denen ein Team es gewährt, Team-Admins eines Teams, dem es gehört |
+| Name, Kürzel, Stichwörter, Workflow, Mitglieder, Termin, Fristen und Zeit-Einstellungen ändern, archivieren | Projektleitungen und Team-Admins eines Teams, dem das Projekt gehört |
+| Ein Projekt löschen, Git verbinden, es einem anderen Team anhängen, festlegen, wer es leitet | Nur Projektleitungen |
+| Kommentare anderer Personen löschen | Projektleitungen und Team-Admins eines Teams, dem das Projekt gehört |
+| Teammitglieder hinzufügen oder entfernen, Rolle, Projektzugriff und Seitenzugriff setzen | Team-Admins |
+| Projekte vom Team lösen | Team-Admins |
+| Name, Kürzel, Farbe oder Symbol eines Teams ändern | Team-Admins |
+| Arbeitszeit, Abwesenheiten, Feiertage, Abrechnung | Organisationsadmins, auf der Seite [Organisation](/de/organization.html) |
 | Alles Übrige: Nutzerkonten, Anmeldung, E-Mail, Integrationen | Plattformadministration, im Adminbereich |
 
 Für die letzte Zeile wendest du dich an die Person, die den Server betreibt. Was dort liegt, steht unter [Adminbereich](/de/admin-area.html).

@@ -38,12 +38,18 @@ Zwei Dinge dazu sind wichtig:
 - **Das Datum wird trotzdem geschrieben.** Board, Zeitachse, Berichte, die Erinnerungsmail und die App lesen weiterhin ein Datum. Der Versatz ist die Regel, das Datum ihr Ergebnis.
 - **Ein Datum von Hand gewinnt.** Wer eine Frist direkt auf einen Tag setzt, löst den Versatz ab. Das steht vorher da, und die nächste Terminverschiebung lässt diese Frist dann in Ruhe.
 
-### Kalendertage oder Werktage
+### Kalendertage oder Arbeitstage
 
-Vorausgewählt sind Kalendertage: „28 Tage vorher“ sind 28 Tage, Wochenende eingeschlossen. Wer stattdessen Werktage braucht, stellt das an genau dieser Frist um.
+„28 Tage vorher“ in Kalendertagen sind 28 Tage, Wochenende eingeschlossen. In Arbeitstagen zählen Wochenenden nicht mit. Welche Zählweise bei einer neuen Frist vorgewählt ist, entscheidet sich so:
 
-!!! info "Werktage brauchen einen Feiertagskalender"
-    Werktage überspringen immer Wochenenden. Feiertage überspringen sie nur, wenn am Projekt ein Feiertagskalender gewählt ist. Ohne ihn zählt ein Feiertag wie ein gewöhnlicher Arbeitstag. Die Kalender pflegt die Administration im Adminbereich.
+1. Hat das Projekt eine eigene Wahl unter **Fristen zählen in**, gilt sie. Du setzt sie beim Anlegen, beim Kopieren oder in den Projekteinstellungen.
+2. Sonst gilt der Standard der Organisation, den Organisationsadmins auf der Seite [Organisation](/de/organization.html) festlegen.
+3. Hat auch die Organisation nichts gewählt, gilt der Standard des Servers. Ab Werk sind das Kalendertage (`HINATA_PROJECT_TEMPLATES_DEFAULT_BASIS`).
+
+An jeder einzelnen Frist kannst du trotzdem umstellen. Die Vorwahl gilt nur für neue Fristen: Bestehende behalten ihre Zählweise und verschieben sich nicht, wenn sich der Standard ändert.
+
+!!! info "Arbeitstage brauchen einen Feiertagskalender"
+    Arbeitstage überspringen immer Wochenenden. Feiertage überspringen sie nur, wenn am Projekt ein Feiertagskalender gewählt ist. Ohne ihn zählt ein Feiertag wie ein gewöhnlicher Arbeitstag. Die Kalender pflegen Organisationsadmins auf der Seite [Organisation](/de/organization.html).
 
 ## Den Termin verschieben
 
@@ -62,7 +68,7 @@ Wird der Termin gelöscht, bleiben die Fristen stehen, wo sie sind, und behalten
 
 ## Ein Projekt kopieren
 
-Auf einer Projektkarte am Rechner oder in den Projekteinstellungen: **Projekt kopieren**. Auf dem Telefon führt der Weg über die Projekteinstellungen. Du gibst Namen, Kürzel und wahlweise einen Termin an und wählst, was mitkommt.
+Auf einer Projektkarte am Rechner oder in den Projekteinstellungen: **Projekt kopieren**. Auf dem Telefon führt der Weg über die Projekteinstellungen. Du gibst Namen, Kürzel und wahlweise einen Termin an und wählst, was mitkommt. Die Kopie zählt Fristen wie das Original, außer du wählst unter **Fristen zählen in** etwas anderes.
 
 ![Das Kopier-Blatt mit den Schaltern und den Zahlen des Servers](/assets/img/shot-project-copy.png)
 *Die Zahlen unter den Schaltern kommen vom Server: wie viele Vorgänge, wie viele Dateien, wie viel.*
@@ -123,4 +129,4 @@ Mit eingeschaltetem Modul kennt der [MCP-Server](/de/mcp.html) zwei zusätzliche
 
 **Eine Frist ist beim Verschieben nicht mitgezogen.** Dann trägt sie keinen Versatz mehr — jemand hat sie von Hand gesetzt. Stelle sie im Fristfeld wieder auf „Zum Termin“.
 
-**Werktage ergeben ein anderes Datum als erwartet.** Prüfe, ob am Projekt ein Feiertagskalender gewählt ist. Ohne ihn zählen Feiertage als Arbeitstage.
+**Arbeitstage ergeben ein anderes Datum als erwartet.** Prüfe, ob am Projekt ein Feiertagskalender gewählt ist. Ohne ihn zählen Feiertage als Arbeitstage.

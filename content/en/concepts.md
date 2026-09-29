@@ -17,13 +17,15 @@ The **organization** is the top-level container on a Hinata server. It has a nam
 
 ## Users & roles
 
-A **user** is a person with an account. Sign-in uses local credentials or [SSO](/en/sso.html). There are only two roles:
+A **user** is a person with an account. Sign-in uses local credentials or [SSO](/en/sso.html). At platform level there are two roles, independent of each other:
 
-- **ADMIN:** full access, including the Admin area (`/api/v1/admin/**` is ADMIN-only). That covers server settings, users, SSO, Git OAuth apps, e-mail ingest and app-level flags.
-- **Regular users:** everyone else. What they see depends on **team membership and per-member project access** (below).
+- **ADMIN:** runs the platform in the Admin area (`/api/v1/admin/**` is ADMIN-only). That covers server settings, users, SSO, Git OAuth apps, e-mail ingest, app-level flags and the audit log.
+- **ORG_ADMIN (organization admin):** manages working time, timesheet approvals, absences, holidays, time tags, lock exceptions, billing and the default for relative deadlines on the [Organization](/en/organization.html) page. No access to the Admin area.
+
+Everyone else is a **regular user**. Which projects anyone sees depends on **team membership and per-member project access** (below), and that is the same for both roles.
 
 !!! info "Visibility is team-driven"
-    Apart from ADMIN, there is no role hierarchy. A user's teams decide which projects they see. See [Teams](/en/projects-teams.html).
+    Neither role opens other people's projects. An admin, too, only sees the projects, teams, issues, boards, pages and time entries they are a member of. A user's teams and direct memberships decide which projects they see. See [Teams](/en/projects-teams.html).
 
 ## Projects & project keys
 
@@ -113,8 +115,8 @@ The UI has a drag-and-drop grid and a lightbox. Details in [Object storage](/en/
 
 The **knowledge base** is a space of hierarchical **Markdown articles**, similar to Confluence.
 
-- Articles are global or belong to a project.
-- Access is controlled by team and project.
+- A page belongs to a project, to a team, or is private to its author.
+- Access follows project and team roles.
 - **Smart links** resolve to real issues and people.
 - The Markdown toolbar is the same as in the rest of the app.
 - Data is stored in the backend via `/api/v1/articles`.

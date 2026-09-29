@@ -18,7 +18,7 @@ Hinata wird selbst gehostet. Verantwortlicher im Sinne von Art. 4 Nr. 7 DSGVO f�
 
 Betriebsvereinbarung, Datenschutz-Folgenabschätzung und Verzeichnis von Verarbeitungstätigkeiten sind deshalb deine Dokumente. Hinata liefert die Einstellungen und die Funktionen für die Betroffenenrechte. Welche davon laufen, entscheidest du.
 
-Jede Richtlinie, die eine Aussage über eine Person möglich macht, ist ab Werk aus. Nach einem Update bleibt die Zeiterfassung so, wie sie war, bis jemand bewusst etwas einschaltet. Die Richtlinien findest du im [Adminbereich](/de/admin-area.html) unter **Zeiterfassung**. Lässt du eine leer, gilt der Wert aus der Umgebung des Servers.
+Jede Richtlinie, die eine Aussage über eine Person möglich macht, ist ab Werk aus. Nach einem Update bleibt die Zeiterfassung so, wie sie war, bis jemand bewusst etwas einschaltet. Die Richtlinien findest du auf der Seite [Organisation](/de/organization.html) unter **Zeiterfassung**. Einstellen können sie Organisationsadmins. Lässt du eine leer, gilt der Wert aus der Umgebung des Servers.
 
 ## Zweck und Datenkategorien
 
@@ -33,18 +33,23 @@ Das Modul zeichnet Arbeitszeit auf. Es dient den gesetzlichen Aufzeichnungspflic
 | Für eine Person geöffnete Tage | Zeitraum, wer geöffnet hat, Ablaufzeitpunkt, gegebenenfalls eine Nachricht | Schließen sich nach zwei Wochen von selbst und stehen im Audit-Protokoll (`TIME_BACKFILL_GRANTED`, `TIME_BACKFILL_REVOKED`). |
 | Persönliche Einstellungen für den Timer | Zum Beispiel Länge von Pomodoros und Pausen | Am Konto gespeichert, nur für die Person selbst wichtig. |
 | Kenntnisnahme des Datenschutzhinweises | Zeitpunkt (`timePrivacyAcknowledgedAt`) | Beleg, dass informiert wurde. Keine Einwilligung. |
-| Arbeitszeiten | Geplante Minuten je Wochentag, der Tag, ab dem sie gelten, der gewählte Feiertagskalender, wer sie wann festgelegt hat | Planungsdaten. Ändert die Administration sie für eine andere Person, steht das im Audit-Protokoll (`AVAILABILITY_SCHEDULE_CHANGED`). |
-| Abwesenheiten | Art (Urlaub, Krankheit, Sonstiges), erster und letzter Tag, halber Tag, optionale Notiz | Planungsdaten. Eine Abwesenheit hindert niemanden daran, Zeit zu erfassen. Ändert die Administration eine für eine andere Person, steht das ohne die Notiz im Audit-Protokoll (`AVAILABILITY_TIME_OFF_CHANGED`). |
+| Arbeitszeiten | Geplante Minuten je Wochentag, der Tag, ab dem sie gelten, der gewählte Feiertagskalender, wer sie wann festgelegt hat | Planungsdaten. Ändert ein Organisationsadmin sie für eine andere Person, steht das im Audit-Protokoll (`AVAILABILITY_SCHEDULE_CHANGED`). |
+| Abwesenheiten | Art (Urlaub, Krankheit, Sonstiges), erster und letzter Tag, halber Tag, optionale Notiz | Planungsdaten. Eine Abwesenheit hindert niemanden daran, Zeit zu erfassen. Ändert ein Organisationsadmin eine für eine andere Person, steht das ohne die Notiz im Audit-Protokoll (`AVAILABILITY_TIME_OFF_CHANGED`). |
 | Abwesenheitskonten | Je Art und Jahr: Anspruch, Zuteilungen, Buchungen, Korrekturen, jeweils mit dem Tag, an dem sie wirken, der Begründung und der Person, die gehandelt hat | Planungsdaten. Das Journal ist die Quelle: kein Saldo wird gespeichert, jede Zahl auf jedem Bildschirm wird daraus gerechnet. Die Begründung einer Korrektur steht **nur** auf der Journalzeile. |
 | Beschäftigungsdaten für die Berechnung | Eintritts- und Austrittsdatum, optionale Notiz | Nur dafür da, einen anteiligen Anspruch zu rechnen (§ 5 BUrlG). Sehen kann sie die Abwesenheitsverwaltung. |
 | Abwesenheitsanträge | Art, Zeitraum, Anteil des ersten und letzten Tages, eingefrorene Tagesmenge, Status, optionale Notiz, die beim Einreichen ermittelten entscheidenden Personen, optionale Vertretung, die Historie jedes Schritts mit Zeitpunkt und handelnder Person | Der Antrag ist das Dokument, die Abwesenheit sein Ergebnis. Die Begründung einer Entscheidung steht **nur** hier, nie im Audit-Protokoll. Das Protokoll hält Art, Zeitraum und Menge fest (`TIME_OFF_REQUEST_SUBMITTED`, `_APPROVED`, `_REJECTED`, `_WITHDRAWN`, `_CANCELLED`). |
 | Krankmeldungen | Zeitraum, halber Tag, Art | Eine Meldung, kein Antrag: keine entscheidende Person, kein Status, kein Pflichtfeld und **kein Nachweis**. Das Protokoll hält nur fest, dass gemeldet wurde, und für welchen Zeitraum (`TIME_OFF_SICK_REPORTED`). |
 
 !!! danger "Eine Begründung bleibt beim Vorgang, nicht im Protokoll"
-    Wenn jemand ein Konto berichtigt, verlangt Hinata einen Grund — und schreibt ihn auf die Journalzeile, **nicht** ins Audit-Protokoll. Für die **Ablehnung eines Antrags** gilt dasselbe: Der Satz steht auf dem Antrag und verschwindet mit ihm. Das ist Absicht: Eine Begründung kann eine Gesundheitsangabe oder eine Schwerbehinderung nennen (§ 208 SGB IX), also ein Datum nach Art. 9 DSGVO. Im Audit-Protokoll überlebte sie das Löschen des Kontos, überstünde das Abschalten des Moduls und wäre für jede Administration lesbar. Das Audit-Protokoll hält fest, **dass** jemand korrigiert oder entschieden hat, für welche Art, welchen Zeitraum und um wie viel.
+    Wenn jemand ein Konto berichtigt, verlangt Hinata einen Grund. Diesen Grund schreibt es auf die Journalzeile, **nicht** ins Audit-Protokoll. Für die **Ablehnung eines Antrags** gilt dasselbe: Der Satz steht auf dem Antrag und verschwindet mit ihm. Das ist Absicht: Eine Begründung kann eine Gesundheitsangabe oder eine Schwerbehinderung nennen (§ 208 SGB IX), also ein Datum nach Art. 9 DSGVO. Im Audit-Protokoll überlebte sie das Löschen des Kontos, überstünde das Abschalten des Moduls und wäre für alle lesbar, die das Protokoll sehen. Das Audit-Protokoll hält fest, **dass** jemand korrigiert oder entschieden hat, für welche Art, welchen Zeitraum und um wie viel.
+
+!!! info "Wer diese Protokolleinträge liest"
+    Einträge zu Arbeitszeit, Stundenzetteln und Abwesenheiten stehen im Protokoll auf der Seite [Organisation](/de/organization.html). Administratoren sehen sie unter **Adminbereich → Audit** nicht. Einträge zu Abwesenheiten, also Anträge, Krankmeldungen und Konten, sieht dort nur, wer die Abwesenheiten führt: die benannte Abwesenheitsverwaltung oder, solange niemand benannt ist, die Organisationsadmins. Welche dieser Ereignisse aufgezeichnet werden, legen die Organisationsadmins fest, nicht die Administratoren.
 
 !!! warning "Ein Krankheitstag ist ein Gesundheitsdatum"
     Die Abwesenheitsart *Krankheit* sagt etwas über die Gesundheit einer Person, und die schützt Art. 9 DSGVO besonders. Hinata speichert keinen Grund und keine Diagnose, nur die Art und die Tage. Regelt in der Vereinbarung, ob Krankheitstage hier überhaupt eingetragen werden oder ob *Sonstiges* für die Planung reicht.
+
+    Benennt ihr Personen für die Abwesenheitsverwaltung, sehen nur sie eine Krankheit als Krankheit. Organisationsadmins sehen dann nur, dass jemand abwesend ist, aber nicht, warum. Ist niemand benannt, führen die Organisationsadmins die Abwesenheiten selbst und sehen sie vollständig.
 
     Deshalb gibt es auch keinen Platz für ein Attest: Seit 2023 ruft der Arbeitgeber die Arbeitsunfähigkeitsbescheinigung bei der Krankenkasse ab (§ 109 SGB IV). Und deshalb nennt keine Benachrichtigung über eine Abwesenheit ihre Art — weder in der Glocke noch in der Mail noch auf dem Sperrbildschirm.
 
@@ -100,17 +105,17 @@ Die Bewertung nach § 87 BetrVG obliegt bei jeder Richtlinie den Betriebsparteie
 | **Abwesenheitsverwaltung** (`absenceManagementEnabled`) | aus | Abwesenheitsarten, Ansprüche und Konten. Damit bekommt die Organisation eine Urlaubsplanung: wer wie viele Tage hat, wann wer weg ist, wie viel bleibt. Ohne den Schalter gibt es nur die Abwesenheiten der Planung, ohne Anspruch und ohne Saldo. | Hier greift **§ 87 Abs. 1 Nr. 5 BetrVG** — Urlaubsgrundsätze, Urlaubsplan und die Festlegung des Urlaubs einzelner Personen, wenn keine Einigung zustande kommt. Das ist ein anderer Tatbestand als Nr. 6 und gilt zusätzlich. Ausschalten verliert nichts: Das Journal bleibt stehen. |
 | **Team-Abwesenheitskalender** (`absenceCalendarVisibility`) | aus | Ob sich Kolleginnen und Kollegen gegenseitig abwesend sehen: *aus*, *nur dass jemand abwesend ist* oder *die Art der Abwesenheit*. Krankheit erscheint auf jeder Stufe nur als abwesend, und jede Art kann die Stufe weiter senken. Leitungen und die Abwesenheitsverwaltung sehen dazu die verbleibende Kapazität ihrer Gruppe, immer als Summe. In einer Gruppe erscheint nur, wer einem ihrer Projekte noch angehört und dort selbst Zeit erfasst hat; die Abwesenheitsverwaltung sieht alle aktuellen Mitglieder. Das Kapazitätsband sehen Leitungen nur, wenn sie die Abwesenheiten ihrer Mitglieder ohnehin sehen dürfen, und nur für Gruppen ab drei Personen. | Ein Kalender, wer wann abwesend ist, ist ein Urlaubsplan im Sinne von **§ 87 Abs. 1 Nr. 5 BetrVG**; die Bewertung obliegt den Betriebsparteien. Wirkt nur, solange die Abwesenheitsverwaltung eingeschaltet ist. Das Transparenz-Panel der Zeiterfassung nennt jeder Person die Stufe, die gerade gilt. |
 | **Leitungen sehen Einträge der Mitglieder** (`leadsSeeMemberEntries`) | aus | Aus: Leitungen sehen nie, wer was gebucht hat. An Vorgängen sehen sie wie alle anderen Mitglieder nur Tag, Dauer und Tätigkeit, und fremde Einträge ändern sie nicht. Berichte laufen je Projekt. Ein: Leitungen sehen die Einträge der Mitglieder, den Verlauf eines Eintrags, die Einträge hinter einer Einreichung und im Stundenzettel die Zeilen der Mitglieder von Projekten, die sie leiten. Diese Einträge dürfen sie dann auch ändern. Außerdem sehen sie, an welchen Tagen diese Mitglieder abwesend sind, sofern das Mitglied in den letzten zwölf Monaten selbst Zeit auf einen Vorgang eines ihrer Projekte gebucht hat: Urlaub oder Sonstiges, nie eine Notiz, einen Krankheitstag nur als Sonstiges, nie die geplanten Stunden, und ändern können sie nichts davon. | Damit können Vorgesetzte einzelne Buchungen lesen. Das ist die Kernfrage jeder Vereinbarung. |
-| **Stundenzettel-Freigaben** (`approvalsEnabled`) mit **Freigabe-Zeitraum** | aus, Rhythmus monatlich | Personen reichen einen Zeitraum ein. Eine Leitung oder ein Admin gibt ihn mit Notiz frei oder lehnt ihn ab. Wer freigibt, liest die Einträge der Person. Deshalb braucht es die Richtlinie darüber. Der Rhythmus bestimmt, wie eng geprüft wird. | Regelt Rhythmus, freigebende Personen und den Umgang mit Ablehnungen. |
-| **Auslastungsberichte** (`workloadReportsEnabled`) | aus | Gebuchte Zeit gegen Kapazität je Person, unter **Zeiterfassung → Berichte → Auslastung**. Das ist ein direkter Vergleich zwischen Menschen. Ihn sehen nur Admins und Projektleitungen. Eine Leitung sieht darin nur Personen, die auf ihren Projekten selbst Zeit erfasst haben, und als gebucht nur die Zeit auf Projekten, die sie leitet. Die Liste ist nach Namen sortiert, der Balken ist neutral. Ausgeschaltet gibt es den Bereich nicht, und der Server antwortet, als gäbe es ihn nicht. | Regelt Zweck, Empfänger und Grenzen der Nutzung ausdrücklich. |
+| **Stundenzettel-Freigaben** (`approvalsEnabled`) mit **Freigabe-Zeitraum** | aus, Rhythmus monatlich | Personen reichen einen Zeitraum ein. Eine Leitung oder ein Organisationsadmin gibt ihn mit Notiz frei oder lehnt ihn ab. Wer freigibt, liest die Einträge der Person. Deshalb braucht es die Richtlinie darüber. Der Rhythmus bestimmt, wie eng geprüft wird. | Regelt Rhythmus, freigebende Personen und den Umgang mit Ablehnungen. |
+| **Auslastungsberichte** (`workloadReportsEnabled`) | aus | Gebuchte Zeit gegen Kapazität je Person, unter **Zeiterfassung → Berichte → Auslastung**. Das ist ein direkter Vergleich zwischen Menschen. Ihn sehen nur Organisationsadmins und Projektleitungen. Eine Leitung sieht darin nur Personen, die auf ihren Projekten selbst Zeit erfasst haben, und als gebucht nur die Zeit auf Projekten, die sie leitet. Die Liste ist nach Namen sortiert, der Balken ist neutral. Ausgeschaltet gibt es den Bereich nicht, und der Server antwortet, als gäbe es ihn nicht. | Regelt Zweck, Empfänger und Grenzen der Nutzung ausdrücklich. |
 | **Budget-Warnungen** (`alertsEnabled`) | aus | Leitungen bekommen eine Nachricht, wenn die erfasste Zeit eines Projekts einen Anteil seines Budgets oder der Summe seiner Schätzungen erreicht: 80 %, sofern das Projekt keinen anderen Anteil festlegt, und 100 %. Die zugewiesenen Personen eines Vorgangs bekommen eine, wenn er seine Schätzung erreicht. Jede Nachricht nennt Projekt oder Vorgang und die Summen, nie eine Person, und kommt einmal je Überschreitung. In kleinen Projekten lässt sie sich trotzdem auf Einzelne zurückführen. | Regelt Schwellen und Empfänger. |
-| **Ziel-Erinnerungen** (`targetRemindersEnabled`) | aus | Eine Person legt selbst ein Tages- oder Wochenziel fest und wählt, wann sie erinnert wird. Die Erinnerung kommt nur an ihren Arbeitstagen und nur, wenn sie weniger erfasst hat. Sie geht nur an sie selbst. Niemand sieht, wer erinnert wurde, keine Erinnerung wird protokolliert, und Administratoren können ein Ziel nur vorschlagen. Eine Push-Nachricht sagt nur, dass es Neues gibt; die Push-Dienste, die sie tragen (Hinata Connect, Apple, Google), sehen, dass eine Erinnerung zugestellt wurde, nicht ihren Inhalt. | Niemand sonst bekommt einen Bericht. Ob und welches Ziel vorgeschlagen wird, gehört trotzdem in die Vereinbarung. |
+| **Ziel-Erinnerungen** (`targetRemindersEnabled`) | aus | Eine Person legt selbst ein Tages- oder Wochenziel fest und wählt, wann sie erinnert wird. Die Erinnerung kommt nur an ihren Arbeitstagen und nur, wenn sie weniger erfasst hat. Sie geht nur an sie selbst. Niemand sieht, wer erinnert wurde, keine Erinnerung wird protokolliert, und Organisationsadmins können ein Ziel nur vorschlagen. Eine Push-Nachricht sagt nur, dass es Neues gibt; die Push-Dienste, die sie tragen (Hinata Connect, Apple, Google), sehen, dass eine Erinnerung zugestellt wurde, nicht ihren Inhalt. | Niemand sonst bekommt einen Bericht. Ob und welches Ziel vorgeschlagen wird, gehört trotzdem in die Vereinbarung. |
 | **Arbeitszeit-Hinweise** (`arbzgHintsEnabled`) | aus | Hinweise nach §§ 3, 5 und 9 ArbZG auf den eigenen Einträgen, nur für die Person selbst. Nichts wird gespeichert oder weitergegeben. Siehe [ArbZG-Selbsthinweise](#arbzg-selbsthinweise). | Nur die allgemeine Bewertung (siehe oben). |
 | `lateEntryHintDays` | leer, also kein Hinweis | Ein Eintrag zeigt „N Tage nach dem Arbeitstag erfasst“. Das sieht nur die Person selbst. In Berichten taucht es nicht auf. Siehe [Nachtragen](#nachtragen-was-möglich-ist-und-was-du-organisatorisch-sicherstellen-musst). | Nur die allgemeine Bewertung (siehe oben). |
-| **Gesperrt vor** (`lockBefore`) und **Wieder geöffnete Zeiträume** | kein Sperrdatum | Einträge vor einem Stichtag sind für alle eingefroren. Ein Projekt kann ein eigenes, früheres Sperrdatum setzen. Eine Ausnahme öffnet einen benannten Zeitraum für alle. Die Begründung steht im Audit-Protokoll. Auf Anfrage öffnet die Administration Tage auch nur für eine Person, für zwei Wochen. Anfragen und Begründungen können Rückschlüsse auf Einzelne erlauben. | Regelt, wer Anfragen und Ausnahmen liest und wie lange sie bleiben. |
-| `maxDaysBack` | 365 Tage | Schutz vor Tippfehlern. Ältere Tage werden abgelehnt, und die Meldung nennt den Weg über die Administration. Die kann die Tage für die Person öffnen. Anfrage und Öffnung werden mit Begründung protokolliert. | Nur die allgemeine Bewertung (siehe oben). |
+| **Gesperrt vor** (`lockBefore`) und **Wieder geöffnete Zeiträume** | kein Sperrdatum | Einträge vor einem Stichtag sind für alle eingefroren. Ein Projekt kann ein eigenes, früheres Sperrdatum setzen. Eine Ausnahme öffnet einen benannten Zeitraum für alle. Die Begründung steht im Audit-Protokoll. Auf Anfrage öffnet ein Organisationsadmin Tage auch nur für eine Person, für zwei Wochen. Anfragen und Begründungen können Rückschlüsse auf Einzelne erlauben. | Regelt, wer Anfragen und Ausnahmen liest und wie lange sie bleiben. |
+| `maxDaysBack` | 365 Tage | Schutz vor Tippfehlern. Ältere Tage werden abgelehnt, und die Meldung nennt den Weg über die Organisationsadmins. Sie können die Tage für die Person öffnen. Anfrage und Öffnung werden mit Begründung protokolliert. | Nur die allgemeine Bewertung (siehe oben). |
 | **Aufbewahrung** (`retention`) | 0 und 0, also keine automatische Löschung | Bestimmt, wie weit zurück überhaupt ausgewertet werden kann. Einträge löscht Hinata nie oder frühestens nach 24 Monaten. | Löschfristen gehören in die Vereinbarung und ins VVT. |
 | **Kalender-Import** (`icsImportEnabled`) | aus | Personen abonnieren ihren eigenen Kalender und übernehmen Termine als Einträge. So werden Titel und Uhrzeiten der Termine zu Zeitdaten. | Regelt Freiwilligkeit und den Umgang mit privaten Terminen. |
-| **Abrechnung** (`billingEnabled`) | aus | Sätze, Personalkosten, Abrechnungs- und Profitabilitätsberichte und Rechnungen. Leitungen und Admins sehen sie. Aus Personalkostensätzen lässt sich auf das Gehalt Einzelner schließen. | Regelt, wer Kostensätze sieht. |
+| **Abrechnung** (`billingEnabled`) | aus | Sätze, Personalkosten, Abrechnungs- und Profitabilitätsberichte und Rechnungen. Leitungen und Organisationsadmins sehen sie. Aus Personalkostensätzen lässt sich auf das Gehalt Einzelner schließen. | Regelt, wer Kostensätze sieht. |
 | Ereignisse im Audit-Protokoll: `TIME_ENTRY_CREATED`, `TIME_TIMER_STARTED`, `TIME_TIMER_STOPPED`, `TIME_TIMER_DISCARDED` | aus | Ein lückenloses Protokoll, wann jede Person Einträge angelegt und Timer gestartet oder gestoppt hat, also von Beginn und Ende ihrer Arbeit. Weil so ein Protokoll objektiv zur Überwachung geeignet ist, sind diese Ereignisse ab Werk aus. | Nur mit ausdrücklicher Regelung einschalten. |
 
 !!! note "Was das Audit-Protokoll immer festhält"
@@ -121,14 +126,15 @@ Die Bewertung nach § 87 BetrVG obliegt bei jeder Richtlinie den Betriebsparteie
 Die Zeitberichte unter **Zeiterfassung → Berichte** öffnen keine neue Sicht auf Personen. Sie lesen, was die Richtlinien ohnehin freigeben.
 
 - **Summen** je Projekt, Tätigkeit, Tags, Vorgang oder Zeitraum enthalten die eigenen Einträge und alle Einträge der Projekte, die jemand sieht. Dass an einem Vorgang Zeit gebucht wurde, sieht jedes Mitglied bereits am Vorgang. Eine Summe nennt niemanden.
-- **Personen** nennt ein Bericht nur bei den eigenen Einträgen und, mit `leadsSeeMemberEntries`, bei den Mitgliedern der Projekte, die jemand leitet. Dieselbe Regel gilt für die Liste der Einträge und für jeden Export. Die Administration sieht alles.
-- Beides steht in der Abfrage an die Datenbank. Nichts wird erst gelesen und danach weggefiltert.
+- **Personen** nennt ein Bericht nur bei den eigenen Einträgen und, mit `leadsSeeMemberEntries`, bei den Mitgliedern der Projekte, die jemand leitet. Dieselbe Regel gilt für die Liste der Einträge und für jeden Export.
+- **Organisationsadmins** sehen Stunden, Person und Projektschlüssel für alle. Vorgangstitel, Vorgangsschlüssel, Beschreibungen und Projektnamen sehen sie nur bei Projekten, in denen sie Mitglied sind, und bei ihren eigenen Einträgen. Die Suche in den Beschreibungen durchsucht nur Einträge, die sie lesen dürfen.
+- Das alles steht in der Abfrage an die Datenbank. Nichts wird erst gelesen und danach weggefiltert.
 
 Wer einen gespeicherten Bericht **teilt**, gibt einen Link weiter, nicht seine Sicht. Wer den Link öffnet, muss angemeldet sein und bekommt den Bericht mit dem, was er selbst sehen darf. Vom Link speichert Hinata nur einen Hash, und die Person, die ihn erzeugt hat, kann ihn jederzeit widerrufen.
 
 Ein **geplanter Bericht per Mail** geht an eine Liste von bis zu 50 aktiven Konten. Jede Person bekommt ihn mit ihrer eigenen Sicht, ohne Anhang und mit einem Link in die App. Wer einen Bericht plant, bekommt ihn nur, wenn er selbst auf der Liste steht. Das Protokoll des Versands zählt Berichte, nicht Personen.
 
-Jeder **Export** eines Berichts steht im Audit-Protokoll (`TIME_REPORT_EXPORTED`) mit Format, Zahl der Zeilen und einem Fingerabdruck der Filter. Namen und Suchwörter stehen dort nicht. Ein **CSV-Import** schreibt nur Einträge, die dieselben Prüfungen bestehen wie ein getippter Eintrag, also nie in einen gesperrten oder eingereichten Zeitraum. Importiert die Administration für eine andere Person, steht das im Audit-Protokoll (`TIME_ENTRIES_IMPORTED`).
+Jeder **Export** eines Berichts steht im Audit-Protokoll (`TIME_REPORT_EXPORTED`) mit Format, Zahl der Zeilen und einem Fingerabdruck der Filter. Namen und Suchwörter stehen dort nicht. Ein **CSV-Import** schreibt nur Einträge, die dieselben Prüfungen bestehen wie ein getippter Eintrag, also nie in einen gesperrten oder eingereichten Zeitraum. Importiert ein Organisationsadmin für eine andere Person, steht das im Audit-Protokoll (`TIME_ENTRIES_IMPORTED`).
 
 ## Checkliste Betriebs- oder Dienstvereinbarung
 
@@ -137,7 +143,7 @@ Eine Vereinbarung zur Zeiterfassung mit Hinata sollte mindestens diese Punkte kl
 - **Gegenstand und Geltungsbereich:** welche Instanz, welche Beschäftigten, welche Module. Leg die gewählten Werte als Anlage bei, am einfachsten die [Richtlinienmatrix](#richtlinienmatrix) mit einer Spalte „unser Wert“.
 - **Zwecke:** abschließend aufzählen, etwa Aufzeichnungspflichten, Projektsteuerung und Abrechnung. Jede andere Nutzung, besonders zur Kontrolle von Verhalten oder Leistung, ausdrücklich regeln oder ausschließen.
 - **Datenkategorien und Pflichtfelder:** ob Projekt, Vorgang, Beschreibung oder Tag Pflicht sind. Wie genau Beschreibungen sein sollen und was nicht hineingehört, zum Beispiel Gesundheitsangaben wie „Arzttermin“.
-- **Sichtbarkeit:** wer wessen Einträge sieht (die Person selbst, Leitungen nur mit `leadsSeeMemberEntries`, die Administration) und wer Adminrechte bekommt. An Vorgängen sehen andere Mitglieder nur Tag, Dauer und Tätigkeit.
+- **Sichtbarkeit:** wer wessen Einträge sieht (die Person selbst, Leitungen nur mit `leadsSeeMemberEntries`, Organisationsadmins) und wer diese Rolle bekommt. An Vorgängen sehen andere Mitglieder nur Tag, Dauer und Tätigkeit.
 - **Freigaben:** ob Stundenzettel eingereicht werden, in welchem Rhythmus, wer freigibt und was bei Ablehnung und Wiederöffnen passiert.
 - **Auswertungen und Benachrichtigungen:** Auslastungsberichte, Budget-Warnungen und Ziel-Erinnerungen, jeweils ein oder aus, mit Empfängern und Schwellen. Dazu, ob Berichte geteilt und regelmäßig per Mail verschickt werden dürfen, und an wen.
 - **Timer und Audit-Protokoll:** ob Start- und Endzeiten erfasst werden und ob die Ereignisse zum Timer im Audit-Protokoll eingeschaltet werden dürfen (Standard: aus).
@@ -146,7 +152,7 @@ Eine Vereinbarung zur Zeiterfassung mit Hinata sollte mindestens diese Punkte kl
 - **Kalender-Import:** freiwillig, nur der eigene Kalender, Umgang mit privaten Terminen.
 - **Aufbewahrung und Löschung:** konkrete Werte für `entryPurgeMonths` und `descriptionPurgeMonths` und der Umgang mit freigegebenen Zeiträumen.
 - **Exporte und Schnittstellen:** wer CSV- oder Berichtsexporte zieht und wohin sie gehen. Zugriffe über die API haben dieselben Rechte wie die App. Nenn sie trotzdem.
-- **Transparenz:** Text des Datenschutzhinweises (eingebaute Vorlage oder eigener Text) und Schulung für Leitungen und Administration.
+- **Transparenz:** Text des Datenschutzhinweises (eingebaute Vorlage oder eigener Text) und Schulung für Leitungen und Organisationsadmins.
 - **Änderungen:** Bevor eine neue Version von Hinata oder eine Richtlinie eine neue Auswertung über Personen einschaltet, wird die Interessenvertretung informiert und erneut beteiligt. Änderungen an den Richtlinien stehen im Audit-Protokoll.
 - **Kontrollrechte:** Einsicht der Interessenvertretung in Einstellungen und Audit-Protokoll, Auswertung der Erfahrungen nach einer festen Frist.
 - **Folgen von Verstößen:** zum Beispiel, dass Daten, die entgegen der Vereinbarung ausgewertet wurden, nicht verwendet werden dürfen.
@@ -176,7 +182,7 @@ Die Spalte „Vorschlag“ enthält Formulierungen für eine typische Instanz. D
 | Rechtsgrundlagen | Art. 6 Abs. 1 lit. b, c und f DSGVO; ggf. Betriebs- oder Dienstvereinbarung nach Art. 88 DSGVO i. V. m. § 26 Abs. 4 BDSG | … |
 | Kategorien betroffener Personen (lit. c) | Beschäftigte; ggf. Auszubildende, Leiharbeitskräfte, freie Mitarbeitende mit Konto | … |
 | Kategorien personenbezogener Daten (lit. c) | Kontostammdaten; Zeiteinträge (Tag, Dauer, optional Start und Ende, Projekt, Vorgang, Tätigkeitsart, Beschreibung, Tags, abrechenbar, Quelle, Änderungsdaten); laufender Timer; Einreichungen und Freigaben mit Notizen; Korrekturanfragen, Bitten um ältere Tage und Antworten; für die Person geöffnete Tage; Einstellungen für den Timer; Zeitpunkt der Kenntnisnahme des Datenschutzhinweises | … |
-| Empfänger (lit. d) | Die Person selbst; Administration; Leitungen nur bei eingeschalteter Richtlinie; andere Projektmitglieder nur Tag, Dauer und Tätigkeit an Vorgängen; ggf. Lohnbuchhaltung oder Kunden über Exporte; Dienstleister für Hosting und E-Mail als Auftragsverarbeiter | … |
+| Empfänger (lit. d) | Die Person selbst; Organisationsadmins; Leitungen nur bei eingeschalteter Richtlinie; andere Projektmitglieder nur Tag, Dauer und Tätigkeit an Vorgängen; ggf. Lohnbuchhaltung oder Kunden über Exporte; Dienstleister für Hosting und E-Mail als Auftragsverarbeiter | … |
 | Übermittlung in Drittländer (lit. e) | Keine, wenn Server, Speicher und Mailserver in der EU laufen. Push-Benachrichtigungen gehen über das Gateway [Hinata Connect](/de/connect-gateway.html) und Firebase Cloud Messaging | … |
 | Löschfristen (lit. f) | `entryPurgeMonths` (nie oder frühestens 24 Monate nach dem Tag des Eintrags), `descriptionPurgeMonths` für gelöschte Konten; Einträge in eingereichten oder freigegebenen Zeiträumen gesondert | … |
 | Technische und organisatorische Maßnahmen (lit. g, Art. 32) | Verweis auf das [Sicherheitsmodell](/de/security.html): TLS, rollenbasierte Rechte, Sperrdatum, Audit-Protokoll, Ratenbegrenzung, Backups; Richtlinienwerte laut Anlage | … |
@@ -191,7 +197,7 @@ Wer das Modul zum ersten Mal öffnet, sieht den Datenschutzhinweis einmal als Sh
 
 Dort steht auch das Panel **„Wer sieht meine Zeitdaten?“**. Hinata berechnet es aus den Richtlinien, die gerade aktiv sind. Niemand pflegt es von Hand. Schaltest du zum Beispiel `leadsSeeMemberEntries` ein, steht dort sofort, dass Leitungen die Einträge sehen. Das Panel kann also nicht veralten. Es zeigt auch, was andere Mitglieder an einem Vorgang sehen: wie viel Zeit gebucht wurde, aber nicht, wer sie gebucht hat, und nicht die Beschreibung.
 
-Die eingebaute Vorlage gibt es in neun Sprachen. Unter **Adminbereich → Zeiterfassung → Datenschutz und Aufbewahrung** kannst du sie im Feld **Datenschutzhinweis** durch deinen eigenen Text ersetzen, etwa mit einem Verweis auf eure Betriebsvereinbarung. Bleibt das Feld leer, gilt die Vorlage.
+Die eingebaute Vorlage gibt es in neun Sprachen. Unter **Organisation → Zeiterfassung → Datenschutz und Aufbewahrung** kannst du sie im Feld **Datenschutzhinweis** durch deinen eigenen Text ersetzen, etwa mit einem Verweis auf eure Betriebsvereinbarung. Bleibt das Feld leer, gilt die Vorlage.
 
 ### Auskunft und Datenübertragbarkeit (Art. 15 und 20 DSGVO)
 
@@ -211,15 +217,15 @@ Die Datei ist UTF-8 mit BOM, Excel zeigt Umlaute also richtig an. Zellen, die mi
 
 ### Berichtigung (Art. 16 DSGVO)
 
-Deine eigenen Einträge bearbeitest du selbst. Liegt ein Tag vor dem Sperrdatum oder in einem eingereichten Zeitraum, ist er eingefroren. Dann schickst du über **Korrektur anfragen** eine Begründung an die Person, die die Sperre aufheben kann. Beim Sperrdatum ist das die Administration, bei einem eingereichten Zeitraum die Projektleitung oder wer freigibt. Pro Eintrag geht das einmal am Tag.
+Deine eigenen Einträge bearbeitest du selbst. Liegt ein Tag vor dem Sperrdatum oder in einem eingereichten Zeitraum, ist er eingefroren. Dann schickst du über **Korrektur anfragen** eine Begründung an die Person, die die Sperre aufheben kann. Beim Sperrdatum sind das die Organisationsadmins, bei einem eingereichten Zeitraum die Projektleitung oder wer freigibt. Pro Eintrag geht das einmal am Tag.
 
 Die Antwort kommt mit einer Notiz als Benachrichtigung. Du findest sie am Eintrag und in seinem Verlauf. Die Antwort allein ändert noch nichts. Ändern kannst du den Eintrag erst, wenn der Tag wirklich wieder offen ist. Dafür gibt es drei Wege:
 
 - Bei einem eingereichten Zeitraum öffnet die Projektleitung die Einreichung wieder.
-- Beim Sperrdatum öffnet die Administration den Tag nur für dich, direkt aus der Anfrage heraus mit **Tage öffnen**. Die Öffnung gilt zwei Wochen und steht im Audit-Protokoll. Schreibt die Administration etwas dazu, liest du es als Antwort.
-- Soll ein Zeitraum für alle wieder offen sein, legt die Administration eine Ausnahme vom Sperrdatum an. Die Begründung steht im Audit-Protokoll.
+- Beim Sperrdatum öffnet ein Organisationsadmin den Tag nur für dich, direkt aus der Anfrage heraus mit **Tage öffnen**. Die Öffnung gilt zwei Wochen und steht im Audit-Protokoll. Steht eine Notiz dabei, liest du sie als Antwort.
+- Soll ein Zeitraum für alle wieder offen sein, legt ein Organisationsadmin eine Ausnahme vom Sperrdatum an. Die Begründung steht im Audit-Protokoll.
 
-Im Verlauf eines Eintrags sieht eine Projektleitung nur die Anfragen zu Einreichungen ihrer Projekte, weil nur diese an sie gerichtet sind. Anfragen zum Sperrdatum bleiben zwischen dir und der Administration.
+Im Verlauf eines Eintrags sieht eine Projektleitung nur die Anfragen zu Einreichungen ihrer Projekte, weil nur diese an sie gerichtet sind. Anfragen zum Sperrdatum bleiben zwischen dir und den Organisationsadmins.
 
 ### Löschung und Speicherbegrenzung (Art. 17 und Art. 5 Abs. 1 lit. e DSGVO)
 
@@ -230,7 +236,7 @@ Freigegebene Einreichungen bleiben, weil sie ein Geschäftsnachweis sind. Auch d
 !!! note "Pseudonym ist nicht anonym"
     Solange sich eine Nutzer-ID einer Person zuordnen lässt, bleiben die Einträge personenbezogene Daten (Art. 4 Nr. 5 DSGVO). Dafür gibt es die Fristen unten.
 
-Die Aufbewahrung stellst du unter **Adminbereich → Zeiterfassung → Datenschutz und Aufbewahrung** ein:
+Die Aufbewahrung stellst du unter **Organisation → Zeiterfassung → Datenschutz und Aufbewahrung** ein:
 
 - **Beschreibungen leeren nach** (`descriptionPurgeMonths`) leert nach N Monaten die Beschreibungen in den Einträgen gelöschter Personen und die Notizen an ihren Stundenzetteln. Stunden und Entscheidungen bleiben.
 - **Einträge löschen nach** (`entryPurgeMonths`) löscht für alle Personen Einträge, die älter als N Monate sind. Einträge in einem eingereichten oder freigegebenen Zeitraum löscht Hinata nie. Erlaubt sind 0 für nie oder mindestens 24 Monate. Ein kleinerer Wert aus der Umgebung des Servers gilt als 24.
@@ -260,7 +266,7 @@ Mit **Arbeitszeit-Hinweise** (`arbzgHintsEnabled`, Standard: aus) zeigt Hinata e
 - Es gibt Einträge an einem Sonntag ([§ 9 ArbZG](https://www.gesetze-im-internet.de/arbzg/__9.html)).
 - Es gibt Einträge an einem Feiertag des Kalenders, nach dem sich die Person richtet ([§ 9 ArbZG](https://www.gesetze-im-internet.de/arbzg/__9.html)).
 
-Die Hinweise werden nicht gespeichert, nicht an Leitungen oder die Administration gegeben und nicht über mehrere Personen zusammengefasst. Sie helfen der Person selbst. Sie beweisen nicht, dass eure Arbeitszeiten dem ArbZG entsprechen, und sind kein Urteil. Das Gesetz kennt Ausnahmen, etwa für Sonntagsarbeit, von denen Hinata nichts wissen kann.
+Die Hinweise werden nicht gespeichert, nicht an Leitungen oder Organisationsadmins gegeben und nicht über mehrere Personen zusammengefasst. Sie helfen der Person selbst. Sie beweisen nicht, dass eure Arbeitszeiten dem ArbZG entsprechen, und sind kein Urteil. Das Gesetz kennt Ausnahmen, etwa für Sonntagsarbeit, von denen Hinata nichts wissen kann.
 
 ## Nachtragen: was möglich ist und was du organisatorisch sicherstellen musst
 
@@ -273,7 +279,7 @@ Die Schwelle ist einstellbar und nicht fest auf sieben Tage gesetzt. Die Frist v
 `maxDaysBack` (Standard: 365) schützt vor Tippfehlern, damit etwa 2025 statt 2026 nicht unbemerkt durchgeht. Ältere Tage bietet die Datumsauswahl gar nicht erst an, und beim Speichern lehnt Hinata sie ab. Beide Stellen zeigen den Ausweg:
 
 1. Die Person bittet mit einer Begründung darum, die Tage zu öffnen. Das geht direkt an der Meldung, in der Datumsauswahl oder unter **Einstellungen → Zeiterfassung → Ältere Tage anfragen**. Die Anfrage wird protokolliert.
-2. Eine Administratorin oder ein Administrator öffnet die Tage für diese Person unter **Adminbereich → Zeiterfassung → Korrekturanfragen** mit **Tage öffnen**. Die Öffnung gilt zwei Wochen und nur für diese Person. Die Begründung der Administration liest die Person als Antwort, und sie steht im Audit-Protokoll. Unter **Für Personen geöffnete Tage** lässt sich eine Öffnung früher schließen.
+2. Ein Organisationsadmin öffnet die Tage für diese Person unter **Organisation → Zeiterfassung → Korrekturanfragen** mit **Tage öffnen**. Die Öffnung gilt zwei Wochen und nur für diese Person. Die Begründung dazu liest die Person als Antwort, und sie steht im Audit-Protokoll. Unter **Für Personen geöffnete Tage** lässt sich eine Öffnung früher schließen.
 3. Die Person trägt die Zeit nach.
 
 !!! danger "Die MiLoG-Frist einzuhalten, bleibt deine Pflicht"
@@ -304,5 +310,5 @@ Software allein ist nie „rechtssicher“. Rechtmäßig wird eine Verarbeitung 
 ## Nächste Schritte
 
 - Wie Personen Zeit erfassen, steht unter [Zeit erfassen](/de/guide-time.html).
-- Die Richtlinien stellst du im [Adminbereich](/de/admin-area.html) ein.
+- Die Richtlinien stellen Organisationsadmins auf der Seite [Organisation](/de/organization.html) ein.
 - Die technischen Schutzmaßnahmen beschreibt das [Sicherheitsmodell](/de/security.html).

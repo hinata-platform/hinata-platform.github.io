@@ -34,6 +34,7 @@ Unter **Einstellungen → Benachrichtigungen** hat jede Person eine Matrix: eine
 
 - Zwei Hauptschalter schalten E-Mail und Push komplett ein oder aus.
 - Die Matrix regelt den Rest. Zum Beispiel: Mails zu Kommentaren aus, Mails zu Erwähnungen an. Oder Push für Zuweisungen, aber nicht für Zusammenfassungen.
+- **Benachrichtigungstage** legen fest, an welchen Wochentagen E-Mail und Push kommen dürfen. Voreingestellt sind die Arbeitstage dort, wo die Person lebt, abgeleitet aus der Region ihrer Sprache oder ihrer Zeitzone. Meist ist das Montag bis Freitag, in Saudi-Arabien zum Beispiel Sonntag bis Donnerstag. An anderen Tagen bleiben E-Mail und Push still, die Glocke zeigt trotzdem alles, und Sicherheitsmeldungen und wichtige Hinweise, etwa zu verfallendem Urlaub, kommen immer. Nach dem Update bekommt jede Person einmal eine Mitteilung in der Glocke, die auf die neue Einstellung hinweist.
 
 !!! tip "Einmal einstellen, dann vergessen"
     Neue Teammitglieder sollten beim Onboarding dreißig Sekunden in ihre Matrix stecken. Wer gut eingestellte Benachrichtigungen hat, vertraut dem Tool. Wer das nicht tut, schaltet es oft ganz stumm.

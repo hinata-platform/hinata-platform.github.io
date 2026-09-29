@@ -194,7 +194,7 @@ overrides env. See [Git integration](/en/git-integration.html).
 
 ## Calendars, holidays and working hours
 
-Administrators keep holiday calendars in the Admin area and can import a year of holidays from a calendar address, for example a public holiday calendar from Google, Apple or Outlook. The server fetches that address itself. It never connects to a private or loopback address, whatever the lists below say. People plan their own working hours in their settings, and their absences in time tracking. All of it needs extended time tracking (`HINATA_TIME_TRACKING_ADVANCED_ENABLED`). See [Tracking your time](/en/guide-time.html).
+Organization admins keep holiday calendars on the [Organization](/en/organization.html) page and can import a year of holidays from a calendar address, for example a public holiday calendar from Google, Apple or Outlook. The server fetches that address itself. It never connects to a private or loopback address, whatever the lists below say. People plan their own working hours in their settings, and their absences in time tracking. All of it needs extended time tracking (`HINATA_TIME_TRACKING_ADVANCED_ENABLED`). See [Tracking your time](/en/guide-time.html).
 
 | Variable | Purpose | Default / example | Required |
 | --- | --- | --- | --- |
@@ -202,19 +202,19 @@ Administrators keep holiday calendars in the Admin area and can import a year of
 | `HINATA_ICS_ALLOWED_HOSTS` | Comma-separated hosts calendars may be fetched from: a host name or `*.example.org` for its subdomains. Empty means any public host | *(empty)* | No |
 | `HINATA_ICS_DENIED_HOSTS` | Comma-separated hosts calendars are never fetched from, in the same notation. Checked before the allow list | *(empty)* | No |
 | `HINATA_AVAILABILITY_DEFAULT_WEEKDAY_MINUTES` | Planned minutes per weekday, Monday first, for everyone who has not set their own hours | `480,480,480,480,480,0,0` | No |
-| `HINATA_TIME_TRACKING_ABSENCE_MANAGEMENT_ENABLED` | Turns absence management on: types, entitlements, balances, requests and sick reports. Needs extended time tracking. The switch under **Admin area → Time tracking** takes precedence over this value | `false` | No |
-| `HINATA_TIME_TRACKING_ABSENCE_CALENDAR_VISIBILITY` | The team absence calendar: `OFF`, `BUSY_ONLY` (only that somebody is away) or `TYPE` (the type, never sickness). Only in force with absence management on. The choice under **Admin area → Time tracking** takes precedence over this value | `OFF` | No |
-| `HINATA_TIME_TRACKING_WORKLOAD_REPORTS_ENABLED` | Switches on the workload report under **Time tracking → Reports**: capacity against booked time per person, for admins and project leads only. Needs extended time tracking. The switch under **Admin area → Time tracking** takes precedence over this value. See [Time tracking privacy](/en/time-tracking-privacy.html) | `false` | No |
+| `HINATA_TIME_TRACKING_ABSENCE_MANAGEMENT_ENABLED` | Turns absence management on: types, entitlements, balances, requests and sick reports. Needs extended time tracking. The switch under **Organization → Time tracking** takes precedence over this value | `false` | No |
+| `HINATA_TIME_TRACKING_ABSENCE_CALENDAR_VISIBILITY` | The team absence calendar: `OFF`, `BUSY_ONLY` (only that somebody is away) or `TYPE` (the type, never sickness). Only in force with absence management on. The choice under **Organization → Time tracking** takes precedence over this value | `OFF` | No |
+| `HINATA_TIME_TRACKING_WORKLOAD_REPORTS_ENABLED` | Switches on the workload report under **Time tracking → Reports**: capacity against booked time per person, for organization admins and project leads only. Needs extended time tracking. The switch under **Organization → Time tracking** takes precedence over this value. See [Time tracking privacy](/en/time-tracking-privacy.html) | `false` | No |
 | `HINATA_RATE_LIMIT_TIME_OFF_REQUESTS_PER_DAY` | Absence requests and sick reports per person per day. A day rather than a minute, because filing leave is a deliberate act and a per-minute budget would let a loop through anyway | `50` | No |
 
 !!! info "Who keeps absences"
-    Administrators do, unless you say otherwise. Under **Admin area → Time tracking** you can also name individual people as **absence keepers** — they keep types, grant entitlements, book corrections and decide requests without holding any other administrative right. Their way in is in their own settings, not in the admin area. The list is deliberately empty by default: whoever is on it sees sick days as sick days (Art. 9 GDPR), and the narrower circle is the right default.
+    Organization admins do, unless you say otherwise. Under **Organization → Time tracking** you can also name individual people as **absence keepers**. They keep types, grant entitlements, book corrections and decide requests without holding any other admin right. Their way in is in their own settings. The list is deliberately empty by default: whoever is on it sees sick days as sick days (Art. 9 GDPR), and the narrower circle is the right default. Once someone is named, organization admins only see that a person is away when they are sick, not why. With nobody named, organization admins keep absences themselves as before.
 
 !!! info "The limit never blocks a sick report"
     A sick report is counted against the same daily budget but is never refused by it: § 5 EFZG knows a notification, not a permission. Reaching the limit only refuses further **requests**.
 
 !!! warning "Keep the key"
-    A calendar address encrypted with one `HINATA_ICS_SECRET` cannot be read with another. If the key changes, imports from stored addresses fail until an administrator enters the address again. Holidays that were already imported stay.
+    A calendar address encrypted with one `HINATA_ICS_SECRET` cannot be read with another. If the key changes, imports from stored addresses fail until an organization admin enters the address again. Holidays that were already imported stay.
 
 ## Project templates and relative deadlines
 
@@ -223,6 +223,7 @@ A project can be copied, marked as a template and given an event date that its i
 | Variable | Purpose | Default / example | Required |
 | --- | --- | --- | --- |
 | `HINATA_PROJECT_TEMPLATES_ENABLED` | Turns project templates and relative deadlines on: copy a project, mark one as a template, create a project from a template, and keep a deadline as an offset from the project's event date. The switch under **Admin area → Platform** takes precedence over this value | `false` | No |
+| `HINATA_PROJECT_TEMPLATES_DEFAULT_BASIS` | What new relative deadlines count in while neither the organization nor the project sets its own: `CALENDAR` (calendar days) or `WORKING` (working days). Organization admins choose the default on the [Organization](/en/organization.html) page, and each project can differ from it. Existing deadlines keep their basis | `CALENDAR` | No |
 
 !!! info "Working days need a holiday calendar"
     A deadline that counts in working days always skips weekends. It only skips public holidays when the project has a holiday calendar selected. Without one it counts a holiday like any other working day.
@@ -241,12 +242,17 @@ while the server runs:
 
 - **SSO** providers: OpenID Connect, OAuth 2.0, SAML 2.0, LDAP
   ([SSO](/en/sso.html))
-- IMAP ingestion for **E-mail → ticket** ([E-mail to ticket](/en/email-to-ticket.html))
+- IMAP ingestion for **E-mail → ticket** ([E-mail to ticket](/en/email-to-ticket.html)).
+  Administrators can only route mail into projects they are a member of
 - **Push** configuration via the gateway
 - OAuth app credentials for **Git integration** (the `HINATA_GIT_*` values above)
 - **Platform settings** under Admin → Platform: `minVersion`, the privacy URL,
   how people sign in (`localAuthEnabled`, `registrationEnabled`,
   `requireAdminApproval`) and what the platform offers
+
+Time tracking, absences, holidays and the default for relative deadlines are
+stored in MongoDB too. They are not part of the Admin area, though, but of the
+[Organization](/en/organization.html) page, which organization admins edit.
 
 Three rules apply:
 

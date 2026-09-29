@@ -107,6 +107,18 @@ The **Issues** page lists every issue you can see. The count under the heading s
 
 For a specific issue, the [command palette](/en/guide-search.html) is faster.
 
+### Selecting several issues and setting one deadline
+
+In the list you can select several issues and give them all the same deadline in one step.
+
+- **On a phone**, press and hold an issue. The first time, a short tip above the list explains this.
+- **On wider windows**, tap the round select button next to **New issue**. The same button ends the selection.
+- **Select all** selects the rows that are loaded right now, not every match of the filter.
+
+Then **Set deadline** lets you pick a date or remove the deadline from all of them. This works for up to 100 issues at a time. With [project templates](/en/project-templates.html) on and all selected issues in one project, you can also set the deadline as an offset from that project's event date. Issues from several projects only take a fixed date, because each project has its own event date.
+
+The change applies to all of them or to none: if you may not edit one of the issues, none of them changes.
+
 ## The issue in detail
 
 Content on the left, facts on the right.
@@ -136,7 +148,7 @@ Click a value to open a picker for **Status**, **Assignee** (with **Assign to me
 The **Timeline** card holds **Start date**, **Due date**, **Log time** and, once work is logged, a line such as "Spent 1h 30m of 4h" (see [Tracking your time](/en/guide-time.html)). At the bottom it says "Created 3 days ago" or "Updated …".
 
 !!! note "Deployment card only with a repo"
-    If the project is linked to GitHub, GitLab or Bitbucket, **Deployment** shows branches, commits and pull requests that mention the key, plus shortcuts for a branch name or commit message. An operator or project lead connects it, see [Git integration](/en/git-integration.html).
+    If the project is linked to GitHub, GitLab or Bitbucket, **Deployment** shows branches, commits and pull requests that mention the key, plus shortcuts for a branch name or commit message. A project lead connects it, see [Git integration](/en/git-integration.html).
 
 ## Editing an issue
 
@@ -155,6 +167,8 @@ Other people's changes appear live, without a refresh and without overwriting an
 - **History**: only changes such as "changed the status", with who and when
 
 Hinata writes the history automatically and nobody can edit it.
+
+A comment can be deleted by its author, by the project's leads and by the Team-Admins of a team that owns the project. Platform admins can only do it if they hold one of those roles. See [Comments & attachments](/en/guide-collaboration.html).
 
 ## Share a link to an issue
 
@@ -223,7 +237,7 @@ The old key stops resolving.
 
 **Archiving** is open to every project member. The issue leaves lists, boards, sprints and search but stays intact. The **Archived** filter finds it, **Restore** brings it back. Sub-tasks of a story, task, bug or feature go along.
 
-**Deleting** is only for platform admins, project leads and admins of a team that owns the project. Everyone else only sees **Archive**. If you can delete, the dialog offers both, with Delete in red.
+**Deleting** is only for project leads and admins of a team that owns the project. Platform admins may only do it when they hold one of those roles. Everyone else only sees **Archive**. If you can delete, the dialog offers both, with Delete in red.
 
 !!! warning "Deleting cannot be undone"
     Comments, work logs, links and history go with it. For a **story, task, bug or feature**, sub-tasks too. For an **epic**, children stay as ordinary issues and only lose the link. When in doubt, archive.

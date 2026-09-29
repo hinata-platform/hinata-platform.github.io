@@ -491,6 +491,13 @@
      }
     ],
     [
+     "organization",
+     {
+      "en": "Organization",
+      "de": "Organisation"
+     }
+    ],
+    [
      "project-settings",
      {
       "en": "Project settings",

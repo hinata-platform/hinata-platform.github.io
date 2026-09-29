@@ -32,7 +32,7 @@ Klicke die Kachel **Neuer Bereich**, gib Name und Beschreibung ein und wähle Sy
 Leg lieber wenige, breite Bereiche an, etwa einen pro Team oder Disziplin. Einer pro Projekt passt selten, weil Themen Projekte überdauern.
 
 !!! warning "Ein Bereich lässt sich nur löschen, solange er leer ist"
-    **Bereich löschen** gibt es nur für Bereiche ohne Artikel. Verschiebe oder lösche vorher alle Seiten.
+    **Bereich löschen** gibt es nur für Bereiche ohne Artikel. Liegen noch Seiten darin, auch solche, die du nicht sehen kannst, lehnt Hinata das Löschen ab. Verschiebe oder lösche vorher alle Seiten.
 
 ## Einen Artikel schreiben
 
@@ -43,6 +43,7 @@ Tippe auf **Neuer Artikel**, auf der Startseite oder in der Artikelansicht neben
 
 - **Titel** über der Werkzeugleiste. Er wird Überschrift, Zeile im Seitenbaum und Suchbegriff. *„Checkliste für Releases“* findet man, *„Notizen“* nicht.
 - **Bereichsauswahl** daneben. Lässt sich jederzeit ändern.
+- **Sichtbar für**: **Nur ich**, ein **Projekt** oder ein **Team**. Eine neue Seite bleibt privat, bis du sie einem Projekt oder Team zuordnest. Bei Unterseiten steht hier **Wie die übergeordnete Seite**.
 - **Knopf rechts:** **Veröffentlichen** bei neuen Seiten, **Speichern** beim Bearbeiten.
 
 Einen Entwurfsstatus gibt es nicht.
@@ -54,7 +55,7 @@ Einen Entwurfsstatus gibt es nicht.
 
 1. Öffne **Wissen** in der Seitenleiste und drücke **Neuer Artikel**.
 2. Wähle einen Titel nach der Frage, die er beantwortet: *„Wie wir ein Release ausrollen“*, nicht *„Release“*.
-3. Wähle im Dropdown neben dem Titel den Bereich.
+3. Wähle im Dropdown neben dem Titel den Bereich und unter **Sichtbar für** das Projekt oder Team, das die Seite lesen soll.
 4. Schreib den Text mit **Überschrift 2** pro Etappe, einer **nummerierten Liste** für die Schritte und einer **Warnung** für das, was schiefgehen kann.
 5. Tippe **@** und wähle das zugehörige Ticket.
 6. Drücke **Veröffentlichen**.
@@ -157,9 +158,12 @@ Siehe [Auf dem Handy](/de/guide-mobile.html).
 
 ## Umsortieren: ziehen, verschachteln, verschieben
 
-- **Zieh eine Seite auf eine andere**, um sie einzuhängen. Unterseiten wandern mit.
+- **Zieh eine Seite auf eine andere**, um sie einzuhängen. Unterseiten wandern mit, und alles liegt danach dort, wo die neue Elternseite liegt.
 - **Lass sie auf der Wurzelzone** oben im Baum fallen, um sie auf die oberste Ebene zu holen.
 - **Anderer Bereich:** Seite öffnen, **Bearbeiten**, Bereich in der Kopfzeile ändern.
+- **Anderes Projekt oder Team:** Seite der obersten Ebene öffnen, **Bearbeiten**, **Sichtbar für** ändern. Die Unterseiten ziehen mit. Privat machen kann eine Seite nur, wer sie geschrieben hat.
+
+Eine Seite an einen anderen Ort zu bringen, braucht Rechte über den Ort, an dem sie jetzt liegt. Eine Projektseite verschieben die Projektleitungen und die Team-Admins eines Teams, dem das Projekt gehört. Eine Teamseite verschieben die Admins des Teams, eine private Seite ihr Autor. Hat jemand eine Unterseite von einem anderen Ort aus darunter abgelegt, bleibt sie beim Verschieben, wo sie ist, und wird dort zur Seite der obersten Ebene. Die private Seite einer Person zieht nie mit der Seite einer anderen Person um.
 
 Fährst du über eine Zeile, erscheinen **+** (**Unterseite hinzufügen**) und das Menü.
 
@@ -174,20 +178,26 @@ Fährst du über eine Zeile, erscheinen **+** (**Unterseite hinzufügen**) und d
 
 ## Wer was sieht und ändern darf
 
-| Rahmen | Wer ihn sieht |
+| Sichtbar für | Wer die Seite liest |
 | --- | --- |
-| **Global** | Alle mit einem Konto auf eurem Server |
-| **Projekt** | Alle mit Zugriff auf dieses Projekt |
-| **Team** | Die Mitglieder dieses Teams |
+| **Projekt** | Alle, die das Projekt sehen |
+| **Team** | Die Team-Admins und die Mitglieder, denen das Team die Seite geöffnet hat |
+| **Nur ich** | Nur du als Autor |
 
-- In der App geschriebene Artikel sind **global**.
-- Artikel mit Rahmen Projekt oder Team kommen aus Integrationen. Siehst du das Projekt oder Team nicht, siehst du auch die Seiten nicht, weder in der Suche noch in Listen.
-- Administratorinnen und Administratoren sehen alles.
+- Team-Admins legen pro Mitglied fest, welche Seiten des Teams es liest: **Keine** (die Voreinstellung), **Alle Seiten des Teams** oder **Ausgewählte Seiten**. Eine ausgewählte Seite schließt alles darunter ein.
+- Unterseiten ziehen mit, wenn ihre Elternseite umzieht. Ausnahme sind Unterseiten, die von einem anderen Ort aus abgelegt wurden. Sie bleiben an ihrem Ort.
+- Andere Teammitglieder sehen nur, wie viele Seiten ein Kollege bekommen hat, aber nicht welche. Welche es sind, sehen die Team-Admins.
+- Private Seiten gehören zu deinen persönlichen Daten. Sie sind im Export deiner Daten enthalten und werden mit deinem Konto gelöscht. Das gilt auch für Seiten, die vor dem Update alle lesen konnten und jetzt privat für ihren Autor sind. Soll eine wichtige Seite bleiben, verschiebe sie in ein Projekt oder Team, bevor das Konto gelöscht wird.
+- Sonst liest niemand eine Seite, auch Administratorinnen und Administratoren nicht. Was du nicht lesen darfst, siehst du weder in der Suche noch in Listen.
+- Ist dir eine Unterseite geöffnet, ihre Elternseite aber nicht, steht sie in deinem Baum ganz oben.
 
-Projektzugriff: [Projekte & Teams](/de/guide-projects.html).
+Projekt- und Teamzugriff: [Projekte & Teams](/de/guide-projects.html#zugriff-auf-die-seiten-des-teams).
+
+!!! note "Nach dem Update"
+    Seiten, die vorher keinem Projekt und keinem Team gehörten, sind jetzt privat für ihre Autoren. Bestehende Teammitglieder lesen die Seiten ihres Teams erst, wenn ein Team-Admin sie ihnen öffnet. Seiten, die unter einer Seite von einem anderen Ort hingen, sind jetzt Seiten der obersten Ebene an ihrem eigenen Ort. Seiten, deren Autor schon vor dem Update gelöscht wurde, bleiben gespeichert, aber niemand kann sie lesen. Was damit geschieht, entscheidet der Betreiber.
 
 !!! warning "Wer eine Seite lesen kann, kann sie bearbeiten und löschen"
-    Es gibt keine Rechte pro Artikel und keinen reinen Lesezugriff. Nur Elternseiten mit Unterseiten sind vor dem Löschen geschützt.
+    Es gibt keinen reinen Lesezugriff. Nur Elternseiten mit Unterseiten sind vor dem Löschen geschützt.
 
 ## Die Wissensdatenbank durchsuchen
 

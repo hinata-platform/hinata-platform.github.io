@@ -32,7 +32,7 @@ Click the **New space** tile, enter a name and description, and pick an icon and
 Prefer a few broad spaces, such as one per team or discipline. One per project rarely fits, because topics outlive projects.
 
 !!! warning "A space can only be deleted while it is empty"
-    **Delete space** is only offered on a space with no articles. Move or delete its pages first.
+    **Delete space** is only offered on a space with no articles. While pages are still in it, including pages you cannot see, Hinata refuses to delete it. Move or delete its pages first.
 
 ## Write an article
 
@@ -43,6 +43,7 @@ Press **New article**, on the home screen or in the article view next to **All s
 
 - **Title** above the toolbar. It becomes the heading, the row in the tree and what people search for. *"Release checklist"* is findable, *"Notes"* is not.
 - **Space picker** next to it. You can change it at any time.
+- **Visible to**: **Only me**, a **Project** or a **Team**. A new page stays private until you put it into a project or team. On sub-pages this reads **Same as the page above**.
 - **Button on the right:** **Publish** on new pages, **Save** when editing.
 
 There is no draft state.
@@ -54,7 +55,7 @@ There is no draft state.
 
 1. Open **Knowledge** in the sidebar and press **New article**.
 2. Title it for the question it answers: *"How to roll a release"*, not *"Release"*.
-3. Pick the space from the dropdown next to the title.
+3. Pick the space from the dropdown next to the title, and under **Visible to** the project or team that should read the page.
 4. Write the body with **Heading 2** per stage, a **numbered list** for the steps and a **Warning** panel for what can go wrong.
 5. Type **@** and pick the related ticket.
 6. Press **Publish**.
@@ -157,9 +158,12 @@ See [On your phone](/en/guide-mobile.html).
 
 ## Reorganising: drag, nest, move
 
-- **Drag a page onto another** to nest it. Sub-pages move with it.
+- **Drag a page onto another** to nest it. Sub-pages move with it, and everything then lives where the new parent lives.
 - **Drop it on the root zone** at the top of the tree to move it to the top level.
 - **Different space:** open the page, press **Edit** and change the space in the header.
+- **Different project or team:** open a top-level page, press **Edit** and change **Visible to**. Its sub-pages come along. Only the author can make a page private.
+
+Moving a page to another place needs authority over the place it is in now. A project page can be moved by the project's leads and by the Team-Admins of a team that owns the project. A team page can be moved by the team's admins, a private page by its author. If someone filed a sub-page under it from another place, that sub-page stays where it is when the page moves and becomes a top-level page there. One person's private page never moves along with another person's page.
 
 Hovering a row shows **+** (**Add sub-page**) and the menu.
 
@@ -174,20 +178,26 @@ Hovering a row shows **+** (**Add sub-page**) and the menu.
 
 ## Who can see and change what
 
-| Scope | Who can see it |
+| Visible to | Who reads the page |
 | --- | --- |
-| **Global** | Everyone with an account on your server |
-| **Project** | Everyone who has access to that project |
-| **Team** | Members of that team |
+| **Project** | Everyone who sees the project |
+| **Team** | The team's admins and the members the team opened the page to |
+| **Only me** | Only you, the author |
 
-- Articles written in the app are **global**.
-- Project and team scoped articles come from integrations. If you can't see the project or team, you can't see its pages either, not in search and not in lists.
-- Administrators see everything.
+- Team-Admins decide per member which of the team's pages they read: **None** (the default), **All pages of the team** or **Selected pages**. A selected page includes everything below it.
+- Sub-pages come along when their parent moves. Sub-pages that were filed from another place are the exception. They stay where they are.
+- Other team members see how many pages a colleague was given, but not which ones. Team-Admins see which.
+- Private pages are part of your personal data. They are included in your data export and are deleted with your account. That includes pages everyone could read before the update that are now private to their author. If an important page should stay, move it into a project or team before the account is deleted.
+- Nobody else reads a page, administrators included. What you may not read does not show up in search or in lists.
+- If a sub-page is open to you but its parent is not, it shows at the top of your tree.
 
-Project access: [Projects and teams](/en/guide-projects.html).
+Project and team access: [Projects and teams](/en/guide-projects.html#access-to-the-teams-pages).
+
+!!! note "After the update"
+    Pages that belonged to no project and no team before are now private to their authors. Existing team members only read their team's pages once a Team-Admin opens them. Pages that hung under a page from another place are now top-level pages in their own place. Pages whose author was deleted before the update stay stored, but nobody can read them. What happens to them is up to the operator.
 
 !!! warning "Anyone who can read a page can edit or delete it"
-    There are no per-article permissions and no read-only mode. Only parent pages with sub-pages are protected from deletion.
+    There is no read-only mode. Only parent pages with sub-pages are protected from deletion.
 
 ## Searching the knowledge base
 

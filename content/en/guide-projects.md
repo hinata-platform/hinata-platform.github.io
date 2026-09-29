@@ -76,7 +76,7 @@ Click **New project** at the top right.
 ![The New project dialog](/assets/img/shot-project-new.png)
 *The key fills in from the name as you type, here BP from "Billing & Plans".*
 
-You also set a description, lead and colour. The line at the bottom names the workflow the project starts with.
+You also set a description, lead and colour. The line at the bottom names the workflow the project starts with. With [project templates](/en/project-templates.html) on, you also choose whether new deadlines count calendar days or working days. Your organization's default is preselected.
 
 You can overwrite the suggested key. It must:
 
@@ -96,9 +96,9 @@ You can see a project if **any one** of these is true:
 
 1. You are a **member of that project** directly.
 2. A **team you're on grants** you that project.
-3. You are a **platform administrator**, who sees everything.
+3. You are a **Team-Admin of a team** that owns the project.
 
-The server checks this on every request. A project you cannot access therefore also stays out of your issue list, search, reports, board filters and notifications. There is no extra sharing step: being granted access is the access.
+Platform administrators, too, only see a project through one of these. The server checks this on every request. A project you cannot access therefore also stays out of your issue list, search, reports, board filters and notifications. There is no extra sharing step: being granted access is the access.
 
 ### What a team is
 
@@ -120,7 +120,7 @@ The top of a team page has Add members and Add project. Below are four tabs:
 
 | Role | What it can do |
 | --- | --- |
-| **Team-Admin** | Full control of this team: members, projects, settings. The same rights as a platform administrator, but scoped to this one team. Always sees every project the team owns. |
+| **Team-Admin** | Full control of this team: members, projects, settings, and who reads which knowledge base pages. Also manages the settings of every project the team owns. Always sees every project of the team. |
 | **Member** | Works on the projects they're granted. Cannot change the team's membership or its settings. |
 
 ### Three levels of project access
@@ -137,6 +137,16 @@ Back returns to the People step. Add 1 saves the person, role and access in one 
 - **No projects yet:** the person is on the team but sees no projects. Useful when you want to sort out access later.
 
 **Team-Admins are the exception:** they always see every project their team owns, whatever the setting says.
+
+### Access to the team's pages
+
+In the same step you choose which of the team's [knowledge base](/en/guide-knowledge.html) pages the person may read:
+
+- **None:** the team's pages stay closed to them. This is the default.
+- **All pages of the team:** including pages added later.
+- **Selected pages:** only the ones you pick. A page includes everything below it, so pick the highest page that fits.
+
+Team-Admins always read every page of their team. You change a member's access later in the **Members** tab. Other members only see how many pages someone was given there, not which ones. Only Team-Admins see which.
 
 ### The projects a team owns
 
@@ -158,7 +168,7 @@ Then you are missing access. You have three options:
 - Ask to be **added to a team** that grants it.
 - If you are already on that team, ask a Team-Admin to widen your *Specific projects* access to include it.
 
-Team-Admins of that team, leads of the project and platform administrators can do this. The change works immediately, no need to sign in again.
+Team-Admins of that team and leads of the project can do this. The change works immediately, no need to sign in again.
 
 !!! warning "Removing access removes it everywhere, at once"
     Taking someone off a team or detaching a project from a team removes everything that grant allowed: the project, its boards, its issues and the notifications about them. The person also stops watching issues they can no longer reach. The work itself is untouched.
@@ -177,7 +187,7 @@ Four people:
 
 - **Nora** is a Member of Core Platform with *All projects*. She sees `HIN` and `INF`.
 - **Sam** is a Member of Design & Mobile and sees only `MOB`. `HIN` does not appear anywhere for them, not in search, reports or board filters.
-- **Ida** is a Team-Admin of Core Platform. She sees `HIN` and `INF` regardless of any access setting. She also leads `INF`, so that is the only card that shows her a Settings button.
+- **Ida** is a Team-Admin of Core Platform. She sees `HIN` and `INF` regardless of any access setting and can change the settings of both. Because she also leads `INF`, she may connect Git there or delete it.
 - **Ruben** is a Member of Design & Mobile *and* a direct member of `HIN`, because he designs one screen in it. He sees `MOB` through his team and `HIN` through direct membership.
 
 After the initial setup, none of this needs an administrator. Team-Admins grant projects, project leads configure them.
@@ -187,7 +197,9 @@ After the initial setup, none of this needs an administrator. Team-Admins grant 
 
 ## What a project lead can change
 
-A project's **Settings** belong to its **leads** and platform administrators. Regular members never see this page, which is why the Settings button is missing on their card. Leads do not need the admin area for any of this.
+A project's **Settings** belong to its **leads** and to the **Team-Admins** of every team that owns the project. That covers the name, workflow, members, event date and deadlines, and time settings. Regular members never see this page, which is why the Settings button is missing on their card. Nobody needs the admin area for this, and platform admins have no rights of their own here.
+
+Four things stay with the leads: **deleting** the project, **connecting Git**, **attaching** the project to another team and deciding **who leads the project**. So Team-Admins cannot make themselves lead.
 
 ![Project settings](/assets/img/shot-project-settings.png)
 *Project settings for Hinata Platform.*
@@ -202,7 +214,7 @@ Under the key field you see live how issues will be named, such as *"Issues read
 
 ### Leads & members
 
-- **Star a member to make them a project lead.**
+- **Star a member to make them a project lead.** Only project leads can set or remove the star. Team-Admins manage members but do not change who leads.
 - A project always needs at least one lead. You cannot save without one.
 - **Add members** searches everyone on the server. Newly added people are notified.
 
@@ -257,12 +269,14 @@ The **Danger zone** at the bottom has one button: **Delete project**. This is th
 | Action | Who |
 | --- | --- |
 | Work in a project: create issues, comment, log time, move cards | Any member of the project |
-| See a project at all | Direct members, people a team grants it to, platform administrators |
-| Change a project's name, key, labels, workflow, members | Project leads and platform administrators |
-| Archive or delete a project | Project leads and platform administrators |
-| Add or remove team members, set their role and access | Team-Admins and platform administrators |
-| Attach or detach a team's projects | Team-Admins and platform administrators |
-| Change a team's name, key, colour or icon | Team-Admins and platform administrators |
+| See a project at all | Direct members, people a team grants it to, Team-Admins of a team that owns it |
+| Change a project's name, key, labels, workflow, members, event date, deadlines and time settings, archive it | Project leads and Team-Admins of a team that owns the project |
+| Delete a project, connect Git, attach it to another team, decide who leads it | Project leads only |
+| Delete other people's comments | Project leads and Team-Admins of a team that owns the project |
+| Add or remove team members, set their role, project access and page access | Team-Admins |
+| Detach projects from a team | Team-Admins |
+| Change a team's name, key, colour or icon | Team-Admins |
+| Working time, absences, holidays, billing | Organization admins, on the [Organization](/en/organization.html) page |
 | Everything else: users, sign-in, e-mail, integrations | Platform administrators, in the admin area |
 
 For anything in the last row, contact whoever runs the server. The [Admin area](/en/admin-area.html) page describes what lives there.

@@ -136,7 +136,10 @@ The **Appearance & app** card contains:
 - **Language**: one of [nine](/en/features.html#languages) (English, German,
   French, Spanish, Russian, Chinese, Japanese, Hindi, Arabic). It applies to the
   interface at once and to the server's e-mails and error messages. Arabic runs
-  the layout right to left.
+  the layout right to left. Hinata also uses your language region (or your
+  time zone) to work out which
+  [notification days](/en/guide-notifications.html#which-days-reach-you) are
+  preset.
 - **Appearance**: **System**, **Light** or **Dark**. System follows your
   operating system.
 - **Connected server**, with **Manage servers** next to it if you use several.
@@ -154,6 +157,13 @@ The **Access** card is read-only. Under **Teams** and **Projects** you see what
 you are a member of, with member count and your role. If a project is missing,
 someone has to add you to the right team. See
 [Projects & teams](/en/guide-projects.html).
+
+## Organization
+
+If you are an organization admin, your settings also have an **Organization**
+row. It leads to the page with time tracking, absences, holidays, billing and
+the deadline default for the whole organization. See
+[Organization](/en/organization.html).
 
 ## Access tokens
 
@@ -186,15 +196,15 @@ field.
     issues, comments and history stay, but **anonymised**. There is no grace
     period and no recovery.
 
-    If you only want to leave a project, ask an administrator to remove your
-    access.
+    If you only want to leave a project, ask the project lead or a Team-Admin
+    to remove your access.
 
 As the **last active administrator** you cannot delete your account. Make
 someone else an administrator first.
 
 ## Next steps
 
-- [Staying informed](/en/guide-notifications.html): set up notifications
+- [Staying informed](/en/guide-notifications.html): set up notifications and notification days
 - [Getting started](/en/guide-start.html): signing in and your first day
 - [On your phone](/en/guide-mobile.html): the mobile layout and several servers
 - [Authentication](/en/authentication.html): passwords and 2FA from the operator's side

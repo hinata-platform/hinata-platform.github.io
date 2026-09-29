@@ -153,7 +153,7 @@ Hinata blockiert keine weiteren Karten. Das rote Abzeichen soll zeigen, dass sic
 ![Der Spalten-Editor eines Boards](/assets/img/shot-board-columns.png)
 *„Board-Optionen → Spalten“: pro Spalte ein Ziehgriff, die Status als Chips, das Feld „Max.“ für das WIP-Limit und eine Schaltfläche zum Entfernen.*
 
-Limits setzen darf, wer das Board besitzt, eines seiner Projekte leitet, ein Team mit Zugriff leitet oder Administrator ist.
+Limits setzen darf, wer das Board besitzt, eines seiner Projekte leitet oder ein Team mit Zugriff leitet.
 
 ## Das Backlog
 
@@ -275,7 +275,7 @@ Die Schaltfläche **⋮** an jedem Board in der Liste öffnet die **Board-Option
 - **Spalten:** der Editor [von oben](#wip-limits). Nennen zwei Projekte denselben Schritt unterschiedlich, korrigierst du die Zuordnung hier.
 - **Board löschen:** entfernt das Board. Die Vorgänge bleiben, denn sie gehören zu ihren Projekten.
 
-Dafür musst du das Board besitzen, eines seiner Projekte leiten, ein Team mit Zugriff leiten oder Administrator sein. Siehst du das Menü nicht, hast du keine dieser Rollen.
+Dafür musst du das Board besitzen, eines seiner Projekte leiten oder ein Team mit Zugriff leiten. Siehst du das Menü nicht, hast du keine dieser Rollen.
 
 !!! warning "Jeder Status braucht eine Spalte"
     Jeder Workflowstatus muss in genau einer Spalte liegen. Ein Status ohne Spalte heißt: Seine Vorgänge fehlen auf der Wand. Der Editor warnt dich davor, bevor du speicherst.

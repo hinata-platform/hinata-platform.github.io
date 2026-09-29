@@ -103,7 +103,7 @@ You build and navigate this structure right on the issue:
 - It disappears from search, the board and sprints by default.
 - You can unarchive it just as easily.
 
-**Hard deletion** is destructive and role-gated: only a platform admin, the project lead or a team admin can do it. Hinata checks your permissions on the issue and only offers the option you're allowed to use.
+**Hard deletion** is destructive and role-gated: only the project lead or a team admin of a team that owns the project can do it. The platform admin role alone is not enough. Hinata checks your permissions on the issue and only offers the option you're allowed to use.
 
 !!! warning "Hard-deleting cannot be undone"
     What goes with it depends on the type:
@@ -114,6 +114,10 @@ You build and navigate this structure right on the issue:
     If you're not sure, archive first.
 
 The hierarchy also powers the board: you can group the [agile board](/en/boards-sprints.html) into swimlanes by **epic** or **sub-task**, and filter it down to a single epic.
+
+## Several issues at once
+
+In the issues list you select several issues (press and hold on a phone, or use the round select button next to **New issue** on wider windows) and give them all the same deadline, or remove it. This works for up to 100 issues at a time. An offset from the project's event date is only offered when all of them belong to one project and project templates are on. See [Working with issues](/en/guide-issues.html#selecting-several-issues-and-setting-one-deadline).
 
 ## Issues and Git
 

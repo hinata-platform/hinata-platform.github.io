@@ -48,6 +48,12 @@ Two independent layers protect logins and the API.
 
 - **Role-gated admin surface.** Every route under **`/api/v1/admin/**` requires the `ADMIN` role**. A normal token can't reach admin functions.
 - **Tenant and project visibility.** Team membership decides project visibility across the app: a user only sees projects their team grants (see [Projects & teams](/en/projects-teams.html)).
+- **No back door for admins.** The `ADMIN` role only opens the admin area. An admin sees projects, teams, issues, boards, knowledge base pages, search hits and time entries only through their own membership, like everyone else.
+- **Organization duties have their own role.** The settings for time tracking, approvals, absences, holidays and billing need the `ORG_ADMIN` role. Everyone else gets a 403 there, admins included. See [Organization](/en/organization.html).
+- **Roles you cannot give yourself.** An admin cannot make themselves an organization admin, another admin has to do it. This is a transparency measure, not a hard barrier, because a second admin account would still get around it. That is why every grant is recorded, and that cannot be switched off. The last organization admin cannot be removed, deactivated or deleted. Every organization admin is told when someone joins or leaves the role.
+- **No account takeover by admins.** When an admin changes a person's sign-in address, the person gets a message at their old address. For one day after that, no password reset reaches them, neither from the admin area nor from the public "forgot password" page, which quietly sends nothing during that time.
+- **A separate audit log.** **Admin area → Audit** only shows platform records: sign-ins, accounts, configuration and integrations. Records about working time, timesheets and absences are in the log on the Organization page. Records about absences are only shown there to whoever keeps absences. Organization admins decide which of these events are recorded. Admins cannot change that, and the platform's master switch does not turn them off. Records about issues and pages appear for admins without their details, so without issue keys and page ids. Changes to the admin and organization admin roles, and any change of a sign-in address by an admin, are always recorded and cannot be switched off.
+- **Knowledge base protected by roles.** A page can be read by whoever sees its project, by the Team-Admins of its team, or by members the team opened it to. Pages with neither project nor team are read only by their author. Search only returns what the caller can reach. Only someone with authority over a page's current place can move it somewhere else, and only its author can make it private.
 - **Public endpoints are explicit.** Only this short allowlist works without a token: `/meta`, `/setup/status`, `/setup`, `/auth/login`, `/auth/refresh`, `/auth/sso/providers`, `/actuator/health`. Everything else needs a Bearer token.
 
 ## Hardened HTTP responses
@@ -70,7 +76,7 @@ Git access tokens and other integration secrets are **encrypted with AES-GCM** b
 
 | OWASP Top 10 (2021) | How Hinata addresses it |
 | --- | --- |
-| A01 Broken Access Control | `ADMIN`-gated admin routes, explicit public allowlist, team and project visibility, tokens revocable per session |
+| A01 Broken Access Control | `ADMIN`-gated admin routes, `ORG_ADMIN`-gated organization routes, no content rights from platform roles, explicit public allowlist, team and project visibility, tokens revocable per session |
 | A02 Cryptographic Failures | JWT HS512, BCrypt 12 passwords, AES-GCM encryption of integration secrets at rest, TLS everywhere (operator) |
 | A03 Injection | Regex-escaped search, parameterized Mongo access, uploads validated for content type and size |
 | A04 Insecure Design | Refresh tokens rejected for API use, write-only secrets, auth callbacks via deep link, authorization state stored in MongoDB |

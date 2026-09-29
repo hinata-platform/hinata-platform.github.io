@@ -5,7 +5,7 @@ description: Per-project configuration with colored labels and workflow states, 
 
 # Project settings
 
-The [Admin area](/en/admin-area.html) configures the whole instance. **Project settings** configure a single project: labels, workflow, visibility and connected repositories. The project's lead edits them.
+The [Admin area](/en/admin-area.html) configures the whole instance. **Project settings** configure a single project: labels, workflow, visibility and connected repositories. The project's leads edit them, and so do the Team-Admins of every team that owns the project. Deleting the project, connecting Git, attaching it to another team and deciding who leads it are for the leads only. Team-Admins manage everything else but cannot appoint themselves lead. Platform admins have no rights of their own here.
 
 ## Labels & workflow states
 
@@ -39,6 +39,12 @@ This is also where you control **who can see and work in the project**. There ar
 
 A person only sees a project that their team or a direct membership grants. The check applies app-wide. Restrict a project here and it disappears from the boards, search and reports of anyone without access.
 
+## Deadlines
+
+With [project templates](/en/project-templates.html) on, **Deadlines count in** sets whether new relative deadlines in this project count **calendar days** or **working days**. Without a choice of its own, the project follows the organization's default, which organization admins set on the [Organization](/en/organization.html) page. You get the same choice when you create or copy a project.
+
+The setting only preselects what a new deadline starts with. Existing deadlines keep their own basis and do not move.
+
 ## Project key
 
 Every project has a short **key** (e.g. `ASTA`) that prefixes its issue numbers (`ASTA-42`). Smart commits, branch names and PR titles use it to link work to an issue. See [Git integration](/en/git-integration.html).
@@ -48,7 +54,7 @@ Every project has a short **key** (e.g. `ASTA`) that prefixes its issue numbers 
 A project can connect **one or more repositories** on GitHub, GitLab or Bitbucket from its settings.
 
 - Prerequisite: the operator has registered the OAuth apps in the [Admin area](/en/admin-area.html).
-- A project lead adds repositories here and configures automation rules and the branch template (both shared project-wide).
+- Only a project lead adds repositories here and configures automation rules and the branch template (both shared project-wide).
 - Each connected repo keeps its own token, webhook and default branch.
 
 Full detail is in [Git integration](/en/git-integration.html).
