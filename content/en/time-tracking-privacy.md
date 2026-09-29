@@ -20,7 +20,7 @@ Hinata is self-hosted. The controller under Art. 4(7) GDPR for everything on an 
 
 The works agreement, the data protection impact assessment and the record of processing activities are therefore your documents. Hinata provides the settings and the functions for data subject rights. You decide which of them run.
 
-Every policy that makes a statement about a person possible is off out of the box. After an upgrade, time tracking stays as it was until someone deliberately switches something on. You find the policies in the [Admin area](/en/admin-area.html) under **Time tracking**. If you leave one unset, the value from the server's environment applies.
+Every policy that makes a statement about a person possible is off out of the box. After an upgrade, time tracking stays as it was until someone deliberately switches something on. You find the policies on the [Organization](/en/organization.html) page under **Time tracking**. Organization admins set them. If you leave one unset, the value from the server's environment applies.
 
 ## Purpose and data categories
 
@@ -35,18 +35,23 @@ The module records working time. It serves statutory recording duties and projec
 | Days opened for a person | Span, who opened them, expiry, a message if there is one | Close again by themselves after two weeks and are recorded in the audit log (`TIME_BACKFILL_GRANTED`, `TIME_BACKFILL_REVOKED`). |
 | Personal timer preferences | For example pomodoro lengths and breaks | Stored on the account, only relevant to the person. |
 | Acknowledgement of the privacy notice | Timestamp (`timePrivacyAcknowledgedAt`) | Proof that the person was informed. Not consent. |
-| Working hours | Planned minutes per weekday, the day they apply from, the chosen holiday calendar, who set them and when | Planning data. When an administrator changes them for someone else, the audit log records it (`AVAILABILITY_SCHEDULE_CHANGED`). |
-| Absences | Type (vacation, sick, other), first and last day, half day, optional note | Planning data. An absence never stops anyone from recording time. When an administrator changes one for someone else, the audit log records it without the note (`AVAILABILITY_TIME_OFF_CHANGED`). |
+| Working hours | Planned minutes per weekday, the day they apply from, the chosen holiday calendar, who set them and when | Planning data. When an organization admin changes them for someone else, the audit log records it (`AVAILABILITY_SCHEDULE_CHANGED`). |
+| Absences | Type (vacation, sick, other), first and last day, half day, optional note | Planning data. An absence never stops anyone from recording time. When an organization admin changes one for someone else, the audit log records it without the note (`AVAILABILITY_TIME_OFF_CHANGED`). |
 | Absence balances | Per type and year: entitlement, grants, bookings and corrections, each with the day it takes effect, the reason and who acted | Planning data. The journal is the source: no balance is stored, and every figure on every screen is computed from it. A correction's reason lives **only** on the journal line. |
 | Employment dates used for the calculation | Joining and leaving date, optional note | There only to work out a pro-rata entitlement (§ 5 BUrlG). Whoever keeps absences can see them. |
 | Absence requests | Type, span, the share the first and last day count for, the frozen number of days, status, optional note, the people who could decide it as worked out at submission, an optional stand-in, and the history of every step with its time and who acted | The request is the document and the absence is its result. A decision's reason lives **only** here, never in the audit log. The log records the type, the span and the amount (`TIME_OFF_REQUEST_SUBMITTED`, `_APPROVED`, `_REJECTED`, `_WITHDRAWN`, `_CANCELLED`). |
 | Sick reports | Span, half day, type | A notification and not a request: no approver, no status, no required field and **no certificate**. The log records only that a report was made and for which span (`TIME_OFF_SICK_REPORTED`). |
 
 !!! danger "A reason stays with the thing it is about, not in the log"
-    When somebody corrects a balance, Hinata asks for a reason — and writes it on the journal line, **not** into the audit log. The same holds for **rejecting a request**: the sentence sits on the request and goes when it does. That is deliberate: a reason can name an illness or a recognised disability (§ 208 SGB IX), which is data under Art. 9 GDPR. In the audit log it would outlive the deletion of the account, survive the module being switched off, and be readable by every administrator. The audit log records **that** somebody corrected or decided, for which type, which span and by how much.
+    When somebody corrects a balance, Hinata asks for a reason. It writes that reason on the journal line, **not** into the audit log. The same holds for **rejecting a request**: the sentence sits on the request and goes when it does. That is deliberate: a reason can name an illness or a recognised disability (§ 208 SGB IX), which is data under Art. 9 GDPR. In the audit log it would outlive the deletion of the account, survive the module being switched off, and be readable by everyone who sees the log. The audit log records **that** somebody corrected or decided, for which type, which span and by how much.
+
+!!! info "Who reads these log records"
+    Records about working time, timesheets and absences are in the log on the [Organization](/en/organization.html) page. Administrators do not see them under **Admin area → Audit**. Records about absences, meaning requests, sick reports and balances, are only shown there to whoever keeps absences: the named absence keepers or, while nobody is named, the organization admins. Which of these events are recorded is up to the organization admins, not the administrators.
 
 !!! warning "A sick day is health data"
     The absence type *sick* says something about a person's health, which Art. 9 GDPR protects specially. Hinata stores no reason and no diagnosis, only the type and the days. Settle in the agreement whether sick days are entered here at all, or whether *other* is enough for planning.
+
+    If you name people to keep absences, only they see sickness as sickness. Organization admins then only see that someone is away, not why. If nobody is named, organization admins keep absences themselves and see them in full.
 
     That is also why there is nowhere to attach a fit-note: since 2023 an employer retrieves it from the health insurer under § 109 SGB IV. And it is why no notification about an absence names its type — not in the bell, not in the mail, not on a lock screen.
 
@@ -99,20 +104,20 @@ For every policy, the assessment under § 87 BetrVG is for the parties to the wo
 | Policy | Default | Which evaluation of people it enables | Co-determination |
 | --- | --- | --- | --- |
 | **Extended time tracking** (`advancedEnabled`) | off | The module itself: timers with start and end time, submissions, correction requests and every policy below. Only with it do the start and end of a person's work become data. | This is the introduction of a technical device that is objectively suitable for monitoring (§ 87 Abs. 1 Nr. 6 BetrVG, or staff representation law in the public sector). Agree it with the works or staff council before switching it on. |
-| **Absence management** (`absenceManagementEnabled`) | off | Absence types, entitlements and balances. With it the organisation gets holiday planning: who has how many days, when somebody is away, how much is left. Without it there are only the absences used for planning, with no entitlement and no balance. | This is **§ 87 Abs. 1 Nr. 5 BetrVG** — principles for holiday, the holiday schedule, and fixing an individual's holiday where no agreement is reached. That is a different provision from Nr. 6 and applies in addition. Switching it off loses nothing: the journal stays. |
+| **Absence management** (`absenceManagementEnabled`) | off | Absence types, entitlements and balances. With it the organization gets holiday planning: who has how many days, when somebody is away, how much is left. Without it there are only the absences used for planning, with no entitlement and no balance. | This is **§ 87 Abs. 1 Nr. 5 BetrVG** — principles for holiday, the holiday schedule, and fixing an individual's holiday where no agreement is reached. That is a different provision from Nr. 6 and applies in addition. Switching it off loses nothing: the journal stays. |
 | **Team absence calendar** (`absenceCalendarVisibility`) | off | Whether colleagues see each other's absences: *off*, *only that somebody is away*, or *the absence type*. Sickness only ever appears as away, and every type can lower the level further. Leads and the absence keepers also see the capacity their group has left, always as a sum. A person appears in a group only if they still belong to one of its projects and recorded time on it themselves; absence keepers see every current member. Leads see the capacity band only where they may see their members' absences anyway, and only for groups of three or more. | A calendar of who is away when is a holiday schedule within **§ 87 Abs. 1 Nr. 5 BetrVG**; the assessment is for the parties to the works agreement. Only in force while absence management is on. The transparency panel in time tracking tells every person the level that currently applies. |
 | **Leads see members' entries** (`leadsSeeMemberEntries`) | off | Off: leads never see who booked what. On issues they see only day, duration and activity, like every other member, and they do not change other people's entries. Reports are per project. On: leads see members' entries, an entry's history, the entries behind a submission, and in the timesheet the rows of members of projects they lead. They may then change those entries too. They also see which days those members are away, if the member recorded time themselves on an issue of one of their projects in the last twelve months: vacation or other, never a note, a sick day only as other, never the planned hours, and nothing they could change. | Supervisors can then read individual bookings. That is the key question of any agreement. |
-| **Timesheet approvals** (`approvalsEnabled`) with **Approval period** | off, monthly rhythm | People submit a period. A lead or admin approves or rejects it with a note. Approving means reading the person's entries, so it needs the policy above. The rhythm decides how closely things are checked. | Settle the rhythm, the approvers and how rejections are handled. |
-| **Workload reports** (`workloadReportsEnabled`) | off | Booked time against capacity per person, under **Time tracking → Reports → Workload**. That is a direct comparison between people. Only admins and project leads see it. A lead sees only people who logged time on their projects themselves, and as booked only the time on projects they lead. The list is sorted by name and the bar is neutral. Switched off, the section does not exist, and the server answers as if it never did. | Settle purpose, recipients and limits of use explicitly. |
+| **Timesheet approvals** (`approvalsEnabled`) with **Approval period** | off, monthly rhythm | People submit a period. A lead or organization admin approves or rejects it with a note. Approving means reading the person's entries, so it needs the policy above. The rhythm decides how closely things are checked. | Settle the rhythm, the approvers and how rejections are handled. |
+| **Workload reports** (`workloadReportsEnabled`) | off | Booked time against capacity per person, under **Time tracking → Reports → Workload**. That is a direct comparison between people. Only organization admins and project leads see it. A lead sees only people who logged time on their projects themselves, and as booked only the time on projects they lead. The list is sorted by name and the bar is neutral. Switched off, the section does not exist, and the server answers as if it never did. | Settle purpose, recipients and limits of use explicitly. |
 | **Budget alerts** (`alertsEnabled`) | off | Leads get a message when a project's recorded time reaches a share of its budget or of the sum of its estimates: 80 % unless the project sets another share, and 100 %. The assignees of an issue get one when it reaches its estimate. Each message names the project or issue and the sums, never a person, and comes once per crossing. In small projects it can still be traced to individuals. | Settle thresholds and recipients. |
-| **Target reminders** (`targetRemindersEnabled`) | off | A person sets a daily or weekly target of their own and chooses when to be reminded. The reminder comes only on their working days and only if they recorded less. It goes only to them. Nobody sees who was reminded, no reminder is audited, and administrators can only suggest a target. A push says only that there is something new; the push services that carry it (Hinata Connect, Apple, Google) can see that a reminder was delivered, not what it says. | Nobody else gets a report. Whether a target is suggested, and which, still belongs in the agreement. |
+| **Target reminders** (`targetRemindersEnabled`) | off | A person sets a daily or weekly target of their own and chooses when to be reminded. The reminder comes only on their working days and only if they recorded less. It goes only to them. Nobody sees who was reminded, no reminder is audited, and organization admins can only suggest a target. A push says only that there is something new; the push services that carry it (Hinata Connect, Apple, Google) can see that a reminder was delivered, not what it says. | Nobody else gets a report. Whether a target is suggested, and which, still belongs in the agreement. |
 | **Working-time hints** (`arbzgHintsEnabled`) | off | Hints under §§ 3, 5 and 9 ArbZG on a person's own entries, for that person only. Nothing is stored or passed on. See [Working-time self-hints](#working-time-self-hints-arbzg). | Only the general assessment (see above). |
-| `lateEntryHintDays` | empty, so no hint | An entry shows "recorded N days after the working day". Only the person sees it, and it appears in no report. See [Late recording](#late-recording-what-is-possible-and-what-you-must-organise). | Only the general assessment (see above). |
-| **Locked before** (`lockBefore`) and **Reopened spans** | no lock date | Entries before a cutoff day are frozen for everyone. A project can set its own, earlier lock date. An exception opens a named span for everyone, and its reason is in the audit log. On request the administrators can also open days for one person only, for two weeks. Requests and reasons can allow conclusions about individuals. | Settle who reads requests and exceptions and how long they are kept. |
-| `maxDaysBack` | 365 days | Guards against typos. Older days are refused, and the message points to the administrators, who can open the days for that person. The request and the opening are recorded with their reasons. | Only the general assessment (see above). |
+| `lateEntryHintDays` | empty, so no hint | An entry shows "recorded N days after the working day". Only the person sees it, and it appears in no report. See [Late recording](#late-recording-what-is-possible-and-what-you-must-organize). | Only the general assessment (see above). |
+| **Locked before** (`lockBefore`) and **Reopened spans** | no lock date | Entries before a cutoff day are frozen for everyone. A project can set its own, earlier lock date. An exception opens a named span for everyone, and its reason is in the audit log. On request an organization admin can also open days for one person only, for two weeks. Requests and reasons can allow conclusions about individuals. | Settle who reads requests and exceptions and how long they are kept. |
+| `maxDaysBack` | 365 days | Guards against typos. Older days are refused, and the message points to the organization admins, who can open the days for that person. The request and the opening are recorded with their reasons. | Only the general assessment (see above). |
 | **Retention** (`retention`) | 0 and 0, so no automatic deletion | Decides how far back anything can be evaluated at all. Hinata deletes entries never, or after 24 months at the earliest. | Retention periods belong in the agreement and the record of processing. |
 | **Calendar import** (`icsImportEnabled`) | off | People subscribe to their own calendar and turn appointments into entries. Appointment titles and times become time data. | Settle voluntariness and how private appointments are handled. |
-| **Billing** (`billingEnabled`) | off | Rates, labour costs, billing and profitability reports and invoices. Leads and admins see them. Labour cost rates can reveal individual pay. | Settle who sees cost rates. |
+| **Billing** (`billingEnabled`) | off | Rates, labour costs, billing and profitability reports and invoices. Leads and organization admins see them. Labour cost rates can reveal individual pay. | Settle who sees cost rates. |
 | Audit events `TIME_ENTRY_CREATED`, `TIME_TIMER_STARTED`, `TIME_TIMER_STOPPED`, `TIME_TIMER_DISCARDED` | off | A complete log of when each person created entries and started or stopped timers, which means the start and end of their work. Because such a log is objectively suitable for monitoring, these events are off by default. | Switch on only with an explicit rule. |
 
 !!! note "What the audit log always records"
@@ -123,14 +128,15 @@ For every policy, the assessment under § 87 BetrVG is for the parties to the wo
 The time reports under **Time tracking → Reports** open no new view of people. They read what the policies already allow.
 
 - **Totals** per project, activity, tag, issue or period include one's own entries and every entry of the projects one can see. Every member already sees on the issue that time was booked on it. A total names nobody.
-- **People** are named in a report only on one's own entries and, with `leadsSeeMemberEntries`, on the members of the projects one leads. The same rule applies to the list of entries and to every export. The administration sees everything.
-- Both are written into the database query. Nothing is read first and filtered out afterwards.
+- **People** are named in a report only on one's own entries and, with `leadsSeeMemberEntries`, on the members of the projects one leads. The same rule applies to the list of entries and to every export.
+- **Organization admins** see hours, person and project key for everyone. Issue titles, issue keys, descriptions and project names they only see for projects they are a member of, and for their own entries. The description search only searches entries they may read.
+- All of this is written into the database query. Nothing is read first and filtered out afterwards.
 
 Whoever **shares** a saved report passes on a link, not their view. Whoever opens the link has to be signed in and gets the report with what they may see themselves. Hinata keeps only a hash of the link, and the person who created it can revoke it at any time.
 
 A **scheduled report by mail** goes to a list of up to 50 active accounts. Each person gets it with their own view, without an attachment and with a link into the app. Whoever schedules a report only gets it if they are on the list themselves. The log of the sending counts reports, not people.
 
-Every **export** of a report is in the audit log (`TIME_REPORT_EXPORTED`) with format, number of rows and a fingerprint of the filters. Names and search terms are not in it. A **CSV import** writes only entries that pass the same checks as a typed entry, so never into a locked or submitted period. When the administration imports for another person, that is in the audit log (`TIME_ENTRIES_IMPORTED`).
+Every **export** of a report is in the audit log (`TIME_REPORT_EXPORTED`) with format, number of rows and a fingerprint of the filters. Names and search terms are not in it. A **CSV import** writes only entries that pass the same checks as a typed entry, so never into a locked or submitted period. When an organization admin imports for another person, that is in the audit log (`TIME_ENTRIES_IMPORTED`).
 
 ## Works agreement checklist
 
@@ -139,7 +145,7 @@ An agreement on time tracking with Hinata should settle at least these points:
 - **Subject and scope:** which instance, which employees, which modules. Attach the chosen values. The simplest way is the [policy matrix](#policy-matrix) with an "our value" column.
 - **Purposes:** list them exhaustively, for instance recording duties, project steering and billing. Regulate or exclude any other use explicitly, especially monitoring of behaviour or performance.
 - **Data categories and required fields:** whether project, issue, description or tag are required. How detailed descriptions should be and what does not belong in them, such as health details like "doctor's appointment".
-- **Visibility:** who sees whose entries (the person, leads only with `leadsSeeMemberEntries`, the administrators) and who gets admin rights. On issues, other members see only day, duration and activity.
+- **Visibility:** who sees whose entries (the person, leads only with `leadsSeeMemberEntries`, organization admins) and who gets that role. On issues, other members see only day, duration and activity.
 - **Approvals:** whether timesheets are submitted, in which rhythm, who approves and what happens on rejection and reopening.
 - **Evaluations and notifications:** workload reports, budget alerts and target reminders, each on or off, with recipients and thresholds. Also whether reports may be shared and sent regularly by mail, and to whom.
 - **Timers and audit events:** whether start and end times are recorded and whether the timer events may be switched on in the audit log (default: off).
@@ -148,7 +154,7 @@ An agreement on time tracking with Hinata should settle at least these points:
 - **Calendar import:** voluntary, own calendar only, handling of private appointments.
 - **Retention and deletion:** concrete values for `entryPurgeMonths` and `descriptionPurgeMonths`, and how approved periods are handled.
 - **Exports and interfaces:** who pulls CSV or report exports and where they go. Access through the API has the same rights as the app. Name it anyway.
-- **Transparency:** the text of the privacy notice (built-in template or your own) and training for leads and administrators.
+- **Transparency:** the text of the privacy notice (built-in template or your own) and training for leads and organization admins.
 - **Changes:** before a new Hinata version or policy switches on a new evaluation of people, the employee representatives are informed and involved again. Changes to the policies are recorded in the audit log.
 - **Oversight:** the employee representatives can see settings and audit log, and the experience is reviewed after a fixed period.
 - **Consequences of breaches:** for instance, data evaluated against the agreement may not be used.
@@ -167,7 +173,7 @@ An agreement on time tracking with Hinata should settle at least these points:
 
 ## Template: record of processing activities (Art. 30 GDPR)
 
-The "Suggestion" column contains wording for a typical instance. You fill in the last column for your organisation.
+The "Suggestion" column contains wording for a typical instance. You fill in the last column for your organization.
 
 | Field | Suggestion for Hinata | Your entry |
 | --- | --- | --- |
@@ -178,10 +184,10 @@ The "Suggestion" column contains wording for a typical instance. You fill in the
 | Legal bases | Art. 6(1)(b), (c) and (f) GDPR; works or service agreement under Art. 88 GDPR in conjunction with § 26 Abs. 4 BDSG where one exists | … |
 | Categories of data subjects (point c) | Employees; apprentices, temporary agency workers, freelancers with an account where applicable | … |
 | Categories of personal data (point c) | Account master data; time entries (day, duration, optional start and end, project, issue, activity type, description, tags, billable, source, change data); running timer; submissions and approvals with notes; correction requests, requests for older days and answers; days opened for the person; timer preferences; time the privacy notice was acknowledged | … |
-| Recipients (point d) | The person; administrators; leads only with the policy switched on; other project members only day, duration and activity on issues; payroll or customers through exports where applicable; hosting and mail providers as processors | … |
+| Recipients (point d) | The person; organization admins; leads only with the policy switched on; other project members only day, duration and activity on issues; payroll or customers through exports where applicable; hosting and mail providers as processors | … |
 | Transfers to third countries (point e) | None, if server, storage and mail relay run in the EU. Push notifications go through the [Hinata Connect gateway](/en/connect-gateway.html) and Firebase Cloud Messaging | … |
 | Erasure periods (point f) | `entryPurgeMonths` (never, or 24 months after the entry's day at the earliest), `descriptionPurgeMonths` for deleted accounts; entries in submitted or approved periods handled separately | … |
-| Technical and organisational measures (point g, Art. 32) | Reference to the [security model](/en/security.html): TLS, role-based rights, lock date, audit log, rate limits, backups; policy values as annexed | … |
+| Technical and organizational measures (point g, Art. 32) | Reference to the [security model](/en/security.html): TLS, role-based rights, lock date, audit log, rate limits, backups; policy values as annexed | … |
 | DPIA | carried out yes/no, date, result of the threshold assessment | … |
 | Last review | Date and occasion (for example a new policy switched on) | … |
 
@@ -193,7 +199,7 @@ The first time someone opens the module, the privacy notice appears once as a sh
 
 The **"Who sees my time data?"** panel is there too. Hinata computes it from the policies that are active right now. Nobody maintains it by hand. If you switch on `leadsSeeMemberEntries`, for example, the panel says at once that leads see the entries. So it can never be out of date. The panel also says what other members see on an issue: how much time was booked, but not who booked it and not the description.
 
-The built-in template exists in nine languages. Under **Administration → Time tracking → Privacy and retention** you can replace it with your own text in the **Privacy notice** field, for instance with a reference to your works agreement. If the field stays empty, the template applies.
+The built-in template exists in nine languages. Under **Organization → Time tracking → Privacy and retention** you can replace it with your own text in the **Privacy notice** field, for instance with a reference to your works agreement. If the field stays empty, the template applies.
 
 ### Access and data portability (Art. 15 and 20 GDPR)
 
@@ -213,15 +219,15 @@ The file is UTF-8 with a BOM, so Excel shows umlauts correctly. Cells that start
 
 ### Rectification (Art. 16 GDPR)
 
-You edit your own entries yourself. If a day lies before the lock date or inside a submitted period, it is frozen. Then **Request a correction** sends a reason to whoever can lift the freeze. For the lock date that is the administrators, for a submitted period the project leads or approvers. You can ask once a day per entry.
+You edit your own entries yourself. If a day lies before the lock date or inside a submitted period, it is frozen. Then **Request a correction** sends a reason to whoever can lift the freeze. For the lock date that is the organization admins, for a submitted period the project leads or approvers. You can ask once a day per entry.
 
 They answer with a note. The answer arrives as a notification, and you find it on the entry and in its history. The answer itself changes nothing yet. You can only change the entry once the day is actually open again. There are three ways to get there:
 
 - For a submitted period, the project lead reopens the submission.
-- For the lock date, the administrators open the day for you alone, straight from the request with **Open the days**. The opening lasts two weeks. You read their reason as the answer, and it is recorded in the audit log.
-- If a span should be open for everyone again, the administrators add an exception to the lock date, with a reason in the audit log.
+- For the lock date, an organization admin opens the day for you alone, straight from the request with **Open the days**. The opening lasts two weeks. You read their reason as the answer, and it is recorded in the audit log.
+- If a span should be open for everyone again, an organization admin adds an exception to the lock date, with a reason in the audit log.
 
-In an entry's history, a project lead reads only the requests about submissions in their projects, because only those are addressed to them. Requests about the lock date stay between you and the administrators.
+In an entry's history, a project lead reads only the requests about submissions in their projects, because only those are addressed to them. Requests about the lock date stay between you and the organization admins.
 
 ### Erasure and storage limitation (Art. 17 and Art. 5(1)(e) GDPR)
 
@@ -232,7 +238,7 @@ Approved submissions stay, because they are a business record. Time entries stay
 !!! note "Pseudonymous is not anonymous"
     As long as a user id can be linked to a person, the entries remain personal data (Art. 4(5) GDPR). That is what the periods below are for.
 
-You set retention under **Administration → Time tracking → Privacy and retention**:
+You set retention under **Organization → Time tracking → Privacy and retention**:
 
 - **Clear descriptions after** (`descriptionPurgeMonths`) empties the descriptions on deleted people's entries and the notes on their timesheets after N months. The hours and the decisions stay.
 - **Delete entries after** (`entryPurgeMonths`) deletes entries older than N months, for everyone. Hinata never deletes entries inside a submitted or approved period. Allowed values are 0 for never or at least 24 months. A smaller value from the server's environment counts as 24.
@@ -240,14 +246,14 @@ You set retention under **Administration → Time tracking → Privacy and reten
 Deletion runs at night in batches. Even with several server instances it runs only once. A run has a fixed time budget. If it does not finish within it, the next run continues where it stopped. Every run is recorded in the audit log with its counters (`TIME_RETENTION_RUN`), including one that stops with an error.
 
 !!! warning "The default is 0: nothing is deleted automatically"
-    Both periods are `0` out of the box. Hinata deletes nothing until you consciously choose a period. This is deliberate: a deletion cannot be undone, and the right period depends on your organisation.
+    Both periods are `0` out of the box. Hinata deletes nothing until you consciously choose a period. This is deliberate: a deletion cannot be undone, and the right period depends on your organization.
 
 Why 24 months is a good starting point: § 16 Abs. 2 ArbZG and § 17 Abs. 1 MiLoG both require records to be kept for at least two years. You may not delete sooner, which is why Hinata accepts no smaller value.
 
 After that, storage limitation applies: data you no longer need for any purpose must be deleted. Check other retention duties separately, for instance for billed services.
 
 !!! tip "A buffer for late records"
-    Hinata counts the months from the entry's day. § 17 MiLoG counts the two years from the point that is relevant for the record. If people in your organisation often record late, plan a few months of buffer.
+    Hinata counts the months from the entry's day. § 17 MiLoG counts the two years from the point that is relevant for the record. If people in your organization often record late, plan a few months of buffer.
 
 ### No automated decisions (Art. 22 GDPR)
 
@@ -262,9 +268,9 @@ With **Working-time hints** (`arbzgHintsEnabled`, default: off), Hinata shows a 
 - There are entries on a Sunday ([§ 9 ArbZG](https://www.gesetze-im-internet.de/arbzg/__9.html)).
 - There are entries on a public holiday of the calendar the person follows ([§ 9 ArbZG](https://www.gesetze-im-internet.de/arbzg/__9.html)).
 
-The hints are not stored, not passed to leads or administrators and not combined across people. They help the person themselves. They do not prove that your working hours comply with the ArbZG, and they are no verdict. The law has exceptions, for Sunday work for instance, that Hinata cannot know about.
+The hints are not stored, not passed to leads or organization admins and not combined across people. They help the person themselves. They do not prove that your working hours comply with the ArbZG, and they are no verdict. The law has exceptions, for Sunday work for instance, that Hinata cannot know about.
 
-## Late recording: what is possible and what you must organise
+## Late recording: what is possible and what you must organize
 
 Hinata never refuses a late record just because it is late. § 16 Abs. 2 ArbZG sets no deadline, and the duty to record stays until the time is recorded. A late record is better than none. In C-55/18 the CJEU requires that daily working time can actually be measured.
 
@@ -275,15 +281,15 @@ The threshold is configurable and not fixed at seven days. The seven-day rule in
 `maxDaysBack` (default: 365) guards against typos, so that 2025 instead of 2026 does not slip through. The date picker does not offer older days, and Hinata refuses to save them. Both show the way out:
 
 1. The person asks, with a reason, for the days to be opened. That works right at the message, in the date picker, or under **Settings → Time tracking → Ask for older days**. The request is recorded.
-2. An administrator opens the days for that person under **Administration → Time tracking → Correction requests** with **Open the days**. The opening lasts two weeks and applies to that person only. The opening is recorded in the audit log, and if the administrator writes a message, the person reads it as the answer. An opening can be closed sooner under **Days opened for people**.
+2. An organization admin opens the days for that person under **Organization → Time tracking → Correction requests** with **Open the days**. The opening lasts two weeks and applies to that person only. The opening is recorded in the audit log, and if the organization admin writes a message, the person reads it as the answer. An opening can be closed sooner under **Days opened for people**.
 3. The person records the time.
 
 !!! danger "Meeting the MiLoG deadline remains your duty"
-    Hinata helps, but it enforces nothing. Where § 17 MiLoG applies, you have to make sure through your organisation that start, end and duration are recorded within seven calendar days. That takes clear responsibilities, reminders in the team and a rule for absences such as illness or holidays. The responsibility stays with the employer, even when employees record the time themselves.
+    Hinata helps, but it enforces nothing. Where § 17 MiLoG applies, you have to make sure through your organization that start, end and duration are recorded within seven calendar days. That takes clear responsibilities, reminders in the team and a rule for absences such as illness or holidays. The responsibility stays with the employer, even when employees record the time themselves.
 
 ## Not legal advice
 
-This page is a careful orientation, but it is not legal advice. The law on working-time recording is changing right now. What applies to your organisation depends on sector, collective agreements, groups of employees and your own agreements.
+This page is a careful orientation, but it is not legal advice. The law on working-time recording is changing right now. What applies to your organization depends on sector, collective agreements, groups of employees and your own agreements.
 
 Software on its own is never "legally compliant". Processing only becomes lawful through the decisions you make with it. The works or service agreement, the data protection impact assessment and the record of processing activities are the operator's tasks. Get expert advice for the rollout, for instance from your data protection officer and an employment lawyer.
 
@@ -306,5 +312,5 @@ Software on its own is never "legally compliant". Processing only becomes lawful
 ## Next steps
 
 - How people record time is described in [Tracking your time](/en/guide-time.html).
-- You set the policies in the [Admin area](/en/admin-area.html).
+- Organization admins set the policies on the [Organization](/en/organization.html) page.
 - The technical safeguards are described in the [security model](/en/security.html).

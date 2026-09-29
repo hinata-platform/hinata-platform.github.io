@@ -101,6 +101,17 @@ Sicherheitshinweise lassen sich nicht abschalten. Ihre Zeile zeigt ein Schloss u
 !!! tip "Nimm dir einmal zwei Minuten"
     Schalte die zwei oder drei Zeilen ab, auf die du nie reagierst. Dann bedeutet jede Mitteilung etwas.
 
+### An welchen Tagen dich etwas erreicht
+
+Unter **Benachrichtigungstage** wählst du die Wochentage, an denen E-Mails und Push-Nachrichten kommen dürfen.
+
+- **Voreingestellt** sind die Arbeitstage dort, wo du lebst. Hinata leitet sie aus der Region deiner Sprache oder aus deiner Zeitzone ab. Meist sind das Montag bis Freitag, in Saudi-Arabien zum Beispiel Sonntag bis Donnerstag. **Standard verwenden** stellt diese Auswahl wieder her.
+- **An anderen Tagen** kommen keine E-Mails und keine Push-Nachrichten. Die Glocke in der App zeigt trotzdem alles.
+- **Sicherheitshinweise und wichtige Hinweise**, zum Beispiel zu verfallendem Urlaub, kommen immer, egal welcher Tag ist. Das sagt dir auch der Hinweis unter der Einstellung.
+- Mindestens ein Tag bleibt aktiv. Willst du gar nichts mehr bekommen, schalte oben die Kanäle aus.
+
+Nach dem Update auf eine Version mit Benachrichtigungstagen bekommst du einmal eine Mitteilung in der Glocke, die dich auf die neue Einstellung hinweist.
+
 ## Vorgänge beobachten und bewusst zuhören
 
 1. Öffne den Vorgang.
@@ -146,10 +157,11 @@ Abschalten kannst du die Übersicht in der Zeile **Wöchentliche Zusammenfassung
 Die häufigsten Ursachen stehen oben.
 
 1. **Prüfe den Hauptschalter.** Ein stummgeschalteter Kanal gilt für alle Ereignisse. Die App zeigt das am Schalter an.
-2. **Prüfe die Zeile des Ereignisses.** Kommentare und Statusänderungen sind standardmäßig für je einen Kanal aus.
-3. **Prüfe, ob du beteiligt bist.** Du hörst von Vorgängen als Bearbeiter, Ersteller oder Beobachter. Mitglied im Projekt zu sein reicht nicht.
-4. **Für Push: Prüfe die Berechtigung am Gerät.** Die App fragt beim ersten Anmelden. Hast du abgelehnt, erlaube Push in den Systemeinstellungen. Prüfe unter [Download](/de/download.html), ob deine Plattform Push kann.
-5. **Für E-Mail: Frag deinen Betreiber.** Ohne funktionierenden Mailversand auf dem Server hilft keine Einstellung.
+2. **Prüfe deine Benachrichtigungstage.** An Tagen, die nicht ausgewählt sind, kommen keine E-Mails und keine Push-Nachrichten. Die Glocke hat trotzdem alles.
+3. **Prüfe die Zeile des Ereignisses.** Kommentare und Statusänderungen sind standardmäßig für je einen Kanal aus.
+4. **Prüfe, ob du beteiligt bist.** Du hörst von Vorgängen als Bearbeiter, Ersteller oder Beobachter. Mitglied im Projekt zu sein reicht nicht.
+5. **Für Push: Prüfe die Berechtigung am Gerät.** Die App fragt beim ersten Anmelden. Hast du abgelehnt, erlaube Push in den Systemeinstellungen. Prüfe unter [Download](/de/download.html), ob deine Plattform Push kann.
+6. **Für E-Mail: Frag deinen Betreiber.** Ohne funktionierenden Mailversand auf dem Server hilft keine Einstellung.
 
 !!! warning "Eine Mitteilung zu löschen macht nichts rückgängig"
     Du löschst nur deine Kopie. Soll der Vorgang dich nicht mehr stören, beende die Beobachtung oder gib ihn ab.

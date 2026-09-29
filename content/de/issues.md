@@ -103,7 +103,7 @@ Am Vorgang selbst baust und navigierst du diese Struktur:
 - Der Vorgang verschwindet standardmäßig aus Suche, Board und Sprints.
 - Du kannst ihn genauso leicht wieder entarchivieren.
 
-**Endgültiges Löschen** ist destruktiv und dürfen nur Plattform-Admin, Projektleiter oder Team-Admin. Hinata prüft deine Rechte am Vorgang und bietet nur die Option an, die du nutzen darfst.
+**Endgültiges Löschen** ist destruktiv und dürfen nur die Projektleitung oder Team-Admins eines Teams, dem das Projekt gehört. Die Rolle Plattform-Admin allein reicht nicht. Hinata prüft deine Rechte am Vorgang und bietet nur die Option an, die du nutzen darfst.
 
 !!! warning "Endgültiges Löschen lässt sich nicht rückgängig machen"
     Was mitgelöscht wird, hängt vom Typ ab:
@@ -114,6 +114,10 @@ Am Vorgang selbst baust und navigierst du diese Struktur:
     Archiviere im Zweifel zuerst.
 
 Die Hierarchie steuert auch das Board: Du kannst das [agile Board](/de/boards-sprints.html) nach **Epic** oder **Sub-Task** in Swimlanes gruppieren und auf ein einzelnes Epic filtern.
+
+## Mehrere Vorgänge auf einmal
+
+In der Vorgangsliste wählst du mehrere Vorgänge aus (auf dem Handy durch langes Drücken, auf breiteren Fenstern über den runden Auswahlknopf neben **Neue Aufgabe**) und setzt für alle dieselbe Frist oder entfernst sie. Das geht für bis zu 100 Vorgänge auf einmal. Einen Versatz zum Termin des Projekts gibt es dabei nur, wenn alle Vorgänge zu einem Projekt gehören und Projektvorlagen eingeschaltet sind. Siehe [Mit Vorgängen arbeiten](/de/guide-issues.html#mehrere-vorgänge-auswählen-und-eine-frist-setzen).
 
 ## Vorgänge und Git
 

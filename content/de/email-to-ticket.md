@@ -13,6 +13,8 @@ Jede neue Mail wird dann ein Vorgang im Projekt deiner Wahl:
 - Text wird Beschreibung.
 - Absender wird als Melder gespeichert.
 
+Als Ziel kannst du nur ein Projekt wählen, in dem du selbst Mitglied bist.
+
 Das ist der **eingehende** Teil. Ausgehende Mails (Verifizierung, Passwort-Reset,
 Benachrichtigungen) erklärt [E-Mail & SMTP](/de/email.html).
 

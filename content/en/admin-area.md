@@ -11,7 +11,16 @@ restart**.
 
 !!! info "Who can access it"
     Only users with the **`ADMIN`** role. Every endpoint under `/api/v1/admin/**`
-    is also restricted to admins on the server. Other users never see it.
+    is also restricted to admins on the server. Other users never see it,
+    organization admins included.
+
+!!! note "Admins run the platform, not the projects"
+    The `ADMIN` role gives no view into other people's work. An admin only
+    sees the projects, teams, issues, boards, pages, search hits and time
+    entries they are a member of. Working time, approvals, absences, holidays,
+    time tags, lock exceptions and billing are no longer here. They live on the
+    [Organization](/en/organization.html) page and belong to organization
+    admins.
 
 ![Hinata admin area](/assets/img/shot-admin.png)
 *Users, app settings, SSO, Git and mail-to-ticket in one place.*
@@ -45,7 +54,32 @@ Manage the people on your instance:
 
 - **approve** pending registrations
 - **enable** or disable accounts
-- assign **roles**, including `ADMIN`
+- assign **roles**: **Admin** (`ADMIN`) and **Organization admin**
+  (`ORG_ADMIN`). The two are independent, so a person can hold one, both or
+  neither. Select several people to make them organization admins, or to take
+  the role away, in one go.
+- change a person's **sign-in address**
+
+A few rules apply to the roles. You cannot make yourself an organization
+admin, another administrator has to do that. This is a transparency measure,
+not a hard barrier: with a second administrator account the role could still
+be granted. That is why every grant is recorded in the audit log, which cannot
+be switched off, and every organization admin is notified. The last organization admin
+cannot be removed, deactivated or deleted. When someone joins the role or
+leaves it, every organization admin gets a notification.
+
+When you change a person's sign-in address, they are told at their old
+address. For one day after that, no password reset reaches them, neither from
+the admin area nor from the public "forgot password" page. That page then
+quietly sends nothing. That way nobody can quietly take over an account through the new
+address.
+
+After the update to a version with organization admins, every existing admin
+is also an organization admin once, so nothing stops working. This is
+recorded for each person in the audit log, and each of them gets a
+notification. If you want the
+roles apart, separate them here on purpose. See
+[Organization](/en/organization.html).
 
 When self-registration with admin approval is on (see below), new sign-ups wait
 here until an admin lets them in.
@@ -62,12 +96,15 @@ platform offers.
   Play releases and for GDPR. Overrides `HINATA_PRIVACY_POLICY_URL`.
 - **Sign-in**: local authentication, self-registration and admin approval.
 - **Platform behaviour**: several people on one issue, replying to an issue by
-  e-mail, and **project templates** — copying a project, the template marker and
-  deadlines kept as an offset from the project's event date. Left off, projects
+  e-mail, and **project templates** (copying a project, the template marker and
+  deadlines kept as an offset from the project's event date). Left off, projects
   behave exactly as they do today. That switch has three positions, because
   empty means `HINATA_PROJECT_TEMPLATES_ENABLED` decides. See
-  [Project templates](/en/project-templates.html). Extended time tracking is
-  named here too but set in its own section, which owns it.
+  [Project templates](/en/project-templates.html). Whether deadlines count
+  calendar days or working days is up to organization admins.
+- **Extended time tracking**: here you only see whether it is on. It is set up
+  on the [Organization](/en/organization.html) page. If you are an
+  organization admin too, the row takes you there.
 
 !!! tip "These override the environment"
     Anything under Platform wins over the matching `hinata.app.*`
@@ -101,12 +138,25 @@ repos in their own settings. See [Git integration](/en/git-integration.html).
 ### E-mail (mail-to-ticket)
 
 Set up **IMAP polling** so inbound e-mail becomes issues. This is also stored in
-Mongo and applies without a restart. See
+Mongo and applies without a restart. You can only route mail into projects
+you are a member of. See
 [E-mail to ticket](/en/email-to-ticket.html).
 
 ### Audit log
 
-Shows administrative and security-relevant actions on the instance.
+Shows the platform's records: sign-ins, accounts, configuration and
+integrations.
+
+- Records about working time, timesheets and absences, sick reports included,
+  are not shown here. They are only on the log of the
+  [Organization](/en/organization.html) page. Organization admins decide which
+  of them are recorded. You cannot change those switches, and the audit log's
+  master switch does not silence them.
+- Records about issues and pages appear without their details, so without
+  issue keys and without page ids.
+- Changes to the admin and organization admin roles, and any change of a
+  sign-in address by an administrator, are always recorded. You cannot switch
+  that off.
 
 ## Where to go next
 
@@ -114,3 +164,4 @@ Shows administrative and security-relevant actions on the instance.
 - [Git integration](/en/git-integration.html): OAuth apps and per-project repos.
 - [E-mail to ticket](/en/email-to-ticket.html): turn inbound mail into issues.
 - [Authentication](/en/authentication.html): accounts, registration and 2FA.
+- [Organization](/en/organization.html): time tracking, absences and deadlines for the whole organization.

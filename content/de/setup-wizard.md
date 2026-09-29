@@ -43,7 +43,7 @@ Meldet `GET /setup/status` ein offenes Setup, erscheint der Assistent. Du gibst 
 - **Admin-Benutzername** und **E-Mail**.
 - **Admin-Passwort:** mindestens 10 Zeichen (mit BCrypt gehasht, Stärke 12).
 
-Beim Absenden legt `POST /api/v1/setup` Organisation und ersten `ADMIN`-Benutzer in einem atomaren Schritt an und meldet dich direkt an. Danach legst du Projekte an und lädst Leute ein, siehe [Projekte & Teams](/de/projects-teams.html).
+Beim Absenden legt `POST /api/v1/setup` Organisation und ersten Benutzer in einem atomaren Schritt an und meldet dich direkt an. Dieser erste Benutzer bekommt beide Rollen, `ADMIN` und `ORG_ADMIN` (siehe [Organisation](/de/organization.html)). Danach legst du Projekte an und lädst Leute ein, siehe [Projekte & Teams](/de/projects-teams.html).
 
 ## Automatisches Setup
 

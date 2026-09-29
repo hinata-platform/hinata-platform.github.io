@@ -111,7 +111,7 @@ Check in this order:
 1. **Is a scope chip still active?** A chip you picked stays active. Press **All**.
 2. **Is it part of a long word?** Partial text only matches titles, keys and labels, not descriptions and articles. Type the whole word.
 3. **Is it archived?** Put `archived` in front of the query.
-4. **Is it in a project you can access?** Access comes from project membership and your teams. If a colleague sees something you cannot, ask them to add you, or see [Projects and teams](/en/guide-projects.html).
+4. **Can you reach it?** Search only finds what you may open: issues and projects through project membership and your teams, knowledge base pages only when you may read them. Admins are no exception. If a colleague sees something you cannot, ask them to add you, or see [Projects and teams](/en/guide-projects.html) and [Who can see and change what](/en/guide-knowledge.html#who-can-see-and-change-what).
 
 ## The palette on a phone
 

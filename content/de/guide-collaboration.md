@@ -86,7 +86,7 @@ Jedes Projektmitglied kann einen Kommentar über sein Menü **fixieren**. Er ers
 **Antworten**, **Kopieren**, **Link kopieren** und **Fixieren** gibt es an jedem Kommentar.
 
 - **Bearbeiten:** Nur die verfassende Person darf das. Der Kommentar wird als **bearbeitet** markiert. Sprachnachrichten lassen sich nicht bearbeiten.
-- **Löschen:** Eigene Kommentare kannst du immer löschen. Admins dürfen zur Moderation jeden Kommentar löschen.
+- **Löschen:** Eigene Kommentare kannst du immer löschen. Zur Moderation dürfen die Projektleitungen und die Team-Admins eines Teams, dem das Projekt gehört, jeden Kommentar löschen, derzeit über die Schnittstelle (API oder MCP), nicht im Menü der App. Plattformadmins dürfen das nicht, solange sie keine dieser Rollen haben.
 - **Auswählen:** Mehrfachauswahl, um mehrere eigene Kommentare auf einmal zu löschen.
 
 !!! warning "Löschen ist endgültig, und ein Ausgangskommentar nimmt seine Antworten mit"

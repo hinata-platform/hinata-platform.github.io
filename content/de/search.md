@@ -16,7 +16,7 @@ Die Palette sucht schon beim Tippen in deinem ganzen Workspace:
 - **Artikel der Wissensdatenbank**, zum Beispiel ein Runbook.
 - **Personen**, um das Profil eines Teammitglieds zu öffnen.
 
-Der beste Treffer ist schon ausgewählt. Drücke **Enter**, um ihn zu öffnen. Die Palette zeigt nur, was du laut deinem [Projektzugriff](/de/projects-teams.html) sehen darfst.
+Der beste Treffer ist schon ausgewählt. Drücke **Enter**, um ihn zu öffnen. Die Palette findet nur, was du erreichen darfst: Vorgänge und Projekte über deinen [Projektzugriff](/de/projects-teams.html), Artikel nur, wenn du sie [lesen darfst](/de/knowledge-base.html#zugriffssteuerung). Das gilt auch für Admins.
 
 !!! tip "Schlüssel sind der schnellste Sprung"
     Kennst du den Schlüssel, tippe ihn einfach. `INF-7` und Enter bringt dich direkt zum Issue.

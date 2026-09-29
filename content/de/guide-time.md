@@ -101,7 +101,7 @@ Nähert sich die erste Zahl der zweiten, wird es knapp. Eine Zeitschätzung sieh
 ### Wessen Zeit du siehst
 
 - Du siehst nur **deine eigene** Arbeit. Der Server lehnt Anfragen nach fremden Stunden ab.
-- Administratorinnen und Administratoren sehen alle Zeilen. Sie haben je einen durchsuchbaren Filter für Person und Projekt.
+- Organisationsadmins sehen alle Zeilen. Sie haben je einen durchsuchbaren Filter für Person und Projekt. Vorgangstitel, Vorgangsschlüssel, Beschreibungen und Projektnamen sehen sie aber nur bei Projekten, in denen sie Mitglied sind.
 
 Zeit an einem verschobenen Vorgang oder einem Projekt, das es nicht mehr gibt, bleibt deine. Sie steht unter **Nicht zugeordnet**.
 
@@ -118,7 +118,7 @@ Zeit an einem verschobenen Vorgang oder einem Projekt, das es nicht mehr gibt, b
 MOB-42 #time 2h 30m
 ```
 
-Erlaubt sind `w`, `d`, `h` und `m`. Ein Tag hat 8 Stunden, eine Woche 5 Tage, `1d 4h` sind also zwölf Stunden. Das Repository verbindet eine Administratorin oder ein Administrator, siehe [Git-Integration](/de/git-integration.html).
+Erlaubt sind `w`, `d`, `h` und `m`. Ein Tag hat 8 Stunden, eine Woche 5 Tage, `1d 4h` sind also zwölf Stunden. Das Repository verbindet die Projektleitung, siehe [Git-Integration](/de/git-integration.html).
 
 Der Eintrag gehört **der Autorin oder dem Autor des Commits**, erkannt an der E-Mail-Adresse im Commit. Er erscheint in deren Stundenzettel, Fokuszeit und im Bericht „Zeit pro Tätigkeit“. Datum ist der Tag des Commits in der Zeitzone dieser Person. Die Notiz enthält kurze SHA und Betreffzeile. Ohne Tätigkeitsart zählt er als **Entwicklung**.
 
@@ -135,20 +135,20 @@ Jeder Eintrag auf der Karte und im Sheet **Alle Einträge** hat rechts ein Menü
 ### Wessen Einträge du ändern darfst
 
 - **Deine eigenen** darfst du immer bearbeiten und löschen.
-- **Fremde** darfst du als Projektleitung oder Administration löschen, aber nicht bearbeiten. So steht unter einem Namen nie etwas, das die Person nicht selbst erfasst hat. Bitte sie danach, neu zu erfassen. Jede Löschung steht mit beiden Namen im Audit-Protokoll.
+- **Fremde** darfst du als Projektleitung oder Organisationsadmin löschen, aber nicht bearbeiten. So steht unter einem Namen nie etwas, das die Person nicht selbst erfasst hat. Bitte sie danach, neu zu erfassen. Jede Löschung steht mit beiden Namen im Audit-Protokoll.
 
 !!! tip "Zu wenig erfasst?"
     Erfasse die fehlende Zeit als zweiten Eintrag. Einträge am selben Vorgang und Tag addieren sich. Bearbeiten ist für falsche Dauern gedacht.
 
-Einträge mit **Smart Commits (vor 2.0)** stammen aus älteren Versionen, die Zeit aus Commits mit `#time` direkt gebucht haben. Sie haben keinen Namen, zählen aber weiter. Entfernen können sie nur Projektleitung oder Administration.
+Einträge mit **Smart Commits (vor 2.0)** stammen aus älteren Versionen, die Zeit aus Commits mit `#time` direkt gebucht haben. Sie haben keinen Namen, zählen aber weiter. Entfernen können sie nur Projektleitung oder Organisationsadmins.
 
 ## Arbeitszeiten, Abwesenheiten und Feiertage
 
-Wenn deine Administration die erweiterte Zeiterfassung eingeschaltet hat, findest du in deinen **Einstellungen** den Abschnitt **Arbeitszeiten** und in der Zeiterfassung die Ansicht **Abwesenheiten**. Beides ist Planung. Du kannst an jedem Tag Zeit erfassen, auch an Feiertagen und an Tagen, an denen du nicht da bist.
+Wenn eure Organisationsadmins die erweiterte Zeiterfassung eingeschaltet haben, findest du in deinen **Einstellungen** den Abschnitt **Arbeitszeiten** und in der Zeiterfassung die Ansicht **Abwesenheiten**. Beides ist Planung. Du kannst an jedem Tag Zeit erfassen, auch an Feiertagen und an Tagen, an denen du nicht da bist.
 
 - **Geplante Stunden** sind deine Stunden je Wochentag. Solange du keine eigenen festlegst, gilt die Vorgabe des Servers. Eine Änderung gilt ab dem Datum, das du wählst, frühere Wochen behalten ihre Stunden. Hier wählst du auch den Feiertagskalender, nach dem du dich richtest.
 - **Abwesenheiten** sind Urlaub, Krankmeldungen oder Sonstiges, für einen einzelnen Tag oder einen Zeitraum. Ein einzelner Tag kann ein halber Tag sein. Die Notiz ist freiwillig, sehen können sie nur du und die Abwesenheitsverwaltung. Du findest und pflegst sie in der Zeiterfassung unter **Abwesenheiten**.
-- **Feiertage** kommen aus den Kalendern, die deine Administration im Adminbereich unter **Feiertage** pflegt. Sie trägt Tage von Hand ein oder importiert ein Jahr aus einer Kalenderadresse.
+- **Feiertage** kommen aus den Kalendern, die eure Organisationsadmins auf der Seite [Organisation](/de/organization.html) unter **Feiertage** pflegen. Sie tragen Tage von Hand ein oder importieren ein Jahr aus einer Kalenderadresse.
 
 Was sich dadurch zeigt:
 
@@ -171,7 +171,7 @@ Ein Tipp auf eine Abwesenheit, ein Band im Kalender oder eine Markierung in List
 
 ## Abwesenheitskonten
 
-Hat deine Administration zusätzlich die **Abwesenheitsverwaltung** eingeschaltet, steht unter **Abwesenheiten** auf der Pille **Konten**, was dir in diesem Jahr zusteht.
+Haben eure Organisationsadmins zusätzlich die **Abwesenheitsverwaltung** eingeschaltet, steht unter **Abwesenheiten** auf der Pille **Konten**, was dir in diesem Jahr zusteht.
 
 - **Konten** zeigen je Abwesenheitsart, was dir zusteht, was du genommen hast, was geplant ist und was bleibt. Eine Art ohne Kontingent, zum Beispiel Krankmeldungen, zeigt statt einer Zahl, was in diesem Jahr darauf entfallen ist: Entgeltfortzahlung ist kein Anspruch in Tagen.
 - **Journal** listet jede Bewegung eines Kontos, mit dem Tag, an dem sie wirkt, und der Begründung, wenn es eine gab. Dein Konto entsteht aus dieser Liste, nicht aus einer gespeicherten Zahl, und deshalb lässt sich jede Zahl darauf zurückführen.
@@ -203,6 +203,8 @@ Einen Nachweis lädst du hier nicht hoch, und das ist Absicht: Seit 2023 holt de
 
 Fällt die Krankheit auf Tage, die du schon als Urlaub genehmigt bekommen hast, gehen diese Tage von selbst auf dein Konto zurück und der Urlaub wird gekürzt (§ 9 BUrlG). Wer den Urlaub entschieden hat, erfährt die Kürzung als Tatsache, nie ihren Grund.
 
+Wer eine Krankmeldung als Krankheit sieht, hängt davon ab, ob deine Organisation Personen für die Abwesenheitsverwaltung benannt hat. Hat sie das, sehen nur diese Personen die Krankheit. Organisationsadmins sehen dann nur, dass du abwesend bist, aber nicht, warum. Ist niemand benannt, führen die Organisationsadmins die Abwesenheiten selbst und sehen sie vollständig.
+
 ## Anträge und Posteingang
 
 Unter **Anträge** stehen deine Anträge mit dem, was daraus wurde: offen, genehmigt, abgelehnt, zurückgezogen oder storniert. Solange niemand entschieden hat, kannst du einen Antrag **zurückziehen** oder **bearbeiten**: Zeitraum, halbe Tage, Notiz und Vertretung lassen sich ändern, und die Tage werden neu gerechnet. Wechselst du dabei die Art, geht der Antrag an die Personen, die für die neue Art entscheiden, und die alten erfahren, dass er sie nicht mehr betrifft. Ist er genehmigt und liegt noch ganz in der Zukunft, kannst du ihn selbst **stornieren** — die Tage gehen zurück, und wer entschieden hat, wird informiert. Hat die Abwesenheit schon begonnen, übernimmt das die Abwesenheitsverwaltung, weil es dann kein Plan mehr ist, sondern eine Aufzeichnung.
@@ -211,20 +213,20 @@ Unter **Anträge** stehen deine Anträge mit dem, was daraus wurde: offen, geneh
 
 **Eine Ablehnung braucht eine Begründung.** § 7 Abs. 1 BUrlG lässt eine Ablehnung nur wegen dringender betrieblicher Belange oder vorrangiger Wünsche anderer zu, und eine Ablehnung, die keines von beidem nennt, kann niemand prüfen. Die Begründung erreicht die antragstellende Person und steht in der Historie des Antrags.
 
-**Über den eigenen Antrag entscheidet niemand selbst**, auch keine Administration. Wer einen Antrag stellt, wird aus dem Kreis der entscheidenden Personen gestrichen; findet sich danach niemand mehr, landet der Antrag bei den Administratoren. Ein Antrag, der in einem sichtbaren Posteingang liegen bleibt, ist ein Problem, um das sich jemand kümmern kann — ein Antrag, der verschwunden ist, nicht.
+**Über den eigenen Antrag entscheidet niemand selbst**, auch kein Organisationsadmin. Wer einen Antrag stellt, wird aus dem Kreis der entscheidenden Personen gestrichen. Findet sich danach niemand mehr, landet der Antrag bei den Organisationsadmins. Ein Antrag, der in einem sichtbaren Posteingang liegen bleibt, ist ein Problem, um das sich jemand kümmern kann. Ein Antrag, der verschwunden ist, nicht.
 
 Steht eine Art auf automatischer Genehmigung, wird der Antrag sofort entschieden, du wirst benachrichtigt, und in der Historie steht, dass niemand darüber geurteilt hat.
 
 !!! info "Und wenn niemand übrig bleibt?"
-    In einer Organisation aus einer einzigen Person bleibt die Empfängerliste leer: Wer den Antrag stellt, wäre die einzige Person, die ihn entscheiden könnte, und über den eigenen entscheidet niemand. Der Antrag ist deshalb nicht verloren. Wer die Abwesenheitsverwaltung führt, darf jeden Antrag entscheiden, auch einen ohne Empfänger — sobald also eine zweite Person dazukommt oder jemand dafür benannt wird, steht er in deren Posteingang.
+    In einer Organisation aus einer einzigen Person bleibt die Empfängerliste leer: Wer den Antrag stellt, wäre die einzige Person, die ihn entscheiden könnte, und über den eigenen entscheidet niemand. Der Antrag ist deshalb nicht verloren. Wer die Abwesenheitsverwaltung führt, darf jeden Antrag entscheiden, auch einen ohne Empfänger. Sobald also eine zweite Person dazukommt oder jemand dafür benannt wird, steht er in deren Posteingang.
 
 ## Abwesenheiten im Team
 
-Hat die Administration den **Team-Abwesenheitskalender** eingeschaltet, gibt es in der Zeiterfassung unter den Abwesenheiten einen fünften Bereich: **Team**. Er zeigt, wer in einer Gruppe wann abwesend ist, als Planungsansicht und nicht als Anwesenheitsliste. Du siehst Zeiträume, nie Uhrzeiten, und die Personen stehen nach Namen sortiert, nie danach, wer am meisten weg war.
+Haben die Organisationsadmins den **Team-Abwesenheitskalender** eingeschaltet, gibt es in der Zeiterfassung unter den Abwesenheiten einen fünften Bereich: **Team**. Er zeigt, wer in einer Gruppe wann abwesend ist, als Planungsansicht und nicht als Anwesenheitsliste. Du siehst Zeiträume, nie Uhrzeiten, und die Personen stehen nach Namen sortiert, nie danach, wer am meisten weg war.
 
 Oben wählst du die Gruppe: **Meine Projekte**, eines deiner Teams oder ein Projekt. In einer Gruppe erscheint nur, wer selbst Zeit auf einem ihrer Projekte erfasst hat. Mitglied zu sein reicht nicht, denn wer ein Projekt oder ein Team anlegt, kann dort jede Person aufnehmen, ohne zu fragen. Du selbst stehst in jeder Gruppe, zu der du gehörst, und die Abwesenheitsverwaltung sieht alle aktuellen Mitglieder. Daneben schaltest du zwischen **Monat** und **Quartal** um und blätterst mit den Pfeilen.
 
-Was du über eine Abwesenheit erfährst, legt die Administration fest, und jede Abwesenheitsart kann es weiter einschränken:
+Was du über eine Abwesenheit erfährst, legen die Organisationsadmins fest, und jede Abwesenheitsart kann es weiter einschränken:
 
 - **Nur, dass jemand abwesend ist:** ein neutraler Balken mit dem Wort *Abwesend*.
 - **Die Art der Abwesenheit:** der Balken trägt Symbol und Namen der Art. Eine Art, die nur für die Person selbst sichtbar ist, erscheint bei anderen gar nicht.
@@ -240,7 +242,7 @@ Auf dem Dashboard zeigt die Karte **Heute abwesend** bis zu fünf Namen aus dein
 
 ## Abwesenheitsarten und Ansprüche verwalten
 
-Die folgenden beiden Seiten sieht, wer die Abwesenheitsverwaltung führt. Das muss keine Administration sein: Die Organisation kann Personen dafür benennen, und sie finden den Weg dorthin in ihren eigenen Einstellungen.
+Die folgenden beiden Seiten sieht, wer die Abwesenheitsverwaltung führt. Das müssen keine Organisationsadmins sein: Sie können Personen dafür benennen, und sie finden den Weg dorthin in ihren eigenen Einstellungen.
 
 **Abwesenheitsarten** ist der Katalog. Jede Art legt fest, ob sie bezahlt ist, ob sie gegen ein Kontingent zählt, wie ein Anspruch entsteht, was ins nächste Jahr übertragen wird, wer sie sieht und wer sie genehmigt. Die vier vorgegebenen Arten bleiben immer; ihre Gattung lässt sich nicht ändern, weil daran hängt, wie die Zeiterfassung sie behandelt. Eine Art, die schon benutzt wurde, wird stillgelegt statt gelöscht — sonst verlören vergangene Jahre ihren Bezug.
 
@@ -261,8 +263,8 @@ Unter **Zeiterfassung → Berichte** wertest du erfasste Zeit aus. Oben wählst 
 Ein Bericht zählt nur, was du auch sonst sehen darfst.
 
 - **Summen** je Projekt, Tätigkeit, Tags, Vorgang oder Zeitraum enthalten deine eigenen Einträge und alle Einträge der Projekte, die du siehst. Dass an einem Vorgang Zeit gebucht wurde, sieht jedes Mitglied ohnehin.
-- **Personen** erscheinen nur bei deinen eigenen Einträgen. Leitest du ein Projekt, kommen dessen Mitglieder dazu, aber nur, wenn die Administration die Richtlinie **Leitungen sehen Einträge der Mitglieder** eingeschaltet hat. Das gilt für die Gruppierung nach Person oder Team, für die Liste der Einträge und für jeden Export.
-- Die Administration sieht alles.
+- **Personen** erscheinen nur bei deinen eigenen Einträgen. Leitest du ein Projekt, kommen dessen Mitglieder dazu, aber nur, wenn die Organisationsadmins die Richtlinie **Leitungen sehen Einträge der Mitglieder** eingeschaltet hat. Das gilt für die Gruppierung nach Person oder Team, für die Liste der Einträge und für jeden Export.
+- **Organisationsadmins** sehen Stunden, Person und Projektschlüssel für alle. Vorgangstitel, Vorgangsschlüssel, Beschreibungen und Projektnamen sehen sie nur bei Projekten, in denen sie Mitglied sind, und bei ihren eigenen Einträgen. Das gilt auch für jeden Export. Die Suche in den Beschreibungen durchsucht nur Einträge, die sie lesen dürfen.
 
 Filter nach Personen, Teams, Suchwort oder Freigabe wirken deshalb nur dort, wo du die Einträge der Personen sehen darfst. Das Filterblatt sagt das auch.
 
@@ -274,7 +276,7 @@ Die Übersicht zeigt oben die Summen: **Gesamt**, **Abrechenbar** und die Zahl d
 - Das Diagramm wechselst du oben rechts in seiner Karte. Gruppen mit Namen zeigt es als **Balken** oder als Ring der **Anteile**, Tage, Wochen und Monate als Säulen oder als **Verlauf**. Der Wechsel fragt den Server nicht neu.
 - Ein Tipp auf eine Gruppe öffnet ihre Einträge: derselbe Bericht, auf diese Gruppe eingegrenzt.
 
-Gerundet wird jeder Eintrag für sich, nicht erst die Summe. Standard ist **Wie in den Regeln**, also die Rundung, die die Administration für die Zeiterfassung festgelegt hat. Im Filterblatt kannst du für einen Bericht anders runden, zum Beispiel auf 15 Minuten auf. An den Einträgen selbst ändert das nichts.
+Gerundet wird jeder Eintrag für sich, nicht erst die Summe. Standard ist **Wie in den Regeln**, also die Rundung, die die Organisationsadmins für die Zeiterfassung festgelegt haben. Im Filterblatt kannst du für einen Bericht anders runden, zum Beispiel auf 15 Minuten auf. An den Einträgen selbst ändert das nichts.
 
 ### Einträge
 
@@ -282,7 +284,7 @@ Gerundet wird jeder Eintrag für sich, nicht erst die Summe. Standard ist **Wie 
 
 ### Auslastung
 
-**Auslastung** gibt es nur, wenn die Administration Auslastungsberichte eingeschaltet hat, und nur für Admins und Projektleitungen. Er stellt für jede Person die **Kapazität** im Zeitraum neben das, was sie **gebucht** hat, und die **Differenz**. Die Kapazität sind die geplanten Stunden abzüglich Feiertage und Abwesenheiten. Wie viel davon frei oder abwesend war, steht unter dem Namen.
+**Auslastung** gibt es nur, wenn die Organisationsadmins Auslastungsberichte eingeschaltet haben, und nur für Organisationsadmins und Projektleitungen. Er stellt für jede Person die **Kapazität** im Zeitraum neben das, was sie **gebucht** hat, und die **Differenz**. Die Kapazität sind die geplanten Stunden abzüglich Feiertage und Abwesenheiten. Wie viel davon frei oder abwesend war, steht unter dem Namen.
 
 - Oben wählst du die Gruppe: **Meine Projekte** oder ein einzelnes Projekt, das du leitest.
 - Eine Leitung sieht bei **Gebucht** nur die Zeit auf Projekten, die sie leitet.
@@ -295,7 +297,7 @@ Gerundet wird jeder Eintrag für sich, nicht erst die Summe. Standard ist **Wie 
 
 Über **Exportieren** holst du den Bericht als **PDF**, **Excel (XLSX)** oder **CSV**, oder du **druckst** ihn. Der Export nimmt den Bericht, wie er gerade auf dem Bildschirm steht, mit Zeitraum, Filtern, Gruppierung und Rundung. PDF und Excel enthalten die Summen, die Gruppen und die Einträge, CSV nur die Einträge.
 
-Eine Datei hat eine Obergrenze: 5 000 Einträge im PDF, 50 000 in Excel und 100 000 in CSV. Liegt der Bericht darüber, ist die Datei gekürzt, sagt das an ihrem Ende, und die App meldet es beim Speichern. Grenze dann den Zeitraum oder die Filter ein. Jeder Export steht im Audit-Protokoll, mit Format, Zahl der Zeilen und einem Fingerabdruck der Filter.
+Eine Datei hat eine Obergrenze: 5 000 Einträge im PDF, 50 000 in Excel und 100 000 in CSV. Liegt der Bericht darüber, ist die Datei gekürzt, sagt das an ihrem Ende, und die App meldet es beim Speichern. Grenze dann den Zeitraum oder die Filter ein. Jeder Export steht im Audit-Protokoll, mit Format, Zahl der Zeilen und einem Fingerabdruck der Filter. Diese Einträge sehen nur Organisationsadmins, im Protokoll auf der Seite [Organisation](/de/organization.html).
 
 Deine eigenen Einträge als CSV nach Art. 20 DSGVO holst du weiterhin unter **Einstellungen → Zeiterfassung**. Der Berichtsexport ersetzt das nicht. Siehe [Datenschutz der Zeiterfassung](/de/time-tracking-privacy.html).
 
@@ -308,7 +310,7 @@ Deine eigenen Einträge als CSV nach Art. 20 DSGVO holst du weiterhin unter **Ei
 3. Sieh dir die Vorschau an. Jede Zeile wird geprüft wie ein getippter Eintrag: Projekt und Vorgang, Sperrdatum, Freigaben, Pflichtfelder und erlaubte Tags. Zeilen mit Fehlern stehen mit Zeilennummer und Grund darunter.
 4. Importiere. Geschrieben werden nur die Zeilen, die die Prüfung bestanden haben, alle oder keine. Bricht der Import mittendrin ab, nimmt Hinata die schon geschriebenen Einträge wieder zurück.
 
-Du importierst deine eigenen Einträge. Die Administration kann über **Importieren für** auch für andere importieren; das steht im Audit-Protokoll.
+Du importierst deine eigenen Einträge. Organisationsadmins können über **Importieren für** auch für andere importieren; das steht im Audit-Protokoll.
 
 ### Berichte speichern, teilen und per Mail bekommen
 

@@ -41,7 +41,10 @@ Diese Prüfung gilt **im ganzen Workspace**: für Board, Vorgangslisten, Sucherg
 ### Rollen
 
 - **Mitglieder** erledigen die tägliche Arbeit: Vorgänge anlegen und bearbeiten, kommentieren, Zeit erfassen, Karten verschieben.
-- **Admins** haben zusätzlich Zugang zum [Adminbereich](/de/admin-area.html) mit Benutzern, SSO, E-Mail zu Ticket, Git-OAuth-Apps und Einstellungen für die ganze App. Admin ist eine Workspace-Rolle (`ADMIN`) und wird an jedem `/api/v1/admin/**`-Endpunkt geprüft.
+- **Projektleitungen** verwalten ihr Projekt: Einstellungen, Workflow, Mitglieder, Termin und Fristen. Nur sie dürfen ein Projekt löschen, Git verbinden und es einem anderen Team anhängen.
+- **Team-Admins** verwalten ihr Team und die Einstellungen jedes Projekts, das ihrem Team gehört: Name, Workflow, Mitglieder, Termin und Fristen sowie die Zeit-Einstellungen. Löschen, Git und das Anhängen an ein anderes Team bleiben bei den Projektleitungen.
+- **Admins** haben Zugang zum [Adminbereich](/de/admin-area.html) mit Benutzern, SSO, E-Mail zu Ticket, Git-OAuth-Apps und Einstellungen für die ganze App. Admin ist eine Workspace-Rolle (`ADMIN`) und wird an jedem `/api/v1/admin/**`-Endpunkt geprüft. Projekte, Teams und ihre Inhalte sehen Admins nur, wenn sie selbst Mitglied sind.
+- **Organisationsadmins** (`ORG_ADMIN`) verwalten Arbeitszeit, Abwesenheiten, Feiertage und Abrechnung für alle. Siehe [Organisation](/de/organization.html).
 
 ### Mitglieder verwalten
 

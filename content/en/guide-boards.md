@@ -153,7 +153,7 @@ Hinata does not block extra cards. The red badge is there to show that work is p
 ![The column editor of a board](/assets/img/shot-board-columns.png)
 *Board options → Columns: per column a drag handle, its states as chips, a Max box for the WIP limit and a remove button.*
 
-To set limits you need to be the board's owner, a lead on one of its projects, a team lead or an administrator.
+To set limits you need to be the board's owner, a lead on one of its projects or a team lead.
 
 ## The backlog
 
@@ -275,7 +275,7 @@ The **⋮** button on each board in the list opens **Board options**. You also f
 - **Columns:** the editor [shown above](#wip-limits). If two projects name the same step differently, fix the mapping here.
 - **Delete board:** removes the board. The issues stay, because they belong to their projects.
 
-You need to own the board, lead one of its projects, lead a team with access to it, or be an administrator. If you do not see the menu, you have none of these roles.
+You need to own the board, lead one of its projects or lead a team with access to it. If you do not see the menu, you have none of these roles.
 
 !!! warning "Every status needs a column"
     Each workflow state must end up in exactly one column. A state with no column means its issues are missing from the wall. The editor warns you before you save.

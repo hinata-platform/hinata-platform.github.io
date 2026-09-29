@@ -13,6 +13,8 @@ the project you choose:
 - Body becomes the description.
 - Sender is recorded as the reporter.
 
+You can only pick a project you are a member of yourself as the target.
+
 This is the **inbound** part. Outbound mail (verification, password reset,
 notifications) is covered in [E-mail & SMTP](/en/email.html).
 

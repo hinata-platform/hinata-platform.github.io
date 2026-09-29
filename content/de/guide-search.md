@@ -111,7 +111,7 @@ Prüfe der Reihe nach:
 1. **Ist noch ein Bereichs-Chip aktiv?** Ein gewählter Chip bleibt aktiv. Klicke auf **Alle**.
 2. **Ist es ein Teil eines langen Wortes?** Teile findet die Suche nur in Titeln, Schlüsseln und Labels, nicht in Beschreibungen und Artikeln. Tippe das ganze Wort.
 3. **Ist es archiviert?** Stelle `archiviert` voran.
-4. **Liegt es in einem Projekt, auf das du Zugriff hast?** Zugriff bekommst du über Projektmitgliedschaft und Teams. Sieht eine Kollegin etwas, das du nicht siehst, lass dich hinzufügen oder lies [Projekte & Teams](/de/guide-projects.html).
+4. **Darfst du es erreichen?** Die Suche findet nur, was du auch öffnen darfst: Vorgänge und Projekte über Projektmitgliedschaft und Teams, Seiten der Wissensdatenbank nur, wenn du sie lesen darfst. Das gilt für Admins genauso. Sieht eine Kollegin etwas, das du nicht siehst, lass dich hinzufügen oder lies [Projekte & Teams](/de/guide-projects.html) und [Wer was sieht](/de/guide-knowledge.html#wer-was-sieht-und-ändern-darf).
 
 ## Die Palette auf dem Handy
 

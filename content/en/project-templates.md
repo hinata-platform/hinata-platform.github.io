@@ -40,10 +40,16 @@ Two things about it matter:
 
 ### Calendar days or working days
 
-Calendar days are preselected: "28 days before" is 28 days, weekend included. If you need working days, switch that on at this one deadline.
+"28 days before" in calendar days is 28 days, weekend included. In working days only working days count. Which basis a new deadline starts with is decided like this:
+
+1. If the project has its own choice under **Deadlines count in**, that applies. You set it when you create or copy the project, or in its settings.
+2. Otherwise the organization's default applies, which organization admins set on the [Organization](/en/organization.html) page.
+3. If the organization has not chosen either, the server default applies. Out of the box that is calendar days (`HINATA_PROJECT_TEMPLATES_DEFAULT_BASIS`).
+
+You can still switch at any single deadline. The preselection only affects new deadlines: existing ones keep their basis and do not move when the default changes.
 
 !!! info "Working days need a holiday calendar"
-    Working days always skip weekends. They only skip public holidays when the project has a holiday calendar selected. Without one, a holiday counts like any other working day. Administrators keep the calendars in the admin area.
+    Working days always skip weekends. They only skip public holidays when the project has a holiday calendar selected. Without one, a holiday counts like any other working day. Organization admins keep the calendars on the [Organization](/en/organization.html) page.
 
 ## Moving the date
 
@@ -62,7 +68,7 @@ Remove the date and the deadlines stay where they are and keep their rules. Noth
 
 ## Copying a project
 
-From the button on a project card on a wide window, or from project settings: **Copy project**. On a phone the way in is project settings. You give a name, a key and optionally a date, and choose what comes along.
+From the button on a project card on a wide window, or from project settings: **Copy project**. On a phone the way in is project settings. You give a name, a key and optionally a date, and choose what comes along. The copy counts deadlines like the original unless you pick something else under **Deadlines count in**.
 
 ![The copy sheet, with the scope switches and the server's own counts](/assets/img/shot-project-copy.png)
 *The numbers under the switches are the server's: how many issues, how many files, how much.*

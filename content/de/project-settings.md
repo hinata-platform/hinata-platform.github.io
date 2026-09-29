@@ -5,7 +5,7 @@ description: Einstellungen pro Projekt, mit farbigen Labels und Status, Entwurf 
 
 # Projekteinstellungen
 
-Der [Adminbereich](/de/admin-area.html) konfiguriert die ganze Instanz. Die **Projekteinstellungen** gelten für ein einzelnes Projekt: Labels, Workflow, Sichtbarkeit und verbundene Repositories. Bearbeitet werden sie von der Projektleitung.
+Der [Adminbereich](/de/admin-area.html) konfiguriert die ganze Instanz. Die **Projekteinstellungen** gelten für ein einzelnes Projekt: Labels, Workflow, Sichtbarkeit und verbundene Repositories. Bearbeitet werden sie von der Projektleitung und von den Team-Admins jedes Teams, dem das Projekt gehört. Das Projekt löschen, Git verbinden, es einem anderen Team anhängen und festlegen, wer es leitet, darf nur die Projektleitung. Team-Admins verwalten alles andere, können sich aber nicht selbst zur Leitung machen. Plattformadmins haben hier keine eigenen Rechte.
 
 ## Labels & Status
 
@@ -39,6 +39,12 @@ Hier legst du auch fest, **wer das Projekt sieht und darin arbeitet**. Dafür gi
 
 Eine Person sieht ein Projekt nur, wenn ihr Team oder eine direkte Mitgliedschaft es freigibt. Diese Prüfung gilt in der ganzen App. Schränkst du ein Projekt hier ein, verschwindet es für alle ohne Zugriff aus Boards, Suche und Berichten.
 
+## Fristen
+
+Sind [Projektvorlagen](/de/project-templates.html) eingeschaltet, legst du unter **Fristen zählen in** fest, ob neue relative Fristen in diesem Projekt in **Kalendertagen** oder **Arbeitstagen** zählen. Ohne eigene Wahl folgt das Projekt dem Standard der Organisation, den Organisationsadmins auf der Seite [Organisation](/de/organization.html) setzen. Dieselbe Wahl gibt es beim Anlegen und beim Kopieren eines Projekts.
+
+Die Einstellung wählt nur vor, womit eine neue Frist startet. Bestehende Fristen behalten ihre Zählweise und verschieben sich nicht.
+
 ## Projektschlüssel
 
 Jedes Projekt hat einen kurzen **Schlüssel** (z. B. `ASTA`), der vor den Vorgangsnummern steht (`ASTA-42`). Smart Commits, Branch-Namen und PR-Titel nutzen ihn, um Arbeit mit einem Vorgang zu verknüpfen. Siehe [Git-Integration](/de/git-integration.html).
@@ -48,7 +54,7 @@ Jedes Projekt hat einen kurzen **Schlüssel** (z. B. `ASTA`), der vor den Vorgan
 Ein Projekt kann in seinen Einstellungen **ein oder mehrere Repositories** auf GitHub, GitLab oder Bitbucket verbinden.
 
 - Voraussetzung: Der Betreiber hat die OAuth-Apps im [Adminbereich](/de/admin-area.html) registriert.
-- Die Projektleitung fügt hier Repositories hinzu und richtet Automatisierungsregeln und das Branch-Template ein (beides gilt für das ganze Projekt).
+- Nur die Projektleitung fügt hier Repositories hinzu und richtet Automatisierungsregeln und das Branch-Template ein (beides gilt für das ganze Projekt).
 - Jedes verbundene Repo hat ein eigenes Token, einen eigenen Webhook und einen eigenen Standard-Branch.
 
 Alle Details stehen unter [Git-Integration](/de/git-integration.html).

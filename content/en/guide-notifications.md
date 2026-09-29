@@ -101,6 +101,17 @@ Security alerts cannot be switched off. Their row shows a padlock instead of a s
 !!! tip "Spend two minutes once"
     Turn off the two or three rows you know you will never act on. Then every notice means something.
 
+### Which days reach you
+
+Under **Notification days** you choose the weekdays on which e-mail and push may reach you.
+
+- **By default** these are the working days where you live. Hinata works them out from your language region or your time zone. In most places that is Monday to Friday, in Saudi Arabia for example Sunday to Thursday. **Use default** brings that choice back.
+- **On other days** no e-mail and no push arrives. The bell in the app still shows everything.
+- **Security alerts and important notices**, for example about expiring leave, always arrive, whatever the day. The hint below the setting says so too.
+- At least one day stays on. To get nothing at all, turn off the channels above.
+
+After the update to a version with notification days, you get one note in the bell that points you to the new setting.
+
 ## Watch an issue to opt in
 
 1. Open the issue.
@@ -146,10 +157,11 @@ Turn it off in the **Weekly digest** row of your settings.
 The most common causes are at the top.
 
 1. **Check the master switch.** A silenced channel silences every event, and the app says so at the switch.
-2. **Check the event's row.** Comments and status changes are off for one channel each by default.
-3. **Check that you are involved.** You hear about issues as assignee, reporter or watcher. Being in the project is not enough.
-4. **For push: check your device's permission.** The app asks once at first sign-in. If you declined, allow it in the system settings. Check [Download](/en/download.html) to see whether your platform supports push.
-5. **For e-mail: ask your operator.** Without a working outbound mail server, no setting helps.
+2. **Check your notification days.** On days you have not selected, no e-mail and no push arrives. The bell still has everything.
+3. **Check the event's row.** Comments and status changes are off for one channel each by default.
+4. **Check that you are involved.** You hear about issues as assignee, reporter or watcher. Being in the project is not enough.
+5. **For push: check your device's permission.** The app asks once at first sign-in. If you declined, allow it in the system settings. Check [Download](/en/download.html) to see whether your platform supports push.
+6. **For e-mail: ask your operator.** Without a working outbound mail server, no setting helps.
 
 !!! warning "Deleting a notification does not undo anything"
     You only delete your copy. If the issue should stop bothering you, stop watching it or hand it to someone else.

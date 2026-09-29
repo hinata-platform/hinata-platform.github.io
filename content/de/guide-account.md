@@ -141,7 +141,10 @@ Die Karte **Darstellung & App** enthält:
 - **Sprache**: eine von [neun](/de/features.html#sprachen) (Englisch, Deutsch,
   Französisch, Spanisch, Russisch, Chinesisch, Japanisch, Hindi, Arabisch). Sie
   gilt sofort für die Oberfläche und für E-Mails und Fehlermeldungen des
-  Servers. Mit Arabisch läuft das Layout von rechts nach links.
+  Servers. Mit Arabisch läuft das Layout von rechts nach links. Aus der Region
+  deiner Sprache (oder aus deiner Zeitzone) leitet Hinata auch ab, welche
+  [Benachrichtigungstage](/de/guide-notifications.html#an-welchen-tagen-dich-etwas-erreicht)
+  voreingestellt sind.
 - **Darstellung**: **System**, **Hell** oder **Dunkel**. System folgt deinem
   Betriebssystem.
 - **Verbundener Server**, daneben **Server verwalten**, wenn du mehrere nutzt.
@@ -159,6 +162,13 @@ Die Karte **Zugriff** ist nur eine Anzeige. Unter **Teams** und **Projekte**
 siehst du, wo du Mitglied bist, mit Mitgliederzahl und deiner Rolle. Fehlt ein
 Projekt, muss dich jemand zum passenden Team hinzufügen. Siehe
 [Projekte & Teams](/de/guide-projects.html).
+
+## Organisation
+
+Bist du Organisationsadmin, steht in deinen Einstellungen zusätzlich die Zeile
+**Organisation**. Sie führt zur Seite mit Zeiterfassung, Abwesenheiten,
+Feiertagen, Abrechnung und dem Standard für Fristen der ganzen Organisation.
+Siehe [Organisation](/de/organization.html).
 
 ## Zugriffstokens
 
@@ -191,15 +201,15 @@ Feld.
     Kommentare und Historie bleiben, aber **anonymisiert**. Es gibt keine
     Karenzzeit und keine Wiederherstellung.
 
-    Willst du nur aus einem Projekt raus, bitte einen Administrator, dir den
-    Zugriff zu entziehen.
+    Willst du nur aus einem Projekt raus, bitte die Projektleitung oder einen
+    Team-Admin, dir den Zugriff zu entziehen.
 
 Als **letzter aktiver Administrator** kannst du dein Konto nicht löschen. Mach
 vorher jemand anderen zum Administrator.
 
 ## Nächste Schritte
 
-- [Auf dem Laufenden bleiben](/de/guide-notifications.html): Benachrichtigungen einstellen
+- [Auf dem Laufenden bleiben](/de/guide-notifications.html): Benachrichtigungen und Benachrichtigungstage einstellen
 - [Erste Schritte](/de/guide-start.html): Anmelden und der erste Tag
 - [Auf dem Handy](/de/guide-mobile.html): mobiles Layout und mehrere Server
 - [Authentifizierung](/de/authentication.html): Passwörter und 2FA aus Sicht des Betreibers

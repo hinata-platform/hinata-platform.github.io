@@ -86,7 +86,7 @@ Open the menu: the **More** chevron on desktop, a long press on touch.
 **Reply**, **Copy**, **Copy link** and **Pin** are available on every comment.
 
 - **Edit:** only the author can edit. The comment is marked **edited**. Voice messages cannot be edited.
-- **Delete:** you can always delete your own. Administrators can delete any comment for moderation.
+- **Delete:** you can always delete your own. For moderation, the project's leads and the Team-Admins of a team that owns the project can delete any comment, currently through the API or MCP rather than the app's menu. Platform admins cannot, unless they hold one of those roles.
 - **Select:** multi-select to delete several of your own comments at once.
 
 !!! warning "Deleting is permanent, and a root comment takes its replies with it"
@@ -206,7 +206,7 @@ Where a download goes:
 
 Attachments follow the issue. Anyone who can open the issue can preview and download its files. There is no separate sharing setting.
 
-There are no public links either. Every request goes through your server, which checks your access to the issue. Files are stored under names that cannot be guessed in your organisation's storage. A copied URL will not work outside the project. Send the [issue link](/en/guide-issues.html) instead and give the person project access.
+There are no public links either. Every request goes through your server, which checks your access to the issue. Files are stored under names that cannot be guessed in your organization's storage. A copied URL will not work outside the project. Send the [issue link](/en/guide-issues.html) instead and give the person project access.
 
 !!! note "That includes voice messages"
     Voice messages are audio files in the same storage. Deleting the comment deletes the recording too.

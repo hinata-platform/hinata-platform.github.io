@@ -41,7 +41,10 @@ This check runs **workspace-wide**: it covers the board, issue lists, search res
 ### Roles
 
 - **Members** do the everyday work: create and edit issues, comment, log time, move cards.
-- **Admins** also reach the [Admin area](/en/admin-area.html) with users, SSO, e-mail-to-ticket, Git OAuth apps and app-wide settings. Admin is a workspace role (`ADMIN`), enforced on every `/api/v1/admin/**` endpoint.
+- **Project leads** manage their project: settings, workflow, members, event date and deadlines. Only they may delete a project, connect Git and attach it to another team.
+- **Team-Admins** manage their team and the settings of every project their team owns: name, workflow, members, event date and deadlines, and time settings. Deleting, Git and attaching to another team stay with the project leads.
+- **Admins** reach the [Admin area](/en/admin-area.html) with users, SSO, e-mail-to-ticket, Git OAuth apps and app-wide settings. Admin is a workspace role (`ADMIN`), enforced on every `/api/v1/admin/**` endpoint. Admins only see projects, teams and their content when they are members themselves.
+- **Organization admins** (`ORG_ADMIN`) manage working time, absences, holidays and billing for everyone. See [Organization](/en/organization.html).
 
 ### Managing members
 

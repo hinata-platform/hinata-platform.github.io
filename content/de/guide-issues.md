@@ -99,6 +99,18 @@ Die Seite **Issues** listet alle Vorgänge, die du sehen darfst. Die Zahl unter 
 
 Einen bestimmten Vorgang findest du schneller über die [Befehlspalette](/de/guide-search.html).
 
+### Mehrere Vorgänge auswählen und eine Frist setzen
+
+In der Liste kannst du mehrere Vorgänge auswählen und ihnen in einem Schritt dieselbe Frist geben.
+
+- **Auf dem Handy** hältst du einen Vorgang gedrückt. Beim ersten Mal erklärt ein kurzer Tipp über der Liste, wie das geht.
+- **Auf breiteren Fenstern** tippst du auf den runden Auswahlknopf neben **Neue Aufgabe**. Derselbe Knopf beendet die Auswahl wieder.
+- **Alle auswählen** wählt die Zeilen, die gerade geladen sind, nicht jeden Treffer des Filters.
+
+Mit **Frist festlegen** wählst du dann ein Datum oder entfernst die Frist bei allen. Das geht für bis zu 100 Vorgänge auf einmal. Sind [Projektvorlagen](/de/project-templates.html) eingeschaltet und gehören alle gewählten Vorgänge zu einem Projekt, kannst du die Frist auch als Versatz zum Termin dieses Projekts setzen. Bei Vorgängen aus mehreren Projekten geht nur ein festes Datum, weil jedes Projekt seinen eigenen Termin hat.
+
+Die Änderung gilt für alle oder für keinen: Darfst du einen der Vorgänge nicht bearbeiten, bleibt jeder unverändert.
+
 ## Der Vorgang im Detail
 
 Links der Inhalt, rechts die Fakten.
@@ -131,12 +143,12 @@ Die Karte **Timeline** enthält **Startdatum**, **Fälligkeitsdatum**, **Zeit er
 
 Führt die Instanz [Projektvorlagen](/de/project-templates.html), haben beide Datumsfelder eine zweite Betriebsart: statt eines festen Tages ein Versatz zum Termin des Projekts, etwa „4 Wochen vorher“. Rechts daneben steht sofort das Datum, das dabei herauskommt.
 
-Kalendertage sind vorausgewählt. Werktage überspringen Wochenenden und, wenn am Projekt ein Feiertagskalender gewählt ist, dessen Feiertage — ohne einen solchen Kalender zählt ein Feiertag als Arbeitstag.
+Kalendertage sind vorausgewählt. Arbeitstage überspringen Wochenenden und, wenn am Projekt ein Feiertagskalender gewählt ist, dessen Feiertage. Ohne einen solchen Kalender zählt ein Feiertag als Arbeitstag.
 
 In Listen und auf Board-Karten bleibt die Frist ein Datum; ein kleines Uhrzeichen sagt, dass sie am Termin hängt. Wer ein Datum von Hand wählt, löst den Versatz ab, und die nächste Terminverschiebung lässt die Frist dann in Ruhe.
 
 !!! note "Karte Deployment nur mit Repository"
-    Ist das Projekt mit GitHub, GitLab oder Bitbucket verbunden, zeigt **Deployment** Branches, Commits und Pull Requests mit dem Schlüssel, dazu Abkürzungen für Namen von Branch oder Commit. Verbinden können Administration oder Projektleitung, siehe [Git-Integration](/de/git-integration.html).
+    Ist das Projekt mit GitHub, GitLab oder Bitbucket verbunden, zeigt **Deployment** Branches, Commits und Pull Requests mit dem Schlüssel, dazu Abkürzungen für Namen von Branch oder Commit. Verbinden kann die Projektleitung, siehe [Git-Integration](/de/git-integration.html).
 
 ## Einen Vorgang bearbeiten
 
@@ -155,6 +167,8 @@ In Listen und auf Board-Karten bleibt die Frist ein Datum; ein kleines Uhrzeiche
 - **Verlauf**: nur Änderungen wie „hat den Status geändert“, mit Person und Zeitpunkt
 
 Den Verlauf schreibt Hinata automatisch, niemand kann ihn bearbeiten.
+
+Einen Kommentar löschen darf die Person, die ihn geschrieben hat. Außerdem dürfen das die Projektleitungen und die Team-Admins eines Teams, dem das Projekt gehört. Plattformadmins dürfen es nur mit einer dieser Rollen. Siehe [Kommentare & Anhänge](/de/guide-collaboration.html).
 
 ## Einen Link zum Vorgang teilen
 
@@ -223,7 +237,7 @@ Der alte Schlüssel löst danach nicht mehr auf.
 
 **Archivieren** darf jedes Projektmitglied. Der Vorgang verschwindet aus Listen, Boards, Sprints und Suche, bleibt aber erhalten. Filter **Archiviert** findet ihn, **Wiederherstellen** holt ihn zurück. Sub-Tasks von Story, Aufgabe, Fehler und Feature gehen mit.
 
-**Löschen** dürfen nur Admins der Plattform, Projektleitungen und Admins eines Teams, dem das Projekt gehört. Alle anderen sehen nur **Archivieren**. Wer löschen darf, bekommt im Dialog beides, Löschen in Rot.
+**Löschen** dürfen nur Projektleitungen und Admins eines Teams, dem das Projekt gehört. Plattformadmins dürfen es nur, wenn sie eine dieser Rollen haben. Alle anderen sehen nur **Archivieren**. Wer löschen darf, bekommt im Dialog beides, Löschen in Rot.
 
 !!! warning "Löschen ist endgültig"
     Kommentare, Arbeitszeiten, Verknüpfungen und Verlauf verschwinden mit. Bei **Story, Aufgabe, Fehler oder Feature** auch die Sub-Tasks. Bei einem **Epic** bleiben die Kinder als normale Vorgänge und verlieren nur die Verbindung. Im Zweifel archivieren.

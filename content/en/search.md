@@ -16,7 +16,7 @@ The palette searches your whole workspace as you type:
 - **Knowledge base articles**, such as a runbook.
 - **People**, to open a teammate's profile.
 
-The best match is already selected. Press **Enter** to open it. The palette only shows what your [project access](/en/projects-teams.html) lets you see.
+The best match is already selected. Press **Enter** to open it. The palette only finds what you can reach: issues and projects through your [project access](/en/projects-teams.html), articles only when you [may read them](/en/knowledge-base.html#access-control). That holds for admins too.
 
 !!! tip "Keys are the fastest jump"
     If you know the issue key, just type it. `INF-7` and Enter takes you straight to the issue.

@@ -48,6 +48,12 @@ Zwei unabhängige Schichten schützen Logins und API.
 
 - **Adminbereich nur mit Rolle.** Jede Route unter **`/api/v1/admin/**` verlangt die Rolle `ADMIN`**. Ein normales Token erreicht keine Adminfunktionen.
 - **Sichtbarkeit von Mandanten und Projekten.** Die Teammitgliedschaft steuert in der ganzen App, welche Projekte jemand sieht: nur die, die sein Team freigibt (siehe [Projekte & Teams](/de/projects-teams.html)).
+- **Keine Hintertür für Admins.** Die Rolle `ADMIN` öffnet nur den Adminbereich. Projekte, Teams, Vorgänge, Boards, Seiten der Wissensdatenbank, Suchtreffer und Zeiteinträge sieht ein Admin nur über seine eigene Mitgliedschaft, wie alle anderen.
+- **Organisationsaufgaben mit eigener Rolle.** Die Einstellungen für Zeiterfassung, Freigaben, Abwesenheiten, Feiertage und Abrechnung verlangen die Rolle `ORG_ADMIN`. Andere erhalten dort 403, auch Admins. Siehe [Organisation](/de/organization.html).
+- **Rollen, die sich nicht selbst vergeben.** Ein Admin kann sich nicht selbst zum Organisationsadmin machen, das muss ein anderer Admin tun. Das ist eine Maßnahme für Nachvollziehbarkeit und keine harte Sperre, denn mit einem zweiten Adminkonto ginge es trotzdem. Deshalb wird jede Vergabe aufgezeichnet, ohne dass sich das abschalten lässt. Der letzte Organisationsadmin lässt sich nicht entfernen, deaktivieren oder löschen. Wer die Rolle bekommt oder abgibt, wird allen Organisationsadmins gemeldet.
+- **Schutz vor Kontoübernahme durch Admins.** Ändert ein Admin die Anmeldeadresse einer Person, bekommt sie eine Nachricht an ihre alte Adresse. Einen Tag lang geht danach kein Zurücksetzen des Passworts an sie, weder aus dem Adminbereich noch über die öffentliche Seite „Passwort vergessen“, die in dieser Zeit stillschweigend nichts verschickt.
+- **Getrenntes Audit-Protokoll.** Unter **Adminbereich → Audit** stehen nur Einträge der Plattform: Anmeldungen, Konten, Konfiguration und Integrationen. Einträge zu Arbeitszeit, Stundenzetteln und Abwesenheiten stehen im Protokoll der Seite Organisation. Einträge zu Abwesenheiten sieht dort nur, wer die Abwesenheiten führt. Welche dieser Ereignisse aufgezeichnet werden, entscheiden die Organisationsadmins. Admins können das nicht ändern, und der Hauptschalter der Plattform schaltet sie nicht ab. Einträge zu Vorgängen und Seiten erscheinen für Admins ohne Details, also ohne Vorgangsschlüssel und Seiten-IDs. Änderungen an den Rollen Admin und Organisationsadmin und jede Änderung einer Anmeldeadresse durch einen Admin werden immer aufgezeichnet und lassen sich nicht abschalten.
+- **Wissensdatenbank über Rollen geschützt.** Eine Seite liest, wer ihr Projekt sieht, wer Team-Admin ihres Teams ist oder wem das Team sie geöffnet hat. Seiten ohne Projekt und Team liest nur ihr Autor. Die Suche liefert nur, was der Aufrufer erreichen darf. Eine Seite an einen anderen Ort verschieben darf nur, wer über ihren jetzigen Ort bestimmt, und privat machen kann sie nur ihr Autor.
 - **Öffentliche Endpunkte sind festgelegt.** Ohne Token erreichbar ist nur diese kurze Liste: `/meta`, `/setup/status`, `/setup`, `/auth/login`, `/auth/refresh`, `/auth/sso/providers`, `/actuator/health`. Alles andere verlangt ein Bearer-Token.
 
 ## Gehärtete HTTP-Antworten
@@ -70,7 +76,7 @@ Git-Access-Tokens und andere Secrets von Integrationen werden vor dem Speichern 
 
 | OWASP Top 10 (2021) | Wie Hinata darauf eingeht |
 | --- | --- |
-| A01 Broken Access Control | Adminrouten nur mit `ADMIN`, feste Liste öffentlicher Endpunkte, Sichtbarkeit über Team und Projekt, Tokens pro Sitzung widerrufbar |
+| A01 Broken Access Control | Adminrouten nur mit `ADMIN`, Organisationsrouten nur mit `ORG_ADMIN`, keine Inhaltsrechte aus Plattformrollen, feste Liste öffentlicher Endpunkte, Sichtbarkeit über Team und Projekt, Tokens pro Sitzung widerrufbar |
 | A02 Cryptographic Failures | JWT HS512, Passwörter mit BCrypt 12, Integrations-Secrets mit AES-GCM verschlüsselt, TLS überall (Betreiber) |
 | A03 Injection | Escapte Suche, parametrisierter Zugriff auf MongoDB, Uploads mit Prüfung von Content-Type und Größe |
 | A04 Insecure Design | Refresh-Tokens für die API abgelehnt, nur schreibbare Secrets, Auth-Callbacks per Deep Link, Authorization-State in MongoDB |
