@@ -185,6 +185,38 @@ Hinata liest jeden abonnierten Kalender jede halbe Stunde. Die Karte jedes Kalen
 
 Das Menü jedes Kalenders bietet **Jetzt aktualisieren** (höchstens einmal pro Minute), **Bearbeiten**, **Pausieren** oder **Fortsetzen** und **Löschen**. Nach fünf Fehlversuchen in Folge wird ein Kalender pausiert und nicht mehr gelesen, bis du ihn **fortsetzt**. Löschst du einen Kalender, verschwinden seine Termine aus der Zeiterfassung. Einträge, die du schon übernommen hast, bleiben.
 
+## Einträge mit anderen teilen
+
+Habt ihr zu zweit oder zu dritt an etwas gearbeitet, zum Beispiel in einem Workshop oder beim Pairing, muss nicht jede Person den Eintrag selbst tippen. Du teilst deinen Eintrag, und deine Kolleginnen und Kollegen übernehmen ihn mit einem Tippen in ihre eigenen Einträge.
+
+### Einen Eintrag teilen
+
+1. Öffne einen deiner Einträge.
+2. Tippe oben im Blatt auf **Teilen mit…**.
+3. Wähle unter **Person hinzufügen…** die Personen aus. Angeboten werden nur Mitglieder des Projekts, zu dem der Eintrag gehört.
+4. Tippe auf **Einladungen senden**.
+
+Schneller geht es beim Schreiben: Tippe in der Beschreibung ein **+**, und die Personen des Projekts öffnen sich. Der gewählte Name steht danach im Text, und unter **Wird geteilt mit** siehst du, wer die Einladung beim Speichern bekommt.
+
+Teilen lässt sich nur ein Eintrag mit Projekt, und höchstens mit 20 Personen.
+
+### Was die anderen sehen
+
+Wer eingeladen ist, bekommt eine Benachrichtigung und sieht über der eigenen Eintragsliste einen Hinweis wie **2 geteilte Einträge warten auf deine Antwort**. Unter **Ansehen** steht die Einladung mit Beschreibung, Tag, Uhrzeit, Projekt und Tags. Deinen Eintrag selbst sieht dort niemand.
+
+- **Annehmen** legt eine Kopie in den eigenen Einträgen an.
+- **Anpassen** nimmt die Kopie mit einem anderen Projekt oder anderen Tags an.
+- **Ablehnen** sagt nein. Du erfährst nur, dass abgelehnt wurde, nie warum, und bekommst dazu keine Benachrichtigung.
+
+Die Kopie gehört danach ganz der Person, die sie angenommen hat. Sie kann sie ändern oder löschen, ohne dass sich an deinem Eintrag etwas ändert, und umgekehrt. Für die Kopie gelten ihre Regeln: Liegt der Tag bei ihr vor dem Sperrdatum oder in einem eingereichten Zeitraum, wird die Annahme mit einer Meldung abgelehnt und die Einladung wartet weiter.
+
+### Den Stand verfolgen
+
+Unter **Gesendet** auf derselben Seite siehst du jede Einladung mit ihrem Stand: **Offen**, **Angenommen**, **Abgelehnt** oder **Zurückgezogen**. Eine offene Einladung kannst du dort oder im Blatt **Teilen mit…** zurückziehen. Löschst du deinen Eintrag, werden offene Einladungen dazu automatisch zurückgezogen.
+
+!!! info "Datenschutz"
+    Wird ein Konto gelöscht, verschwinden alle Einladungen, die es gesendet oder bekommen hat. Bereits angenommene Kopien bleiben, denn sie sind Einträge der Personen, die sie angenommen haben. Deine Einladungen stehen auch in deinem Datenexport.
+
 ## Einen Eintrag korrigieren
 
 Jeder Eintrag auf der Karte und im Sheet **Alle Einträge** hat rechts ein Menü.
