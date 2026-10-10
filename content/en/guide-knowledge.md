@@ -31,7 +31,7 @@ Click the **New space** tile, enter a name and description, and pick an icon and
 
 Prefer a few broad spaces, such as one per team or discipline. One per project rarely fits, because topics outlive projects.
 
-The grid lists only spaces you created or in which you may read at least one page. Other people's spaces with no pages for you stay hidden, for admins too.
+The grid lists only spaces you created or in which you may read at least one page. Other people's spaces with no pages for you stay hidden, for platform admins too.
 
 !!! warning "A space can only be deleted while it is empty"
     **Delete space** is only offered on your own spaces with no articles. While pages are still in it, including pages you cannot see, Hinata refuses to delete it. Move or delete its pages first.

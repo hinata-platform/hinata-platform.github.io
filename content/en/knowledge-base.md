@@ -54,7 +54,7 @@ Only the author can make a page private.
 
 When you move a page, its subpages come along. Subpages that someone filed under it from another place stay where they are, though, and become top-level pages there. One person's private page never moves along with another person's page.
 
-You see a space if you created it or may read at least one page in it. Admins are no exception. Only whoever created a space can rename or delete it; spaces from before Hinata recorded that are managed by admins who see them. A space can only be deleted once no pages are left in it. That includes pages you cannot see.
+You see a space if you created it or may read at least one page in it. Platform admins see no more than anybody else; team admins still read their team's pages. Only whoever created a space can rename or delete it. Spaces from before Hinata recorded that are managed by whoever may read every page in them. A space can only be deleted once no pages are left in it. That includes pages you cannot see.
 
 !!! warning "What changes with the update"
     Existing pages without a project or team become private to their authors after the update. Existing team members start with no access to their team's pages until a Team-Admin opens pages to them. Pages that hung under a page from another place become top-level pages in their own place. Pages whose author was deleted before the update stay stored, but nobody can read them. What happens to them is up to the operator. To make a page readable for more people again, its author puts it into a project or team.
