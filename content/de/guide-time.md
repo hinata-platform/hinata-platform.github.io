@@ -208,7 +208,7 @@ Wenn eure Organisationsadmins die erweiterte Zeiterfassung eingeschaltet haben, 
 
 - **Geplante Stunden** sind deine Stunden je Wochentag. Solange du keine eigenen festlegst, gilt die Vorgabe des Servers. Eine Änderung gilt ab dem Datum, das du wählst, frühere Wochen behalten ihre Stunden. Hier wählst du auch den Feiertagskalender, nach dem du dich richtest.
 - **Abwesenheiten** sind Urlaub, Krankmeldungen oder Sonstiges, für einen einzelnen Tag oder einen Zeitraum. Ein einzelner Tag kann ein halber Tag sein. Die Notiz ist freiwillig, sehen können sie nur du und die Abwesenheitsverwaltung. Du findest und pflegst sie in der Zeiterfassung unter **Abwesenheiten**.
-- **Feiertage** kommen aus den Kalendern, die eure Organisationsadmins auf der Seite [Organisation](/de/organization.html) unter **Feiertage** pflegen. Sie tragen Tage von Hand ein oder importieren ein Jahr aus einer Kalenderadresse.
+- **Feiertage** kommen aus den Kalendern, die eure Organisationsadmins auf der Seite [Organisation](/de/organization.html) unter **Feiertage** pflegen. Meist folgt ein Kalender den gesetzlichen Feiertagen einer Region und füllt sich jedes Jahr von selbst. Organisationsadmins können Tage auch von Hand eintragen oder aus einer Kalenderadresse importieren.
 
 Was sich dadurch zeigt:
 

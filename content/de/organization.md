@@ -32,13 +32,25 @@ Als Organisationsadmin findest du in deinen **Einstellungen** die Zeile **Organi
 
 - **Zeiterfassung**: die erweiterte Zeiterfassung und ihre Richtlinien, etwa Rundung, Sperrdatum, Stundenzettel-Freigaben, Kalender-Import, Datenschutzhinweis und Aufbewahrung. Siehe [Datenschutz der Zeiterfassung](/de/time-tracking-privacy.html).
 - **Abwesenheiten**: die Abwesenheitsverwaltung mit Arten, Ansprüchen und Konten, dazu die Personen, die sie mitführen dürfen.
-- **Feiertage**: die Feiertagskalender, von Hand gepflegt oder aus einer Kalenderadresse importiert.
+- **Feiertage**: die Feiertagskalender. Ein Kalender folgt einer Region, kommt aus einer Kalenderadresse oder wird von Hand gepflegt. Mehr dazu unter [Feiertage](#feiertage).
 - **Zeit-Tags**, **Ausnahmen vom Sperrdatum** und für einzelne Personen geöffnete Tage.
 - **Abrechnung**: Sätze, Kosten und Rechnungen.
 - **Zählweise**: ob die Organisation in Kalendertagen oder Werktagen rechnet, für neue relative Fristen und als Standard für Benachrichtigungszeiten.
 - **Protokoll**: die Einträge des Audit-Protokolls zu Arbeitszeit, Stundenzetteln und Abwesenheiten. Administratoren sehen sie nicht. Mehr dazu unter [Das Protokoll der Organisation](#das-protokoll-der-organisation).
 
 Dazu kommen Aufgaben im Alltag: Organisationsadmins entscheiden Stundenzettel und Abwesenheitsanträge, wenn sonst niemand dafür da ist, öffnen gesperrte Tage auf Anfrage und dürfen Einträge für andere importieren.
+
+## Feiertage
+
+Jeder Feiertagskalender bekommt seine Tage aus einer von drei Quellen:
+
+- **Region**: die gesetzlichen Feiertage eines Landes oder Bundeslandes, etwa Bayern oder Berlin. Der Server kennt die Regeln selbst und braucht dafür keine Verbindung nach außen. Jedes neue Jahr kommt von selbst dazu.
+- **Kalenderadresse**: ein Feiertagskalender von Google, Apple oder Outlook. Der Server liest auch hier jedes neue Jahr von selbst ein, sobald die Adresse es enthält.
+- **Von Hand**: du trägst jeden Tag selbst ein.
+
+Der Server füllt jede Nacht und bei jedem Start das laufende und das nächste Jahr, und zwar jedes Jahr nur einmal. Löschst oder änderst du danach einzelne Tage, bleibt das so. Willst du ein Jahr wieder so haben, wie die Quelle es vorgibt, tippst du auf der Karte des Kalenders auf das Symbol zum Wiederherstellen oder Importieren.
+
+Auf einem neuen Server legt die Plattform den ersten Kalender selbst an: **Gesetzliche Feiertage** für die Region aus den Plattform-Einstellungen, ohne Angabe für das Land der Zeitzone des Servers. Er trägt das Zeichen **Vorgabe der Plattform** und ist der Standardkalender, solange es noch keinen anderen gibt. Du kannst ihn umbenennen, Tage ändern, weitere Kalender dazulegen oder ihn löschen. Wählst du für ihn eine andere Quelle, gehört er ganz euch und folgt den Plattform-Einstellungen nicht mehr. Ein gelöschter Kalender kommt nicht zurück, nur eine neue Region in den Plattform-Einstellungen legt wieder einen an.
 
 ## Kalender-Import
 

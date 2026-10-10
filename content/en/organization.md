@@ -32,13 +32,25 @@ As an organization admin you find an **Organization** row in your **Settings**. 
 
 - **Time tracking**: extended time tracking and its policies, such as rounding, the lock date, timesheet approvals, the calendar import, the privacy notice and retention. See [Time tracking privacy](/en/time-tracking-privacy.html).
 - **Absences**: absence management with types, entitlements and balances, plus the people who may help keep them.
-- **Holidays**: the holiday calendars, kept by hand or imported from a calendar address.
+- **Holidays**: the holiday calendars. A calendar follows a region, comes from a calendar address or is kept by hand. More under [Holidays](#holidays).
 - **Time tags**, **lock exceptions** and days opened for single people.
 - **Billing**: rates, costs and invoices.
 - **Day count**: whether the organization counts in calendar days or working days, for new relative deadlines and as the default for notification times.
 - **Log**: the audit log records about working time, timesheets and absences. Administrators do not see them. More under [The organization's log](#the-organizations-log).
 
 There are day-to-day duties too: organization admins decide timesheets and absence requests when nobody else is there to do it, open locked days on request and may import entries for other people.
+
+## Holidays
+
+Every holiday calendar gets its days from one of three sources:
+
+- **Region**: the statutory holidays of a country or a state, such as Bavaria or Berlin. The server knows the rules itself and needs no outside connection for them. Every new year is added on its own.
+- **Calendar address**: a public holiday calendar from Google, Apple or Outlook. Here too the server reads every new year on its own, as soon as the address contains it.
+- **By hand**: you enter every day yourself.
+
+Every night and at every start the server fills the current and the next year, each year only once. If you delete or change single days afterwards, they stay that way. To have a year back the way its source has it, use the restore or import button on the calendar's card.
+
+On a new server the platform creates the first calendar itself: **Public holidays** for the region in the platform settings, or, without one, for the country of the server's time zone. It carries the label **Set by the platform** and is the default calendar while there is no other. You can rename it, change days, add more calendars or delete it. Once you give it another source it is entirely yours and no longer follows the platform settings. A deleted calendar does not come back; only a new region in the platform settings creates one again.
 
 ## Calendar import
 

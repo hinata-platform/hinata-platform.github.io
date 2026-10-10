@@ -48,6 +48,10 @@ Der Adminbereich hat drei Gruppen:
 - **Authentifizierung**, **E-Mail** und **Git-Integration**
 - **Audit-Protokoll** und **Benutzer**
 
+### Feiertage der Plattform
+
+Unter **Allgemein** wählst du neben Zeitzone und Sprache die Region, deren gesetzliche Feiertage die Organisation bekommt, zum Beispiel Deutschland oder Bayern. **Automatisch** nimmt das Land der Zeitzone, **Keine** legt keinen Kalender an. Aus der Region macht der Server einen Feiertagskalender und füllt ihn jedes Jahr von selbst. Änderst du die Region, folgt ihr dieser Kalender. Was die Organisation daraus macht, entscheidet sie selbst, siehe [Feiertage](/de/organization.html#feiertage).
+
 ### Benutzer
 
 Hier verwaltest du die Personen auf deiner Instanz:

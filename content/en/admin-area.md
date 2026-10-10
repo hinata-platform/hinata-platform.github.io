@@ -48,6 +48,10 @@ The Admin area has three groups:
 - **Authentication**, **E-mail** and **Git integration**
 - **Audit log** and **Users**
 
+### Holidays of the platform
+
+Under **General**, next to time zone and language, you choose the region whose statutory holidays the organization gets, for example Germany or Bavaria. **Automatic** takes the country of the time zone, **None** creates no calendar. The server makes a holiday calendar from the region and fills it every year on its own. When you change the region, that calendar follows it. What the organization makes of it is up to the organization, see [Holidays](/en/organization.html#holidays).
+
 ### Users
 
 Manage the people on your instance:
