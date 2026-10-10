@@ -69,7 +69,7 @@ cp .env.example .env
 ./deploy/generate-secrets.sh
 ```
 
-`generate-secrets.sh` creates `deploy/mongo-keyfile` (`openssl rand -base64 756`, mode `400`) if it is missing. It never overwrites an existing one. It also prints values for `HINATA_JWT_SECRET`, `MONGO_ROOT_PASSWORD` and `MINIO_ROOT_PASSWORD` to copy into your `.env`.
+`generate-secrets.sh` creates `deploy/mongo-keyfile` (`openssl rand -base64 756`, mode `400`) if it is missing. It never overwrites an existing one. It also prints values for `HINATA_JWT_SECRET`, `MONGO_ROOT_PASSWORD`, `HINATA_S3_SECRET_KEY` and the `SEAWEEDFS_*` secrets to copy into your `.env`.
 
 ### 2. The X.509 certificate authority and certificates
 
@@ -147,4 +147,4 @@ Then set the same values in `.env` so the server can open the stores at runtime.
 - **Never expose Mongo publicly.** The ports stay on the internal `hinata` Docker network, and the default compose does not publish `27017` to the host in production. Only the server (behind your reverse proxy) should reach the database.
 - **The arbiter is not a backup.** It stores no data. Backups come from `mongodump` or volume snapshots, see [Backups & upgrades](/en/backups.html).
 
-Next: [Object storage (S3/MinIO)](/en/storage.html), [E-mail & SMTP](/en/email.html) and [Reverse proxy & TLS](/en/reverse-proxy.html). Every environment variable is listed in the [Configuration reference](/en/configuration.html).
+Next: [Object storage](/en/storage.html), [E-mail & SMTP](/en/email.html) and [Reverse proxy & TLS](/en/reverse-proxy.html). Every environment variable is listed in the [Configuration reference](/en/configuration.html).

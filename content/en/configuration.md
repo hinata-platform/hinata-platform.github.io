@@ -91,25 +91,28 @@ the `$external` user.
 E-mails with deep links (verification, password reset, assignment notifications)
 are only delivered with a real relay. See [E-mail & SMTP](/en/email.html).
 
-## Object storage (S3 / MinIO / GCS / Azure)
+## Object storage (S3 / SeaweedFS / GCS / Azure)
 
 | Variable | Purpose | Default / example | Required |
 | --- | --- | --- | --- |
-| `HINATA_STORAGE_PROVIDER` | Backend: `s3` (MinIO, AWS S3, GCS interop, R2, Spaces, …) or `azure` (Azure Blob Storage) | `s3` | No |
-| `COMPOSE_PROFILES` | `local-storage` runs the bundled MinIO. Empty when using an external store | `local-storage` | No |
-| `MINIO_ROOT_USER` | MinIO root user (also used as the S3 access key in compose) | `hinata` | With bundled MinIO |
-| `MINIO_ROOT_PASSWORD` | MinIO root password (also the S3 secret key in compose) | `hinata-dev-secret` (change it) | **With bundled MinIO (prod)** |
-| `HINATA_S3_ENDPOINT` | S3 endpoint the server talks to | `http://minio:9000` (in compose) | External S3 |
-| `HINATA_S3_ACCESS_KEY` | S3 access key (dev / external S3) | `hinata` | Dev / external |
-| `HINATA_S3_SECRET_KEY` | S3 secret key (dev / external S3) | `hinata-dev-secret` | Dev / external |
+| `HINATA_STORAGE_PROVIDER` | Backend: `s3` (SeaweedFS, AWS S3, GCS interop, R2, Spaces, …) or `azure` (Azure Blob Storage) | `s3` | No |
+| `COMPOSE_PROFILES` | `local-storage` runs the bundled SeaweedFS. Empty when using an external store | `local-storage` | No |
+| `HINATA_S3_ENDPOINT` | S3 endpoint the server talks to | `http://seaweedfs:8333` (in compose) | External S3 |
+| `HINATA_S3_ACCESS_KEY` | S3 access key. The bundled SeaweedFS sets up the server's identity from this key and the secret key | `hinata` | For S3 |
+| `HINATA_S3_SECRET_KEY` | S3 secret key | *(from `generate-secrets.sh`)* | For S3 |
 | `HINATA_S3_BUCKET` | Bucket (S3) or container (Azure) for attachments and avatars | `hinata` | No |
 | `HINATA_S3_REGION` | Bucket region (AWS and region-aware providers) | `us-east-1` | External S3 |
-| `HINATA_S3_ADDRESSING_STYLE` | S3 URL addressing: `auto`, `virtual-host` or `path` | `auto` | No |
+| `HINATA_S3_ADDRESSING_STYLE` | S3 URL addressing: `auto`, `virtual-host` or `path`. The bundled store needs `path`, external stores usually `auto` | `path` (in compose), `auto` (server default) | No |
+| `HINATA_S3_SSE` | Server-side encryption asked for on every object written or copied: `AES256` (SSE-S3) or empty. Any other value stops the server at startup | `AES256` (in `.env.example`) | With bundled SeaweedFS |
 | `HINATA_AZURE_CONNECTION_STRING` | Azure storage account connection string (with `provider=azure`) | *(empty)* | Azure |
+| `SEAWEEDFS_ADMIN_ACCESS_KEY` / `SEAWEEDFS_ADMIN_SECRET_KEY` | Admin identity of the bundled SeaweedFS. Only the `seaweedfs-setup` job uses it | `hinata-admin` / *(generated)* | With bundled SeaweedFS |
+| `SEAWEEDFS_SSE_KEK` | Key that encrypts every object in the bundled SeaweedFS (64 hex characters). **Keep a copy apart from the server.** Without it nothing stored can be read again | *(generated)* | With bundled SeaweedFS |
+| `SEAWEEDFS_JWT_VOLUME_WRITE` / `_VOLUME_READ` / `_FILER_WRITE` / `_FILER_READ` | Keys that sign requests between the parts of SeaweedFS | *(generated)* | With bundled SeaweedFS |
+| `SEAWEEDFS_BACKUP_ACCESS_KEY` / `SEAWEEDFS_BACKUP_SECRET_KEY` | Optional read-only identity for backups. Not passed to the container by the stock compose file, see [Backups & upgrades](/en/backups.html) | *(empty)* | No |
 
-In production compose, `HINATA_S3_ACCESS_KEY` / `HINATA_S3_SECRET_KEY` fall back
-to `MINIO_ROOT_USER` / `MINIO_ROOT_PASSWORD` automatically. See
-[Object storage](/en/storage.html) for setup per provider (AWS, GCS, Azure, R2, …).
+SeaweedFS refuses to start while any of its keys is missing. `./deploy/generate-secrets.sh`
+prints a fresh value for every secret. See [Object storage](/en/storage.html) for the
+bundled store, setup per provider (AWS, GCS, Azure, R2, …) and moving from MinIO.
 
 ## App integration
 
@@ -194,13 +197,14 @@ overrides env. See [Git integration](/en/git-integration.html).
 
 ## Calendars, holidays and working hours
 
-Organization admins keep holiday calendars on the [Organization](/en/organization.html) page and can import a year of holidays from a calendar address, for example a public holiday calendar from Google, Apple or Outlook. The server fetches that address itself. It never connects to a private or loopback address, whatever the lists below say. People plan their own working hours in their settings, and their absences in time tracking. All of it needs extended time tracking (`HINATA_TIME_TRACKING_ADVANCED_ENABLED`). See [Tracking your time](/en/guide-time.html).
+Organization admins keep holiday calendars on the [Organization](/en/organization.html) page and can import a year of holidays from a calendar address, for example a public holiday calendar from Google, Apple or Outlook. With the calendar import on, people can also subscribe to their own calendars and take appointments over as time entries (see [Tracking your time](/en/guide-time.html#your-own-calendars)). The server fetches every one of these addresses itself. It never connects to a private or loopback address, whatever the lists below say. People plan their own working hours in their settings, and their absences in time tracking. All of it needs extended time tracking (`HINATA_TIME_TRACKING_ADVANCED_ENABLED`). See [Tracking your time](/en/guide-time.html).
 
 | Variable | Purpose | Default / example | Required |
 | --- | --- | --- | --- |
-| `HINATA_ICS_SECRET` | Key that stored calendar addresses are encrypted with. Base64 of at least 32 bytes. Generate: `openssl rand -base64 32`. Without it the server refuses to store a calendar address, and holidays can only be entered by hand | *(empty)* | For calendar addresses |
+| `HINATA_ICS_SECRET` | Key that stored calendar addresses are encrypted with (AES-256-GCM), both holiday feeds and personal calendar subscriptions. Base64 of at least 32 bytes. Generate: `openssl rand -base64 32`. Without it, or with a shorter or invalid value, the server refuses to store a calendar address: holidays can only be entered by hand and nobody can subscribe to a calendar. **Never change it once set** | *(empty)* | For calendar addresses |
 | `HINATA_ICS_ALLOWED_HOSTS` | Comma-separated hosts calendars may be fetched from: a host name or `*.example.org` for its subdomains. Empty means any public host | *(empty)* | No |
 | `HINATA_ICS_DENIED_HOSTS` | Comma-separated hosts calendars are never fetched from, in the same notation. Checked before the allow list | *(empty)* | No |
+| `HINATA_TIME_TRACKING_ICS_IMPORT_ENABLED` | Lets people subscribe to their own calendars and take appointments over as entries. Needs extended time tracking and `HINATA_ICS_SECRET`. The switch **Calendar import** under **Organization → Time tracking** takes precedence over this value | `false` | No |
 | `HINATA_AVAILABILITY_DEFAULT_WEEKDAY_MINUTES` | Planned minutes per weekday, Monday first, for everyone who has not set their own hours | `480,480,480,480,480,0,0` | No |
 | `HINATA_TIME_TRACKING_ABSENCE_MANAGEMENT_ENABLED` | Turns absence management on: types, entitlements, balances, requests and sick reports. Needs extended time tracking. The switch under **Organization → Time tracking** takes precedence over this value | `false` | No |
 | `HINATA_TIME_TRACKING_ABSENCE_CALENDAR_VISIBILITY` | The team absence calendar: `OFF`, `BUSY_ONLY` (only that somebody is away) or `TYPE` (the type, never sickness). Only in force with absence management on. The choice under **Organization → Time tracking** takes precedence over this value | `OFF` | No |
@@ -213,8 +217,20 @@ Organization admins keep holiday calendars on the [Organization](/en/organizatio
 !!! info "The limit never blocks a sick report"
     A sick report is counted against the same daily budget but is never refused by it: § 5 EFZG knows a notification, not a permission. Reaching the limit only refuses further **requests**.
 
-!!! warning "Keep the key"
-    A calendar address encrypted with one `HINATA_ICS_SECRET` cannot be read with another. If the key changes, imports from stored addresses fail until an organization admin enters the address again. Holidays that were already imported stay.
+!!! danger "Never rotate `HINATA_ICS_SECRET`"
+    A calendar address encrypted with one `HINATA_ICS_SECRET` cannot be read with another. Each address is also bound to the record it is stored in, so it cannot be copied into another one. If the key changes, every stored address becomes unreadable: holiday imports fail until an organization admin enters the address again, and every person's subscriptions fail with "The saved address can no longer be read" until they paste their address again. Holidays already imported and entries already taken over stay. Keep the key with your other secrets and back it up.
+
+### How calendars are fetched
+
+A calendar address is typed by a person, so the server treats every fetch as if anybody on the internet had chosen the address:
+
+- **Only `https`**, on port 443 or 8443. A `webcal://` address is read as `https`. No user name or password in the address.
+- **The host must be a name**, never an IP address. Every address it resolves to must be on the public internet, otherwise the host is refused. The server connects only to the addresses it checked, so a second DNS answer cannot point it inward.
+- **No redirects.** A redirect is reported as an error, even to the same host.
+- **Ten seconds** for lookup, connection and download together, and at most **2 MB** per calendar. At most four fetches run at once.
+- The address never appears in a log, an API response or the audit log. People see only the host.
+
+Subscriptions are read every half hour, skipping any read in the last 25 minutes. Unchanged calendars are asked for with `If-None-Match` / `If-Modified-Since`, so they cost little. People can also refresh one by hand, once a minute at most. After five failed reads in a row a subscription is paused until its owner resumes it. The server keeps each person's events from 30 days back to 90 days ahead, at most 5,000 per subscription, and each person can have up to 10 subscriptions. With extended time tracking or the calendar import off, nothing is fetched.
 
 ## Project templates and relative deadlines
 

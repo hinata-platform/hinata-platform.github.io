@@ -92,7 +92,7 @@ Git access tokens and other integration secrets are **encrypted with AES-GCM** b
 !!! danger "Do these before going live"
 
     - **Change `HINATA_JWT_SECRET`** to a fresh 64-char secret (`openssl rand -base64 64`).
-    - **Change every default password:** `MONGO_ROOT_PASSWORD`, `MINIO_ROOT_PASSWORD` and the TLS keystore and truststore passwords (`HINATA_MONGO_TLS_*_PASSWORD`, default `changeit`).
+    - **Change every default password:** `MONGO_ROOT_PASSWORD`, `HINATA_S3_SECRET_KEY`, the `SEAWEEDFS_*` secrets and the TLS keystore and truststore passwords (`HINATA_MONGO_TLS_*_PASSWORD`, default `changeit`).
     - **Change `HINATA_GIT_TOKEN_SECRET`** so integration tokens are encrypted with your own key.
 
 !!! tip "Then tighten the perimeter"

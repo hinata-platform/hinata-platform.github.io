@@ -22,26 +22,29 @@ Set up the server first, since that's what the app talks to.
 ### 1. Start the infrastructure
 
 A dedicated Compose file starts only the services the server needs: a MongoDB
-replica set, Mailpit (a local SMTP catcher) and MinIO (S3-compatible storage).
-You run the server itself from your IDE or the wrapper.
+replica set, Mailpit (a local SMTP catcher) and SeaweedFS (S3-compatible storage).
+You run the server itself from your IDE or the wrapper. SeaweedFS belongs to the
+`local-storage` profile, and its setup job creates the bucket once.
 
 ```bash
-docker compose -f docker-compose.dev.yml up -d   # Mongo RS, Mailpit, MinIO
+COMPOSE_PROFILES=local-storage docker compose -f docker-compose.dev.yml up -d   # Mongo, Mailpit, SeaweedFS
+COMPOSE_PROFILES=local-storage docker compose -f docker-compose.dev.yml run --rm seaweedfs-setup
 ```
 
 | Service | URL | What it is |
 | --- | --- | --- |
 | **Mailpit** | `http://localhost:8025` | Catches all outbound mail. Read verification, reset and notification e-mails here. |
-| **MinIO console** | `http://localhost:9001` | Shows the bucket with attachments and avatars. |
+| **SeaweedFS S3 API** | `http://localhost:8333` | The bucket with attachments and avatars. There is no web console. Credentials are required (`hinata` / `hinata-dev-secret-0123456789abcdef`), so use an S3 client such as `aws` or `rclone` to look inside. |
 | **MongoDB** | `localhost:27017` | Replica set `rs0`, reached with `directConnection=true`. |
 
 ### 2. Run the server
 
-Point the server at the local Mongo and MinIO and start it:
+Point the server at the local Mongo and SeaweedFS and start it:
 
 ```bash
 HINATA_MONGODB_URI="mongodb://localhost:27017/hinata?replicaSet=rs0&directConnection=true" \
-HINATA_S3_ACCESS_KEY=hinata HINATA_S3_SECRET_KEY=hinata-dev-secret \
+HINATA_S3_ENDPOINT=http://localhost:8333 HINATA_S3_ADDRESSING_STYLE=path HINATA_S3_SSE=AES256 \
+HINATA_S3_ACCESS_KEY=hinata HINATA_S3_SECRET_KEY=hinata-dev-secret-0123456789abcdef \
 ./gradlew bootRun
 ```
 

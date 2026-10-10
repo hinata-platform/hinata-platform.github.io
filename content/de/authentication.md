@@ -116,7 +116,7 @@ Unter `/settings` verwalten Benutzer ihr Konto selbst:
 - **Profil**: Anzeigename und Details.
 - **E-Mail-Änderung**: Die neue Adresse wird erneut verifiziert.
 - **Benachrichtigungsmatrix**: pro Kategorie Einstellungen für In-App und E-Mail.
-- **Avatar-Upload**: ein Profilbild in S3/MinIO. Hochgeladen über die Konto-API, ausgeliefert über einen Proxy für den privaten Bucket, serverseitig in der Größe begrenzt und neu kodiert. Benutzer können es jederzeit hochladen oder entfernen.
+- **Avatar-Upload**: ein Profilbild im Objektspeicher (S3). Hochgeladen über die Konto-API, ausgeliefert über einen Proxy für den privaten Bucket, serverseitig in der Größe begrenzt und neu kodiert. Benutzer können es jederzeit hochladen oder entfernen.
 - **DSGVO-Export & -Löschung**: Benutzer können ihre persönlichen Daten selbst **exportieren** und ihr Konto selbst **löschen**. Das erfüllt Datenportabilität und Recht auf Löschung ohne Ticket beim Admin.
 
 !!! info "DSGVO by Design"

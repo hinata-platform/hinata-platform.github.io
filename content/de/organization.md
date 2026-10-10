@@ -30,7 +30,7 @@ Beide Rollen vergibst du unter **Adminbereich → Benutzer**. Organisationsadmin
 
 Als Organisationsadmin findest du in deinen **Einstellungen** die Zeile **Organisation**. Andere Personen sehen sie nicht. Dort liegt alles, was für die ganze Organisation gilt:
 
-- **Zeiterfassung**: die erweiterte Zeiterfassung und ihre Richtlinien, etwa Rundung, Sperrdatum, Stundenzettel-Freigaben, Datenschutzhinweis und Aufbewahrung. Siehe [Datenschutz der Zeiterfassung](/de/time-tracking-privacy.html).
+- **Zeiterfassung**: die erweiterte Zeiterfassung und ihre Richtlinien, etwa Rundung, Sperrdatum, Stundenzettel-Freigaben, Kalender-Import, Datenschutzhinweis und Aufbewahrung. Siehe [Datenschutz der Zeiterfassung](/de/time-tracking-privacy.html).
 - **Abwesenheiten**: die Abwesenheitsverwaltung mit Arten, Ansprüchen und Konten, dazu die Personen, die sie mitführen dürfen.
 - **Feiertage**: die Feiertagskalender, von Hand gepflegt oder aus einer Kalenderadresse importiert.
 - **Zeit-Tags**, **Ausnahmen vom Sperrdatum** und für einzelne Personen geöffnete Tage.
@@ -39,6 +39,17 @@ Als Organisationsadmin findest du in deinen **Einstellungen** die Zeile **Organi
 - **Protokoll**: die Einträge des Audit-Protokolls zu Arbeitszeit, Stundenzetteln und Abwesenheiten. Administratoren sehen sie nicht. Mehr dazu unter [Das Protokoll der Organisation](#das-protokoll-der-organisation).
 
 Dazu kommen Aufgaben im Alltag: Organisationsadmins entscheiden Stundenzettel und Abwesenheitsanträge, wenn sonst niemand dafür da ist, öffnen gesperrte Tage auf Anfrage und dürfen Einträge für andere importieren.
+
+## Kalender-Import
+
+Unter **Zeiterfassung** entscheidet der Schalter **Kalender-Import**, ob Personen ihre eigenen Kalender abonnieren und Termine in Einträge übernehmen dürfen. Er ist standardmäßig aus und wirkt nur mit erweiterter Zeiterfassung. Solange du nichts wählst, gilt der Wert des Servers, `HINATA_TIME_TRACKING_ICS_IMPORT_ENABLED`. Wie das für die Personen aussieht, steht unter [Zeit erfassen](/de/guide-time.html#deine-eigenen-kalender).
+
+- **An:** Alle finden **Kalender-Abos** unter **Einstellungen → Zeiterfassung**. Ein Abo, seine Adresse, seine Termine und seine Fehler sieht nur, wem es gehört. Du siehst weder die Adressen noch die Termine, nur die Einträge, die jemand übernimmt, wie jeden anderen Eintrag.
+- **Aus:** Die Kalender zeigen keine Termine, nichts wird abgerufen, und der Server beantwortet Anfragen zu Abos, als gäbe es sie nicht. Was Personen gespeichert haben, bleibt, bis sie es löschen oder ihr Konto gelöscht wird, und ist wieder da, wenn du den Import erneut einschaltest.
+
+Der Server braucht dafür `HINATA_ICS_SECRET`. Ohne ihn kann niemand ein Abo speichern, und die App sagt, dass auf dem Server `HINATA_ICS_SECRET` gesetzt sein muss. Wende dich an die Person, die den Server betreibt (siehe [Konfiguration](/de/configuration.html)). Das Anlegen und Entfernen eines Abos steht im Audit-Log, mit dem Host des Kalenders und nie mit seiner Adresse.
+
+Kalendertermine können viel über eine Person verraten. Haltet in der Betriebs- oder Dienstvereinbarung fest, dass der Import freiwillig ist und wie private Termine behandelt werden, siehe [Datenschutz der Zeiterfassung](/de/time-tracking-privacy.html).
 
 ## Krankmeldungen
 

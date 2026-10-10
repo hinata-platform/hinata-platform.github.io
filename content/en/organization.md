@@ -30,7 +30,7 @@ You assign both roles in **Admin area → Users**. Organization admins have no a
 
 As an organization admin you find an **Organization** row in your **Settings**. Nobody else sees it. It holds everything that applies to the whole organization:
 
-- **Time tracking**: extended time tracking and its policies, such as rounding, the lock date, timesheet approvals, the privacy notice and retention. See [Time tracking privacy](/en/time-tracking-privacy.html).
+- **Time tracking**: extended time tracking and its policies, such as rounding, the lock date, timesheet approvals, the calendar import, the privacy notice and retention. See [Time tracking privacy](/en/time-tracking-privacy.html).
 - **Absences**: absence management with types, entitlements and balances, plus the people who may help keep them.
 - **Holidays**: the holiday calendars, kept by hand or imported from a calendar address.
 - **Time tags**, **lock exceptions** and days opened for single people.
@@ -39,6 +39,17 @@ As an organization admin you find an **Organization** row in your **Settings**. 
 - **Log**: the audit log records about working time, timesheets and absences. Administrators do not see them. More under [The organization's log](#the-organizations-log).
 
 There are day-to-day duties too: organization admins decide timesheets and absence requests when nobody else is there to do it, open locked days on request and may import entries for other people.
+
+## Calendar import
+
+Under **Time tracking** the switch **Calendar import** decides whether people may subscribe to their own calendars and turn appointments into entries. It is off by default and only works with extended time tracking. Until you choose, the server's value `HINATA_TIME_TRACKING_ICS_IMPORT_ENABLED` applies. How it looks for people is in [Tracking your time](/en/guide-time.html#your-own-calendars).
+
+- **On:** everybody finds **Calendar subscriptions** under **Settings → Time tracking**. A subscription, its address, its events and its errors are visible to its owner only. You see neither the addresses nor the events, only the entries people take over, like any other entry.
+- **Off:** the calendars show no events, nothing is fetched, and the server answers requests about subscriptions as if they did not exist. What people stored stays until they delete it or their account is deleted, and it is back when you switch the import on again.
+
+The server needs `HINATA_ICS_SECRET` for this. Without it nobody can save a subscription, and the app says that the server needs `HINATA_ICS_SECRET` to be set. Ask whoever runs the server (see [Configuration](/en/configuration.html)). Adding and removing a subscription is recorded in the audit log, with the calendar's host and never its address.
+
+Calendar appointments can say a lot about a person. Settle in the works agreement that the import is voluntary and how private appointments are handled, see [Time tracking privacy](/en/time-tracking-privacy.html).
 
 ## Sick reports
 

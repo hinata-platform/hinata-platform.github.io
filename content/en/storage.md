@@ -1,60 +1,107 @@
 ---
 title: Object storage (S3, GCS, Azure)
-description: Hinata keeps attachments and avatars in MinIO, any S3-compatible provider or Azure Blob Storage, with presigned downloads and randomized keys.
+description: Hinata keeps attachments and avatars in the bundled SeaweedFS, any S3-compatible provider or Azure Blob Storage, with presigned downloads and randomized keys.
 ---
 
 # Object storage (S3, GCS, Azure)
 
 Attachments and avatars live in **object storage**, not in MongoDB. `HINATA_STORAGE_PROVIDER` selects one of two backends:
 
-- **`s3`** (default): any S3-compatible store, such as the **bundled MinIO**, **AWS S3**, **Google Cloud Storage** (S3-interoperable XML API), **Cloudflare R2**, **DigitalOcean Spaces**, Backblaze B2, Wasabi, Ceph, a managed MinIO, …
+- **`s3`** (default): any S3-compatible store, such as the **bundled SeaweedFS**, **AWS S3**, **Google Cloud Storage** (S3-interoperable XML API), **Cloudflare R2**, **DigitalOcean Spaces**, Backblaze B2, Wasabi, Ceph, a managed MinIO, …
 - **`azure`**: **Azure Blob Storage** through its native API (Azure does not speak S3).
 
-## MinIO in the default stack
+## SeaweedFS in the default stack
 
-The production `docker-compose.yml` runs MinIO next to the server. The container is attached to the compose **`local-storage` profile**, which is on by default (`COMPOSE_PROFILES=local-storage` in `.env.example`):
+The production `docker-compose.yml` runs [SeaweedFS](https://github.com/seaweedfs/seaweedfs) (Apache-2.0, pinned to `4.48`) next to the server. Earlier versions bundled MinIO. MinIO no longer publishes community container images, so the stack moved to SeaweedFS. Hinata itself is not tied to either: it speaks plain S3, and every other S3 provider and Azure keep working (see [Using an external provider](#using-an-external-provider)). If you still run the bundled MinIO, see [Moving from MinIO to SeaweedFS](#moving-from-minio-to-seaweedfs).
+
+Both storage services are attached to the compose **`local-storage` profile**, which is on by default (`COMPOSE_PROFILES=local-storage` in `.env.example`):
+
+- **`seaweedfs`** runs the store. Its start script (`deploy/seaweedfs/entrypoint.sh`) refuses to start while any credential or key is missing.
+- **`seaweedfs-setup`** runs once, creates the bucket, makes SSE-S3 encryption the bucket default and exits.
 
 ```yaml
-minio:
-  image: minio/minio:latest
+seaweedfs:
+  image: chrislusf/seaweedfs:4.48
   profiles: [local-storage]
-  command: server /data --console-address ":9001"
+  entrypoint: ["/bin/sh", "/opt/hinata/entrypoint.sh"]
   environment:
-    MINIO_ROOT_USER: ${MINIO_ROOT_USER:-}
-    MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-}
+    HINATA_S3_BUCKET: ${HINATA_S3_BUCKET:-hinata}
+    HINATA_S3_ACCESS_KEY: ${HINATA_S3_ACCESS_KEY:-}
+    HINATA_S3_SECRET_KEY: ${HINATA_S3_SECRET_KEY:-}
+    SEAWEEDFS_ADMIN_ACCESS_KEY: ${SEAWEEDFS_ADMIN_ACCESS_KEY:-}
+    SEAWEEDFS_ADMIN_SECRET_KEY: ${SEAWEEDFS_ADMIN_SECRET_KEY:-}
+    WEED_S3_SSE_KEK: ${SEAWEEDFS_SSE_KEK:-}
+    WEED_JWT_SIGNING_KEY: ${SEAWEEDFS_JWT_VOLUME_WRITE:-}
+    WEED_JWT_SIGNING_READ_KEY: ${SEAWEEDFS_JWT_VOLUME_READ:-}
+    WEED_JWT_FILER_SIGNING_KEY: ${SEAWEEDFS_JWT_FILER_WRITE:-}
+    WEED_JWT_FILER_SIGNING_READ_KEY: ${SEAWEEDFS_JWT_FILER_READ:-}
   volumes:
-    - minio-data:/data
+    - seaweedfs-data:/data
+    - ./deploy/seaweedfs:/opt/hinata:ro
 ```
 
-The server reaches MinIO over the internal Docker network and reuses the MinIO root credentials as its S3 keys:
+What the bundled configuration does:
+
+- **Credentials are required.** There are two identities: `hinata`, which the server uses and which may only touch its one bucket, and `admin`, which only the setup job uses.
+- **Objects are encrypted at rest** with SSE-S3 under `SEAWEEDFS_SSE_KEK`. The key lives in the environment, never on the data volume.
+- **Requests between the parts of SeaweedFS are signed** with the four `SEAWEEDFS_JWT_*` keys.
+- **Nothing is published.** Only the server reaches the S3 port (`8333`), over the stack network. There is no web console.
+
+The server talks to it with these defaults from the compose file:
 
 ```yaml
-HINATA_S3_ENDPOINT: ${HINATA_S3_ENDPOINT:-http://minio:9000}
-HINATA_S3_ACCESS_KEY: ${HINATA_S3_ACCESS_KEY:-${MINIO_ROOT_USER:-}}
-HINATA_S3_SECRET_KEY: ${HINATA_S3_SECRET_KEY:-${MINIO_ROOT_PASSWORD:-}}
+HINATA_S3_ENDPOINT: ${HINATA_S3_ENDPOINT:-http://seaweedfs:8333}
+HINATA_S3_ACCESS_KEY: ${HINATA_S3_ACCESS_KEY:-}
+HINATA_S3_SECRET_KEY: ${HINATA_S3_SECRET_KEY:-}
 HINATA_S3_BUCKET: ${HINATA_S3_BUCKET:-hinata}
+HINATA_S3_ADDRESSING_STYLE: ${HINATA_S3_ADDRESSING_STYLE:-path}
+HINATA_S3_SSE: ${HINATA_S3_SSE:-}
 ```
 
-You only set four values in `.env`:
+In `.env` you set the keys. `./deploy/generate-secrets.sh` prints a fresh value for every secret:
 
 ```properties
 COMPOSE_PROFILES=local-storage
-MINIO_ROOT_USER=hinata
-MINIO_ROOT_PASSWORD=change-me-to-a-long-random-value
+HINATA_S3_ACCESS_KEY=hinata
+HINATA_S3_SECRET_KEY=change-me
+HINATA_S3_SSE=AES256
 HINATA_S3_BUCKET=hinata
+SEAWEEDFS_ADMIN_ACCESS_KEY=hinata-admin
+SEAWEEDFS_ADMIN_SECRET_KEY=change-me
+SEAWEEDFS_SSE_KEK=change-me-64-hex-chars
+SEAWEEDFS_JWT_VOLUME_WRITE=change-me
+SEAWEEDFS_JWT_VOLUME_READ=change-me
+SEAWEEDFS_JWT_FILER_WRITE=change-me
+SEAWEEDFS_JWT_FILER_READ=change-me
 ```
 
-The MinIO **web console** runs on port `9001` and the **S3 API** on `9000`. In local dev (`docker-compose.dev.yml`) both are published on loopback, at `http://localhost:9001` (console) and `http://localhost:9000` (API), with the dev keys `hinata` / `hinata-dev-secret`.
+!!! danger "Keep a copy of `SEAWEEDFS_SSE_KEK` apart from the server"
+    Every stored object is encrypted under this key. Without it none of them can be read again, and a copy of the data volume alone does not help. Keep it with your other secrets, in a different place from the data (see [Backups & upgrades](/en/backups.html)). Do not replace it on an install that already holds files: what is stored stays encrypted under the old key.
 
-!!! warning "Change the MinIO password before production"
-    `hinata-dev-secret` is a development default. Set a long random `MINIO_ROOT_PASSWORD` (e.g. from `./deploy/generate-secrets.sh`) for any real deployment. Never publish the MinIO ports to the internet, only the server needs to reach them.
+!!! warning "Leave `-s3.encryptVolumeData` off"
+    SeaweedFS has a second encryption switch, `-s3.encryptVolumeData`. In version 4.48 it does not work together with SSE-S3: a copy of an SSE-S3 object becomes unreadable ([seaweedfs/seaweedfs#11646](https://github.com/seaweedfs/seaweedfs/issues/11646)), and the bucket's default encryption is skipped ([seaweedfs/seaweedfs#11647](https://github.com/seaweedfs/seaweedfs/issues/11647)). Hinata does copy objects, for example when you clone an issue with attachments. That is why the bundled configuration leaves the switch off and relies on SSE-S3.
+
+In local dev (`docker-compose.dev.yml`) the same SeaweedFS runs with fixed dev keys and publishes only its S3 API on loopback, at `http://localhost:8333`. It needs the profile too, and the setup job once:
+
+```bash
+COMPOSE_PROFILES=local-storage docker compose -f docker-compose.dev.yml up -d
+COMPOSE_PROFILES=local-storage docker compose -f docker-compose.dev.yml run --rm seaweedfs-setup
+```
+
+The dev keys are `hinata` / `hinata-dev-secret-0123456789abcdef`. They are for your machine only. See [Development](/en/development.html).
 
 ## The bucket is created for you
 
-On the first upload the server checks whether `HINATA_S3_BUCKET` exists and calls `makeBucket` if it doesn't. The bucket stays **private**, and nothing is ever made public-read. Every download goes through the server (see below), never straight from the bucket.
+On the first upload the server checks whether `HINATA_S3_BUCKET` exists and calls `makeBucket` if it doesn't. With the bundled SeaweedFS the `seaweedfs-setup` job has already created it. The bucket stays **private**, and nothing is ever made public-read. Every download goes through the server (see below), never straight from the bucket.
 
 !!! tip
     You can also create the bucket yourself, for example to set a lifecycle rule or bucket policy in advance. Use the default name `hinata`, or set `HINATA_S3_BUCKET` to your name. The server reuses an existing bucket.
+
+## Server-side encryption
+
+`HINATA_S3_SSE=AES256` makes the server ask for SSE-S3 on every object it writes. It asks again when it copies one, because a copy is a new object. Leave the variable empty for a store that encrypts on its own or does not know the header. Any other value stops the server at startup, so a typo cannot leave files unencrypted.
+
+With the bundled SeaweedFS, set it to `AES256`. The bucket default from the setup job also covers objects written without the header, so no file depends on only one of the two.
 
 ## Presigned downloads and randomized keys
 
@@ -92,15 +139,15 @@ Only content types from an explicit allow list are accepted: PNG, JPEG, GIF, Web
 !!! note "Two size ceilings work together"
     Spring's multipart limits (`max-file-size` / `max-request-size`, driven by the same MB values) are the outer guard. The app also enforces the file count and total size. For larger uploads, raise all of them together.
 
-## Using an external provider instead of MinIO
+## Using an external provider
 
-Clear the compose profile in `.env` to turn off the bundled MinIO:
+Clear the compose profile in `.env` to turn off the bundled SeaweedFS:
 
 ```properties
 COMPOSE_PROFILES=
 ```
 
-Then configure one of the providers below. You can remove the `MINIO_ROOT_*` variables.
+Then configure one of the providers below. You no longer need the `SEAWEEDFS_*` variables. The compose file sets `HINATA_S3_ADDRESSING_STYLE` to `path` for the bundled store, so set it to `auto` for an external one unless your provider asks for something else.
 
 ### AWS S3
 
@@ -141,13 +188,85 @@ Cloudflare R2, DigitalOcean Spaces, Backblaze B2, Wasabi, Ceph, Hetzner, a manag
 Notes:
 
 - **`HINATA_S3_REGION`** defaults to `us-east-1`. Set it to your bucket's region for AWS and providers that need it.
-- **`HINATA_S3_ADDRESSING_STYLE`** (default `auto`) controls S3 URL addressing. `auto` picks virtual host style for AWS endpoints and path style everywhere else, which fits almost everyone. Set `path` or `virtual-host` if your provider requires it.
+- **`HINATA_S3_ADDRESSING_STYLE`** controls S3 URL addressing. The server's own default is `auto`, the compose file sets `path`. `auto` picks virtual host style for AWS endpoints and path style everywhere else, which fits almost everyone. Set `path` or `virtual-host` if your provider requires it.
 - Use HTTPS for any endpoint that crosses the network.
 - The credentials need `PutObject`, `GetObject`, `DeleteObject`, `ListBucket` and `CreateBucket` (the last one only if you don't create the bucket yourself). On Azure the equivalent permissions apply, and the container is created automatically too.
 - Without configuration (blank access key, or blank connection string with `provider=azure`), the attachment and avatar endpoints respond with `error.storage.notConfigured`. The rest of Hinata still works, only uploads don't.
-- **Switching providers does not migrate existing objects.** If the instance already holds data, copy the bucket first (`mc mirror`, `aws s3 sync`, `azcopy`).
+- **Switching providers does not migrate existing objects.** If the instance already holds data, copy the bucket first (`rclone sync`, `aws s3 sync`, `azcopy`). Object keys stay the same, so nothing in the database changes.
 
 !!! tip "Keep buckets private"
     Whichever provider you use, keep the bucket **private**. Hinata always hands out short-lived presigned URLs and never needs public read access. That would only widen your attack surface.
+
+## Moving from MinIO to SeaweedFS
+
+An install that still runs the bundled MinIO moves its files over once. The idea: start SeaweedFS beside MinIO, copy every object with [rclone](https://rclone.org), compare, point the server at SeaweedFS, and retire MinIO only after you have checked the result. MinIO stays untouched until the very end, so you can always go back.
+
+1. **Back up first.** Take a database dump and a copy of the bucket as described in [Backups & upgrades](/en/backups.html).
+2. **Keep MinIO running.** The new `docker-compose.yml` no longer has a `minio` service. Move your existing definition into `docker-compose.override.yml` so Compose keeps managing it, with the same volume, so the data stays where it is:
+
+    ```yaml
+    services:
+      minio:
+        image: minio/minio:<the tag you run today>
+        command: server /data
+        environment:
+          MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+          MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+        volumes:
+          - minio-data:/data
+        networks: [hinata]
+    volumes:
+      minio-data:
+    ```
+
+3. **Add the SeaweedFS secrets** to `.env`: run `./deploy/generate-secrets.sh`, copy the `SEAWEEDFS_*` values and a new `HINATA_S3_SECRET_KEY`, set `HINATA_S3_ACCESS_KEY=hinata` and `HINATA_S3_SSE=AES256`, and keep a copy of `SEAWEEDFS_SSE_KEK` somewhere else. Keep `MINIO_ROOT_*` for now. Do not recreate `hinata-server` yet. It keeps reading MinIO with the settings it was started with.
+4. **Start SeaweedFS** and run the setup job:
+
+    ```bash
+    docker compose up -d seaweedfs
+    docker compose run --rm seaweedfs-setup
+    ```
+
+5. **Copy every object**, encrypted on the way in. rclone runs on the stack network (`hinata_hinata` with the default project name) and is configured only through environment variables, so no key ends up in a file or in your shell history:
+
+    ```bash
+    set -a; . ./.env; set +a
+    rclone() {
+      docker run --rm --network hinata_hinata \
+        -e RCLONE_CONFIG_SRC_TYPE=s3 -e RCLONE_CONFIG_SRC_PROVIDER=Minio \
+        -e RCLONE_CONFIG_SRC_ENDPOINT=http://minio:9000 \
+        -e RCLONE_CONFIG_SRC_ACCESS_KEY_ID="$MINIO_ROOT_USER" \
+        -e RCLONE_CONFIG_SRC_SECRET_ACCESS_KEY="$MINIO_ROOT_PASSWORD" \
+        -e RCLONE_CONFIG_DST_TYPE=s3 -e RCLONE_CONFIG_DST_PROVIDER=SeaweedFS \
+        -e RCLONE_CONFIG_DST_ENDPOINT=http://seaweedfs:8333 \
+        -e RCLONE_CONFIG_DST_ACCESS_KEY_ID="$HINATA_S3_ACCESS_KEY" \
+        -e RCLONE_CONFIG_DST_SECRET_ACCESS_KEY="$HINATA_S3_SECRET_KEY" \
+        -e RCLONE_CONFIG_DST_SERVER_SIDE_ENCRYPTION=AES256 \
+        rclone/rclone:1.71 "$@"
+    }
+    rclone sync src:hinata dst:hinata --checksum --transfers 8
+    ```
+
+    You can repeat this as often as you like. Only what changed is copied again.
+
+6. **Compare.** Object counts must be equal, and the check must report no differences:
+
+    ```bash
+    rclone size src:hinata
+    rclone size dst:hinata
+    rclone check src:hinata dst:hinata --one-way --size-only
+    ```
+
+7. **Switch.** Run the `sync` once more right before, so uploads from the meantime come along. Then recreate only the server. With nothing overriding `HINATA_S3_ENDPOINT` in `.env`, the compose defaults point it at `http://seaweedfs:8333` with path addressing:
+
+    ```bash
+    docker compose up -d --no-deps --force-recreate hinata-server
+    ```
+
+    Open a few attachments and avatars in the app. If something is wrong, point the server back at MinIO (`HINATA_S3_ENDPOINT=http://minio:9000` and the old keys) and recreate it the same way. MinIO still holds everything.
+
+8. **Retire MinIO** once you are satisfied: stop and remove its container with `docker compose rm -sf minio`, then delete the `minio` service and volume from `docker-compose.override.yml` and the `MINIO_ROOT_*` lines from `.env`. The volume itself stays until you delete it on purpose (`docker volume rm hinata_minio-data`). Do that only when the server has run on SeaweedFS for a while and a backup of the new bucket exists.
+
+Object keys stay the same, so nothing in the database changes.
 
 See the [Configuration reference](/en/configuration.html) for every variable and [MongoDB & X.509](/en/database.html) for the database side.

@@ -43,8 +43,8 @@ instances.
   nodes + 1 arbiter) with TLS and X.509 client authentication. See
   [MongoDB & X.509](/en/database.html).
 - **S3-compatible object storage** holds attachments and avatars, with randomized
-  object keys and presigned downloads. The stack ships **MinIO**, and any
-  S3-compatible store works. See [Object storage](/en/storage.html).
+  object keys and presigned downloads. The stack ships **SeaweedFS**, and any
+  S3-compatible store or Azure works. See [Object storage](/en/storage.html).
 
 There is no separate SQL database and no message broker. Live updates use SSE.
 

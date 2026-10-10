@@ -56,13 +56,13 @@ Comments are laid out flat and left-aligned like in Jira, without chat bubbles. 
 ![Hinata threaded comments with a reply thread](/assets/img/shot-comments.png)
 
 - **Reactions**: react to a comment with an emoji, like on WhatsApp. You get one reaction per comment, and a new pick replaces the old one.
-- **Voice comments**: record a short voice note in the composer. It's uploaded to your **S3/MinIO** bucket and plays inline as a waveform bubble among the text comments.
+- **Voice comments**: record a short voice note in the composer. It's uploaded to your **S3** bucket and plays inline as a waveform bubble among the text comments.
 - **Context menu**: long-press (or hover on desktop) for reply, copy, copy link, pin, edit, delete, and multi-select to delete several of your own comments. The copied link scrolls to that exact comment and flashes it.
 - **Live updates**: new comments, edits, reactions and deletes stream over **Server-Sent Events**, so everyone sees the discussion update without a refresh.
 
 ## Attachments
 
-Drop files straight onto an issue. They're stored in your own **S3/MinIO** bucket with randomized object keys and served through short-lived **presigned** URLs, so nothing becomes public by accident.
+Drop files straight onto an issue. They're stored in your own **S3** bucket with randomized object keys and served through short-lived **presigned** URLs, so nothing becomes public by accident.
 
 - **Drag & drop** a file onto the attachments grid, or use the upload button to pick from your device.
 - Images open full size in a **liquid-glass lightbox**.

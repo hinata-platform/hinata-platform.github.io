@@ -125,6 +125,66 @@ Der Eintrag gehört **der Autorin oder dem Autor des Commits**, erkannt an der E
 !!! note "Ein Commit bucht nur auf ein bekanntes Konto"
     Die Adresse muss zu einem aktiven Hinata-Konto gehören, und die Person muss Mitglied des Projekts sein. Sonst wird die Zeile übersprungen, im Serverprotokoll vermerkt und keine Zeit gebucht, auch nicht bei der Person, die das Repository verbunden hat. Fehlen deine Commits, prüfe zuerst `git config user.email`.
 
+## Deine eigenen Kalender
+
+Haben eure Organisationsadmins den **Kalender-Import** eingeschaltet, kannst du deine eigenen Kalender abonnieren, zum Beispiel von Google, Outlook oder Apple. Deine Termine stehen dann im Kalender der Zeiterfassung neben deinen Einträgen, und mit einem Tipp übernimmst du einen als Eintrag. Hinata liest den Kalender nur und schreibt nie etwas zurück. Deine Abos und ihre Termine siehst nur du.
+
+### Einen Kalender abonnieren
+
+1. Öffne **Einstellungen → Zeiterfassung**. Unter deinen Arbeitszeiten findest du **Kalender-Abos**.
+2. Tippe auf **Hinzufügen**.
+3. Gib dem Kalender einen **Namen**, zum Beispiel *Arbeit*, und füge seine **Private Adresse (ICS)** ein.
+4. Wähle eine **Farbe** und tippe auf **Abonnieren**.
+
+Der Kalender wird sofort gelesen. Du kannst bis zu 10 Kalender abonnieren. Der Bereich erscheint nur, wenn die erweiterte Zeiterfassung und der Kalender-Import beide eingeschaltet sind.
+
+!!! tip "Wo finde ich die Adresse?"
+    Das Formular erklärt es unter **Wo finde ich die Adresse?**:
+
+    - **Google:** Einstellungen → dein Kalender → Kalender integrieren → Privatadresse im iCal-Format.
+    - **Outlook:** Einstellungen → Kalender → Freigegebene Kalender → Kalender veröffentlichen → ICS-Link.
+    - **Apple:** iCloud.com → Kalender → Kalender als öffentlichen Kalender teilen → Link kopieren.
+
+    Adressen, die mit `https://` oder `webcal://` beginnen, funktionieren.
+
+!!! warning "Die Adresse ist ein Schlüssel"
+    Wer die Adresse kennt, kann den Kalender lesen. Hinata speichert sie verschlüsselt und zeigt sie nie wieder an, auch dir nicht. Willst du sie ändern, bearbeite den Kalender und füge die neue ein. Lässt du das Feld leer, bleibt die gespeicherte Adresse.
+
+### Termine im Kalender
+
+Unter **Zeiterfassung → Kalender** erscheinen deine Termine in der Farbe ihres Kalenders mit gestricheltem Rand, in der **Woche** genauso wie im **Monat**. In der Woche stehen ganztägige Termine in einem Band oben. Deine Einträge bleiben gefüllte Blöcke, so unterscheidest du geplante und gebuchte Zeit auf einen Blick. Termine zählen in keine Summe.
+
+**Kalendertermine zeigen** im Menü des Kalenders, neben **Woche** und **Monat**, blendet sie aus oder ein. Die Wahl gilt, bis du die App schließt. Hinata behält die Termine von 30 Tagen zurück bis 90 Tage voraus.
+
+### Einen Termin als Eintrag übernehmen
+
+Tippe auf einen Termin. Das Blatt **Als Zeiteintrag übernehmen** öffnet sich. Die Zeiten kommen aus deinem Kalender und werden dort angezeigt, aber nicht bearbeitet, der Titel des Termins wird zur Beschreibung. Wähle, wohin der Eintrag gehört, zum Beispiel Projekt und Vorgang, und tippe auf **Übernehmen**.
+
+Ab dann ist es ein gewöhnlicher Eintrag, gekennzeichnet mit **Aus einem Kalender**. Es gelten dieselben Regeln wie für einen getippten Eintrag, etwa Sperrdatum, Pflichtfelder und Freigaben. Der Termin verschwindet aus dem Kalender, denn an seiner Stelle steht jetzt der Eintrag. Aus einem Termin wird höchstens ein Eintrag.
+
+!!! info "Was kein Eintrag werden kann"
+    Ganztägige Termine und Termine über mehr als einen Tag lassen sich nicht übernehmen. Tippst du auf einen, sagt dir die App das.
+
+### Heute noch offene Termine
+
+Sind Termine von heute vorbei und noch nicht übernommen, zeigt die Liste der Zeiterfassung einen Chip wie **2 Termine von heute noch nicht übernommen**. Ein Tipp öffnet den Kalender. **Vorerst ausblenden** legt den Chip für den Moment weg. Ganztägige Termine und Termine, die dein Kalender als frei markiert, zählen nicht mit.
+
+### Automatisch übernehmen
+
+Im Formular des Kalenders kannst du **Vergangene Termine automatisch übernehmen** einschalten und ein **Projekt für diese Einträge** und Tags wählen. Hinata macht dann aus jedem Termin einen Eintrag, sobald er vorbei ist.
+
+- Nur Termine, die nach dem Einschalten beginnen. Ältere bleiben unberührt.
+- Nie ganztägige, vorläufige oder solche, die dein Kalender als frei markiert.
+- Jeden Termin nur einmal. Löschst du einen solchen Eintrag, kommt er nicht wieder.
+
+Lässt sich ein Eintrag nicht anlegen, etwa weil der Tag gesperrt ist, zeigt die Karte des Kalenders, wie viele Termine nicht übernommen wurden und warum.
+
+### Aktualisieren, pausieren und Fehler
+
+Hinata liest jeden abonnierten Kalender jede halbe Stunde. Die Karte jedes Kalenders zeigt seinen Stand: **Wartet auf den ersten Abruf**, **Wird gerade gelesen**, wie viele Termine wann gelesen wurden, oder was schiefging. Fehler stehen in deiner Sprache da, zum Beispiel, dass der Kalenderserver nicht rechtzeitig geantwortet hat oder dass unter der Adresse kein Kalender liegt.
+
+Das Menü jedes Kalenders bietet **Jetzt aktualisieren** (höchstens einmal pro Minute), **Bearbeiten**, **Pausieren** oder **Fortsetzen** und **Löschen**. Nach fünf Fehlversuchen in Folge wird ein Kalender pausiert und nicht mehr gelesen, bis du ihn **fortsetzt**. Löschst du einen Kalender, verschwinden seine Termine aus der Zeiterfassung. Einträge, die du schon übernommen hast, bleiben.
+
 ## Einen Eintrag korrigieren
 
 Jeder Eintrag auf der Karte und im Sheet **Alle Einträge** hat rechts ein Menü.

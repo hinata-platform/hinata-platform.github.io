@@ -22,26 +22,29 @@ zwei Repositories. Richte zuerst den Server ein, denn mit ihm spricht die App.
 ### 1. Die Infrastruktur starten
 
 Eine eigene Compose-Datei startet nur die Dienste, die der Server braucht: ein
-MongoDB Replica Set, Mailpit (fängt lokal SMTP ab) und MinIO (S3-kompatibler
+MongoDB Replica Set, Mailpit (fängt lokal SMTP ab) und SeaweedFS (S3-kompatibler
 Speicher). Den Server selbst startest du aus der IDE oder mit dem Wrapper.
+SeaweedFS gehört zum Profil `local-storage`, sein Setup-Job legt einmal den Bucket an.
 
 ```bash
-docker compose -f docker-compose.dev.yml up -d   # Mongo RS, Mailpit, MinIO
+COMPOSE_PROFILES=local-storage docker compose -f docker-compose.dev.yml up -d   # Mongo, Mailpit, SeaweedFS
+COMPOSE_PROFILES=local-storage docker compose -f docker-compose.dev.yml run --rm seaweedfs-setup
 ```
 
 | Dienst | URL | Was es ist |
 | --- | --- | --- |
 | **Mailpit** | `http://localhost:8025` | Fängt alle ausgehenden Mails ab. Hier liest du Mails zu Verifizierung, Passwort-Reset und Benachrichtigungen. |
-| **MinIO-Konsole** | `http://localhost:9001` | Zeigt den Bucket mit Anhängen und Avataren. |
+| **SeaweedFS-S3-API** | `http://localhost:8333` | Der Bucket mit Anhängen und Avataren. Eine Weboberfläche gibt es nicht. Ohne Zugangsdaten geht nichts (`hinata` / `hinata-dev-secret-0123456789abcdef`), schau also mit einem S3-Client wie `aws` oder `rclone` hinein. |
 | **MongoDB** | `localhost:27017` | Replica Set `rs0`, erreichbar mit `directConnection=true`. |
 
 ### 2. Den Server ausführen
 
-Verbinde den Server mit dem lokalen Mongo und MinIO und starte ihn:
+Verbinde den Server mit dem lokalen Mongo und SeaweedFS und starte ihn:
 
 ```bash
 HINATA_MONGODB_URI="mongodb://localhost:27017/hinata?replicaSet=rs0&directConnection=true" \
-HINATA_S3_ACCESS_KEY=hinata HINATA_S3_SECRET_KEY=hinata-dev-secret \
+HINATA_S3_ENDPOINT=http://localhost:8333 HINATA_S3_ADDRESSING_STYLE=path HINATA_S3_SSE=AES256 \
+HINATA_S3_ACCESS_KEY=hinata HINATA_S3_SECRET_KEY=hinata-dev-secret-0123456789abcdef \
 ./gradlew bootRun
 ```
 

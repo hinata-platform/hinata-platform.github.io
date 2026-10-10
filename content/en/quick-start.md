@@ -32,7 +32,7 @@ docker compose up -d
 | --- | --- |
 | **server** | The Spring Boot API at `/api/v1` (host port `3356` by default). |
 | **MongoDB replica set** | 2 data nodes + 1 arbiter, the system of record. |
-| **MinIO** | S3-compatible object storage for attachments and avatars. |
+| **SeaweedFS** | S3-compatible object storage for attachments and avatars, with a one-time setup job that creates the bucket. |
 | **Mailpit** | Local mail catcher. Shows outbound e-mail without a real relay. |
 
 Wait a few seconds, then check the server:
@@ -43,7 +43,7 @@ curl -s http://localhost:3356/api/v1/actuator/health
 ```
 
 !!! info "Handy local UIs"
-    Mailpit's inbox is at `http://localhost:8025` and the MinIO console at `http://localhost:9001`. Use them to confirm mail and uploads work before you go to production.
+    Mailpit's inbox is at `http://localhost:8025`. Use it to confirm mail works before you go to production. SeaweedFS has no web console and publishes no port: only the server talks to it. To check uploads, attach a file to an issue in the app.
 
 ## Set the JWT secret (required)
 
@@ -60,7 +60,7 @@ HINATA_JWT_SECRET=PASTE_YOUR_64_CHAR_SECRET_HERE
 ```
 
 !!! danger "Do not ship defaults"
-    The default `HINATA_JWT_SECRET` is **empty**. The template's `MONGO_ROOT_PASSWORD`, `MINIO_ROOT_PASSWORD` and the TLS keystore/truststore password (`changeit`) are **placeholders**. Before any internet-facing deployment, set a real JWT secret and replace every default password. `./deploy/generate-secrets.sh` prints strong values for this.
+    The default `HINATA_JWT_SECRET` is **empty**. The template's `MONGO_ROOT_PASSWORD`, `HINATA_S3_SECRET_KEY`, the `SEAWEEDFS_*` secrets and the TLS keystore/truststore password (`changeit`) are **placeholders**. Before any internet-facing deployment, set a real JWT secret and replace every default password. `./deploy/generate-secrets.sh` prints strong values for this.
 
 After changing `.env`, recreate the server so it picks up the new environment:
 

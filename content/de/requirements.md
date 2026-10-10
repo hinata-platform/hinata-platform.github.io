@@ -9,7 +9,7 @@ Hinata läuft gut auf einem einzelnen kleinen Server und lässt sich von dort au
 
 ## Anforderungen an den Host
 
-Server und Abhängigkeiten laufen als Container. Der Host braucht also vor allem eine Container-Laufzeit und genug Reserven für JVM, MongoDB und MinIO.
+Server und Abhängigkeiten laufen als Container. Der Host braucht also vor allem eine Container-Laufzeit und genug Reserven für JVM, MongoDB und SeaweedFS.
 
 | Ressource | Minimum | Empfohlen |
 | --- | --- | --- |
@@ -22,7 +22,7 @@ Server und Abhängigkeiten laufen als Container. Der Host braucht also vor allem
 - **Architektur**: Images gibt es für **x86_64** und **arm64**. Apple Silicon, AWS Graviton und arm64-Geräte wie der Raspberry Pi funktionieren.
 
 !!! note "Anhänge treiben das Festplattenwachstum"
-    Die Datenbank bleibt schlank. Was wächst, ist der Objektspeicher mit Anhängen und Avataren in S3/MinIO. Plane das Volume hinter MinIO (oder deinen externen Bucket) danach, wie viel deine Teams mit der Zeit hochladen.
+    Die Datenbank bleibt schlank. Was wächst, ist der Objektspeicher mit Anhängen und Avataren. Plane das Volume hinter dem mitgelieferten SeaweedFS (oder deinen externen Bucket) danach, wie viel deine Teams mit der Zeit hochladen.
 
 ## Anforderungen der Komponenten
 
@@ -32,7 +32,7 @@ Ein produktiver Stack besteht aus diesen Diensten:
 | --- | --- | --- |
 | **Server (Spring Boot)** | JVM-Laufzeitumgebung (im Image), die Umgebung aus `.env` | Stellt die API bereit. Host-Port standardmäßig `3356` |
 | **MongoDB** | Ein **Replikatset** (2 Datenknoten + 1 Arbiter) in Prod, mit TLS + X.509 | Laufzeiteinstellungen und alle Daten liegen hier |
-| **S3 / MinIO** | Ein S3-kompatibler Bucket (Standardname `hinata`) + Zugangsdaten | Anhänge, Avatare, vorsignierte Downloads |
+| **Objektspeicher** | Ein S3-kompatibler Bucket (Standardname `hinata`) + Zugangsdaten | Anhänge, Avatare, vorsignierte Downloads |
 | **SMTP-Relay** | Ein echtes ausgehendes Mail-Relay in Prod (Mailpit in Dev) | Verifizierung, Benachrichtigungen, Passwort-Reset |
 | **Reverse Proxy** | Terminiert TLS, leitet an die Ports von Server und App weiter | Öffentliches DNS + Zertifikat, siehe unten |
 | **Hinata Connect Gateway** | *Optional*: das gehostete Gateway oder dein eigenes | Push-Benachrichtigungen + Universal Links |
@@ -62,7 +62,7 @@ Details findest du unter [MongoDB & X.509](/de/database.html).
 
 Hinata braucht einen Objektspeicher:
 
-- **Gebündeltes MinIO** ist der einfache Standard: Bucket `HINATA_S3_BUCKET` (Standard `hinata`), Zugang über `MINIO_ROOT_USER` / `MINIO_ROOT_PASSWORD`. In Dev kommen `HINATA_S3_ACCESS_KEY` / `HINATA_S3_SECRET_KEY` dazu.
+- **Gebündeltes SeaweedFS** ist der einfache Standard: Bucket `HINATA_S3_BUCKET` (Standard `hinata`), die Schlüssel des Servers `HINATA_S3_ACCESS_KEY` / `HINATA_S3_SECRET_KEY` und die Geheimnisse `SEAWEEDFS_*`, die `./deploy/generate-secrets.sh` ausgibt. Bewahre eine Kopie von `SEAWEEDFS_SSE_KEK` getrennt vom Server auf.
 - **Externer S3-kompatibler Anbieter**: AWS S3, Google Cloud Storage, Cloudflare R2, DigitalOcean Spaces, …
 - **Azure Blob Storage**: `HINATA_STORAGE_PROVIDER=azure`.
 
@@ -118,12 +118,14 @@ Auch `gstreamer1.0-libav` ist Pflicht. Sprachkommentare werden auf jeder Plattfo
 
 Zum Bauen aus dem Quellcode brauchst du die Toolchains der einzelnen Repositories:
 
-- **[hinata-server](https://github.com/hinata-platform/hinata-server)**: **JDK 21** und der mitgelieferte Gradle-Wrapper (`./gradlew`). Starte die Entwicklungsdienste (Mongo-Replikatset, Mailpit, MinIO) und dann den Server:
+- **[hinata-server](https://github.com/hinata-platform/hinata-server)**: **JDK 21** und der mitgelieferte Gradle-Wrapper (`./gradlew`). Starte die Entwicklungsdienste (Mongo, Mailpit, SeaweedFS) und dann den Server:
 
 ```bash
-docker compose -f docker-compose.dev.yml up -d   # Mongo RS, Mailpit, MinIO
+COMPOSE_PROFILES=local-storage docker compose -f docker-compose.dev.yml up -d   # Mongo, Mailpit, SeaweedFS
+COMPOSE_PROFILES=local-storage docker compose -f docker-compose.dev.yml run --rm seaweedfs-setup
 HINATA_MONGODB_URI="mongodb://localhost:27017/hinata?replicaSet=rs0&directConnection=true" \
-HINATA_S3_ACCESS_KEY=hinata HINATA_S3_SECRET_KEY=hinata-dev-secret \
+HINATA_S3_ENDPOINT=http://localhost:8333 HINATA_S3_ADDRESSING_STYLE=path HINATA_S3_SSE=AES256 \
+HINATA_S3_ACCESS_KEY=hinata HINATA_S3_SECRET_KEY=hinata-dev-secret-0123456789abcdef \
 ./gradlew bootRun
 ```
 

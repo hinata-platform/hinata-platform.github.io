@@ -15,7 +15,7 @@ Server and client each have their own issues and pull requests.
 
 | Repository | What it is | Link |
 | --- | --- | --- |
-| **hinata-server** | Spring Boot 4 / Java 21 REST API, MongoDB, S3/MinIO, SMTP. | [github.com/hinata-platform/hinata-server](https://github.com/hinata-platform/hinata-server) |
+| **hinata-server** | Spring Boot 4 / Java 21 REST API, MongoDB, S3 (SeaweedFS), SMTP. | [github.com/hinata-platform/hinata-server](https://github.com/hinata-platform/hinata-server) |
 | **hinata-app** | The Flutter client for Android, iOS, Web, macOS, Windows and Linux from one codebase. | [github.com/hinata-platform/hinata-app](https://github.com/hinata-platform/hinata-app) |
 
 Open your issue or PR in the repository that owns the code you change. If a change touches both (say, a new endpoint plus its UI), open two PRs and link them to each other.

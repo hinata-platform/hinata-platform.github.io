@@ -31,8 +31,10 @@ Klicke die Kachel **Neuer Bereich**, gib Name und Beschreibung ein und wähle Sy
 
 Leg lieber wenige, breite Bereiche an, etwa einen pro Team oder Disziplin. Einer pro Projekt passt selten, weil Themen Projekte überdauern.
 
+Im Raster stehen nur Bereiche, die du angelegt hast oder in denen du mindestens eine Seite lesen darfst. Bereiche anderer Leute ohne Seiten für dich bleiben unsichtbar, auch für Admins.
+
 !!! warning "Ein Bereich lässt sich nur löschen, solange er leer ist"
-    **Bereich löschen** gibt es nur für Bereiche ohne Artikel. Liegen noch Seiten darin, auch solche, die du nicht sehen kannst, lehnt Hinata das Löschen ab. Verschiebe oder lösche vorher alle Seiten.
+    **Bereich löschen** gibt es nur für deine eigenen Bereiche ohne Artikel. Liegen noch Seiten darin, auch solche, die du nicht sehen kannst, lehnt Hinata das Löschen ab. Verschiebe oder lösche vorher alle Seiten.
 
 ## Einen Artikel schreiben
 

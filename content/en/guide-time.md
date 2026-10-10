@@ -125,6 +125,66 @@ The entry belongs to **the author of the commit**, matched by the author e-mail.
 !!! note "A commit only logs time for an account it can recognise"
     The address has to match an active Hinata account, and that person has to be a member of the project. Otherwise the line is skipped, noted in the server log and no time is logged, not even for whoever connected the repository. If your commits are missing, check `git config user.email` first.
 
+## Your own calendars
+
+If your organization admins have switched on **Calendar import**, you can subscribe to your own calendars, for example from Google, Outlook or Apple. Your appointments then show in the time tracking calendar next to your entries, and you take one over as an entry with a tap. Hinata only reads the calendar and never writes anything back. Only you see your subscriptions and their events.
+
+### Subscribe to a calendar
+
+1. Open **Settings → Time tracking**. Below your working hours you find **Calendar subscriptions**.
+2. Tap **Add**.
+3. Give the calendar a **Name**, for example *Work*, and paste its **Private address (ICS)**.
+4. Pick a **Colour** and tap **Subscribe**.
+
+The calendar is read right away. You can subscribe to up to 10 calendars. The section only appears when extended time tracking and the calendar import are both on.
+
+!!! tip "Where do I find the address?"
+    The form explains it under **Where do I find the address?**:
+
+    - **Google:** Settings → your calendar → Integrate calendar → Secret address in iCal format.
+    - **Outlook:** Settings → Calendar → Shared calendars → Publish a calendar → ICS link.
+    - **Apple:** iCloud.com → Calendar → share the calendar as a public calendar → copy the link.
+
+    Addresses starting with `https://` or `webcal://` work.
+
+!!! warning "The address is a key"
+    Whoever knows the address can read the calendar. Hinata stores it encrypted and never shows it again, not even to you. To change it, edit the calendar and paste the new one. Leave the field empty to keep the saved address.
+
+### Events in the calendar
+
+Under **Time tracking → Calendar** your appointments appear in the colour of their calendar with a dashed outline, in the **Week** as well as in the **Month**. In the week, all-day events sit in a band at the top. Your entries stay filled blocks, so planned and booked time are easy to tell apart. Events count towards no total.
+
+**Show calendar events** in the calendar's menu, next to **Week** and **Month**, hides or shows them. The choice holds until you close the app. Hinata keeps the events from 30 days back to 90 days ahead.
+
+### Take an event over as an entry
+
+Tap an event. The sheet **Take over as entry** opens. The times come from your calendar and are shown but not edited there, and the event's title becomes the description. Choose where the entry belongs, for example a project and an issue, and tap **Take over**.
+
+The entry is an ordinary entry from then on, marked **From a calendar**. The same rules apply as for an entry you type, such as the lock date, required fields and approvals. The event disappears from the calendar, because the entry now sits in its place. An event can only become one entry.
+
+!!! info "What cannot become an entry"
+    All-day events and events longer than a day cannot be taken over. Tapping one tells you so.
+
+### Events still open today
+
+When events from today are over and not taken over yet, the time list shows a chip such as **2 events from today not taken over yet**. A tap opens the calendar. **Hide for now** puts the chip away for the moment. All-day events and events your calendar marks as free do not count.
+
+### Take over automatically
+
+In the calendar's form you can switch on **Take over ended events automatically** and choose a **Project for these entries** and tags. Hinata then turns each event into an entry once it is over.
+
+- Only events that start after you switched it on. Older ones are left alone.
+- Never all-day events, tentative ones or ones your calendar marks as free.
+- Every event only once. If you delete such an entry, it does not come back.
+
+If an entry cannot be made, for example because the day is locked, the calendar's card says how many events were not taken over and why.
+
+### Refresh, pause and errors
+
+Hinata reads every subscribed calendar every half hour. The card of each calendar shows its state: **Waiting for the first read**, **Reading now**, how many events were read and when, or what went wrong. Errors are shown in your language, for example that the calendar server did not answer in time or that there is no calendar at the address.
+
+The menu on each calendar has **Refresh now** (once a minute at most), **Edit**, **Pause** or **Resume**, and **Delete**. After five failed reads in a row, a calendar is paused and no longer read until you **Resume** it. When you delete a calendar, its events disappear from time tracking. Entries you already took over stay.
+
 ## Correcting an entry
 
 Every entry on the card and in the **All entries** sheet has a menu on the right.

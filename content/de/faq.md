@@ -43,8 +43,8 @@ bedient eine App viele Instanzen.
   Datenknoten + 1 Arbiter) mit TLS und X.509-Client-Authentifizierung. Siehe
   [MongoDB & X.509](/de/database.html).
 - **S3-kompatibler Objektspeicher** hält Anhänge und Avatare, mit zufälligen
-  Objektschlüsseln und vorsignierten Downloads. Mitgeliefert ist **MinIO**, jeder
-  S3-kompatible Speicher funktioniert. Siehe [Objektspeicher](/de/storage.html).
+  Objektschlüsseln und vorsignierten Downloads. Mitgeliefert ist **SeaweedFS**, jeder
+  S3-kompatible Speicher und Azure funktionieren. Siehe [Objektspeicher](/de/storage.html).
 
 Es gibt keine separate SQL-Datenbank und keinen Message-Broker. Live-Updates laufen
 über SSE.

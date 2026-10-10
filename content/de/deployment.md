@@ -53,10 +53,17 @@ Das Skript:
 
 - erzeugt `deploy/mongo-keyfile` (das Keyfile für die interne Authentifizierung des
   Replica Sets), falls es noch fehlt.
-- gibt Zufallswerte für `HINATA_JWT_SECRET`, `MONGO_ROOT_PASSWORD` und
-  `MINIO_ROOT_PASSWORD` aus.
+- gibt Zufallswerte für `HINATA_JWT_SECRET`, `MONGO_ROOT_PASSWORD`,
+  `HINATA_S3_SECRET_KEY` und alle Geheimnisse `SEAWEEDFS_*` des mitgelieferten
+  Objektspeichers aus.
 
-Kopiere die Werte in deine `.env`.
+Kopiere die Werte in deine `.env`. Bewahre eine Kopie von `SEAWEEDFS_SSE_KEK`
+getrennt vom Server auf: Jede gespeicherte Datei ist darunter verschlüsselt (siehe
+[Objektspeicher](/de/storage.html)).
+
+`HINATA_ICS_SECRET`, das Kalender-Abos und Feiertagsimporte brauchen, gibt das Skript
+nicht aus. Erzeuge es mit `openssl rand -base64 32` und ändere es danach nie wieder
+(siehe [Konfiguration](/de/configuration.html)).
 
 !!! warning "Das JWT-Secret ist in Produktion erforderlich"
     `HINATA_JWT_SECRET` muss ein zufälliger String mit **mindestens 64 Zeichen**
@@ -143,13 +150,24 @@ HINATA_SMTP_AUTH=true
 HINATA_SMTP_STARTTLS=true
 HINATA_MAIL_FROM=hinata@example.com
 
-# Objektspeicher: mitgeliefertes MinIO (setze stattdessen COMPOSE_PROFILES=
+# Objektspeicher: mitgeliefertes SeaweedFS (setze stattdessen COMPOSE_PROFILES=
 # und HINATA_STORAGE_* / HINATA_S3_* / HINATA_AZURE_* für AWS S3, GCS oder
-# Azure; siehe die Objektspeicher-Seite)
+# Azure; siehe die Objektspeicher-Seite). Geheimnisse aus ./deploy/generate-secrets.sh.
 COMPOSE_PROFILES=local-storage
-MINIO_ROOT_USER=hinata
-MINIO_ROOT_PASSWORD=3b8e0d5f7a2c9146e0b3d7f1a5c8e2b4
+HINATA_S3_ACCESS_KEY=hinata
+HINATA_S3_SECRET_KEY=5e2a9c1f7b3d8e04a6c2f9b1d7e3a5c8f0b4d6e2a8c1f3b5d7e9a0c2e4f6b8d1
+HINATA_S3_SSE=AES256
 HINATA_S3_BUCKET=hinata
+SEAWEEDFS_ADMIN_ACCESS_KEY=hinata-admin
+SEAWEEDFS_ADMIN_SECRET_KEY=change-me
+SEAWEEDFS_SSE_KEK=change-me-64-hex-chars   # Kopie getrennt vom Server aufbewahren
+SEAWEEDFS_JWT_VOLUME_WRITE=change-me
+SEAWEEDFS_JWT_VOLUME_READ=change-me
+SEAWEEDFS_JWT_FILER_WRITE=change-me
+SEAWEEDFS_JWT_FILER_READ=change-me
+
+# Kalender-Abos und Feiertagsimporte: openssl rand -base64 32
+HINATA_ICS_SECRET=change-me
 
 # App-Integration
 HINATA_PRIVACY_POLICY_URL=https://example.com/privacy
@@ -197,7 +215,7 @@ docker compose up -d mongo1 mongo2 mongo-arbiter
 # Das Client-Zertifikat der App als $external-Mongo-Nutzer registrieren
 ./deploy/x509/init-prod-user.sh
 
-# Alles starten (Server + MinIO)
+# Alles starten (Server, SeaweedFS und sein einmaliger Setup-Job)
 docker compose up -d
 ```
 
@@ -305,9 +323,9 @@ docker compose -f docker-compose.yml -f docker-compose.app.yml pull hinata-app
 docker compose -f docker-compose.yml -f docker-compose.app.yml up -d hinata-app
 ```
 
-!!! danger "Ein Redeploy aktualisiert nur App und Server, niemals Mongo oder MinIO"
+!!! danger "Ein Redeploy aktualisiert nur App und Server, niemals Mongo oder SeaweedFS"
     Vorgänge, Anhänge und Nutzer liegen in den Docker-Volumes `mongo1-data`,
-    `mongo2-data` und `minio-data`. Werden Datenbank oder Speicher neu erzeugt oder
+    `mongo2-data` und `seaweedfs-data`. Werden Datenbank oder Speicher neu erzeugt oder
     entfernt (etwa per `down -v` oder durch ein Stack-Redeploy, das Volumes
     löscht), sind **diese Daten zerstört**. Nenne beim Update deshalb ausdrücklich
     die Dienste `hinata-server` und `hinata-app`, wie oben. Mach vor jeder Änderung

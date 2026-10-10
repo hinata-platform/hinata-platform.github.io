@@ -93,25 +93,28 @@ E-Mails mit Deep Links (Verifizierung, Passwort zurücksetzen,
 Zuweisungsbenachrichtigungen) kommen nur mit einem echten Relay an. Siehe
 [E-Mail & SMTP](/de/email.html).
 
-## Objektspeicher (S3 / MinIO / GCS / Azure)
+## Objektspeicher (S3 / SeaweedFS / GCS / Azure)
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
-| `HINATA_STORAGE_PROVIDER` | Backend: `s3` (MinIO, AWS S3, GCS per Interop, R2, Spaces, …) oder `azure` (Azure Blob Storage) | `s3` | Nein |
-| `COMPOSE_PROFILES` | `local-storage` betreibt das mitgelieferte MinIO. Leer bei externem Speicher | `local-storage` | Nein |
-| `MINIO_ROOT_USER` | MinIO-Root-Benutzer (in Compose auch als S3 Access Key genutzt) | `hinata` | Mit mitgeliefertem MinIO |
-| `MINIO_ROOT_PASSWORD` | MinIO-Root-Passwort (in Compose auch als S3 Secret Key genutzt) | `hinata-dev-secret` (ändere es) | **Mit mitgeliefertem MinIO (prod)** |
-| `HINATA_S3_ENDPOINT` | S3-Endpunkt, mit dem der Server spricht | `http://minio:9000` (in Compose) | Externes S3 |
-| `HINATA_S3_ACCESS_KEY` | S3 Access Key (Dev / externes S3) | `hinata` | Dev / extern |
-| `HINATA_S3_SECRET_KEY` | S3 Secret Key (Dev / externes S3) | `hinata-dev-secret` | Dev / extern |
+| `HINATA_STORAGE_PROVIDER` | Backend: `s3` (SeaweedFS, AWS S3, GCS per Interop, R2, Spaces, …) oder `azure` (Azure Blob Storage) | `s3` | Nein |
+| `COMPOSE_PROFILES` | `local-storage` betreibt das mitgelieferte SeaweedFS. Leer bei externem Speicher | `local-storage` | Nein |
+| `HINATA_S3_ENDPOINT` | S3-Endpunkt, mit dem der Server spricht | `http://seaweedfs:8333` (in Compose) | Externes S3 |
+| `HINATA_S3_ACCESS_KEY` | S3 Access Key. Das mitgelieferte SeaweedFS richtet aus diesem und dem Secret Key die Identität des Servers ein | `hinata` | Bei S3 |
+| `HINATA_S3_SECRET_KEY` | S3 Secret Key | *(aus `generate-secrets.sh`)* | Bei S3 |
 | `HINATA_S3_BUCKET` | Bucket (S3) oder Container (Azure) für Anhänge und Avatare | `hinata` | Nein |
 | `HINATA_S3_REGION` | Region des Buckets (AWS und Anbieter mit Regionen) | `us-east-1` | Externes S3 |
-| `HINATA_S3_ADDRESSING_STYLE` | Adressierung der S3-URLs: `auto`, `virtual-host` oder `path` | `auto` | Nein |
+| `HINATA_S3_ADDRESSING_STYLE` | Adressierung der S3-URLs: `auto`, `virtual-host` oder `path`. Der mitgelieferte Speicher braucht `path`, externe meist `auto` | `path` (in Compose), `auto` (Standard des Servers) | Nein |
+| `HINATA_S3_SSE` | Serverseitige Verschlüsselung, die für jedes geschriebene oder kopierte Objekt verlangt wird: `AES256` (SSE-S3) oder leer. Jeder andere Wert hält den Server beim Start an | `AES256` (in `.env.example`) | Mit mitgeliefertem SeaweedFS |
 | `HINATA_AZURE_CONNECTION_STRING` | Connection String des Azure-Speicherkontos (bei `provider=azure`) | *(leer)* | Azure |
+| `SEAWEEDFS_ADMIN_ACCESS_KEY` / `SEAWEEDFS_ADMIN_SECRET_KEY` | Admin-Identität des mitgelieferten SeaweedFS. Nur der Job `seaweedfs-setup` nutzt sie | `hinata-admin` / *(erzeugt)* | Mit mitgeliefertem SeaweedFS |
+| `SEAWEEDFS_SSE_KEK` | Schlüssel, der jedes Objekt im mitgelieferten SeaweedFS verschlüsselt (64 Hex-Zeichen). **Bewahre eine Kopie getrennt vom Server auf.** Ohne ihn lässt sich nichts Gespeichertes mehr lesen | *(erzeugt)* | Mit mitgeliefertem SeaweedFS |
+| `SEAWEEDFS_JWT_VOLUME_WRITE` / `_VOLUME_READ` / `_FILER_WRITE` / `_FILER_READ` | Schlüssel, die Anfragen zwischen den Teilen von SeaweedFS signieren | *(erzeugt)* | Mit mitgeliefertem SeaweedFS |
+| `SEAWEEDFS_BACKUP_ACCESS_KEY` / `SEAWEEDFS_BACKUP_SECRET_KEY` | Optionale Nur-Lese-Identität für Backups. Die mitgelieferte Compose-Datei reicht sie nicht an den Container weiter, siehe [Backups & Upgrades](/de/backups.html) | *(leer)* | Nein |
 
-Im Compose für den Produktivbetrieb fallen `HINATA_S3_ACCESS_KEY` /
-`HINATA_S3_SECRET_KEY` automatisch auf `MINIO_ROOT_USER` / `MINIO_ROOT_PASSWORD`
-zurück. Die Einrichtung je Anbieter (AWS, GCS, Azure, R2, …) steht unter
+SeaweedFS startet nicht, solange einer seiner Schlüssel fehlt. `./deploy/generate-secrets.sh`
+gibt für jedes Geheimnis einen frischen Wert aus. Das mitgelieferte SeaweedFS, die
+Einrichtung je Anbieter (AWS, GCS, Azure, R2, …) und den Umzug von MinIO beschreibt
 [Objektspeicher](/de/storage.html).
 
 ## App-Integration
@@ -198,13 +201,14 @@ setzen. Diese Werte überschreiben die Umgebung. Siehe
 
 ## Kalender, Feiertage und Arbeitszeiten
 
-Organisationsadmins pflegen Feiertagskalender auf der Seite [Organisation](/de/organization.html) und können ein Jahr Feiertage aus einer Kalenderadresse importieren, zum Beispiel aus einem Feiertagskalender von Google, Apple oder Outlook. Diese Adresse ruft der Server selbst ab. Mit einer privaten oder Loopback-Adresse verbindet er sich nie, egal was in den Listen unten steht. Die Arbeitszeiten plant jede Person in ihren Einstellungen, die Abwesenheiten in der Zeiterfassung. Das alles setzt die erweiterte Zeiterfassung voraus (`HINATA_TIME_TRACKING_ADVANCED_ENABLED`). Siehe [Zeit erfassen](/de/guide-time.html).
+Organisationsadmins pflegen Feiertagskalender auf der Seite [Organisation](/de/organization.html) und können ein Jahr Feiertage aus einer Kalenderadresse importieren, zum Beispiel aus einem Feiertagskalender von Google, Apple oder Outlook. Ist der Kalender-Import eingeschaltet, können Personen außerdem ihre eigenen Kalender abonnieren und Termine als Zeiteinträge übernehmen (siehe [Zeit erfassen](/de/guide-time.html#deine-eigenen-kalender)). Jede dieser Adressen ruft der Server selbst ab. Mit einer privaten oder Loopback-Adresse verbindet er sich nie, egal was in den Listen unten steht. Die Arbeitszeiten plant jede Person in ihren Einstellungen, die Abwesenheiten in der Zeiterfassung. Das alles setzt die erweiterte Zeiterfassung voraus (`HINATA_TIME_TRACKING_ADVANCED_ENABLED`). Siehe [Zeit erfassen](/de/guide-time.html).
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
-| `HINATA_ICS_SECRET` | Schlüssel, mit dem gespeicherte Kalenderadressen verschlüsselt werden. Base64 von mindestens 32 Bytes. Erzeugen: `openssl rand -base64 32`. Ohne ihn speichert der Server keine Kalenderadresse, und Feiertage lassen sich nur von Hand eintragen | *(leer)* | Für Kalenderadressen |
+| `HINATA_ICS_SECRET` | Schlüssel, mit dem gespeicherte Kalenderadressen verschlüsselt werden (AES-256-GCM), sowohl Feiertagsquellen als auch persönliche Kalender-Abos. Base64 von mindestens 32 Bytes. Erzeugen: `openssl rand -base64 32`. Ohne ihn, oder mit einem kürzeren oder ungültigen Wert, speichert der Server keine Kalenderadresse: Feiertage lassen sich nur von Hand eintragen, und niemand kann einen Kalender abonnieren. **Einmal gesetzt, nie mehr ändern** | *(leer)* | Für Kalenderadressen |
 | `HINATA_ICS_ALLOWED_HOSTS` | Kommagetrennte Hosts, von denen Kalender abgerufen werden dürfen: ein Hostname oder `*.example.org` für dessen Subdomains. Leer heißt jeder öffentliche Host | *(leer)* | Nein |
 | `HINATA_ICS_DENIED_HOSTS` | Kommagetrennte Hosts, von denen nie abgerufen wird, in derselben Schreibweise. Wird vor der Erlaubnisliste geprüft | *(leer)* | Nein |
+| `HINATA_TIME_TRACKING_ICS_IMPORT_ENABLED` | Erlaubt Personen, ihre eigenen Kalender zu abonnieren und Termine als Einträge zu übernehmen. Setzt die erweiterte Zeiterfassung und `HINATA_ICS_SECRET` voraus. Der Schalter **Kalender-Import** unter **Organisation → Zeiterfassung** hat Vorrang vor diesem Wert | `false` | Nein |
 | `HINATA_AVAILABILITY_DEFAULT_WEEKDAY_MINUTES` | Geplante Minuten je Wochentag, beginnend mit Montag, für alle, die keine eigenen Stunden festgelegt haben | `480,480,480,480,480,0,0` | Nein |
 | `HINATA_TIME_TRACKING_ABSENCE_MANAGEMENT_ENABLED` | Schaltet die Abwesenheitsverwaltung ein: Arten, Ansprüche, Konten, Anträge und Krankmeldungen. Setzt die erweiterte Zeiterfassung voraus. Der Schalter unter **Organisation → Zeiterfassung** hat Vorrang vor diesem Wert | `false` | Nein |
 | `HINATA_TIME_TRACKING_ABSENCE_CALENDAR_VISIBILITY` | Der Team-Abwesenheitskalender: `OFF`, `BUSY_ONLY` (nur, dass jemand abwesend ist) oder `TYPE` (die Art, Krankheit nie). Wirkt nur mit eingeschalteter Abwesenheitsverwaltung. Die Auswahl unter **Organisation → Zeiterfassung** hat Vorrang vor diesem Wert | `OFF` | Nein |
@@ -217,8 +221,20 @@ Organisationsadmins pflegen Feiertagskalender auf der Seite [Organisation](/de/o
 !!! info "Das Limit sperrt keine Krankmeldung"
     Eine Krankmeldung zählt auf dasselbe Tagesbudget, wird davon aber nie abgewiesen: § 5 EFZG kennt eine Anzeige, keine Erlaubnis. Erreicht jemand die Grenze, werden nur weitere **Anträge** abgelehnt.
 
-!!! warning "Den Schlüssel aufbewahren"
-    Eine Kalenderadresse, die mit einem `HINATA_ICS_SECRET` verschlüsselt wurde, lässt sich mit einem anderen nicht lesen. Ändert sich der Schlüssel, scheitern Importe aus gespeicherten Adressen, bis ein Organisationsadmin die Adresse neu einträgt. Bereits importierte Feiertage bleiben.
+!!! danger "`HINATA_ICS_SECRET` nie wechseln"
+    Eine Kalenderadresse, die mit einem `HINATA_ICS_SECRET` verschlüsselt wurde, lässt sich mit einem anderen nicht lesen. Jede Adresse ist außerdem an den Datensatz gebunden, in dem sie steht, und lässt sich nicht in einen anderen kopieren. Ändert sich der Schlüssel, wird jede gespeicherte Adresse unlesbar: Feiertagsimporte scheitern, bis ein Organisationsadmin die Adresse neu einträgt, und die Abos aller Personen melden „Die gespeicherte Adresse lässt sich nicht mehr lesen“, bis sie ihre Adresse erneut einfügen. Bereits importierte Feiertage und schon übernommene Einträge bleiben. Bewahre den Schlüssel bei deinen anderen Geheimnissen auf und sichere ihn.
+
+### Wie Kalender abgerufen werden
+
+Eine Kalenderadresse tippt eine Person ein. Der Server behandelt deshalb jeden Abruf so, als hätte irgendwer im Internet die Adresse gewählt:
+
+- **Nur `https`**, auf Port 443 oder 8443. Eine Adresse mit `webcal://` wird als `https` gelesen. Kein Benutzername und kein Passwort in der Adresse.
+- **Der Host muss ein Name sein**, nie eine IP-Adresse. Jede Adresse, zu der er sich auflöst, muss im öffentlichen Internet liegen, sonst wird der Host abgelehnt. Der Server verbindet sich nur mit den geprüften Adressen, eine zweite DNS-Antwort kann ihn also nicht nach innen lenken.
+- **Keine Weiterleitungen.** Eine Weiterleitung gilt als Fehler, auch auf denselben Host.
+- **Zehn Sekunden** für Namensauflösung, Verbindung und Download zusammen, und höchstens **2 MB** je Kalender. Höchstens vier Abrufe laufen gleichzeitig.
+- Die Adresse steht nie in einem Log, einer API-Antwort oder im Audit-Log. Personen sehen nur den Host.
+
+Abos werden jede halbe Stunde gelesen, außer sie wurden in den letzten 25 Minuten schon gelesen. Unveränderte Kalender werden mit `If-None-Match` / `If-Modified-Since` abgefragt und kosten daher wenig. Personen können einen Kalender auch von Hand aktualisieren, höchstens einmal pro Minute. Nach fünf Fehlversuchen in Folge wird ein Abo pausiert, bis die Person es fortsetzt. Der Server behält die Termine jeder Person von 30 Tagen zurück bis 90 Tage voraus, höchstens 5.000 je Abo, und jede Person kann bis zu 10 Abos haben. Ist die erweiterte Zeiterfassung oder der Kalender-Import aus, wird nichts abgerufen.
 
 ## Projektvorlagen und relative Fristen
 

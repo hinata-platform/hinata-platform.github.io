@@ -62,7 +62,7 @@ You manage them in Project settings. Renaming a label updates every issue that c
 An **issue** is the smallest unit of work: a task, bug, story, feature, epic or sub-task. Every issue has:
 
 - a **type** (see the hierarchy) and a **priority**
-- **tags/labels**, **comments** and **[attachments](/en/issues.html)** (stored in S3/MinIO)
+- **tags/labels**, **comments** and **[attachments](/en/issues.html)** (stored in S3)
 - **dependencies** on other issues
 - a **workflow state**, an **assignee**, and optional **start/due dates** and **story points**
 
@@ -101,7 +101,7 @@ See [Projects & teams](/en/projects-teams.html) for the full model.
 
 ## Attachments
 
-**Attachments** are files on an issue. They live in **S3/MinIO**, not in the database.
+**Attachments** are files on an issue. They live in **S3**, not in the database.
 
 - Object keys are random.
 - Downloads use **presigned URLs**, never a long-lived public URL.

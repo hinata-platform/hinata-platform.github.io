@@ -261,8 +261,8 @@
     [
      "storage",
      {
-      "en": "Object storage (S3/MinIO)",
-      "de": "Objektspeicher (S3/MinIO)"
+      "en": "Object storage (S3/SeaweedFS)",
+      "de": "Objektspeicher (S3/SeaweedFS)"
      }
     ],
     [

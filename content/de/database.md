@@ -69,7 +69,7 @@ cp .env.example .env
 ./deploy/generate-secrets.sh
 ```
 
-`generate-secrets.sh` legt `deploy/mongo-keyfile` an (`openssl rand -base64 756`, Modus `400`), falls es fehlt. Ein vorhandenes überschreibt es nicht. Außerdem gibt es Werte für `HINATA_JWT_SECRET`, `MONGO_ROOT_PASSWORD` und `MINIO_ROOT_PASSWORD` aus, die du in `.env` kopierst.
+`generate-secrets.sh` legt `deploy/mongo-keyfile` an (`openssl rand -base64 756`, Modus `400`), falls es fehlt. Ein vorhandenes überschreibt es nicht. Außerdem gibt es Werte für `HINATA_JWT_SECRET`, `MONGO_ROOT_PASSWORD`, `HINATA_S3_SECRET_KEY` und die Geheimnisse `SEAWEEDFS_*` aus, die du in `.env` kopierst.
 
 ### 2. Die X.509-Zertifizierungsstelle und die Zertifikate
 
@@ -147,4 +147,4 @@ Setze danach dieselben Werte in `.env`, damit der Server die Stores zur Laufzeit
 - **Mongo nie öffentlich erreichbar machen.** Die Ports bleiben im internen Docker-Netzwerk `hinata`, das Standard-Compose veröffentlicht `27017` in der Produktion nicht auf dem Host. Nur der Server (hinter deinem Reverse Proxy) soll die Datenbank erreichen.
 - **Der Arbiter ist kein Backup.** Er speichert keine Daten. Backups kommen aus `mongodump` oder Snapshots der Volumes, siehe [Backups & Upgrades](/de/backups.html).
 
-Weiter geht es mit [Objektspeicher (S3/MinIO)](/de/storage.html), [E-Mail & SMTP](/de/email.html) und [Reverse Proxy & TLS](/de/reverse-proxy.html). Alle Umgebungsvariablen stehen in der [Konfigurationsreferenz](/de/configuration.html).
+Weiter geht es mit [Objektspeicher](/de/storage.html), [E-Mail & SMTP](/de/email.html) und [Reverse Proxy & TLS](/de/reverse-proxy.html). Alle Umgebungsvariablen stehen in der [Konfigurationsreferenz](/de/configuration.html).

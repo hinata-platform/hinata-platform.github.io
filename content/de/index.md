@@ -41,7 +41,7 @@ Das unterscheidet Hinata von den meisten selbst gehosteten Trackern:
 
 | Repository | Was es ist | Stack |
 | --- | --- | --- |
-| [hinata-server](https://github.com/hinata-platform/hinata-server) | Backend-API, Geschäftslogik und Datenschicht. Veröffentlicht ein Docker-Image auf GHCR. | Spring Boot 4, Java 21, MongoDB (Replica Set), S3/MinIO, SMTP |
+| [hinata-server](https://github.com/hinata-platform/hinata-server) | Backend-API, Geschäftslogik und Datenschicht. Veröffentlicht ein Docker-Image auf GHCR. | Spring Boot 4, Java 21, MongoDB (Replica Set), S3 (SeaweedFS), SMTP |
 | [hinata-app](https://github.com/hinata-platform/hinata-app) | Der Client für jede Plattform, aus einer Codebasis. | Flutter, bloc/cubit, go_router, dio, i18next (en + de), fl_chart |
 
 Die App spricht mit dem Server über eine versionierte REST-API unter `/api/v1`. Mehr dazu unter [Architektur](/de/architecture.html).

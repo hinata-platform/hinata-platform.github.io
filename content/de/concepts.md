@@ -62,7 +62,7 @@ Du verwaltest sie in den Projekteinstellungen. Benennst du ein Label um, ändert
 Ein **Vorgang** ist die kleinste Arbeitseinheit: Aufgabe, Bug, Story, Feature, Epic oder Unteraufgabe. Jeder Vorgang hat:
 
 - einen **Typ** (siehe Hierarchie) und eine **Priorität**
-- **Tags/Labels**, **Kommentare** und **[Anhänge](/de/issues.html)** (gespeichert in S3/MinIO)
+- **Tags/Labels**, **Kommentare** und **[Anhänge](/de/issues.html)** (gespeichert in S3)
 - **Abhängigkeiten** zu anderen Vorgängen
 - einen **Workflow-Status**, einen **Bearbeiter**, optional **Start- und Fälligkeitsdatum** und **Story Points**
 
@@ -101,7 +101,7 @@ Das vollständige Modell steht unter [Projekte & Teams](/de/projects-teams.html)
 
 ## Anhänge
 
-**Anhänge** sind Dateien an einem Vorgang. Sie liegen in **S3/MinIO**, nicht in der Datenbank.
+**Anhänge** sind Dateien an einem Vorgang. Sie liegen in **S3**, nicht in der Datenbank.
 
 - Objekt-Keys sind zufällig.
 - Downloads laufen über **vorsignierte URLs**, nie über eine dauerhaft öffentliche URL.

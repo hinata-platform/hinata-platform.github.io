@@ -56,13 +56,13 @@ Kommentare stehen flach und linksbündig untereinander wie in Jira, ohne Chatbla
 ![Hinata-Kommentare mit Antwort-Thread](/assets/img/shot-comments.png)
 
 - **Reaktionen**: ein Emoji auf einen Kommentar, wie bei WhatsApp. Pro Kommentar hast du eine Reaktion, eine neue ersetzt die alte.
-- **Sprachkommentare**: Nimm im Composer eine kurze Sprachnachricht auf. Sie landet in deinem **S3/MinIO**-Bucket und spielt inline als Sprachblase mit Wellenform ab, zwischen den Textkommentaren.
+- **Sprachkommentare**: Nimm im Composer eine kurze Sprachnachricht auf. Sie landet in deinem **S3**-Bucket und spielt inline als Sprachblase mit Wellenform ab, zwischen den Textkommentaren.
 - **Kontextmenü**: Lange drücken (am Desktop mit der Maus darüberfahren) für Antworten, Kopieren, Link kopieren, Anheften, Bearbeiten, Löschen und Mehrfachauswahl zum Löschen eigener Kommentare. Der kopierte Link scrollt zu genau diesem Kommentar und lässt ihn aufblinken.
 - **Echtzeit**: Neue Kommentare, Bearbeitungen, Reaktionen und Löschungen kommen per **Server-Sent Events**. Alle sehen die Diskussion sofort, ohne neu zu laden.
 
 ## Anhänge
 
-Ziehe Dateien direkt auf einen Vorgang. Sie liegen in deinem **S3/MinIO**-Bucket unter zufälligen Objektschlüsseln und werden über kurzlebige **presigned** URLs ausgeliefert. So wird nichts versehentlich öffentlich.
+Ziehe Dateien direkt auf einen Vorgang. Sie liegen in deinem **S3**-Bucket unter zufälligen Objektschlüsseln und werden über kurzlebige **presigned** URLs ausgeliefert. So wird nichts versehentlich öffentlich.
 
 - Datei per **Drag & Drop** auf das Anhangraster ziehen oder über die Upload-Schaltfläche vom Gerät wählen.
 - Bilder öffnen sich groß in einer **Lightbox** im Liquid-Glass-Stil.

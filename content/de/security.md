@@ -92,7 +92,7 @@ Git-Access-Tokens und andere Secrets von Integrationen werden vor dem Speichern 
 !!! danger "Erledige das, bevor du live gehst"
 
     - **Ändere `HINATA_JWT_SECRET`** in ein neues Secret mit 64 Zeichen (`openssl rand -base64 64`).
-    - **Ändere jedes Standardpasswort:** `MONGO_ROOT_PASSWORD`, `MINIO_ROOT_PASSWORD` und die Passwörter für TLS-Keystore und Truststore (`HINATA_MONGO_TLS_*_PASSWORD`, Standard `changeit`).
+    - **Ändere jedes Standardpasswort:** `MONGO_ROOT_PASSWORD`, `HINATA_S3_SECRET_KEY`, die Geheimnisse `SEAWEEDFS_*` und die Passwörter für TLS-Keystore und Truststore (`HINATA_MONGO_TLS_*_PASSWORD`, Standard `changeit`).
     - **Ändere `HINATA_GIT_TOKEN_SECRET`**, damit Integrations-Tokens mit deinem eigenen Schlüssel verschlüsselt werden.
 
 !!! tip "Dann ziehe den Perimeter fester"

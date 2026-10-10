@@ -32,7 +32,7 @@ docker compose up -d
 | --- | --- |
 | **server** | Die Spring-Boot-API unter `/api/v1` (standardmäßig Host-Port `3356`). |
 | **MongoDB replica set** | 2 Datenknoten + 1 Arbiter, das führende System. |
-| **MinIO** | S3-kompatibler Objektspeicher für Anhänge und Avatare. |
+| **SeaweedFS** | S3-kompatibler Objektspeicher für Anhänge und Avatare, mit einem einmaligen Setup-Job, der den Bucket anlegt. |
 | **Mailpit** | Lokaler Mail-Catcher. Zeigt ausgehende E-Mails ohne echtes Relay. |
 
 Warte ein paar Sekunden und prüfe dann den Server:
@@ -43,7 +43,7 @@ curl -s http://localhost:3356/api/v1/actuator/health
 ```
 
 !!! info "Praktische lokale Oberflächen"
-    Mailpit liegt unter `http://localhost:8025`, die MinIO-Konsole unter `http://localhost:9001`. Damit prüfst du vor dem Produktivbetrieb, ob Mail und Uploads funktionieren.
+    Mailpit liegt unter `http://localhost:8025`. Damit prüfst du vor dem Produktivbetrieb, ob Mail funktioniert. SeaweedFS hat keine Weboberfläche und veröffentlicht keinen Port: Nur der Server spricht mit ihm. Ob Uploads gehen, prüfst du, indem du in der App eine Datei an einen Vorgang hängst.
 
 ## Das JWT-Secret setzen (Pflicht)
 
@@ -60,7 +60,7 @@ HINATA_JWT_SECRET=PASTE_YOUR_64_CHAR_SECRET_HERE
 ```
 
 !!! danger "Keine Standardwerte ausliefern"
-    `HINATA_JWT_SECRET` ist standardmäßig **leer**. `MONGO_ROOT_PASSWORD`, `MINIO_ROOT_PASSWORD` und das Passwort für TLS-Keystore und Truststore (`changeit`) in der Vorlage sind **Platzhalter**. Setze vor jedem öffentlich erreichbaren Deployment ein echtes JWT-Secret und ersetze alle Standardpasswörter. `./deploy/generate-secrets.sh` gibt dafür starke Werte aus.
+    `HINATA_JWT_SECRET` ist standardmäßig **leer**. `MONGO_ROOT_PASSWORD`, `HINATA_S3_SECRET_KEY`, die Geheimnisse `SEAWEEDFS_*` und das Passwort für TLS-Keystore und Truststore (`changeit`) in der Vorlage sind **Platzhalter**. Setze vor jedem öffentlich erreichbaren Deployment ein echtes JWT-Secret und ersetze alle Standardpasswörter. `./deploy/generate-secrets.sh` gibt dafür starke Werte aus.
 
 Nach Änderungen an `.env` erstellst du den Server neu, damit er die Umgebung übernimmt:
 

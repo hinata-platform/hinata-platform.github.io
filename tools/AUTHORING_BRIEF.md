@@ -97,7 +97,7 @@ Current platform version: use the `{{version}}` placeholder (auto-filled at buil
 
 Two repositories:
 - **hinata-server** — Spring Boot 4, Java 21, MongoDB (replica set), S3-compatible
-  object storage (MinIO), SMTP mail. Publishes a Docker image to GHCR.
+  object storage (bundled SeaweedFS; any S3 provider or Azure works), SMTP mail. Publishes a Docker image to GHCR.
 - **hinata-app** — a single Flutter codebase targeting **Android, iOS, Web, macOS,
   Windows and Linux** — six targets, one codebase. State via bloc/cubit, routing via
   go_router, i18n via i18next (en + de), networking via dio (auto token refresh,
@@ -176,7 +176,7 @@ rather than an accident.
 - App (Flutter) → `ApiClient` (dio, token refresh, `Accept-Language`) → REST
   `/api/v1` on the server. Server pushes live updates via **Server-Sent Events (SSE)**.
 - Server persists to **MongoDB** (production = replica set: 2 data nodes + 1
-  arbiter, TLS + X.509 client auth). Attachments live in **S3/MinIO** (presigned
+  arbiter, TLS + X.509 client auth). Attachments live in **S3 (bundled SeaweedFS)** (presigned
   downloads, randomized object keys). Mail via **SMTP** (Mailpit in dev).
 - **Hinata Connect gateway**: a central push-relay + universal-link relay so a
   single published app can serve many self-hosted servers; self-hosters need NO
@@ -205,7 +205,8 @@ Active profile `SPRING_PROFILES_ACTIVE`: `dev` (local TLS/X.509 standalone) or
 | `HINATA_TRUSTED_PROXIES` | CIDRs of reverse proxies allowed to set `X-Forwarded-For`. Empty = trust none |
 | `HINATA_SMTP_HOST/PORT/USERNAME/PASSWORD/AUTH/STARTTLS` | Outbound mail (Mailpit in dev, real relay in prod) |
 | `HINATA_MAIL_FROM` | From address for outbound mail |
-| `MINIO_ROOT_USER` / `MINIO_ROOT_PASSWORD` | MinIO credentials |
+| `HINATA_S3_ACCESS_KEY` / `HINATA_S3_SECRET_KEY` / `HINATA_S3_SSE` | S3 keys of the server; `AES256` asks for SSE-S3 on every write and copy |
+| `SEAWEEDFS_*` | Bundled SeaweedFS secrets (admin identity, `SEAWEEDFS_SSE_KEK` encryption key, four JWT signing keys). Keep `SEAWEEDFS_SSE_KEK` apart from the server. MinIO was replaced in HIN-134 |
 | `HINATA_S3_BUCKET` | Bucket name (default `hinata`); dev also uses `HINATA_S3_ACCESS_KEY/SECRET_KEY` |
 | `HINATA_PRIVACY_POLICY_URL` | Privacy policy shown in the app (required for store releases) |
 | `HINATA_APP_MIN_VERSION` | Minimum app version; older clients are force-updated |
@@ -232,19 +233,21 @@ cp .env.example .env
 docker compose up -d
 ```
 
-Brings up the server, a MongoDB **replica set (2 data nodes + 1 arbiter)**, MinIO
+Brings up the server, a MongoDB **replica set (2 data nodes + 1 arbiter)**, SeaweedFS
 and Mailpit. Point the app at `HINATA_BASE_URL` and complete the in-app setup
 wizard (or set `HINATA_SETUP_AUTO_COMPLETE=true`). MongoDB PKI for prod:
 `./deploy/x509/generate-certs.sh prod` then `./deploy/x509/init-prod-user.sh`.
 
 Local dev:
 ```bash
-docker compose -f docker-compose.dev.yml up -d   # Mongo RS, Mailpit, MinIO
+COMPOSE_PROFILES=local-storage docker compose -f docker-compose.dev.yml up -d   # Mongo, Mailpit, SeaweedFS
+COMPOSE_PROFILES=local-storage docker compose -f docker-compose.dev.yml run --rm seaweedfs-setup
 HINATA_MONGODB_URI="mongodb://localhost:27017/hinata?replicaSet=rs0&directConnection=true" \
-HINATA_S3_ACCESS_KEY=hinata HINATA_S3_SECRET_KEY=hinata-dev-secret \
-./mvnw spring-boot:run
+HINATA_S3_ENDPOINT=http://localhost:8333 HINATA_S3_ADDRESSING_STYLE=path HINATA_S3_SSE=AES256 \
+HINATA_S3_ACCESS_KEY=hinata HINATA_S3_SECRET_KEY=hinata-dev-secret-0123456789abcdef \
+./gradlew bootRun
 ```
-Mailpit UI `http://localhost:8025`, MinIO console `http://localhost:9001`. Tests: `./mvnw verify`.
+Mailpit UI `http://localhost:8025`, SeaweedFS S3 API `http://localhost:8333` (no console, credentials required). Tests: `./gradlew build`.
 
 ## 6. Feature facts (be thorough & accurate)
 
@@ -269,7 +272,7 @@ Mailpit UI `http://localhost:8025`, MinIO console `http://localhost:9001`. Tests
 - **Knowledge base**: Confluence-style hierarchical Markdown articles, global or
   per project, team/project access control, smart links that resolve real
   issues/people, shared markdown toolbar. Backend-backed (`/api/v1/articles`).
-- **Attachments**: S3/MinIO + presigned URLs, atomic push/pull, **live SSE** add/
+- **Attachments**: S3 (SeaweedFS) + presigned URLs, atomic push/pull, **live SSE** add/
   remove, drag-drop grid + glass lightbox, ENV-driven size/type limits.
 - **Notifications**: in-app + e-mail (SMTP); push via the Connect gateway.
 - **Global search / command palette**: ⌘K liquid-glass search/command palette;
@@ -386,7 +389,7 @@ concepts (Core concepts / Grundkonzepte).
 getting-started: quick-start (Quick start / Schnellstart), requirements (Requirements / Voraussetzungen).
 self-hosting: self-hosting (Overview / Überblick), deployment (Production deployment / Produktiv-Deployment),
 configuration (Configuration reference / Konfigurationsreferenz), database (MongoDB & X.509 / MongoDB & X.509),
-storage (Object storage (S3/MinIO) / Objektspeicher (S3/MinIO)), email (E-mail & SMTP / E-Mail & SMTP),
+storage (Object storage (S3/SeaweedFS) / Objektspeicher (S3/SeaweedFS)), email (E-mail & SMTP / E-Mail & SMTP),
 reverse-proxy (Reverse proxy & TLS / Reverse Proxy & TLS), setup-wizard (Setup & first run / Setup & Erststart),
 backups (Backups & upgrades / Backups & Upgrades).
 features: features (Feature tour / Feature-Tour), projects-teams (Projects & teams / Projekte & Teams),

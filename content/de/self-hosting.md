@@ -23,10 +23,10 @@ gängige Upstream-Images.
 | **Server (API)** | `ghcr.io/hinata-platform/hinata-server` | REST-API mit Spring Boot 4 und Java 21 unter `/api/v1`, SSE-Live-Updates, JWT-Auth |
 | **Web-App** | `ghcr.io/hinata-platform/hinata-app` | Der kompilierte Flutter-Web-Client als statische Dateien |
 | **MongoDB** | `mongo:8.0` | Hauptdatenspeicher. In Produktion ein **Replica Set** (2 Datenknoten + 1 Arbiter) |
-| **Objektspeicher** | `minio/minio` | S3-kompatibler Speicher für Anhänge und Avatare (Presigned Downloads) |
+| **Objektspeicher** | `chrislusf/seaweedfs` | S3-kompatibler Speicher für Anhänge und Avatare (Presigned Downloads). Durch jeden S3-Anbieter oder Azure ersetzbar |
 | **Mail** | dein SMTP-Relay (`axllent/mailpit` in Dev) | Ausgehende E-Mail: Verifizierung, Passwort-Reset, Benachrichtigungen |
 
-- Der Server ist zustandslos. Alle Daten liegen in MongoDB und MinIO. Du kannst ihn
+- Der Server ist zustandslos. Alle Daten liegen in MongoDB und im Objektspeicher. Du kannst ihn
   also frei skalieren oder neu ausrollen.
 - Live-Updates kommen per **Server-Sent Events (SSE)**. Einen Message Broker
   brauchst du nicht.
@@ -44,7 +44,7 @@ App legst du optional darüber.
 
 | Datei | Was sie startet |
 | --- | --- |
-| `docker-compose.yml` | **Der vollständige Backend-Stack**: Server, MongoDB Replica Set (`mongo1`, `mongo2`, `mongo-arbiter`) und MinIO. Das ist die Basis. |
+| `docker-compose.yml` | **Der vollständige Backend-Stack**: Server, MongoDB Replica Set (`mongo1`, `mongo2`, `mongo-arbiter`) und SeaweedFS mit seinem Setup-Job. Das ist die Basis. |
 | `docker-compose.app.yml` | **Ein Overlay mit der Flutter-Web-App** (`hinata-app`) auf `HINATA_APP_PORT`. Damit lieferst du den Web-Client vom selben Host aus. |
 
 Nur den API-Stack starten:
@@ -66,7 +66,7 @@ docker compose -f docker-compose.yml -f docker-compose.app.yml up -d
     wenn du eine eigene Adresse wie `https://track.example.com` im Browser willst.
 
 Für die lokale Entwicklung gibt es noch `docker-compose.dev.yml`. Sie startet nur
-Mongo, MinIO und Mailpit, den Server startest du aus der IDE. Siehe
+Mongo, SeaweedFS und Mailpit, den Server startest du aus der IDE. Siehe
 [Entwicklung](/de/development.html).
 
 ## Profile: dev vs prod
@@ -99,7 +99,7 @@ Geh diese Punkte durch, bevor du die Instanz freigibst:
 | **Domain & TLS** | Öffentliche Hostnamen und ein Reverse Proxy, der HTTPS terminiert und an `HINATA_PORT` (API) und `HINATA_APP_PORT` (Web) weiterleitet | [Reverse Proxy & TLS](/de/reverse-proxy.html) |
 | **JWT-Secret** | `HINATA_JWT_SECRET`: ein zufälliges HS512-Secret mit ≥ 64 Zeichen (in prod Pflicht) | [Produktiv-Deployment](/de/deployment.html) |
 | **MongoDB X.509** | PKI erzeugen, Clientzertifikat als `$external`-Nutzer registrieren | [MongoDB & X.509](/de/database.html) |
-| **Objektspeicher** | MinIO-Zugangsdaten und Bucket, oder ein externes S3 | [Objektspeicher](/de/storage.html) |
+| **Objektspeicher** | SeaweedFS-Schlüssel (`SEAWEEDFS_SSE_KEK` sicher aufbewahren) und Bucket, oder ein externer S3-Anbieter oder Azure | [Objektspeicher](/de/storage.html) |
 | **SMTP** | Ein echtes Mail-Relay, damit Mails zu Verifizierung, Passwort-Reset und Benachrichtigungen ankommen | [E-Mail & SMTP](/de/email.html) |
 | **CORS** | `HINATA_CORS_ALLOWED_ORIGINS`: Browser-Origins, die die API aufrufen dürfen | [Konfigurationsreferenz](/de/configuration.html) |
 | **Trusted Proxies** | `HINATA_TRUSTED_PROXIES`: CIDRs der Proxys, die `X-Forwarded-For` setzen dürfen | [Reverse Proxy & TLS](/de/reverse-proxy.html) |

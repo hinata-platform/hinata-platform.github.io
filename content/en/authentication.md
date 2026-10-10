@@ -116,7 +116,7 @@ The same `/settings` screen is where users manage their own account:
 - **Profile**: display name and details.
 - **Email change**: the new address is verified again.
 - **Notification matrix**: in-app and e-mail preferences per category.
-- **Avatar upload**: a profile picture stored in S3/MinIO. Uploaded via the account API, served through a private-bucket proxy, capped and re-encoded server-side. Users can upload or remove it at any time.
+- **Avatar upload**: a profile picture stored in the object store (S3). Uploaded via the account API, served through a private-bucket proxy, capped and re-encoded server-side. Users can upload or remove it at any time.
 - **GDPR export & delete**: users can **export** their personal data and **delete** their account themselves. That covers data portability and the right to erasure without an admin ticket.
 
 !!! info "GDPR by design"
