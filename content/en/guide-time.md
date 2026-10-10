@@ -413,6 +413,43 @@ You import your own entries. Organization admins can also import for others thro
 
 The mail belongs to the time tracking notifications and can be switched off there. See [Staying informed](/en/guide-notifications.html).
 
+## Billing
+
+With billing switched on, organization admins and project leads bill recorded time at hourly rates. Anyone who leads no project sees none of it. It is switched on under **Organization → Time tracking → Billing**, together with the instance's currency.
+
+### Hourly rates
+
+A rate applies to an **issue**, a **project member**, a **person**, a **project**, a **team** or as the **default**. Each entry is priced with the most specific rate in that order, and with the rate that applied on the entry's day. When a rate changes in the middle of a month, the first half of the month counts at the old rate and the second at the new one.
+
+- **Revenue rates** are set by project leads for their project, its members and its issues: in the project settings under **Billing** and in an issue under **Hourly rate for this issue**.
+- **Cost rates** are seen and set by organization admins only. Nobody else learns what a person costs.
+
+You change a rate **from a date**: the new rate starts that day and the running one ends the day before. A future date plans a change, an earlier date corrects backwards. All rates are under **Time tracking → Reports → Billing → Rates**, with the defaults at the top.
+
+### Reports
+
+Under **Time tracking → Reports** the **Billing** tab has three reports:
+
+- **Billing**: billable hours and revenue. Revenue comes only from entries marked billable.
+- **Profitability**: revenue, labour cost and margin per project, issue, team or period. For organization admins only, and never per person.
+- **Utilization**: the billable share of the recorded time, and for organization admins per team also against capacity.
+
+Hours without a matching rate count as zero, and the report says how many there are.
+
+### Invoices
+
+1. Open **Invoices** from the **Billing** tab or the project settings and tap **Draft invoice**.
+2. Choose the project, the service period (at most 92 days) and whether one line is made per issue, project, person or day. The recipient and VAT can be entered now or later.
+3. Check the draft. Lines without a rate are marked. You can remove lines and **Rebuild lines** when entries have changed.
+4. Tap **Issue**.
+
+A draft locks nothing. Only when it is issued does the invoice get the next number, for example `INV-2026-00001`, and the numbers have no gaps. After that it cannot be changed, and its entries are locked. Whoever opens such an entry sees that it is invoiced and can ask for a correction.
+
+The way back is a **credit note**: it carries the same lines negated and a number of its own. The invoice stays on record, and its entries can then be corrected and billed again. Invoices come as PDF, Word and Excel, in the language they were drafted in, and can be printed.
+
+!!! info "Retention"
+    Issued invoices and credit notes are accounting records (§ 147 AO, § 257 HGB in Germany). They are never deleted, not by the time tracking's retention period either, and their entries are kept as long as they are. A project with issued invoices can be archived but not deleted.
+
 ## Where your logged time ends up
 
 1. **The issue**: the spent total is recomputed from all entries, so it is always the true sum.
