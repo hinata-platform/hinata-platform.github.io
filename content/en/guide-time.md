@@ -185,6 +185,38 @@ Hinata reads every subscribed calendar every half hour. The card of each calenda
 
 The menu on each calendar has **Refresh now** (once a minute at most), **Edit**, **Pause** or **Resume**, and **Delete**. After five failed reads in a row, a calendar is paused and no longer read until you **Resume** it. When you delete a calendar, its events disappear from time tracking. Entries you already took over stay.
 
+## Sharing entries with others
+
+When two or three of you worked on something together, a workshop or a pairing session for instance, not everyone has to type the entry. You share yours, and your colleagues take it into their own entries with one tap.
+
+### Sharing an entry
+
+1. Open one of your entries.
+2. Tap **Share with…** at the top of the sheet.
+3. Pick people under **Add a person…**. Only members of the entry's project are offered.
+4. Tap **Send invitations**.
+
+It is quicker while writing: type a **+** in the description and the project's people open. The chosen name goes into the text, and **Will be shared with** shows who gets an invitation when you save.
+
+Only an entry with a project can be shared, and with no more than 20 people.
+
+### What the others see
+
+Whoever is invited gets a notification and a line above their own entries such as **2 shared entries are waiting for your answer**. **Open** shows the invitation with its description, day, time, project and tags. Nobody sees your entry itself there.
+
+- **Accept** adds a copy to their own entries.
+- **Adjust** accepts the copy with another project or other tags.
+- **Decline** says no. You only learn that it was declined, never why, and you get no notification about it.
+
+From then on the copy belongs entirely to the person who accepted it. They can change or delete it without anything happening to your entry, and the other way round. Their rules apply to the copy: if the day is before their lock date or in a period they handed in, accepting is refused with a message and the invitation keeps waiting.
+
+### Following up
+
+Under **Sent** on the same page you see every invitation with where it stands: **Waiting**, **Accepted**, **Declined** or **Withdrawn**. You can withdraw a waiting invitation there or in the **Share with…** sheet. Deleting your entry withdraws its waiting invitations.
+
+!!! info "Privacy"
+    When an account is deleted, every invitation it sent or received goes with it. Copies that were already accepted stay, because they are entries of the people who accepted them. Your invitations are also part of your data export.
+
 ## Correcting an entry
 
 Every entry on the card and in the **All entries** sheet has a menu on the right.
