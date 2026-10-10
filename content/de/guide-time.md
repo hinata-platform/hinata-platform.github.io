@@ -413,6 +413,43 @@ Du importierst deine eigenen Einträge. Organisationsadmins können über **Impo
 
 Die Mail gehört zu den Benachrichtigungen der Zeiterfassung und lässt sich dort abbestellen. Siehe [Auf dem Laufenden bleiben](/de/guide-notifications.html).
 
+## Abrechnung
+
+Ist die Abrechnung eingeschaltet, rechnen Organisationsadmins und Projektleitungen erfasste Zeit mit Stundensätzen ab. Wer kein Projekt leitet, sieht davon nichts. Eingeschaltet wird sie unter **Organisation → Zeiterfassung → Abrechnung**, zusammen mit der Währung der Instanz.
+
+### Stundensätze
+
+Ein Satz gilt für einen **Vorgang**, ein **Projektmitglied**, eine **Person**, ein **Projekt**, ein **Team** oder als **Standard**. Für jeden Eintrag gilt der genaueste Satz in dieser Reihenfolge, und zwar der, der am Tag des Eintrags galt. Ändert sich ein Satz mitten im Monat, zählt die erste Monatshälfte zum alten und die zweite zum neuen Satz.
+
+- **Erlössätze** legen Projektleitungen für ihr Projekt, dessen Mitglieder und dessen Vorgänge fest: in den Projekteinstellungen unter **Abrechnung** und im Vorgang unter **Stundensatz für diesen Vorgang**.
+- **Kostensätze** sehen und setzen nur Organisationsadmins. Was eine Person kostet, erfährt sonst niemand.
+
+Einen Satz änderst du **ab einem Datum**: Der neue Satz beginnt an diesem Tag, und der laufende endet am Vortag. Ein Datum in der Zukunft plant eine Änderung, ein früheres Datum korrigiert rückwirkend. Alle Sätze stehen unter **Zeiterfassung → Berichte → Abrechnung → Stundensätze**, die Standardsätze ganz oben.
+
+### Berichte
+
+Unter **Zeiterfassung → Berichte** gibt es den Reiter **Abrechnung** mit drei Berichten:
+
+- **Abrechnung**: abrechenbare Stunden und Erlös. Erlös entsteht nur aus Einträgen, die als abrechenbar markiert sind.
+- **Profitabilität**: Erlös, Arbeitskosten und Marge je Projekt, Vorgang, Team oder Zeitraum. Nur für Organisationsadmins, und nie je Person.
+- **Auslastung**: der abrechenbare Anteil der erfassten Zeit, für Organisationsadmins je Team auch gemessen an der Kapazität.
+
+Stunden ohne passenden Satz zählen mit null, und der Bericht sagt, wie viele es sind.
+
+### Rechnungen
+
+1. Öffne **Rechnungen** im Reiter **Abrechnung** oder in den Projekteinstellungen und tippe auf **Rechnung entwerfen**.
+2. Wähle das Projekt, den Leistungszeitraum (höchstens 92 Tage) und ob je Vorgang, Projekt, Person oder Tag eine Position entsteht. Empfänger und Umsatzsteuer kannst du gleich oder später eintragen.
+3. Prüfe den Entwurf. Positionen ohne Satz sind markiert. Du kannst Positionen entfernen und **Positionen neu aufbauen**, wenn sich Einträge geändert haben.
+4. Tippe auf **Ausstellen**.
+
+Ein Entwurf sperrt nichts. Erst beim Ausstellen bekommt die Rechnung die nächste Nummer, zum Beispiel `INV-2026-00001`, die Nummern sind lückenlos. Danach lässt sie sich nicht mehr ändern, und ihre Einträge sind gesperrt. Wer einen solchen Eintrag öffnet, sieht, dass er abgerechnet ist, und kann eine Korrektur anfragen.
+
+Der Weg zurück ist eine **Gutschrift**: Sie trägt dieselben Positionen negativ und eine eigene Nummer. Die Rechnung bleibt erhalten, und die Einträge lassen sich danach korrigieren und neu abrechnen. Rechnungen gibt es als PDF, Word und Excel, in der Sprache, in der sie entworfen wurden, und zum Drucken.
+
+!!! info "Aufbewahrung"
+    Ausgestellte Rechnungen und Gutschriften sind Buchungsbelege (§ 147 AO, § 257 HGB). Sie werden nie gelöscht, auch nicht von der Aufbewahrungsfrist der Zeiterfassung, und ihre Einträge bleiben so lange wie sie. Ein Projekt mit ausgestellten Rechnungen lässt sich archivieren, aber nicht löschen.
+
 ## Wo deine erfasste Zeit landet
 
 1. **Am Vorgang**: Der Aufwand wird aus allen Einträgen neu berechnet und ist immer die echte Summe.
