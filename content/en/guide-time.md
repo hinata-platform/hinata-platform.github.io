@@ -208,7 +208,7 @@ When your organization admins have switched on extended time tracking, your **Se
 
 - **Planned hours** are your hours per weekday. Until you set your own, the default of the server applies. A change applies from the date you pick, so earlier weeks keep the hours they had. This is also where you pick the holiday calendar you follow.
 - **Absences** are vacation, sick leave or other time away, for a single day or a span. A single day can be half a day. The note is optional. Only you and whoever keeps absences see it. You find and keep them in time tracking under **Absences**.
-- **Holidays** come from the calendars your organization admins keep on the [Organization](/en/organization.html) page under **Holidays**. They enter days by hand or import a year from a calendar address.
+- **Holidays** come from the calendars your organization admins keep on the [Organization](/en/organization.html) page under **Holidays**. Usually a calendar follows the statutory holidays of a region and fills itself every year. Organization admins can also enter days by hand or import them from a calendar address.
 
 What changes on screen:
 
