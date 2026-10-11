@@ -44,9 +44,31 @@ The app can show the timer outside its window. The card **Timer outside the app*
 
 - a notification when a countdown or Pomodoro interval ends,
 - on Android, a quiet notification while the timer runs,
-- on the web, a browser notification when the tab is in the background, the running time in the tab title, and a mark on the app icon for the installed web app.
+- on the web, a browser notification when the tab is in the background, the running time in the tab title, and a mark on the app icon for the installed web app,
+- on the desktop, the running timer in the menu bar or the tray, described below.
 
 The texts are generic and never name the issue. Your switches stay on this device and are not sent to the server.
+
+### On the desktop
+
+**Menu bar and tray.** On a Mac the menu bar shows the running time next to the Hinata icon. On Windows and Linux an icon in the notification area shows that the timer runs, and its tooltip has the time. Work and breaks look the same, so a shared screen does not tell anyone when you take a break. Click the icon for a menu: start or stop, the next Pomodoro interval, the focus view, the window, and quit. Only the open menu says whether you are in a focus or a break interval, and it names what you work on only if you switch on **Description in the menu**.
+
+**Keep running when closed.** Closing the window leaves a running timer in the menu bar or the tray, and the window comes back from the menu (or, on a Mac, from the Dock). On a Mac this is on by default and ⌘Q still quits. On Windows and Linux it is off until you switch it on.
+
+**Taskbar (Windows).** The taskbar button fills up with the progress of a countdown or a Pomodoro interval, carries a small mark while the timer runs, and its preview has two buttons: start or stop, and the focus view.
+
+**System-wide shortcuts (macOS and Windows).** Off by default. Switch on **System-wide shortcuts** under Settings → Time tracking to start or stop the timer and open the focus view from any app:
+
+| Shortcut | Mac | Windows |
+| --- | --- | --- |
+| Start or stop | **⌃⌥⌘S** | **Ctrl+Alt+Shift+S** |
+| Focus view | **⌃⌥⌘F** | **Ctrl+Alt+Shift+F** |
+
+Choose other combinations by clicking one and pressing the new keys; a combination needs at least one modifier. If another app or the system already uses a combination, the settings say so. On a Mac another app's shortcut cannot always be seen, so **Check now** asks you to press it once, with any app in front, and tells you whether the press arrived; nothing starts or stops during that check.
+
+The shortcuts go through the operating system's registration for shortcuts. The app hears its two combinations and no other key, and asks for no accessibility permission.
+
+**Linux.** The tray icon needs a panel that shows tray icons: KDE Plasma and most desktops do, GNOME does with the AppIndicator extension (Ubuntu has it on). Without one nothing shows, and the window does not hide into a tray you cannot see. System-wide shortcuts on Linux follow in a later release.
 
 ## Focus mode and shortcuts
 

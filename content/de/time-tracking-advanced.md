@@ -44,9 +44,31 @@ Die App kann den Timer auch außerhalb ihres Fensters zeigen. Die Karte **Timer 
 
 - eine Mitteilung, wenn ein Countdown oder ein Pomodoro-Intervall endet,
 - auf Android eine stille Mitteilung, solange der Timer läuft,
-- im Web eine Browser-Mitteilung, wenn der Tab im Hintergrund ist, die laufende Zeit im Tab-Titel und eine Markierung am App-Symbol der installierten Web-App.
+- im Web eine Browser-Mitteilung, wenn der Tab im Hintergrund ist, die laufende Zeit im Tab-Titel und eine Markierung am App-Symbol der installierten Web-App,
+- auf dem Desktop der laufende Timer in der Menüleiste oder im Infobereich, wie unten beschrieben.
 
 Die Texte sind allgemein und nennen nie den Vorgang. Deine Schalter bleiben auf diesem Gerät und gehen nicht an den Server.
+
+### Auf dem Desktop
+
+**Menüleiste und Infobereich.** Auf dem Mac zeigt die Menüleiste die laufende Zeit neben dem Hinata-Symbol. Unter Windows und Linux zeigt ein Symbol im Infobereich, dass der Timer läuft, und sein Tooltip nennt die Zeit. Arbeit und Pause sehen gleich aus, bei einer Bildschirmfreigabe sieht also niemand, wann du Pause machst. Ein Klick auf das Symbol öffnet ein Menü: starten oder stoppen, das nächste Pomodoro-Intervall, die Fokusansicht, das Fenster und Beenden. Erst das geöffnete Menü sagt, ob gerade Fokus oder Pause ist, und es nennt, woran du arbeitest, nur wenn du **Beschreibung im Menü** einschaltest.
+
+**Beim Schließen weiterlaufen.** Schließt du das Fenster, läuft ein Timer in der Menüleiste oder im Infobereich weiter, und das Fenster kommt über das Menü zurück (auf dem Mac auch über das Dock). Auf dem Mac ist das von Anfang an an, ⌘Q beendet die App wie gewohnt. Unter Windows und Linux ist es aus, bis du es einschaltest.
+
+**Taskleiste (Windows).** Der Taskleisten-Knopf füllt sich mit dem Fortschritt eines Countdowns oder Pomodoro-Intervalls, trägt eine kleine Markierung, solange der Timer läuft, und seine Vorschau hat zwei Knöpfe: starten oder stoppen und die Fokusansicht.
+
+**Systemweite Kürzel (macOS und Windows).** Von Anfang an aus. Schalte unter Einstellungen → Zeiterfassung **Systemweite Kürzel** ein, dann startest und stoppst du den Timer und öffnest die Fokusansicht aus jeder App:
+
+| Kürzel | Mac | Windows |
+| --- | --- | --- |
+| Starten oder stoppen | **⌃⌥⌘S** | **Strg+Alt+Umschalt+S** |
+| Fokusansicht | **⌃⌥⌘F** | **Strg+Alt+Umschalt+F** |
+
+Andere Kombinationen wählst du, indem du auf eine klickst und die neuen Tasten drückst; eine Kombination braucht mindestens eine Sondertaste. Nutzt eine andere App oder das System eine Kombination schon, sagen das die Einstellungen. Auf dem Mac ist das Kürzel einer anderen App nicht immer zu sehen, deshalb bittet dich **Jetzt prüfen**, es einmal zu drücken, gern mit einer anderen App im Vordergrund, und sagt dir, ob der Tastendruck ankam. Während der Prüfung startet und stoppt nichts.
+
+Die Kürzel laufen über die Kürzel-Registrierung des Betriebssystems. Die App hört nur ihre zwei Kombinationen und keine andere Taste, und sie fragt nach keiner Bedienungshilfen-Berechtigung.
+
+**Linux.** Das Symbol im Infobereich braucht eine Leiste, die solche Symbole zeigt: KDE Plasma und die meisten Desktops tun das, GNOME mit der AppIndicator-Erweiterung (unter Ubuntu ist sie an). Ohne sie erscheint nichts, und das Fenster versteckt sich auch nicht in einen Infobereich, den du nicht siehst. Systemweite Kürzel unter Linux folgen in einer späteren Version.
 
 ## Fokusmodus und Tastenkürzel
 
