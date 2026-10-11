@@ -97,6 +97,10 @@ Every tool carries the MCP annotations `readOnlyHint` and `destructiveHint`. Cli
 | `list_kb_articles` | `kb:read` | Visible knowledge base articles, by project or space |
 | `list_work_items` | `worklog:read` | The logged time on an issue |
 | `my_timesheet` | `worklog:read` | The user's own logged time in a date range |
+| `list_my_work_items` | `worklog:read` | The user's own time entries in a date range, paginated, optionally by project or text |
+| `time_summary` | `worklog:read` | The user's own time in up to 366 days, totalled and grouped by project, issue, activity, tag, day, week or month |
+| `get_timer` | `worklog:read` | The user's running timer, if one runs |
+| `my_time_off_balance` | `worklog:read` | The user's own leave per absence type: entitled, taken, planned, left. Sick leave is not listed |
 | `list_my_notifications` | `notifications:read` | The user's notification inbox plus unread count |
 
 **Write tools:**
@@ -109,13 +113,18 @@ Every tool carries the MCP annotations `readOnlyHint` and `destructiveHint`. Cli
 | `start_sprint` / `complete_sprint` | `sprints:write` | Start and complete a sprint. Completing moves open issues |
 | `create_kb_article` / `update_kb_article` / `delete_kb_article` | `kb:write` | Manage knowledge base articles (visibility can never be changed via MCP) |
 | `log_work` / `delete_work_item` | `worklog:write` | Log time against an issue, delete your own work item |
+| `update_work_item` | `worklog:write` | Change your own time entry; locked days, submitted periods and invoiced entries are refused with the reason |
+| `start_timer` / `stop_timer` / `discard_timer` | `worklog:write` | Start a timer, stop it into a time entry, or throw it away |
+| `request_time_off` | `worklog:write` | Ask for time off; it goes to whoever decides it, as from the app |
 
-There are also **resources** for direct reference (`hinata://issue/{ASTA-42}`, `hinata://project/{KEY}`, `hinata://kb/{id}`) and a few **prompt** templates (triage an issue, draft a sprint stand-up).
+The timer, entry and absence tools need the extended time tracking (and absence management for the last two); with the module off they say so and the four older tools keep working. No tool reads anybody else's time or balance, and no tool decides a leave request: approving stays with a person in the app. Sick leave is neither reported nor read over MCP.
+
+There are also **resources** for direct reference (`hinata://issue/{ASTA-42}`, `hinata://project/{KEY}`, `hinata://kb/{id}`, and your own `hinata://time/timer`, `hinata://time/entries/{id}` and `hinata://time-off/balance`) and a few **prompt** templates (triage an issue, draft a sprint stand-up).
 
 ## Security model
 
 - **The ACL is never bypassed.** Every tool resolves the connected user and goes through the same services as the app. Team and project membership and article visibility apply as in the UI.
 - **Scopes gate writes and reads.** A token without the required scope is refused before anything happens.
 - **PATs are `/mcp`-only**, hashed at rest, revocable and can expire.
-- **Everything is rate-limited** on its own per-IP budget. Every write, every token creation or revocation and every OAuth authorization is recorded in the **audit log**.
+- **Everything is rate-limited** on its own per-IP budget. Every write, every token creation or revocation and every OAuth authorization is recorded in the **audit log**. Starting, stopping and discarding a timer is the exception: like the same actions in the app, those records are off until an administrator switches them on, because a line per start and stop is a record of when somebody worked.
 - **OAuth follows the standard and is hardened:** OAuth 2.1 with mandatory PKCE (S256), exact redirect URI matching, single-use authorization codes, hashed and rotating refresh tokens, and audience-bound access tokens (RFC 8707). OAuth tokens carry the same scopes and go through the same tools and ACLs as PATs.

@@ -97,6 +97,10 @@ Jedes Tool trägt die MCP-Annotationen `readOnlyHint` und `destructiveHint`. Cli
 | `list_kb_articles` | `kb:read` | Sichtbare Artikel der Wissensdatenbank, nach Projekt oder Space |
 | `list_work_items` | `worklog:read` | Die gebuchte Zeit eines Vorgangs |
 | `my_timesheet` | `worklog:read` | Die eigene gebuchte Zeit in einem Datumsbereich |
+| `list_my_work_items` | `worklog:read` | Die eigenen Zeiteinträge in einem Datumsbereich, seitenweise, auf Wunsch nach Projekt oder Text |
+| `time_summary` | `worklog:read` | Die eigene Zeit in bis zu 366 Tagen, summiert und gruppiert nach Projekt, Vorgang, Tätigkeit, Tag, Woche oder Monat |
+| `get_timer` | `worklog:read` | Der laufende Timer des Nutzers, falls einer läuft |
+| `my_time_off_balance` | `worklog:read` | Der eigene Urlaub je Abwesenheitsart: Anspruch, genommen, geplant, Rest. Krankheit wird nicht aufgeführt |
 | `list_my_notifications` | `notifications:read` | Der eigene Benachrichtigungseingang inkl. Zahl der ungelesenen |
 
 **Schreib-Tools:**
@@ -109,13 +113,18 @@ Jedes Tool trägt die MCP-Annotationen `readOnlyHint` und `destructiveHint`. Cli
 | `start_sprint` / `complete_sprint` | `sprints:write` | Sprint starten und abschließen. Beim Abschließen werden offene Vorgänge verschoben |
 | `create_kb_article` / `update_kb_article` / `delete_kb_article` | `kb:write` | Artikel der Wissensdatenbank verwalten (die Sichtbarkeit ist per MCP nie änderbar) |
 | `log_work` / `delete_work_item` | `worklog:write` | Zeit auf einen Vorgang buchen, eigenen Arbeitseintrag löschen |
+| `update_work_item` | `worklog:write` | Eigenen Zeiteintrag ändern; gesperrte Tage, eingereichte Zeiträume und abgerechnete Einträge werden mit Begründung abgelehnt |
+| `start_timer` / `stop_timer` / `discard_timer` | `worklog:write` | Timer starten, als Zeiteintrag stoppen oder verwerfen |
+| `request_time_off` | `worklog:write` | Abwesenheit beantragen; der Antrag geht wie aus der App an die Person, die entscheidet |
 
-Außerdem gibt es **Ressourcen** für direkte Verweise (`hinata://issue/{ASTA-42}`, `hinata://project/{KEY}`, `hinata://kb/{id}`) und einige **Prompt**-Vorlagen (Vorgang triagieren, Sprint-Standup entwerfen).
+Die Tools für Timer, Einträge und Abwesenheiten brauchen die erweiterte Zeiterfassung (die letzten beiden zusätzlich das Abwesenheitsmanagement). Ist das Modul aus, sagen sie das, und die vier älteren Tools funktionieren weiter. Kein Tool liest fremde Zeiten oder Salden, und kein Tool entscheidet über einen Antrag: Genehmigen bleibt eine Handlung einer Person in der App. Krankmeldungen laufen weder hin noch zurück über MCP.
+
+Außerdem gibt es **Ressourcen** für direkte Verweise (`hinata://issue/{ASTA-42}`, `hinata://project/{KEY}`, `hinata://kb/{id}` sowie die eigenen `hinata://time/timer`, `hinata://time/entries/{id}` und `hinata://time-off/balance`) und einige **Prompt**-Vorlagen (Vorgang triagieren, Sprint-Standup entwerfen).
 
 ## Sicherheitsmodell
 
 - **Die ACL wird nie umgangen.** Jedes Tool ermittelt den verbundenen Nutzer und nutzt dieselben Services wie die App. Team- und Projektmitgliedschaft und die Sichtbarkeit von Artikeln gelten wie in der Oberfläche.
 - **Scopes regeln Schreib- und Lesezugriffe.** Fehlt der nötige Scope, wird die Anfrage abgelehnt, bevor etwas passiert.
 - **PATs gelten nur für `/mcp`**, werden gehasht gespeichert, sind widerrufbar und können ablaufen.
-- **Alles hat ein Rate Limit** mit eigenem Budget pro IP. Jeder Schreibvorgang, jedes Erstellen und Widerrufen eines Tokens und jede OAuth-Autorisierung landet im **Audit-Protokoll**.
+- **Alles hat ein Rate Limit** mit eigenem Budget pro IP. Jeder Schreibvorgang, jedes Erstellen und Widerrufen eines Tokens und jede OAuth-Autorisierung landet im **Audit-Protokoll**. Ausgenommen sind Start, Stopp und Verwerfen eines Timers: Wie dieselben Aktionen in der App sind diese Einträge aus, bis ein Administrator sie einschaltet, weil eine Zeile je Start und Stopp festhält, wann jemand gearbeitet hat.
 - **OAuth folgt dem Standard und ist gehärtet:** OAuth 2.1 mit verpflichtendem PKCE (S256), exaktem Abgleich der Redirect-URI, Autorisierungscodes für nur eine Nutzung, gehashten und rotierenden Refresh-Tokens und Access-Tokens mit fester Audience (RFC 8707). OAuth-Tokens tragen dieselben Scopes und laufen durch dieselben Tools und ACLs wie PATs.
