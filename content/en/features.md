@@ -22,7 +22,7 @@ Hinata brings agile project management into one place: plan work, run sprints, t
 | **Projects & teams** | Projects with their own keys (`ASTA-42`), workflows and colored labels. Teams grant members access to projects and decide what each person can see. | [Projects & teams](/en/projects-teams.html) |
 | **Issues & hierarchy** | Types, priorities, labels, Markdown, comments, attachments and dependencies in an Epic → Story → Sub-task hierarchy. | [Issues & hierarchy](/en/issues.html) |
 | **Boards & sprints** | An agile board with columns per workflow state, WIP limits, swimlanes and a backlog. Plan, start and complete sprints with capacity and burndown. | [Boards & sprints](/en/boards-sprints.html) |
-| **Gantt & time tracking** | A timeline of start and due dates and dependencies. Plus work logging with activity types and weekly timesheets. | [Gantt & time tracking](/en/timeline.html) |
+| **Gantt & time tracking** | A timeline of start and due dates and dependencies. Plus time logged on issues with a weekly timesheet and, if you want, timer, calendar, approvals, reports, absences and billing. | [Gantt & time tracking](/en/timeline.html), [Extended time tracking](/en/time-tracking-advanced.html) |
 | **Knowledge base** | Confluence-style hierarchical Markdown articles, global or per project, with smart links to real issues and people. | [Knowledge base](/en/knowledge-base.html) |
 | **Notifications** | In-app, e-mail and push through the Hinata Connect gateway. No Firebase project of your own required. | [Notifications](/en/notifications.html) |
 | **Search & palette** | A liquid-glass command palette (⌘K) to jump anywhere, run commands and reopen recent items. A sheet on mobile. | [Search & palette](/en/search.html) |
@@ -62,7 +62,9 @@ See [Boards & sprints](/en/boards-sprints.html).
 
 The **Gantt timeline** is a read model over your issues' start and due dates, dependencies and progress. It shows the shape of a delivery and where the critical path runs.
 
-**Time tracking** lets people log work against issues with activity types. It rolls up into weekly timesheets for reporting and capacity planning. See [Gantt & time tracking](/en/timeline.html).
+**Time tracking** lets people log work against issues. It rolls up into a weekly timesheet for reporting and capacity planning. See [Tracking your time](/en/guide-time.html).
+
+**Extended time tracking** is a module organization admins switch on: a timer with stopwatch, countdown and Pomodoro, calendar, tags, approvals, calendar subscriptions, reports with export, shared entries and billing. **Absence management** can come on top, with leave requests, sickness reports and balances. See [Extended time tracking](/en/time-tracking-advanced.html), [Absences](/en/absences.html) and [Time tracking administration](/en/admin-time-tracking.html).
 
 ## Knowledge base
 

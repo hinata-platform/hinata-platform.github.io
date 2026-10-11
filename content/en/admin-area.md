@@ -108,7 +108,8 @@ platform offers.
   calendar days or working days is up to organization admins.
 - **Extended time tracking**: here you only see whether it is on. It is set up
   on the [Organization](/en/organization.html) page. If you are an
-  organization admin too, the row takes you there.
+  organization admin too, the row takes you there. Every switch and policy is
+  explained in [Time tracking administration](/en/admin-time-tracking.html).
 
 !!! tip "These override the environment"
     Anything under Platform wins over the matching `hinata.app.*`

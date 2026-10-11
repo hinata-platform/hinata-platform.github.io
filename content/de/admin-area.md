@@ -113,7 +113,8 @@ was diese Plattform anbietet.
   oder Arbeitstagen zählen, legen Organisationsadmins fest.
 - **Erweiterte Zeiterfassung**: Hier siehst du nur, ob sie an ist. Eingestellt
   wird sie auf der Seite [Organisation](/de/organization.html). Bist du auch
-  Organisationsadmin, führt dich die Zeile dorthin.
+  Organisationsadmin, führt dich die Zeile dorthin. Alle Schalter und
+  Richtlinien erklärt [Zeiterfassung verwalten](/de/admin-time-tracking.html).
 
 !!! tip "Gewinnt gegen die Umgebung"
     Alles unter Plattform überschreibt die passende

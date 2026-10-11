@@ -102,12 +102,25 @@ function rehypeResponsiveImages() {
       if (node.tagName !== 'img' || !parent || typeof index !== 'number') return;
       const src = String(node.properties?.src ?? '');
       if (!src.startsWith('/assets/img/')) return;
-      const replacement = pictureFor(
-        src,
-        String(node.properties?.alt ?? ''),
-        seen++ === 0,
-      );
-      if (replacement) parent.children[index] = replacement;
+      const alt = String(node.properties?.alt ?? '');
+      const eager = seen++ === 0;
+      const replacement = pictureFor(src, alt, eager);
+      if (!replacement) return;
+      // A screenshot taken in both themes ships as `x.png` and `x-dark.png`.
+      // Both pictures go into the page and the stylesheet shows the one that
+      // matches the theme; the hidden one is lazy and never loads.
+      const dark = pictureFor(src.replace(/\.png$/, '-dark.png'), alt, false);
+      parent.children[index] = dark
+        ? {
+            type: 'element',
+            tagName: 'span',
+            properties: { className: ['themed-shot'] },
+            children: [
+              { ...replacement, properties: { className: ['shot-light'] } },
+              { ...dark, properties: { className: ['shot-dark'] } },
+            ],
+          }
+        : replacement;
     });
   };
 }

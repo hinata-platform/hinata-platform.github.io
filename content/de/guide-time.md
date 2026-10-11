@@ -1,477 +1,125 @@
 ---
 title: Zeit erfassen
-description: Arbeitszeit an Vorgängen erfassen, korrigieren und im Stundenzettel prüfen.
+description: Zeit an einem Vorgang erfassen, eigene Einträge korrigieren, den Stundenzettel lesen und Zeit direkt per Commit buchen.
 ---
 
 # Zeit erfassen
 
-Du erfasst eine Dauer am Vorgang und wählst die Art der Arbeit. Daraus entstehen dein Stundenzettel, die Fokuszeit auf deiner Startseite und die Aufwandsauswertung in den Berichten.
+Du erfasst eine Dauer an einem Vorgang. Daraus entstehen dein Stundenzettel, die Fokuszeit auf deinem Dashboard und die Aufwandszeile am Vorgang. Diese Seite beschreibt den Grundmodus. Nutzt deine Organisation das erweiterte Time-Tracking, lies auch [den letzten Abschnitt](#wenn-das-erweiterte-time-tracking-aktiv-ist).
 
 ## Zeit an einem Vorgang erfassen
 
 1. Öffne den Vorgang und suche die Karte **Timeline**. Im breiten Fenster steht sie rechts unter Details, auf dem Handy weiter unten.
 2. Tippe oben rechts auf der Karte auf **Zeit erfassen**.
-3. Trag die Dauer ein und drücke **Speichern**.
+3. Trag **Stunden** und **Minuten** ein, prüfe das **Datum** und drücke **Speichern**.
 
 ![Das Sheet „Zeit erfassen“](/assets/img/shot-time-log.png)
-*Das ausgefüllte Sheet mit 1 Stunde 30 Minuten und der Tätigkeitsart „Testen“.*
+*Das Sheet „Zeit erfassen“ mit Dauer, Datum und optionaler Notiz.*
 
-Pflicht ist nur die Dauer, die Notiz ist optional. Nach dem Speichern steigt der Aufwand am Vorgang, der Eintrag erscheint auf der Karte und dein Stundenzettel zählt ihn mit.
+Pflicht ist nur die Dauer. **Notiz (optional)** füllst du, wenn du willst. Nach dem Speichern steigt der Aufwand am Vorgang und der Eintrag erscheint auf der Karte.
 
 !!! tip "Dauer schnell eintippen"
-    **Stunden** startet bei `1`, **Minuten** bei `0`. Für anderthalb Stunden tippst du `30` in **Minuten**. Für 20 Minuten setzt du **Stunden** auf `0` und **Minuten** auf `20`. Die Felder nehmen nur Ziffern an.
+    **Stunden** startet bei `1`, **Minuten** bei `0`. Für anderthalb Stunden tippst du `30` in **Minuten**. Für 20 Minuten setzt du **Stunden** auf `0` und **Minuten** auf `20`.
 
-![Das Sheet „Zeit erfassen“ auf dem Handy](/assets/img/shot-mobile-time-log.png)
-*Auf dem Handy fährt das Sheet von unten hoch, Stunden und Minuten bleiben nebeneinander.*
+### Was du eingeben kannst
 
-### Was du eingeben kannst und was nicht
+- Ein Eintrag dauert mindestens eine Minute und höchstens 24 Stunden.
+- Du kannst bis zu ein Jahr zurückgehen. Zukünftige Tage gehen nicht. Pläne gehören in [Start- und Fälligkeitsdatum](/de/guide-timeline.html).
+- Mehrere Einträge am selben Vorgang und Tag sind normal und addieren sich.
 
-- Ein Eintrag dauert mindestens eine Minute und höchstens 24 Stunden. Arbeit über Mitternacht teilst du auf zwei Tage auf.
-- Du kannst bis zu ein Jahr rückdatieren, aber nichts in der Zukunft erfassen. Für Pläne gibt es [Start- und Fälligkeitsdatum](/de/guide-timeline.html).
-- Mehrere Einträge am selben Tag und Vorgang sind normal und addieren sich.
+## Die Einträge an einem Vorgang
 
-![Der Datumsauswähler im Sheet „Zeit erfassen“](/assets/img/shot-time-date.png)
-*Der Auswähler öffnet auf heute, graut die Zukunft aus und reicht 365 Tage zurück.*
+Jede Zeile zeigt Dauer und Datum. Darunter steht, wer erfasst hat, und die Notiz.
 
-### Die Eintragsliste
+- An deinen eigenen Einträgen siehst du deinen Namen und deine Notiz.
+- An Einträgen anderer steht **Anderes Mitglied** und keine Notiz. Die Projektleitung sieht Namen und Notizen im Projekt.
+- **Alle Einträge (24)** unter der Liste öffnet die ganze Historie mit der bisherigen Summe. Weitere Zeilen laden beim Scrollen nach.
 
-![Die Timeline-Karte eines Vorgangs mit ihren Arbeitseinträgen](/assets/img/shot-time-entries.png)
-*Die Karte Timeline mit Aufwandszeile und den acht jüngsten Einträgen.*
+Einträge mit **Smart Commits (vor 2.0)** stammen aus alten Versionen. Sie gehören niemandem, zählen aber mit. Nur die Projektleitung kann sie entfernen.
 
-Jede Zeile zeigt Dauer · Tätigkeitsart und rechts das Datum. Die Liste enthält die Einträge aller Beteiligten.
+## Einen Eintrag korrigieren oder löschen
 
-- Bei fremden Einträgen siehst du nur Dauer und Tätigkeitsart.
-- Name und Notiz siehst du an deinen eigenen Einträgen. Die Projektleitung sieht sie auch und kann Einträge korrigieren.
+Jeder Eintrag, den du ändern darfst, hat rechts ein Menü.
 
-!!! note "Warum an fremden Einträgen kein Name steht"
-    Name und Datum an jedem Eintrag ergäben eine Aufzeichnung, wer wann wie lange gearbeitet hat. So eine Auswertung von Beschäftigtendaten muss bewusst eingeführt werden, wo nötig mit Betriebsvereinbarung. Eine Richtlinie für Betreiber, die das für Projektleitungen freigibt, ist geplant. Bis dahin gilt die Regel für alle.
+- **Bearbeiten** öffnet dasselbe Sheet mit den aktuellen Werten. Nach **Speichern** wird der Aufwand neu berechnet. Die Datumsregeln oben gelten weiter.
+- **Löschen** fragt vorher nach und nennt Dauer und Tag. Das lässt sich nicht rückgängig machen, der Aufwand sinkt um genau diesen Betrag.
 
-**Alle Einträge (24)** unter der Liste öffnet die ganze Historie mit der bisher erfassten Gesamtzeit. Weitere Einträge laden beim Scrollen nach.
+Wer was darf:
 
-## Die richtige Tätigkeitsart wählen
+- **Eigene Einträge:** bearbeiten und löschen, immer.
+- **Einträge anderer:** Die Projektleitung darf sie löschen, aber nicht bearbeiten. So steht unter einem Namen nie etwas, das die Person nicht selbst geschrieben hat. Bitte sie, neu zu erfassen. Jede solche Löschung landet im Audit-Protokoll.
 
-Es gibt sechs feste Tätigkeitsarten. So bedeuten sie für alle dasselbe und die Zahlen lassen sich addieren.
+!!! tip "Zu wenig erfasst?"
+    Erfasse die fehlende Zeit als zweiten Eintrag. Bearbeiten ist für eine Dauer, die schlicht falsch ist.
 
-![Das Menü „Tätigkeitsart“](/assets/img/shot-time-activity.png)
-*Das Menü „Tätigkeitsart“ mit sechs Einträgen und ohne „Sonstiges“.*
+## Schätzung und Aufwand
 
-- **Entwicklung**: die Sache bauen und ändern.
-- **Testen**: sie prüfen, von Hand oder mit Tests.
-- **Dokumentation**: sie aufschreiben, in der [Wissensdatenbank](/de/guide-knowledge.html) oder anderswo.
-- **Design**: festlegen, wie sie aussieht oder sich verhält.
-- **Meeting**: Zeit mit anderen zu diesem Vorgang.
-- **Support**: anderen helfen, die Sache zu nutzen oder weiterzukommen.
+Die Karte **Timeline** zeigt eine Zeile wie `9h 30m von 10h aufgewendet`.
 
-Daraus entsteht der Bericht **Zeit pro Tätigkeit**. Er stimmt nur, wenn alle Meetings auch als Meeting erfassen. In der englischen App heißen die Arten *Development*, *Testing* und so weiter. Dahinter steckt derselbe Wert, Berichte zählen also sprachunabhängig.
+- Die erste Zahl ist die Summe aller Einträge am Vorgang, von allen.
+- Die zweite ist die **Zeitschätzung** für die ganze Aufgabe.
 
-## Schätzung, Aufwand und der Unterschied dazwischen
-
-Die Karte **Timeline** zeigt eine Zeile wie `9h 30m von 10h aufgewendet` (siehe [die Eintragsliste](#die-eintragsliste)).
-
-- Die erste Zahl ist die Summe aller Einträge am Vorgang, von allen Beteiligten.
-- Die zweite ist die **Zeitschätzung**, die ursprüngliche Annahme für die ganze Aufgabe.
-
-Nähert sich die erste Zahl der zweiten, wird es knapp. Eine Zeitschätzung siehst du außerdem:
-
-- **Auf der Karte im Board** als kleiner Chip mit dem bisherigen Aufwand.
-- **In der [Timeline](/de/guide-timeline.html)** als gefüllter Anteil im Balken. Ist er voll, obwohl noch Tage übrig sind, war die Schätzung zu optimistisch.
+Du siehst das auch auf der Karte im Board als kleinen Chip und in der [Timeline-Ansicht](/de/guide-timeline.html) als gefüllten Teil des Balkens.
 
 !!! note "Eine Schätzung ist kein Story Point"
-    **Schätzen** in der Sprintplanung (die Karten mit Fibonacci-Zahlen) setzt **Story Points**, eine relative Größe für Planung und Velocity. Das ist ein anderes Feld als die Zeitschätzung, und die meisten Teams nutzen es im Alltag. Ohne Zeitschätzung steht dort `9h 30m von — aufgewendet`. Deine erfasste Zeit zählt trotzdem überall.
+    Story Points aus der Sprintplanung sind ein eigenes Feld. Ohne Zeitschätzung steht dort `9h 30m von — aufgewendet`. Deine Zeit zählt trotzdem überall.
 
 ## Der wöchentliche Stundenzettel
 
 **Stundenzettel** findest du in der Seitenleiste, auf dem Handy unter **Mehr**.
 
-![Der Hinata-Stundenzettel mit einer Woche und ihrer Navigation](/assets/img/shot-timesheet.png)
+![Der wöchentliche Stundenzettel](/assets/img/shot-timesheet.png)
 *Eine Woche im Stundenzettel, eine Zeile je Person und Projekt.*
 
-### Eine Zeile lesen
+- Jede Zeile ist eine Person in einem Projekt. Die Spalten sind die Wochentage, dann **Gesamt**.
+- Die Woche beginnt mit dem ersten Wochentag deiner Sprache: Montag auf Deutsch, Sonntag im US-Englisch.
+- Die Pfeile springen eine Woche zurück oder vor. **Heute** bringt dich zur aktuellen Woche.
+- Zeit an einem Vorgang, dessen Projekt es nicht mehr gibt, steht unter **Nicht zugeordnet**.
+- Der Stundenzettel ist zum Lesen da. Erfasst wird am Vorgang.
 
-- Jede Zeile ist eine Person in einem Projekt. Das Projekt kommt automatisch aus dem Vorgang.
-- Die Spalten laufen von Montag bis Sonntag, am Ende steht **Gesamt**.
-- Tage ohne Einträge zeigen einen Strich statt einer Null.
+### Filter
 
-### Zwischen Wochen wechseln
-
-- Die Woche steht oben rechts. Die Pfeile daneben springen eine Woche zurück oder vor.
-- Wochen beginnen am Montag. Arbeit vom Sonntag landet am Ende ihrer Woche.
-- **Heute** im Seitenkopf springt zur aktuellen Woche und lädt sie neu. Der Knopf ist nur aktiv, wenn du eine andere Woche ansiehst.
-
-### Wessen Zeit du siehst
-
-- Du siehst nur **deine eigene** Arbeit. Der Server lehnt Anfragen nach fremden Stunden ab.
-- Organisationsadmins sehen alle Zeilen. Sie haben je einen durchsuchbaren Filter für Person und Projekt. Vorgangstitel, Vorgangsschlüssel, Beschreibungen und Projektnamen sehen sie aber nur bei Projekten, in denen sie Mitglied sind.
-
-Zeit an einem verschobenen Vorgang oder einem Projekt, das es nicht mehr gibt, bleibt deine. Sie steht unter **Nicht zugeordnet**.
+- Du siehst nur deine eigene Zeit. Der Server lehnt Anfragen nach fremden Stunden ab.
+- Organisationsadmins sehen alle Zeilen und haben zwei durchsuchbare Filter: **Alle Nutzer** und **Alle Projekte**. Vorgangstitel und Projektnamen sehen sie nur bei Projekten, in denen sie Mitglied sind.
 
 !!! note "Leer heißt nicht kaputt"
-    „In dieser Woche wurden keine Arbeitszeiten erfasst“ gilt nur für die angezeigte Woche. Geh mit dem linken Pfeil zurück, bevor du einen Fehler vermutest.
+    „In dieser Woche wurden keine Arbeitszeiten erfasst.“ gilt nur für die angezeigte Woche. Geh zuerst mit dem linken Pfeil zurück.
 
-## Eine Woche schnell füllen
+## Zeit per Commit erfassen
 
-- **Erfasse, sobald du aufhörst.** Du bist schon im Vorgang, das Sheet braucht vier Tipps.
-- **Gestern vergessen?** Öffne die Vorgänge von gestern, erfasse dort und stell das **Datum** auf gestern.
-- **Erfasse per Commit.** Ist dein Projekt mit einem Git-Repository verbunden und sind Smart Commits aktiv, reicht diese Zeile in der Nachricht:
+Ist dein Projekt mit einem Git-Repository verbunden, erfasst eine Zeile in der Commit-Nachricht Zeit:
 
 ```text
 MOB-42 #time 2h 30m
 ```
 
-Erlaubt sind `w`, `d`, `h` und `m`. Ein Tag hat 8 Stunden, eine Woche 5 Tage, `1d 4h` sind also zwölf Stunden. Das Repository verbindet die Projektleitung, siehe [Git-Integration](/de/git-integration.html).
+Das legt an `MOB-42` einen echten Eintrag an, genau wie einer, den du in der App eintippst.
 
-Der Eintrag gehört **der Autorin oder dem Autor des Commits**, erkannt an der E-Mail-Adresse im Commit. Er erscheint in deren Stundenzettel, Fokuszeit und im Bericht „Zeit pro Tätigkeit“. Datum ist der Tag des Commits in der Zeitzone dieser Person. Die Notiz enthält kurze SHA und Betreffzeile. Ohne Tätigkeitsart zählt er als **Entwicklung**.
+- Dauern verstehen `w`, `d`, `h` und `m`. Ein Tag hat 8 Stunden, eine Woche 5 Tage, `1d 4h` sind also zwölf Stunden.
+- Der Eintrag gehört **der Person, die den Commit geschrieben hat**, erkannt an der Autor-E-Mail. Die Notiz enthält den kurzen Commit-Hash und den Betreff.
+- Er trägt den Tag, an dem der Commit entstand, in der Zeitzone dieser Person.
+- Es gelten dieselben Regeln wie in der App. Ein Commit kann zum Beispiel nicht auf einen gesperrten Tag buchen.
 
-!!! note "Ein Commit bucht nur auf ein bekanntes Konto"
-    Die Adresse muss zu einem aktiven Hinata-Konto gehören, und die Person muss Mitglied des Projekts sein. Sonst wird die Zeile übersprungen, im Serverprotokoll vermerkt und keine Zeit gebucht, auch nicht bei der Person, die das Repository verbunden hat. Fehlen deine Commits, prüfe zuerst `git config user.email`.
+!!! note "Die Commit-Zeit fehlt?"
+    Die Autor-E-Mail muss zu einem aktiven Hinata-Konto passen, das Mitglied im Projekt ist. Sonst wird die Zeile übersprungen und keine Zeit erfasst. Prüf zuerst `git config user.email`. Das Repository verbindet die Projektleitung, siehe [Git-Integration](/de/git-integration.html).
 
-## Deine eigenen Kalender
+## Wenn das erweiterte Time-Tracking aktiv ist
 
-Haben eure Organisationsadmins den **Kalender-Import** eingeschaltet, kannst du deine eigenen Kalender abonnieren, zum Beispiel von Google, Outlook oder Apple. Deine Termine stehen dann im Kalender der Zeiterfassung neben deinen Einträgen, und mit einem Tipp übernimmst du einen als Eintrag. Hinata liest den Kalender nur und schreibt nie etwas zurück. Deine Abos und ihre Termine siehst nur du.
+Deine Organisationsadmins können das erweiterte Modul einschalten. Dann ändert sich Folgendes:
 
-### Einen Kalender abonnieren
+- Aus **Stundenzettel** in der Seitenleiste wird **Zeiterfassung**, mit Liste, Kalender und Stundenzettel an einem Ort.
+- **Zeit erfassen** am Vorgang öffnet den größeren Editor mit Beginn und Ende, Tags und abrechenbar.
+- Du bekommst einen Timer, Freigaben für deinen Stundenzettel, Sperrdaten, Berichte und Exporte.
+- Urlaub und Krankheit findest du in der Zeiterfassung unter **Abwesenheiten**.
 
-1. Öffne **Einstellungen → Zeiterfassung**. Unter deinen Arbeitszeiten findest du **Kalender-Abos**.
-2. Tippe auf **Hinzufügen**.
-3. Gib dem Kalender einen **Namen**, zum Beispiel *Arbeit*, und füge seine **Private Adresse (ICS)** ein.
-4. Wähle eine **Farbe** und tippe auf **Abonnieren**.
+Weiter geht es hier:
 
-Der Kalender wird sofort gelesen. Du kannst bis zu 10 Kalender abonnieren. Der Bereich erscheint nur, wenn die erweiterte Zeiterfassung und der Kalender-Import beide eingeschaltet sind.
-
-!!! tip "Wo finde ich die Adresse?"
-    Das Formular erklärt es unter **Wo finde ich die Adresse?**:
-
-    - **Google:** Einstellungen → dein Kalender → Kalender integrieren → Privatadresse im iCal-Format.
-    - **Outlook:** Einstellungen → Kalender → Freigegebene Kalender → Kalender veröffentlichen → ICS-Link.
-    - **Apple:** iCloud.com → Kalender → Kalender als öffentlichen Kalender teilen → Link kopieren.
-
-    Adressen, die mit `https://` oder `webcal://` beginnen, funktionieren.
-
-!!! warning "Die Adresse ist ein Schlüssel"
-    Wer die Adresse kennt, kann den Kalender lesen. Hinata speichert sie verschlüsselt und zeigt sie nie wieder an, auch dir nicht. Willst du sie ändern, bearbeite den Kalender und füge die neue ein. Lässt du das Feld leer, bleibt die gespeicherte Adresse.
-
-### Termine im Kalender
-
-Unter **Zeiterfassung → Kalender** erscheinen deine Termine in der Farbe ihres Kalenders mit gestricheltem Rand, in der **Woche** genauso wie im **Monat**. In der Woche stehen ganztägige Termine in einem Band oben. Deine Einträge bleiben gefüllte Blöcke, so unterscheidest du geplante und gebuchte Zeit auf einen Blick. Termine zählen in keine Summe.
-
-**Kalendertermine zeigen** im Menü des Kalenders, neben **Woche** und **Monat**, blendet sie aus oder ein. Die Wahl gilt, bis du die App schließt. Hinata behält die Termine von 30 Tagen zurück bis 90 Tage voraus.
-
-### Einen Termin als Eintrag übernehmen
-
-Tippe auf einen Termin. Das Blatt **Als Zeiteintrag übernehmen** öffnet sich. Die Zeiten kommen aus deinem Kalender und werden dort angezeigt, aber nicht bearbeitet, der Titel des Termins wird zur Beschreibung. Wähle, wohin der Eintrag gehört, zum Beispiel Projekt und Vorgang, und tippe auf **Übernehmen**.
-
-Ab dann ist es ein gewöhnlicher Eintrag, gekennzeichnet mit **Aus einem Kalender**. Es gelten dieselben Regeln wie für einen getippten Eintrag, etwa Sperrdatum, Pflichtfelder und Freigaben. Der Termin verschwindet aus dem Kalender, denn an seiner Stelle steht jetzt der Eintrag. Aus einem Termin wird höchstens ein Eintrag.
-
-!!! info "Was kein Eintrag werden kann"
-    Ganztägige Termine und Termine über mehr als einen Tag lassen sich nicht übernehmen. Tippst du auf einen, sagt dir die App das.
-
-### Heute noch offene Termine
-
-Sind Termine von heute vorbei und noch nicht übernommen, zeigt die Liste der Zeiterfassung einen Chip wie **2 Termine von heute noch nicht übernommen**. Ein Tipp öffnet den Kalender. **Vorerst ausblenden** legt den Chip für den Moment weg. Ganztägige Termine und Termine, die dein Kalender als frei markiert, zählen nicht mit.
-
-### Automatisch übernehmen
-
-Im Formular des Kalenders kannst du **Vergangene Termine automatisch übernehmen** einschalten und ein **Projekt für diese Einträge** und Tags wählen. Hinata macht dann aus jedem Termin einen Eintrag, sobald er vorbei ist.
-
-- Nur Termine, die nach dem Einschalten beginnen. Ältere bleiben unberührt.
-- Nie ganztägige, vorläufige oder solche, die dein Kalender als frei markiert.
-- Jeden Termin nur einmal. Löschst du einen solchen Eintrag, kommt er nicht wieder.
-
-Lässt sich ein Eintrag nicht anlegen, etwa weil der Tag gesperrt ist, zeigt die Karte des Kalenders, wie viele Termine nicht übernommen wurden und warum.
-
-### Aktualisieren, pausieren und Fehler
-
-Hinata liest jeden abonnierten Kalender jede halbe Stunde. Die Karte jedes Kalenders zeigt seinen Stand: **Wartet auf den ersten Abruf**, **Wird gerade gelesen**, wie viele Termine wann gelesen wurden, oder was schiefging. Fehler stehen in deiner Sprache da, zum Beispiel, dass der Kalenderserver nicht rechtzeitig geantwortet hat oder dass unter der Adresse kein Kalender liegt.
-
-Das Menü jedes Kalenders bietet **Jetzt aktualisieren** (höchstens einmal pro Minute), **Bearbeiten**, **Pausieren** oder **Fortsetzen** und **Löschen**. Nach fünf Fehlversuchen in Folge wird ein Kalender pausiert und nicht mehr gelesen, bis du ihn **fortsetzt**. Löschst du einen Kalender, verschwinden seine Termine aus der Zeiterfassung. Einträge, die du schon übernommen hast, bleiben.
-
-## Einträge mit anderen teilen
-
-Habt ihr zu zweit oder zu dritt an etwas gearbeitet, zum Beispiel in einem Workshop oder beim Pairing, muss nicht jede Person den Eintrag selbst tippen. Du teilst deinen Eintrag, und deine Kolleginnen und Kollegen übernehmen ihn mit einem Tippen in ihre eigenen Einträge.
-
-### Einen Eintrag teilen
-
-1. Öffne einen deiner Einträge.
-2. Tippe oben im Blatt auf **Teilen mit…**.
-3. Wähle unter **Person hinzufügen…** die Personen aus. Angeboten werden nur Mitglieder des Projekts, zu dem der Eintrag gehört.
-4. Tippe auf **Einladungen senden**.
-
-Schneller geht es beim Schreiben: Tippe in der Beschreibung ein **+**, und die Personen des Projekts öffnen sich. Der gewählte Name steht danach im Text, und unter **Wird geteilt mit** siehst du, wer die Einladung beim Speichern bekommt.
-
-Teilen lässt sich nur ein Eintrag mit Projekt, und höchstens mit 20 Personen.
-
-### Was die anderen sehen
-
-Wer eingeladen ist, bekommt eine Benachrichtigung und sieht über der eigenen Eintragsliste einen Hinweis wie **2 geteilte Einträge warten auf deine Antwort**. Unter **Ansehen** steht die Einladung mit Beschreibung, Tag, Uhrzeit, Projekt und Tags. Deinen Eintrag selbst sieht dort niemand.
-
-- **Annehmen** legt eine Kopie in den eigenen Einträgen an.
-- **Anpassen** nimmt die Kopie mit einem anderen Projekt oder anderen Tags an.
-- **Ablehnen** sagt nein. Du erfährst nur, dass abgelehnt wurde, nie warum, und bekommst dazu keine Benachrichtigung.
-
-Die Kopie gehört danach ganz der Person, die sie angenommen hat. Sie kann sie ändern oder löschen, ohne dass sich an deinem Eintrag etwas ändert, und umgekehrt. Für die Kopie gelten ihre Regeln: Liegt der Tag bei ihr vor dem Sperrdatum oder in einem eingereichten Zeitraum, wird die Annahme mit einer Meldung abgelehnt und die Einladung wartet weiter.
-
-### Den Stand verfolgen
-
-Unter **Gesendet** auf derselben Seite siehst du jede Einladung mit ihrem Stand: **Offen**, **Angenommen**, **Abgelehnt** oder **Zurückgezogen**. Eine offene Einladung kannst du dort oder im Blatt **Teilen mit…** zurückziehen. Löschst du deinen Eintrag, werden offene Einladungen dazu automatisch zurückgezogen.
-
-!!! info "Datenschutz"
-    Wird ein Konto gelöscht, verschwinden alle Einladungen, die es gesendet oder bekommen hat. Bereits angenommene Kopien bleiben, denn sie sind Einträge der Personen, die sie angenommen haben. Deine Einladungen stehen auch in deinem Datenexport.
-
-## Einen Eintrag korrigieren
-
-Jeder Eintrag auf der Karte und im Sheet **Alle Einträge** hat rechts ein Menü.
-
-- **Eintrag bearbeiten** öffnet das Sheet mit den aktuellen Werten. Nach **Speichern** wird der **Aufwand** neu berechnet. Die Datumsregeln gelten weiter.
-- **Löschen** fragt mit Dauer und Tag nach und lässt sich nicht rückgängig machen. Der **Aufwand** sinkt um genau diese Dauer.
-
-### Wessen Einträge du ändern darfst
-
-- **Deine eigenen** darfst du immer bearbeiten und löschen.
-- **Fremde** darfst du als Projektleitung oder Organisationsadmin löschen, aber nicht bearbeiten. So steht unter einem Namen nie etwas, das die Person nicht selbst erfasst hat. Bitte sie danach, neu zu erfassen. Jede Löschung steht mit beiden Namen im Audit-Protokoll.
-
-!!! tip "Zu wenig erfasst?"
-    Erfasse die fehlende Zeit als zweiten Eintrag. Einträge am selben Vorgang und Tag addieren sich. Bearbeiten ist für falsche Dauern gedacht.
-
-Einträge mit **Smart Commits (vor 2.0)** stammen aus älteren Versionen, die Zeit aus Commits mit `#time` direkt gebucht haben. Sie haben keinen Namen, zählen aber weiter. Entfernen können sie nur Projektleitung oder Organisationsadmins.
-
-## Arbeitszeiten, Abwesenheiten und Feiertage
-
-Wenn eure Organisationsadmins die erweiterte Zeiterfassung eingeschaltet haben, findest du in deinen **Einstellungen** den Abschnitt **Arbeitszeiten** und in der Zeiterfassung die Ansicht **Abwesenheiten**. Beides ist Planung. Du kannst an jedem Tag Zeit erfassen, auch an Feiertagen und an Tagen, an denen du nicht da bist.
-
-- **Geplante Stunden** sind deine Stunden je Wochentag. Solange du keine eigenen festlegst, gilt die Vorgabe des Servers. Eine Änderung gilt ab dem Datum, das du wählst, frühere Wochen behalten ihre Stunden. Hier wählst du auch den Feiertagskalender, nach dem du dich richtest.
-- **Abwesenheiten** sind Urlaub, Krankmeldungen oder Sonstiges, für einen einzelnen Tag oder einen Zeitraum. Ein einzelner Tag kann ein halber Tag sein. Die Notiz ist freiwillig, sehen können sie nur du und die Abwesenheitsverwaltung. Du findest und pflegst sie in der Zeiterfassung unter **Abwesenheiten**.
-- **Feiertage** kommen aus den Kalendern, die eure Organisationsadmins auf der Seite [Organisation](/de/organization.html) unter **Feiertage** pflegen. Meist folgt ein Kalender den gesetzlichen Feiertagen einer Region und füllt sich jedes Jahr von selbst. Organisationsadmins können Tage auch von Hand eintragen oder aus einer Kalenderadresse importieren.
-
-Was sich dadurch zeigt:
-
-- Eintragsliste und Kalender markieren Feiertage, Abwesenheiten und Tage ohne geplante Stunden. Die Markierung ist bewusst zurückhaltend, denn sie ist keine Sperre. Ein Tag, der sich wirklich nicht mehr ändern lässt, trägt ein Schloss.
-- Dein eigener Stundenzettel zeigt **Deine Kapazität**: deine geplanten Stunden im Zeitraum, abzüglich Feiertage und Abwesenheiten, neben dem, was du gebucht hast. Nur du siehst das.
-- Mit eingeschalteten Arbeitszeithinweisen bekommt ein Eintrag an einem Feiertag einen Hinweis, genau wie ein Eintrag an einem Sonntag.
-
-## Abwesenheiten in der Zeiterfassung
-
-Deine Abwesenheiten stehen dort, wo auch deine Stunden stehen: in der Zeiterfassung, neben Liste, Kalender und Stundenzettel. Die Ansicht **Abwesenheiten** hat vier Bereiche.
-
-- **Meine** ist die Liste deiner Tage, mit einer Suche über die Notizen, einem Zeitraum, einer Art und der Reihenfolge. Was noch auf eine Entscheidung wartet, steht oben.
-- **Anträge** sind deine eigenen Anträge mit dem, was daraus wurde.
-- **Zu entscheiden** ist der Posteingang für alle, die entscheiden.
-- **Konten** zeigt dir, was dir in diesem Jahr zusteht, und das Journal dahinter.
-
-Eintragen kannst du von überall in der Zeiterfassung: im Kopf über **Abwesenheit beantragen** oder den Pfeil neben **Neuer Eintrag**, auf dem Telefon über das **+**, und im Kalender über das Tagesmenü — langer Druck oder Rechtsklick auf einen Tag. Das Formular startet dann auf dem Tag, den du angefasst hast.
-
-Ein Tipp auf eine Abwesenheit, ein Band im Kalender oder eine Markierung in Liste und Stundenzettel öffnet dasselbe Blatt. Es zeigt, woher die Abwesenheit kommt, und bietet genau das an, was noch geht: bearbeiten und löschen bei einer eingetragenen, zurückziehen und bearbeiten bei einem offenen Antrag, stornieren bei einem genehmigten, und einen neuen Antrag nach einer Ablehnung.
-
-## Abwesenheitskonten
-
-Haben eure Organisationsadmins zusätzlich die **Abwesenheitsverwaltung** eingeschaltet, steht unter **Abwesenheiten** auf der Pille **Konten**, was dir in diesem Jahr zusteht.
-
-- **Konten** zeigen je Abwesenheitsart, was dir zusteht, was du genommen hast, was geplant ist und was bleibt. Eine Art ohne Kontingent, zum Beispiel Krankmeldungen, zeigt statt einer Zahl, was in diesem Jahr darauf entfallen ist: Entgeltfortzahlung ist kein Anspruch in Tagen.
-- **Journal** listet jede Bewegung eines Kontos, mit dem Tag, an dem sie wirkt, und der Begründung, wenn es eine gab. Dein Konto entsteht aus dieser Liste, nicht aus einer gespeicherten Zahl, und deshalb lässt sich jede Zahl darauf zurückführen.
-- Die Tage selbst stehen auf der Pille **Meine**, vergangene wie kommende.
-
-Sehen kann das nur, wen es angeht: du selbst und die Personen, die deine Organisation als Abwesenheitsverwaltung benannt hat.
-
-!!! info "Eine Zahl, die noch nicht da ist"
-    Steht bei einer Art **Noch nicht zugeteilt**, ist für dieses Jahr noch kein Anspruch eingetragen. Das ist kein Fehler und keine Aussage über deinen Vertrag, sondern heißt nur: Die Verwaltung hat das Jahr noch nicht zugeteilt.
-
-## Abwesenheit beantragen
-
-Sagt eine Abwesenheitsart, dass sie genehmigt werden muss, wird sie beantragt statt eingetragen. **Abwesenheit beantragen** steht im Kopf der Abwesenheiten und in jedem Menü, das die Zeiterfassung zum Hinzufügen anbietet.
-
-Im Formular wählst du die Art, den Zeitraum und, wenn die Art es erlaubt, ob der erste oder der letzte Tag ein halber ist. Während du die Daten wählst, rechnet der Server mit und sagt dir, was die Spanne kostet: wie viele Arbeitstage darin liegen, wie viele Feiertage sie geschluckt hat und was dir danach bleibt. Wochenenden, Feiertage und Tage, an denen du laut deinem Muster nicht arbeitest, kosten nichts — ein Feiertag, der in den Urlaub fiel, war nie Urlaub.
-
-Zwei Felder sind freiwillig. Die **Notiz** liest, wer entscheidet. Eine **Vertretung** wird informiert und muss nichts bestätigen: Dein Urlaub soll nicht an der Aufmerksamkeit einer anderen Person hängen.
-
-Was beim Einreichen berechnet wurde, wird eingefroren. Wechselst du später von fünf auf vier Tage die Woche, deutet das einen entschiedenen Antrag nicht um — in keine Richtung.
-
-!!! info "Beantragte Tage sieht man, bevor sie entschieden sind"
-    Ein Tag, den du beantragt hast, ist in Kalender und Stundenzettel schraffiert und trägt eine Sanduhr. Das ist bewusst weder die stille Fläche einer eingetragenen Abwesenheit noch das Schloss eines gesperrten Tages: Der Tag ist beansprucht, nicht geschlossen, und Zeit lässt sich darauf weiterhin erfassen.
-
-## Krank melden
-
-Krankheit wird gemeldet, nicht beantragt. **Krank melden** verlangt nur den Zeitraum, ist sofort wirksam und geht auch rückwirkend. Es gibt keine genehmigende Person, kein Pflichtfeld und keinen Weg, auf dem der Server eine Krankmeldung ablehnen könnte.
-
-Einen Nachweis lädst du hier nicht hoch, und das ist Absicht: Seit 2023 holt der Arbeitgeber die Arbeitsunfähigkeitsbescheinigung bei der Krankenkasse ab (§ 109 SGB IV). Eine Gesundheitsangabe in einem Projektwerkzeug wäre ein besonders geschütztes Datum, das dort nichts zu suchen hat. Deinem Arbeitgeber musst du die Krankheit weiterhin selbst melden (§ 5 EFZG); hinata ist diese Meldung nicht.
-
-Fällt die Krankheit auf Tage, die du schon als Urlaub genehmigt bekommen hast, gehen diese Tage von selbst auf dein Konto zurück und der Urlaub wird gekürzt (§ 9 BUrlG). Wer den Urlaub entschieden hat, erfährt die Kürzung als Tatsache, nie ihren Grund.
-
-Wer eine Krankmeldung als Krankheit sieht, hängt davon ab, ob deine Organisation Personen für die Abwesenheitsverwaltung benannt hat. Hat sie das, sehen nur diese Personen die Krankheit. Organisationsadmins sehen dann nur, dass du abwesend bist, aber nicht, warum. Ist niemand benannt, führen die Organisationsadmins die Abwesenheiten selbst und sehen sie vollständig.
-
-## Anträge und Posteingang
-
-Unter **Anträge** stehen deine Anträge mit dem, was daraus wurde: offen, genehmigt, abgelehnt, zurückgezogen oder storniert. Solange niemand entschieden hat, kannst du einen Antrag **zurückziehen** oder **bearbeiten**: Zeitraum, halbe Tage, Notiz und Vertretung lassen sich ändern, und die Tage werden neu gerechnet. Wechselst du dabei die Art, geht der Antrag an die Personen, die für die neue Art entscheiden, und die alten erfahren, dass er sie nicht mehr betrifft. Ist er genehmigt und liegt noch ganz in der Zukunft, kannst du ihn selbst **stornieren** — die Tage gehen zurück, und wer entschieden hat, wird informiert. Hat die Abwesenheit schon begonnen, übernimmt das die Abwesenheitsverwaltung, weil es dann kein Plan mehr ist, sondern eine Aufzeichnung.
-
-**Zu entscheiden** ist der Posteingang. Er ist leer für alle, die nichts zu entscheiden haben, und das ist eine ehrliche Antwort, kein verstecktes Feature. Jede Karte nennt die Person, den Zeitraum, die Tagesmenge und, wo es zutrifft, drei Hinweise: dass der Saldo nicht reicht, dass die Frist kürzer ist als die Art verlangt, und wie viele andere im selben Zeitraum abwesend sind. Wie viele Urlaubstage jemand noch hat, steht dort nicht — die Antwort ist ein Ja oder Nein, keine Zahl.
-
-**Eine Ablehnung braucht eine Begründung.** § 7 Abs. 1 BUrlG lässt eine Ablehnung nur wegen dringender betrieblicher Belange oder vorrangiger Wünsche anderer zu, und eine Ablehnung, die keines von beidem nennt, kann niemand prüfen. Die Begründung erreicht die antragstellende Person und steht in der Historie des Antrags.
-
-**Über den eigenen Antrag entscheidet niemand selbst**, auch kein Organisationsadmin. Wer einen Antrag stellt, wird aus dem Kreis der entscheidenden Personen gestrichen. Findet sich danach niemand mehr, landet der Antrag bei den Organisationsadmins. Ein Antrag, der in einem sichtbaren Posteingang liegen bleibt, ist ein Problem, um das sich jemand kümmern kann. Ein Antrag, der verschwunden ist, nicht.
-
-Steht eine Art auf automatischer Genehmigung, wird der Antrag sofort entschieden, du wirst benachrichtigt, und in der Historie steht, dass niemand darüber geurteilt hat.
-
-!!! info "Und wenn niemand übrig bleibt?"
-    In einer Organisation aus einer einzigen Person bleibt die Empfängerliste leer: Wer den Antrag stellt, wäre die einzige Person, die ihn entscheiden könnte, und über den eigenen entscheidet niemand. Der Antrag ist deshalb nicht verloren. Wer die Abwesenheitsverwaltung führt, darf jeden Antrag entscheiden, auch einen ohne Empfänger. Sobald also eine zweite Person dazukommt oder jemand dafür benannt wird, steht er in deren Posteingang.
-
-## Abwesenheiten im Team
-
-Haben die Organisationsadmins den **Team-Abwesenheitskalender** eingeschaltet, gibt es in der Zeiterfassung unter den Abwesenheiten einen fünften Bereich: **Team**. Er zeigt, wer in einer Gruppe wann abwesend ist, als Planungsansicht und nicht als Anwesenheitsliste. Du siehst Zeiträume, nie Uhrzeiten, und die Personen stehen nach Namen sortiert, nie danach, wer am meisten weg war.
-
-Oben wählst du die Gruppe: **Meine Projekte**, eines deiner Teams oder ein Projekt. In einer Gruppe erscheint nur, wer selbst Zeit auf einem ihrer Projekte erfasst hat. Mitglied zu sein reicht nicht, denn wer ein Projekt oder ein Team anlegt, kann dort jede Person aufnehmen, ohne zu fragen. Du selbst stehst in jeder Gruppe, zu der du gehörst, und die Abwesenheitsverwaltung sieht alle aktuellen Mitglieder. Daneben schaltest du zwischen **Monat** und **Quartal** um und blätterst mit den Pfeilen.
-
-Was du über eine Abwesenheit erfährst, legen die Organisationsadmins fest, und jede Abwesenheitsart kann es weiter einschränken:
-
-- **Nur, dass jemand abwesend ist:** ein neutraler Balken mit dem Wort *Abwesend*.
-- **Die Art der Abwesenheit:** der Balken trägt Symbol und Namen der Art. Eine Art, die nur für die Person selbst sichtbar ist, erscheint bei anderen gar nicht.
-- **Krankheit** steht auf jeder Stufe nur als *Abwesend* da, auch in deiner eigenen Zeile. Das ist eine Gesundheitsangabe (Art. 9 DSGVO), und ein Kalender, auf den andere schauen, ist nicht der Ort dafür.
-
-Ein **beantragter** Zeitraum ist schraffiert und mit einer Sanduhr markiert, ein genehmigter ist ausgefüllt. Wochenenden und Feiertage liegen als Fläche dahinter.
-
-Leitungen eines Projekts und Admins eines Teams, sofern Leitungen die Abwesenheiten ihrer Mitglieder sehen dürfen, und die Abwesenheitsverwaltung sehen über den Zeilen zusätzlich, wie viel **Kapazität** der Gruppe an jedem Tag bleibt: die geplanten Stunden aller, abzüglich Feiertagen und genehmigter Abwesenheiten. **Beantragt zeigt, genehmigt zählt:** ein offener Antrag senkt die Kapazität nicht, sonst hätte ein zurückgezogener Antrag die Planung rückwirkend verändert. Die Zahl ist immer eine Summe über mindestens drei Personen und nennt nie eine Person.
-
-Auf dem Telefon wird aus dem Kalender eine **Wochenliste**: je Woche die verfügbaren Stunden als Satz, darunter die Personen, die fehlen, mit Zeitraum und Art. Ein Raster aus fünf sichtbaren Tagen wäre dort nicht lesbar.
-
-Auf dem Dashboard zeigt die Karte **Heute abwesend** bis zu fünf Namen aus deinen Projekten und darunter, wie viele es noch sind.
-
-## Abwesenheitsarten und Ansprüche verwalten
-
-Die folgenden beiden Seiten sieht, wer die Abwesenheitsverwaltung führt. Das müssen keine Organisationsadmins sein: Sie können Personen dafür benennen, und sie finden den Weg dorthin in ihren eigenen Einstellungen.
-
-**Abwesenheitsarten** ist der Katalog. Jede Art legt fest, ob sie bezahlt ist, ob sie gegen ein Kontingent zählt, wie ein Anspruch entsteht, was ins nächste Jahr übertragen wird, wer sie sieht und wer sie genehmigt. Die vier vorgegebenen Arten bleiben immer; ihre Gattung lässt sich nicht ändern, weil daran hängt, wie die Zeiterfassung sie behandelt. Eine Art, die schon benutzt wurde, wird stillgelegt statt gelöscht — sonst verlören vergangene Jahre ihren Bezug.
-
-**Ansprüche** ist das Verzeichnis neben dem Stand jeder Person für eine Art und ein Jahr. Von hier aus wird zugeteilt, für eine Person oder für viele auf einmal; vor dem Zuteilen zeigt eine Vorschau, was bei wem herauskäme und warum. Eine **Korrektur** verschiebt ein Konto um einen Betrag und verlangt immer eine Begründung — ein Saldo, der sich ohne genannten Grund bewegt hat, ist der, nach dem in einem Jahr jemand fragt.
-
-!!! warning "Was der Standard verspricht"
-    Urlaub steht auf 20 Tagen, nicht auf 30. Das ist der gesetzliche Mindesturlaub bei einer Fünftagewoche (§ 3 Abs. 1 BUrlG). Ein Standard soll nichts zusagen, was dein Arbeitgeber nicht zugesagt hat; was darüber hinausgeht, trägt die Verwaltung ein.
-
-## Zeitberichte
-
-Unter **Zeiterfassung → Berichte** wertest du erfasste Zeit aus. Oben wählst du den Zeitraum, etwa **Dieser Monat** oder einen eigenen, daneben die **Filter** und die Gruppierung. Die Berichte haben vier Bereiche: **Übersicht**, **Einträge**, **Auslastung** und **Gespeichert**.
-
-![Die Übersicht der Zeitberichte](/assets/img/shot-time-reports.png)
-*Die Übersicht, nach Projekt gruppiert.*
-
-### Was ein Bericht zählt
-
-Ein Bericht zählt nur, was du auch sonst sehen darfst.
-
-- **Summen** je Projekt, Tätigkeit, Tags, Vorgang oder Zeitraum enthalten deine eigenen Einträge und alle Einträge der Projekte, die du siehst. Dass an einem Vorgang Zeit gebucht wurde, sieht jedes Mitglied ohnehin.
-- **Personen** erscheinen nur bei deinen eigenen Einträgen. Leitest du ein Projekt, kommen dessen Mitglieder dazu, aber nur, wenn die Organisationsadmins die Richtlinie **Leitungen sehen Einträge der Mitglieder** eingeschaltet hat. Das gilt für die Gruppierung nach Person oder Team, für die Liste der Einträge und für jeden Export.
-- **Organisationsadmins** sehen Stunden, Person und Projektschlüssel für alle. Vorgangstitel, Vorgangsschlüssel, Beschreibungen und Projektnamen sehen sie nur bei Projekten, in denen sie Mitglied sind, und bei ihren eigenen Einträgen. Das gilt auch für jeden Export. Die Suche in den Beschreibungen durchsucht nur Einträge, die sie lesen dürfen.
-
-Filter nach Personen, Teams, Suchwort oder Freigabe wirken deshalb nur dort, wo du die Einträge der Personen sehen darfst. Das Filterblatt sagt das auch.
-
-### Übersicht
-
-Die Übersicht zeigt oben die Summen: **Gesamt**, **Abrechenbar** und die Zahl der **Einträge**. Rundet der Bericht, steht daneben **Wie erfasst**, also die Zeit vor dem Runden. Darunter folgt ein Diagramm und eine Liste mit dem Anteil jeder Gruppe.
-
-- Gruppieren kannst du nach Projekt, Person, Team, Tätigkeit, Tags, Vorgang, Tag, Woche oder Monat.
-- Das Diagramm wechselst du oben rechts in seiner Karte. Gruppen mit Namen zeigt es als **Balken** oder als Ring der **Anteile**, Tage, Wochen und Monate als Säulen oder als **Verlauf**. Der Wechsel fragt den Server nicht neu.
-- Ein Tipp auf eine Gruppe öffnet ihre Einträge: derselbe Bericht, auf diese Gruppe eingegrenzt.
-
-Gerundet wird jeder Eintrag für sich, nicht erst die Summe. Standard ist **Wie in den Regeln**, also die Rundung, die die Organisationsadmins für die Zeiterfassung festgelegt haben. Im Filterblatt kannst du für einen Bericht anders runden, zum Beispiel auf 15 Minuten auf. An den Einträgen selbst ändert das nichts.
-
-### Einträge
-
-**Einträge** listet jeden Eintrag des Berichts, nach Tagen geordnet, mit Beschreibung, Uhrzeit, Projekt und Vorgang, Tätigkeit, Tags und, soweit du sie sehen darfst, der Person. Weicht die gerundete Dauer von der erfassten ab, steht die erfasste darunter. Die Liste lädt beim Scrollen nach.
-
-### Auslastung
-
-**Auslastung** gibt es nur, wenn die Organisationsadmins Auslastungsberichte eingeschaltet haben, und nur für Organisationsadmins und Projektleitungen. Er stellt für jede Person die **Kapazität** im Zeitraum neben das, was sie **gebucht** hat, und die **Differenz**. Die Kapazität sind die geplanten Stunden abzüglich Feiertage und Abwesenheiten. Wie viel davon frei oder abwesend war, steht unter dem Namen.
-
-- Oben wählst du die Gruppe: **Meine Projekte** oder ein einzelnes Projekt, das du leitest.
-- Eine Leitung sieht bei **Gebucht** nur die Zeit auf Projekten, die sie leitet.
-- Die Liste ist nach Namen sortiert, nie nach Stunden, und der Balken ist neutral. Keine Farbe sagt „zu wenig“ oder „zu viel“.
-
-!!! warning "Ein Vergleich zwischen Menschen"
-    Der Auslastungsbericht stellt Personen nebeneinander. Welche Zwecke er erfüllen darf, gehört in die Betriebs- oder Dienstvereinbarung. Siehe [Datenschutz der Zeiterfassung](/de/time-tracking-privacy.html).
-
-### Exportieren und drucken
-
-Über **Exportieren** holst du den Bericht als **PDF**, **Excel (XLSX)** oder **CSV**, oder du **druckst** ihn. Der Export nimmt den Bericht, wie er gerade auf dem Bildschirm steht, mit Zeitraum, Filtern, Gruppierung und Rundung. PDF und Excel enthalten die Summen, die Gruppen und die Einträge, CSV nur die Einträge.
-
-Eine Datei hat eine Obergrenze: 5 000 Einträge im PDF, 50 000 in Excel und 100 000 in CSV. Liegt der Bericht darüber, ist die Datei gekürzt, sagt das an ihrem Ende, und die App meldet es beim Speichern. Grenze dann den Zeitraum oder die Filter ein. Jeder Export steht im Audit-Protokoll, mit Format, Zahl der Zeilen und einem Fingerabdruck der Filter. Diese Einträge sehen nur Organisationsadmins, im Protokoll auf der Seite [Organisation](/de/organization.html).
-
-Deine eigenen Einträge als CSV nach Art. 20 DSGVO holst du weiterhin unter **Einstellungen → Zeiterfassung**. Der Berichtsexport ersetzt das nicht. Siehe [Datenschutz der Zeiterfassung](/de/time-tracking-privacy.html).
-
-### Einträge aus einer CSV-Datei importieren
-
-Über **CSV importieren** übernimmst du Einträge aus einer Datei, zum Beispiel aus einem anderen Werkzeug. Eine Datei darf bis 5 MB groß sein und bis 10 000 Zeilen haben.
-
-1. Wähle die Datei. Exporte aus Hinata und aus toggl erkennt der Import selbst, auch mit deutschen oder englischen Spaltennamen.
-2. Prüfe die Zuordnung der Spalten: Datum, Beginn, Ende, Minuten, Stunden oder Dauer, Projekt, Vorgang, Tätigkeit, Beschreibung, Tags, Abrechenbar und Person. Eine Spalte, die du nicht zuordnest, wird nicht verwendet.
-3. Sieh dir die Vorschau an. Jede Zeile wird geprüft wie ein getippter Eintrag: Projekt und Vorgang, Sperrdatum, Freigaben, Pflichtfelder und erlaubte Tags. Zeilen mit Fehlern stehen mit Zeilennummer und Grund darunter.
-4. Importiere. Geschrieben werden nur die Zeilen, die die Prüfung bestanden haben, alle oder keine. Bricht der Import mittendrin ab, nimmt Hinata die schon geschriebenen Einträge wieder zurück.
-
-Du importierst deine eigenen Einträge. Organisationsadmins können über **Importieren für** auch für andere importieren; das steht im Audit-Protokoll.
-
-### Berichte speichern, teilen und per Mail bekommen
-
-**Bericht speichern** legt den Bericht mit Zeitraum, Filtern, Gruppierung und Rundung unter **Gespeichert** ab. Ein relativer Zeitraum wie **Letzter Monat** bleibt relativ: Öffnest du den Bericht im Oktober, zeigt er den September. Über das Menü an einem gespeicherten Bericht kannst du ihn öffnen, umbenennen, teilen, per Mail senden lassen oder löschen.
-
-- **Link teilen** erzeugt einen Link, den du weitergeben kannst. Wer ihn öffnet, muss angemeldet sein und sieht den Bericht nur mit dem, was er selbst sehen darf, nie mit deiner Sicht. **Link widerrufen** macht den Link sofort ungültig.
-- **Per Mail senden** schickt den Bericht wöchentlich an einem Tag deiner Wahl oder am Monatsersten, zur gewählten Stunde in deiner Zeitzone. Er deckt die sieben Tage davor oder den Vormonat ab. Jede Person auf der Liste bekommt ihn mit dem, was sie selbst sehen darf, ohne Anhang und mit einem Link in die App. Du selbst bekommst ihn nur, wenn du dich auf die Liste setzt.
-
-Die Mail gehört zu den Benachrichtigungen der Zeiterfassung und lässt sich dort abbestellen. Siehe [Auf dem Laufenden bleiben](/de/guide-notifications.html).
-
-## Abrechnung
-
-Ist die Abrechnung eingeschaltet, rechnen Organisationsadmins und Projektleitungen erfasste Zeit mit Stundensätzen ab. Wer kein Projekt leitet, sieht davon nichts. Eingeschaltet wird sie unter **Organisation → Zeiterfassung → Abrechnung**, zusammen mit der Währung der Instanz.
-
-### Stundensätze
-
-Ein Satz gilt für einen **Vorgang**, ein **Projektmitglied**, eine **Person**, ein **Projekt**, ein **Team** oder als **Standard**. Für jeden Eintrag gilt der genaueste Satz in dieser Reihenfolge, und zwar der, der am Tag des Eintrags galt. Ändert sich ein Satz mitten im Monat, zählt die erste Monatshälfte zum alten und die zweite zum neuen Satz.
-
-- **Erlössätze** legen Projektleitungen für ihr Projekt, dessen Mitglieder und dessen Vorgänge fest: in den Projekteinstellungen unter **Abrechnung** und im Vorgang unter **Stundensatz für diesen Vorgang**.
-- **Kostensätze** sehen und setzen nur Organisationsadmins. Was eine Person kostet, erfährt sonst niemand.
-
-Einen Satz änderst du **ab einem Datum**: Der neue Satz beginnt an diesem Tag, und der laufende endet am Vortag. Ein Datum in der Zukunft plant eine Änderung, ein früheres Datum korrigiert rückwirkend. Alle Sätze stehen unter **Zeiterfassung → Berichte → Abrechnung → Stundensätze**, die Standardsätze ganz oben.
-
-### Berichte
-
-Unter **Zeiterfassung → Berichte** gibt es den Reiter **Abrechnung** mit drei Berichten:
-
-- **Abrechnung**: abrechenbare Stunden und Erlös. Erlös entsteht nur aus Einträgen, die als abrechenbar markiert sind.
-- **Profitabilität**: Erlös, Arbeitskosten und Marge je Projekt, Vorgang, Team oder Zeitraum. Nur für Organisationsadmins, und nie je Person.
-- **Auslastung**: der abrechenbare Anteil der erfassten Zeit, für Organisationsadmins je Team auch gemessen an der Kapazität.
-
-Stunden ohne passenden Satz zählen mit null, und der Bericht sagt, wie viele es sind.
-
-### Rechnungen
-
-1. Öffne **Rechnungen** im Reiter **Abrechnung** oder in den Projekteinstellungen und tippe auf **Rechnung entwerfen**.
-2. Wähle das Projekt, den Leistungszeitraum (höchstens 92 Tage) und ob je Vorgang, Projekt, Person oder Tag eine Position entsteht. Empfänger und Umsatzsteuer kannst du gleich oder später eintragen.
-3. Prüfe den Entwurf. Positionen ohne Satz sind markiert. Du kannst Positionen entfernen und **Positionen neu aufbauen**, wenn sich Einträge geändert haben.
-4. Tippe auf **Ausstellen**.
-
-Ein Entwurf sperrt nichts. Erst beim Ausstellen bekommt die Rechnung die nächste Nummer, zum Beispiel `INV-2026-00001`, die Nummern sind lückenlos. Danach lässt sie sich nicht mehr ändern, und ihre Einträge sind gesperrt. Wer einen solchen Eintrag öffnet, sieht, dass er abgerechnet ist, und kann eine Korrektur anfragen.
-
-Der Weg zurück ist eine **Gutschrift**: Sie trägt dieselben Positionen negativ und eine eigene Nummer. Die Rechnung bleibt erhalten, und die Einträge lassen sich danach korrigieren und neu abrechnen. Rechnungen gibt es als PDF, Word und Excel, in der Sprache, in der sie entworfen wurden, und zum Drucken.
-
-!!! info "Aufbewahrung"
-    Ausgestellte Rechnungen und Gutschriften sind Buchungsbelege (§ 147 AO, § 257 HGB). Sie werden nie gelöscht, auch nicht von der Aufbewahrungsfrist der Zeiterfassung, und ihre Einträge bleiben so lange wie sie. Ein Projekt mit ausgestellten Rechnungen lässt sich archivieren, aber nicht löschen.
-
-## Wo deine erfasste Zeit landet
-
-1. **Am Vorgang**: Der Aufwand wird aus allen Einträgen neu berechnet und ist immer die echte Summe.
-2. **Fokuszeit im [Dashboard](/de/guide-reports.html)**: deine Minuten der letzten sieben Tage, heute in Bernstein. **Monat** zeigt die letzten fünf Kalenderwochen. Es zählt nur *deine* Einträge.
-3. **Dein Stundenzettel**, wie oben beschrieben.
-4. **Bericht „Zeit pro Tätigkeit“** in den [Berichten](/de/guide-reports.html): die Zeit des ganzen Projekts aus den letzten 30 Tagen nach Tätigkeitsart, als Dauer.
-5. **Deine Wochenübersicht**: deine Fokuszeit der Woche neben dem, was du abgeschlossen hast. Siehe [Auf dem Laufenden bleiben](/de/guide-notifications.html).
-6. **Die Zeitberichte** unter **Zeiterfassung → Berichte**, wie oben beschrieben.
-
-## Gewohnheiten, die die Zahlen wertvoll halten
-
-- **Runde maßvoll.** 25 Minuten als 30 sind in Ordnung. Zwei Stunden als ganzer Tag verfälschen jede spätere Schätzung.
-- **Erfasse Meetings.** Sie gehen am häufigsten verloren.
-- **Erfasse am richtigen Vorgang.** Arbeit an einer [Unteraufgabe](/de/guide-issues.html) erfasst du dort. Aufwand wird nicht an den übergeordneten Vorgang weitergegeben.
-- **Erfasse nichts an einem Epic.** Dort lässt sich die Zeit keiner konkreten Arbeit zuordnen.
-- **Niemand bewertet dich nach Stunden.** Fokuszeit steht nur auf deinem eigenen Dashboard. Das Ranking im Team zählt gelöste Vorgänge.
-
-!!! info "Zeiterfassung benachrichtigt niemanden"
-    Beobachter eines Vorgangs erfahren nichts von neuen Einträgen. War die Aufgabe viel größer als gedacht, schreib einen [Kommentar](/de/guide-collaboration.html).
+- [Erweitertes Time-Tracking](/de/time-tracking-advanced.html) für alles, was das Modul kann.
+- [Abwesenheiten: Urlaub und Krankheit](/de/absences.html) für Urlaub, Krankheit und Salden.
+- Für Admins: [einschalten und Regeln festlegen](/de/admin-time-tracking.html).
+- [Zeiterfassung: Datenschutz & Recht](/de/time-tracking-privacy.html) dafür, wer was sehen darf.
 
 ## Nächste Schritte
 
-- Setze die Daten, gegen die Zeit gemessen wird, in der [Timeline](/de/guide-timeline.html).
-- Sieh, was aus deinen Stunden wird, im [Dashboard und in den Berichten](/de/guide-reports.html).
-- Lerne, wie Vorgänge und Unteraufgaben zusammenpassen, unter [Mit Vorgängen arbeiten](/de/guide-issues.html).
+- Setze die Daten, an denen Zeit gemessen wird, in der [Timeline](/de/guide-timeline.html).
+- Sieh nach, was aus deinen Stunden wird, im [Dashboard und in den Berichten](/de/guide-reports.html).

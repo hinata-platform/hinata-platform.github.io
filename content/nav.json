@@ -339,6 +339,20 @@
      }
     ],
     [
+     "time-tracking-advanced",
+     {
+      "en": "Extended time tracking",
+      "de": "Erweitertes Time-Tracking"
+     }
+    ],
+    [
+     "absences",
+     {
+      "en": "Absences: leave and sickness",
+      "de": "Abwesenheiten: Urlaub und Krankheit"
+     }
+    ],
+    [
      "time-tracking-privacy",
      {
       "en": "Time tracking: privacy & law",
@@ -488,6 +502,13 @@
      {
       "en": "Admin area",
       "de": "Adminbereich"
+     }
+    ],
+    [
+     "admin-time-tracking",
+     {
+      "en": "Time tracking administration",
+      "de": "Zeiterfassung verwalten"
      }
     ],
     [

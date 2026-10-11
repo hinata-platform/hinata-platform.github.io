@@ -266,7 +266,23 @@ Mailpit UI `http://localhost:8025`, SeaweedFS S3 API `http://localhost:8333` (no
   sprint header, glass filter popup.
 - **Sprints**: plan / start / complete, capacity & story points, burndown report.
 - **Gantt / Timeline**: read model — start/due dates, dependencies, progress.
-- **Time tracking**: work items with activity types + weekly timesheets.
+- **Time tracking**: basic mode on every instance: time on issues, own entries
+  editable, smart-commit `#time`, weekly timesheet with filters (`guide-time`).
+  **Extended time tracking** is a module (flag `advancedEnabled`, Organization →
+  Time tracking): timer (stopwatch, countdown, Pomodoro), list/calendar/timesheet,
+  tags, focus mode and shortcuts, lock date and approvals with correction requests,
+  targets and reminders, calendar subscriptions (ICS, read only), reports with
+  export/import and saved reports, shared entries, billing (own flag
+  `billingEnabled`: rates, money reports, invoices and credit notes), MCP tools
+  (`time-tracking-advanced`). **Absence management** is a second module (flag
+  `absenceManagementEnabled`, needs the extended module): absence types,
+  entitlements and journal, requests and approvals, sickness reported without
+  approval, team calendar and capacity band, yearly run with expiry notices
+  (`absences`). Every policy, its default and co-determination note:
+  `admin-time-tracking` (checked against code by `tools/check_policy_matrix.py`);
+  law, records and checklists: `time-tracking-privacy`. Hinata never blocks
+  recording working time, locks only the past, every lock has a way back,
+  late entries are never refused (the four principles, R9).
 - **Reports**: burndown, velocity, cycle time; distributions by state/priority/
   assignee; created vs. resolved. Export to PDF (pdf + printing).
 - **Knowledge base**: Confluence-style hierarchical Markdown articles, global or
@@ -395,6 +411,8 @@ backups (Backups & upgrades / Backups & Upgrades).
 features: features (Feature tour / Feature-Tour), projects-teams (Projects & teams / Projekte & Teams),
 issues (Issues & hierarchy / Vorgänge & Hierarchie), boards-sprints (Boards & sprints / Boards & Sprints),
 timeline (Gantt & time tracking / Gantt & Zeiterfassung),
+time-tracking-advanced (Extended time tracking / Erweitertes Time-Tracking),
+absences (Absences: leave and sickness / Abwesenheiten: Urlaub und Krankheit),
 time-tracking-privacy (Time tracking: privacy & law / Zeiterfassung: Datenschutz & Recht), reports (Reports & dashboard / Berichte & Dashboard),
 knowledge-base (Knowledge base / Wissensdatenbank), notifications (Notifications / Benachrichtigungen),
 search (Search & palette / Suche & Palette).
@@ -403,7 +421,7 @@ security (Security model / Sicherheitsmodell).
 integrations: git-integration (Git integration / Git-Integration),
 email-to-ticket (E-mail to ticket / E-Mail zu Vorgang), connect-gateway (Hinata Connect gateway / Hinata Connect Gateway).
 apps: clients (The apps / Die Apps), self-hosted-app (Branding & custom clients / Branding & eigene Clients).
-administration: admin-area (Admin area / Adminbereich), project-settings (Project settings / Projekteinstellungen).
+administration: admin-area (Admin area / Adminbereich), admin-time-tracking (Time tracking administration / Zeiterfassung verwalten), project-settings (Project settings / Projekteinstellungen).
 reference: api (API reference / API-Referenz), development (Development / Entwicklung),
 contributing (Contributing / Mitwirken), faq (FAQ & troubleshooting / FAQ & Fehlerbehebung).
 ```

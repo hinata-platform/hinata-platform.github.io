@@ -127,7 +127,10 @@ Siehe [Wissensdatenbank](/de/knowledge-base.html).
 
 - **Workflow-Automatisierung:** Git-Ereignisse (Branch erstellt, Commit gepusht, PR/MR geöffnet oder gemergt) bewegen Vorgänge vorwärts. Siehe [Git-Integration](/de/git-integration.html).
 - **Smart-Commits:** Angaben in der Commit-Nachricht, die auf einen Vorgang wirken, z. B. `ASTA-42 #comment shipped`, `#time 2h 30m` oder ein beliebiges `#word` für einen Statuswechsel.
-- **Zeiterfassung:** Arbeitszeit mit Aktivitätstyp an Vorgängen buchen, zusammengefasst in Wochenstundenzetteln. Siehe [Gantt & Zeiterfassung](/de/timeline.html).
+- **Zeiterfassung:** Arbeitszeit an Vorgängen buchen, zusammengefasst im wöchentlichen Stundenzettel. Siehe [Zeit erfassen](/de/guide-time.html).
+- **Erweitertes Time-Tracking:** ein Modul mit Timer, Kalender, Freigaben, Berichten und Abrechnung, das Organisationsadmins einschalten. Siehe [Erweitertes Time-Tracking](/de/time-tracking-advanced.html).
+- **Abwesenheitsverwaltung:** Urlaub beantragen, Krankheit melden und Salden führen, ein eigenes Modul über dem erweiterten Time-Tracking. Siehe [Abwesenheiten](/de/absences.html).
+- **Richtlinie:** eine Regel der Organisation für die Zeiterfassung, etwa Pflichtfelder oder das Sperrdatum. Alle Richtlinien stehen unter [Zeiterfassung verwalten](/de/admin-time-tracking.html).
 - **Benachrichtigungen:** in der App, per E-Mail und als Push über das [Connect Gateway](/de/connect-gateway.html).
 - **Die Befehlspalette:** [Suche](/de/search.html) und Befehle über ⌘K.
 

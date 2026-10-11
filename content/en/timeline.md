@@ -1,6 +1,6 @@
 ---
 title: Gantt & time tracking
-description: Your plan on a timeline with dependencies and progress, plus time tracking with activity types and weekly timesheets.
+description: Your plan on a timeline with dependencies and progress, plus time logged on issues and the weekly timesheet.
 ---
 
 # Gantt & time tracking
@@ -36,7 +36,6 @@ The timeline shows the plan, time tracking shows what really happened. Anyone wo
 Open an issue and choose **Log time**. A work item holds:
 
 - **Duration**: hours and minutes.
-- **Activity type**: **Development, Testing, Documentation, Design, Meeting** or **Support**, so effort can be analysed by kind of work.
 - **Date**: when the work happened (any day up to today).
 - **Note**: optional, what you did.
 
@@ -48,6 +47,8 @@ Each issue shows **spent vs. estimate**, so you notice right away when something
 ### Weekly timesheets
 
 Work items roll up into a **weekly timesheet**: one row per person and project, one column per day. Use it to review a week, spot gaps and report time without spreadsheets.
+
+Everything else about logging time is in [Tracking your time](/en/guide-time.html). Timer, calendar, approvals and billing come with [extended time tracking](/en/time-tracking-advanced.html).
 
 ## Where the numbers go
 

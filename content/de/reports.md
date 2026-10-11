@@ -51,4 +51,5 @@ Jeden Bericht kannst du direkt aus der App als **PDF** exportieren, druckfertig 
 ## Nächste Schritte
 
 - Die Grundlagen verstehen: [Sprints & Story Points](/de/boards-sprints.html) und [Zeiterfassung](/de/timeline.html).
+- Zeitberichte mit Gruppierung, Export als PDF, Excel oder CSV und gespeicherten Berichten gibt es im [erweiterten Time-Tracking](/de/time-tracking-advanced.html).
 - Halte Schätzungen realistisch, damit Velocity und Burndown nützlich bleiben.

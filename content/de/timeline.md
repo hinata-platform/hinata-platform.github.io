@@ -1,6 +1,6 @@
 ---
 title: Gantt & Zeiterfassung
-description: Der Plan als Timeline mit Abhängigkeiten und Fortschritt, dazu Zeiterfassung mit Tätigkeitsarten und Stundenzettel.
+description: Der Plan als Timeline mit Abhängigkeiten und Fortschritt, dazu Zeiterfassung an Vorgängen und der wöchentliche Stundenzettel.
 ---
 
 # Gantt & Zeiterfassung
@@ -36,7 +36,6 @@ Die Timeline zeigt den Plan, die Zeiterfassung die Wirklichkeit. Alle, die an ei
 Öffne einen Vorgang und wähle **Zeit erfassen**. Ein Arbeitseintrag enthält:
 
 - **Dauer**: Stunden und Minuten.
-- **Tätigkeitsart**: **Entwicklung, Testen, Dokumentation, Design, Meeting** oder **Support**. So lässt sich der Aufwand nach Art der Arbeit auswerten.
 - **Datum**: wann die Arbeit stattfand (jeder Tag bis heute).
 - **Notiz**: optional, was du gemacht hast.
 
@@ -48,6 +47,8 @@ Jeder Vorgang zeigt **aufgewendet vs. Schätzung**. So fällt sofort auf, wenn e
 ### Wöchentlicher Stundenzettel
 
 Arbeitseinträge ergeben einen **wöchentlichen Stundenzettel**: eine Zeile je Person und Projekt, eine Spalte je Tag. Damit prüfst du schnell eine Woche, findest Lücken und meldest Zeit ohne Tabellenkalkulation.
+
+Alles Weitere zur Zeiterfassung steht unter [Zeit erfassen](/de/guide-time.html). Timer, Kalender, Freigaben und Abrechnung bringt das [erweiterte Time-Tracking](/de/time-tracking-advanced.html).
 
 ## Wohin die Zahlen fließen
 
