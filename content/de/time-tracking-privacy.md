@@ -47,7 +47,7 @@ Das Modul zeichnet Arbeitszeit auf. Es dient den gesetzlichen Aufzeichnungspflic
 | Kalendertermine | Je Vorkommen von 30 Tagen zurück bis 90 Tage voraus: Beginn, Ende, Zeitzone, Titel und Ort (je auf 200 Zeichen gekürzt), ganztägig, frei oder belegt, vorläufig oder bestätigt | Ein Zwischenspeicher, der bei jedem Abruf ersetzt wird und **nur** der Person angezeigt wird, die abonniert hat. Termine stehen in keinem Bericht, keinem Posteingang und keinem fremden Export. Erst ein Termin, den die Person übernimmt, wird zu Daten, die andere sehen können, als gewöhnlicher Eintrag mit der Quelle *Kalender*. |
 | Stundensätze | Verkaufs- und Personalkostensätze je Team, Projekt, Person, Person in einem Projekt oder Vorgang, jeweils mit Geltungszeitraum und wer sie angelegt hat | Nur mit eingeschalteter Abrechnung. Sätze werden nie überschrieben: Eine Änderung ist ein neuer Satz ab einem Datum. Ein Personalkostensatz einer Person kann ihr Gehalt verraten. |
 | Rechnungen und Gutschriften | Nummer, Empfänger, Positionen mit Beschreibung, Minuten, Satz und Betrag wie gestellt, die Einträge, aus denen eine Position entstand | Ein Buchungsbeleg. Wird nie gelöscht (§ 147 AO, § 257 HGB). |
-| Timer-Kopien auf dem Gerät (geplant) | Zustand des Timers für Systemflächen: Start, Modus und Phase, ab Werk ohne Beschreibung | Bleibt auf dem Gerät. Siehe [Timer außerhalb der App](#timer-außerhalb-der-app-geplant). |
+| Timer-Kopien auf dem Gerät | Zustand des Timers für Systemflächen: Start, Modus und Phase, ab Werk ohne Beschreibung | Bleibt auf dem Gerät. Siehe [Timer außerhalb der App](#timer-außerhalb-der-app). |
 
 !!! danger "Eine Begründung bleibt beim Vorgang, nicht im Protokoll"
     Wenn jemand ein Konto berichtigt, verlangt Hinata einen Grund. Diesen Grund schreibt es auf die Journalzeile, **nicht** ins Audit-Protokoll. Für die **Ablehnung eines Antrags** gilt dasselbe: Der Satz steht auf dem Antrag und verschwindet mit ihm. Das ist Absicht: Eine Begründung kann eine Gesundheitsangabe oder eine Schwerbehinderung nennen (§ 208 SGB IX), also ein Datum nach Art. 9 DSGVO. Im Audit-Protokoll überlebte sie das Löschen des Kontos, überstünde das Abschalten des Moduls und wäre für alle lesbar, die das Protokoll sehen. Das Audit-Protokoll hält fest, **dass** jemand korrigiert oder entschieden hat, für welche Art, welchen Zeitraum und um wie viel.
@@ -174,7 +174,7 @@ Eine Vereinbarung zur Zeiterfassung mit Hinata sollte mindestens diese Punkte kl
 - **Freigaben:** ob Stundenzettel eingereicht werden, in welchem Rhythmus, wer freigibt und was bei Ablehnung und Wiederöffnen passiert.
 - **Auswertungen und Benachrichtigungen:** Auslastungsberichte, Abwesenheitsberichte, Budget-Warnungen und Ziel-Erinnerungen, jeweils ein oder aus, mit Empfängern und Schwellen. Dazu, ob Berichte geteilt und regelmäßig per Mail verschickt werden dürfen, und an wen.
 - **Timer und Audit-Protokoll:** ob Start- und Endzeiten erfasst werden und ob die Ereignisse zum Timer im Audit-Protokoll eingeschaltet werden dürfen (Standard: aus).
-- **Timer außerhalb der App:** welche Systemflächen angeboten werden, als Funktionen beschrieben (siehe [unten](#timer-außerhalb-der-app-geplant)).
+- **Timer außerhalb der App:** welche Systemflächen angeboten werden, als Funktionen beschrieben (siehe [unten](#timer-außerhalb-der-app)).
 - **Korrekturen und Sperren:** Sperrdatum, Umgang mit Korrekturanfragen, wieder geöffneten Zeiträumen und für Einzelne geöffneten Tagen, Nachtragen (`maxDaysBack`, `lateEntryHintDays`).
 - **Abwesenheiten:** siehe die eigene [Checkliste zu Abwesenheiten](#mitbestimmung-beim-urlaub).
 - **Abrechnung:** ob Personalkostensätze hinterlegt werden und wer sie sieht.
@@ -368,19 +368,23 @@ Ein Krankheitstag sagt etwas über die Gesundheit einer Person, und die schützt
 - Kein automatischer Verfall nach Krankheit.
 - Kein Attest, kein Grund, keine Diagnose.
 
-## Timer außerhalb der App (geplant)
+## Timer außerhalb der App
 
-!!! info "Noch nicht gebaut"
-    Die Timer-Flächen außerhalb der App sind für spätere Versionen geplant. Dieser Abschnitt beschreibt, wie sie angelegt sind, damit ihr sie schon jetzt in die Vereinbarung aufnehmen könnt.
+Seit dieser Version kann der Timer die Person auch außerhalb des App-Fensters erreichen:
 
-Geplante Flächen: System-Benachrichtigung am Ende eines Intervalls, Menüleiste und Tray, Live Activity, Widgets auf Home- und Sperrbildschirm, Steuerelemente, Wecker und App-Kurzbefehle. Jede zeigt den eigenen Timer der Person auf ihrem eigenen Gerät.
+- **Ende eines Intervalls:** eine System-Benachrichtigung, wenn ein Countdown oder ein Pomodoro-Intervall endet. Auf Android, iOS, macOS und Windows wird sie im Voraus geplant und kommt deshalb auch bei geschlossener App. Unter Linux und im Browser kommt sie, solange die App im Hintergrund läuft.
+- **Laufender Timer:** auf Android eine stille Dauer-Benachrichtigung, deren Uhr das System weiterzählt. In einer installierten Web-App eine Markierung am App-Symbol.
+- **Tab-Titel:** im Browser auf Wunsch die laufende Zeit im Tab-Titel. Nur die Zeit.
 
-- **Gerätelokal.** Die Flächen erheben nichts und senden nichts an den Arbeitgeber. Es gibt keine Telemetrie, und Ereignisse der Flächen werden nicht protokolliert. Ein Timer, der über eine Fläche startet, kommt beim Server an wie einer aus der App.
-- **Ab Werk ohne Beschreibung.** Die lokalen Kopien enthalten Zeit, Modus und Phase. Details auf dem entsperrten Bildschirm und auf dem Sperrbildschirm sind zwei getrennte Schalter, beide aus.
+Menüleiste und Tray, Live Activity, Widgets auf Home- und Sperrbildschirm, Steuerelemente, Wecker und App-Kurzbefehle folgen in späteren Versionen.
+
+- **Nur auf dem Gerät.** Die Flächen erheben nichts und senden nichts an den Arbeitgeber. Es gibt keine Telemetrie, und Ereignisse der Flächen werden nicht protokolliert. Wer den Timer aus einer Benachrichtigung stoppt, ruft dieselbe Route wie der Knopf in der App, und der Server kann beides nicht unterscheiden.
+- **Allgemeine Texte.** Eine Benachrichtigung sagt, dass ein Intervall vorbei ist, nie, wofür. Sie verschwindet von selbst, wo das System das erlaubt (Android nach zehn Minuten, Linux nach einer Frist, der Browser von sich aus). Unter iOS und macOS behält das System sie in der Mitteilungszentrale, bis die Person sie löscht.
+- **Ab Werk ohne Beschreibung.** Ein gesperrtes Android-Gerät zeigt nur den App-Namen. Details auf dem entsperrten Bildschirm und auf dem Sperrbildschirm sind zwei eigene Schalter, beide aus.
 - **Sie verfallen.** Lokale Kopien enden spätestens 24 Stunden nach dem Start von selbst und verschwinden beim Abmelden und mit dem Konto.
-- **Einzeln schaltbar.** Alles ist aus, bis die Person die Karte einmal bestätigt. Danach lässt sich jede Fläche einzeln abschalten. Ein Panel zeigt, was auf dem Gerät liegt, mit einem Knopf, der die lokalen Kopien sofort löscht.
+- **Einzeln schaltbar.** Alles bleibt aus, bis die Person die Karte **Timer außerhalb der App** einmal bestätigt. Danach lässt sich jede Fläche unter **Einstellungen → Zeiterfassung** einzeln ausschalten. Das Panel **Wer sieht meine Zeitdaten?** zeigt, was auf diesem Gerät aktiv ist, und **Jetzt löschen** entfernt die lokalen Kopien sofort.
 
-Empfehlung: Nehmt die Flächen in die Checkliste der Betriebsvereinbarung auf, als Funktionen des mitbestimmten Systems.
+Empfehlung: Nehmt die Flächen als Funktionen des mitbestimmten Systems in die Checkliste der Betriebsvereinbarung auf.
 
 **Geräte des Arbeitgebers oder verwaltete Geräte.** Auf einem verwalteten Gerät sieht die Geräteverwaltung installierte Apps und je nach Einrichtung auch deren gespeicherte Daten. Regelt in der Vereinbarung, dass die Geräteverwaltung nicht genutzt wird, um Zeitdaten zu lesen. Mit den Standardwerten enthalten die lokalen Kopien keine Beschreibung.
 

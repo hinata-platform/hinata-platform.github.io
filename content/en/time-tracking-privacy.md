@@ -47,7 +47,7 @@ The module records working time. It serves statutory recording duties and projec
 | Calendar events | Per occurrence from 30 days back to 90 days ahead: start, end, time zone, title and location (each cut at 200 characters), all-day, free or busy, tentative or confirmed | A cache, replaced on every read, and shown **only** to the person who subscribed. They appear in no report, no inbox and nobody else's export. Only an event the person takes over becomes data others can see, as an ordinary entry with the source *calendar*. |
 | Rates | Hourly rates and labour cost rates per team, project, person, person in a project or issue, each with the span it applies to and who wrote it | Only with billing on. Rates are never overwritten: a change is a new rate from a date on. A labour cost rate for a person can reveal pay. |
 | Invoices and credit notes | Number, recipient, lines with description, minutes, rate and amount as issued, the entries a line was built from | A booking record. Never deleted (§ 147 AO, § 257 HGB). |
-| Timer copies on the device (planned) | Timer state for system surfaces: start, mode and phase, no description by default | Stays on the device. See [Timer outside the app](#timer-outside-the-app-planned). |
+| Timer copies on the device | Timer state for system surfaces: start, mode and phase, no description by default | Stays on the device. See [Timer outside the app](#timer-outside-the-app). |
 
 !!! danger "A reason stays with the thing it is about, not in the log"
     When somebody corrects a balance, Hinata asks for a reason. It writes that reason on the journal line, **not** into the audit log. The same holds for **rejecting a request**: the sentence sits on the request and goes when it does. That is deliberate: a reason can name an illness or a recognised disability (§ 208 SGB IX), which is data under Art. 9 GDPR. In the audit log it would outlive the deletion of the account, survive the module being switched off, and be readable by everyone who sees the log. The audit log records **that** somebody corrected or decided, for which type, which span and by how much.
@@ -174,7 +174,7 @@ An agreement on time tracking with Hinata should settle at least these points:
 - **Approvals:** whether timesheets are submitted, in which rhythm, who approves and what happens on rejection and reopening.
 - **Evaluations and notifications:** workload reports, absence reports, budget alerts and target reminders, each on or off, with recipients and thresholds. Also whether reports may be shared and sent regularly by mail, and to whom.
 - **Timers and audit events:** whether start and end times are recorded and whether the timer events may be switched on in the audit log (default: off).
-- **Timer outside the app:** which system surfaces are offered, described as functions (see [below](#timer-outside-the-app-planned)).
+- **Timer outside the app:** which system surfaces are offered, described as functions (see [below](#timer-outside-the-app)).
 - **Corrections and locks:** lock date, handling of correction requests, reopened spans and days opened for individuals, late recording (`maxDaysBack`, `lateEntryHintDays`).
 - **Absences:** see the separate [absence checklist](#holiday-co-determination).
 - **Billing:** whether labour cost rates are stored and who sees them.
@@ -368,17 +368,21 @@ A sick day says something about a person's health, which Art. 9 GDPR protects sp
 - No automatic lapse after illness.
 - No certificate, no reason, no diagnosis.
 
-## Timer outside the app (planned)
+## Timer outside the app
 
-!!! info "Not built yet"
-    The timer surfaces outside the app are planned for later releases. This section describes how they are designed, so that you can include them in your agreement now.
+Since this release the timer can reach the person outside the app window:
 
-Planned surfaces: system notification at the end of an interval, menu bar and tray, Live Activity, home and lock screen widgets, controls, alarms and app shortcuts. Each one shows the person's own timer on the person's own device.
+- **End of an interval:** a system notification when a countdown or a Pomodoro interval ends. On Android, iOS, macOS and Windows it is planned ahead, so it also arrives with the app closed. On Linux and in the browser it comes while the app runs in the background.
+- **Running timer:** on Android a quiet ongoing notification whose clock the system runs. In an installed web app a badge on the app icon.
+- **Tab title:** in the browser, if the person wants it, the running time in the tab title. Only the time.
 
-- **Device-local.** The surfaces collect nothing and send nothing to the employer. There is no telemetry, and surface events are not audited. A timer started from a surface reaches the server like one started in the app.
-- **No description by default.** The local copies hold time, mode and phase. Details on the unlocked screen and on the lock screen are two separate switches, both off.
+Menu bar and tray, Live Activity, home and lock screen widgets, controls, alarms and app shortcuts follow in later releases.
+
+- **Device-local.** The surfaces collect nothing and send nothing to the employer. There is no telemetry, and surface events are not audited. Stopping the timer from a notification calls the same route as the button in the app, and the server cannot tell them apart.
+- **Generic texts.** A notification says that an interval is over, never what it was for. It disappears by itself where the system allows that (Android after ten minutes, Linux after a timeout, the browser on its own). On iOS and macOS the system keeps it in the notification centre until the person clears it.
+- **No description by default.** A locked Android screen shows only the app name. Details on the unlocked screen and on the lock screen are two separate switches, both off.
 - **They expire.** Local copies end by themselves at the latest 24 hours after the start, and vanish on sign out and with the account.
-- **One by one.** Everything is off until the person confirms the card once. After that each surface can be switched off on its own. A panel shows what lies on the device, with a button to delete local copies now.
+- **One by one.** Everything is off until the person confirms the card **Timer outside the app** once. After that each surface can be switched off on its own under **Settings → Time tracking**. The panel **Who sees my time data?** lists what is active on this device, and **Delete now** removes the local copies at once.
 
 Recommendation: list the surfaces in the works agreement checklist, as functions of the co-determined system.
 
