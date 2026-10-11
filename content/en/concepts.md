@@ -127,7 +127,10 @@ See [Knowledge base](/en/knowledge-base.html).
 
 - **Workflow automation:** Git events (branch created, commit pushed, PR/MR opened or merged) move issues forward. See [Git integration](/en/git-integration.html).
 - **Smart commits:** trailers in a commit message that act on an issue, e.g. `ASTA-42 #comment shipped`, `#time 2h 30m`, or any `#word` to transition it.
-- **Time tracking:** log work with activity types against issues, rolled up into weekly timesheets. See [Gantt & time tracking](/en/timeline.html).
+- **Time tracking:** log work against issues, rolled up into the weekly timesheet. See [Tracking your time](/en/guide-time.html).
+- **Extended time tracking:** a module with timer, calendar, approvals, reports and billing that organization admins switch on. See [Extended time tracking](/en/time-tracking-advanced.html).
+- **Absence management:** request leave, report sickness and keep balances; its own module on top of extended time tracking. See [Absences](/en/absences.html).
+- **Policy:** an organization rule for time tracking, such as required fields or the lock date. Every policy is listed under [Time tracking administration](/en/admin-time-tracking.html).
 - **Notifications:** in the app, by e-mail, and as push via the [Connect gateway](/en/connect-gateway.html).
 - **The command palette:** [search](/en/search.html) and commands with ⌘K.
 

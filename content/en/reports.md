@@ -51,4 +51,5 @@ Any report can be exported to **PDF** straight from the app, formatted for print
 ## Next steps
 
 - Understand the inputs: [sprints & story points](/en/boards-sprints.html) and [time tracking](/en/timeline.html).
+- Time reports with grouping, export to PDF, Excel or CSV and saved reports are part of [extended time tracking](/en/time-tracking-advanced.html).
 - Keep estimates realistic so velocity and burndown stay useful.

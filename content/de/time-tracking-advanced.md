@@ -1,0 +1,211 @@
+---
+title: Erweitertes Time-Tracking
+description: Timer, Kalender, Tags, Sperrdaten, Stundenzettel-Freigaben, Berichte, geteilte Einträge und Abrechnung im erweiterten Zeiterfassungsmodul.
+---
+
+# Erweitertes Time-Tracking
+
+Schalten deine Organisationsadmins das erweiterte Modul ein, wird aus **Stundenzettel** in der Seitenleiste **Zeiterfassung**. Alles rund um deine Stunden liegt dann auf einer Seite. Die Grundlagen bleiben wie unter [Zeit erfassen](/de/guide-time.html) beschrieben.
+
+## Die Ansichten
+
+Oben in der **Zeiterfassung** wechselst du zwischen Pillen:
+
+- **Liste**: deine Einträge nach Tagen.
+- **Kalender**: eine Woche oder ein Monat mit deinen Einträgen als Blöcke.
+- **Stundenzettel**: das Raster aus Tagen und Projekten.
+- **Abwesenheiten**: Urlaub und Krankheit, siehe [Abwesenheiten](/de/absences.html).
+- **Berichte**: Summen, Exporte und Abrechnung.
+- **Freigaben**: nur, wenn Stundenzettel-Freigaben eingeschaltet sind.
+
+![Die Liste der Zeiteinträge](/assets/img/shot-time-entries.png)
+*Die Listenansicht mit den Einträgen einer Woche.*
+
+**Neuer Eintrag** öffnet den Editor. Dort tippst du entweder eine Dauer oder Beginn und Ende ein. Du ergänzt eine Beschreibung, ordnest den Eintrag einem Projekt oder Vorgang zu und wählst Tags. **Zeit erfassen** an einem Vorgang öffnet denselben Editor, schon diesem Vorgang zugeordnet.
+
+## Der Timer
+
+Die Timerleiste steht oben in der Zeiterfassung. **Starten** lässt eine Stoppuhr laufen. Der Pfeil daneben öffnet **Zählweise wählen**:
+
+- **Stoppuhr**: zählt hoch, bis du stoppst.
+- **Countdown**: zählt standardmäßig von 25 Minuten herunter (1 bis 1440 Minuten) und stoppt bei null von selbst.
+- **Pomodoro**: 25 Minuten Arbeit, 5 Minuten Pause, nach vier Runden eine lange Pause von 15 Minuten. Die Phase wechselt nicht von allein. Du drückst **Pause starten** und **Weiterarbeiten**. Jedes Arbeitsintervall wird ein eigener Eintrag. Pausen werden nie erfasst.
+
+![Die Timerleiste](/assets/img/shot-time-timer.png)
+*Die Timerleiste mit einer laufenden Stoppuhr.*
+
+**Stoppen** macht aus dem Timer einen Eintrag. Verlangt deine Organisation Pflichtfelder, etwa einen Tag (Schlagwort) oder einen Vorgang, öffnet sich zuerst der Editor. Brichst du ab, läuft der Timer weiter. **Timer verwerfen** wirft ihn ohne Eintrag weg. Ein Timer, der 24 Stunden läuft, wird dort abgeschnitten.
+
+Deine eigenen Längen und den Ton am Ende eines Intervalls stellst du unter **Einstellungen → Zeiterfassung** ein.
+
+### Timer außerhalb der App
+
+Die App kann den Timer auch außerhalb ihres Fensters zeigen. Die Karte **Timer außerhalb der App** fragt einmal, und nichts ist an, bevor du zustimmst:
+
+- eine Mitteilung, wenn ein Countdown oder ein Pomodoro-Intervall endet,
+- auf Android eine stille Mitteilung, solange der Timer läuft,
+- im Web eine Browser-Mitteilung, wenn der Tab im Hintergrund ist, die laufende Zeit im Tab-Titel und eine Markierung am App-Symbol der installierten Web-App.
+
+Die Texte sind allgemein und nennen nie den Vorgang. Deine Schalter bleiben auf diesem Gerät und gehen nicht an den Server.
+
+## Fokusmodus und Tastenkürzel
+
+Der Fokusmodus zeigt nur den laufenden Timer und woran du arbeitest. Du öffnest ihn mit **⇧⌘F** (unter Windows und Linux **Strg+Umschalt+F**). **Esc** verlässt ihn.
+
+![Der Fokusmodus](/assets/img/shot-time-focus.png)
+*Der Fokus-Modus mit einer laufenden Stoppuhr.*
+
+| Kürzel | Aktion |
+| --- | --- |
+| **⇧⌘S** | Timer starten oder stoppen |
+| **⇧⌘E** | Zeit erfassen |
+| **⇧⌘F** | Fokusmodus |
+
+Unter Windows und Linux nimmst du **Strg** statt **⌘**. Die ⌘K-Palette hat außerdem Befehle für Zeiterfassung, Stundenzettel, Abwesenheiten und **Abwesenheit beantragen**.
+
+## Der Kalender
+
+**Kalender** zeigt eine **Woche** oder einen **Monat**. In der Woche ziehst du einen Block in 15-Minuten-Schritten auf, um einen Eintrag anzulegen, und verschiebst Blöcke per Ziehen. Langer Druck oder Rechtsklick auf einen Tag öffnet das Tagesmenü, zum Beispiel um für diesen Tag eine Abwesenheit zu beantragen.
+
+![Der Kalender der Zeiterfassung](/assets/img/shot-time-calendar.png)
+*Eine Woche im Kalender mit Einträgen und einem Feiertag.*
+
+Feiertage, Abwesenheiten und Tage ohne geplante Stunden sind leicht markiert. Das ist keine Sperre. Ein Tag, der sich wirklich nicht mehr ändern lässt, trägt ein Schloss.
+
+## Der Stundenzettel
+
+Der Stundenzettel ist hier dasselbe Raster wie im Grundmodus, mit mehr darauf:
+
+- In deiner eigenen Zeile tippst du auf eine Zelle, um Zeit für diesen Tag und dieses Projekt anzulegen oder zu korrigieren.
+- **Deine Kapazität** stellt deine geplanten Stunden, abzüglich Feiertage und Abwesenheiten, neben das, was du gebucht hast. Nur du siehst das.
+- Mit Freigaben folgt das Raster deinem Freigabezeitraum und zeigt darüber dessen Stand.
+
+![Der Stundenzettel im Zeiterfassungsmodul](/assets/img/shot-timesheet.png)
+*Der Stundenzettel für einen Monat.*
+
+## Tags
+
+Mit Tags ordnest du deine Zeit, zum Beispiel nach Kunde oder Art der Arbeit. Du wählst sie im Editor.
+
+- Alle können Tags anlegen, außer deine Organisation erlaubt das nur Organisationsadmins.
+- Umbenennen und löschen dürfen nur Organisationsadmins.
+- Ein Name ist ohne Rücksicht auf Groß- und Kleinschreibung eindeutig und hat höchstens 40 Zeichen.
+- Deine Organisation kann Tags zur Pflicht machen. Der Editor sagt dir das, bevor er speichert.
+
+![Die Tag-Auswahl](/assets/img/shot-time-tags.png)
+*Die Tags der Organisation und wie oft jeder genutzt wird.*
+
+## Verlauf eines Eintrags
+
+**Verlauf dieses Eintrags** im Editor zeigt, was andere an deinem Eintrag geändert haben, mit wer und wann. Deine eigenen Änderungen stehen dort nicht.
+
+## Gesperrte Tage und Korrekturen
+
+Manche Tage lassen sich nicht mehr ändern. Editor und Liste zeigen dann einen Chip mit dem Grund, wer die Sperre aufheben kann und was du tun kannst:
+
+- **Sperrdatum**: deine Organisation hat alles vor einem Datum geschlossen.
+- **Eingereichter Zeitraum**: der Zeitraum wurde eingereicht oder freigegeben.
+- **Rechnung**: der Eintrag steht auf einer ausgestellten Rechnung.
+- **Zu weit zurück**: der Tag ist älter, als deine Organisation erlaubt.
+
+Was du tun kannst:
+
+- **Korrektur anfragen** bittet die Personen, die die Sperre aufheben können, einen Eintrag für dich zu ändern.
+- **Ältere Tage anfragen** bittet darum, Tage zu öffnen, die zu weit zurückliegen. Ein Organisationsadmin kann sie für dich öffnen, nach 14 Tagen schließen sie sich von selbst.
+
+Deine offenen Anfragen findest du unter **Einstellungen → Zeiterfassung → Korrekturen und ältere Tage**.
+
+## Stundenzettel-Freigaben
+
+Nutzt deine Organisation Freigaben, reichst du deinen Stundenzettel je Zeitraum ein. Der Zeitraum kann wöchentlich, zweiwöchentlich, halbmonatlich, monatlich (Standard), quartalsweise oder von der Organisation festgelegt sein.
+
+![Die Ansicht Freigaben](/assets/img/shot-time-approvals.png)
+*Die Freigaben mit einem freigegebenen Monat.*
+
+- **Zeitraum einreichen** geht, sobald der Zeitraum vorbei ist. Ein Zeitraum hat höchstens 92 Tage.
+- **Zurückziehen** holt ihn zurück, solange niemand entschieden hat.
+- Projektleitungen und Organisationsadmins **Freigeben** ihn oder **Zurückgeben** ihn mit Begründung.
+- Ein freigegebener Zeitraum lässt sich **Wieder öffnen**, ebenfalls mit Begründung.
+- Niemand gibt den eigenen Stundenzettel frei.
+
+Eingereichte und freigegebene Tage sind für Änderungen gesperrt. **Freigaben** hat drei Reiter: **Meine**, **Zu entscheiden** und **Korrekturen**.
+
+## Ziele, Erinnerungen und Hinweise
+
+Erlauben es deine Organisationsadmins, legst du unter **Einstellungen → Zeiterfassung → Erinnerungen** ein **Tagesziel** und ein **Wochenziel** fest. Hinata erinnert dich, wenn Zeit fehlt, an deinen Arbeitstagen und zur Uhrzeit deiner Wahl. Niemand sonst erfährt, ob oder wann du erinnert wurdest.
+
+Arbeitszeithinweise machen auf Dinge aufmerksam wie mehr als 10 Stunden an einem Tag, eine kurze Ruhezeit zwischen zwei Tagen, Arbeit am Sonntag oder an einem Feiertag oder einen spät erfassten Eintrag. Nur du siehst sie, und sie sperren nichts.
+
+## Kalender-Abos
+
+Haben deine Organisationsadmins den Kalender-Import eingeschaltet, kannst du deine eigenen Kalender von Google, Outlook oder Apple abonnieren. Hinata liest sie nur und schreibt nie zurück. Deine Abos siehst nur du.
+
+![Kalender-Abos in den Einstellungen](/assets/img/shot-time-subscriptions.png)
+*Ein abonnierter Kalender mit seinem letzten Abruf.*
+
+1. Öffne **Einstellungen → Zeiterfassung → Kalender-Abos** und tippe auf **Hinzufügen**.
+2. Gib einen Namen ein, füge die private ICS-Adresse ein (`https://` oder `webcal://`) und wähle eine Farbe.
+3. Tippe auf **Abonnieren**.
+
+- Bis zu 10 Kalender. Jeder wird alle 30 Minuten gelesen, von Hand aktualisieren kannst du einmal pro Minute.
+- Nach fünf Fehlversuchen in Folge wird ein Kalender pausiert, bis du ihn fortsetzt.
+- Termine stehen mit gestricheltem Rand im Kalender, von 30 Tagen zurück bis 90 Tage voraus. Sie zählen in keine Summe.
+- Tippe auf einen Termin, um ihn als Eintrag zu übernehmen. Aus einem Termin wird höchstens ein Eintrag. Ganztägige Termine lassen sich nicht übernehmen.
+- **Vergangene Termine automatisch übernehmen** macht das für dich, mit Projekt und Tags deiner Wahl.
+
+!!! warning "Die Adresse ist ein Schlüssel"
+    Wer die Adresse kennt, kann den Kalender lesen. Hinata speichert sie verschlüsselt und zeigt sie nie wieder an.
+
+## Geteilte Einträge
+
+Habt ihr zu mehreren an etwas gearbeitet, erfasst eine Person und teilt den Eintrag.
+
+![Geteilte Einträge](/assets/img/shot-time-shares.png)
+*Von dir geteilte Einträge, einer noch offen.*
+
+1. Öffne deinen Eintrag und tippe auf **Teilen mit…**. Oder tippe **+** in die Beschreibung, um Personen des Projekts zu wählen.
+2. Wähle bis zu 20 Personen und tippe auf **Einladungen senden**.
+
+Die anderen finden die Einladung unter **Geteilte Einträge → Eingang**:
+
+- **Annehmen** legt eine Kopie in den eigenen Einträgen an.
+- **Anpassen** nimmt sie mit einem anderen Projekt oder anderen Tags an.
+- **Ablehnen** sagt nein. Du siehst nur, dass abgelehnt wurde, nie warum.
+
+Die Kopie gehört danach dieser Person. Für sie gelten deren Sperrdaten und Freigaben. Unter **Gesendet** verfolgst du deine Einladungen und kannst offene zurückziehen.
+
+## Berichte, Export und Import
+
+**Berichte** hat sechs Reiter: **Übersicht**, **Einträge**, **Auslastung**, **Abwesenheiten**, **Abrechnung** und **Gespeichert**. Du wählst Zeitraum, Filter und eine Gruppierung nach Projekt, Person, Team, Tätigkeit, Tags, Vorgang, Tag, Woche oder Monat.
+
+![Die Zeitberichte](/assets/img/shot-time-reports.png)
+*Die Übersicht der Zeitberichte, nach Projekt gruppiert.*
+
+- Ein Bericht zählt nur, was du ohnehin sehen darfst. Namen anderer erscheinen nur, wo eine Richtlinie es erlaubt. Siehe [Zeiterfassung: Datenschutz & Recht](/de/time-tracking-privacy.html).
+- **Auslastung** vergleicht Kapazität und gebuchte Zeit je Person. Es gibt sie nur, wenn deine Organisation sie eingeschaltet hat, und nur für Leitungen und Organisationsadmins.
+- **Exportieren** liefert PDF (bis 5.000 Zeilen), Excel (bis 50.000) oder CSV (bis 100.000), oder du druckst. Jeder Export steht im Audit-Protokoll.
+- **CSV importieren** übernimmt deine eigenen Einträge aus einer Datei bis 5 MB und 10.000 Zeilen. Exporte aus Hinata und toggl werden erkannt. Jede Zeile wird wie ein getippter Eintrag geprüft, und es werden alle gültigen Zeilen geschrieben oder keine.
+- **Bericht speichern** behält bis zu 200 Berichte. Ein gespeicherter Bericht kann einen Link zum Teilen bekommen (nur für Angemeldete, jede Person sieht ihren eigenen Ausschnitt) oder wöchentlich oder monatlich per Mail an bis zu 50 Personen gehen, als Link ohne Anhang.
+
+## Abrechnung
+
+Ist die Abrechnung eingeschaltet, bepreisen Projektleitungen und Organisationsadmins erfasste Zeit.
+
+![Ein Rechnungsentwurf](/assets/img/shot-time-invoices.png)
+*Die Rechnungsliste mit einem Entwurf.*
+
+- **Stundensätze**: ein Erlössatz für abrechenbare Einträge, den Projektleitungen setzen, und ein Kostensatz, den nur Organisationsadmins sehen. Der genaueste Satz gewinnt: Vorgang, Projektmitglied, Person, Projekt, Team, Standard. Ein Satz ändert sich ab einem Datum.
+- **Berichte** im Reiter **Abrechnung**: **Abrechnung**, **Profitabilität** (nur Organisationsadmins, nie je Person) und **Auslastung**.
+- **Rechnungen**: **Rechnung entwerfen** für ein Projekt, bis 92 Tage und 5.000 Einträge. **Ausstellen** gibt ihr die nächste Nummer ohne Lücke, zum Beispiel `INV-2026-00001`, und sperrt ihre Einträge. **Gutschrift schreiben** storniert eine ausgestellte Rechnung einmal und gibt ihre Einträge wieder frei. Rechnungen gibt es als PDF, Word und Excel.
+
+Ausgestellte Rechnungen und Gutschriften werden nie gelöscht.
+
+## Zeiterfassung über MCP
+
+Ein KI-Client, der über [MCP](/de/mcp.html) verbunden ist, kann deine eigenen Einträge erfassen, auflisten, ändern und löschen, deinen Stundenzettel und Summen lesen und deinen Timer starten, stoppen oder verwerfen. Er handelt immer mit deinen Rechten und liest nie die Zeit anderer.
+
+## Nächste Schritte
+
+- Urlaub und Krankheit: [Abwesenheiten: Urlaub und Krankheit](/de/absences.html).
+- Für Admins: [einschalten und Regeln festlegen](/de/admin-time-tracking.html).
+- Wer was sieht: [Zeiterfassung: Datenschutz & Recht](/de/time-tracking-privacy.html).

@@ -22,7 +22,7 @@ Hinata bündelt agiles Projektmanagement an einem Ort: Arbeit planen, Sprints fa
 | **Projekte & Teams** | Projekte mit eigenen Keys (`ASTA-42`), Workflows und farbigen Labels. Teams geben Mitgliedern Zugriff auf Projekte und bestimmen, was jede Person überhaupt sieht. | [Projekte & Teams](/de/projects-teams.html) |
 | **Vorgänge & Hierarchie** | Typen, Prioritäten, Labels, Markdown, Kommentare, Anhänge und Abhängigkeiten in der Hierarchie Epic → Story → Sub-Task. | [Vorgänge & Hierarchie](/de/issues.html) |
 | **Boards & Sprints** | Agiles Board mit Spalten pro Workflow-Zustand, WIP-Limits, Swimlanes und Backlog. Sprints mit Kapazität und Burndown planen, starten und abschließen. | [Boards & Sprints](/de/boards-sprints.html) |
-| **Gantt & Zeiterfassung** | Timeline mit Start- und Fälligkeitsdaten und Abhängigkeiten. Dazu Zeiterfassung mit Aktivitätstypen und wöchentlichen Timesheets. | [Gantt & Zeiterfassung](/de/timeline.html) |
+| **Gantt & Zeiterfassung** | Timeline mit Start- und Fälligkeitsdaten und Abhängigkeiten. Dazu Zeiterfassung an Vorgängen mit wöchentlichem Stundenzettel, auf Wunsch mit Timer, Kalender, Freigaben, Berichten, Abwesenheiten und Abrechnung. | [Gantt & Zeiterfassung](/de/timeline.html), [Erweitertes Time-Tracking](/de/time-tracking-advanced.html) |
 | **Wissensdatenbank** | Hierarchische Markdown-Artikel wie in Confluence, global oder pro Projekt, mit Smart Links auf echte Vorgänge und Personen. | [Wissensdatenbank](/de/knowledge-base.html) |
 | **Benachrichtigungen** | In der App, per E-Mail und per Push über das Hinata Connect Gateway. Ein eigenes Firebase-Projekt ist nicht nötig. | [Benachrichtigungen](/de/notifications.html) |
 | **Suche & Palette** | Befehlspalette im Liquid-Glass-Stil (⌘K) zum Springen, für Befehle und zuletzt geöffnete Elemente. Auf dem Handy als Sheet. | [Suche & Palette](/de/search.html) |
@@ -62,7 +62,9 @@ Siehe [Boards & Sprints](/de/boards-sprints.html).
 
 Die **Gantt-Timeline** ist eine Leseansicht (Read-Model) über Start- und Fälligkeitsdaten, Abhängigkeiten und Fortschritt deiner Vorgänge. So erkennst du den Ablauf einer Lieferung und den kritischen Pfad.
 
-Mit der **Zeiterfassung** buchen Personen Arbeit mit Aktivitätstypen auf Vorgänge. Daraus entstehen wöchentliche Timesheets für Berichte und Kapazitätsplanung. Siehe [Gantt & Zeiterfassung](/de/timeline.html).
+Mit der **Zeiterfassung** buchen Personen Arbeit auf Vorgänge. Daraus entsteht ein wöchentlicher Stundenzettel für Berichte und Kapazitätsplanung. Siehe [Zeit erfassen](/de/guide-time.html).
+
+Das **erweiterte Time-Tracking** ist ein Modul, das Organisationsadmins einschalten: Timer mit Stoppuhr, Countdown und Pomodoro, Kalender, Tags, Freigaben, Kalender-Abos, Berichte mit Export, geteilte Einträge und Abrechnung. Dazu kommt auf Wunsch die **Abwesenheitsverwaltung** mit Urlaubsanträgen, Krankmeldungen und Salden. Siehe [Erweitertes Time-Tracking](/de/time-tracking-advanced.html), [Abwesenheiten](/de/absences.html) und [Zeiterfassung verwalten](/de/admin-time-tracking.html).
 
 ## Wissensdatenbank
 
