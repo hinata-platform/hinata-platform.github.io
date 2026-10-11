@@ -43,11 +43,14 @@ Deine eigenen Längen und den Ton am Ende eines Intervalls stellst du unter **Ei
 Die App kann den Timer auch außerhalb ihres Fensters zeigen. Die Karte **Timer außerhalb der App** fragt einmal, und nichts ist an, bevor du zustimmst:
 
 - eine Mitteilung, wenn ein Countdown oder ein Pomodoro-Intervall endet,
-- auf Android eine stille Mitteilung, solange der Timer läuft,
+- auf Android eine stille Mitteilung und das Widget auf dem Startbildschirm, solange der Timer läuft,
+- auf iPhone und iPad eine Live-Aktivität auf dem Sperrbildschirm und in der Dynamic Island und das Timer-Widget auf Home- und Sperrbildschirm,
 - im Web eine Browser-Mitteilung, wenn der Tab im Hintergrund ist, die laufende Zeit im Tab-Titel und eine Markierung am App-Symbol der installierten Web-App,
 - auf dem Desktop der laufende Timer in der Menüleiste oder im Infobereich, wie unten beschrieben.
 
 Die Texte sind allgemein und nennen nie den Vorgang. Deine Schalter bleiben auf diesem Gerät und gehen nicht an den Server.
+
+Live-Aktivität und Widgets zeigen die Zeit und ob du arbeitest oder Pause machst. Die Beschreibung erscheint nur, wenn **Details auf dem Sperrbildschirm** an ist. Das Widget fügst du wie jedes andere hinzu: unter iOS aus der Widget-Galerie von Home- oder Sperrbildschirm, unter Android aus der Widget-Liste des Launchers. Ein Tipp darauf öffnet den Fokusmodus. Sind Live-Aktivitäten für Hinata in den Systemeinstellungen aus, sagen das die Einstellungen, und die Widgets laufen weiter.
 
 ### Auf dem Desktop
 

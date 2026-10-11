@@ -43,11 +43,14 @@ You set your own lengths and the sound at the end of an interval under **Setting
 The app can show the timer outside its window. The card **Timer outside the app** asks once, and nothing is on until you confirm it:
 
 - a notification when a countdown or Pomodoro interval ends,
-- on Android, a quiet notification while the timer runs,
+- on Android, a quiet notification and the home screen widget while the timer runs,
+- on iPhone and iPad, a Live Activity on the lock screen and in the Dynamic Island, and the timer widget on the home and lock screen,
 - on the web, a browser notification when the tab is in the background, the running time in the tab title, and a mark on the app icon for the installed web app,
 - on the desktop, the running timer in the menu bar or the tray, described below.
 
 The texts are generic and never name the issue. Your switches stay on this device and are not sent to the server.
+
+The Live Activity and the widgets show the time and whether you work or take a break. The description only appears with **Details on the lock screen** switched on. Add the widget like any other: on iOS from the widget gallery of the home or lock screen, on Android from the launcher's widget list. A tap on it opens focus mode. If Live Activities are switched off for Hinata in the system settings, the settings say so, and the widgets keep working.
 
 ### On the desktop
 

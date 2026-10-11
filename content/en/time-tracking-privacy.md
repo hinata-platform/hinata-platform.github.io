@@ -373,15 +373,15 @@ A sick day says something about a person's health, which Art. 9 GDPR protects sp
 Since this release the timer can reach the person outside the app window:
 
 - **End of an interval:** a system notification when a countdown or a Pomodoro interval ends. On Android, iOS, macOS and Windows it is planned ahead, so it also arrives with the app closed. On Linux and in the browser it comes while the app runs in the background.
-- **Running timer:** on Android a quiet ongoing notification whose clock the system runs. In an installed web app a badge on the app icon.
+- **Running timer:** on Android a quiet ongoing notification whose clock the system runs, and the home screen widget. On iPhone and iPad a Live Activity (lock screen, Dynamic Island, StandBy) and the timer widget on the home and lock screen. In an installed web app a badge on the app icon.
 - **Tab title:** in the browser, if the person wants it, the running time in the tab title. Only the time.
 
-Menu bar and tray, Live Activity, home and lock screen widgets, controls, alarms and app shortcuts follow in later releases.
+Menu bar and tray, controls, alarms and app shortcuts follow in later releases.
 
 - **Device-local.** The surfaces collect nothing and send nothing to the employer. There is no telemetry, and surface events are not audited. Stopping the timer from a notification calls the same route as the button in the app, and the server cannot tell them apart.
 - **Generic texts.** A notification says that an interval is over, never what it was for. It disappears by itself where the system allows that (Android after ten minutes, Linux after a timeout, the browser on its own). On iOS and macOS the system keeps it in the notification centre until the person clears it.
 - **No description by default.** A locked Android screen shows only the app name. Details on the unlocked screen and on the lock screen are two separate switches, both off.
-- **They expire.** Local copies end by themselves at the latest 24 hours after the start, and vanish on sign out and with the account.
+- **They expire.** Local copies end by themselves at the latest 24 hours after the start, and vanish on sign out and with the account. The widgets keep one record without any id: start, end, whether it is a break, and when the copy expires. They go back to idle at that moment without the app and without the network, at the latest an hour after the end of a countdown or a Pomodoro phase. A Live Activity is started, changed and ended only by the running app. iOS ends it after eight hours at the latest, and the app ends an expired one the next time it starts.
 - **One by one.** Everything is off until the person confirms the card **Timer outside the app** once. After that each surface can be switched off on its own under **Settings → Time tracking**. The panel **Who sees my time data?** lists what is active on this device, and **Delete now** removes the local copies at once.
 
 Recommendation: list the surfaces in the works agreement checklist, as functions of the co-determined system.

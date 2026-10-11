@@ -373,15 +373,15 @@ Ein Krankheitstag sagt etwas über die Gesundheit einer Person, und die schützt
 Seit dieser Version kann der Timer die Person auch außerhalb des App-Fensters erreichen:
 
 - **Ende eines Intervalls:** eine System-Benachrichtigung, wenn ein Countdown oder ein Pomodoro-Intervall endet. Auf Android, iOS, macOS und Windows wird sie im Voraus geplant und kommt deshalb auch bei geschlossener App. Unter Linux und im Browser kommt sie, solange die App im Hintergrund läuft.
-- **Laufender Timer:** auf Android eine stille Dauer-Benachrichtigung, deren Uhr das System weiterzählt. In einer installierten Web-App eine Markierung am App-Symbol.
+- **Laufender Timer:** auf Android eine stille Dauer-Benachrichtigung, deren Uhr das System weiterzählt, und das Widget auf dem Startbildschirm. Auf iPhone und iPad eine Live-Aktivität (Sperrbildschirm, Dynamic Island, StandBy) und das Timer-Widget auf Home- und Sperrbildschirm. In einer installierten Web-App eine Markierung am App-Symbol.
 - **Tab-Titel:** im Browser auf Wunsch die laufende Zeit im Tab-Titel. Nur die Zeit.
 
-Menüleiste und Tray, Live Activity, Widgets auf Home- und Sperrbildschirm, Steuerelemente, Wecker und App-Kurzbefehle folgen in späteren Versionen.
+Menüleiste und Tray, Steuerelemente, Wecker und App-Kurzbefehle folgen in späteren Versionen.
 
 - **Nur auf dem Gerät.** Die Flächen erheben nichts und senden nichts an den Arbeitgeber. Es gibt keine Telemetrie, und Ereignisse der Flächen werden nicht protokolliert. Wer den Timer aus einer Benachrichtigung stoppt, ruft dieselbe Route wie der Knopf in der App, und der Server kann beides nicht unterscheiden.
 - **Allgemeine Texte.** Eine Benachrichtigung sagt, dass ein Intervall vorbei ist, nie, wofür. Sie verschwindet von selbst, wo das System das erlaubt (Android nach zehn Minuten, Linux nach einer Frist, der Browser von sich aus). Unter iOS und macOS behält das System sie in der Mitteilungszentrale, bis die Person sie löscht.
 - **Ab Werk ohne Beschreibung.** Ein gesperrtes Android-Gerät zeigt nur den App-Namen. Details auf dem entsperrten Bildschirm und auf dem Sperrbildschirm sind zwei eigene Schalter, beide aus.
-- **Sie verfallen.** Lokale Kopien enden spätestens 24 Stunden nach dem Start von selbst und verschwinden beim Abmelden und mit dem Konto.
+- **Sie verfallen.** Lokale Kopien enden spätestens 24 Stunden nach dem Start von selbst und verschwinden beim Abmelden und mit dem Konto. Die Widgets halten einen Datensatz ohne jede ID: Start, Ende, ob Pause ist, und wann die Kopie abläuft. In diesem Moment gehen sie ohne App und ohne Netz auf leer, spätestens eine Stunde nach dem Ende eines Countdowns oder einer Pomodoro-Phase. Eine Live-Aktivität startet, ändert und beendet nur die laufende App. iOS beendet sie spätestens nach acht Stunden, und die App beendet eine abgelaufene beim nächsten Start.
 - **Einzeln schaltbar.** Alles bleibt aus, bis die Person die Karte **Timer außerhalb der App** einmal bestätigt. Danach lässt sich jede Fläche unter **Einstellungen → Zeiterfassung** einzeln ausschalten. Das Panel **Wer sieht meine Zeitdaten?** zeigt, was auf diesem Gerät aktiv ist, und **Jetzt löschen** entfernt die lokalen Kopien sofort.
 
 Empfehlung: Nehmt die Flächen als Funktionen des mitbestimmten Systems in die Checkliste der Betriebsvereinbarung auf.
