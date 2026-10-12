@@ -43,7 +43,7 @@ Deine eigenen Längen und den Ton am Ende eines Intervalls stellst du unter **Ei
 Die App kann den Timer auch außerhalb ihres Fensters zeigen. Die Karte **Timer außerhalb der App** fragt einmal, und nichts ist an, bevor du zustimmst:
 
 - eine Mitteilung, wenn ein Countdown oder ein Pomodoro-Intervall endet,
-- auf Android eine stille Mitteilung und das Widget auf dem Startbildschirm, solange der Timer läuft,
+- auf Android eine stille Mitteilung, das Widget auf dem Startbildschirm und eine Kachel in den Schnelleinstellungen, solange der Timer läuft,
 - auf iPhone und iPad eine Live-Aktivität auf dem Sperrbildschirm und in der Dynamic Island und das Timer-Widget auf Home- und Sperrbildschirm,
 - im Web eine Browser-Mitteilung, wenn der Tab im Hintergrund ist, die laufende Zeit im Tab-Titel und eine Markierung am App-Symbol der installierten Web-App,
 - auf dem Desktop der laufende Timer in der Menüleiste oder im Infobereich, wie unten beschrieben.
@@ -51,6 +51,10 @@ Die App kann den Timer auch außerhalb ihres Fensters zeigen. Die Karte **Timer 
 Die Texte sind allgemein und nennen nie den Vorgang. Deine Schalter bleiben auf diesem Gerät und gehen nicht an den Server.
 
 Live-Aktivität und Widgets zeigen die Zeit und ob du arbeitest oder Pause machst. Die Beschreibung erscheint nur, wenn **Details auf dem Sperrbildschirm** an ist. Das Widget fügst du wie jedes andere hinzu: unter iOS aus der Widget-Galerie von Home- oder Sperrbildschirm, unter Android aus der Widget-Liste des Launchers. Ein Tipp darauf öffnet den Fokusmodus. Sind Live-Aktivitäten für Hinata in den Systemeinstellungen aus, sagen das die Einstellungen, und die Widgets laufen weiter.
+
+**Ohne die App zu öffnen.** **Stopp** und **Pause machen** oder **Weiter** in der Mitteilung, die Knöpfe im Widget und auf Android die Kachel in den Schnelleinstellungen wirken direkt, die App bleibt zu. Ein Tipp auf die Kachel stoppt den Timer, in einem Pomodoro wechselt er die Phase. Ein langer Druck oder ein Tipp ohne laufenden Timer öffnet den Fokusmodus. Auf einem gesperrten Gerät musst du zuerst entsperren. Die Kachel bietet Hinata nach deinem ersten Timer einmal an; du kannst sie auch selbst über das Bearbeiten der Schnelleinstellungen hinzufügen.
+
+**Im Hintergrund aktualisieren (iPhone und iPad).** Ab Werk ändert nur die geöffnete App die Live-Aktivität. Schaltest du unter **Einstellungen → Zeiterfassung** **Im Hintergrund aktualisieren** ein, kommen ein Phasenwechsel und ein Stopp auf einem anderen Gerät auch bei geschlossener App auf dem Sperrbildschirm an. Dein Server schickt sie Ende-zu-Ende verschlüsselt über Hinata Connect, Google und Apple, die nur sehen, wann etwas gesendet wird. Der Schalter gilt ab der nächsten Live-Aktivität. Was genau gesendet wird, steht unter [Datenschutz](/de/time-tracking-privacy.html).
 
 ### Auf dem Desktop
 
