@@ -43,7 +43,7 @@ You set your own lengths and the sound at the end of an interval under **Setting
 The app can show the timer outside its window. The card **Timer outside the app** asks once, and nothing is on until you confirm it:
 
 - a notification when a countdown or Pomodoro interval ends,
-- on Android, a quiet notification and the home screen widget while the timer runs,
+- on Android, a quiet notification, the home screen widget and a Quick Settings tile while the timer runs,
 - on iPhone and iPad, a Live Activity on the lock screen and in the Dynamic Island, and the timer widget on the home and lock screen,
 - on the web, a browser notification when the tab is in the background, the running time in the tab title, and a mark on the app icon for the installed web app,
 - on the desktop, the running timer in the menu bar or the tray, described below.
@@ -51,6 +51,10 @@ The app can show the timer outside its window. The card **Timer outside the app*
 The texts are generic and never name the issue. Your switches stay on this device and are not sent to the server.
 
 The Live Activity and the widgets show the time and whether you work or take a break. The description only appears with **Details on the lock screen** switched on. Add the widget like any other: on iOS from the widget gallery of the home or lock screen, on Android from the launcher's widget list. A tap on it opens focus mode. If Live Activities are switched off for Hinata in the system settings, the settings say so, and the widgets keep working.
+
+**Without opening the app.** **Stop** and **Take a break** or **Resume** in the notification, the buttons on the widget and, on Android, the Quick Settings tile act right away while the app stays closed. A tap on the tile stops the timer, or turns the phase in a Pomodoro. A long press, or a tap with no timer running, opens focus mode. On a locked device you unlock first. Hinata offers the tile once, after your first timer; you can also add it yourself when you edit the Quick Settings.
+
+**Update in the background (iPhone and iPad).** By default only the open app changes the Live Activity. Switch on **Update in the background** under **Settings → Time tracking**, and a phase change or a stop on another device reaches the lock screen while the app is closed. Your server sends them end-to-end encrypted through Hinata Connect, Google and Apple, who only see when something is sent. The switch applies from the next Live Activity. What exactly is sent is on the [privacy page](/en/time-tracking-privacy.html).
 
 ### On the desktop
 

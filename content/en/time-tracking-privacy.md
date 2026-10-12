@@ -373,13 +373,13 @@ A sick day says something about a person's health, which Art. 9 GDPR protects sp
 Since this release the timer can reach the person outside the app window:
 
 - **End of an interval:** a system notification when a countdown or a Pomodoro interval ends. On Android, iOS, macOS and Windows it is planned ahead, so it also arrives with the app closed. On Linux and in the browser it comes while the app runs in the background.
-- **Running timer:** on Android a quiet ongoing notification whose clock the system runs, and the home screen widget. On iPhone and iPad a Live Activity (lock screen, Dynamic Island, StandBy) and the timer widget on the home and lock screen. In an installed web app a badge on the app icon.
+- **Running timer:** on Android a quiet ongoing notification whose clock the system runs, the home screen widget and a Quick Settings tile. On iPhone and iPad a Live Activity (lock screen, Dynamic Island, StandBy) and the timer widget on the home and lock screen. In an installed web app a badge on the app icon.
 - **Tab title:** in the browser, if the person wants it, the running time in the tab title. Only the time.
 - **Desktop:** the running timer in the menu bar on a Mac and in the notification area on Windows and Linux. Work and breaks look the same there.
 
 Controls, alarms and app shortcuts follow in later releases.
 
-- **Device-local.** The surfaces collect nothing and send nothing to the employer. There is no telemetry, and surface events are not audited. Stopping the timer from a notification calls the same route as the button in the app, and the server cannot tell them apart.
+- **Device-local.** The surfaces collect nothing and send nothing to the employer (one exception, with a switch of its own: the Live Activity in the background, see below). There is no telemetry, and surface events are not audited. Stopping the timer from a notification calls the same route as the button in the app, and the server cannot tell them apart.
 - **Generic texts.** A notification says that an interval is over, never what it was for. It disappears by itself where the system allows that (Android after ten minutes, Linux after a timeout, the browser on its own). On iOS and macOS the system keeps it in the notification centre until the person clears it.
 - **No description by default.** A locked Android screen shows only the app name. Details on the unlocked screen and on the lock screen are two separate switches, both off.
 - **They expire.** Local copies end by themselves at the latest 24 hours after the start, and vanish on sign out and with the account. The widgets keep one record without any id: start, end, whether it is a break, and when the copy expires. They go back to idle at that moment without the app and without the network, at the latest an hour after the end of a countdown or a Pomodoro phase. A Live Activity is started, changed and ended only by the running app. iOS ends it after eight hours at the latest, and the app ends an expired one the next time it starts.
@@ -389,7 +389,16 @@ Recommendation: list the surfaces in the works agreement checklist, as functions
 
 **Devices owned or managed by the employer.** On a managed device, device management can see installed apps and in some setups their stored data. Settle in the agreement that device management is not used to read time data. With the defaults the local copies hold no description.
 
-**Live Activity updates by push (planned, later).** Updating a Live Activity while the app is in the background needs push. Before that ships, add it to your record of processing. Sub-processors are the [Hinata Connect gateway](/en/connect-gateway.html), Google Firebase Cloud Messaging and Apple Push Notification service. Assess the third-country transfer under the EU-US Data Privacy Framework or standard contractual clauses.
+**Updating the Live Activity in the background.** With the switch **Update in the background** (iPhone and iPad only, off by default, per device) the Live Activity follows the timer while the app is closed: a phase change or a stop on another device reaches the lock screen. This is the one case in which the state of the timer leaves the server, so:
+
+- **End-to-end encrypted.** For every activity the iPhone makes its own 256-bit key and registers it, with the activity's push token, at the server over TLS. The server encrypts every state with AES-256-GCM. The plaintext holds only the mode, the phase, the finished intervals, the start, the end of the stretch and whether it ended, never a description, project, issue or tag. Only the widget on the iPhone decrypts it. The [Hinata Connect gateway](/en/connect-gateway.html), Google Firebase Cloud Messaging and Apple Push Notification service see ciphertext, the token and when it was sent. Those times stay metadata with the processors.
+- **Short-lived.** Token and key live as long as the activity: the server deletes them at its end, when the push service reports the token as invalid, when the switch goes off, and at the latest four hours after the longest possible end. The server keeps the key encrypted (with `HINATA_ICS_SECRET`); without that secret it accepts no registration.
+- **No monitoring.** No delivery log, no statistics, no field on the user, no audit entry. The gateway logs no content.
+- **Deleted with the account.** Deleting an account removes every device token of the person, including the ones for ordinary push notifications.
+
+Add the feature to your record of processing. Sub-processors are the Hinata Connect gateway, Google Firebase Cloud Messaging and Apple Push Notification service. Assess the third-country transfer under the EU-US Data Privacy Framework or standard contractual clauses.
+
+**Actions without opening the app.** **Stop** and **Take a break** or **Resume** in the notification, the buttons on the timer widget and, on Android, the Quick Settings tile work without the app opening. They call the same routes as the buttons in the app. On a locked device iOS asks for Face ID or the passcode first; Android does nothing and asks the person to unlock and try again. In the background the app never renews its sign-in: if it has expired nothing happens, and the app catches up the next time it opens.
 
 **Alarms (planned).** Alarms through Apple's AlarmKit (iOS and iPadOS 26) break through silent mode. That is why they are an explicit opt-in for each person.
 
