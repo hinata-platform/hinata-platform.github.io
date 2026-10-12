@@ -375,8 +375,9 @@ Seit dieser Version kann der Timer die Person auch außerhalb des App-Fensters e
 - **Ende eines Intervalls:** eine System-Benachrichtigung, wenn ein Countdown oder ein Pomodoro-Intervall endet. Auf Android, iOS, macOS und Windows wird sie im Voraus geplant und kommt deshalb auch bei geschlossener App. Unter Linux und im Browser kommt sie, solange die App im Hintergrund läuft.
 - **Laufender Timer:** auf Android eine stille Dauer-Benachrichtigung, deren Uhr das System weiterzählt, und das Widget auf dem Startbildschirm. Auf iPhone und iPad eine Live-Aktivität (Sperrbildschirm, Dynamic Island, StandBy) und das Timer-Widget auf Home- und Sperrbildschirm. In einer installierten Web-App eine Markierung am App-Symbol.
 - **Tab-Titel:** im Browser auf Wunsch die laufende Zeit im Tab-Titel. Nur die Zeit.
+- **Desktop:** der laufende Timer in der Menüleiste auf dem Mac und im Infobereich unter Windows und Linux. Arbeit und Pause sehen dort gleich aus.
 
-Menüleiste und Tray, Steuerelemente, Wecker und App-Kurzbefehle folgen in späteren Versionen.
+Steuerelemente, Wecker und App-Kurzbefehle folgen in späteren Versionen.
 
 - **Nur auf dem Gerät.** Die Flächen erheben nichts und senden nichts an den Arbeitgeber. Es gibt keine Telemetrie, und Ereignisse der Flächen werden nicht protokolliert. Wer den Timer aus einer Benachrichtigung stoppt, ruft dieselbe Route wie der Knopf in der App, und der Server kann beides nicht unterscheiden.
 - **Allgemeine Texte.** Eine Benachrichtigung sagt, dass ein Intervall vorbei ist, nie, wofür. Sie verschwindet von selbst, wo das System das erlaubt (Android nach zehn Minuten, Linux nach einer Frist, der Browser von sich aus). Unter iOS und macOS behält das System sie in der Mitteilungszentrale, bis die Person sie löscht.
