@@ -375,8 +375,9 @@ Since this release the timer can reach the person outside the app window:
 - **End of an interval:** a system notification when a countdown or a Pomodoro interval ends. On Android, iOS, macOS and Windows it is planned ahead, so it also arrives with the app closed. On Linux and in the browser it comes while the app runs in the background.
 - **Running timer:** on Android a quiet ongoing notification whose clock the system runs, and the home screen widget. On iPhone and iPad a Live Activity (lock screen, Dynamic Island, StandBy) and the timer widget on the home and lock screen. In an installed web app a badge on the app icon.
 - **Tab title:** in the browser, if the person wants it, the running time in the tab title. Only the time.
+- **Desktop:** the running timer in the menu bar on a Mac and in the notification area on Windows and Linux. Work and breaks look the same there.
 
-Menu bar and tray, controls, alarms and app shortcuts follow in later releases.
+Controls, alarms and app shortcuts follow in later releases.
 
 - **Device-local.** The surfaces collect nothing and send nothing to the employer. There is no telemetry, and surface events are not audited. Stopping the timer from a notification calls the same route as the button in the app, and the server cannot tell them apart.
 - **Generic texts.** A notification says that an interval is over, never what it was for. It disappears by itself where the system allows that (Android after ten minutes, Linux after a timeout, the browser on its own). On iOS and macOS the system keeps it in the notification centre until the person clears it.
