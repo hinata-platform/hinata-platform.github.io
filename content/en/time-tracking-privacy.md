@@ -373,7 +373,7 @@ A sick day says something about a person's health, which Art. 9 GDPR protects sp
 Since this release the timer can reach the person outside the app window:
 
 - **End of an interval:** a system notification when a countdown or a Pomodoro interval ends. On Android, iOS, macOS and Windows it is planned ahead, so it also arrives with the app closed. On Linux and in the browser it comes while the app runs in the background.
-- **Running timer:** on Android a quiet ongoing notification whose clock the system runs, the home screen widget and a Quick Settings tile. On iPhone and iPad a Live Activity (lock screen, Dynamic Island, StandBy) and the timer widget on the home and lock screen. In an installed web app a badge on the app icon.
+- **Running timer:** on Android a quiet ongoing notification whose clock the system runs (on Android 16 and later as a Live Update with a status bar chip that shows only the time, optionally held by a foreground service in the reliability mode, which collects nothing), the home screen widget and a Quick Settings tile. On iPhone and iPad a Live Activity (lock screen, Dynamic Island, StandBy) and the timer widget on the home and lock screen. In an installed web app a badge on the app icon.
 - **Tab title:** in the browser, if the person wants it, the running time in the tab title. Only the time.
 - **Desktop:** the running timer in the menu bar on a Mac and in the notification area on Windows and Linux. Work and breaks look the same there.
 
