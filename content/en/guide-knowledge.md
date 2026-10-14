@@ -45,7 +45,7 @@ Press **New article**, on the home screen or in the article view next to **All s
 
 - **Title** above the toolbar. It becomes the heading, the row in the tree and what people search for. *"Release checklist"* is findable, *"Notes"* is not.
 - **Space picker** next to it. You can change it at any time.
-- **Visible to**: **Only me**, a **Project** or a **Team**. A new page stays private until you put it into a project or team. On sub-pages this reads **Same as the page above**.
+- **Visible to**: **Only me**, **Whole organisation**, a **Project** or a **Team**. A new page stays private until you choose who sees it. On sub-pages this reads **Same as the page above**.
 - **Button on the right:** **Publish** on new pages, **Save** when editing.
 
 There is no draft state.
@@ -184,9 +184,11 @@ Hovering a row shows **+** (**Add sub-page**) and the menu.
 | --- | --- |
 | **Project** | Everyone who sees the project |
 | **Team** | The team's admins and the members the team opened the page to |
+| **Whole organisation** | Everyone with an account, for example a guide for new colleagues |
 | **Only me** | Only you, the author |
 
 - Team-Admins decide per member which of the team's pages they read: **None** (the default), **All pages of the team** or **Selected pages**. A selected page includes everything below it.
+- Only its author and the organisation admins can take a page back out of the whole organisation. It stays when its author's account is deleted.
 - Sub-pages come along when their parent moves. Sub-pages that were filed from another place are the exception. They stay where they are.
 - Other team members see how many pages a colleague was given, but not which ones. Team-Admins see which.
 - Private pages are part of your personal data. They are included in your data export and are deleted with your account. That includes pages everyone could read before the update that are now private to their author. If an important page should stay, move it into a project or team before the account is deleted.

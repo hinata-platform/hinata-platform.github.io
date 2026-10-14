@@ -45,7 +45,7 @@ Tippe auf **Neuer Artikel**, auf der Startseite oder in der Artikelansicht neben
 
 - **Titel** über der Werkzeugleiste. Er wird Überschrift, Zeile im Seitenbaum und Suchbegriff. *„Checkliste für Releases“* findet man, *„Notizen“* nicht.
 - **Bereichsauswahl** daneben. Lässt sich jederzeit ändern.
-- **Sichtbar für**: **Nur ich**, ein **Projekt** oder ein **Team**. Eine neue Seite bleibt privat, bis du sie einem Projekt oder Team zuordnest. Bei Unterseiten steht hier **Wie die übergeordnete Seite**.
+- **Sichtbar für**: **Nur ich**, **Ganze Organisation**, ein **Projekt** oder ein **Team**. Eine neue Seite bleibt privat, bis du festlegst, wer sie sieht. Bei Unterseiten steht hier **Wie die übergeordnete Seite**.
 - **Knopf rechts:** **Veröffentlichen** bei neuen Seiten, **Speichern** beim Bearbeiten.
 
 Einen Entwurfsstatus gibt es nicht.
@@ -184,9 +184,11 @@ Fährst du über eine Zeile, erscheinen **+** (**Unterseite hinzufügen**) und d
 | --- | --- |
 | **Projekt** | Alle, die das Projekt sehen |
 | **Team** | Die Team-Admins und die Mitglieder, denen das Team die Seite geöffnet hat |
+| **Ganze Organisation** | Alle mit einem Konto, etwa für eine Anleitung für neue Kolleginnen und Kollegen |
 | **Nur ich** | Nur du als Autor |
 
 - Team-Admins legen pro Mitglied fest, welche Seiten des Teams es liest: **Keine** (die Voreinstellung), **Alle Seiten des Teams** oder **Ausgewählte Seiten**. Eine ausgewählte Seite schließt alles darunter ein.
+- Eine Seite der ganzen Organisation holen nur ihr Autor und die Organisations-Admins wieder zurück. Sie bleibt erhalten, wenn das Konto ihres Autors gelöscht wird.
 - Unterseiten ziehen mit, wenn ihre Elternseite umzieht. Ausnahme sind Unterseiten, die von einem anderen Ort aus abgelegt wurden. Sie bleiben an ihrem Ort.
 - Andere Teammitglieder sehen nur, wie viele Seiten ein Kollege bekommen hat, aber nicht welche. Welche es sind, sehen die Team-Admins.
 - Private Seiten gehören zu deinen persönlichen Daten. Sie sind im Export deiner Daten enthalten und werden mit deinem Konto gelöscht. Das gilt auch für Seiten, die vor dem Update alle lesen konnten und jetzt privat für ihren Autor sind. Soll eine wichtige Seite bleiben, verschiebe sie in ein Projekt oder Team, bevor das Konto gelöscht wird.
