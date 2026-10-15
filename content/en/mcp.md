@@ -109,6 +109,7 @@ Every tool carries the MCP annotations `readOnlyHint` and `destructiveHint`. Cli
 |---|---|---|
 | `create_issue` / `update_issue` | `issues:write` | Create an issue, update fields incl. state, sprint, parent, assignees |
 | `add_comment` / `edit_comment` / `delete_comment` | `issues:write` | Comment on an issue, edit or delete your own comment |
+| `add_participant` / `remove_participant` | `issues:write` | Share an issue with a person outside its project or end the share ([Sharing an issue](/en/guide-sharing)) |
 | `create_sprint` / `update_sprint` | `sprints:write` | Plan a sprint on a SCRUM board, adjust name, goal, dates, capacity |
 | `start_sprint` / `complete_sprint` | `sprints:write` | Start and complete a sprint. Completing moves open issues |
 | `create_kb_article` / `update_kb_article` / `delete_kb_article` | `kb:write` | Manage knowledge base articles (visibility can never be changed via MCP) |

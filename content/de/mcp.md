@@ -109,6 +109,7 @@ Jedes Tool trägt die MCP-Annotationen `readOnlyHint` und `destructiveHint`. Cli
 |---|---|---|
 | `create_issue` / `update_issue` | `issues:write` | Vorgang anlegen, Felder ändern inkl. Status, Sprint, Parent, Zuweisungen |
 | `add_comment` / `edit_comment` / `delete_comment` | `issues:write` | Vorgang kommentieren, eigenen Kommentar bearbeiten oder löschen |
+| `add_participant` / `remove_participant` | `issues:write` | Vorgang mit einer Person außerhalb des Projekts teilen oder die Beteiligung beenden ([Vorgänge teilen](/de/guide-sharing)) |
 | `create_sprint` / `update_sprint` | `sprints:write` | Sprint auf einem SCRUM-Board planen, Name, Ziel, Daten und Kapazität anpassen |
 | `start_sprint` / `complete_sprint` | `sprints:write` | Sprint starten und abschließen. Beim Abschließen werden offene Vorgänge verschoben |
 | `create_kb_article` / `update_kb_article` / `delete_kb_article` | `kb:write` | Artikel der Wissensdatenbank verwalten (die Sichtbarkeit ist per MCP nie änderbar) |
