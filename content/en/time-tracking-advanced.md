@@ -72,7 +72,7 @@ The Live Activity and the widgets show the time and whether you work or take a b
 
 **Taskbar (Windows).** The taskbar button fills up with the progress of a countdown, carries a small mark while the timer runs, and its preview has two buttons: start or stop, and the focus view.
 
-**System-wide shortcuts (macOS and Windows).** Off by default, and only there while the menu bar or tray icon is on, so a press never starts a timer you cannot see. Switch on **System-wide shortcuts** under Settings → Time tracking to start or stop the timer and open the focus view from any app:
+**System-wide shortcuts.** Off by default, and only there while the menu bar or tray icon is on, so a press never starts a timer you cannot see. Switch on **System-wide shortcuts** under Settings → Time tracking to start or stop the timer and open the focus view from any app:
 
 | Shortcut | Mac | Windows |
 | --- | --- | --- |
@@ -83,7 +83,9 @@ Choose other combinations by clicking one and pressing the new keys. A combinati
 
 The shortcuts go through the operating system's registration for shortcuts. The app hears its two combinations and no other key, and asks for no accessibility permission.
 
-**Linux.** The tray icon needs a panel that shows tray icons: KDE Plasma and most desktops do, GNOME does with the AppIndicator extension (Ubuntu has it on). Without one nothing shows, and the window does not hide into a tray you cannot see. The tray menu on Linux never names what you work on, because any program of the session can read it. System-wide shortcuts on Linux follow in a later release.
+**Linux.** The tray icon needs a panel that shows tray icons: KDE Plasma and most desktops do, GNOME does with the AppIndicator extension (Ubuntu has it on). Without one nothing shows, and the window does not hide into a tray you cannot see. The tray menu on Linux never names what you work on, because any program of the session can read it.
+
+**System-wide shortcuts on Linux.** Here your desktop decides which keys trigger them. Hinata suggests the same combinations as on Windows. GNOME (version 48 and later) asks once, the first time you switch them on, which shortcuts to allow; KDE Plasma takes them right away. The settings then show the keys the desktop reported, and **Configure in the system** opens its shortcut settings, where you change them. If you turned the dialog down, the same button asks again. Sway and other wlroots desktops offer no system-wide shortcuts and show “not available”. The AppImage needs its desktop integration (for example through Gear Lever or AppImageLauncher) so the desktop knows which app is asking. On Linux too, the app hears these two shortcuts and no other key.
 
 ## Focus mode and shortcuts
 

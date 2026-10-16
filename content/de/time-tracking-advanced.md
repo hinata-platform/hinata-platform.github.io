@@ -72,7 +72,7 @@ Live-Aktivität und Widgets zeigen die Zeit und ob du arbeitest oder Pause machs
 
 **Taskleiste (Windows).** Der Taskleisten-Knopf füllt sich mit dem Fortschritt eines Countdowns, trägt eine kleine Markierung, solange der Timer läuft, und seine Vorschau hat zwei Knöpfe: starten oder stoppen und die Fokusansicht.
 
-**Systemweite Kürzel (macOS und Windows).** Von Anfang an aus, und nur zusammen mit dem Symbol in Menüleiste oder Infobereich, damit ein Tastendruck nie einen Timer startet, den du nicht siehst. Schalte unter Einstellungen → Zeiterfassung **Systemweite Kürzel** ein, dann startest und stoppst du den Timer und öffnest die Fokusansicht aus jeder App:
+**Systemweite Kürzel.** Von Anfang an aus, und nur zusammen mit dem Symbol in Menüleiste oder Infobereich, damit ein Tastendruck nie einen Timer startet, den du nicht siehst. Schalte unter Einstellungen → Zeiterfassung **Systemweite Kürzel** ein, dann startest und stoppst du den Timer und öffnest die Fokusansicht aus jeder App:
 
 | Kürzel | Mac | Windows |
 | --- | --- | --- |
@@ -83,7 +83,9 @@ Andere Kombinationen wählst du, indem du auf eine klickst und die neuen Tasten 
 
 Die Kürzel laufen über die Kürzel-Registrierung des Betriebssystems. Die App hört nur ihre zwei Kombinationen und keine andere Taste, und sie fragt nach keiner Bedienungshilfen-Berechtigung.
 
-**Linux.** Das Symbol im Infobereich braucht eine Leiste, die solche Symbole zeigt: KDE Plasma und die meisten Desktops tun das, GNOME mit der AppIndicator-Erweiterung (unter Ubuntu ist sie an). Ohne sie erscheint nichts, und das Fenster versteckt sich auch nicht in einen Infobereich, den du nicht siehst. Das Menü im Infobereich nennt unter Linux nie, woran du arbeitest, denn jedes Programm der Sitzung kann es lesen. Systemweite Kürzel unter Linux folgen in einer späteren Version.
+**Linux.** Das Symbol im Infobereich braucht eine Leiste, die solche Symbole zeigt: KDE Plasma und die meisten Desktops tun das, GNOME mit der AppIndicator-Erweiterung (unter Ubuntu ist sie an). Ohne sie erscheint nichts, und das Fenster versteckt sich auch nicht in einen Infobereich, den du nicht siehst. Das Menü im Infobereich nennt unter Linux nie, woran du arbeitest, denn jedes Programm der Sitzung kann es lesen.
+
+**Systemweite Kürzel unter Linux.** Hier legt dein Desktop fest, welche Tasten auslösen. Hinata schlägt dieselben Kombinationen wie unter Windows vor. GNOME (ab Version 48) fragt beim ersten Einschalten einmal, welche Kürzel du erlaubst, KDE Plasma übernimmt sie gleich. Die Einstellungen zeigen dann die Tasten, die der Desktop gemeldet hat, und **Im System konfigurieren** öffnet seine Kürzel-Einstellungen, in denen du sie änderst. Hast du im Dialog abgelehnt, fragt derselbe Knopf noch einmal. Sway und andere wlroots-Desktops bieten keine systemweiten Kürzel an, dort steht „nicht verfügbar“. Das AppImage braucht seine Desktop-Integration (etwa über Gear Lever oder AppImageLauncher), damit der Desktop weiß, welche App fragt. Auch unter Linux hört die App nur diese zwei Kürzel und keine andere Taste.
 
 ## Fokusmodus und Tastenkürzel
 
