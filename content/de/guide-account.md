@@ -153,8 +153,8 @@ Die Karte **Darstellung & App** enthält:
   Farbe getönt. Die Wahl gilt sofort und auf allen Geräten, auf denen du
   angemeldet bist, weil sie an deinem Konto hängt. Statusfarben wie „In
   Arbeit“ oder „Erledigt“ und die Farben deiner Projekte bleiben, wie sie
-  sind. Darunter die Pillen **Hell**, **Dunkel** und **Automatisch**;
-  Automatisch folgt deinem Betriebssystem und gilt nur für dieses Gerät. **Auf
+  sind. Darunter die Pillen **Hell**, **Dunkel** und **System**;
+  System folgt deinem Betriebssystem und gilt nur für dieses Gerät. **Auf
   Standard zurücksetzen** nimmt die Farbe wieder heraus.
 - **Verbundener Server**, daneben **Server verwalten**, wenn du mehrere nutzt.
   Siehe [Auf dem Handy](/de/guide-mobile.html#mehrere-server-eine-app).
