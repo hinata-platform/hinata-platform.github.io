@@ -38,9 +38,9 @@ The App itself processes data exclusively locally on your device, to the extent 
 
 - the server addresses you enter,
 - sign-in tokens (access and refresh tokens) for the selected instances,
-- application settings (e.g. language, theme, notification preferences).
+- application settings (e.g. language, light or dark, the colour you chose for the App, notification preferences).
 
-This data stays on your device and is not transmitted to the App publisher. The App uses **no** cookies or comparable technologies for analytics or advertising. It embeds **no** tracking services and sends **no** telemetry to the App publisher. The legal basis for this local storage is Art. 6(1)(b) GDPR and, where applicable, Section 25(2) of the German TDDDG (technical necessity).
+This data stays on your device and is not transmitted to the App publisher. The App uses **no** cookies or comparable technologies for analytics or advertising. It embeds **no** tracking services and sends **no** telemetry to the App publisher. The legal basis for this local storage is Art. 6(1)(b) GDPR and, where applicable, Section 25(2) of the German TDDDG (technical necessity). The colour you chose for the App is one of your account settings and is therefore also stored on the server instance you selected (see section 4), so that all your devices show the same appearance; it is deleted together with your account and removed from the device when you sign out.
 
 ## 4. Communication with the server instance you choose
 

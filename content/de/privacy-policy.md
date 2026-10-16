@@ -38,9 +38,9 @@ Die App selbst verarbeitet Daten ausschließlich lokal auf Ihrem Gerät, soweit 
 
 - die von Ihnen eingetragenen Serveradressen,
 - Anmeldetoken (Access Token und Refresh Token) für die gewählten Instanzen,
-- Anwendungseinstellungen (z. B. Sprache, Design, Benachrichtigungseinstellungen).
+- Anwendungseinstellungen (z. B. Sprache, Hell oder Dunkel, die gewählte Farbe der App, Benachrichtigungseinstellungen).
 
-Diese Daten bleiben auf Ihrem Gerät und werden nicht an den Herausgeber der App übermittelt. Die App verwendet **keine** Cookies oder vergleichbaren Technologien zu Analyse- oder Werbezwecken. Sie bindet **keine** Dienste zum Tracking ein und sendet **keine** Telemetrie an den Herausgeber. Rechtsgrundlage der lokalen Speicherung ist Art. 6 Abs. 1 lit. b DSGVO und, soweit einschlägig, § 25 Abs. 2 TDDDG (technische Erforderlichkeit).
+Diese Daten bleiben auf Ihrem Gerät und werden nicht an den Herausgeber der App übermittelt. Die App verwendet **keine** Cookies oder vergleichbaren Technologien zu Analyse- oder Werbezwecken. Sie bindet **keine** Dienste zum Tracking ein und sendet **keine** Telemetrie an den Herausgeber. Rechtsgrundlage der lokalen Speicherung ist Art. 6 Abs. 1 lit. b DSGVO und, soweit einschlägig, § 25 Abs. 2 TDDDG (technische Erforderlichkeit). Die gewählte Farbe der App gehört zu Ihren Kontoeinstellungen und wird deshalb zusätzlich auf der von Ihnen gewählten Serverinstanz gespeichert (siehe § 4), damit alle Ihre Geräte dieselbe Darstellung zeigen; sie wird mit Ihrem Konto gelöscht und beim Abmelden vom Gerät entfernt.
 
 ## § 4 Kommunikation mit der von Ihnen gewählten Serverinstanz
 
