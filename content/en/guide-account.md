@@ -140,8 +140,17 @@ The **Appearance & app** card contains:
   time zone) to work out which
   [working days for your notification times](/en/guide-notifications.html#when-things-reach-you) are
   preset.
-- **Appearance**: **System**, **Light** or **Dark**. System follows your
-  operating system.
+- **Customize**: your colour for the whole app, the way you tint your phone.
+  Two tiles show the app in **Standard** (honey and navy) and **Tinted**. With
+  Tinted, two sliders appear: **Colour** picks the hue, **Tint** sets how
+  strong it is. At the far left the glass of the bars stays clear and the
+  colour pale; at the far right everything is tinted in your colour. The
+  choice applies at once and on every device you are signed in on, because
+  it lives on your account. Status colours such as "In progress" or "Done"
+  and your projects' colours stay as they are. Below them the pills
+  **Light**, **Dark** and **System**; System follows your operating system
+  and applies to this device only. **Reset to standard** takes the colour
+  out again.
 - **Connected server**, with **Manage servers** next to it if you use several.
   See [On your phone](/en/guide-mobile.html#several-servers-one-app).
 - **Privacy policy**: your operator's privacy notice plus the app and server

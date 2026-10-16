@@ -145,8 +145,17 @@ Die Karte **Darstellung & App** enthält:
   deiner Sprache (oder aus deiner Zeitzone) leitet Hinata auch ab, welche
   [Werktage für deine Benachrichtigungszeiten](/de/guide-notifications.html#wann-dich-etwas-erreicht)
   voreingestellt sind.
-- **Darstellung**: **System**, **Hell** oder **Dunkel**. System folgt deinem
-  Betriebssystem.
+- **Anpassen**: deine Farbe für die ganze App, so wie du dein Handy
+  einfärbst. Zwei Kacheln zeigen die App in **Standard** (Honig und Navy)
+  und **Eingefärbt**. Bei Eingefärbt erscheinen zwei Regler: **Farbe** wählt
+  den Farbton, **Tönung** bestimmt, wie kräftig er ist. Ganz links bleibt das
+  Glas der Leisten klar und die Farbe zart, ganz rechts ist alles in deiner
+  Farbe getönt. Die Wahl gilt sofort und auf allen Geräten, auf denen du
+  angemeldet bist, weil sie an deinem Konto hängt. Statusfarben wie „In
+  Arbeit“ oder „Erledigt“ und die Farben deiner Projekte bleiben, wie sie
+  sind. Darunter die Pillen **Hell**, **Dunkel** und **Automatisch**;
+  Automatisch folgt deinem Betriebssystem und gilt nur für dieses Gerät. **Auf
+  Standard zurücksetzen** nimmt die Farbe wieder heraus.
 - **Verbundener Server**, daneben **Server verwalten**, wenn du mehrere nutzt.
   Siehe [Auf dem Handy](/de/guide-mobile.html#mehrere-server-eine-app).
 - **Datenschutzerklärung**: der Datenschutzhinweis deines Betreibers und die
