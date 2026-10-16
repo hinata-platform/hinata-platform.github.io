@@ -146,16 +146,18 @@ Die Karte **Darstellung & App** enthält:
   [Werktage für deine Benachrichtigungszeiten](/de/guide-notifications.html#wann-dich-etwas-erreicht)
   voreingestellt sind.
 - **Anpassen**: deine Farbe für die ganze App, so wie du dein Handy
-  einfärbst. Zwei Kacheln zeigen die App in **Standard** (Honig und Navy)
-  und **Eingefärbt**. Bei Eingefärbt erscheinen zwei Regler: **Farbe** wählt
-  den Farbton, **Tönung** bestimmt, wie kräftig er ist. Ganz links bleibt das
+  einfärbst. Die Zeile zeigt, was eingestellt ist, etwa „Eingefärbt · Grün ·
+  Automatisch“. Ein Klick öffnet das Fenster „Anpassen“, auf dem Handy von
+  unten. Zwei Kacheln zeigen die App in **Standard** (Honig und Navy) und
+  **Eingefärbt**. Bei Eingefärbt erscheinen zwei Regler: der obere wählt den
+  Farbton, der untere bestimmt, wie kräftig er ist. Ganz links bleibt das
   Glas der Leisten klar und die Farbe zart, ganz rechts ist alles in deiner
   Farbe getönt. Die Wahl gilt sofort und auf allen Geräten, auf denen du
   angemeldet bist, weil sie an deinem Konto hängt. Statusfarben wie „In
   Arbeit“ oder „Erledigt“ und die Farben deiner Projekte bleiben, wie sie
-  sind. Darunter die Pillen **Hell**, **Dunkel** und **System**;
-  System folgt deinem Betriebssystem und gilt nur für dieses Gerät. **Auf
-  Standard zurücksetzen** nimmt die Farbe wieder heraus.
+  sind. Darunter **Hell**, **Dunkel** und **Automatisch**; Automatisch folgt
+  deinem Betriebssystem und gilt nur für dieses Gerät. Zurück zur
+  Hausfarbe kommst du mit der Kachel **Standard**.
 - **Verbundener Server**, daneben **Server verwalten**, wenn du mehrere nutzt.
   Siehe [Auf dem Handy](/de/guide-mobile.html#mehrere-server-eine-app).
 - **Datenschutzerklärung**: der Datenschutzhinweis deines Betreibers und die
