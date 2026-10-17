@@ -107,6 +107,9 @@ phone. Without **Done**, your changes are lost.
 
 Open **Reports** in the sidebar, or under **More** on a phone. The page always shows **one project**. The project capsule at the top opens a search over every project your team access grants you. Next to it you pick **30 days** or **90 days**.
 
+![The project search on the reports page](/assets/img/shot-reports-project-picker.png)
+*The project search.*
+
 With advanced time tracking switched on, the same overview is the first tab, **Project**, of the time reports. Next to it sit **Budgets** and the time reports themselves, all sharing one filter. See [Advanced time tracking](/en/time-tracking-advanced.html).
 
 ![The reports page with figures and trend](/assets/img/shot-reports.png)

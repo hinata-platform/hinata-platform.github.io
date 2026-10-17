@@ -109,6 +109,9 @@ Ohne **Fertig** gehen die Änderungen verloren.
 
 Öffne **Berichte** in der Seitenleiste, auf dem Handy unter **Mehr**. Die Seite zeigt immer **ein Projekt**. Die Projektkapsel oben öffnet eine Suche über alle Projekte, die du über dein Team erreichst. Daneben wählst du **30 Tage** oder **90 Tage**.
 
+![Die Projektsuche auf der Berichteseite](/assets/img/shot-reports-project-picker.png)
+*Die Projektsuche.*
+
 Ist das erweiterte Time-Tracking eingeschaltet, ist dieselbe Übersicht der erste Reiter **Projekt** der Zeitberichte. Daneben stehen **Budgets** und die Zeitberichte selbst, alle mit einem gemeinsamen Filter. Siehe [Erweitertes Time-Tracking](/de/time-tracking-advanced.html).
 
 ![Die Berichteseite mit Kennzahlen und Verlauf](/assets/img/shot-reports.png)
