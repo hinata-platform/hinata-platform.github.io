@@ -228,6 +228,23 @@ Die Kopie gehört danach dieser Person. Für sie gelten deren Sperrdaten und Fre
 - **CSV importieren** übernimmt deine eigenen Einträge aus einer Datei bis 5 MB und 10.000 Zeilen. Exporte aus Hinata und toggl werden erkannt. Jede Zeile wird wie ein getippter Eintrag geprüft, und es werden alle gültigen Zeilen geschrieben oder keine.
 - **Bericht speichern** behält bis zu 200 Berichte. Ein gespeicherter Bericht kann einen Link zum Teilen bekommen (nur für Angemeldete, jede Person sieht ihren eigenen Ausschnitt) oder wöchentlich oder monatlich per Mail an bis zu 50 Personen gehen, als Link ohne Anhang.
 
+## Budgets
+
+Ein Projekt kann ein **Zeitbudget** haben. Projektleitungen setzen es unter **Projekt-Einstellungen → Zeiterfassung**. Was davon verbraucht ist, zeigt Hinata als Honigstand an jeder Stelle, an der es zählt:
+
+- in den Projekt-Einstellungen als Röhre für das Budget und eine für die Summe der Schätzungen,
+- auf jeder Projektkarte und im Kopf eines Boards mit genau einem Projekt als Kapsel mit Prozentzahl,
+- auf dem Dashboard in der Kachel **Budgets** als Wabe mit den drei vollsten Budgets,
+- im Vorgang als Röhre für seine Schätzung und im Gantt als Honiglinie am Fuß jedes Balkens,
+- in der Timer-Leiste für den laufenden Vorgang, auf dem Handy erst ab dem Warnanteil.
+
+Für das Budget und für die Schätzungen wählt die Leitung je einen Modus:
+
+- **Hinweis beim Erfassen** (Standard): Wer Zeit erfasst, sieht im Formular und in der Stundenzettel-Zelle ab dem Warnanteil, wie viel noch übrig ist, mit dem neuen Eintrag schon eingerechnet. Nach dem Speichern sagt ein Hinweis, wo das Projekt jetzt steht. Die Leitungen und die Admins der Teams des Projekts erfahren es sofort beim Warnanteil, bei 100 % und erneut bei 110, 125 und 150 %.
+- **Nur stündliche Meldung**: kein Hinweis im Formular. Die Leitungen bekommen einmal je Stunde Bescheid, wie bisher.
+
+Erfassen wird in keinem Modus gesperrt. Arbeitszeit muss sich immer aufzeichnen lassen. Ob Leitungen benachrichtigt werden, entscheidet die Richtlinie **Budget-Warnungen** der Organisation. Ist sie aus, sagt das die Einstellungsseite des Projekts.
+
 ## Abrechnung
 
 Ist die Abrechnung eingeschaltet, bepreisen Projektleitungen und Organisationsadmins erfasste Zeit.

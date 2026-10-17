@@ -228,6 +228,23 @@ The copy then belongs to that person. Their lock dates and approvals apply to it
 - **Import CSV** brings in your own entries from a file of up to 5 MB and 10,000 rows. Exports from Hinata and toggl are recognised. Every row is checked like a typed entry, and either all valid rows are written or none.
 - **Save report** keeps up to 200 reports. A saved report can get a share link (only signed-in people, each sees their own scope) or go out by mail every week or month to up to 50 people, as a link without attachment.
 
+## Budgets
+
+A project can have a **time budget**. Project leads set it under **Project settings → Time tracking**. What has been used shows as a honey level wherever it matters:
+
+- in the project settings as a tube for the budget and one for the sum of estimates,
+- on every project card and in the head of a board with exactly one project as a capsule with a percentage,
+- on the dashboard in the **Budgets** tile as a honeycomb of the three fullest budgets,
+- in an issue as a tube for its estimate, and on Gantt as a honey line along the foot of each bar,
+- in the timer bar for the running issue, on a phone only from the warning share.
+
+For the budget and for estimates the lead picks a mode each:
+
+- **Note while recording** (the default): whoever records time sees in the form and in the timesheet cell, from the warning share, how much is left, with the new entry already counted. After saving, a note says where the project stands now. The leads and the admins of the project's teams hear at once at the warning share, at 100 % and again at 110, 125 and 150 %.
+- **Hourly alert only**: no note in the form. Leads hear once an hour, as before.
+
+Recording is never blocked in either mode. Working time must always be recordable. Whether leads are notified is decided by the organization's **Budget alerts** policy. With it off, the project's settings page says so.
+
 ## Billing
 
 With billing switched on, project leads and organization admins price recorded time.
