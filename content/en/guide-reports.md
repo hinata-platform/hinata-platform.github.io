@@ -152,6 +152,9 @@ Issues without an owner are listed under **Unassigned**. Keep an eye on that row
 
 ### Budgets
 
+![The Budgets tab with a sprint and projects](/assets/img/shot-reports-budgets.png)
+*Budgets, fullest first.*
+
 With advanced time tracking, the **Budgets** tab lists every budget you may see, fullest first. Running sprints with a budget sit at the top. Each project card shows the time budget with its forecast, the estimates and, if you may see it, the money budget.
 
 ### Sprint burndown and velocity live on the board

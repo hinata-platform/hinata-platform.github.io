@@ -247,6 +247,9 @@ Erfassen wird in keinem Modus gesperrt. Arbeitszeit muss sich immer aufzeichnen 
 
 ### Verlauf und Prognose
 
+![Der Budgetverlauf eines Projekts](/assets/img/shot-budget-history.png)
+*Der Verlauf eines überschrittenen Budgets.*
+
 Ein Tipp auf eine Wabe im Dashboard oder auf **Verlauf** in den Projekt-Einstellungen öffnet den Verlauf des Budgets. Die Honigfläche zeigt, wie sich die erfassten Stunden Tag für Tag aufsummiert haben, die Linie darüber das Budget und, falls vorhanden, die Summe der Schätzungen.
 
 Unter der Röhre steht eine Prognose, etwa „Reicht bis etwa 14. November“. Hinata rechnet dafür mit dem Tempo der letzten 14 Tage je Arbeitstag. Wochenenden und die Feiertage des Standardkalenders zählen nicht mit. Gibt es weniger als drei Tage mit Einträgen, sagt die Prognose dazu, dass sie unsicher ist. Ist das Budget schon aufgebraucht oder ruht die Arbeit, steht dort genau das.
