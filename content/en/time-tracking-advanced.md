@@ -46,7 +46,7 @@ The app can show the timer outside its window. The card **Timer outside the app*
 - on Android, a quiet notification, the home screen widget and a Quick Settings tile while the timer runs,
 - on iPhone and iPad, a Live Activity on the lock screen and in the Dynamic Island, and the timer widget on the home and lock screen,
 - on the web, a browser notification when the tab is in the background, the running time in the tab title, and a mark on the app icon for the installed web app,
-- on the desktop, the running timer in the menu bar or the tray, described below.
+- on the desktop, the running timer in the menu bar or the tray, described below, and on a Mac the timer widget on the desktop and in Notification Center.
 
 The texts are generic and never name the issue. Your switches stay on this device and are not sent to the server.
 
@@ -67,6 +67,8 @@ The Live Activity and the widgets show the time and whether you work or take a b
 ### On the desktop
 
 **Menu bar and tray.** On a Mac the menu bar shows the running time next to the Hinata icon. On Windows and Linux an icon in the notification area shows that the timer runs, and on Windows its tooltip has the time. Work and breaks look the same, so a shared screen does not tell anyone when you take a break: during a Pomodoro the menu bar, the tooltip and the taskbar show that the timer runs, but no time, because the time left of an interval would give a break away. Click the icon for a menu: start or stop, the next Pomodoro interval, the focus view, the window, and quit. Only the open menu says whether you are in a focus or a break interval, and it names what you work on only if you switch on **Description in the menu** (not on Linux, see below).
+
+**Widgets on a Mac (macOS 14 and later).** The timer widget comes to the Mac in small and medium, for the desktop and Notification Center. It is in the widget gallery once Hinata has started once: right-click the desktop, **Edit Widgets**, search for Hinata. As on the iPhone it shows only the time and whether you work or take a break, never the description, and it ticks without the app. A click opens the focus view. On a Mac it has no buttons. The switch **Menu bar and widgets** under **Settings → Time tracking** covers both. iPhone widgets can go on the Mac too (gallery, **From iPhone**); they show the iPhone's timer.
 
 **Keep running when closed.** Closing the window leaves a running timer in the menu bar or the tray, and the window comes back from the menu (or, on a Mac, from the Dock). On a Mac this is on by default and ⌘Q still quits. On Windows and Linux it is off until you switch it on.
 
