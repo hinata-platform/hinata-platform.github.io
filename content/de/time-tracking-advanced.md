@@ -46,7 +46,7 @@ Die App kann den Timer auch außerhalb ihres Fensters zeigen. Die Karte **Timer 
 - auf Android eine stille Mitteilung, das Widget auf dem Startbildschirm und eine Kachel in den Schnelleinstellungen, solange der Timer läuft,
 - auf iPhone und iPad eine Live-Aktivität auf dem Sperrbildschirm und in der Dynamic Island und das Timer-Widget auf Home- und Sperrbildschirm,
 - im Web eine Browser-Mitteilung, wenn der Tab im Hintergrund ist, die laufende Zeit im Tab-Titel und eine Markierung am App-Symbol der installierten Web-App,
-- auf dem Desktop der laufende Timer in der Menüleiste oder im Infobereich, wie unten beschrieben.
+- auf dem Desktop der laufende Timer in der Menüleiste oder im Infobereich, wie unten beschrieben, und auf dem Mac das Timer-Widget auf dem Schreibtisch und in der Mitteilungszentrale.
 
 Die Texte sind allgemein und nennen nie den Vorgang. Deine Schalter bleiben auf diesem Gerät und gehen nicht an den Server.
 
@@ -67,6 +67,8 @@ Live-Aktivität und Widgets zeigen die Zeit und ob du arbeitest oder Pause machs
 ### Auf dem Desktop
 
 **Menüleiste und Infobereich.** Auf dem Mac zeigt die Menüleiste die laufende Zeit neben dem Hinata-Symbol. Unter Windows und Linux zeigt ein Symbol im Infobereich, dass der Timer läuft, und unter Windows nennt sein Tooltip die Zeit. Arbeit und Pause sehen gleich aus, bei einer Bildschirmfreigabe sieht also niemand, wann du Pause machst: Während eines Pomodoro zeigen Menüleiste, Tooltip und Taskleiste nur, dass der Timer läuft, aber keine Zeit, denn die Restzeit eines Intervalls würde die Pause verraten. Ein Klick auf das Symbol öffnet ein Menü: starten oder stoppen, das nächste Pomodoro-Intervall, die Fokusansicht, das Fenster und Beenden. Erst das geöffnete Menü sagt, ob gerade Fokus oder Pause ist, und es nennt, woran du arbeitest, nur wenn du **Beschreibung im Menü** einschaltest (nicht unter Linux, siehe unten).
+
+**Widgets auf dem Mac (ab macOS 14).** Das Timer-Widget gibt es auf dem Mac in klein und mittel, für den Schreibtisch und die Mitteilungszentrale. Es steht in der Widget-Galerie, sobald Hinata einmal gestartet ist: Rechtsklick auf den Schreibtisch, **Widgets bearbeiten**, nach Hinata suchen. Es zeigt wie auf dem iPhone nur die Zeit und ob du arbeitest oder Pause machst, nie die Beschreibung, und tickt ohne die App. Ein Klick öffnet den Fokusmodus. Knöpfe hat es auf dem Mac nicht. Der Schalter **Menüleiste und Widgets** unter Einstellungen → Zeiterfassung gilt für beides. Auch iPhone-Widgets lassen sich auf dem Mac ablegen (Galerie, **Von iPhone**); sie zeigen den Timer des iPhones.
 
 **Beim Schließen weiterlaufen.** Schließt du das Fenster, läuft ein Timer in der Menüleiste oder im Infobereich weiter, und das Fenster kommt über das Menü zurück (auf dem Mac auch über das Dock). Auf dem Mac ist das von Anfang an an, ⌘Q beendet die App wie gewohnt. Unter Windows und Linux ist es aus, bis du es einschaltest.
 
