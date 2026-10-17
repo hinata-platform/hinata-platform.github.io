@@ -61,6 +61,10 @@ The **Timeline** card shows a line like `Spent 9h 30m of 10h`.
 
 You also see it on the board card as a small chip, and on the [Timeline view](/en/guide-timeline.html) as the filled part of the bar.
 
+With advanced time tracking this becomes a **honey level**: a glass tube filling with honey. From the project's warning share the honey turns darker, from 100 % it turns red, and whatever goes beyond stands next to it as a small capsule of its own, for example `+30 min`.
+
+While recording you see, before you save, what your entry does to the estimate and the project budget. The entry shows as hatched honey after what is already recorded. Saving always works: a budget never blocks.
+
 !!! note "An estimate is not a story point"
     Story points from sprint planning are a separate field. Without a time estimate the line reads `Spent 9h 30m of —`. Your time still counts everywhere.
 

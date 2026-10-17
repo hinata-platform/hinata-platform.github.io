@@ -293,7 +293,7 @@ Widersprechen kann man, wo die Verarbeitung auf berechtigten Interessen beruht (
 
 ### Keine automatisierten Entscheidungen (Art. 22 DSGVO)
 
-Budget-Warnungen, Ziel-Erinnerungen, Arbeitszeit-Hinweise und Hinweise auf späte Nachträge sind nur Hinweise. Hinata sperrt oder bewertet niemanden automatisch und kürzt nichts. Auch Urlaub nach langer Krankheit verfällt nie automatisch: Hinata schlägt den Verfall nur vor, und ein Mensch entscheidet. Was aus einem Hinweis folgt, entscheidet ein Mensch.
+Budget-Warnungen, Budget-Hinweise beim Erfassen, Ziel-Erinnerungen, Arbeitszeit-Hinweise und Hinweise auf späte Nachträge sind nur Hinweise. Der Verbrauch eines Budgets ist immer die Summe des ganzen Projekts und nennt nie eine Person. Hinata sperrt oder bewertet niemanden automatisch und kürzt nichts. Auch Urlaub nach langer Krankheit verfällt nie automatisch: Hinata schlägt den Verfall nur vor, und ein Mensch entscheidet. Was aus einem Hinweis folgt, entscheidet ein Mensch.
 
 ## ArbZG-Selbsthinweise
 

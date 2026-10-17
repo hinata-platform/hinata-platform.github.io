@@ -61,6 +61,10 @@ Die Karte **Timeline** zeigt eine Zeile wie `9h 30m von 10h aufgewendet`.
 
 Du siehst das auch auf der Karte im Board als kleinen Chip und in der [Timeline-Ansicht](/de/guide-timeline.html) als gefüllten Teil des Balkens.
 
+Mit der erweiterten Zeiterfassung wird daraus ein **Honigstand**: eine Glasröhre, die sich mit Honig füllt. Ab dem Warnanteil des Projekts wird der Honig dunkler, ab 100 % wird er rot, und was darüber hinausgeht, steht als eigene kleine Kapsel daneben, zum Beispiel `+30 min`.
+
+Beim Erfassen siehst du vor dem Speichern, was dein Eintrag mit der Schätzung und dem Projektbudget macht. Der Eintrag erscheint dann schraffiert hinter dem, was schon erfasst ist. Speichern geht immer: Ein Budget sperrt nie.
+
 !!! note "Eine Schätzung ist kein Story Point"
     Story Points aus der Sprintplanung sind ein eigenes Feld. Ohne Zeitschätzung steht dort `9h 30m von — aufgewendet`. Deine Zeit zählt trotzdem überall.
 

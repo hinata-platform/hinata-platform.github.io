@@ -293,7 +293,7 @@ An objection is possible where the processing rests on legitimate interests (Art
 
 ### No automated decisions (Art. 22 GDPR)
 
-Budget alerts, target reminders, working-time hints and late-entry hints are only hints. Hinata does not lock anyone out, cut anything or rate anyone automatically. Leave after a long illness never lapses automatically either: Hinata only proposes it, and a person decides. Whatever someone concludes from a hint is a human decision.
+Budget alerts, budget notes while recording, target reminders, working-time hints and late-entry hints are only hints. A budget's usage is always the sum of the whole project and never names a person. Hinata does not lock anyone out, cut anything or rate anyone automatically. Leave after a long illness never lapses automatically either: Hinata only proposes it, and a person decides. Whatever someone concludes from a hint is a human decision.
 
 ## Working-time self-hints (ArbZG)
 
