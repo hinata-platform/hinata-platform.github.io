@@ -217,7 +217,7 @@ The copy then belongs to that person. Their lock dates and approvals apply to it
 
 ## Reports, export and import
 
-**Reports** has six tabs: **Summary**, **Entries**, **Workload**, **Absences**, **Billing** and **Saved**. You pick a period, filters and a grouping by project, person, team, activity, tag, issue, day, week or month.
+**Reports** has eight tabs: **Project** and **Budgets** (see [Reports & dashboard](/en/guide-reports.html)), then **Summary**, **Entries**, **Workload**, **Absences**, **Billing** and **Saved**. You pick a period, filters and a grouping by project, person, team, activity, tag, issue, day, week or month.
 
 ![The time reports](/assets/img/shot-time-reports.png)
 *The summary of the time reports, grouped by project.*
@@ -244,6 +244,27 @@ For the budget and for estimates the lead picks a mode each:
 - **Hourly alert only**: no note in the form. Leads hear once an hour, as before.
 
 Recording is never blocked in either mode. Working time must always be recordable. Whether leads are notified is decided by the organization's **Budget alerts** policy. With it off, the project's settings page says so.
+
+### History and forecast
+
+A tap on a cell in the dashboard's honeycomb, or on **History** in the project settings, opens the budget's history. The honey area shows how the recorded hours added up day by day, the line above it the budget and, if there is one, the sum of estimates.
+
+Under the tube sits a forecast such as "Lasts until about 14 November". Hinata uses the pace of the last 14 days per working day. Weekends and the holidays of the default calendar do not count. With fewer than three days of entries, the forecast says it is uncertain. When the budget is already used up or work has stopped, it says exactly that.
+
+### Budget per sprint
+
+On a Scrum board every sprint can have its own time budget. Whoever may manage the board sets it through the capsule in the sprint row. It counts the time on the sprint's issues during its run. The note while recording and the alerts to leads follow the same rules as the project budget.
+
+### Money budget
+
+With billing switched on, a project can also have a **money budget**. Hinata values every entry at the rate that applies to it and shows the amount as a third tube. There are two kinds:
+
+- **Revenue**: valued at the billable rates. The project's lead sets it and sees it.
+- **Cost**: valued at the cost rates. Only organization admins who also manage the project set and see it.
+
+Members never see the money budget, not even in the form while recording. Alerts about the money budget go to leads only, and only for revenue.
+
+Every budget you can see is listed under **Reports → Budgets**, fullest first. See [Reports & dashboard](/en/guide-reports.html).
 
 ## Billing
 

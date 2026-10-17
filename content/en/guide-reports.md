@@ -105,67 +105,57 @@ phone. Without **Done**, your changes are lost.
 
 ## Reports
 
-Open **Reports** in the sidebar, or under **More** on a phone. A report always
-shows **one project**. The picker under the heading only lists projects your
-team access grants you.
+Open **Reports** in the sidebar, or under **More** on a phone. The page always shows **one project**. The project capsule at the top opens a search over every project your team access grants you. Next to it you pick **30 days** or **90 days**.
 
-![The project picker on the reports page](/assets/img/shot-reports-project-picker.png)
-*The project picker.*
+With advanced time tracking switched on, the same overview is the first tab, **Project**, of the time reports. Next to it sit **Budgets** and the time reports themselves, all sharing one filter. See [Advanced time tracking](/en/time-tracking-advanced.html).
 
-### Burndown · last 30 days
+![The reports page with figures and trend](/assets/img/shot-reports.png)
+*A project's figures, trend and budget.*
 
-![The reports page with burndown, total and states](/assets/img/shot-reports.png)
-*Burndown, total issues and states.*
+### Figures
 
-- **Amber line**: open issues on each of the last 30 days, reconstructed
-  backwards from today's count.
-- **Dashed line**: a straight path from the starting value to zero. It is only a
-  reference.
-- **Count in the top-right**: today's figure. It is the only measured value.
+Four tiles at the top: the issues **open** today, those **new** in the period, those **done** in the period and, with advanced time tracking, the time **recorded** in the period.
+
+### How do the open issues develop?
+
+- **Honey area**: open issues on each day of the period, worked backwards from today's count.
+- **Dashed line**: a straight path from the starting value to zero. It is only a yardstick.
 
 !!! tip "What the shape means"
 
-    - **Flat:** work gets done as fast as it comes in.
-    - **Climbing:** more comes in than gets done. Working faster will not fix
-      it.
-    - **A drop near the end:** issues sat in review or QA and were closed
-      together. Where the delay was stays hidden.
+    - **Flat:** as much gets done as comes in.
+    - **Rising:** more comes in than gets done. Working faster does not fix
+      that.
+    - **Drop just before the end:** issues sat in review or QA and were
+      closed in a batch. Where they got stuck stays hidden.
     - **Exactly on the line:** be suspicious. Real work is uneven.
 
-### Total issues
+### How does the budget fill?
 
-Every issue that has ever existed in the project, resolved or not. Use it as the
-scale: 7 issues *In Review* out of 53 is a lot, out of 5,000 it barely matters.
+If the project has a time budget, its tube and forecast sit here. **History** opens the curve of recorded hours. See [Budgets](/en/time-tracking-advanced.html#budgets).
 
-### Issues by state
+### Where do the issues stand? How urgent is the work?
 
-One bar per state of your project, longest first, in the state's colour and with
-the count. Custom states such as *In Parking* or *Signed off* appear too. A
-pile-up in one state before done points to a bottleneck.
+![Distributions further down the reports page](/assets/img/shot-reports-breakdowns.png)
+*States, priorities, people and activities.*
 
-### Issues by priority
+States show as glasses filling in the state's colour, custom states such as *In Parking* included. A pile-up in a state before done points to a bottleneck. For priority, watch the share: if nearly everything is urgent, triage is due.
 
-![Priority, assignee and activity further down the reports page](/assets/img/shot-reports-breakdowns.png)
-*Priority, assignee and time per activity.*
+### Who works on what? Where does the time go?
 
-Look at the proportion. If nearly everything is urgent, it is time for a triage
-pass.
+Issues without an owner are listed under **Unassigned**. Keep an eye on that row. Time per activity only counts [time entries](/en/guide-time.html) in the period, no time from Git commits.
 
-### Issues by assignee
-
-Issues nobody owns are collected under **unassigned**. Keep an eye on that row.
-
-!!! warning "Counting issues is not measuring effort"
-    Every distribution counts issues. Twelve tiny bugs outweigh one three-week
-    migration here. Use the charts to spot patterns, and talk to people to find
+!!! warning "Count is not effort"
+    Every distribution counts issues. Twelve small bugs weigh more here than
+    a three-week migration. Use the charts to find patterns, and talk about
     the reasons.
 
-### Time per activity (30 days)
+### Budgets
 
-Everyone's logged time on this project over the last 30 days, per activity type.
-Only [time entries](/en/guide-time.html) count, not time from Git commits.
+With advanced time tracking, the **Budgets** tab lists every budget you may see, fullest first. Running sprints with a budget sit at the top. Each project card shows the time budget with its forecast, the estimates and, if you may see it, the money budget.
 
 ### Sprint burndown and velocity live on the board
+
 
 Sprint metrics are on the board's **Insights** tab, next to Planning and Active
 sprint: sprint burndown, velocity across finished sprints, average velocity,
@@ -174,8 +164,8 @@ scope changes and work breakdown by assignee. See
 
 ## Reading the charts correctly
 
-- **Check the time window.** The burndown, time per activity and team ranking
-  cover 30 days, the distributions all time. That is why they can seem to
+- **Check the time window.** The trend and time per activity cover the period
+  you picked, the team ranking 30 days, the distributions all time. That is why they can seem to
   disagree.
 - **Check your workflow.** If everything sits in one vague *In Progress*, no
   report can show detail. Change that in the

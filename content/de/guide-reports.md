@@ -107,23 +107,21 @@ Ohne **Fertig** gehen die Änderungen verloren.
 
 ## Berichte
 
-Öffne **Berichte** in der Seitenleiste, auf dem Handy unter **Mehr**. Ein Bericht
-zeigt immer **ein Projekt**. Die Auswahl unter der Überschrift listet nur
-Projekte, die du über dein Team erreichst.
+Öffne **Berichte** in der Seitenleiste, auf dem Handy unter **Mehr**. Die Seite zeigt immer **ein Projekt**. Die Projektkapsel oben öffnet eine Suche über alle Projekte, die du über dein Team erreichst. Daneben wählst du **30 Tage** oder **90 Tage**.
 
-![Der Projektauswähler auf der Berichteseite](/assets/img/shot-reports-project-picker.png)
-*Der Projektauswähler.*
+Ist das erweiterte Time-Tracking eingeschaltet, ist dieselbe Übersicht der erste Reiter **Projekt** der Zeitberichte. Daneben stehen **Budgets** und die Zeitberichte selbst, alle mit einem gemeinsamen Filter. Siehe [Erweitertes Time-Tracking](/de/time-tracking-advanced.html).
 
-### Burndown · letzte 30 Tage
+![Die Berichteseite mit Kennzahlen und Verlauf](/assets/img/shot-reports.png)
+*Kennzahlen, Verlauf und Budget eines Projekts.*
 
-![Die Berichteseite mit Burndown, Gesamtzahl und Status](/assets/img/shot-reports.png)
-*Burndown, Gesamtzahl und Status.*
+### Kennzahlen
 
-- **Bernsteinfarbene Linie**: offene Vorgänge an jedem der letzten 30 Tage,
-  rückwärts berechnet ab der heutigen Zahl.
-- **Gestrichelte Linie**: gerader Weg vom Startwert auf null. Sie dient nur als
-  Maßstab.
-- **Zahl oben rechts**: der heutige Wert. Nur er ist gemessen.
+Vier Kacheln oben: die heute **offenen** Vorgänge, die im Zeitraum **neu** angelegten, die im Zeitraum **erledigten** und, mit dem erweiterten Time-Tracking, die im Zeitraum **erfasste** Zeit.
+
+### Wie entwickeln sich die offenen Aufgaben?
+
+- **Honigfläche**: offene Vorgänge an jedem Tag des Zeitraums, rückwärts berechnet ab der heutigen Zahl.
+- **Gestrichelte Linie**: gerader Weg vom Startwert auf null. Sie dient nur als Maßstab.
 
 !!! tip "Was die Form bedeutet"
 
@@ -135,39 +133,29 @@ Projekte, die du über dein Team erreichst.
     - **Genau auf der Linie:** Werde misstrauisch. Echte Arbeit ist
       unregelmäßig.
 
-### Aufgaben gesamt
+### Wie füllt sich das Budget?
 
-Alle Vorgänge, die es im Projekt je gab, gelöst oder nicht. Nutze die Zahl als
-Maßstab: 7 Vorgänge *In Review* sind bei 53 viel, bei 5.000 kaum der Rede wert.
+Hat das Projekt ein Zeitbudget, steht hier seine Röhre mit Prognose. **Verlauf** öffnet die Kurve der erfassten Stunden. Siehe [Budgets](/de/time-tracking-advanced.html#budgets).
 
-### Aufgaben nach Status
+### Wo stehen die Aufgaben? Wie dringend ist die Arbeit?
 
-Ein Balken pro Status deines Projekts, längster zuerst, in der Statusfarbe und
-mit Anzahl. Eigene Status wie *In Parking* oder *Abgenommen* erscheinen auch.
-Ein Stau in einem Status vor dem Abschluss zeigt einen Engpass.
+![Verteilungen weiter unten auf der Berichteseite](/assets/img/shot-reports-breakdowns.png)
+*Status, Priorität, Personen und Tätigkeiten.*
 
-### Aufgaben nach Priorität
+Status erscheinen als Gläser, die sich in der Statusfarbe füllen, eigene Status wie *In Parking* eingeschlossen. Ein Stau in einem Status vor dem Abschluss zeigt einen Engpass. Bei der Priorität achte auf den Anteil: Ist fast alles dringend, ist eine Triage fällig.
 
-![Priorität, Bearbeiter und Tätigkeit weiter unten auf der Berichteseite](/assets/img/shot-reports-breakdowns.png)
-*Priorität, Bearbeiter und Zeit pro Tätigkeit.*
+### Wer arbeitet woran? Wofür geht die Zeit?
 
-Achte auf den Anteil. Ist fast alles dringend, ist eine Triage fällig.
-
-### Aufgaben nach Bearbeiter
-
-Vorgänge ohne Verantwortlichen stehen unter **unassigned**. Diese Zeile solltest
-du im Blick behalten.
+Vorgänge ohne Verantwortlichen stehen unter **Niemand zugewiesen**. Diese Zeile solltest du im Blick behalten. Die Zeit je Tätigkeit zählt nur [Zeiteinträge](/de/guide-time.html) im Zeitraum, keine Zeit aus Git-Commits.
 
 !!! warning "Anzahl ist nicht Aufwand"
     Alle Verteilungen zählen Vorgänge. Zwölf kleine Bugs wiegen hier mehr als
     eine dreiwöchige Migration. Nutze die Diagramme, um Muster zu finden, und
     kläre die Gründe im Gespräch.
 
-### Zeit pro Tätigkeit (30 Tage)
+### Budgets
 
-Die erfasste Zeit aller Personen in diesem Projekt während der letzten 30 Tage,
-je Tätigkeitsart. Es zählen nur [Zeiteinträge](/de/guide-time.html), keine Zeit
-aus Git-Commits.
+Mit dem erweiterten Time-Tracking listet der Reiter **Budgets** alle Budgets, die du sehen darfst, das vollste zuerst. Oben stehen die laufenden Sprints mit Budget. Jede Projektkarte zeigt Zeitbudget mit Prognose, die Schätzungen und, wenn du es sehen darfst, das Geldbudget.
 
 ### Sprint-Burndown und Velocity leben auf dem Board
 
@@ -178,8 +166,8 @@ Velocity, Umfangsänderungen und Arbeitsverteilung nach Bearbeiter. Siehe
 
 ## Diagramme richtig lesen
 
-- **Zeitraum prüfen.** Burndown, Zeit pro Tätigkeit und Team-Ranking zeigen 30
-  Tage, die Verteilungen den gesamten Zeitraum. Deshalb können sie sich
+- **Zeitraum prüfen.** Verlauf und Zeit pro Tätigkeit zeigen den gewählten
+  Zeitraum, das Team-Ranking 30 Tage, die Verteilungen den gesamten Zeitraum. Deshalb können sie sich
   scheinbar widersprechen.
 - **Workflow prüfen.** Liegt alles in einem vagen *In Progress*, zeigt kein
   Bericht Details. Das änderst du in den
