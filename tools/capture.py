@@ -472,6 +472,43 @@ def seed_next_sprint(access, board_id):
     print(f"planned Sprint {number} after {running.get('name')}")
 
 
+def seed_attachable_project(access, team_id, name="Mobile App"):
+    """Make the demo admin a lead of a project the team does not have yet.
+
+    The team's Attach existing list offers only projects the viewer leads (the
+    server refuses anybody else), and the seed makes other people lead them —
+    so without this the picture would be the empty "led by others" note."""
+    h = {"Authorization": f"Bearer {access}"}
+    me = requests.get(f"{API}/api/v1/me", headers=h, timeout=20).json()
+    team = requests.get(f"{API}/api/v1/teams/{team_id}", headers=h, timeout=20).json()
+    page = requests.get(f"{API}/api/v1/projects", headers=h, params={"size": 100}, timeout=20).json()
+    items = page if isinstance(page, list) else page.get("content", page.get("items", []))
+    project = next((p for p in items if p.get("name") == name), None)
+    if not project or project["id"] in team.get("projectIds", []):
+        print(f"{name}: nothing to prepare for the attach picture")
+        return
+    leads = project.get("leadIds") or []
+    if me["id"] in leads:
+        print(f"{name}: admin already leads it")
+        return
+    # Only a project's leads may change its leads, so one of them does it.
+    for person in ("tomas", "lena", "mei", "amara", "jonas"):
+        try:
+            token = login_as(person)
+        except requests.RequestException:
+            continue
+        lead = {"Authorization": f"Bearer {token}"}
+        if requests.get(f"{API}/api/v1/me", headers=lead, timeout=20).json().get("id") in leads:
+            r = requests.patch(f"{API}/api/v1/projects/{project['id']}", headers=lead,
+                               json={"leadIds": leads + [me["id"]]}, timeout=20)
+            r.raise_for_status()
+            break
+    else:
+        print(f"{name}: none of the demo people leads it, left as it is")
+        return
+    print(f"{name}: admin added as a lead, so the team can attach it")
+
+
 def seed_team_activity(access, team_id):
     """Give the team overview the feed its caption promises.
 
@@ -1222,7 +1259,18 @@ def fill(page, label, text, *, delay=60, after=900, exact=True, clear=False):
     `clear` first selects what is already in the field — a field that starts at
     "0" otherwise reads "030" after typing 30, which is the sort of detail a
     screenshot of a form is entirely about."""
-    page.get_by_label(label, exact=exact).first.click(timeout=9000)
+    # Field labels are set in capitals now ("TITLE"); the name is the same.
+    name = re.compile(f"^{re.escape(label)}$" if exact else re.escape(label), re.I)
+    field = page.get_by_label(name).first
+    try:
+        field.click(timeout=3000)
+    except Exception:
+        # The semantics layer over a dialog takes the pointer check; a press on
+        # the field's own spot still reaches the canvas.
+        box = field.bounding_box(timeout=6000)
+        if not box:
+            raise
+        page.mouse.click(box["x"] + box["width"] / 2, box["y"] + box["height"] / 2)
     page.wait_for_timeout(400)
     if clear:
         page.keyboard.press("ControlOrMeta+a")
@@ -1271,7 +1319,7 @@ def wider(page, width=1780):
 
 
 def scroll_into_view(page, name, *, role="button", exact=True, step=700, tries=8,
-                     after=1100):
+                     after=1100, last=False):
     """Wheel down until this control is inside the window.
 
     A fixed scroll distance is a guess about page length, and the pages the
@@ -1279,7 +1327,8 @@ def scroll_into_view(page, name, *, role="button", exact=True, step=700, tries=8
     comment thread half a screen. Playwright cannot scroll a canvas into view
     itself, so the wheel does it a step at a time."""
     return bring_into_view(
-        page, lambda: page.get_by_role(role, name=name, exact=exact).first,
+        page, lambda: (lambda m: m.last if last else m.first)(
+            page.get_by_role(role, name=name, exact=exact)),
         step=step, tries=tries, after=after, what=repr(name))
 
 
@@ -1289,7 +1338,7 @@ def bring_into_view(page, find, *, step=700, tries=8, after=1100, what="target")
     for _ in range(tries):
         target = find()
         box = target.bounding_box() if target.count() else None
-        if box and box["y"] > 40 and box["y"] + box["height"] <= height - 8:
+        if box and box["y"] > 40 and box["y"] + box["height"] <= height:
             return box
         # Once the target has a position, scroll by exactly what it takes to
         # centre it — a fixed step overshoots on a phone and then oscillates
@@ -1472,6 +1521,11 @@ def _server_manager(page, ids):
     # legacy token into per-server storage only while the server list is still
     # missing, so seeding the list up front would sign the app out.
     add_saved_server(page)
+    # The server list lives under Appearance & app now.
+    try:
+        tap_text(page, "Appearance & app", after=2000)
+    except Exception:
+        pass
     tap(page, "Manage servers", after=3000)
     return lambda: dismiss(page)
 
@@ -1519,6 +1573,8 @@ def _project_copy(page, ids):
     # the button is named and has a node of its own, but it lies under the
     # card's own tappable node, so Playwright waits forever for it to "receive
     # events" and times out with the button plainly on screen.
+    # The list remembers its tab; the Copy button is on the active projects.
+    tap_re(page, r"^Active", after=2000)
     click_mirror_text(page, "^Copy$", after=3200, what="a card's Copy button")
     return lambda: dismiss(page, "Cancel")
 
@@ -1541,6 +1597,8 @@ def _project_templates_card(page, ids):
     # Where the project's date, its template marker and the copy live. Scrolled
     # to rather than measured: the settings page spreads over golden columns, so
     # the card sits at a different height on every width.
+    # Project settings are sections now; the card lives in Templates and dates.
+    tap_text(page, "Templates and dates", after=2200)
     scroll_into_view(page, re.compile(r"Copy project"), exact=False,
                      step=760, tries=12)
     return None
@@ -1563,6 +1621,8 @@ def _project_schedule_move(page, ids):
     # deadlines. Reached by picking a date in project settings; "Move" writes,
     # so the run cancels out of it. The seed gives the project a date, so there
     # is something to move.
+    # Project settings are sections now; the card lives in Templates and dates.
+    tap_text(page, "Templates and dates", after=2200)
     scroll_into_view(page, re.compile(r"Copy project"), exact=False,
                      step=760, tries=12)
     # Everything here is clicked by the rectangle the mirror reports rather than
@@ -1623,7 +1683,8 @@ def _team_add_members(page, ids):
     # Not a name from the seed: the activity feed is seeded by really adding
     # somebody to this team, so which people the picker still offers depends on
     # who that was.
-    tap_row(page, ids["addable_person"], after=1200)
+    # The picker's rows are tick boxes named by their whole content.
+    click_semantics(page, re.escape(ids["addable_person"]), role="checkbox", after=1200)
     tap(page, "Continue", after=2600)
     return lambda: dismiss(page, "Cancel")
 
@@ -1634,7 +1695,8 @@ def _team_add_project(page, ids):
     # the whole of what this dialog does — an untouched list ends in "Attach 0",
     # which documents nothing. Attach is never pressed.
     tap(page, "Add project", after=3200)
-    tap_row(page, "Mobile App", after=1400)
+    tap_text(page, "Attach existing", after=1600)
+    click_semantics(page, "Mobile App", role="checkbox", after=1400)
     return lambda: dismiss(page, "Cancel")
 
 
@@ -1643,7 +1705,7 @@ def _workflow_state_migrate(page, ids):
     # The page's warning box, enforced: the app names the state, counts its
     # issues and refuses to remove it until they have somewhere to go. The
     # settings draft is never saved, so nothing reaches the project.
-    scroll(page, 1200)
+    tap_text(page, "Workflow states", after=2000)
     tap(page, "Remove state", nth=1, after=2600)
     return lambda: dismiss(page, "Cancel")
 
@@ -1652,6 +1714,7 @@ def _workflow_state_migrate(page, ids):
 def _project_delete(page, ids):
     # The counts are real and Delete stays inert until the project's name is
     # typed — which is why the field is left empty here.
+    tap_text(page, "Danger zone", after=1800)
     tap(page, "Delete project", after=3200)
     return lambda: dismiss(page, "Cancel")
 
@@ -1749,7 +1812,7 @@ def _issue_link(page, ids):
     restore = taller(page, 1300)
     scroll(page, 1700)
     tap(page, "Add issue", after=2500)
-    tap(page, "is blocked by", after=2500)
+    tap_re(page, r"is blocked by$", after=2500)
     return lambda: (dismiss(page, "Cancel"), restore())
 
 
@@ -1833,7 +1896,7 @@ def _board_estimate(page, ids):
         # that is not row-sized is that root and not the row we asked for.
         if not line or line["height"] > 120:
             continue
-        points = page.get_by_role("button", name=re.compile(r"^\d{1,2}$"))
+        points = page.get_by_role("button", name=re.compile(r"^Estimate\b"))
         for i in range(points.count()):
             spot = points.nth(i).bounding_box()
             if spot and abs(spot["y"] - line["y"]) < line["height"]:
@@ -1918,7 +1981,7 @@ def _issue_link_types(page, ids):
     restore = taller(page, 1300)
     scroll(page, 1500, at=(600, 600))
     tap(page, "Add issue", after=3000)
-    tap(page, "is blocked by", after=2500)
+    tap_re(page, r"is blocked by$", after=2500)
     return lambda: (dismiss(page, "Cancel"), restore())
 
 
@@ -1946,20 +2009,9 @@ def _time_log(page, ids):
     # Hours and Minutes really are separate boxes. Save writes a work entry.
     _open_work_log(page, 500, at=(1200, 600))
     fill(page, "Minutes", "30", after=600, clear=True)
-    tap_re(page, r"^Activity type", after=1600)
-    tap(page, "Testing", role="menuitem", after=1500)
     fill(page, "Note (optional)", "Re-ran the sprint capacity cases on Safari and Firefox.",
          delay=25, after=800)
     return lambda: dismiss(page, "Cancel")
-
-
-@action("shot-time-activity")
-def _time_activity(page, ids):
-    # Six entries and no "other" — that the list is short and fixed is the
-    # section's whole argument.
-    _open_work_log(page, 500, at=(1200, 600))
-    tap_re(page, r"^Activity type", after=2000)
-    return lambda: (dismiss(page), dismiss(page, "Cancel"))
 
 
 @action("shot-time-date")
@@ -2044,7 +2096,9 @@ def _comment_mention(page, ids):
     # Clicked at its centre rather than through the field's own locator: the
     # composer is docked over the thread, and Playwright refuses to click an
     # element it believes something else covers.
-    box = scroll_into_view(page, "Comment…", role="textbox")
+    # The docked composer names its wrapper and its text area alike; the
+    # text area is the last of the two.
+    box = scroll_into_view(page, "Comment…", role="textbox", last=True)
     page.mouse.click(box["x"] + box["width"] / 2, box["y"] + box["height"] / 2)
     page.wait_for_timeout(800)
     # `ke` on purpose: it is the shortest query this seed answers with all three
@@ -2060,7 +2114,9 @@ def _comment_mention(page, ids):
 def _comment_attach(page, ids):
     # The "+" is icon-only with no accessible name at all, so it is hit by
     # geometry: the composer row is [+] · field · mic.
-    box = scroll_into_view(page, "Comment…", role="textbox")
+    # The docked composer names its wrapper and its text area alike; the
+    # text area is the last of the two.
+    box = scroll_into_view(page, "Comment…", role="textbox", last=True)
     page.mouse.click(box["x"] - 32, box["y"] + box["height"] / 2)
     page.wait_for_timeout(1600)
     # Rebooted rather than merely closed: with the composer focused the page
@@ -2103,7 +2159,7 @@ def _attachment_actions(page, ids):
     # The filled grid the section describes — thumbnails, glyph tiles, and where
     # "Download all" lives.
     scroll_into_view(page, re.compile(re.escape(ids["text_attachment"])))
-    tap(page, "More actions", nth=1, after=1800)
+    tap(page, "Attachment actions", after=1800)
     return lambda: dismiss(page)
 
 
@@ -2162,7 +2218,7 @@ def _kb_new_space(page, ids):
 def _kb_new_article(page, ids):
     # Steps 1-3 and 6 in one frame: title, the space picker beside it, and that
     # the button says Publish on a new page.
-    tap(page, "New article", after=3000)
+    tap(page, "New page", after=3000)
     write(page, "How to roll a release", after=1000)
     return lambda: leave_editor(page)
 
@@ -2171,7 +2227,7 @@ def _kb_new_article(page, ids):
 def _kb_text_style(page, ids):
     # A line can only be one shape at a time, which is why this is a dropdown
     # and not a row of toggles. With no caret the picker reads "Mixed".
-    tap(page, "New article", after=3000)
+    tap(page, "New page", after=3000)
     write(page, "Cut a release branch, then tag it.", delay=25, after=600)
     # The title has the caret on open; the body has to be clicked, and its only
     # node is the hint it paints while empty.
@@ -2188,7 +2244,7 @@ def _kb_text_style(page, ids):
 def _kb_mention_picker(page, ids):
     # "@" opens one picker across issues, articles and people — the modal, its
     # search field, and how a row identifies its kind.
-    tap(page, "New article", after=3000)
+    tap(page, "New page", after=3000)
     write(page, "Release checklist", after=800)
     tap_re(page, r"Mention . link", after=2200)
     # `ok` on purpose: it is what this seed answers with all three kinds and no
@@ -2207,7 +2263,7 @@ def _kb_chip_preview(page, ids):
     # depends on the page being settled and unscrolled, and the shot before this
     # one leaves the knowledge view somewhere else.
     reload_app(page)
-    page.get_by_role("button", name=ids["chip_key"], exact=True).first.hover(timeout=9000)
+    page.get_by_role("button", name=re.compile(rf"^{re.escape(ids['chip_key'])}\b")).first.hover(timeout=9000)
     page.wait_for_timeout(1500)
     return lambda: page.mouse.move(20, 20)
 
@@ -2311,7 +2367,8 @@ def _twofa_verify(page, ids):
 def _account_delete(page, ids):
     # The type-to-confirm gate is the section's whole safety story: an empty
     # field beside a dead button. It stays empty.
-    scroll(page, 1400, at=(1100, 600))
+    # Settings sections are pages of their own now: Danger zone holds it.
+    tap_text(page, "Danger zone", after=1800)
     tap(page, "Delete account", after=1600)
     return lambda: dismiss(page, "Cancel")
 
@@ -2396,7 +2453,6 @@ def shots(ids):
         ("shot-issue-link", DESKTOP, issue),
         ("shot-time-entries", DESKTOP, issue),
         ("shot-time-log", DESKTOP, issue),
-        ("shot-time-activity", DESKTOP, issue),
         ("shot-time-date", DESKTOP, issue),
         ("shot-attachments", DESKTOP, issue),
         ("shot-attachment-actions", DESKTOP, issue),
@@ -2522,6 +2578,10 @@ def init_script(access=None, refresh=None, server=API):
     }
     if server:
         prefs["flutter.server_url"] = server
+        # The one-time hints of this server, seen: the Hinata Connect sheet
+        # would otherwise sit over every signed-in picture and take its clicks.
+        prefs[f"flutter.connect_hint_seen::{server}"] = True
+        prefs[f"flutter.multi_select_hint_seen::{server}"] = True
     if access:
         prefs["flutter.access_token"] = access
         prefs["flutter.refresh_token"] = refresh
@@ -2816,6 +2876,7 @@ def main(frames_only=False, only=None):
         seed_next_sprint(access, ids["board_id"])
     if ids.get("team_id"):
         seed_team_activity(access, ids["team_id"])
+        seed_attachable_project(access, ids["team_id"])
         # After the seeding, not before it: seeding the activity feed puts one
         # more person on the team, and that is one person the Add-members
         # picker no longer offers.
@@ -2905,6 +2966,11 @@ def main(frames_only=False, only=None):
                     # Whatever half-opened is still on screen and would block
                     # every following shot in this context.
                     record(name, False, f"interaction failed: {_why(e)}")
+                    if os.environ.get("SHOT_DEBUG"):
+                        # What the page looked like when the step gave up.
+                        failed = os.path.join(staging, f"FAILED-{name}.png")
+                        page.screenshot(path=failed)
+                        print(f"    debug picture: {failed}")
                     for step_back in undo:
                         try:
                             step_back()
