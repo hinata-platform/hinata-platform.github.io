@@ -155,6 +155,9 @@ Vorgänge ohne Verantwortlichen stehen unter **Niemand zugewiesen**. Diese Zeile
 
 ### Budgets
 
+![Der Reiter Budgets mit Sprint und Projekten](/assets/img/shot-reports-budgets.png)
+*Budgets, das vollste zuerst.*
+
 Mit dem erweiterten Time-Tracking listet der Reiter **Budgets** alle Budgets, die du sehen darfst, das vollste zuerst. Oben stehen die laufenden Sprints mit Budget. Jede Projektkarte zeigt Zeitbudget mit Prognose, die Schätzungen und, wenn du es sehen darfst, das Geldbudget.
 
 ### Sprint-Burndown und Velocity leben auf dem Board

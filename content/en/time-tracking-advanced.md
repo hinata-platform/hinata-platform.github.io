@@ -247,6 +247,9 @@ Recording is never blocked in either mode. Working time must always be recordabl
 
 ### History and forecast
 
+![A project's budget history](/assets/img/shot-budget-history.png)
+*The history of a budget that has run over.*
+
 A tap on a cell in the dashboard's honeycomb, or on **History** in the project settings, opens the budget's history. The honey area shows how the recorded hours added up day by day, the line above it the budget and, if there is one, the sum of estimates.
 
 Under the tube sits a forecast such as "Lasts until about 14 November". Hinata uses the pace of the last 14 days per working day. Weekends and the holidays of the default calendar do not count. With fewer than three days of entries, the forecast says it is uncertain. When the budget is already used up or work has stopped, it says exactly that.
