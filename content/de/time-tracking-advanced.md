@@ -217,7 +217,7 @@ Die Kopie gehört danach dieser Person. Für sie gelten deren Sperrdaten und Fre
 
 ## Berichte, Export und Import
 
-**Berichte** hat sechs Reiter: **Übersicht**, **Einträge**, **Auslastung**, **Abwesenheiten**, **Abrechnung** und **Gespeichert**. Du wählst Zeitraum, Filter und eine Gruppierung nach Projekt, Person, Team, Tätigkeit, Tags, Vorgang, Tag, Woche oder Monat.
+**Berichte** hat acht Reiter: **Projekt** und **Budgets** (siehe [Berichte & Dashboard](/de/guide-reports.html)), dann **Übersicht**, **Einträge**, **Auslastung**, **Abwesenheiten**, **Abrechnung** und **Gespeichert**. Du wählst Zeitraum, Filter und eine Gruppierung nach Projekt, Person, Team, Tätigkeit, Tags, Vorgang, Tag, Woche oder Monat.
 
 ![Die Zeitberichte](/assets/img/shot-time-reports.png)
 *Die Übersicht der Zeitberichte, nach Projekt gruppiert.*
@@ -244,6 +244,27 @@ Für das Budget und für die Schätzungen wählt die Leitung je einen Modus:
 - **Nur stündliche Meldung**: kein Hinweis im Formular. Die Leitungen bekommen einmal je Stunde Bescheid, wie bisher.
 
 Erfassen wird in keinem Modus gesperrt. Arbeitszeit muss sich immer aufzeichnen lassen. Ob Leitungen benachrichtigt werden, entscheidet die Richtlinie **Budget-Warnungen** der Organisation. Ist sie aus, sagt das die Einstellungsseite des Projekts.
+
+### Verlauf und Prognose
+
+Ein Tipp auf eine Wabe im Dashboard oder auf **Verlauf** in den Projekt-Einstellungen öffnet den Verlauf des Budgets. Die Honigfläche zeigt, wie sich die erfassten Stunden Tag für Tag aufsummiert haben, die Linie darüber das Budget und, falls vorhanden, die Summe der Schätzungen.
+
+Unter der Röhre steht eine Prognose, etwa „Reicht bis etwa 14. November“. Hinata rechnet dafür mit dem Tempo der letzten 14 Tage je Arbeitstag. Wochenenden und die Feiertage des Standardkalenders zählen nicht mit. Gibt es weniger als drei Tage mit Einträgen, sagt die Prognose dazu, dass sie unsicher ist. Ist das Budget schon aufgebraucht oder ruht die Arbeit, steht dort genau das.
+
+### Budget je Sprint
+
+Auf einem Scrum-Board bekommt jeder Sprint ein eigenes Zeitbudget. Wer das Board verwalten darf, setzt es in der Sprintzeile über die Kapsel. Gezählt wird die Zeit auf den Vorgängen des Sprints während seiner Laufzeit. Der Hinweis beim Erfassen und die Meldungen an die Leitungen folgen denselben Regeln wie beim Projektbudget.
+
+### Geldbudget
+
+Ist die Abrechnung eingeschaltet, kann ein Projekt zusätzlich ein **Geldbudget** haben. Hinata bewertet jeden Eintrag mit dem Satz, der für ihn gilt, und zeigt den Betrag als dritte Röhre. Es gibt zwei Arten:
+
+- **Erlös**: bewertet mit den abrechenbaren Sätzen. Die Leitung des Projekts setzt es und sieht es.
+- **Kosten**: bewertet mit den Kostensätzen. Nur Admins der Organisation, die das Projekt auch verwalten, setzen und sehen es.
+
+Mitglieder sehen das Geldbudget nie, auch nicht im Formular beim Erfassen. Meldungen zum Geldbudget gehen nur an die Leitungen und nur beim Erlös.
+
+Alle Budgets, die du siehst, stehen gesammelt unter **Berichte → Budgets**, das vollste zuerst. Siehe [Berichte & Dashboard](/de/guide-reports.html).
 
 ## Abrechnung
 
