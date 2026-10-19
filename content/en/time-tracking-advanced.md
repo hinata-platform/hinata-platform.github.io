@@ -230,7 +230,7 @@ The copy then belongs to that person. Their lock dates and approvals apply to it
 
 ## Budgets
 
-A project can have a **time budget**. Project leads set it under **Project settings → Time tracking**. What has been used shows as a honey level wherever it matters:
+A project can have a **time budget**. Project leads set it under **Project settings → Time tracking**, in hours: `120` is 120 hours, `7.5` is seven and a half. What has been used shows as a honey level wherever it matters:
 
 - in the project settings as a tube for the budget and one for the sum of estimates,
 - on every project card and in the head of a board with exactly one project as a capsule with a percentage,
@@ -264,6 +264,8 @@ With billing switched on, a project can also have a **money budget**. Hinata val
 
 - **Revenue**: valued at the billable rates. The project's lead sets it and sees it.
 - **Cost**: valued at the cost rates. Only organization admins who also manage the project set and see it.
+
+A revenue budget counts billable entries only. Whether a new entry is billable is decided by **Billable by default** in the project settings, and otherwise by the instance default. The timer follows the same rule. The **Billable** switch in an entry's form changes it, also afterwards. Hinata names the hours that do not count under the money budget: entries that are not billable, and entries on a day no rate applied to yet.
 
 Members never see the money budget, not even in the form while recording. Alerts about the money budget go to leads only, and only for revenue.
 
