@@ -230,7 +230,7 @@ Die Kopie gehört danach dieser Person. Für sie gelten deren Sperrdaten und Fre
 
 ## Budgets
 
-Ein Projekt kann ein **Zeitbudget** haben. Projektleitungen setzen es unter **Projekt-Einstellungen → Zeiterfassung**. Was davon verbraucht ist, zeigt Hinata als Honigstand an jeder Stelle, an der es zählt:
+Ein Projekt kann ein **Zeitbudget** haben. Projektleitungen setzen es unter **Projekt-Einstellungen → Zeiterfassung**, in Stunden: `120` sind 120 Stunden, `7,5` sind siebeneinhalb. Was davon verbraucht ist, zeigt Hinata als Honigstand an jeder Stelle, an der es zählt:
 
 - in den Projekt-Einstellungen als Röhre für das Budget und eine für die Summe der Schätzungen,
 - auf jeder Projektkarte und im Kopf eines Boards mit genau einem Projekt als Kapsel mit Prozentzahl,
@@ -264,6 +264,8 @@ Ist die Abrechnung eingeschaltet, kann ein Projekt zusätzlich ein **Geldbudget*
 
 - **Erlös**: bewertet mit den abrechenbaren Sätzen. Die Leitung des Projekts setzt es und sieht es.
 - **Kosten**: bewertet mit den Kostensätzen. Nur Admins der Organisation, die das Projekt auch verwalten, setzen und sehen es.
+
+Ins Erlös-Budget zählen nur abrechenbare Einträge. Ob ein neuer Eintrag abrechenbar ist, legt **Standardmäßig abrechenbar** in den Projekt-Einstellungen fest, sonst die Vorgabe der Instanz. Das gilt auch für den Timer. Im Formular eines Eintrags lässt es sich mit dem Schalter **Abrechenbar** ändern, auch nachträglich. Stunden, die nicht zählen, nennt Hinata unter dem Geldbudget: nicht abrechenbare Einträge und Einträge, für deren Tag noch kein Satz galt.
 
 Mitglieder sehen das Geldbudget nie, auch nicht im Formular beim Erfassen. Meldungen zum Geldbudget gehen nur an die Leitungen und nur beim Erlös.
 
