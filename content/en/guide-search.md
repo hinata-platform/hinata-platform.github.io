@@ -318,7 +318,7 @@ In a wide window the profile slides in from the right as a side panel, and your 
 
 Below that are two actions:
 
-- **Issues of this person** opens the issue list filtered to them as assignee. Narrow it further with **Filter** and **Group by**.
+- **This person's issues** opens the issue list filtered to them as assignee. Narrow it further with **Filter** and **Group by**.
 - **Write an email** opens your mail app. It is only there when you may see the address. Right now that is admins only. There is no setting that makes addresses visible to everyone.
 
 ### What admins see on top
@@ -336,7 +336,7 @@ Admins manage the person right in the profile, with the same options as under [A
 The rules for roles apply here too, see [Organization](/en/organization.html#rules-for-the-organization-admin-role).
 
 !!! note "Only admins see deactivated accounts"
-    Only admins can open the profile of a deactivated account. Everyone else sees "This person doesn't exist here", even with a link to it.
+    Only admins can open the profile of a deactivated account. Everyone else sees "This person isn't here", even with a link to it.
 
 ## Link once, search less
 
