@@ -248,6 +248,14 @@ A project can be copied, marked as a template and given an event date that its i
 !!! info "Working days need a holiday calendar"
     A deadline that counts in working days always skips weekends. It only skips public holidays when the project has a holiday calendar selected. Without one it counts a holiday like any other working day.
 
+## Shift planning
+
+Events with shifts that people sign up for. With this off, the app has no "Shifts" entry and the server answers every request to the module with 404. See [Shift planning](/en/shifts.html).
+
+| Variable | Purpose | Default / example | Required |
+| --- | --- | --- | --- |
+| `HINATA_SHIFTS_ENABLED` | Turns shift planning on. The switch under **Admin area → Platform** takes precedence over this value. Only takes effect with transactions (`HINATA_MONGO_TRANSACTIONS=true`, which means a replica set); without them the module stays off and the server says so in the log at startup | `false` | No |
+
 ## Runtime (DB) settings vs environment
 
 Hinata has two configuration planes.

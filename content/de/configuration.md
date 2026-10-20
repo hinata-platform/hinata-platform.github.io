@@ -252,6 +252,14 @@ Ein Projekt lässt sich kopieren, als Vorlage kennzeichnen und mit einem Termin 
 !!! info "Werktage brauchen einen Feiertagskalender"
     Eine Frist, die in Werktagen rechnet, überspringt immer Wochenenden. Feiertage überspringt sie nur, wenn am Projekt ein Feiertagskalender gewählt ist. Ohne einen solchen Kalender zählt sie Feiertage wie gewöhnliche Werktage.
 
+## Schichtplanung
+
+Events mit Schichten, in die sich Leute eintragen. Ist das ausgeschaltet, gibt es in der App keinen Punkt „Schichten“, und der Server beantwortet alle Anfragen an das Modul mit 404. Siehe [Schichtplanung](/de/shifts.html).
+
+| Variable | Zweck | Standard / Beispiel | Erforderlich |
+| --- | --- | --- | --- |
+| `HINATA_SHIFTS_ENABLED` | Schaltet die Schichtplanung ein. Der Schalter unter **Adminbereich → Plattform** hat Vorrang vor diesem Wert. Wirkt nur mit Transaktionen (`HINATA_MONGO_TRANSACTIONS=true`, also einem Replica Set); ohne sie bleibt das Modul aus, und der Server meldet das beim Start im Log | `false` | Nein |
+
 ## Laufzeiteinstellungen (DB) vs. Umgebung
 
 Hinata hat zwei Konfigurationsebenen.
