@@ -377,7 +377,8 @@ Ist das Modul [Schichtplanung](/de/shifts.html) eingeschaltet, hält Hinata fest
 - **Namen nur für Mitglieder.** Wer auf einer Schicht steht, sehen nur Mitglieder des Projekts. Listen tragen Zahlen, keine Namen; Namen erscheinen erst in der Detailansicht einer Schicht oder eines Events. Ranglisten oder Auswertungen je Person gibt es nicht.
 - **Abwesenheiten nur mit Sicht.** Ist auch das Abwesenheitsmanagement an, weist Hinata beim Eintragen auf eine eingetragene Abwesenheit hin, aber nur wem diese ohnehin sichtbar ist. Wer plant, erfährt dadurch nichts über die Abwesenheiten anderer.
 - **Offline-Kopie.** Die App hält für „Meine Schichten“ eine kleine Kopie der eigenen Schichten auf dem Gerät, ohne Namen anderer. Sie wird beim Abmelden und beim Ausschalten des Moduls gelöscht.
-- **Auskunft.** Die Auskunft nach Art. 15 DSGVO enthält die eigenen Zuteilungen und Planerrechte.
+- **Warteliste.** Wer sich auf eine volle Schicht setzt, steht auf ihrer Warteliste. Andere Mitglieder sehen nur, wie viele warten, die wartende Person nur ihren eigenen Platz; Namen und Reihenfolge sehen allein die Planer des Projekts. Wird ein Platz frei, rückt die erste Person nach und muss ihn innerhalb einer Frist bestätigen. Wartelisten-Einträge und Einträge, die die Liste verlassen haben, ohne nachzurücken, werden einen Tag nach dem Ende der Schicht gelöscht, denn sie belegen keine Arbeit. Wer nachgerückt ist, hat eine normale Zuteilung, für sie gilt die Frist oben.
+- **Auskunft.** Die Auskunft nach Art. 15 DSGVO enthält die eigenen Zuteilungen, Wartelisten-Einträge und Planerrechte.
 - **Kalender-Abo.** Wer seine Schichten im eigenen Kalender abonniert, übermittelt sie an den gewählten Kalenderanbieter; bei Google und Microsoft speichern deren Server sie. Die Adresse wird nur einmal angezeigt und als Hash gespeichert, nie im Klartext. Siehe [Schichten im eigenen Kalender](/de/shifts.html#schichten-im-eigenen-kalender).
 
 ## Timer außerhalb der App
