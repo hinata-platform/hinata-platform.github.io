@@ -104,7 +104,31 @@ In a shift's sheet, the small cross next to a name takes that person off again; 
 
 ### Moving
 
-In the calendar you can drag a shift of your project to another place. Hinata asks once before moving it. The same change always works through **From** and **Until** in the editor as well, without dragging. New shifts are created in the editor, not by dragging on the calendar.
+In the calendar you can drag a shift of your project to another place. Hinata asks once before moving it; for an event of a series, the question is whether you mean this one or all future ones. The same change always works through **From** and **Until** in the editor as well, without dragging. New shifts are created in the editor, not by dragging on the calendar.
+
+### Series
+
+An on-call duty every week, office hours once a month, the bar shift every Friday: you create such events once and Hinata repeats them as a series. The event editor has a **Repeat** row for this, set to **Never** at first. Tapping it opens the choices:
+
+- **Daily**
+- **Weekly** on the weekday of the start
+- **Monthly** on the day of the start, say the 15th
+- **Custom rule**: weekly on several days, an interval such as every two weeks, and an end after a number of times or on a date
+
+Once a rule is chosen, the editor's head shows it in words, with the next dates below. So you see what you get before saving. Without an end the series keeps going.
+
+Every event of a series is an ordinary event with its own shifts. Signing up, assigning, reminders, the calendar and the calendar subscription work as for any other event. Hinata creates the events of the next three months, at most 52 at once, and adds more every night. Cards and the head of an event show the rule with a repeat symbol.
+
+An event over several days in a row, such as a trade fair week, is not a series. Use **Copy to more days** for that.
+
+**Only this one or all future ones.** When you change an event of a series, call it off, delete it, or change, add or delete one of its shifts, Hinata asks what this should apply to. Nothing is chosen in advance.
+
+- **Only this one** changes this event alone. It no longer follows the series afterwards and shows "differs from the series". If you call it off or delete it, no new event appears on that day later either.
+- **All future ones** applies to this event and every later one. Past events stay as they are. People on a shift stay on it and get a notice when their shift changes. If that leaves people with two shifts at the same time, Hinata says how many.
+
+A new rule always applies from the event where you change it. A shift you add on several days at once goes into this event only. Deleting a shift for all future events works only once nobody is on it in any future event.
+
+**Ending a series.** Delete an event with **All future ones**. From that day on the series is gone: events nobody signed up for disappear, events with people on them are called off and those people get a notice. **Call off** with **All future ones** keeps all later events visible, but called off.
 
 ## Shifts in your own calendar
 
