@@ -378,6 +378,7 @@ Ist das Modul [Schichtplanung](/de/shifts.html) eingeschaltet, hält Hinata fest
 - **Abwesenheiten nur mit Sicht.** Ist auch das Abwesenheitsmanagement an, weist Hinata beim Eintragen auf eine eingetragene Abwesenheit hin, aber nur wem diese ohnehin sichtbar ist. Wer plant, erfährt dadurch nichts über die Abwesenheiten anderer.
 - **Offline-Kopie.** Die App hält für „Meine Schichten“ eine kleine Kopie der eigenen Schichten auf dem Gerät, ohne Namen anderer. Sie wird beim Abmelden und beim Ausschalten des Moduls gelöscht.
 - **Auskunft.** Die Auskunft nach Art. 15 DSGVO enthält die eigenen Zuteilungen und Planerrechte.
+- **Kalender-Abo.** Wer seine Schichten im eigenen Kalender abonniert, übermittelt sie an den gewählten Kalenderanbieter; bei Google und Microsoft speichern deren Server sie. Die Adresse wird nur einmal angezeigt und als Hash gespeichert, nie im Klartext. Siehe [Schichten im eigenen Kalender](/de/shifts.html#schichten-im-eigenen-kalender).
 
 ## Timer außerhalb der App
 
