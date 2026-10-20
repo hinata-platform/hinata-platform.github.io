@@ -106,6 +106,11 @@ platform offers.
   empty means `HINATA_PROJECT_TEMPLATES_ENABLED` decides. See
   [Project templates](/en/project-templates.html). Whether deadlines count
   calendar days or working days is up to organization admins.
+- **Shift planning**: events with shifts that people sign up for. This switch
+  has three positions too, and empty means `HINATA_SHIFTS_ENABLED` decides.
+  Shift planning needs a MongoDB replica set. On a server without one, the row
+  shows the note **Needs a MongoDB replica set** instead of the switch. See
+  [Shift planning](/en/shifts.html).
 - **Extended time tracking**: here you only see whether it is on. It is set up
   on the [Organization](/en/organization.html) page. If you are an
   organization admin too, the row takes you there. Every switch and policy is

@@ -111,6 +111,11 @@ was diese Plattform anbietet.
   leer bedeutet, dass `HINATA_PROJECT_TEMPLATES_ENABLED` entscheidet. Siehe
   [Projektvorlagen](/de/project-templates.html). Ob Fristen in Kalendertagen
   oder Arbeitstagen zählen, legen Organisationsadmins fest.
+- **Schichtplanung**: Events mit Schichten, in die sich Leute eintragen. Auch
+  dieser Schalter hat drei Stellungen, leer heißt, dass `HINATA_SHIFTS_ENABLED`
+  entscheidet. Die Schichtplanung braucht ein MongoDB Replica Set. Läuft der
+  Server ohne, steht hier statt des Schalters der Hinweis **Braucht ein MongoDB
+  Replica Set**. Siehe [Schichtplanung](/de/shifts.html).
 - **Erweiterte Zeiterfassung**: Hier siehst du nur, ob sie an ist. Eingestellt
   wird sie auf der Seite [Organisation](/de/organization.html). Bist du auch
   Organisationsadmin, führt dich die Zeile dorthin. Alle Schalter und
