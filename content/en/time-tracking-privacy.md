@@ -377,7 +377,8 @@ When the [shift planning](/en/shifts.html) module is on, Hinata records who is s
 - **Names for members only.** Only members of the project see who is on a shift. Lists carry figures, not names; names appear only in the detail of a shift or an event. There are no rankings and no evaluations per person.
 - **Absences only for those who see them.** If absence management is on as well, Hinata points out an entered absence when someone signs up, but only to people who can see that absence anyway. Planners learn nothing about other people's absences this way.
 - **Offline copy.** For "My shifts" the app keeps a small copy of the person's own shifts on the device, without anyone else's names. It is deleted on sign-out and when the module is switched off.
-- **Access.** The access report under Art. 15 GDPR includes the person's own assignments and planner rights.
+- **Waiting list.** Whoever joins a full shift is put on its waiting list. Other members only see how many are waiting, and the waiting person only sees their own place; names and order are visible to the project's planners alone. When a place opens up, the first person moves up and has to confirm it within a deadline. Waiting-list entries, and entries that left the list without moving up, are deleted one day after the shift ends, because they record no work. Whoever moved up holds an ordinary assignment, and the period above applies to it.
+- **Access.** The access report under Art. 15 GDPR includes the person's own assignments, waiting-list entries and planner rights.
 - **Calendar subscription.** Whoever subscribes to their shifts in their own calendar hands them to the calendar provider they choose; with Google and Microsoft, their servers store them. The address is shown only once and stored as a hash, never in plain text. See [Shifts in your own calendar](/en/shifts.html#shifts-in-your-own-calendar).
 
 ## Timer outside the app
