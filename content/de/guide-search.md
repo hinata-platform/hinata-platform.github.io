@@ -34,7 +34,7 @@ Die Palette findet alles, was du in Hinata öffnen darfst. Die Treffer kommen na
 | **Vorgänge** | Titel, Vorgangsschlüssel (`HIN-42`) und Labels, dazu Wörter aus der Beschreibung |
 | **Kommentare** | Kommentare an Vorgängen |
 | **Projekte** | Projektname und Projektschlüssel, dazu die Projektbeschreibung |
-| **Teams** | Teams deiner Organisation |
+| **Teams** | Teams, in denen du Mitglied bist |
 | **Personen** | Anzeigename, Benutzername und Position |
 | **Boards & Sprints** | Board-Namen, Sprint-Namen und Sprint-Ziele |
 | **Wissen** | Artikel mit Titel, Labels und Text, dazu die Spaces |
@@ -57,7 +57,7 @@ Manche Bereiche erscheinen nur, wenn das passende Modul auf deinem Server einges
 
 - **Schichten** mit der [Schichtplanung](/de/shifts.html).
 - **Abwesenheiten** mit der [Abwesenheitsverwaltung](/de/absences.html).
-- **Abrechnung** mit der [erweiterten Zeiterfassung](/de/time-tracking-advanced.html) und eingeschalteter Abrechnung.
+- **Abrechnung** mit der [erweiterten Zeiterfassung](/de/time-tracking-advanced.html). Dort findest du Budgets, Stundensätze zusätzlich nur bei eingeschalteter Abrechnung.
 
 Stundenzettel tauchen in der Suche nur auf, wenn die erweiterte Zeiterfassung mit Freigaben läuft. Ist ein Modul aus, fehlt sein Reiter ganz.
 
@@ -126,10 +126,11 @@ Enter oder ein Klick bringt dich direkt an die Stelle, um die es geht:
 Die Suche zeigt nur, was du auch öffnen darfst. Das gilt für Admins genauso.
 
 - **Vorgänge, Kommentare, Anhänge, Projekte und Boards** aus Projekten, in denen du Mitglied bist, dazu Vorgänge, die mit dir geteilt wurden.
+- **Teams** nur die, in denen du Mitglied bist.
 - **Artikel und Spaces** nur, wenn sie für dich freigegeben sind.
 - **Zeiteinträge, Stundenzettel und Abwesenheitsanträge** nur deine eigenen. Die von Kolleginnen und Kollegen findest du hier nicht, auch nicht als Organisationsadmin.
-- **Budgets** der Projekte, die du sehen kannst.
-- **Stundensätze:** Organisationsadmins sehen alle. Projektleitungen sehen die Erlössätze ihrer Projekte. Kostensätze sehen nur Organisationsadmins.
+- **Budgets** der Projekte, die du sehen kannst. Ein Budget in Geld findest du nur, wenn du es auch sehen darfst: als Organisationsadmin oder als Projektleitung bei einem Erlösbudget.
+- **Stundensätze:** Organisationsadmins sehen alle Personen-, Team- und Standardsätze und die Sätze der Projekte, die sie sehen können. Projektleitungen sehen die Erlössätze ihrer Projekte. Kostensätze sehen nur Organisationsadmins.
 
 Die Zahlen an den Reitern folgen denselben Regeln. Ein Bereich zählt also nie etwas mit, das du nicht öffnen könntest.
 
@@ -150,7 +151,7 @@ Tippe, was du tun willst, und die Palette bietet es an. Jede Seite der Navigatio
 
 - **Dashboard**, **Projekte**, **Vorgänge**, **Board**, **Timeline**, **Wissen**, **Teams**, **Beobachtet**, **Mitteilungen** und **Wochenübersicht**.
 - **Berichte**. Mit erweiterter Zeiterfassung ist jeder Reiter einzeln zu finden, etwa **Auslastung** oder **Abrechnung**, sofern du ihn sehen darfst.
-- **Stundenzettel**, **Zeiterfassung** mit **Kalender**, **Freigaben**, **Abwesenheiten**, **Fokus-Modus** und **Timer**.
+- **Stundenzettel**, **Zeiterfassung** mit **Kalender**, **Abwesenheiten**, **Fokus-Modus** und **Timer**, dazu **Freigaben**, wenn deine Organisation Freigaben eingeschaltet hat.
 - **Zeit erfassen** und **Abwesenheit beantragen** als Aktionen.
 - **Schichten** mit **Kalender** und **Events**, wenn die Schichtplanung eingeschaltet ist.
 - **Stundensätze** und **Rechnungen**, wenn die Abrechnung eingeschaltet ist und du Organisationsadmin bist.
@@ -314,7 +315,7 @@ Auf einem breiten Fenster kommt das Profil als Seitenleiste von rechts, deine ak
 - **Rollen:** Admin, Organisationsadmin oder Mitglied.
 - **Gemeinsame Teams und Projekte**, also die, in denen ihr beide seid. In deinem eigenen Profil stehen hier deine Teams und Projekte.
 - **Zeitzone mit der lokalen Uhrzeit.**
-- **Abwesenheit heute**, wenn die erweiterte Zeiterfassung eingeschaltet ist und du die Abwesenheiten dieser Person sehen darfst. Bei eingeschränkter Sicht steht dort nur, dass sie abwesend ist, ohne Grund. Eine Krankmeldung erscheint als „Sonstiges“.
+- **Abwesenheit heute**, wenn die erweiterte Zeiterfassung eingeschaltet ist und du die Abwesenheiten dieser Person sehen darfst. Bei eingeschränkter Sicht siehst du Urlaub oder „Sonstiges“ und den Zeitraum, nie eine Notiz. Eine Krankmeldung erscheint als „Sonstiges“.
 
 Darunter stehen zwei Aktionen:
 
