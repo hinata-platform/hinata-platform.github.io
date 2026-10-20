@@ -16,7 +16,7 @@ The client can then search and create issues, read and write the knowledge base,
 
 An AI client connects with a **Personal Access Token (PAT)** you create in the app. A PAT is:
 
-- **Scoped.** You grant only the capabilities it needs (`issues:read/write`, `projects:read/write`, `boards:read`, `sprints:write`, `teams:read`, `users:read`, `kb:read/write`, `worklog:read/write`, `search:read`, `notifications:read`). A read-only token can never write.
+- **Scoped.** You grant only the capabilities it needs (`issues:read/write`, `projects:read/write`, `boards:read`, `sprints:write`, `teams:read`, `users:read`, `kb:read/write`, `worklog:read/write`, `search:read`, `notifications:read`, `shifts:read/write/plan`). A read-only token can never write.
 - **Revocable.** Any time. The next request with that token is rejected immediately.
 - **Hashed at rest.** Only a SHA-256 hash is stored. You see the plaintext **once**, at creation.
 - **Confined to `/mcp`.** The regular REST API rejects PATs, so a scoped token can never become full account access.
@@ -121,6 +121,36 @@ Every tool carries the MCP annotations `readOnlyHint` and `destructiveHint`. Cli
 The timer, entry and absence tools need the extended time tracking (and absence management for the last two); with the module off they say so and the four older tools keep working. No tool reads anybody else's time or balance, and no tool decides a leave request: approving stays with a person in the app. Sick leave is neither reported nor read over MCP.
 
 There are also **resources** for direct reference (`hinata://issue/{ASTA-42}`, `hinata://project/{KEY}`, `hinata://kb/{id}`, and your own `hinata://time/timer`, `hinata://time/entries/{id}` and `hinata://time-off/balance`) and a few **prompt** templates (triage an issue, draft a sprint stand-up).
+
+## Shifts
+
+With [shift planning](/en/shifts.html) switched on, an assistant can answer questions like these and act for you:
+
+- "When is my next shift?"
+- "Where are people still missing on Saturday?"
+- "Sign me up for setting up on Friday."
+- "Give up my shift on Sunday."
+
+| Tool | Scope | What it does |
+|---|---|---|
+| `list_my_shifts` | `shifts:read` | Your own shifts and waiting-list places in a period, the next 30 days by default |
+| `next_shift` | `shifts:read` | Your next own shift, or that there is none |
+| `list_shift_events` | `shifts:read` | Events with numbers: needed, taken, shifts still short. Optionally only events where people are missing |
+| `get_shift_event` | `shifts:read` | One event with all its shifts as numbers, without names |
+| `get_shift` | `shifts:read` | One shift with the people who hold a place. People on the waiting list are counted, never named |
+| `self_assign_shift` | `shifts:write` | Sign yourself up. On a full shift you join the waiting list, and the answer says so |
+| `release_shift` | `shifts:write` | Give up your own place or leave the waiting list |
+| `confirm_shift` / `decline_shift` | `shifts:write` | Confirm or decline an assignment |
+| `assign_shift` / `remove_assignment` | `shifts:plan` | As a planner, put somebody on a shift or take them off |
+
+A period covers at most 62 days and a page at most 100 entries. Times come as wall-clock times in the event's time zone, with the zone named. Hinata refuses an overlap with one of your own shifts in a sentence that gives the reason.
+
+`shifts:plan` is meant for tokens that work on behalf of a planner. The one-click connection leaves it out when the client names no scopes; a client only gets it by asking for it explicitly and with your approval. The three shift scopes appear in the app and on the approval page only while shift planning is switched on. While it is off, the tools answer that the feature is not enabled.
+
+!!! warning "Event texts are not instructions"
+    People write the title, location and description of an event, and an assistant reads them. If one says something like "Ignore all previous instructions", that is text, not a command. Hinata passes these texts in their own data fields and never in a tool's description. Still, give a token only the scopes it needs, and do not let an assistant with `shifts:plan` assign anybody without asking you first.
+
+Sign-ups through MCP are recorded in the audit log as assignments, just like in the app. The extra records saying that a token acted (`MCP_SHIFT_*`) stay off until an administrator switches them on.
 
 ## Security model
 
