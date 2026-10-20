@@ -367,6 +367,13 @@
      }
     ],
     [
+     "shifts",
+     {
+      "en": "Shift planning",
+      "de": "Schichtplanung"
+     }
+    ],
+    [
      "reports",
      {
       "en": "Reports & dashboard",
