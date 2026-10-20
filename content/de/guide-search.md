@@ -1,6 +1,6 @@
 ---
 title: Dinge finden
-description: Mit der Befehlspalette schnell zu Vorgängen, Projekten, Artikeln und Personen springen und mit der Vorgangsliste passende Arbeit filtern.
+description: Mit der Befehlspalette schnell zu Vorgängen, Kommentaren, Projekten, Personen, Artikeln, Schichten und Zeiten springen, Personenprofile öffnen und mit der Vorgangsliste passende Arbeit filtern.
 ---
 
 # Dinge finden
@@ -26,32 +26,51 @@ Die Palette liegt über deiner aktuellen Seite. Halb Getipptes bleibt erhalten. 
 
 ## Was sie durchsucht
 
-Die Treffer kommen gruppiert, immer in derselben Reihenfolge:
+Die Palette findet alles, was du in Hinata öffnen darfst. Die Treffer kommen nach Bereichen gruppiert, immer in derselben Reihenfolge:
 
-| Gruppe | Was passt |
+| Bereich | Was du findest |
 | --- | --- |
-| **Befehle** | Aktionen und Ziele in der App, siehe [Sie ist auch eine Befehlsleiste](#sie-ist-auch-eine-befehlsleiste) |
+| **Befehle** | Seiten und Aktionen der App, siehe [Sie ist auch eine Befehlsleiste](#sie-ist-auch-eine-befehlsleiste) |
 | **Vorgänge** | Titel, Vorgangsschlüssel (`HIN-42`) und Labels, dazu Wörter aus der Beschreibung |
+| **Kommentare** | Kommentare an Vorgängen |
 | **Projekte** | Projektname und Projektschlüssel, dazu die Projektbeschreibung |
+| **Teams** | Teams deiner Organisation |
 | **Personen** | Anzeigename, Benutzername und Position |
 | **Boards & Sprints** | Board-Namen, Sprint-Namen und Sprint-Ziele |
-| **Wissen** | Artikeltitel und Labels, dazu der Text im Artikel |
+| **Wissen** | Artikel mit Titel, Labels und Text, dazu die Spaces |
+| **Anhänge** | Dateien, die an Vorgängen hängen |
+| **Schichten** | Events und einzelne Schichten der Schichtplanung |
+| **Zeiterfassung** | Deine eigenen Zeiteinträge und Stundenzettel |
+| **Abwesenheiten** | Deine eigenen Abwesenheitsanträge und die Abwesenheitsarten |
+| **Abrechnung** | Budgets und Stundensätze |
 
 So wird gesucht:
 
 - **Kurze Felder** (Titel, Schlüssel, Namen, Labels) finden auch Teile. `len` findet *Lena*, `HIN-2` findet `HIN-241`.
 - **Lange Felder** (Beschreibungen, Artikeltexte) finden nur ganze Wörter. Für einen Satz aus einer Beschreibung tippst du also ganze Wörter.
 
-Unter **Alle** zeigt jede Gruppe bis zu fünf Treffer. In einer einzelnen Gruppe sind es bis zu vierundzwanzig.
+Unter **Alle** zeigt jede Gruppe höchstens fünf Treffer. **Alle anzeigen** an einer Gruppe wechselt in ihren Bereich. Dort sind es bis zu vierundzwanzig.
+
+### Bereiche, die zu einem Modul gehören
+
+Manche Bereiche erscheinen nur, wenn das passende Modul auf deinem Server eingeschaltet ist:
+
+- **Schichten** mit der [Schichtplanung](/de/shifts.html).
+- **Abwesenheiten** mit der [Abwesenheitsverwaltung](/de/absences.html).
+- **Abrechnung** mit der [erweiterten Zeiterfassung](/de/time-tracking-advanced.html) und eingeschalteter Abrechnung.
+
+Stundenzettel tauchen in der Suche nur auf, wenn die erweiterte Zeiterfassung mit Freigaben läuft. Ist ein Modul aus, fehlt sein Reiter ganz.
 
 ## Auf eine Art von Treffern eingrenzen
 
-Die Chips unter dem Suchfeld beschränken die Suche auf eine Kategorie: **Alle**, **Befehle**, **Vorgänge**, **Projekte**, **Personen**, **Boards & Sprints**, **Wissen**.
+Die Reiter unter dem Suchfeld beschränken die Suche auf einen Bereich: **Alle**, **Befehle**, **Vorgänge**, **Kommentare**, **Projekte**, **Teams**, **Personen**, **Boards & Sprints**, **Wissen**, **Anhänge**, **Schichten**, **Zeiterfassung**, **Abwesenheiten**, **Abrechnung**.
 
 ![Die Palette mit gewähltem Bereich „Wissen“ und leerem Suchfeld](/assets/img/shot-search-scope-knowledge.png)
 *Bereich __Wissen__ bei leerem Feld: die zuletzt bearbeiteten Artikel mit Bereich und Alter.*
 
-Klicke einen Chip an oder wechsle mit **Tab** vorwärts und **Umschalt+Tab** zurück. Deine Suche bleibt dabei im Feld stehen.
+Klicke einen Reiter an oder wechsle mit **Tab** vorwärts und **Umschalt+Tab** zurück. Deine Suche bleibt dabei im Feld stehen.
+
+Ist das Suchfeld leer, steht an jedem Reiter, wie viele Einträge du in diesem Bereich sehen kannst. Ab hundert steht dort „99+“. Gezählt wird nur, was du auch öffnen darfst.
 
 !!! tip "Eine leere Anfrage in einem Bereich ist eine Stöberliste"
     Ohne Suchbegriff zeigt ein Bereich die zuletzt bearbeiteten Einträge. So findest du wieder, woran das Team heute gearbeitet hat.
@@ -62,7 +81,7 @@ Klicke einen Chip an oder wechsle mit **Tab** vorwärts und **Umschalt+Tab** zur
 | --- | --- |
 | **↑ / ↓** | Durch die Treffer bewegen, über Gruppengrenzen hinweg |
 | **↵ Enter** | Ausgewählten Treffer öffnen oder ausgewählten Befehl ausführen |
-| **Tab / Umschalt+Tab** | Zum nächsten / vorherigen Bereichs-Chip |
+| **Tab / Umschalt+Tab** | Zum nächsten / vorherigen Bereich |
 | **Esc** | Palette schließen |
 
 Der beste Treffer ist schon ausgewählt. Meist reicht also: ⌘K, ein paar Zeichen, Enter. Fährst du mit der Maus über eine Zeile, wird sie ebenfalls ausgewählt.
@@ -77,6 +96,43 @@ Jede Zeile zeigt genug, um den richtigen Treffer zu erkennen:
 - **Board oder Sprint:** Name, beim Sprint zusätzlich das Ziel.
 - **Artikel:** Bereich und wann er zuletzt aktualisiert wurde. So fallen veraltete Duplikate auf.
 
+## Wohin ein Treffer führt
+
+Enter oder ein Klick bringt dich direkt an die Stelle, um die es geht:
+
+| Treffer | Öffnet |
+| --- | --- |
+| **Vorgang** | den Vorgang |
+| **Kommentar** | den Vorgang, schon zum Kommentar gescrollt |
+| **Anhang** | den Vorgang mit dem Anhang geöffnet |
+| **Projekt** | die Vorgangsliste, auf dieses Projekt gefiltert |
+| **Team** | die Teamseite |
+| **Person** | das [Personenprofil](#das-personenprofil) |
+| **Board** | das Board |
+| **Sprint** | das Board mit diesem Sprint ausgewählt |
+| **Artikel** | den Artikel |
+| **Space** | den Space |
+| **Event der Schichtplanung** | das Event |
+| **Schicht** | das Event mit dem Blatt dieser Schicht geöffnet |
+| **Eigener Zeiteintrag** | den Zeitkalender an diesem Tag mit dem Eintrag geöffnet. Ohne erweiterte Zeiterfassung landest du in der Woche des Stundenzettels. |
+| **Eigener Stundenzettel** | den Stundenzettel mit seinem Zeitraum und Projekt |
+| **Eigener Abwesenheitsantrag** | den Antrag |
+| **Abwesenheitsart** | einen neuen Antrag dieser Art |
+| **Budget** | die Projekteinstellungen im Abschnitt Zeiterfassung |
+| **Stundensatz** | die Seite Stundensätze mit diesem Satz geöffnet |
+
+## Wer was findet
+
+Die Suche zeigt nur, was du auch öffnen darfst. Das gilt für Admins genauso.
+
+- **Vorgänge, Kommentare, Anhänge, Projekte und Boards** aus Projekten, in denen du Mitglied bist, dazu Vorgänge, die mit dir geteilt wurden.
+- **Artikel und Spaces** nur, wenn sie für dich freigegeben sind.
+- **Zeiteinträge, Stundenzettel und Abwesenheitsanträge** nur deine eigenen. Die von Kolleginnen und Kollegen findest du hier nicht, auch nicht als Organisationsadmin.
+- **Budgets** der Projekte, die du sehen kannst.
+- **Stundensätze:** Organisationsadmins sehen alle. Projektleitungen sehen die Erlössätze ihrer Projekte. Kostensätze sehen nur Organisationsadmins.
+
+Die Zahlen an den Reitern folgen denselben Regeln. Ein Bereich zählt also nie etwas mit, das du nicht öffnen könntest.
+
 ## Letzte Suchen
 
 Öffnest du die Palette mit leerem Feld, siehst du deine letzten sechs Suchbegriffe.
@@ -90,9 +146,22 @@ Jede Zeile zeigt genug, um den richtigen Treffer zu erkennen:
 
 ## Sie ist auch eine Befehlsleiste
 
-Tippe, was du tun willst, und die Palette bietet es an:
+Tippe, was du tun willst, und die Palette bietet es an. Jede Seite der Navigation ist als Befehl zu finden:
 
-- **Zum Dashboard**, **Zu Projekte**, **Zu Vorgänge**, **Zum Board**, **Zur Timeline**, **Zu Berichte**, **Zu Wissen**: die ganze Navigation.
+- **Dashboard**, **Projekte**, **Vorgänge**, **Board**, **Timeline**, **Wissen**, **Teams**, **Beobachtet**, **Mitteilungen** und **Wochenübersicht**.
+- **Berichte**. Mit erweiterter Zeiterfassung ist jeder Reiter einzeln zu finden, etwa **Auslastung** oder **Abrechnung**, sofern du ihn sehen darfst.
+- **Stundenzettel**, **Zeiterfassung** mit **Kalender**, **Freigaben**, **Abwesenheiten**, **Fokus-Modus** und **Timer**.
+- **Zeit erfassen** und **Abwesenheit beantragen** als Aktionen.
+- **Schichten** mit **Kalender** und **Events**, wenn die Schichtplanung eingeschaltet ist.
+- **Stundensätze** und **Rechnungen**, wenn die Abrechnung eingeschaltet ist und du Organisationsadmin bist.
+- **Einstellungen** und jeder Abschnitt darin: **Sicherheit**, **Sitzungen**, **Benachrichtigungen**, **Zeiterfassung**, **Zugriff**, **Darstellung**, **Daten** und **Gefahrenzone**. **Zugriffstokens** gibt es nur, wenn der [MCP-Server](/de/mcp.html) eingeschaltet ist.
+- **Adminbereich** mit jedem seiner Abschnitte, nur für Admins.
+- **Organisation** mit **Feiertage** und **Protokoll**, nur für Organisationsadmins.
+
+Unter jedem Abschnitt steht, zu welcher Seite er gehört. So unterscheidest du **Zeiterfassung** in den Einstellungen von der Seite **Zeiterfassung**.
+
+Dazu kommen ein paar Aktionen:
+
 - **Neuen Vorgang erstellen:** öffnet das Board. Dort hat jede Spalte unten ein Feld **Aufgabe hinzufügen**.
 - **Hell / Dunkel umschalten:** wechselt das Erscheinungsbild. Die Palette bleibt dabei offen, damit du sofort zurückschalten kannst.
 
@@ -108,14 +177,15 @@ Die App fragt erst kurz nach deinem letzten Tastendruck und verwirft veraltete A
 
 Prüfe der Reihe nach:
 
-1. **Ist noch ein Bereichs-Chip aktiv?** Ein gewählter Chip bleibt aktiv. Klicke auf **Alle**.
+1. **Ist noch ein Bereich aktiv?** Ein gewählter Reiter bleibt aktiv. Klicke auf **Alle**.
 2. **Ist es ein Teil eines langen Wortes?** Teile findet die Suche nur in Titeln, Schlüsseln und Labels, nicht in Beschreibungen und Artikeln. Tippe das ganze Wort.
 3. **Ist es archiviert?** Stelle `archiviert` voran.
-4. **Darfst du es erreichen?** Die Suche findet nur, was du auch öffnen darfst: Vorgänge und Projekte über Projektmitgliedschaft und Teams, Seiten der Wissensdatenbank nur, wenn du sie lesen darfst. Das gilt für Admins genauso. Sieht eine Kollegin etwas, das du nicht siehst, lass dich hinzufügen oder lies [Projekte & Teams](/de/guide-projects.html) und [Wer was sieht](/de/guide-knowledge.html#wer-was-sieht-und-ändern-darf).
+4. **Darfst du es erreichen?** Die Suche findet nur, was du auch öffnen darfst: Vorgänge und Projekte über Projektmitgliedschaft und Teams, Seiten der Wissensdatenbank nur, wenn du sie lesen darfst. Das gilt für Admins genauso. Sieht eine Kollegin etwas, das du nicht siehst, lass dich hinzufügen oder lies [Wer was findet](#wer-was-findet), [Projekte & Teams](/de/guide-projects.html) und [Wer was sieht](/de/guide-knowledge.html#wer-was-sieht-und-ändern-darf).
+5. **Fehlt der ganze Bereich?** Schichten, Abwesenheiten und Abrechnung erscheinen nur, wenn ihr Modul eingeschaltet ist. Siehe [Bereiche, die zu einem Modul gehören](#bereiche-die-zu-einem-modul-gehören).
 
 ## Die Palette auf dem Handy
 
-Auf dem Handy füllt die Palette den Bildschirm und kommt von oben. Das Suchfeld ist oben, die Tastatur ist schon offen. Die Chips scrollen seitwärts. Die Fußzeile mit Tastenhinweisen fehlt.
+Auf dem Handy füllt die Palette den Bildschirm und kommt von oben. Das Suchfeld ist oben, die Tastatur ist schon offen. Die Reiter scrollen seitwärts. Die Fußzeile mit Tastenhinweisen fehlt.
 
 Bereiche, letzte Suchen, das Stichwort fürs Archiv und Befehle funktionieren wie am Rechner. Mehr in [Auf dem Handy](/de/guide-mobile.html).
 
@@ -232,14 +302,41 @@ Arbeit ist in Hinata drei Ebenen tief: Ein **Epic** enthält Stories, Tasks, Bug
 
 Die Auswahl für Epic und Elternvorgang zeigt zuerst **Letzte Epics** und **Aktuelle Vorgänge**.
 
-## Nach einer Person suchen
+## Das Personenprofil
 
-Personen findest du über Anzeigename, Benutzername und Position. *„Vogt“*, *„lvogt“* und *„Designerin“* finden dieselbe Kollegin.
+Personen findest du über Anzeigename, Benutzername und Position. *„Vogt“*, *„lvogt“* und *„Designerin“* finden dieselbe Kollegin. Ein Klick auf den Treffer öffnet ihr Profil.
 
-Die *Arbeit* einer Person siehst du so: **Issues** öffnen, nach **Zugewiesen** filtern und nach Projekt oder Status gruppieren. Auf einem Board macht der Personenfilter dasselbe.
+Auf einem breiten Fenster kommt das Profil als Seitenleiste von rechts, deine aktuelle Seite bleibt dahinter stehen. Auf dem Telefon ist es eine eigene Seite mit Zurück. Jedes Profil hat eine eigene Adresse (`/people/<id>`). Du kannst den Link also teilen, und er öffnet dasselbe Profil.
 
-!!! note "Eine Person zu öffnen braucht Adminrechte"
-    Ein Personentreffer führt in die Benutzerverwaltung. Die können nur Administratorinnen und Administratoren öffnen. Finden können alle.
+### Was alle sehen
+
+- **Bild, Name und Benutzername**, dazu Pronomen und Position, wenn die Person sie eingetragen hat.
+- **Rollen:** Admin, Organisationsadmin oder Mitglied.
+- **Gemeinsame Teams und Projekte**, also die, in denen ihr beide seid. In deinem eigenen Profil stehen hier deine Teams und Projekte.
+- **Zeitzone mit der lokalen Uhrzeit.**
+- **Abwesenheit heute**, wenn die erweiterte Zeiterfassung eingeschaltet ist und du die Abwesenheiten dieser Person sehen darfst. Bei eingeschränkter Sicht steht dort nur, dass sie abwesend ist, ohne Grund. Eine Krankmeldung erscheint als „Sonstiges“.
+
+Darunter stehen zwei Aktionen:
+
+- **Vorgänge dieser Person** öffnet die Vorgangsliste, nach ihr als Bearbeiter gefiltert. Dort grenzt du mit **Filter** und **Gruppieren nach** weiter ein.
+- **E-Mail schreiben** öffnet dein Mailprogramm. Die Aktion gibt es nur, wenn du die Adresse sehen darfst. Das sind derzeit nur Admins. Eine Einstellung, die Adressen für alle sichtbar macht, gibt es nicht.
+
+### Was Admins zusätzlich sehen
+
+Admins verwalten die Person direkt im Profil, mit denselben Möglichkeiten wie unter [Adminbereich → Benutzer](/de/admin-area.html#benutzer):
+
+- Rollen vergeben und entziehen, auch Organisationsadmin.
+- Das Konto sperren oder wieder aktivieren.
+- Die Einladung erneut senden.
+- Das Passwort zurücksetzen.
+- Alle Sitzungen beenden.
+- Den Verlauf des Kontos ansehen.
+- Das Konto löschen.
+
+Die Regeln für Rollen gelten hier genauso, siehe [Organisation](/de/organization.html#regeln-für-die-rolle-organisationsadmin).
+
+!!! note "Deaktivierte Konten sieht nur die Administration"
+    Das Profil eines deaktivierten Kontos öffnen nur Admins. Alle anderen sehen „Diese Person gibt es hier nicht“, auch wenn sie einen Link darauf haben.
 
 ## Einmal verlinken, seltener suchen
 

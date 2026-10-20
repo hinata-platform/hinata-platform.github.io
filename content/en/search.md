@@ -1,6 +1,6 @@
 ---
 title: Search & palette
-description: ⌘K opens a command palette to jump to any issue, project, article or person and run quick actions.
+description: ⌘K opens a command palette to jump to issues, projects, articles, people, shifts and time and run quick actions.
 ---
 
 # Search & command palette
@@ -14,7 +14,11 @@ The palette searches your whole workspace as you type:
 - **Issues** by key (`MOB-42`) or by words in the title.
 - **Projects**, to jump straight to a board or backlog.
 - **Knowledge base articles**, such as a runbook.
-- **People**, to open a teammate's profile.
+- **People**, to open their [profile](/en/guide-search.html#the-person-profile).
+- **Comments**, **Teams**, **Boards & Sprints**, **Spaces** and **Attachments**.
+- **Shifts**, **Time tracking**, **Absences** and **Billing**, when the module behind each is turned on. Time entries, timesheets and absence requests only show up for yourself.
+
+Press **Tab** to move between scopes. With an empty search field, each tab shows how many items you can see there. Which scopes exist and where a result takes you is described in [Finding things](/en/guide-search.html#what-it-searches).
 
 The best match is already selected. Press **Enter** to open it. The palette only finds what you can reach: issues and projects through your [project access](/en/projects-teams.html), articles only when you [may read them](/en/knowledge-base.html#access-control). That holds for admins too.
 

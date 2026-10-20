@@ -1,6 +1,6 @@
 ---
 title: Finding things
-description: Jump to any issue, project, article or person with the command palette, and filter work with the issue list.
+description: Jump to issues, comments, projects, people, articles, shifts and time with the command palette, open person profiles, and filter work with the issue list.
 ---
 
 # Finding things
@@ -26,32 +26,51 @@ The palette opens over your current page. Anything half-typed stays. Press **Esc
 
 ## What it searches
 
-Results arrive grouped, always in the same order:
+The palette finds everything you are allowed to open in Hinata. Results arrive grouped by scope, always in the same order:
 
-| Group | What matches |
+| Scope | What you find |
 | --- | --- |
-| **Commands** | Actions and destinations inside the app, see [It is also a command bar](#it-is-also-a-command-bar) |
+| **Commands** | Pages and actions of the app, see [It is also a command bar](#it-is-also-a-command-bar) |
 | **Issues** | The title, the issue key (`HIN-42`), and labels, plus words from the description |
+| **Comments** | Comments on issues |
 | **Projects** | The project name and its key, plus the project description |
+| **Teams** | The teams of your organization |
 | **People** | Display name, username and job title |
 | **Boards & Sprints** | Board names, sprint names and sprint goals |
-| **Knowledge** | Article titles and labels, plus the text inside the article |
+| **Knowledge** | Articles with their title, labels and text, plus the spaces |
+| **Attachments** | Files attached to issues |
+| **Shifts** | Events and single shifts from shift planning |
+| **Time tracking** | Your own time entries and timesheets |
+| **Absences** | Your own absence requests and the absence types |
+| **Billing** | Budgets and hourly rates |
 
 How matching works:
 
 - **Short fields** (titles, keys, names, labels) match partial text. `len` finds *Lena*, `HIN-2` finds `HIN-241`.
 - **Long fields** (descriptions, article bodies) only match whole words. To find a sentence in a description, type whole words.
 
-In **All**, each group shows up to five results. In a single group you get up to twenty-four.
+In **All**, each group shows at most five results. **Show all** on a group switches to its scope, where you get up to twenty-four.
+
+### Scopes that belong to a module
+
+Some scopes only appear when the matching module is turned on for your server:
+
+- **Shifts** with [shift planning](/en/shifts.html).
+- **Absences** with [absence management](/en/absences.html).
+- **Billing** with [advanced time tracking](/en/time-tracking-advanced.html) and billing turned on.
+
+Timesheets only show up in search when advanced time tracking runs with approvals. When a module is off, its tab is not there at all.
 
 ## Narrow it to one kind of thing
 
-The chips under the search field limit the search to one category: **All**, **Commands**, **Issues**, **Projects**, **People**, **Boards & Sprints**, **Knowledge**.
+The tabs under the search field limit the search to one scope: **All**, **Commands**, **Issues**, **Comments**, **Projects**, **Teams**, **People**, **Boards & Sprints**, **Knowledge**, **Attachments**, **Shifts**, **Time tracking**, **Absences**, **Billing**.
 
 ![The palette with the Knowledge scope picked and nothing typed](/assets/img/shot-search-scope-knowledge.png)
 *The __Knowledge__ scope with an empty field: the most recently touched articles, with their space and age.*
 
-Click a chip, or press **Tab** to move forward and **Shift+Tab** to move back. Your query stays in the field while you switch.
+Click a tab, or press **Tab** to move forward and **Shift+Tab** to move back. Your query stays in the field while you switch.
+
+With an empty search field, each tab shows how many items you can see in that scope. From a hundred on it says "99+". Only what you may open is counted.
 
 !!! tip "An empty query in a scope is a browse list"
     With no query, a scope shows the most recently touched items. It is the quickest way back to what the team worked on today.
@@ -62,7 +81,7 @@ Click a chip, or press **Tab** to move forward and **Shift+Tab** to move back. Y
 | --- | --- |
 | **↑ / ↓** | Move through results, across group boundaries |
 | **↵ Enter** | Open the selected result, or run the selected command |
-| **Tab / Shift+Tab** | Move to the next / previous scope chip |
+| **Tab / Shift+Tab** | Move to the next / previous scope |
 | **Esc** | Close the palette |
 
 The best match is already selected. Usually it is just: ⌘K, a few characters, Enter. Hovering a row with the mouse selects it too.
@@ -77,6 +96,43 @@ Each row shows enough to spot the right result:
 - **Board or sprint:** the name, plus the goal for a sprint.
 - **Article:** its space and when it was last updated, so stale duplicates stand out.
 
+## Where a result takes you
+
+Enter or a click takes you straight to the spot that matters:
+
+| Result | Opens |
+| --- | --- |
+| **Issue** | the issue |
+| **Comment** | the issue, already scrolled to the comment |
+| **Attachment** | the issue with the attachment open |
+| **Project** | the issue list, filtered to that project |
+| **Team** | the team page |
+| **Person** | the [person profile](#the-person-profile) |
+| **Board** | the board |
+| **Sprint** | the board with that sprint selected |
+| **Article** | the article |
+| **Space** | the space |
+| **Shift planning event** | the event |
+| **Shift** | the event with that shift's sheet open |
+| **Your time entry** | the time calendar on that day with the entry open. Without advanced time tracking you land on that week of the timesheet. |
+| **Your timesheet** | the timesheet with its period and project |
+| **Your absence request** | the request |
+| **Absence type** | a new request of that type |
+| **Budget** | the project settings, in the time tracking section |
+| **Hourly rate** | the hourly rates page with that rate open |
+
+## Who finds what
+
+Search only shows what you may open. Admins are no exception.
+
+- **Issues, comments, attachments, projects and boards** from projects you are a member of, plus issues shared with you.
+- **Articles and spaces** only when they are shared with you.
+- **Time entries, timesheets and absence requests** only your own. You will not find those of your colleagues here, not even as an organization admin.
+- **Budgets** of the projects you can see.
+- **Hourly rates:** organization admins see all of them. Project leads see the revenue rates of their projects. Only organization admins see cost rates.
+
+The counts on the tabs follow the same rules. A scope never counts anything you could not open.
+
 ## Recent searches
 
 Open the palette with an empty field to see your last six search terms.
@@ -90,9 +146,22 @@ Open the palette with an empty field to see your last six search terms.
 
 ## It is also a command bar
 
-Type what you want to do and the palette offers it:
+Type what you want to do and the palette offers it. Every page in the navigation can be found as a command:
 
-- **Go to Dashboard**, **Projects**, **Issues**, **Board**, **Timeline**, **Reports**, **Knowledge**: the whole navigation.
+- **Dashboard**, **Projects**, **Issues**, **Board**, **Timeline**, **Knowledge**, **Teams**, **Watched**, **Notifications** and **Weekly summary**.
+- **Reports**. With advanced time tracking every tab can be found on its own, like **Workload** or **Billing**, as long as you may see it.
+- **Timesheet**, **Time tracking** with **Calendar**, **Approvals**, **Absences**, **Focus mode** and **Timer**.
+- **Log time** and **Ask for time off** as actions.
+- **Shifts** with **Calendar** and **Events**, when shift planning is turned on.
+- **Hourly rates** and **Invoices**, when billing is turned on and you are an organization admin.
+- **Settings** and every section in it: **Security**, **Sessions**, **Notifications**, **Time tracking**, **Access**, **Appearance**, **Data** and **Danger zone**. **Access tokens** only exists when the [MCP server](/en/mcp.html) is turned on.
+- **Admin area** with each of its sections, for admins only.
+- **Organization** with **Holidays** and **Log**, for organization admins only.
+
+Each section shows which page it belongs to. That is how you tell **Time tracking** in the settings apart from the **Time tracking** page.
+
+On top of that there are a few actions:
+
 - **Create new issue:** opens the board, where every column has an **Add issue** composer at its foot.
 - **Toggle light / dark appearance:** switches the theme. The palette stays open so you can switch back right away.
 
@@ -108,14 +177,15 @@ The app waits a moment after your last keystroke before asking, and discards out
 
 Check in this order:
 
-1. **Is a scope chip still active?** A chip you picked stays active. Press **All**.
+1. **Is a scope still active?** A tab you picked stays active. Press **All**.
 2. **Is it part of a long word?** Partial text only matches titles, keys and labels, not descriptions and articles. Type the whole word.
 3. **Is it archived?** Put `archived` in front of the query.
-4. **Can you reach it?** Search only finds what you may open: issues and projects through project membership and your teams, knowledge base pages only when you may read them. Admins are no exception. If a colleague sees something you cannot, ask them to add you, or see [Projects and teams](/en/guide-projects.html) and [Who can see and change what](/en/guide-knowledge.html#who-can-see-and-change-what).
+4. **Can you reach it?** Search only finds what you may open: issues and projects through project membership and your teams, knowledge base pages only when you may read them. Admins are no exception. If a colleague sees something you cannot, ask them to add you, or see [Who finds what](#who-finds-what), [Projects and teams](/en/guide-projects.html) and [Who can see and change what](/en/guide-knowledge.html#who-can-see-and-change-what).
+5. **Is the whole scope missing?** Shifts, absences and billing only appear when their module is turned on. See [Scopes that belong to a module](#scopes-that-belong-to-a-module).
 
 ## The palette on a phone
 
-On a phone the palette fills the screen and slides down from the top. The field is at the top and the keyboard is already open. The scope chips scroll sideways. The keyboard hint footer is left out.
+On a phone the palette fills the screen and slides down from the top. The field is at the top and the keyboard is already open. The scope tabs scroll sideways. The keyboard hint footer is left out.
 
 Scopes, recents, the archive keyword and commands work as on a desktop. More in [On your phone](/en/guide-mobile.html).
 
@@ -232,14 +302,41 @@ Work in Hinata is three levels deep: an **epic** holds stories, tasks, bugs and 
 
 The epic and parent pickers open with **recent epics** and **recent issues** listed first.
 
-## Looking for a person
+## The person profile
 
-People results match display name, username and job title. *"Vogt"*, *"lvogt"* and *"Designer"* all find the same colleague.
+You find people by display name, username and job title. *"Vogt"*, *"lvogt"* and *"designer"* all find the same colleague. Clicking the result opens their profile.
 
-To see a person's *work*: open **Issues**, filter by **Assignee** and group by project or status. On a board, the **People** filter does the same.
+In a wide window the profile slides in from the right as a side panel, and your current page stays behind it. On a phone it is a page of its own with a back button. Every profile has its own address (`/people/<id>`), so you can share the link and it opens the same profile.
 
-!!! note "Opening a person needs admin rights"
-    A person result leads to user management, which only administrators can open. Everyone can find people.
+### What everyone sees
+
+- **Picture, name and username**, plus pronouns and job title when the person has filled them in.
+- **Roles:** admin, organization admin or member.
+- **Shared teams and projects**, the ones you are both in. On your own profile these are your teams and projects.
+- **Time zone with the local time.**
+- **Absence today**, when advanced time tracking is turned on and you may see this person's absences. With limited visibility it only says that they are away, without a reason. A sick note shows as "Other".
+
+Below that are two actions:
+
+- **Issues of this person** opens the issue list filtered to them as assignee. Narrow it further with **Filter** and **Group by**.
+- **Write an email** opens your mail app. It is only there when you may see the address. Right now that is admins only. There is no setting that makes addresses visible to everyone.
+
+### What admins see on top
+
+Admins manage the person right in the profile, with the same options as under [Admin area → Users](/en/admin-area.html#users):
+
+- Grant and remove roles, organization admin included.
+- Suspend the account or reactivate it.
+- Resend the invitation.
+- Reset the password.
+- End all sessions.
+- Look at the account's history.
+- Delete the account.
+
+The rules for roles apply here too, see [Organization](/en/organization.html#rules-for-the-organization-admin-role).
+
+!!! note "Only admins see deactivated accounts"
+    Only admins can open the profile of a deactivated account. Everyone else sees "This person doesn't exist here", even with a link to it.
 
 ## Link once, search less
 
