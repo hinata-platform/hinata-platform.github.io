@@ -259,7 +259,7 @@ Events mit Schichten, in die sich Leute eintragen. Ist das ausgeschaltet, gibt e
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
 | `HINATA_SHIFTS_ENABLED` | Schaltet die Schichtplanung ein. Der Schalter unter **Adminbereich → Plattform** hat Vorrang vor diesem Wert. Wirkt nur mit Transaktionen (`HINATA_MONGO_TRANSACTIONS=true`, also einem Replica Set); ohne sie bleibt das Modul aus, und der Server meldet das beim Start im Log | `false` | Nein |
-| `HINATA_SHIFTS_RETENTION_MONTHS` | Nach wie vielen Monaten ab dem Ende einer Schicht ihre Zuteilungen gelöscht werden. Siehe [Datenschutz](/de/time-tracking-privacy.html#schichtplanung) | `12` | Nein |
+| `HINATA_SHIFTS_RETENTION_MONTHS` | Nach wie vielen Monaten ab dem Ende einer Schicht ihre Zuteilungen gelöscht werden. Die Einträge dazu im Audit-Protokoll folgen dessen eigener Frist (`audit.retentionDays`). Siehe [Datenschutz](/de/time-tracking-privacy.html#schichtplanung) | `12` | Nein |
 
 ## Laufzeiteinstellungen (DB) vs. Umgebung
 

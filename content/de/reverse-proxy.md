@@ -252,7 +252,9 @@ https://api.track.example.com/api/v1/shifts/feed/<geheimer-teil>.ics
 
 Der geheime Teil ist der einzige Schlüssel: Kalender-Apps melden sich nicht an. Wer die
 Adresse aus einem Log abschreibt, liest die Schichten dieser Person mit. Hinata selbst
-schreibt sie nirgends hin und speichert nur einen Hash. Dein Proxy protokolliert die
+speichert nur einen Hash, und das Log des Servers ersetzt den geheimen Teil durch `***`,
+auch wenn du zur Fehlersuche mehr protokollieren lässt (etwa mit
+`HINATA_LOG_SECURITY=DEBUG`). Dein Proxy protokolliert die
 Adresse aber im Access-Log, wenn du nichts dagegen tust. Ersetze den Pfad deshalb vor dem
 Schreiben.
 
