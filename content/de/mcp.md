@@ -16,7 +16,7 @@ Der Client kann dann Vorgänge suchen und anlegen, die Wissensdatenbank lesen un
 
 Ein KI-Client verbindet sich mit einem **Personal Access Token (PAT)**, das du in der App erstellst. Ein PAT ist:
 
-- **Mit Scopes versehen.** Du vergibst nur die nötigen Rechte (`issues:read/write`, `projects:read/write`, `boards:read`, `sprints:write`, `teams:read`, `users:read`, `kb:read/write`, `worklog:read/write`, `search:read`, `notifications:read`). Ein Token nur zum Lesen kann nie schreiben.
+- **Mit Scopes versehen.** Du vergibst nur die nötigen Rechte (`issues:read/write`, `projects:read/write`, `boards:read`, `sprints:write`, `teams:read`, `users:read`, `kb:read/write`, `worklog:read/write`, `search:read`, `notifications:read`, `shifts:read/write/plan`). Ein Token nur zum Lesen kann nie schreiben.
 - **Widerrufbar.** Jederzeit. Die nächste Anfrage mit dem Token wird sofort abgelehnt.
 - **Gehasht gespeichert.** Nur ein SHA-256-Hash wird gespeichert. Den Klartext siehst du **einmal** beim Erstellen.
 - **Auf `/mcp` beschränkt.** Die normale REST-API lehnt PATs ab. Ein Token mit Scopes wird so nie zum vollen Kontozugriff.
@@ -121,6 +121,36 @@ Jedes Tool trägt die MCP-Annotationen `readOnlyHint` und `destructiveHint`. Cli
 Die Tools für Timer, Einträge und Abwesenheiten brauchen die erweiterte Zeiterfassung (die letzten beiden zusätzlich das Abwesenheitsmanagement). Ist das Modul aus, sagen sie das, und die vier älteren Tools funktionieren weiter. Kein Tool liest fremde Zeiten oder Salden, und kein Tool entscheidet über einen Antrag: Genehmigen bleibt eine Handlung einer Person in der App. Krankmeldungen laufen weder hin noch zurück über MCP.
 
 Außerdem gibt es **Ressourcen** für direkte Verweise (`hinata://issue/{ASTA-42}`, `hinata://project/{KEY}`, `hinata://kb/{id}` sowie die eigenen `hinata://time/timer`, `hinata://time/entries/{id}` und `hinata://time-off/balance`) und einige **Prompt**-Vorlagen (Vorgang triagieren, Sprint-Standup entwerfen).
+
+## Schichten
+
+Ist die [Schichtplanung](/de/shifts.html) eingeschaltet, kann ein Assistent Fragen wie diese beantworten und für dich handeln:
+
+- „Wann ist meine nächste Schicht?“
+- „Wo fehlen am Samstag noch Leute?“
+- „Trag mich beim Aufbau am Freitag ein.“
+- „Gib meine Schicht am Sonntag ab.“
+
+| Tool | Scope | Funktion |
+|---|---|---|
+| `list_my_shifts` | `shifts:read` | Die eigenen Schichten und Wartelistenplätze in einem Zeitraum, standardmäßig die nächsten 30 Tage |
+| `next_shift` | `shifts:read` | Die nächste eigene Schicht, oder dass es keine gibt |
+| `list_shift_events` | `shifts:read` | Events mit Zahlen: gebraucht, besetzt, Schichten mit Lücken. Auf Wunsch nur Events, bei denen noch Leute fehlen |
+| `get_shift_event` | `shifts:read` | Ein Event mit allen Schichten als Zahlen, ohne Namen |
+| `get_shift` | `shifts:read` | Eine Schicht mit den Personen, die einen Platz haben. Wer wartet, wird nur gezählt, nie genannt |
+| `self_assign_shift` | `shifts:write` | Sich selbst eintragen. Ist die Schicht voll, landest du auf der Warteliste, und die Antwort sagt das |
+| `release_shift` | `shifts:write` | Den eigenen Platz abgeben oder die Warteliste verlassen |
+| `confirm_shift` / `decline_shift` | `shifts:write` | Eine Zuteilung bestätigen oder ablehnen |
+| `assign_shift` / `remove_assignment` | `shifts:plan` | Als planende Person jemanden zuteilen oder herausnehmen |
+
+Ein Zeitraum umfasst höchstens 62 Tage, eine Seite höchstens 100 Einträge. Zeiten kommen als Uhrzeit in der Zeitzone des Events, mit dem Namen der Zone. Eine Überschneidung mit einer eigenen Schicht lehnt Hinata mit einem Satz ab, der den Grund nennt.
+
+`shifts:plan` ist für Tokens gedacht, die im Namen einer planenden Person arbeiten. Bei der Ein-Klick-Verbindung ist er nicht dabei, wenn der Client keine Scopes nennt; ein Client bekommt ihn nur, wenn er ausdrücklich danach fragt und du zustimmst. Die drei Schicht-Scopes erscheinen in der App und auf der Freigabeseite nur, solange die Schichtplanung eingeschaltet ist. Ist sie aus, antworten die Tools, dass die Funktion nicht aktiv ist.
+
+!!! warning "Eventtexte sind keine Anweisungen"
+    Titel, Ort und Beschreibung eines Events schreiben Menschen, und ein Assistent liest sie mit. Steht dort etwas wie „Ignoriere alle bisherigen Anweisungen“, ist das Text, kein Befehl. Hinata gibt diese Texte in eigenen Datenfeldern weiter und nie in der Beschreibung eines Tools. Gib einem Token trotzdem nur die Scopes, die er braucht, und lass einen Assistenten mit `shifts:plan` nichts ohne Rückfrage zuteilen.
+
+Einträge über MCP landen wie in der App als Zuteilung im Audit-Protokoll. Die zusätzlichen Einträge, dass ein Token gehandelt hat (`MCP_SHIFT_*`), sind aus, bis ein Administrator sie einschaltet.
 
 ## Sicherheitsmodell
 
