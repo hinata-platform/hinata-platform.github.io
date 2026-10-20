@@ -104,7 +104,25 @@ In a shift's sheet, the small cross next to a name takes that person off again; 
 
 ### Moving
 
-In the calendar you can drag a shift of your project to another place. Hinata asks once before moving it; for an event of a series, the question is whether you mean this one or all future ones. The same change always works through **From** and **Until** in the editor as well, without dragging. New shifts are created in the editor, not by dragging on the calendar.
+In the calendar you can drag a shift of your project to another place. Hinata asks once before moving it; for an event of a series, the question is whether you mean this one or all future ones. The same change always works through **From** and **Until** in the editor as well, without dragging.
+
+### Planning in the calendar
+
+You can fill a trade fair week right in the calendar. In the week or the day, drag across an empty spot from where the shift starts to where it ends; with a mouse you just drag, on a touch screen you hold briefly and then drag. A double click creates an hour. While dragging you see the time, in quarter hours. Letting go saves nothing yet: the shift editor opens with exactly that day and time, and you enter the name, the target and the upper limit there.
+
+Which event the shift goes into depends on what is already at that spot:
+
+- **One event of your projects:** the editor opens straight away for that event.
+- **Several:** a small choice asks **Which event?** and shows each with its project and time.
+- **None:** the choice offers **New event at this time**. Once the event is saved, the editor for its first shift opens right away, with the same time.
+
+When the time you dragged lies partly outside the event, the editor says so when you save. When the event is an occurrence of a series, Hinata asks as usual whether you mean this one or all future ones. The new shift shows in the calendar right after.
+
+The same works without dragging through **+**. On a wide window it sits next to **Month** or **Week**, on a phone in the bottom bar next to the filters. It offers **New event** and **Add shift**; a shift then starts on the chosen day at the next full hour and lasts an hour, and you adjust the time in the editor. In the month, the **+** shows in a day as soon as the mouse is over it or you reach it with the Tab key; a right click or a long press on a day opens the same menu. On a phone, tapping a day still opens that day.
+
+Only planners see any of this, and only events of projects you plan are offered. When the calendar is narrowed to a project, only that one counts. Whoever does not plan sees no **+**, and dragging on an empty spot does nothing.
+
+The week opens an hour before its first shift, so you do not have to scroll down first; a week without shifts starts at 8:00.
 
 ### Series
 
