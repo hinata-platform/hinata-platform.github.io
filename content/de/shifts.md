@@ -63,6 +63,65 @@ Kannst du eine bestätigte Schicht doch nicht übernehmen, öffne sie und wähle
 
 Jedes Event hat eine eigene Zeitzone. Hinata zeigt die Zeiten so, wie sie vor Ort gelten. Steht dein Gerät auf einer anderen Zeitzone, steht bei der Schicht ein Hinweis wie „Zeiten in Europe/Berlin“.
 
+## Der Kalender
+
+Die Ansicht **Kalender** zeigt alle Schichten deiner Projekte. Auf einem breiten Fenster ist das eine Woche mit Stunden, auf dem Telefon ein Tag mit der Wochenleiste darüber. Über **Monat** (auf dem Telefon im Menü neben **Heute**) siehst du einen ganzen Monat, in dem jeder Tag nur zeigt, dass etwas ist: ein gefüllter Punkt für eine eigene Schicht, ein Ring für eine Schicht, die noch Leute braucht. Ein Tipp auf einen Tag öffnet ihn.
+
+Jede Schicht trägt die Farbe ihres Projekts. Deine eigenen Schichten haben einen Haken, Schichten mit freien Plätzen ein Dreieck und im Titel, wie viele fehlen, etwa „Aufbau · fehlt 1“. Eine eigene Schicht, in der noch jemand fehlt, zeigt beides. Mit **Alle Projekte** grenzt du den Kalender auf ein Projekt ein, mit **Nur unterbesetzt** auf die Schichten, in denen noch jemand fehlt. Beides gilt für Woche, Tag und Monat, und die Adresse merkt sich Projekt, Ansicht und Tag.
+
+Der Kalender zeigt alle Zeiten in deiner eigenen Zeitzone. Hat ein Event eine andere, steht darüber „Zeiten in deiner Zone“. Das Event und das Blatt einer Schicht zeigen die Zeiten vor Ort.
+
+## Für die Orga
+
+Planen dürfen die Leitung des Projekts, die Admins seiner Teams und alle, die in den Projekteinstellungen unter **Schichtplanung** als Planer eingetragen sind. Wer plant, sieht in den Ansichten zusätzliche Knöpfe; alle anderen sehen sie nicht.
+
+### Ein Event anlegen
+
+Unter **Events** legt **Event** ein neues an. Du wählst das Projekt (ist die Liste auf ein Projekt eingegrenzt, steht es schon fest), gibst einen Namen, Beginn, Ende und den Ort an. Unter **Weitere Angaben** stehen die Zeitzone, ob sich Mitglieder selbst eintragen dürfen, und eine Beschreibung. Ein Event dauert höchstens 14 Tage.
+
+Die Zeitzone ist die deines Geräts, solange du keine andere wählst. Beginn und Ende gelten in der gewählten Zone. Wechselst du sie später, bleiben die Uhrzeiten stehen: Aus 18:00 in Berlin wird 18:00 in New York. Hat das Event schon Schichten, nennt Hinata vor dem Speichern, wann das Event dann auf deiner Uhr beginnt, und die Schichten behalten ihre Uhrzeiten mit.
+
+Über **Mehr** im Event bearbeitest du es, sagst es ab oder löschst es. Eine Absage sagt alle Schichten ab und gibt allen Eingetragenen Bescheid; die Einträge bleiben sichtbar. Löschen geht erst, wenn niemand mehr eingetragen ist, also nach einer Absage. Verschiebst du ein Event und haben dadurch Leute zwei Schichten zur selben Zeit, sagt Hinata dir, wie viele.
+
+### Schichten anlegen
+
+Im Event legt **Schicht** eine neue an: eine Bezeichnung wie „Aufbau“ oder „Kasse“, der Tag und die Uhrzeiten. Endet eine Schicht vor ihrem Beginn, geht sie über Mitternacht in den nächsten Tag. Eine Schicht liegt immer innerhalb ihres Events und dauert höchstens 24 Stunden.
+
+Unter **Wie viele Leute?** stehen zwei Zahlen:
+
+- **Gebraucht** ist das Soll, mindestens 1. Solange weniger Leute eingetragen sind, gilt die Schicht als unterbesetzt.
+- **Obergrenze** ist, wie viele höchstens kommen dürfen. Ohne Obergrenze ist jede Hilfe willkommen. Die Obergrenze liegt nie unter dem Soll. Senkst du sie bei einer Schicht, in der schon mehr Leute stehen, lehnt Hinata das ab und nennt die Zahl; nimm dann erst jemanden heraus.
+
+### Auf weitere Tage übernehmen
+
+Dauert ein Event mehrere Tage, öffnet **Auf weitere Tage übernehmen** eine Reihe von Tagen. Wähle die Tage, an denen dieselbe Schicht zur selben Uhrzeit stattfinden soll. Beim Speichern legt Hinata sie an allen gewählten Tagen an oder an keinem. Passt sie an einem Tag nicht, etwa weil das Event an diesem Tag früher endet, markiert Hinata genau diesen Tag und sagt, warum.
+
+### Zuteilen und herausnehmen
+
+Bei jeder Schicht steht im Event **Zuteilen**. Es öffnet die Mitglieder des Projekts mit Suche, ganz oben **Mich eintragen**; wer schon auf der Schicht steht, ist ausgegraut. Zugeteilte Personen bekommen Bescheid und bestätigen oder lehnen ab. Ist jemand an dem Tag als abwesend eingetragen und darfst du das sehen, weist Hinata darauf hin.
+
+Im Blatt einer Schicht nimmst du Leute mit dem kleinen Kreuz neben ihrem Namen wieder heraus, bearbeitest die Schicht oder löschst sie.
+
+### Verschieben
+
+Im Kalender kannst du eine Schicht deines Projekts an eine andere Stelle ziehen. Hinata fragt einmal nach, bevor es sie verschiebt. Dieselbe Änderung geht immer auch über **Von** und **Bis** im Editor, ganz ohne Ziehen. Neue Schichten legst du im Editor an, nicht durch Ziehen im Kalender.
+
+## Schichten im eigenen Kalender
+
+Deine Schichten können auch in deinem Kalender auf dem Telefon oder am Rechner stehen, in Apple Kalender, Google Kalender oder Outlook. Unter **Einstellungen → Benachrichtigungen → Schichten im eigenen Kalender** erzeugt **Abo-Adresse erzeugen** eine private Adresse, die dein Kalender abonniert.
+
+- Die Adresse wird **nur einmal** angezeigt. Kopiere sie oder öffne sie mit **In Kalender öffnen** direkt in deiner Kalender-App. Hinata speichert sie auf dem Gerät nicht.
+- Danach zeigt der Abschnitt nur noch, seit wann das Abo läuft und wann ein Kalender es zuletzt abgerufen hat.
+- **Neu erzeugen** macht eine neue Adresse; bestehende Abos funktionieren dann nicht mehr. **Entfernen** beendet das Abo; die Schichten verschwinden beim nächsten Abruf aus deinem Kalender.
+- Das Abo enthält deine eigenen Schichten von 30 Tagen zurück bis 180 Tage voraus. Abgesagte Events stehen als abgesagt darin.
+
+!!! warning "Datenschutz"
+    Das Abo ist eine Übermittlung an den Kalenderanbieter, den du wählst. Bei Google und Microsoft ruft deren Server die Adresse ab und speichert deine Schichten dort. Wer die Adresse kennt, sieht deine Schichten; gib sie nicht weiter und erzeuge eine neue, wenn sie in falsche Hände geraten ist.
+
+### Benachrichtigungen
+
+Unter **Einstellungen → Benachrichtigungen** steht die Zeile **Schichten**. Dort schaltest du E-Mail und Push für Zuteilungen, Änderungen, Absagen und die Erinnerung vor Schichtbeginn ein oder aus. Ein Tipp auf eine solche Benachrichtigung öffnet das Event oder deine Schichten.
+
 ## Was die Schichtplanung ist
 
 - **Events in einem Projekt.** Ein Event hat einen Ort, einen Zeitraum und eine eigene Zeitzone. Sehen können es die Mitglieder des Projekts, sonst niemand.

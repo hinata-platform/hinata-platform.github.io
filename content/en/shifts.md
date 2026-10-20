@@ -63,6 +63,65 @@ If you cannot take a confirmed shift after all, open it and choose **Give up**. 
 
 Every event has its own time zone. Hinata shows times as they apply on site. If your device is set to a different time zone, the shift carries a note such as "Times in Europe/Berlin".
 
+## The calendar
+
+The **Calendar** view shows every shift of your projects. On a wide window that is a week with hours, on a phone one day with the week strip above it. **Month** (on a phone in the menu next to **Today**) shows a whole month in which each day only says that something is on: a filled dot for a shift of your own, a ring for a shift that still needs people. Tapping a day opens it.
+
+Every shift wears its project's colour. Your own shifts carry a check, shifts with open places a triangle and how many are missing in their title, for example "Setup · 1 missing". A shift of your own that is still short shows both. **All projects** narrows the calendar to one project, **Understaffed only** to the shifts that still need someone. Both apply to week, day and month, and the address remembers project, view and day.
+
+The calendar shows all times in your own time zone. When an event has another one, "Times in your zone" says so above it. The event and a shift's sheet show local times.
+
+## For organisers
+
+Planning is open to the project's leads, the admins of its teams and everyone entered as a planner under **Shift planning** in the project settings. Whoever plans sees additional buttons in the views; nobody else does.
+
+### Creating an event
+
+Under **Events**, **Event** creates a new one. You choose the project (when the list is narrowed to one, it is already set), give a name, start, end and place. **More details** holds the time zone, whether members may sign up themselves, and a description. An event lasts 14 days at most.
+
+The time zone is your device's unless you choose another. Start and end are read in the chosen zone. If you change it later, the clock times stay: 18:00 in Berlin becomes 18:00 in New York. When the event already has shifts, Hinata tells you before saving when the event will then start on your clock, and the shifts keep their clock times too.
+
+**More** on the event edits it, calls it off or deletes it. Calling it off calls off every shift and notifies everybody signed up; the entries stay visible. Deleting works only once nobody is signed up any more, so after calling it off. When you move an event and people end up with two shifts at the same time, Hinata tells you how many.
+
+### Creating shifts
+
+On the event, **Shift** creates a new one: a name such as "Setup" or "Till", the day and the times. A shift that ends before it starts runs past midnight into the next day. A shift always lies within its event and lasts 24 hours at most.
+
+**How many people?** holds two numbers:
+
+- **Needed** is the target, at least 1. While fewer people are signed up, the shift counts as understaffed.
+- **Upper limit** is how many may come at most. Without one, every helping hand is welcome. The limit is never below the target. If you lower it on a shift that already has more people, Hinata refuses and names the number; take somebody off first.
+
+### Copy to more days
+
+When an event spans several days, **Copy to more days** opens a row of days. Pick the days on which the same shift happens at the same time. On saving, Hinata creates it on every chosen day or on none. When it does not fit on a day, for instance because the event ends earlier that day, Hinata marks exactly that day and says why.
+
+### Assigning and taking off
+
+Every shift on the event has **Assign**. It opens the project's members with a search, **Sign me up** at the top; whoever is already on the shift is greyed out. People who are assigned get a notice and confirm or decline. When somebody is entered as absent that day and you may see that, Hinata points it out.
+
+In a shift's sheet, the small cross next to a name takes that person off again; you can also edit or delete the shift there.
+
+### Moving
+
+In the calendar you can drag a shift of your project to another place. Hinata asks once before moving it. The same change always works through **From** and **Until** in the editor as well, without dragging. New shifts are created in the editor, not by dragging on the calendar.
+
+## Shifts in your own calendar
+
+Your shifts can also appear in the calendar on your phone or computer, in Apple Calendar, Google Calendar or Outlook. Under **Settings → Notifications → Shifts in your own calendar**, **Create subscription address** makes a private address your calendar subscribes to.
+
+- The address is shown **only once**. Copy it or open it straight in your calendar app with **Open in calendar**. Hinata does not keep it on the device.
+- After that the section only shows since when the subscription runs and when a calendar last fetched it.
+- **Create new** makes a new address; existing subscriptions stop working. **Remove** ends the subscription; the shifts disappear from your calendar on its next fetch.
+- The subscription holds your own shifts from 30 days back to 180 days ahead. Events that were called off appear as cancelled.
+
+!!! warning "Privacy"
+    The subscription hands your shifts to the calendar provider you choose. With Google and Microsoft, their servers fetch the address and store your shifts there. Whoever knows the address sees your shifts; do not pass it on, and create a new one if it got into the wrong hands.
+
+### Notifications
+
+Under **Settings → Notifications** there is a **Shifts** row. It switches e-mail and push on or off for assignments, changes, cancellations and the reminder before a shift starts. Tapping such a notification opens the event or your shifts.
+
 ## What shift planning is
 
 - **Events inside a project.** An event has a place, a time span and its own time zone. The project's members can see it, nobody else.
