@@ -130,6 +130,22 @@ A new rule always applies from the event where you change it. A shift you add on
 
 **Ending a series.** Delete an event with **All future ones**. From that day on the series is gone: events nobody signed up for disappear, events with people on them are called off and those people get a notice. **Call off** with **All future ones** keeps all later events visible, but called off.
 
+## Printing the shift plan
+
+For the notice at the entrance, for the people on site or as a spreadsheet for the office: on the event, **More → Export shift plan** opens a small dialog. Everybody who sees the event can use it.
+
+- **Format** picks **PDF** for printing, **Word** for editing or **Spreadsheet** (Excel) for further calculation. In the spreadsheet every day has its own sheet.
+- **With names** is only there for the people who plan the event. Without it the file holds no names, only how many places are taken. With it every shift lists the people on it, at most 20 and then "and 3 more". Nobody on a waiting list ever ends up in the file.
+
+**Export** downloads the file in the browser. On a phone and on a Mac the share menu opens, where you save, print or send it. The file is called something like `shift-plan-Summer-party-20261024.pdf`, in the app's language and with the event's first day.
+
+The top shows the period, the place and how many places are taken, the repetition for a series and "Cancelled" for an event that was called off. Below come the shifts of each day with time, name, how many people are needed and how many there are. Where somebody is still missing it says, for example, "2, 1 missing". All times are in the event's time zone. At the end the file says when it was made, because the plan can still change afterwards.
+
+Very large events are cut short: a PDF holds at most 2000 shifts, a Word document 1000 and a spreadsheet 10000. The app tells you, and the file notes that it holds only the first shifts.
+
+!!! warning "Privacy"
+    A file with names lives outside Hinata. Whoever gets it reads the names, even without being a member of the project. That is why only planners can make such files, and every export is recorded in the audit log with its format and whether names were included. Only put up a plan with names where the people on it are meant to see it.
+
 ## Shifts in your own calendar
 
 Your shifts can also appear in the calendar on your phone or computer, in Apple Calendar, Google Calendar or Outlook. Under **Settings → Notifications → Shifts in your own calendar**, **Create subscription address** makes a private address your calendar subscribes to.
@@ -166,5 +182,9 @@ Under **Settings → Notifications** there is a **Shifts** row. It switches e-ma
 **Instead of the switch it says "Needs a MongoDB replica set".** The server runs without transactions. Set up a replica set, set `HINATA_MONGO_TRANSACTIONS=true` and restart the server.
 
 **The switch is on, but the app has no "Shifts" entry.** The app has not read the server's settings again yet. Close it and open it again.
+
+**The export says "Too many exports".** Each person can start only a limited number of exports per minute, and the server makes only a few files at the same time. Wait a moment and try again.
+
+**"With names" is missing in the export dialog.** You do not plan this event. Ask one of its planners for the plan with names.
 
 **A link to a shift shows "not found".** The module is off on this server, or the link belongs to another server.
