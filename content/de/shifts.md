@@ -106,6 +106,22 @@ Im Blatt einer Schicht nimmst du Leute mit dem kleinen Kreuz neben ihrem Namen w
 
 Im Kalender kannst du eine Schicht deines Projekts an eine andere Stelle ziehen. Hinata fragt einmal nach, bevor es sie verschiebt. Dieselbe Änderung geht immer auch über **Von** und **Bis** im Editor, ganz ohne Ziehen. Neue Schichten legst du im Editor an, nicht durch Ziehen im Kalender.
 
+## Schichtplan drucken
+
+Für den Aushang am Eingang, für die Leute vor Ort oder als Tabelle für die Verwaltung: Im Event öffnet **Mehr → Schichtplan exportieren** einen kleinen Dialog. Das kann jede Person, die das Event sieht.
+
+- **Format** wählt **PDF** zum Drucken, **Word** zum Weiterbearbeiten oder **Tabelle** (Excel) zum Weiterrechnen. In der Tabelle hat jeder Tag ein eigenes Blatt.
+- **Mit Namen** sehen nur die, die das Event planen. Ohne den Schalter enthält die Datei keine Namen, nur wie viele Plätze besetzt sind. Mit ihm stehen bei jeder Schicht die eingeteilten Personen, höchstens 20 und danach „und 3 weitere“. Wer auf der Warteliste steht, kommt nie in die Datei.
+
+**Exportieren** lädt die Datei im Browser herunter. Auf dem Telefon und auf dem Mac öffnet sich das Teilen-Menü, über das du sie sicherst, druckst oder weiterschickst. Die Datei heißt zum Beispiel `schichtplan-Sommerfest-20261024.pdf`, in der Sprache der App und mit dem ersten Tag des Events.
+
+Oben stehen Zeitraum, Ort und wie viele Plätze besetzt sind, bei einer Serie die Wiederholung und bei einem abgesagten Event „Abgesagt“. Darunter folgen je Tag die Schichten mit Zeit, Name, wie viele Leute gebraucht werden und wie viele da sind. Fehlt noch jemand, steht dort etwa „2, fehlt 1“. Alle Zeiten gelten in der Zeitzone des Events. Am Ende steht, wann die Datei erstellt wurde, denn der Plan kann sich danach noch ändern.
+
+Sehr große Events werden gekürzt: ein PDF hat höchstens 2000 Schichten, ein Word-Dokument 1000 und eine Tabelle 10000. Die App sagt dann Bescheid, und die Datei vermerkt, dass sie nur die ersten Schichten enthält.
+
+!!! warning "Datenschutz"
+    Eine Datei mit Namen ist außerhalb von Hinata. Wer sie bekommt, liest die Namen, auch ohne Mitglied des Projekts zu sein. Deshalb erzeugen nur Planende solche Dateien, und jeder Export steht mit Format und der Angabe, ob Namen dabei waren, im Audit-Log. Hänge einen Plan mit Namen nur dort aus, wo ihn die Beteiligten sehen sollen.
+
 ## Schichten im eigenen Kalender
 
 Deine Schichten können auch in deinem Kalender auf dem Telefon oder am Rechner stehen, in Apple Kalender, Google Kalender oder Outlook. Unter **Einstellungen → Benachrichtigungen → Schichten im eigenen Kalender** erzeugt **Abo-Adresse erzeugen** eine private Adresse, die dein Kalender abonniert.
@@ -142,5 +158,9 @@ Unter **Einstellungen → Benachrichtigungen** steht die Zeile **Schichten**. Do
 **Statt des Schalters steht da „Braucht ein MongoDB Replica Set“.** Der Server läuft ohne Transaktionen. Richte ein Replica Set ein und setze `HINATA_MONGO_TRANSACTIONS=true`, danach den Server neu starten.
 
 **Der Schalter ist an, aber in der App fehlt „Schichten“.** Die App hat die Einstellungen des Servers noch nicht neu gelesen. Schließe sie und öffne sie wieder.
+
+**Der Export meldet „Zu viele Exporte“.** Jede Person kann nur eine begrenzte Zahl von Exporten pro Minute starten, und der Server erzeugt nur wenige Dateien gleichzeitig. Warte einen Moment und versuch es noch einmal.
+
+**Im Exportdialog fehlt „Mit Namen“.** Du planst dieses Event nicht. Bitte jemanden aus der Planung um den Plan mit Namen.
 
 **Ein Link auf eine Schicht zeigt „Nicht gefunden“.** Das Modul ist auf diesem Server aus, oder der Link gehört zu einem anderen Server.
