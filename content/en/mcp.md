@@ -129,7 +129,7 @@ With [shift planning](/en/shifts.html) switched on, an assistant can answer ques
 - "When is my next shift?"
 - "Where are people still missing on Saturday?"
 - "Sign me up for setting up on Friday."
-- "Give up my shift on Sunday."
+- "Withdraw me from my shift on Sunday."
 
 | Tool | Scope | What it does |
 |---|---|---|
@@ -139,7 +139,7 @@ With [shift planning](/en/shifts.html) switched on, an assistant can answer ques
 | `get_shift_event` | `shifts:read` | One event with all its shifts as numbers, without names |
 | `get_shift` | `shifts:read` | One shift with the people who hold a place. People on the waiting list are counted, never named |
 | `self_assign_shift` | `shifts:write` | Sign yourself up. On a full shift you join the waiting list, and the answer says so |
-| `release_shift` | `shifts:write` | Give up your own place or leave the waiting list |
+| `release_shift` | `shifts:write` | Withdraw from your own shift or leave the waiting list |
 | `confirm_shift` / `decline_shift` | `shifts:write` | Confirm or decline an assignment |
 | `assign_shift` / `remove_assignment` | `shifts:plan` | As a planner, put somebody on a shift or take them off |
 

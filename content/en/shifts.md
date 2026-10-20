@@ -55,9 +55,9 @@ If you already have another shift at the same time, Hinata refuses the sign-up a
 
 When a planner assigns you to a shift, it appears as **Assigned** in your list and waits for your answer. **Confirm** accepts it. **Decline** (in the sheet or on the next-shift card) frees the place again so the planners can assign someone else.
 
-### Giving up a shift
+### Withdrawing from a shift
 
-If you cannot take a confirmed shift after all, open it and choose **Give up**. Hinata asks once, then your place is free again and others can sign up. You can sign up again later as long as there is room.
+If you cannot take a confirmed shift after all, open it and choose **Withdraw**. Hinata asks once, then your place is free again and others can sign up. You can sign up again later as long as there is room.
 
 ### Times and time zones
 
