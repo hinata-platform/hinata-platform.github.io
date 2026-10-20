@@ -104,7 +104,25 @@ Im Blatt einer Schicht nimmst du Leute mit dem kleinen Kreuz neben ihrem Namen w
 
 ### Verschieben
 
-Im Kalender kannst du eine Schicht deines Projekts an eine andere Stelle ziehen. Hinata fragt einmal nach, bevor es sie verschiebt; bei einem Termin einer Serie ist das die Frage, ob nur dieser oder alle künftigen gemeint sind. Dieselbe Änderung geht immer auch über **Von** und **Bis** im Editor, ganz ohne Ziehen. Neue Schichten legst du im Editor an, nicht durch Ziehen im Kalender.
+Im Kalender kannst du eine Schicht deines Projekts an eine andere Stelle ziehen. Hinata fragt einmal nach, bevor es sie verschiebt; bei einem Termin einer Serie ist das die Frage, ob nur dieser oder alle künftigen gemeint sind. Dieselbe Änderung geht immer auch über **Von** und **Bis** im Editor, ganz ohne Ziehen.
+
+### Im Kalender planen
+
+Du kannst eine Messewoche direkt im Kalender füllen. Zieh in der Woche oder am Tag über eine freie Stelle, vom Beginn bis zum Ende der Schicht; mit der Maus ziehst du einfach, auf dem Touchscreen hältst du kurz und ziehst dann. Ein Doppelklick legt eine Stunde an. Beim Ziehen siehst du die Uhrzeit, in Viertelstunden. Gespeichert wird beim Loslassen noch nichts: Es öffnet sich der Schicht-Editor mit genau diesem Tag und dieser Zeit, und du gibst dort Bezeichnung, Soll und Obergrenze an.
+
+Welches Event die Schicht bekommt, hängt davon ab, was an dieser Stelle schon steht:
+
+- **Ein Event deiner Projekte:** Der Editor öffnet direkt für dieses Event.
+- **Mehrere:** Eine kleine Auswahl fragt **Für welches Event?** und zeigt jedes mit Projekt und Zeitraum.
+- **Keins:** Die Auswahl bietet **Neues Event mit dieser Zeit** an. Nach dem Speichern des Events öffnet sich gleich der Editor für seine erste Schicht, mit derselben Zeit.
+
+Liegt die gezogene Zeit teilweise außerhalb des Events, sagt der Editor das beim Speichern. Ist das Event ein Termin einer Serie, fragt Hinata wie gewohnt, ob nur dieser oder alle künftigen gemeint sind. Die neue Schicht steht danach sofort im Kalender.
+
+Ohne Ziehen geht dasselbe über **+**. Auf einem breiten Fenster steht es neben **Monat** bzw. **Woche**, auf dem Telefon in der unteren Leiste neben den Filtern. Es bietet **Neues Event** und **Schicht anlegen**; eine Schicht beginnt dann am gewählten Tag zur nächsten vollen Stunde und dauert eine Stunde, und du passt die Zeit im Editor an. Im Monat erscheint das **+** in einem Tag, sobald du mit der Maus darüberfährst oder es mit der Tabulatortaste erreichst; ein Rechtsklick oder langes Drücken auf einen Tag öffnet dasselbe Menü. Auf dem Telefon öffnet ein Tipp auf den Tag weiterhin den Tag.
+
+Das alles sehen nur Planer, und angeboten werden nur Events aus Projekten, die du planst. Ist der Kalender auf ein Projekt eingegrenzt, gilt nur dieses. Wer nicht plant, sieht kein **+**, und Ziehen auf einer freien Stelle tut nichts.
+
+Die Woche öffnet eine Stunde vor ihrer ersten Schicht, damit du nicht erst nach unten scrollen musst; eine Woche ohne Schichten beginnt um 8 Uhr.
 
 ### Serien
 
