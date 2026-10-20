@@ -1,6 +1,6 @@
 ---
 title: Suche & Palette
-description: ⌘K öffnet eine Befehlspalette, mit der du zu Issues, Projekten, Artikeln und Personen springst und Schnellaktionen ausführst.
+description: ⌘K öffnet eine Befehlspalette, mit der du zu Issues, Projekten, Artikeln, Personen, Schichten und Zeiten springst und Schnellaktionen ausführst.
 ---
 
 # Suche & Befehlspalette
@@ -14,7 +14,11 @@ Die Palette sucht schon beim Tippen in deinem ganzen Workspace:
 - **Issues** nach Schlüssel (`MOB-42`) oder nach Wörtern im Titel.
 - **Projekte**, um direkt zu Board oder Backlog zu springen.
 - **Artikel der Wissensdatenbank**, zum Beispiel ein Runbook.
-- **Personen**, um das Profil eines Teammitglieds zu öffnen.
+- **Personen**, um ihr [Profil](/de/guide-search.html#das-personenprofil) zu öffnen.
+- **Kommentare**, **Teams**, **Boards & Sprints**, **Spaces** und **Anhänge**.
+- **Schichten**, **Zeiterfassung**, **Abwesenheiten** und **Abrechnung**, wenn das jeweilige Modul eingeschaltet ist. Zeiteinträge, Stundenzettel und Abwesenheitsanträge findest du nur von dir selbst.
+
+Mit **Tab** wechselst du zwischen den Bereichen. Bei leerem Suchfeld zeigt jeder Reiter, wie viele Einträge du dort sehen kannst. Welche Bereiche es gibt und wohin ein Treffer führt, steht in [Dinge finden](/de/guide-search.html#was-sie-durchsucht).
 
 Der beste Treffer ist schon ausgewählt. Drücke **Enter**, um ihn zu öffnen. Die Palette findet nur, was du erreichen darfst: Vorgänge und Projekte über deinen [Projektzugriff](/de/projects-teams.html), Artikel nur, wenn du sie [lesen darfst](/de/knowledge-base.html#zugriffssteuerung). Das gilt auch für Admins.
 
