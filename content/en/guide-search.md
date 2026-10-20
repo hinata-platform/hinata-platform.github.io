@@ -34,7 +34,7 @@ The palette finds everything you are allowed to open in Hinata. Results arrive g
 | **Issues** | The title, the issue key (`HIN-42`), and labels, plus words from the description |
 | **Comments** | Comments on issues |
 | **Projects** | The project name and its key, plus the project description |
-| **Teams** | The teams of your organization |
+| **Teams** | Teams you are a member of |
 | **People** | Display name, username and job title |
 | **Boards & Sprints** | Board names, sprint names and sprint goals |
 | **Knowledge** | Articles with their title, labels and text, plus the spaces |
@@ -57,7 +57,7 @@ Some scopes only appear when the matching module is turned on for your server:
 
 - **Shifts** with [shift planning](/en/shifts.html).
 - **Absences** with [absence management](/en/absences.html).
-- **Billing** with [advanced time tracking](/en/time-tracking-advanced.html) and billing turned on.
+- **Billing** with [advanced time tracking](/en/time-tracking-advanced.html). It holds budgets, and hourly rates too once billing is turned on.
 
 Timesheets only show up in search when advanced time tracking runs with approvals. When a module is off, its tab is not there at all.
 
@@ -126,10 +126,11 @@ Enter or a click takes you straight to the spot that matters:
 Search only shows what you may open. Admins are no exception.
 
 - **Issues, comments, attachments, projects and boards** from projects you are a member of, plus issues shared with you.
+- **Teams** only those you are a member of.
 - **Articles and spaces** only when they are shared with you.
 - **Time entries, timesheets and absence requests** only your own. You will not find those of your colleagues here, not even as an organization admin.
-- **Budgets** of the projects you can see.
-- **Hourly rates:** organization admins see all of them. Project leads see the revenue rates of their projects. Only organization admins see cost rates.
+- **Budgets** of the projects you can see. A budget in money only shows up if you may see it: as an organization admin, or as a project lead when it is a revenue budget.
+- **Hourly rates:** organization admins see every personal, team and default rate, and the rates of the projects they can see. Project leads see the revenue rates of their projects. Only organization admins see cost rates.
 
 The counts on the tabs follow the same rules. A scope never counts anything you could not open.
 
@@ -150,7 +151,7 @@ Type what you want to do and the palette offers it. Every page in the navigation
 
 - **Dashboard**, **Projects**, **Issues**, **Board**, **Timeline**, **Knowledge**, **Teams**, **Watched**, **Notifications** and **Weekly summary**.
 - **Reports**. With advanced time tracking every tab can be found on its own, like **Workload** or **Billing**, as long as you may see it.
-- **Timesheet**, **Time tracking** with **Calendar**, **Approvals**, **Absences**, **Focus mode** and **Timer**.
+- **Timesheet**, **Time tracking** with **Calendar**, **Absences**, **Focus mode** and **Timer**, plus **Approvals** when your organization has approvals turned on.
 - **Log time** and **Ask for time off** as actions.
 - **Shifts** with **Calendar** and **Events**, when shift planning is turned on.
 - **Hourly rates** and **Invoices**, when billing is turned on and you are an organization admin.
@@ -314,7 +315,7 @@ In a wide window the profile slides in from the right as a side panel, and your 
 - **Roles:** admin, organization admin or member.
 - **Shared teams and projects**, the ones you are both in. On your own profile these are your teams and projects.
 - **Time zone with the local time.**
-- **Absence today**, when advanced time tracking is turned on and you may see this person's absences. With limited visibility it only says that they are away, without a reason. A sick note shows as "Other".
+- **Absence today**, when advanced time tracking is turned on and you may see this person's absences. With limited visibility you see vacation or "Other" and the dates, never a note. A sick note shows as "Other".
 
 Below that are two actions:
 
