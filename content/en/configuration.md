@@ -255,6 +255,7 @@ Events with shifts that people sign up for. With this off, the app has no "Shift
 | Variable | Purpose | Default / example | Required |
 | --- | --- | --- | --- |
 | `HINATA_SHIFTS_ENABLED` | Turns shift planning on. The switch under **Admin area → Platform** takes precedence over this value. Only takes effect with transactions (`HINATA_MONGO_TRANSACTIONS=true`, which means a replica set); without them the module stays off and the server says so in the log at startup | `false` | No |
+| `HINATA_SHIFTS_RETENTION_MONTHS` | After how many months from the end of a shift its assignments are deleted. See [privacy](/en/time-tracking-privacy.html#shift-planning) | `12` | No |
 
 ## Runtime (DB) settings vs environment
 

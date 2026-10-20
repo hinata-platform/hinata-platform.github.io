@@ -368,6 +368,17 @@ A sick day says something about a person's health, which Art. 9 GDPR protects sp
 - No automatic lapse after illness.
 - No certificate, no reason, no diagnosis.
 
+## Shift planning
+
+When the [shift planning](/en/shifts.html) module is on, Hinata records who is signed up for which shift and when. That is a history of who worked or helped when, so it is personal data.
+
+- **Co-determination.** In companies shift plans touch § 87(1) no. 2 and 3 BetrVG, and evaluations of staffing no. 6. Public bodies fall under the federal or state staff representation law, associations under neither. Cover the module in your works or service agreement before you switch it on.
+- **Retention.** Assignments are deleted twelve months after their shift ended, every night at 03:55. Set the period with `HINATA_SHIFTS_RETENTION_MONTHS`. The counts of a past shift stay; the names behind them do not.
+- **Names for members only.** Only members of the project see who is on a shift. Lists carry figures, not names; names appear only in the detail of a shift or an event. There are no rankings and no evaluations per person.
+- **Absences only for those who see them.** If absence management is on as well, Hinata points out an entered absence when someone signs up, but only to people who can see that absence anyway. Planners learn nothing about other people's absences this way.
+- **Offline copy.** For "My shifts" the app keeps a small copy of the person's own shifts on the device, without anyone else's names. It is deleted on sign-out and when the module is switched off.
+- **Access.** The access report under Art. 15 GDPR includes the person's own assignments and planner rights.
+
 ## Timer outside the app
 
 Since this release the timer can reach the person outside the app window:
