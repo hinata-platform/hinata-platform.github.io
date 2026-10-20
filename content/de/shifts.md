@@ -104,7 +104,31 @@ Im Blatt einer Schicht nimmst du Leute mit dem kleinen Kreuz neben ihrem Namen w
 
 ### Verschieben
 
-Im Kalender kannst du eine Schicht deines Projekts an eine andere Stelle ziehen. Hinata fragt einmal nach, bevor es sie verschiebt. Dieselbe Änderung geht immer auch über **Von** und **Bis** im Editor, ganz ohne Ziehen. Neue Schichten legst du im Editor an, nicht durch Ziehen im Kalender.
+Im Kalender kannst du eine Schicht deines Projekts an eine andere Stelle ziehen. Hinata fragt einmal nach, bevor es sie verschiebt; bei einem Termin einer Serie ist das die Frage, ob nur dieser oder alle künftigen gemeint sind. Dieselbe Änderung geht immer auch über **Von** und **Bis** im Editor, ganz ohne Ziehen. Neue Schichten legst du im Editor an, nicht durch Ziehen im Kalender.
+
+### Serien
+
+Ein Bereitschaftsdienst jede Woche, eine Sprechstunde einmal im Monat, der Thekendienst jeden Freitag: Solche Events legst du einmal an, und Hinata wiederholt sie als Serie. Im Event-Editor steht dafür die Zeile **Wiederholen**, anfangs auf **Nie**. Ein Tipp öffnet die Auswahl:
+
+- **Täglich**
+- **Wöchentlich** am Wochentag des Beginns
+- **Monatlich** am Tag des Beginns, etwa am 15.
+- **Eigene Regel**: wöchentlich an mehreren Tagen, ein Abstand wie alle zwei Wochen und ein Ende nach einer Anzahl oder an einem Datum
+
+Sobald eine Regel gewählt ist, stehen im Kopf des Editors die Regel in Worten und darunter die nächsten Termine. So siehst du vor dem Speichern, was entsteht. Ohne Ende läuft die Serie weiter.
+
+Jeder Termin einer Serie ist ein ganz normales Event mit eigenen Schichten. Eintragen, Zuteilen, Erinnern, der Kalender und das Kalender-Abo funktionieren wie bei jedem anderen Event. Hinata legt die Termine der nächsten drei Monate an, höchstens 52 auf einmal, und zieht jede Nacht nach. Karten und Kopf eines Termins zeigen die Regel mit einem Wiederholungssymbol.
+
+Ein Event über mehrere zusammenhängende Tage, etwa eine Messewoche, ist keine Serie. Dafür gibt es **Auf weitere Tage übernehmen**.
+
+**Nur dieses oder alle künftigen.** Änderst du einen Termin einer Serie, sagst ihn ab, löschst ihn oder änderst, legst an oder löschst eine seiner Schichten, fragt Hinata, wofür das gelten soll. Vorausgewählt ist nichts.
+
+- **Nur dieses** ändert nur diesen Termin. Er folgt danach nicht mehr der Serie und zeigt „abweichend von der Serie“. Sagst du ihn ab oder löschst ihn, entsteht an diesem Tag auch später kein neuer.
+- **Alle künftigen** gilt für diesen Termin und alle folgenden. Vergangene Termine bleiben, wie sie sind. Wer auf einer Schicht eingetragen ist, bleibt es und bekommt Bescheid, wenn sich seine Schicht ändert. Haben dadurch Leute zwei Schichten zur selben Zeit, nennt Hinata, wie viele.
+
+Eine neue Regel gilt immer ab dem Termin, an dem du sie änderst. Eine Schicht, die du gleich an mehreren Tagen anlegst, geht nur in diesen Termin. Eine Schicht für alle künftigen Termine zu löschen geht erst, wenn in keinem künftigen Termin mehr jemand darauf eingetragen ist.
+
+**Eine Serie beenden.** Lösche einen Termin mit **Alle künftigen**. Ab diesem Tag gibt es die Serie nicht mehr: Termine ohne Eintragungen verschwinden, Termine mit Eintragungen werden abgesagt, und die Eingetragenen bekommen Bescheid. Mit **Absagen** und **Alle künftigen** bleiben alle folgenden Termine sichtbar, aber abgesagt.
 
 ## Schichten im eigenen Kalender
 
