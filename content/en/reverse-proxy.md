@@ -249,8 +249,10 @@ https://api.track.example.com/api/v1/shifts/feed/<secret-part>.ics
 ```
 
 The secret part is the only key: calendar apps do not sign in. Anyone who copies the
-address from a log can read that person's shifts. Hinata itself never writes it anywhere
-and stores only a hash. Your proxy, however, records the address in its access log unless
+address from a log can read that person's shifts. Hinata itself stores only a hash, and the
+server's log replaces the secret part with `***`, even when you turn up logging for
+troubleshooting (for example with `HINATA_LOG_SECURITY=DEBUG`). Your proxy, however,
+records the address in its access log unless
 you stop it. Replace the path before it is written.
 
 **nginx**: in the `http` block, a log format of your own that masks the path, used in the
