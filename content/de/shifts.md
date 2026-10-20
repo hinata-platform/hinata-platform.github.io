@@ -29,6 +29,40 @@ Wer sich in eine Schicht einträgt, bekommt einen Platz. Den letzten Platz bekom
 
 Wie du ein Replica Set aufsetzt, steht unter [MongoDB & X.509](/de/database.html).
 
+## Für Helfer
+
+Unter **Schichten** gibt es drei Ansichten: **Meine**, **Kalender** und **Events**. Auf dem Telefon wechselst du sie über die Pille unter dem Titel, auf einem breiten Fenster stehen alle drei nebeneinander im Kopf der Seite.
+
+### Meine Schichten
+
+Ganz oben steht deine **nächste Schicht** als eigene Karte: Tag und Uhrzeit groß, wie lange es noch dauert, bis wann sie geht, wo sie stattfindet und mit wem du sie hast. Darunter folgen deine weiteren Schichten, nach Tagen sortiert. Am Ende zeigt die Seite bis zu drei **offene Schichten in deinen Projekten** aus den nächsten zwei Wochen, in denen noch Leute fehlen, und einen Weg zu allen Events.
+
+Jede Schicht zeigt ihre Besetzung als kleine Wabe mit einer Zahl daneben, etwa `2 / 3`. Ein Dreieck heißt, dass noch jemand fehlt, ein Haken, dass genug Leute da sind, ein Schloss, dass die Schicht voll ist. Hat eine Schicht eine Obergrenze, die vom Soll abweicht, steht sie dabei: `4 / 3 · max. 5`. Ein Screenreader liest das als ganzen Satz vor, zum Beispiel „Besetzung 2 von 3, es fehlt noch 1 Person“.
+
+Hast du gerade keine Verbindung, zeigt die Seite den Stand vom letzten Laden. Gespeichert werden dafür nur deine eigenen Schichten mit Zeiten, Titeln und Zahlen, keine Namen anderer Leute. Beim Abmelden und wenn die Administration das Modul ausschaltet, wird das wieder gelöscht.
+
+### Eintragen
+
+Unter **Events** siehst du die Events aller Projekte, in denen du Mitglied bist, oder über die Projekt-Pille nur eines. Jedes Event zeigt, wie viele Plätze besetzt sind und wie viele Schichten noch Leute brauchen. Ein Tipp öffnet das Event mit seinen Schichten, nach Tagen sortiert. Der Filter **Nur unterbesetzt** blendet alles aus, was schon besetzt ist.
+
+Bei einer freien Schicht steht **Eintragen**. Ein Tipp genügt, du bist dann sofort bestätigt. Eine volle Schicht sagt das in Worten, etwa „Voll, 5 von 5“, statt eines grauen Knopfs. Steht im Kopf des Events „Nur die Orga teilt zu“, trägt dort niemand sich selbst ein; die Planung teilt die Leute zu.
+
+Tippst du auf eine Schicht, öffnet sich ihr Blatt: Zeit und Dauer, Ort, wer schon eingetragen ist und wie viele Plätze frei sind. Dort findest du auch den Weg zum Event.
+
+Hast du zur selben Zeit schon eine andere Schicht, lehnt Hinata das Eintragen ab und sagt dir warum. Bist du an dem Tag als abwesend eingetragen, klappt das Eintragen trotzdem, aber Hinata weist dich darauf hin.
+
+### Bestätigen und Ablehnen
+
+Teilt dich die Planung einer Schicht zu, steht sie mit **Zugeteilt** in deiner Liste und wartet auf deine Antwort. **Bestätigen** sagt zu. **Ablehnen** (im Blatt oder auf der Karte der nächsten Schicht) gibt den Platz wieder frei, damit die Planung jemand anderen einteilen kann.
+
+### Abgeben
+
+Kannst du eine bestätigte Schicht doch nicht übernehmen, öffne sie und wähle **Abgeben**. Hinata fragt einmal nach, dann ist dein Platz wieder frei und andere können sich eintragen. Später kannst du dich erneut eintragen, solange noch Platz ist.
+
+### Zeiten und Zeitzonen
+
+Jedes Event hat eine eigene Zeitzone. Hinata zeigt die Zeiten so, wie sie vor Ort gelten. Steht dein Gerät auf einer anderen Zeitzone, steht bei der Schicht ein Hinweis wie „Zeiten in Europe/Berlin“.
+
 ## Was die Schichtplanung ist
 
 - **Events in einem Projekt.** Ein Event hat einen Ort, einen Zeitraum und eine eigene Zeitzone. Sehen können es die Mitglieder des Projekts, sonst niemand.

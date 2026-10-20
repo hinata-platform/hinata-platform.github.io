@@ -29,6 +29,40 @@ Signing up for a shift gives you a place. Exactly one person gets the last place
 
 How to set up a replica set is described under [MongoDB & X.509](/en/database.html).
 
+## For helpers
+
+Under **Shifts** there are three views: **Mine**, **Calendar** and **Events**. On a phone you switch between them with the pill under the title; on a wide window all three sit side by side in the page head.
+
+### My shifts
+
+At the top is your **next shift** as a card of its own: day and time in large type, how long until it starts, until when it runs, where it takes place and who you share it with. Your other shifts follow, sorted by day. At the end the page shows up to three **open shifts in your projects** from the next two weeks that still need people, and a way to all events.
+
+Every shift shows its staffing as a small hexagon with a figure beside it, such as `2 / 3`. A triangle means someone is still missing, a tick that there are enough people, a lock that the shift is full. If a shift has an upper limit that differs from the number needed, it is shown too: `4 / 3 · max. 5`. A screen reader reads it as a whole sentence, for example "Staffing 2 of 3, 1 more person needed".
+
+Without a connection the page shows what was last loaded. Only your own shifts with times, titles and figures are kept for that, no names of other people. It is deleted when you sign out and when the administration switches the module off.
+
+### Signing up
+
+Under **Events** you see the events of every project you are a member of, or of one project through the project pill. Each event shows how many places are taken and how many shifts still need people. Tapping it opens the event with its shifts, sorted by day. The filter **Understaffed only** hides everything that is already staffed.
+
+A free shift shows **Sign up**. One tap is enough, and you are confirmed straight away. A full shift says so in words, such as "Full, 5 of 5", instead of showing a grey button. If the event head says "Only the organisers assign people", nobody signs up there themselves; the planners assign people.
+
+Tapping a shift opens its sheet: time and length, place, who is signed up and how many places are free. It also leads to the event.
+
+If you already have another shift at the same time, Hinata refuses the sign-up and tells you why. If you are entered as absent on that day, the sign-up still works, but Hinata points it out.
+
+### Confirming and declining
+
+When a planner assigns you to a shift, it appears as **Assigned** in your list and waits for your answer. **Confirm** accepts it. **Decline** (in the sheet or on the next-shift card) frees the place again so the planners can assign someone else.
+
+### Giving up a shift
+
+If you cannot take a confirmed shift after all, open it and choose **Give up**. Hinata asks once, then your place is free again and others can sign up. You can sign up again later as long as there is room.
+
+### Times and time zones
+
+Every event has its own time zone. Hinata shows times as they apply on site. If your device is set to a different time zone, the shift carries a note such as "Times in Europe/Berlin".
+
 ## What shift planning is
 
 - **Events inside a project.** An event has a place, a time span and its own time zone. The project's members can see it, nobody else.

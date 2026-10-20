@@ -368,6 +368,17 @@ Ein Krankheitstag sagt etwas über die Gesundheit einer Person, und die schützt
 - Kein automatischer Verfall nach Krankheit.
 - Kein Attest, kein Grund, keine Diagnose.
 
+## Schichtplanung
+
+Ist das Modul [Schichtplanung](/de/shifts.html) eingeschaltet, hält Hinata fest, wer wann für welche Schicht eingetragen ist. Das ist eine Historie darüber, wer wann gearbeitet oder geholfen hat, also personenbezogen.
+
+- **Mitbestimmung.** In Unternehmen berühren Schichtpläne § 87 Abs. 1 Nr. 2 und 3 BetrVG, Auswertungen der Besetzung Nr. 6. In öffentlichen Stellen gilt das Personalvertretungsrecht des Bundes oder des Landes, in Vereinen keines von beiden. Regle den Einsatz in der Betriebs- oder Dienstvereinbarung mit, bevor du das Modul einschaltest.
+- **Aufbewahrung.** Zuteilungen werden zwölf Monate nach dem Ende ihrer Schicht gelöscht, jede Nacht um 03:55. Die Frist stellst du mit `HINATA_SHIFTS_RETENTION_MONTHS` ein. Die Zähler einer vergangenen Schicht bleiben, die Namen dahinter nicht.
+- **Namen nur für Mitglieder.** Wer auf einer Schicht steht, sehen nur Mitglieder des Projekts. Listen tragen Zahlen, keine Namen; Namen erscheinen erst in der Detailansicht einer Schicht oder eines Events. Ranglisten oder Auswertungen je Person gibt es nicht.
+- **Abwesenheiten nur mit Sicht.** Ist auch das Abwesenheitsmanagement an, weist Hinata beim Eintragen auf eine eingetragene Abwesenheit hin, aber nur wem diese ohnehin sichtbar ist. Wer plant, erfährt dadurch nichts über die Abwesenheiten anderer.
+- **Offline-Kopie.** Die App hält für „Meine Schichten“ eine kleine Kopie der eigenen Schichten auf dem Gerät, ohne Namen anderer. Sie wird beim Abmelden und beim Ausschalten des Moduls gelöscht.
+- **Auskunft.** Die Auskunft nach Art. 15 DSGVO enthält die eigenen Zuteilungen und Planerrechte.
+
 ## Timer außerhalb der App
 
 Seit dieser Version kann der Timer die Person auch außerhalb des App-Fensters erreichen:
