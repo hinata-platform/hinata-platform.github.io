@@ -129,7 +129,7 @@ Ist die [Schichtplanung](/de/shifts.html) eingeschaltet, kann ein Assistent Frag
 - „Wann ist meine nächste Schicht?“
 - „Wo fehlen am Samstag noch Leute?“
 - „Trag mich beim Aufbau am Freitag ein.“
-- „Gib meine Schicht am Sonntag ab.“
+- „Trag mich aus meiner Schicht am Sonntag aus.“
 
 | Tool | Scope | Funktion |
 |---|---|---|
@@ -139,7 +139,7 @@ Ist die [Schichtplanung](/de/shifts.html) eingeschaltet, kann ein Assistent Frag
 | `get_shift_event` | `shifts:read` | Ein Event mit allen Schichten als Zahlen, ohne Namen |
 | `get_shift` | `shifts:read` | Eine Schicht mit den Personen, die einen Platz haben. Wer wartet, wird nur gezählt, nie genannt |
 | `self_assign_shift` | `shifts:write` | Sich selbst eintragen. Ist die Schicht voll, landest du auf der Warteliste, und die Antwort sagt das |
-| `release_shift` | `shifts:write` | Den eigenen Platz abgeben oder die Warteliste verlassen |
+| `release_shift` | `shifts:write` | Dich aus deiner Schicht austragen oder die Warteliste verlassen |
 | `confirm_shift` / `decline_shift` | `shifts:write` | Eine Zuteilung bestätigen oder ablehnen |
 | `assign_shift` / `remove_assignment` | `shifts:plan` | Als planende Person jemanden zuteilen oder herausnehmen |
 

@@ -55,9 +55,9 @@ Hast du zur selben Zeit schon eine andere Schicht, lehnt Hinata das Eintragen ab
 
 Teilt dich die Planung einer Schicht zu, steht sie mit **Zugeteilt** in deiner Liste und wartet auf deine Antwort. **Bestätigen** sagt zu. **Ablehnen** (im Blatt oder auf der Karte der nächsten Schicht) gibt den Platz wieder frei, damit die Planung jemand anderen einteilen kann.
 
-### Abgeben
+### Austragen
 
-Kannst du eine bestätigte Schicht doch nicht übernehmen, öffne sie und wähle **Abgeben**. Hinata fragt einmal nach, dann ist dein Platz wieder frei und andere können sich eintragen. Später kannst du dich erneut eintragen, solange noch Platz ist.
+Kannst du eine bestätigte Schicht doch nicht übernehmen, öffne sie und wähle **Austragen**. Hinata fragt einmal nach, dann ist dein Platz wieder frei und andere können sich eintragen. Später kannst du dich erneut eintragen, solange noch Platz ist.
 
 ### Zeiten und Zeitzonen
 
