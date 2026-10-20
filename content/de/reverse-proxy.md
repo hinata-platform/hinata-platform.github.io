@@ -241,6 +241,65 @@ services:
     Traefiks Container oder Netzwerk. Traefik reicht `X-Forwarded-For` weiter,
     und Hinata beachtet es nur von einem vertrauten Gegenpart.
 
+## Kalender-Abos nicht ins Access-Log schreiben
+
+Mit der Schichtplanung kann jede Person ihre Schichten als Kalender abonnieren. Die
+Abo-Adresse sieht so aus:
+
+```text
+https://api.track.example.com/api/v1/shifts/feed/<geheimer-teil>.ics
+```
+
+Der geheime Teil ist der einzige Schlüssel: Kalender-Apps melden sich nicht an. Wer die
+Adresse aus einem Log abschreibt, liest die Schichten dieser Person mit. Hinata selbst
+schreibt sie nirgends hin und speichert nur einen Hash. Dein Proxy protokolliert die
+Adresse aber im Access-Log, wenn du nichts dagegen tust. Ersetze den Pfad deshalb vor dem
+Schreiben.
+
+**nginx**: im `http`-Block ein eigenes Logformat, das den Pfad maskiert, und dieses im
+API-Server-Block verwenden:
+
+```nginx
+map $request_uri $hinata_logged_uri {
+    ~^/api/v1/shifts/feed/  /api/v1/shifts/feed/***.ics;
+    default                 $request_uri;
+}
+
+log_format hinata '$remote_addr - $remote_user [$time_local] '
+                  '"$request_method $hinata_logged_uri $server_protocol" '
+                  '$status $body_bytes_sent "$http_referer" "$http_user_agent"';
+
+server {
+    server_name api.track.example.com;
+    access_log /var/log/nginx/access.log hinata;
+    # … wie oben
+}
+```
+
+**Caddy**: Caddy schreibt ohne `log`-Direktive kein Access-Log. Hast du eins aktiviert,
+filtere die URI:
+
+```caddy
+api.track.example.com {
+    log {
+        format filter {
+            wrap json
+            request>uri regexp "^/api/v1/shifts/feed/[^/?]+" "/api/v1/shifts/feed/***"
+        }
+    }
+    # … wie oben
+}
+```
+
+**Traefik**: Das Access-Log ist standardmäßig aus. Brauchst du es, lass mit
+`--accesslog.fields.names.RequestPath=drop` den Pfad weg; Traefik kann einzelne Pfade nicht
+maskieren.
+
+!!! note "Was das Abo sonst noch braucht"
+    Nichts. Der Feed läuft über dieselbe API-Subdomain und dieselbe Location wie alles
+    andere. Er antwortet mit `Cache-Control: private`, damit kein gemeinsamer Cache ihn
+    aufhebt, und ein Feed lässt sich höchstens einmal pro Minute abrufen.
+
 ## Überprüfen, ob es funktioniert
 
 ```bash

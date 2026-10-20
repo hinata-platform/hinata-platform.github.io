@@ -239,6 +239,63 @@ services:
     container or network. Traefik forwards `X-Forwarded-For`, and Hinata only
     honours it from a trusted peer.
 
+## Keep calendar subscriptions out of the access log
+
+With shift planning, everyone can subscribe to their shifts as a calendar. The
+subscription address looks like this:
+
+```text
+https://api.track.example.com/api/v1/shifts/feed/<secret-part>.ics
+```
+
+The secret part is the only key: calendar apps do not sign in. Anyone who copies the
+address from a log can read that person's shifts. Hinata itself never writes it anywhere
+and stores only a hash. Your proxy, however, records the address in its access log unless
+you stop it. Replace the path before it is written.
+
+**nginx**: in the `http` block, a log format of your own that masks the path, used in the
+API server block:
+
+```nginx
+map $request_uri $hinata_logged_uri {
+    ~^/api/v1/shifts/feed/  /api/v1/shifts/feed/***.ics;
+    default                 $request_uri;
+}
+
+log_format hinata '$remote_addr - $remote_user [$time_local] '
+                  '"$request_method $hinata_logged_uri $server_protocol" '
+                  '$status $body_bytes_sent "$http_referer" "$http_user_agent"';
+
+server {
+    server_name api.track.example.com;
+    access_log /var/log/nginx/access.log hinata;
+    # … as above
+}
+```
+
+**Caddy**: without a `log` directive Caddy writes no access log. If you turned one on,
+filter the URI:
+
+```caddy
+api.track.example.com {
+    log {
+        format filter {
+            wrap json
+            request>uri regexp "^/api/v1/shifts/feed/[^/?]+" "/api/v1/shifts/feed/***"
+        }
+    }
+    # … as above
+}
+```
+
+**Traefik**: the access log is off by default. If you need it, drop the path with
+`--accesslog.fields.names.RequestPath=drop`; Traefik cannot mask single paths.
+
+!!! note "What else the subscription needs"
+    Nothing. The feed runs over the same API subdomain and location as everything else.
+    It answers with `Cache-Control: private`, so no shared cache keeps it, and a feed can
+    be fetched at most once a minute.
+
 ## Verifying it works
 
 ```bash
