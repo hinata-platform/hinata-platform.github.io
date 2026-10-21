@@ -74,6 +74,12 @@ and the total at the top. **Week** / **Month** shows the last five calendar
 weeks. It reads `0.0 h` until work is logged. Time from Git commits is not
 included. See [Tracking your time](/en/guide-time.html).
 
+### Budget card
+
+With advanced time tracking a dark card shows the three fullest time budgets
+in the dashboard's projects as honeycomb cells, each with the time left. A cell
+opens that budget's history, **All** opens the **Budgets** tab of the reports.
+
 ### Team ranking and Git activity
 
 - **Team ranking**: the ten people who resolved the most issues in the last 30
@@ -90,7 +96,7 @@ included. See [Tracking your time](/en/guide-time.html).
 *Edit mode.*
 
 - The fields "Hero board", "Dashboard data" and "Team ranking" appear above the
-  cards.
+  cards. "Team ranking" picks the teams the ranking counts.
 - "Hero board" picks the board for the large card. The default is "Automatic
   (active sprint)".
 - "Dashboard data" sets which projects the key figures, donut and Today's focus
@@ -105,15 +111,15 @@ phone. Without **Done**, your changes are lost.
 
 ## Reports
 
-Open **Reports** in the sidebar, or under **More** on a phone. The page always shows **one project**. The project capsule at the top opens a search over every project your team access grants you. Next to it you pick **30 days** or **90 days**.
+Open **Reports** in the sidebar, or under **More** on a phone. With advanced time tracking switched on, this opens **Time tracking › Reports** on its first tab, **Project**. Next to it sit **Budgets** and the time reports such as **Summary**, **Entries** and **Workload**. See [Advanced time tracking](/en/time-tracking-advanced.html). Without the module, the project overview is a page of its own.
+
+![The reports page with figures, trend and budget](/assets/img/shot-reports.png)
+*A project's figures, trend and budget.*
+
+The overview always shows **one project**. The project capsule at the top opens a search over every project your team access grants you. Next to it you pick **30 days** or **90 days**.
 
 ![The project search on the reports page](/assets/img/shot-reports-project-picker.png)
 *The project search.*
-
-With advanced time tracking switched on, the same overview is the first tab, **Project**, of the time reports. Next to it sit **Budgets** and the time reports themselves, all sharing one filter. See [Advanced time tracking](/en/time-tracking-advanced.html).
-
-![The reports page with figures and trend](/assets/img/shot-reports.png)
-*A project's figures, trend and budget.*
 
 ### Figures
 
@@ -135,7 +141,7 @@ Four tiles at the top: the issues **open** today, those **new** in the period, t
 
 ### How does the budget fill?
 
-If the project has a time budget, its tube and forecast sit here. **History** opens the curve of recorded hours. See [Budgets](/en/time-tracking-advanced.html#budgets).
+If the project has a time budget, its tube and forecast sit here. **View history** opens the curve of recorded hours. See [Budgets](/en/time-tracking-advanced.html#budgets).
 
 ### Where do the issues stand? How urgent is the work?
 
@@ -158,7 +164,7 @@ Issues without an owner are listed under **Unassigned**. Keep an eye on that row
 ![The Budgets tab with a sprint and projects](/assets/img/shot-reports-budgets.png)
 *Budgets, fullest first.*
 
-With advanced time tracking, the **Budgets** tab lists every budget you may see, fullest first. Running sprints with a budget sit at the top. Each project card shows the time budget with its forecast, the estimates and, if you may see it, the money budget.
+With advanced time tracking, the **Budgets** tab lists every budget you may see, fullest first. Running sprints with a budget sit at the top. Each project card shows the time budget with its forecast, the sum of estimates and, if you may see it, the money budget.
 
 ### Sprint burndown and velocity live on the board
 

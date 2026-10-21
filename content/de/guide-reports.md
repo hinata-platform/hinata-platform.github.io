@@ -76,6 +76,13 @@ Bernstein) und oben die Summe. **Woche** / **Monat** zeigt die letzten fünf
 Kalenderwochen. Ohne Einträge steht dort `0,0 Std`. Zeit aus Git-Commits zählt
 nicht mit. Siehe [Zeit erfassen](/de/guide-time.html).
 
+### Budgetkarte
+
+Mit dem erweiterten Time-Tracking zeigt eine dunkle Karte die drei vollsten
+Zeitbudgets aus den Projekten des Dashboards als Waben, jede mit der
+verbleibenden Zeit. Eine Wabe öffnet den Verlauf dieses Budgets, **Alle** den
+Reiter **Budgets** der Berichte.
+
 ### Team-Ranking und Git-Aktivität
 
 - **Team-Ranking**: die zehn Personen mit den meisten gelösten Vorgängen der
@@ -92,7 +99,7 @@ nicht mit. Siehe [Zeit erfassen](/de/guide-time.html).
 *Der Bearbeitungsmodus.*
 
 - Über den Kacheln stehen die Felder „Hero-Board“, „Dashboard-Daten“ und
-  „Team-Ranking“.
+  „Team-Ranking“. „Team-Ranking“ wählt die Teams, die das Ranking zählt.
 - „Hero-Board“ wählt das Board für die große Karte. Standard ist „Automatisch
   (aktiver Sprint)“.
 - „Dashboard-Daten“ legt fest, welche Projekte Kennzahlen, Donut und „Fokus
@@ -107,15 +114,15 @@ Ohne **Fertig** gehen die Änderungen verloren.
 
 ## Berichte
 
-Öffne **Berichte** in der Seitenleiste, auf dem Handy unter **Mehr**. Die Seite zeigt immer **ein Projekt**. Die Projektkapsel oben öffnet eine Suche über alle Projekte, die du über dein Team erreichst. Daneben wählst du **30 Tage** oder **90 Tage**.
+Öffne **Berichte** in der Seitenleiste, auf dem Handy unter **Mehr**. Ist das erweiterte Time-Tracking eingeschaltet, landest du unter **Zeiterfassung › Berichte** im ersten Reiter **Projekt**. Daneben stehen **Budgets** und die Zeitberichte wie **Übersicht**, **Einträge** und **Auslastung**. Siehe [Erweitertes Time-Tracking](/de/time-tracking-advanced.html). Ohne das Modul ist die Projektübersicht eine eigene Seite.
+
+![Die Berichteseite mit Kennzahlen, Verlauf und Budget](/assets/img/shot-reports.png)
+*Kennzahlen, Verlauf und Budget eines Projekts.*
+
+Die Übersicht zeigt immer **ein Projekt**. Die Projektkapsel oben öffnet eine Suche über alle Projekte, die du über dein Team erreichst. Daneben wählst du **30 Tage** oder **90 Tage**.
 
 ![Die Projektsuche auf der Berichteseite](/assets/img/shot-reports-project-picker.png)
 *Die Projektsuche.*
-
-Ist das erweiterte Time-Tracking eingeschaltet, ist dieselbe Übersicht der erste Reiter **Projekt** der Zeitberichte. Daneben stehen **Budgets** und die Zeitberichte selbst, alle mit einem gemeinsamen Filter. Siehe [Erweitertes Time-Tracking](/de/time-tracking-advanced.html).
-
-![Die Berichteseite mit Kennzahlen und Verlauf](/assets/img/shot-reports.png)
-*Kennzahlen, Verlauf und Budget eines Projekts.*
 
 ### Kennzahlen
 
@@ -138,7 +145,7 @@ Vier Kacheln oben: die heute **offenen** Vorgänge, die im Zeitraum **neu** ange
 
 ### Wie füllt sich das Budget?
 
-Hat das Projekt ein Zeitbudget, steht hier seine Röhre mit Prognose. **Verlauf** öffnet die Kurve der erfassten Stunden. Siehe [Budgets](/de/time-tracking-advanced.html#budgets).
+Hat das Projekt ein Zeitbudget, steht hier seine Röhre mit Prognose. **Verlauf ansehen** öffnet die Kurve der erfassten Stunden. Siehe [Budgets](/de/time-tracking-advanced.html#budgets).
 
 ### Wo stehen die Aufgaben? Wie dringend ist die Arbeit?
 
@@ -161,7 +168,7 @@ Vorgänge ohne Verantwortlichen stehen unter **Niemand zugewiesen**. Diese Zeile
 ![Der Reiter Budgets mit Sprint und Projekten](/assets/img/shot-reports-budgets.png)
 *Budgets, das vollste zuerst.*
 
-Mit dem erweiterten Time-Tracking listet der Reiter **Budgets** alle Budgets, die du sehen darfst, das vollste zuerst. Oben stehen die laufenden Sprints mit Budget. Jede Projektkarte zeigt Zeitbudget mit Prognose, die Schätzungen und, wenn du es sehen darfst, das Geldbudget.
+Mit dem erweiterten Time-Tracking listet der Reiter **Budgets** alle Budgets, die du sehen darfst, das vollste zuerst. Oben stehen die laufenden Sprints mit Budget. Jede Projektkarte zeigt Zeitbudget mit Prognose, die Summe der Schätzungen und, wenn du es sehen darfst, das Geldbudget.
 
 ### Sprint-Burndown und Velocity leben auf dem Board
 
