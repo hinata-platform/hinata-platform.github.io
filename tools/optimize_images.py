@@ -19,13 +19,17 @@ intrinsic size (so the layout does not jump while it loads). Output is
 committed: the encode is slow enough that doing it in CI would add minutes to
 every deploy, and the results are deterministic.
 
-Existing variants are skipped unless the source is newer, so a re-run after one
-new screenshot costs a second.
+Existing variants are skipped while the source is unchanged, so a re-run after
+one new screenshot costs a second. "Unchanged" is the content hash the manifest
+keeps for every source, not the file time alone: a picture replaced by a commit
+or a checkout can carry an older time than its variants, and judged by time
+those stale variants were kept and served in place of the new picture.
 """
 
 from __future__ import annotations
 
 import base64
+import hashlib
 import io
 import json
 import pathlib
@@ -109,6 +113,10 @@ def encode(img: Image.Image, path: pathlib.Path, width: int) -> None:
 
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
+    try:
+        previous = json.loads(MANIFEST.read_text())
+    except (OSError, ValueError):
+        previous = {}
     manifest: dict[str, dict] = {}
     written = skipped = 0
     saved_from = saved_to = 0
@@ -120,6 +128,8 @@ def main() -> int:
         img = img.convert("RGBA" if "A" in img.getbands() else "RGB")
         stem = src.stem
         widths = variants(img)
+        sha = hashlib.sha256(src.read_bytes()).hexdigest()[:16]
+        known = previous.get(src.name, {}).get("sha")
         manifest[src.name] = {
             "w": img.width,
             "h": img.height,
@@ -128,13 +138,18 @@ def main() -> int:
             # Whether the source has any see-through pixels. A transparent image
             # must not be given an opaque backdrop of any kind — see placeholder().
             "alpha": img.mode == "RGBA",
+            "sha": sha,
         }
         saved_from += src.stat().st_size
 
         for width in widths:
             for ext in (".avif", ".webp"):
                 dst = OUT / f"{stem}-{width}{ext}"
-                if dst.exists() and dst.stat().st_mtime >= src.stat().st_mtime:
+                # With a hash on record it decides; without one (a manifest from
+                # before the hash) the file time is all there is to go by.
+                fresh = (known == sha) if known else (
+                    dst.exists() and dst.stat().st_mtime >= src.stat().st_mtime)
+                if dst.exists() and fresh:
                     skipped += 1
                     saved_to += dst.stat().st_size if width == widths[0] else 0
                     continue
