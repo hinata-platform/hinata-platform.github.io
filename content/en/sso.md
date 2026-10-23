@@ -62,12 +62,63 @@ OIDC is the recommended protocol for modern IdPs (Keycloak, Authentik, Entra ID,
 
 ## Provisioning and access
 
-A first SSO login provisions a Hinata user, matched on email. After that the usual model applies:
+A first SSO login provisions a Hinata user. After that the usual model applies:
 
 - Project and team membership decide what the person can see (teams' per-member project access).
 - The Admin area requires `ADMIN`.
 
 You can combine SSO with local auth. Set `localAuthEnabled = false` (see [Authentication](/en/authentication.html)) to make SSO the only way in.
+
+### How a sign-in finds its account
+
+Hinata binds every account to the identifier the provider itself gives the person, not to the email address. With many providers people can change their address in their own profile or pick any address when they register. The identifier is the provider's.
+
+| Method | Identifier | Name of the provider |
+| --- | --- | --- |
+| OpenID Connect | `sub` | Issuer URI |
+| OAuth 2.0 | `sub` or `id` from the user info, otherwise the configured name attribute | Host of the authorization URL |
+| SAML 2.0 | NameID | Entity ID of the IdP |
+| LDAP | `entryUUID` or `objectGUID` of the entry, otherwise its DN | Base DN |
+
+If an account holds this identifier at the same provider, the sign-in goes into that account, even when the address at the provider has changed since. If no account has the address yet, Hinata creates one and binds it to the identifier right away. If the provider sends no address at all, Hinata creates no account.
+
+If an account has the address but is not bound to this identifier, the address decides in three cases only, and the account is bound then.
+
+- The account was created through the same method and is not bound yet. OpenID Connect and OAuth 2.0 count as one method here. This applies to every SSO account from before binding, exactly once, at its first sign-in since.
+- The account is bound through the same provider, whose name has changed (right-hand column). Hinata takes that as a switch of identity provider and binds the accounts again at their next sign-in. Another address for the same provider, such as `ldaps` instead of `ldap` or another path for OAuth 2.0, is no switch.
+- It is a local account, and local sign-in is off. SSO is the only way in then.
+
+Even then: if the provider itself says it has not confirmed the address (`email_verified` is `false`), the address binds no existing account. The person still gets a new account, as there is nothing in it yet. And only a sign-in that gets in binds: an account that is deactivated, waiting for approval or an open invitation stays unbound.
+
+Hinata refuses everything else. Whoever only gives the address learns nothing about the account behind it, so not whether it is deactivated or an invitation is open either. The audit log has the exact reason. A local account with a password is reachable over SSO only while local sign-in is off; otherwise the person signs in with their password.
+
+Every refusal is in the audit log, and so is every binding of an existing account by its address, even when that event is switched off in the audit settings. The person also gets a security notification naming the provider and the name somebody signed in with there. If it was not them, they hear about it right away.
+
+Every way in follows the same rules as a password sign-in: a deactivated account, or one still waiting for approval, gets no access over SSO either.
+
+!!! warning "An identifier that is the address does not protect"
+    If the provider's identifier is the email address, the binding depends on the address again. That happens with a SAML NameID in email format, and with OAuth 2.0 when the provider sends neither `sub` nor `id` and the name attribute is `email` (the default). Hinata logs a warning on the server. Use the `persistent` NameID for SAML and a stable name attribute such as `id` for OAuth 2.0. A `transient` NameID changes with every sign-in; the person would not get in after the first time.
+
+### Invitations with SSO
+
+If the server has SSO, an invited person can accept the invitation with SSO too. The invitation page then offers "Join with ‹provider›". The sign-in carries the invitation along, and the link from the invitation email proves the address. Hinata completes the invitation with it and binds the account to the identifier, even when the provider knows the person under another address. The roles from the invitation stay.
+
+With local sign-in off, that is the only way. No password can be set then: nobody could sign in with it, and the account would stay unbound until the first SSO sign-in with its address. Nobody completes an invitation by its address alone.
+
+### When the identifier changes
+
+If the provider renames an account or changes the NameID, the person no longer gets into their Hinata account. Under Admin area › Users › person, "Disconnect SSO sign-in" removes the binding. All of the person's sessions end with it. The next SSO sign-in with the address may then bind the account again, whichever account at the provider it comes from. So only do this when you are sure the right person signs in next. Hinata always records the removal, even when the event is switched off in the audit settings.
+
+### After the update that brings the binding
+
+On its first start Hinata signs out, once, everybody who was reachable by their address alone before. With any SSO method or LDAP on, or local sign-in off, that is every account: which account such a sign-in entered is known only from the audit log, which can be switched off and forgets after a year. With all of them off, it is every account created through SSO or LDAP, and every account the audit log shows an SSO sign-in for. Whoever signs in afterwards binds their account to themselves. Best announce the update beforehand.
+
+At their first sign-in after it, SSO accounts from before the binding get a security notification that their account was connected. Everybody else gets the usual notification about a sign-in from a new device.
+
+!!! warning "Check `email_verified` first"
+    If your provider sends `email_verified: false` for your people, Hinata does not bind their accounts from before the binding, and they no longer get in. Keycloak does that, for instance, for everybody from an LDAP federation while "Trust Email" is off there, and for people an admin created without "Email verified". Change that at the provider before the update.
+
+Personal access tokens and connected AI clients stay. Check the audit log of accounts with SSO sign-ins for tokens or grants the person does not know about, and revoke them if needed.
 
 ## Troubleshooting
 
@@ -75,6 +126,9 @@ You can combine SSO with local auth. Set `localAuthEnabled = false` (see [Authen
 - **Redirect URI mismatch:** compare the URI registered at the IdP with your public API base, character for character.
 - **SAML "assertion expired":** clock skew. Fix NTP on the server host.
 - **No providers on the login screen:** check that the provider is enabled and the app can reach `/api/v1/auth/sso/providers` (public, no token required).
+- **"There is already an account with this email address that is not connected to this sign-in":** the account is local, it was created through another method (SAML instead of OIDC, say), it is bound to another identifier at the provider, or it is deactivated, waiting for approval or an open invitation. The audit log names the reason in its `LOGIN_FAILURE` entry. Local accounts sign in with their password, invited people through the link in their invitation. If the person's identifier changed, disconnect the SSO sign-in as described above.
+- **"Your sign-in service reports this email address as unconfirmed":** the provider sends `email_verified: false`, and an account with the address exists already. Have the address confirmed at the provider, or let the provider trust its addresses (Keycloak: "Trust Email" in the LDAP federation).
+- **"Your sign-in service did not send an email address":** the provider sends no address attribute, or the configured attribute holds no address. Check the method's attribute mapping in the admin area.
 
 ## Where to go next
 
