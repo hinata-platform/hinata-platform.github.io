@@ -61,7 +61,7 @@ Auf einem neuen Server legt die Plattform den ersten Kalender selbst an: **Geset
 
 ## Kalender-Import
 
-Unter **Zeiterfassung** entscheidet der Schalter **Kalender-Import**, ob Personen ihre eigenen Kalender abonnieren und Termine in Einträge übernehmen dürfen. Er ist standardmäßig aus und wirkt nur mit erweiterter Zeiterfassung. Solange du nichts wählst, gilt der Wert des Servers, `HINATA_TIME_TRACKING_ICS_IMPORT_ENABLED`. Wie das für die Personen aussieht, steht unter [Zeit erfassen](/de/guide-time.html#deine-eigenen-kalender).
+Unter **Zeiterfassung** entscheidet der Schalter **Kalender-Import**, ob Personen ihre eigenen Kalender abonnieren und Termine in Einträge übernehmen dürfen. Er ist standardmäßig aus und wirkt nur mit erweiterter Zeiterfassung. Solange du nichts wählst, gilt der Wert des Servers, `HINATA_TIME_TRACKING_ICS_IMPORT_ENABLED`. Wie das für die Personen aussieht, steht unter [Erweitertes Time-Tracking](/de/time-tracking-advanced.html#kalender-abos).
 
 - **An:** Alle finden **Kalender-Abos** unter **Einstellungen → Zeiterfassung**. Ein Abo, seine Adresse, seine Termine und seine Fehler sieht nur, wem es gehört. Du siehst weder die Adressen noch die Termine, nur die Einträge, die jemand übernimmt, wie jeden anderen Eintrag.
 - **Aus:** Die Kalender zeigen keine Termine, nichts wird abgerufen, und der Server beantwortet Anfragen zu Abos, als gäbe es sie nicht. Was Personen gespeichert haben, bleibt, bis sie es löschen oder ihr Konto gelöscht wird, und ist wieder da, wenn du den Import erneut einschaltest.
