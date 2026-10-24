@@ -34,10 +34,16 @@ You need:
 
 The app is the same everywhere. Anything desktop-only says so.
 
+## Agree to the terms
+
+The first time you open the app, it asks you to agree to its terms of service: there is zero tolerance for offensive, threatening or objectionable content and for people who harass others. **Read the terms of service** opens them in full. The app asks once per device, and again only when the terms change.
+
+After signing in, your server may ask you to agree to its **house rules**. They are your organization's, and they end with **How we moderate**: how to report, who looks at reports and how you can object to a decision. You go on once you agree, and **Sign out** is always there. When your organization asks everybody to agree to a new version, you are asked again.
+
 ## Connect to your server
 
 ![Connect to your server](/assets/img/shot-connect-server.png)
-*The first screen after installing.*
+*The screen after agreeing to the terms.*
 
 Enter the address in the Server URL field (pre-filled with `https://`) and press Connect. The app only moves on once the server identifies itself as a Hinata server. It never guesses or uses a default server.
 
@@ -72,7 +78,7 @@ Which options the sign-in screen shows is up to your administrator.
 ![The sign-in screen](/assets/img/shot-sign-in.png)
 *The sign-in screen with every option on.*
 
-The chip at the top of the card names the server you're signing in to. You can switch to another one from there.
+The chip at the top of the card names the server you're signing in to. You can switch to another one from there. **Contact** under the card reaches whoever runs that server.
 
 ### With a username and password
 
