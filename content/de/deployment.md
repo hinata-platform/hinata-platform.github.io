@@ -323,6 +323,16 @@ docker compose -f docker-compose.yml -f docker-compose.app.yml pull hinata-app
 docker compose -f docker-compose.yml -f docker-compose.app.yml up -d hinata-app
 ```
 
+!!! note "Der erste Start nach einem Update kann länger dauern"
+    Ein Release, das Indizes hinzufügt, baut sie beim ersten Start. Das Release
+    mit der Moderation baut sie auf Benachrichtigungen, Kommentaren, Fällen und
+    Konten. Auf einer großen Instanz dauert das ein paar Minuten, und der Server
+    antwortet auf seinen Health-Check, sobald es fertig ist; das Image lässt dem
+    Start 180 Sekunden. Plane die Minuten ins Wartungsfenster ein oder starte
+    die neue Version vorher einmal gegen eine Kopie der Datenbank. Einen Index,
+    den ein Release nicht mehr braucht, etwa den alten auf `userId` einer
+    Benachrichtigung, entfernt der Server selbst.
+
 !!! danger "Ein Redeploy aktualisiert nur App und Server, niemals Mongo oder SeaweedFS"
     Vorgänge, Anhänge und Nutzer liegen in den Docker-Volumes `mongo1-data`,
     `mongo2-data` und `seaweedfs-data`. Werden Datenbank oder Speicher neu erzeugt oder
