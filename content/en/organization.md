@@ -61,7 +61,7 @@ On a new server the platform creates the first calendar itself: **Public holiday
 
 ## Calendar import
 
-Under **Time tracking** the switch **Calendar import** decides whether people may subscribe to their own calendars and turn appointments into entries. It is off by default and only works with extended time tracking. Until you choose, the server's value `HINATA_TIME_TRACKING_ICS_IMPORT_ENABLED` applies. How it looks for people is in [Tracking your time](/en/guide-time.html#your-own-calendars).
+Under **Time tracking** the switch **Calendar import** decides whether people may subscribe to their own calendars and turn appointments into entries. It is off by default and only works with extended time tracking. Until you choose, the server's value `HINATA_TIME_TRACKING_ICS_IMPORT_ENABLED` applies. How it looks for people is in [Extended time tracking](/en/time-tracking-advanced.html#calendar-subscriptions).
 
 - **On:** everybody finds **Calendar subscriptions** under **Settings → Time tracking**. A subscription, its address, its events and its errors are visible to its owner only. You see neither the addresses nor the events, only the entries people take over, like any other entry.
 - **Off:** the calendars show no events, nothing is fetched, and the server answers requests about subscriptions as if they did not exist. What people stored stays until they delete it or their account is deleted, and it is back when you switch the import on again.
