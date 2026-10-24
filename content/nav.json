@@ -186,6 +186,13 @@
      }
     ],
     [
+     "guide-safety",
+     {
+      "en": "Report and block",
+      "de": "Melden und blockieren"
+     }
+    ],
+    [
      "guide-sharing",
      {
       "en": "Sharing an issue",
@@ -537,6 +544,20 @@
      {
       "en": "Organization",
       "de": "Organisation"
+     }
+    ],
+    [
+     "moderation",
+     {
+      "en": "Moderation",
+      "de": "Moderation"
+     }
+    ],
+    [
+     "moderation-operators",
+     {
+      "en": "Moderation for operators",
+      "de": "Moderation für Betreiber"
      }
     ],
     [
