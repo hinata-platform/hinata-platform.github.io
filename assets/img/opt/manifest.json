@@ -231,6 +231,19 @@
    480
   ]
  },
+ "shot-admin-moderation.png": {
+  "alpha": false,
+  "h": 1800,
+  "lqip": "data:image/webp;base64,UklGRsYAAABXRUJQVlA4ILoAAABQBQCdASowAB4APrVUo0wnJSMiKqgA4BaJZQDKtBaH9jt2hZWVMdykMQBCePZN/Xn1aQAA/uDbrJFds+DY52lCpW+v18QdyV6AnCZDPASAQfCxsyAuRR8NLG9fflWyeB4KXx5uYC1OTOza4dp8r4ct015+xMFa1gL8zpfB8UsYgAV8QtU/xzr7AJWvHfWeAUPdnlB0V1g7kw7ghgbvIN6QJhexuPrljovul0jH/ISl9PzyAUouv4ywAAA=",
+  "sha": "be84d24fd85a0eb3",
+  "w": 2880,
+  "widths": [
+   1920,
+   1440,
+   960,
+   480
+  ]
+ },
  "shot-admin-time-tracking-dark.png": {
   "alpha": false,
   "h": 1800,
@@ -1087,6 +1100,45 @@
   "sha": "343f9564763f1061",
   "w": 1170,
   "widths": [
+   960,
+   480
+  ]
+ },
+ "shot-moderation-case.png": {
+  "alpha": false,
+  "h": 1800,
+  "lqip": "data:image/webp;base64,UklGRsgAAABXRUJQVlA4ILwAAABQBgCdASowAB4APrVMoEunJCMhqrgMAOAWiWUAwNwLQ/sFOt/ecfqNMd//2qgKHJ7sYaP3ht9rvTqGQAD+4NuskV2z4NjnaUKlb6/XxB3JXoCcJkM8A6EbbSoiOMmCp7r2N6+7VL5huIoVZ3HCJUvZHEqFl1pX6GfjZuNQug6J2c9TvYOaTlm8dmEnjHKo9kp3NzjxQqF+7KhF1QesUs7QgRFWR7lZcWv0RsQhHjWoUQDkv9xs4EItKcUAAA==",
+  "sha": "f1e226d826c1c73b",
+  "w": 2880,
+  "widths": [
+   1920,
+   1440,
+   960,
+   480
+  ]
+ },
+ "shot-moderation-decision.png": {
+  "alpha": false,
+  "h": 1800,
+  "lqip": "data:image/webp;base64,UklGRtIAAABXRUJQVlA4IMYAAABwBgCdASowAB4APrVInkonJCKhsBVdUOAWiWUAzJQLSqWwzRwBnBzNakr4ScDa3lzH/ScQlU3jrtMafcAA996WehlOstB9wJqZ6a6D+CO36EXjtjKwtVzBfvWXC+My4srt+Z1pRV6u/PYnhV7BTB4mb7LZJKSjfUKEHzvNit6Eue0y+moAnk4H71SJLqJTX1G8qz0vMaRo1X17dp8TmbIGGR/OYbb/BtjAjTWhAn0FzrogrHK4UQT8IY1t4ar75eCGpAAJgAA=",
+  "sha": "706775683ef2e15e",
+  "w": 2880,
+  "widths": [
+   1920,
+   1440,
+   960,
+   480
+  ]
+ },
+ "shot-moderation-report.png": {
+  "alpha": false,
+  "h": 1800,
+  "lqip": "data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAAAwBgCdASowAB4APqlImEmmJKIhNVgMAMAVCWcAz6AWh0Vm9zgtNSlHN7bpBCmW2NcKc32bQiBskEoAAPffUzbcdfv3DPkzC68+uY5z106tMPDH3/o8iK5RC/XLZw9hBraUU3D2dsGU5uGvGi35b3iKYiSzwpTTQRYNKaqH2xTNaH6lTQFZlXpEEk9cLJtJPP/r6B4nTyAAAA==",
+  "sha": "783e6d0631ae465c",
+  "w": 2880,
+  "widths": [
+   1920,
+   1440,
    960,
    480
   ]

@@ -11,6 +11,8 @@ Jeder Server hat seine eigene Moderation, und die führt deine Organisation. Wen
 
 Jeder Vorgang, jeder Kommentar, jede Sprachnachricht, jede Datei und jede Seite der Wissensdatenbank hat im Menü **⋯** den Eintrag **Melden …**, ebenso das Profil jeder Person. Auch der Dateibetrachter hat ihn.
 
+![Melden: zuerst, worum es geht, dann was die Moderation wissen soll](/assets/img/shot-moderation-report.png)
+
 1. Wähle, worum es geht: Belästigung, Beleidigung oder Hass; Drohung oder Gewalt; sexuelle Inhalte; Gefährdung von Kindern; private Daten ohne Zustimmung; Spam, Betrug oder Schadsoftware; Rechtsverletzung; oder etwas anderes.
 2. Schreib dazu, was die Moderation wissen sollte. Bei Gefährdung von Kindern, einer Rechtsverletzung und etwas anderem ist eine kurze Beschreibung Pflicht.
 3. Schick die Meldung mit **Melden** ab. Damit bestätigst du, dass deine Angaben nach bestem Wissen stimmen.

@@ -133,6 +133,8 @@ platform offers.
 
 ### Moderation
 
+![Admin area, Moderation: who comes in, who moderates and the contact for reports](/assets/img/shot-admin-moderation.png)
+
 When a way in lets people in without anybody deciding, the section starts
 with **Who comes in**: self-registration without approval, or an SSO provider
 that creates active accounts at the first sign-in. Whoever has such an account
