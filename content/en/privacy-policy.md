@@ -15,10 +15,10 @@ In accordance with Art. 13 and 14 of the General Data Protection Regulation (GDP
 
 The controller within the meaning of Art. 4(7) GDPR for the provision of the App (distribution via the app stores or as a web application) and for the processing described in this policy is:
 
-Rebar Ahmad
-Weberstr. 58
-47798 Krefeld
-Germany
+Rebar Ahmad\
+Weberstr. 58\
+47798 Krefeld\
+Germany\
 E-mail: mail@ahmadre.com
 
 No data protection officer is legally required or appointed.

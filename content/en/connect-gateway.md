@@ -43,6 +43,17 @@ Universal links are relayed as `https://<gateway>/l/<code>`. The app decodes the
 
 If you ship your **own** branded app to the stores, you own its push credentials and link domain. Then you run your own gateway and point your server at it with `HINATA_GATEWAY_BASE_URL`. This is an advanced path that goes with a full [custom client build](/en/self-hosted-app.html). The relay works the same way as the hosted gateway.
 
+## Conditions for connecting
+
+Hinata Connect relays notifications and links for every instance connected to it. In return, every connected instance:
+
+- names a contact for reports under **Admin area › Moderation › Contact for reports**. The app shows it to everybody under **Settings › Help and contact**. While none is set, **Admin area › Connect** says so.
+- is run by an operator who is responsible for its content and its moderation. The gateway passes notifications and links on and moderates no instance.
+
+## Points of contact
+
+Hinata Connect is run by the provider of the app. For authorities and for everybody who uses it, the point of contact under Art. 11 and 12 DSA is mail@ahmadre.com, in German or English, see [Imprint](/en/impressum.html). For content on an instance, contact its operator.
+
 ## Next steps
 
 - Ship your own client: [Branding & custom clients](/en/self-hosted-app.html).

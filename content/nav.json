@@ -622,6 +622,13 @@
     "en": "Terms of service",
     "de": "Nutzungsbedingungen"
    }
+  ],
+  [
+   "impressum",
+   {
+    "en": "Imprint",
+    "de": "Impressum"
+   }
   ]
  ],
  "appRepo": "hinata-platform/hinata-app"

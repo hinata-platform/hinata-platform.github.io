@@ -17,10 +17,10 @@ These Terms of Service govern the use of the Hinata application ("App"). By inst
 
 The provider of the App is:
 
-Rebar Ahmad
-Weberstr. 58
-47798 Krefeld
-Germany
+Rebar Ahmad\
+Weberstr. 58\
+47798 Krefeld\
+Germany\
 E-mail: mail@ahmadre.com
 
 These terms apply to the provision of the App via the app stores or as a web application. They do not apply to server instances operated by third parties or to the services provided there.

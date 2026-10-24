@@ -17,10 +17,10 @@ Diese Nutzungsbedingungen regeln die Nutzung der Anwendung Hinata („App“). M
 
 Anbieter der App ist:
 
-Rebar Ahmad
-Weberstr. 58
-47798 Krefeld
-Deutschland
+Rebar Ahmad\
+Weberstr. 58\
+47798 Krefeld\
+Deutschland\
 E-Mail: mail@ahmadre.com
 
 Diese Bedingungen gelten für die Bereitstellung der App über die App Stores oder als Webanwendung. Sie gelten nicht für Serverinstanzen, die Dritte betreiben, und nicht für die dort erbrachten Dienste.
