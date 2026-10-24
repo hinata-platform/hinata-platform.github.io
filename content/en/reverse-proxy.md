@@ -64,6 +64,13 @@ HINATA_TRUSTED_PROXIES=172.16.0.0/12
       --format '{{range .IPAM.Config}}{{.Subnet}}{{end}}'
     ```
 
+The server reads `X-Forwarded-For` from the right and skips every address in
+`HINATA_TRUSTED_PROXIES`. The first address that is not one of them is the
+client, so whatever a client writes into the header further left does not
+count. When `X-Forwarded-For` arrives from a peer that is not trusted, the
+server logs it once and **Admin area › Moderation** shows a warning for a day.
+That is the sign the value is missing or wrong.
+
 !!! tip "HSTS is already handled"
     The server sends `Strict-Transport-Security`, CSP and `Referrer-Policy`
     itself. You do **not** need to add HSTS in the proxy. Let the proxy handle

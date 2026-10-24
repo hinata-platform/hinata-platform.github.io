@@ -107,6 +107,8 @@ platform offers.
 - **Privacy policy URL**: the link the app shows. Required for App Store and
   Play releases and for GDPR. Overrides `HINATA_PRIVACY_POLICY_URL`.
 - **Sign-in**: local authentication, self-registration and admin approval.
+  While self-registration lets people in without approval, a warning under the
+  switches says what that means (see **Who comes in** below).
 - **Platform behaviour**: several people on one issue, replying to an issue by
   e-mail, and **project templates** (copying a project, the template marker and
   deadlines kept as an offset from the project's event date). Left off, projects
@@ -131,7 +133,21 @@ platform offers.
 
 ### Moderation
 
-Three cards:
+When a way in lets people in without anybody deciding, the section starts
+with **Who comes in**: self-registration without approval, or an SSO provider
+that creates active accounts at the first sign-in. Whoever has such an account
+reads organization-wide pages and the directory. Under the Digital Services Act
+that content then counts as public, and the instance has the duties of an
+online platform. **Switch approval on** closes every way listed and saves.
+Hinata closes them itself when it is updated to this version and on every new
+instance, and tells every admin. Opening one again takes an explicit
+confirmation on save. Every change is recorded in the audit log.
+
+If requests come through a proxy the server does not trust, a warning above the
+cards says so for a day: every client then counts as the proxy's address. Set
+`HINATA_TRUSTED_PROXIES`, see [Reverse proxy & TLS](/en/reverse-proxy.html).
+
+Then four cards:
 
 - **Who moderates**: everyone with the moderation role. They review reported
   content and decide on it, see only what was reported, and have no access to
@@ -149,6 +165,17 @@ Three cards:
   switches only narrow the server's safe list. SVG or programs can never be
   allowed here. Avatars and the logo are exempt. More on this under
   [Object storage](/en/storage.html).
+- **House rules**: what everybody agrees to before writing. **Standard** is
+  built in, in nine languages, and names your contact. **Own text** takes
+  Markdown, **Address** a page of your own (https). Whatever you choose, the
+  server adds **How we moderate**: how to report, that a person reviews every
+  report, whether texts are checked, what happens next and how long records are
+  kept. Every saved change makes a new version that never changes again, so
+  every agreement and every decision points to the words it was given. A new
+  version does not ask anybody again; **Ask everybody to agree again** does.
+  Until a person agrees, they get no new access token and no AI client gets
+  their consent. Anybody can read the rules without an account at
+  `/api/v1/public/rules`, any earlier version with `?version=N`.
 
 ### Authentication & SSO
 
@@ -158,6 +185,10 @@ Set how people sign in:
   on or off
 - register **SSO providers**: OpenID Connect, OAuth 2.0, SAML 2.0 and LDAP
   (Synology SSO, Keycloak, Authentik, Azure AD, Google, …)
+- per provider, **New accounts need approval**: the first sign-in waits like a
+  registration. Or name **Allowed email domains**: only those come in straight
+  away, everyone else waits. With neither, the provider lets in whoever it
+  knows, and a warning under its switches says so.
 
 Providers are stored in Mongo and apply immediately. See
 [Authentication](/en/authentication.html) and [Single sign-on](/en/sso.html).

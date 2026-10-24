@@ -67,7 +67,7 @@ the `$external` user.
 
 | Variable | Purpose | Default / example | Required |
 | --- | --- | --- | --- |
-| `HINATA_TRUSTED_PROXIES` | Comma-separated CIDRs of reverse proxies allowed to set `X-Forwarded-For`. Empty = trust none | `172.16.0.0/12` | Recommended |
+| `HINATA_TRUSTED_PROXIES` | Comma-separated CIDRs of reverse proxies allowed to set `X-Forwarded-For`. Empty = trust none | `172.16.0.0/12` | **Yes (behind a proxy)** |
 
 !!! warning
     Set this to exactly the address range your proxy reaches the container from.

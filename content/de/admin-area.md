@@ -111,7 +111,9 @@ was diese Plattform anbietet.
   App Store und bei Google Play sowie für die DSGVO. Überschreibt
   `HINATA_PRIVACY_POLICY_URL`.
 - **Anmeldung**: lokale Anmeldung, Selbstregistrierung und Freigabe durch die
-  Administration.
+  Administration. Lässt die Selbstregistrierung Menschen ohne Freigabe herein,
+  sagt ein Hinweis unter den Schaltern, was das bedeutet (siehe **Wer
+  hereinkommt** unten).
 - **Plattform-Verhalten**: mehrere Personen an einem Vorgang, Antworten per
   E-Mail und **Projektvorlagen** (Projekte kopieren, das Vorlagen-Kennzeichen
   und Fristen als Versatz zum Termin des Projekts). Aus lassen heißt: Projekte
@@ -136,7 +138,23 @@ was diese Plattform anbietet.
 
 ### Moderation
 
-Drei Karten:
+Lässt ein Weg Menschen herein, ohne dass jemand entscheidet, beginnt der
+Abschnitt mit **Wer hereinkommt**: Selbstregistrierung ohne Freigabe oder ein
+SSO-Anbieter, der beim ersten Anmelden aktive Konten anlegt. Wer so ein Konto
+hat, liest organisationsweite Seiten und das Verzeichnis. Nach dem Digital
+Services Act gelten diese Inhalte dann als öffentlich, und die Instanz hat die
+Pflichten einer Online-Plattform. **Freigabe einschalten** schließt alle
+genannten Wege und speichert. Beim Update auf diese Version und bei jeder neuen
+Instanz schließt Hinata sie selbst und sagt allen Admins Bescheid. Wer einen
+Weg wieder öffnet, bestätigt das beim Speichern ausdrücklich. Jede Änderung
+steht im Audit-Log.
+
+Kommen Anfragen über einen Proxy, dem der Server nicht vertraut, steht einen
+Tag lang eine Warnung über den Karten: Dann zählt jeder Client als Adresse des
+Proxys. Setz `HINATA_TRUSTED_PROXIES`, siehe
+[Reverse Proxy & TLS](/de/reverse-proxy.html).
+
+Danach vier Karten:
 
 - **Wer moderiert**: alle Personen mit der Rolle Moderation. Sie prüfen
   gemeldete Inhalte und entscheiden über sie, sehen nur, was gemeldet ist, und
@@ -155,6 +173,18 @@ Drei Karten:
   oder senden. Die Schalter schränken die sichere Liste des Servers
   nur ein. SVG oder Programme lassen sich hier nie erlauben. Avatare und das
   Logo sind ausgenommen. Mehr dazu unter [Objektspeicher](/de/storage.html).
+- **Hausregeln**: dem stimmen alle zu, bevor sie schreiben. **Standard** ist
+  eingebaut, in neun Sprachen, und nennt euren Kontakt. **Eigener Text** nimmt
+  Markdown, **Adresse** eine eigene Seite (https). Was du auch wählst, der
+  Server hängt **So moderieren wir** an: wie man meldet, dass ein Mensch jede
+  Meldung prüft, ob Texte geprüft werden, wie es weitergeht und wie lange
+  aufbewahrt wird. Jede gespeicherte Änderung ergibt eine neue Fassung, die sich
+  nie mehr ändert. So zeigt jede Zustimmung und jede Entscheidung auf den
+  Wortlaut, der damals galt. Eine neue Fassung fragt niemanden erneut, **Alle
+  neu zustimmen lassen** schon. Bis eine Person zustimmt, bekommt sie kein
+  neues Zugriffstoken, und kein KI-Client bekommt ihre Zustimmung. Ohne Konto
+  liest jeder die Regeln unter `/api/v1/public/rules`, jede frühere Fassung mit
+  `?version=N`.
 
 ### Authentifizierung & SSO
 
@@ -164,6 +194,10 @@ Hier legst du fest, wie sich Personen anmelden:
   **Admin-Genehmigung** ein- oder ausschalten
 - **SSO-Anbieter** registrieren: OpenID Connect, OAuth 2.0, SAML 2.0 und LDAP
   (Synology SSO, Keycloak, Authentik, Azure AD, Google, …)
+- je Anbieter **Neue Konten brauchen eine Freigabe**: Das erste Anmelden wartet
+  wie eine Registrierung. Oder du nennst **Erlaubte E-Mail-Domains**: Nur diese
+  kommen gleich herein, alle anderen warten. Ohne beides lässt der Anbieter
+  herein, wen er kennt, und ein Hinweis unter seinen Schaltern sagt das.
 
 Anbieter werden in Mongo gespeichert und wirken sofort. Siehe
 [Authentifizierung](/de/authentication.html) und [Single Sign-on](/de/sso.html).

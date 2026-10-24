@@ -64,6 +64,13 @@ HINATA_TRUSTED_PROXIES=172.16.0.0/12
       --format '{{range .IPAM.Config}}{{.Subnet}}{{end}}'
     ```
 
+Der Server liest `X-Forwarded-For` von rechts und überspringt jede Adresse aus
+`HINATA_TRUSTED_PROXIES`. Die erste Adresse, die nicht dazugehört, ist der
+Client. Was ein Client weiter links in den Header schreibt, zählt also nicht.
+Kommt `X-Forwarded-For` von einem Gegenpart, dem der Server nicht vertraut,
+schreibt er das einmal ins Log, und **Adminbereich › Moderation** zeigt einen Tag
+lang eine Warnung. Daran erkennst du, dass der Wert fehlt oder falsch ist.
+
 !!! tip "HSTS ist bereits erledigt"
     Der Server sendet selbst `Strict-Transport-Security`, CSP und
     `Referrer-Policy`. HSTS musst du im Proxy **nicht** ergänzen. TLS und die
