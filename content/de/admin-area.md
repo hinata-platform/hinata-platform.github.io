@@ -138,6 +138,8 @@ was diese Plattform anbietet.
 
 ### Moderation
 
+![Adminbereich, Moderation: wer hereinkommt, wer moderiert und der Kontakt für Meldungen](/assets/img/shot-admin-moderation.png)
+
 Lässt ein Weg Menschen herein, ohne dass jemand entscheidet, beginnt der
 Abschnitt mit **Wer hereinkommt**: Selbstregistrierung ohne Freigabe oder ein
 SSO-Anbieter, der beim ersten Anmelden aktive Konten anlegt. Wer so ein Konto

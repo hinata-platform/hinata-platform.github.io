@@ -11,6 +11,8 @@ Every server has its own moderation, run by your organization. When something br
 
 Every issue, comment, voice message, file and knowledge base page has **Report …** in its **⋯** menu, and so does every person's profile. The file viewer has it too.
 
+![Reporting: first what the problem is, then what moderation should know](/assets/img/shot-moderation-report.png)
+
 1. Choose what the problem is: harassment, insults or hate; threat or violence; sexual content; endangering children; private data without consent; spam, fraud or malware; infringement of the law; or something else.
 2. Add what moderation should know. For endangering children, an infringement of the law and something else, a short description is required.
 3. Send it with **Report**. By sending you confirm that your details are true to the best of your knowledge.

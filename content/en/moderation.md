@@ -33,6 +33,8 @@ The aim is an answer within 24 hours. After 20 hours the moderators get a remind
 
 On a wide screen the list and the open case stand side by side.
 
+![The moderation page with the open cases and one case opened beside them](/assets/img/shot-moderation-case.png)
+
 ## A case
 
 **Take** makes the case yours, so that two people do not work on it at once. **Give back** returns it. When somebody has held a case for two hours without deciding, anybody else can **Take over**.
@@ -47,6 +49,8 @@ The case shows:
 - **History**: every step, with who took it and why.
 
 ## Deciding
+
+![The decision, with the statement on the right as the person will read it](/assets/img/shot-moderation-decision.png)
 
 **Decide …** opens the decision. Choose the outcome:
 
