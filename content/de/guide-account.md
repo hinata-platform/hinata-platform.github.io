@@ -188,6 +188,10 @@ Hat dein Betreiber die Funktion aktiviert, erstellst du auf der Karte
 dürfen nur, was du erlaubst. Das Geheimnis siehst du nur beim Erstellen. Fehlt
 die Karte, ist die Funktion aus. Siehe [MCP-Server](/de/mcp.html).
 
+## Blockierte Personen
+
+Unter **Blockierte Personen** siehst du, wen du blockiert hast und seit wann, die neuesten zuerst. **Aufheben** beendet eine Blockierung sofort und ohne Rückfrage. Was Blockieren bewirkt, steht unter [Kommentare & Anhänge](/de/guide-collaboration.html#jemanden-blockieren). Fehlt der Eintrag, kennt dein Server das Blockieren noch nicht.
+
 ## Deine Daten
 
 Deine Rechte aus der DSGVO sind hier als Buttons umgesetzt.
