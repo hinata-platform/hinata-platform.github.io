@@ -186,6 +186,13 @@
      }
     ],
     [
+     "guide-safety",
+     {
+      "en": "Report and block",
+      "de": "Melden und blockieren"
+     }
+    ],
+    [
      "guide-sharing",
      {
       "en": "Sharing an issue",
@@ -540,6 +547,20 @@
      }
     ],
     [
+     "moderation",
+     {
+      "en": "Moderation",
+      "de": "Moderation"
+     }
+    ],
+    [
+     "moderation-operators",
+     {
+      "en": "Moderation for operators",
+      "de": "Moderation für Betreiber"
+     }
+    ],
+    [
      "project-settings",
      {
       "en": "Project settings",
@@ -600,6 +621,13 @@
    {
     "en": "Terms of service",
     "de": "Nutzungsbedingungen"
+   }
+  ],
+  [
+   "impressum",
+   {
+    "en": "Imprint",
+    "de": "Impressum"
    }
   ]
  ],

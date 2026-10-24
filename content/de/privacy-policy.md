@@ -5,7 +5,7 @@ description: Datenschutzerklärung der App Hinata nach Art. 13 und 14 DSGVO mit 
 
 # Datenschutzerklärung
 
-*Stand: 15. Juli 2026*
+*Stand: 24. Oktober 2026*
 
 Nach Art. 13 und 14 der Datenschutz-Grundverordnung (DSGVO) informieren wir Sie hier über die Datenverarbeitung bei der Nutzung der Anwendung Hinata („App“).
 
@@ -15,10 +15,10 @@ Nach Art. 13 und 14 der Datenschutz-Grundverordnung (DSGVO) informieren wir Sie 
 
 Verantwortlicher im Sinne des Art. 4 Nr. 7 DSGVO für die Bereitstellung der App (Vertrieb über die App Stores oder als Webanwendung) und für die in dieser Erklärung beschriebene Verarbeitung ist:
 
-Rebar Ahmad
-Weberstr. 58
-47798 Krefeld
-Deutschland
+Rebar Ahmad\
+Weberstr. 58\
+47798 Krefeld\
+Deutschland\
 E-Mail: mail@ahmadre.com
 
 Ein Datenschutzbeauftragter ist gesetzlich nicht vorgeschrieben und nicht bestellt.
@@ -28,7 +28,7 @@ Ein Datenschutzbeauftragter ist gesetzlich nicht vorgeschrieben und nicht bestel
 Hinata ist eine Anwendung zur Projekt- und Vorgangsverwaltung, die Organisationen **selbst auf eigener Infrastruktur hosten**. Die App verbindet sich ausschließlich mit der Serverinstanz, deren Adresse Sie oder Ihre Organisation eingeben.
 
 - Der **Herausgeber der App** (§ 1) stellt nur die Anwendungssoftware bereit. Er betreibt keine Serverinstanz, speichert keine Konto- oder Inhaltsdaten und hat keinen Zugriff auf die Daten, die Sie über die App an eine Serverinstanz übermitteln.
-- Der **Betreiber der jeweiligen Serverinstanz** (z. B. Ihre Organisation) ist alleiniger Verantwortlicher im Sinne der DSGVO für die gesamte serverseitige Datenverarbeitung. Das betrifft insbesondere Konten, Inhalte (Projekte, Vorgänge, Kommentare, Anhänge, Zeiterfassung, Wissensdatenbank), Serverprotokolle, den E-Mail-Versand (der Betreiber richtet dafür seinen eigenen E-Mail- oder SMTP-Anbieter ein) sowie die eingesetzte Infrastruktur für Speicher und Hosting.
+- Der **Betreiber der jeweiligen Serverinstanz** (z. B. Ihre Organisation) ist alleiniger Verantwortlicher im Sinne der DSGVO für die gesamte serverseitige Datenverarbeitung. Das betrifft insbesondere Konten, Inhalte (Projekte, Vorgänge, Kommentare, Anhänge, Zeiterfassung, Wissensdatenbank), Meldungen, Entscheidungen der Moderation, Blockierungen, Zustimmungen zu den Hausregeln, Serverprotokolle, den E-Mail-Versand (der Betreiber richtet dafür seinen eigenen E-Mail- oder SMTP-Anbieter ein) sowie die eingesetzte Infrastruktur für Speicher und Hosting.
 
 Für Auskunft, Löschung und alle weiteren Betroffenenrechte zu den Daten auf einer Instanz wenden Sie sich bitte an den Betreiber Ihrer Instanz. Es gelten dessen Datenschutzhinweise.
 
@@ -38,13 +38,14 @@ Die App selbst verarbeitet Daten ausschließlich lokal auf Ihrem Gerät, soweit 
 
 - die von Ihnen eingetragenen Serveradressen,
 - Anmeldetoken (Access Token und Refresh Token) für die gewählten Instanzen,
-- Anwendungseinstellungen (z. B. Sprache, Hell oder Dunkel, die gewählte Farbe der App, Benachrichtigungseinstellungen).
+- Anwendungseinstellungen (z. B. Sprache, Hell oder Dunkel, die gewählte Farbe der App, Benachrichtigungseinstellungen),
+- ob auf diesem Gerät den Nutzungsbedingungen der App zugestimmt wurde.
 
 Diese Daten bleiben auf Ihrem Gerät und werden nicht an den Herausgeber der App übermittelt. Die App verwendet **keine** Cookies oder vergleichbaren Technologien zu Analyse- oder Werbezwecken. Sie bindet **keine** Dienste zum Tracking ein und sendet **keine** Telemetrie an den Herausgeber. Rechtsgrundlage der lokalen Speicherung ist Art. 6 Abs. 1 lit. b DSGVO und, soweit einschlägig, § 25 Abs. 2 TDDDG (technische Erforderlichkeit). Die gewählte Farbe der App gehört zu Ihren Kontoeinstellungen und wird deshalb zusätzlich auf der von Ihnen gewählten Serverinstanz gespeichert (siehe § 4), damit alle Ihre Geräte dieselbe Darstellung zeigen; sie wird mit Ihrem Konto gelöscht und beim Abmelden vom Gerät entfernt.
 
 ## § 4 Kommunikation mit der von Ihnen gewählten Serverinstanz
 
-Alle Daten, die Sie in der App eingeben (z. B. Zugangsdaten, Inhalte, Kommentare, Dateien, Sprachnachrichten), überträgt die App direkt und transportverschlüsselt (TLS/HTTPS) an die von Ihnen gewählte Serverinstanz. Der Herausgeber der App ist an dieser Übertragung nicht beteiligt und kann sie nicht einsehen. Verantwortlich für die Verarbeitung dieser Daten ist ausschließlich der Betreiber der Instanz (§ 2).
+Alle Daten, die Sie in der App eingeben (z. B. Zugangsdaten, Inhalte, Kommentare, Dateien, Sprachnachrichten), überträgt die App direkt und transportverschlüsselt (TLS/HTTPS) an die von Ihnen gewählte Serverinstanz. Der Herausgeber der App ist an dieser Übertragung nicht beteiligt und kann sie nicht einsehen. Verantwortlich für die Verarbeitung dieser Daten ist ausschließlich der Betreiber der Instanz (§ 2). Das gilt auch für Meldungen, Blockierungen und Ihre Zustimmung zu den Hausregeln: Sie gehen an den Betreiber und seine Moderation, nicht an den Herausgeber der App.
 
 ## § 5 Push-Benachrichtigungen (Hinata Connect und Firebase Cloud Messaging)
 

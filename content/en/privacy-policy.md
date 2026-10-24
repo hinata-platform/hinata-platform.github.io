@@ -5,7 +5,7 @@ description: Privacy policy for the Hinata app under GDPR Art. 13 and 14, coveri
 
 # Privacy Policy
 
-*Last updated: 15 July 2026*
+*Last updated: 24 October 2026*
 
 In accordance with Art. 13 and 14 of the General Data Protection Regulation (GDPR), this policy informs you about the data processing connected with the use of the Hinata application ("App"). The German version of this policy is authoritative.
 
@@ -15,10 +15,10 @@ In accordance with Art. 13 and 14 of the General Data Protection Regulation (GDP
 
 The controller within the meaning of Art. 4(7) GDPR for the provision of the App (distribution via the app stores or as a web application) and for the processing described in this policy is:
 
-Rebar Ahmad
-Weberstr. 58
-47798 Krefeld
-Germany
+Rebar Ahmad\
+Weberstr. 58\
+47798 Krefeld\
+Germany\
 E-mail: mail@ahmadre.com
 
 No data protection officer is legally required or appointed.
@@ -28,7 +28,7 @@ No data protection officer is legally required or appointed.
 Hinata is a project and issue management application that organizations **self-host on their own infrastructure**. The App connects exclusively to the server instance whose address you or your organization enter.
 
 - The **App publisher** (Section 1) only provides the application software. He does not operate any server instance, does not store any account or content data, and has no access to the data you transmit to a server instance through the App.
-- The **operator of the respective server instance** (e.g. your organization) is the sole controller within the meaning of the GDPR for all server-side data processing. This covers in particular accounts, content (projects, issues, comments, attachments, time tracking, knowledge base), server logs, e-mail delivery (the operator configures its own e-mail or SMTP provider) and the storage and hosting infrastructure used.
+- The **operator of the respective server instance** (e.g. your organization) is the sole controller within the meaning of the GDPR for all server-side data processing. This covers in particular accounts, content (projects, issues, comments, attachments, time tracking, knowledge base), reports, moderation decisions, blocks, agreements to the house rules, server logs, e-mail delivery (the operator configures its own e-mail or SMTP provider) and the storage and hosting infrastructure used.
 
 For access, erasure and all other data subject rights concerning data stored on an instance, please contact the operator of your instance. Its privacy notice applies.
 
@@ -38,13 +38,14 @@ The App itself processes data exclusively locally on your device, to the extent 
 
 - the server addresses you enter,
 - sign-in tokens (access and refresh tokens) for the selected instances,
-- application settings (e.g. language, light or dark, the colour you chose for the App, notification preferences).
+- application settings (e.g. language, light or dark, the colour you chose for the App, notification preferences),
+- whether the App's terms of service were agreed to on this device.
 
 This data stays on your device and is not transmitted to the App publisher. The App uses **no** cookies or comparable technologies for analytics or advertising. It embeds **no** tracking services and sends **no** telemetry to the App publisher. The legal basis for this local storage is Art. 6(1)(b) GDPR and, where applicable, Section 25(2) of the German TDDDG (technical necessity). The colour you chose for the App is one of your account settings and is therefore also stored on the server instance you selected (see section 4), so that all your devices show the same appearance; it is deleted together with your account and removed from the device when you sign out.
 
 ## 4. Communication with the server instance you choose
 
-All data you enter in the App (e.g. credentials, content, comments, files, voice messages) is transmitted by the App directly and transport-encrypted (TLS/HTTPS) to the server instance you selected. The App publisher is not involved in this transmission and cannot access it. The controller for the processing of this data is exclusively the operator of the instance (Section 2).
+All data you enter in the App (e.g. credentials, content, comments, files, voice messages) is transmitted by the App directly and transport-encrypted (TLS/HTTPS) to the server instance you selected. The App publisher is not involved in this transmission and cannot access it. The controller for the processing of this data is exclusively the operator of the instance (Section 2). This includes reports, blocks and your agreement to the house rules: they go to the operator and its moderation, not to the App publisher.
 
 ## 5. Push notifications (Hinata Connect and Firebase Cloud Messaging)
 

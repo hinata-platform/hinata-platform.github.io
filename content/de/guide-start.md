@@ -34,10 +34,16 @@ Du brauchst:
 
 Die App ist überall gleich. Was nur am Desktop gilt, steht dabei.
 
+## Den Bedingungen zustimmen
+
+Beim ersten Öffnen bittet dich die App, ihren Nutzungsbedingungen zuzustimmen: Für beleidigende, bedrohende oder anstößige Inhalte und für Menschen, die andere belästigen, gibt es keine Toleranz. **Nutzungsbedingungen lesen** öffnet sie vollständig. Die App fragt einmal je Gerät und erst wieder, wenn sich die Bedingungen ändern.
+
+Nach dem Anmelden bittet dich dein Server womöglich, seinen **Hausregeln** zuzustimmen. Sie sind die deiner Organisation und enden mit **So moderieren wir**: wie man meldet, wer Meldungen prüft und wie du einer Entscheidung widersprichst. Sobald du zustimmst, geht es weiter, und **Abmelden** steht immer daneben. Lässt deine Organisation alle einer neuen Fassung zustimmen, fragt der Server dich erneut.
+
 ## Mit deinem Server verbinden
 
 ![Mit deinem Server verbinden](/assets/img/shot-connect-server.png)
-*Der erste Bildschirm nach der Installation.*
+*Der Bildschirm nach der Zustimmung zu den Bedingungen.*
 
 Gib die Adresse ins Feld „Server-URL“ ein (vorbelegt mit `https://`) und tippe auf „Verbinden“. Die App geht erst weiter, wenn sich der Server als Hinata-Server ausweist. Sie rät nie und nimmt keinen Standardserver.
 
@@ -72,7 +78,7 @@ Welche Optionen der Anmeldebildschirm zeigt, legt deine Administration fest.
 ![Der Anmeldebildschirm](/assets/img/shot-sign-in.png)
 *Der Anmeldebildschirm mit allen Optionen.*
 
-Der Chip oben auf der Karte nennt den Server, bei dem du dich anmeldest. Darüber wechselst du auch zu einem anderen.
+Der Chip oben auf der Karte nennt den Server, bei dem du dich anmeldest. Darüber wechselst du auch zu einem anderen. **Kontakt** unter der Karte erreicht, wer diesen Server betreibt.
 
 ### Mit Benutzername und Passwort
 

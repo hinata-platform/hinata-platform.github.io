@@ -188,6 +188,26 @@ Hat dein Betreiber die Funktion aktiviert, erstellst du auf der Karte
 dürfen nur, was du erlaubst. Das Geheimnis siehst du nur beim Erstellen. Fehlt
 die Karte, ist die Funktion aus. Siehe [MCP-Server](/de/mcp.html).
 
+## Blockierte Personen
+
+Unter **Blockierte Personen** siehst du, wen du blockiert hast und seit wann, die neuesten zuerst. **Aufheben** beendet eine Blockierung sofort und ohne Rückfrage. Was Blockieren bewirkt, steht unter [Kommentare & Anhänge](/de/guide-collaboration.html#jemanden-blockieren). Fehlt der Eintrag, kennt dein Server das Blockieren noch nicht.
+
+## Hilfe und Kontakt
+
+**Hilfe und Kontakt** sammelt, was du brauchst, wenn etwas nicht stimmt:
+
+- **Moderation von …**: die E-Mail-Adresse der Moderation deines Servers.
+- **Hausregeln**: die Regeln vollständig, mit der Fassung, der du zugestimmt hast, und wann.
+- **Etwas anderes melden …**: für alles ohne eigenes Menü, etwa den Namen eines Projekts, ein Board oder ein Team. Sag, wo es ist und warum. Die Moderation sieht, dass du gemeldet hast, sonst niemand.
+- **Impressum von …**: das Impressum des Betreibers, wenn dein Server eines nennt.
+- **Über die App**: wer die App bereitstellt, ihre Nutzungsbedingungen und ihre Datenschutzerklärung.
+
+Auf einem Server ohne Moderation steht dort nur **Über die App**.
+
+## Wenn ein Text nicht gespeichert wird
+
+Dein Server prüft Texte beim Speichern. Enthält ein Kommentar, ein Vorgang, eine Seite oder dein Profil etwas, das die Hausregeln nicht erlauben, speichert er sie nicht. Du siehst dann genau dort, wo du geschrieben hast, welches Wort es war. Dein Entwurf bleibt stehen, du kannst ihn ändern und noch einmal speichern. **Hausregeln lesen** öffnet die Regeln deines Servers.
+
 ## Deine Daten
 
 Deine Rechte aus der DSGVO sind hier als Buttons umgesetzt.

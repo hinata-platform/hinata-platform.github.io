@@ -5,9 +5,11 @@ description: Terms of service for the Hinata app, covering scope, user obligatio
 
 # Terms of Service
 
-*Last updated: 15 July 2026*
+*Last updated: 24 October 2026*
 
 These Terms of Service govern the use of the Hinata application ("App"). By installing or using the App, you agree to these terms. The German version is authoritative.
+
+**In short:** Hinata connects you to your organisation's server. There is zero tolerance for offensive, threatening or objectionable content and for people who harass others. Every organisation has moderation for this, which usually looks at reports within 24 hours. The App shows this short version before the first sign-in and asks you to agree to these terms.
 
 **Important note on scope:** These terms apply solely to the App as software. Hinata is a client application for self-hosted server instances. The provider only supplies the App and does **not** operate any server instance. Server instances are self-hosted and operated by third parties (e.g. your organization) on their own responsibility. The use of a specific instance is governed solely by the terms of its operator.
 
@@ -15,10 +17,10 @@ These Terms of Service govern the use of the Hinata application ("App"). By inst
 
 The provider of the App is:
 
-Rebar Ahmad
-Weberstr. 58
-47798 Krefeld
-Germany
+Rebar Ahmad\
+Weberstr. 58\
+47798 Krefeld\
+Germany\
 E-mail: mail@ahmadre.com
 
 These terms apply to the provision of the App via the app stores or as a web application. They do not apply to server instances operated by third parties or to the services provided there.
@@ -61,40 +63,50 @@ The provider grants you a non-exclusive, non-transferable, revocable right to us
 
 You retain all rights to the content you create. Content is stored on the server instance you selected and not with the provider. The operator of that instance decides on storage, visibility and deletion in accordance with its own terms. You warrant that you hold the necessary rights to the content you post.
 
-## 8. Availability and push delivery
+## 8. Content, reporting and blocking
+
+There is zero tolerance for objectionable content and abusive behaviour. In particular, content that insults, threatens or degrades others, sexual content, anything that endangers children, private data of others without their consent, spam, fraud and malware are not allowed, and neither is harassing other people. Knowingly false reports are themselves a violation.
+
+Every server instance has its own moderation, run by its operator. In the App you report content with "⋯ › Report" and anything else under Settings › Help and contact; people without an account use the public report form of the instance. Moderation usually looks at a report within 24 hours. It removes violations and, in serious or repeated cases, suspends accounts. How it decides and how you can object to a decision is set out in the house rules of the instance, which the App asks you to agree to after signing in.
+
+You can block other people in the App. Blocking only affects you: what they set off no longer reaches you and their comments are folded away. The person is not told.
+
+The provider of the App does not moderate any instance and does not see reports or blocks. For questions about the App, contact the provider at mail@ahmadre.com. For content on an instance, contact its operator; the App names the contact under Settings › Help and contact.
+
+## 9. Availability and push delivery
 
 The App is provided without any commitment to a particular level of availability. The availability of the server instance you use lies solely with its operator. Where the provider operates a central relay component for delivering push notifications, he endeavours to keep it available. There is no entitlement to uninterrupted push delivery.
 
-## 9. Third-party services
+## 10. Third-party services
 
 The App may enable links to third-party services (e.g. single sign-on, Git services, the platform vendors' push services). The terms and privacy notices of the respective third party apply to those services. The provider assumes no responsibility for the content and availability of third-party services.
 
-## 10. Warranty and liability
+## 11. Warranty and liability
 
 The App is provided free of charge. The provider is therefore liable only for intent and gross negligence and in accordance with the principles applicable to gratuitous services.
 
 Otherwise, the provider is liable without limitation for intent and gross negligence and for injury to life, body or health. For slight negligence the provider is liable only for breach of a material contractual obligation (cardinal obligation), limited in amount to the foreseeable damage typical for the contract. Any further liability is excluded. Mandatory statutory liability, in particular under product liability law, remains unaffected. The provider is not liable for the operation of server instances (Section 3).
 
-## 11. Termination
+## 12. Termination
 
 You may end your use at any time by uninstalling the App. The termination of an account on a server instance is governed by the rules of the respective operator.
 
-## 12. Data protection
+## 13. Data protection
 
 For information on data processing by the App, please see the App's Privacy Policy. Server-side data processing is governed by the privacy notice of the respective instance operator.
 
-## 13. Changes to these Terms
+## 14. Changes to these Terms
 
 The provider may amend these terms with effect for the future where objective reasons require it (e.g. a change in features or the legal framework). You will be informed of material changes in an appropriate manner. If you do not object within a reasonable period or continue to use the App, the changes are deemed accepted.
 
-## 14. Governing law and jurisdiction
+## 15. Governing law and jurisdiction
 
 The law of the Federal Republic of Germany applies, excluding the UN Convention on Contracts for the International Sale of Goods. Mandatory consumer protection provisions of the state in which you have your habitual residence remain unaffected. If the user is a merchant, a legal entity under public law or a special fund under public law, the place of jurisdiction is Krefeld, Germany.
 
-## 15. Final provisions
+## 16. Final provisions
 
 Should individual provisions of these terms be or become invalid, the validity of the remaining provisions remains unaffected. The invalid provision is replaced by the applicable statutory rule.
 
-## 16. Contact
+## 17. Contact
 
 For questions about these terms, contact us at mail@ahmadre.com.

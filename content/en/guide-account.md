@@ -183,6 +183,26 @@ access tokens for AI assistants and scripts. They can only do what you allow.
 The secret is shown once, at creation. No card means the feature is off. See
 [MCP server](/en/mcp.html).
 
+## Blocked people
+
+**Blocked people** lists whom you have blocked and since when, newest first. **Unblock** lifts a block at once, without asking. What blocking does is explained under [Comments & attachments](/en/guide-collaboration.html#block-someone). If the entry is missing, your server does not support blocking yet.
+
+## Help and contact
+
+**Help and contact** gathers what you need when something is wrong:
+
+- **Moderation of …**: the email address of whoever moderates your server.
+- **House rules**: the rules in full, with the version you agreed to and when.
+- **Report something else …**: for what has no menu of its own, such as a project's name, a board or a team. Say where it is and why. Moderation sees that you reported it, nobody else does.
+- **Imprint of …**: the operator's imprint, when your server names one.
+- **About the app**: who provides the app, its terms of service and its privacy policy.
+
+On a server without moderation, only **About the app** is there.
+
+## When a text is not saved
+
+Your server checks texts when they are saved. When a comment, an issue, a page or your profile contains something the house rules do not allow, it does not save it. You see which word it was right where you were writing. Your draft stays, so you can change it and save again. **Read the house rules** opens your server's rules.
+
 ## Your data
 
 Your GDPR rights are available here as buttons.

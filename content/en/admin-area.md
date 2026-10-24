@@ -44,7 +44,7 @@ rules:
 
 The Admin area has three groups:
 
-- **General**, **Platform** and **Security**
+- **General**, **Platform**, **Security** and **Moderation**
 - **Authentication**, **E-mail** and **Git integration**
 - **Audit log** and **Users**
 
@@ -58,10 +58,11 @@ Manage the people on your instance:
 
 - **approve** pending registrations
 - **enable** or disable accounts
-- assign **roles**: **Admin** (`ADMIN`) and **Organization admin**
-  (`ORG_ADMIN`). The two are independent, so a person can hold one, both or
-  neither. Select several people to make them organization admins, or to take
-  the role away, in one go.
+- assign **roles**: **Admin** (`ADMIN`), **Organization admin**
+  (`ORG_ADMIN`) and **Moderation** (`MODERATOR`). The three are independent,
+  so a person can hold one, several or none. Select several people to make
+  them organization admins, or to take the role away, in one go. You hand out
+  moderation in the person's panel.
 - change a person's **sign-in address**
 
 A few rules apply to the roles. You cannot make yourself an organization
@@ -70,7 +71,9 @@ not a hard barrier: with a second administrator account the role could still
 be granted. That is why every grant is recorded in the audit log, which cannot
 be switched off, and every organization admin is notified. The last organization admin
 cannot be removed, deactivated or deleted. When someone joins the role or
-leaves it, every organization admin gets a notification.
+leaves it, every organization admin gets a notification. The same holds for
+moderation: not to yourself, the last person with the role stays, every grant
+is in the audit log, and everyone who moderates hears about it.
 
 When you change a person's sign-in address, they are told at their old
 address. For one day after that, no password reset reaches them, neither from
@@ -84,6 +87,11 @@ recorded for each person in the audit log, and each of them gets a
 notification. If you want the
 roles apart, separate them here on purpose. See
 [Organization](/en/organization.html).
+
+With the update to a version with moderation, every existing admin also
+becomes a moderator once, so that reports reach somebody from the start. That
+too is recorded for each person in the audit log. The notification suggests
+handing the role to people who do not run the platform.
 
 When self-registration with admin approval is on (see below), new sign-ups wait
 here until an admin lets them in.
@@ -99,6 +107,8 @@ platform offers.
 - **Privacy policy URL**: the link the app shows. Required for App Store and
   Play releases and for GDPR. Overrides `HINATA_PRIVACY_POLICY_URL`.
 - **Sign-in**: local authentication, self-registration and admin approval.
+  While self-registration lets people in without approval, a warning under the
+  switches says what that means (see **Who comes in** below).
 - **Platform behaviour**: several people on one issue, replying to an issue by
   e-mail, and **project templates** (copying a project, the template marker and
   deadlines kept as an offset from the project's event date). Left off, projects
@@ -121,6 +131,102 @@ platform offers.
     environment variable. Env values are only the starting point for a fresh
     instance.
 
+### Moderation
+
+![Admin area, Moderation: who comes in, who moderates and the contact for reports](/assets/img/shot-admin-moderation.png)
+
+When a way in lets people in without anybody deciding, the section starts
+with **Who comes in**: self-registration without approval, or an SSO provider
+that creates active accounts at the first sign-in. Whoever has such an account
+reads organization-wide pages and the directory. Under the Digital Services Act
+that content then counts as public, and the instance has the duties of an
+online platform. **Switch approval on** closes every way listed and saves.
+Hinata closes them itself when it is updated to this version and on every new
+instance, and tells every admin. Opening one again takes an explicit
+confirmation on save. Every change is recorded in the audit log.
+
+If requests come through a proxy the server does not trust, a warning above the
+cards says so for a day: every client then counts as the proxy's address. Set
+`HINATA_TRUSTED_PROXIES`, see [Reverse proxy & TLS](/en/reverse-proxy.html).
+
+Then six cards:
+
+- **Who moderates**: everyone with the moderation role. They review reported
+  content and decide on it, see only what was reported, and have no access to
+  the admin area. When only one person moderates, the card says two are
+  better, so that nobody decides on a report about themselves.
+- **Contact for reports**: operator, email address and a link to the imprint.
+  This is how people reach whoever runs the instance. The app stores require a
+  published contact, the Digital Services Act a point of contact (Art. 11 and
+  12). Without signing in, the contact is in `/api/v1/meta`. While the email
+  address is missing, the card shows a warning. An address in
+  `HINATA_MODERATION_CONTACT_EMAIL` applies as long as none is entered here.
+- **Retention and figures**: whether done cases, their reports and the
+  quarantine are deleted after 6 or 12 months, unless law enforcement was told.
+  **Download figures for …** gives the yearly figures of moderation in the
+  European Commission's template, one CSV file per part in a ZIP, for this year
+  or an earlier one. What the figures hold and what you add before publishing
+  them is on [Moderation for operators](/en/moderation-operators.html#yearly-figures).
+- **House rules**: what everybody agrees to before writing. **Standard** is
+  built in, in nine languages, and names your contact. **Own text** takes
+  Markdown, **Address** a page of your own (https). Whatever you choose, the
+  server adds **How we moderate**: how to report, that a person reviews every
+  report, whether texts are checked, what happens next and how long records are
+  kept. Every saved change makes a new version that never changes again, so
+  every agreement and every decision points to the words it was given. A new
+  version does not ask anybody again; **Ask everybody to agree again** does.
+  An app that is open asks the next time it comes to the front.
+  Until a person agrees, they get no new access token and no AI client gets
+  their consent. Anybody can read the rules without an account at
+  `/api/v1/public/rules`, any earlier version with `?version=N`.
+- **Automatic text check**: which texts the server refuses when they are
+  saved, and whether it sends unclear cases to moderation. More on this just
+  below.
+- **File types**: one switch per group, namely images, PDF, Office
+  documents, text and spreadsheets, ZIP and voice messages. Files of a group
+  that is switched off can no longer be attached, put into texts or sent. The
+  switches only narrow the server's safe list. SVG or programs can never be
+  allowed here. Avatars and the logo are exempt. More on this under
+  [Object storage](/en/storage.html).
+
+The automatic text check compares texts with word lists when they are saved:
+issues, comments, knowledge pages, name, position and pronouns in a profile,
+usernames and the names of AI clients. That holds on every way in, in the app,
+over MCP, from mail and from Git. None of it leaves the server. Code, logs and
+technical terms such as `kill -9` set nothing off. The card has:
+
+- **Refuse clear violations**, on. Threats, hate speech and the like are not
+  saved. The writer sees which word it was and keeps the draft.
+- **Send unclear cases to moderation**, off, also after the update. When it is
+  on, the text is saved and moderation gets a report without a reporter, only
+  for new finds from the built-in lists. The system then checks your members'
+  texts itself. Depending on your organisation that first needs the consent of
+  your staff representatives, in Germany under § 87(1) no. 6 BetrVG or the
+  law on staff representation in the public sector, and a data protection
+  impact assessment under Art. 35 GDPR. That is why the server asks once more
+  when it is turned on.
+- **Own terms** are always refused, however they are spelled. They never send
+  anything to moderation, or any mention of a name or of the works council
+  could be routed there. They stand word for word in the public house rules,
+  under **How we moderate**, and in every earlier version of them. Never enter
+  a person's name or anything confidential.
+- **Exceptions** are words that are harmless for you, such as technical terms.
+  Content that endangers children stays blocked all the same. Both lists take
+  up to 500 terms of 60 characters each.
+- **Try a text** shows what the server would do with a text, with the saved
+  settings. The text is neither stored nor counted.
+
+The built-in lists cover German and English. For other languages only your own
+terms work. The text check does not look at images and attachments; reports
+cover those. **How we moderate** names your own terms and whether unclear cases
+go to moderation. Every change of the switches and lists is in the audit log. A
+refused mail becomes no issue and gets no reply. Its connection under
+**E-mail** counts how many there were.
+
+How moderators work through reports is on [Moderation](/en/moderation.html).
+What the Digital Services Act asks of you as the operator, and how the yearly
+figures work, is on [Moderation for operators](/en/moderation-operators.html).
+
 ### Authentication & SSO
 
 Set how people sign in:
@@ -129,6 +235,10 @@ Set how people sign in:
   on or off
 - register **SSO providers**: OpenID Connect, OAuth 2.0, SAML 2.0 and LDAP
   (Synology SSO, Keycloak, Authentik, Azure AD, Google, …)
+- per provider, **New accounts need approval**: the first sign-in waits like a
+  registration. Or name **Allowed email domains**: only those come in straight
+  away, everyone else waits. With neither, the provider lets in whoever it
+  knows, and a warning under its switches says so.
 
 Providers are stored in Mongo and apply immediately. See
 [Authentication](/en/authentication.html) and [Single sign-on](/en/sso.html).
