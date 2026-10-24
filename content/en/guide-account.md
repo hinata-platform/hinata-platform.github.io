@@ -183,6 +183,10 @@ access tokens for AI assistants and scripts. They can only do what you allow.
 The secret is shown once, at creation. No card means the feature is off. See
 [MCP server](/en/mcp.html).
 
+## Blocked people
+
+**Blocked people** lists whom you have blocked and since when, newest first. **Unblock** lifts a block at once, without asking. What blocking does is explained under [Comments & attachments](/en/guide-collaboration.html#block-someone). If the entry is missing, your server does not support blocking yet.
+
 ## Your data
 
 Your GDPR rights are available here as buttons.

@@ -226,6 +226,18 @@ New comments, edits, reactions, deletions and attachment changes appear right aw
 
 The switches are in [Your account](/en/guide-account.html). [Staying informed](/en/guide-notifications.html) explains them.
 
+## Block someone
+
+If someone becomes too much, block them: **Block person** in the comment menu, or **Privacy → Block** on their profile. Hinata first shows what changes and what stays.
+
+- Nothing they set off reaches you any more: no bell, no push, no e-mail, no mentions or replies, and no lines in digest mails or the weekly summary.
+- Their comments and voice messages show folded away. **Show** opens one of them until you close the app.
+- They can no longer add you to issues or share time entries with you.
+
+Your work together stays. You still see issues, descriptions, attachments and pages, and what your work needs still arrives: when they assign you something, add you to a project or team, give you a shift or name you as a substitute.
+
+They are not told, and neither is the moderation. If you want someone to look at a piece of content, report it. You can lift a block at any time on their profile or under [Your account](/en/guide-account.html#blocked-people).
+
 ## On a phone
 
 - The composer sticks to the bottom and moves above the keyboard as you type.
