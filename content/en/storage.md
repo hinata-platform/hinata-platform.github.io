@@ -137,6 +137,8 @@ Every byte someone uploads passes the same check before it is stored: attachment
 - **`image/svg+xml` is excluded on purpose.** SVG can embed JavaScript (a stored XSS risk).
 - **Size per kind.** Attachments and images in texts up to `HINATA_STORAGE_MAX_UPLOAD_MB`, voice messages up to 16 MB, avatars up to 12 MB and the logo up to 8 MB. The server reads how many pixels an image has from its header before it opens it, so a small file cannot pass itself off as a huge picture.
 - **File names** are at most 200 characters long and contain no control characters and no `/` or `\`.
+- **Names a system runs are refused** for every kind, whatever the content: programs, scripts, shortcuts and web pages such as `.exe`, `.bat`, `.ps1`, `.js`, `.lnk`, `.html` or `.svg`. A download never turns into one of them.
+- **Text is read before it is kept.** A plain text, CSV or JSON file is read up to its first 8 KB. The bytes of a program refuse it, and so does a start that a browser or the desktop would run: HTML, SVG, XML or a script.
 - A refused upload answers `422` with a localized sentence. Its `details` carry `code: upload.refused` and the reason: `type`, `signature`, `size`, `image`, `metadata`, `fileName`, `empty`, `disabled` or `unreadable`. Every refusal counts into the yearly figures of moderation.
 
 Under **Admin area › Moderation › File types** you switch off whole groups: images, PDF, Office documents, text and spreadsheets, ZIP and voice messages. That only narrows the list. It cannot be widened, so nobody can allow SVG or programs. Avatars and the logo are not affected.
@@ -145,7 +147,7 @@ The server does not check what an image shows. A person reviews reported images.
 
 ### Metadata of images
 
-An image someone puts into a description, a comment or an article is seen by everybody who reads the text. A phone photo often carries the place it was taken in its EXIF data. So the server removes EXIF, XMP and IPTC from embedded images before storing them, GPS position included, along with comments and text blocks. It only cuts these blocks out and does not encode the image again, so quality and animation (GIF, WebP) stay. Only a JPEG whose EXIF says it is shown turned gets turned by the server itself and stored anew, so that it stands the right way up without the EXIF. An image whose blocks cannot be read safely is refused.
+An image someone puts into a description, a comment or an article is seen by everybody who reads the text. A phone photo often carries the place it was taken in its EXIF data. So the server removes EXIF, XMP and IPTC from embedded images before storing them, GPS position included, along with comments and text blocks. It only cuts these blocks out and does not encode the image again, so quality and animation (GIF, WebP) stay. A JPEG whose EXIF says it is shown turned keeps that and nothing else, in one small EXIF block, so it still stands the right way up. It is not encoded anew either, and the server turns its preview itself. An image whose blocks cannot be read safely is refused.
 
 **Attachments stay as they were uploaded.** Whoever attaches a photo as a file on purpose gets it back with all its metadata. Avatars, the logo and previews are encoded anew by the server anyway and carry no metadata.
 
@@ -154,8 +156,10 @@ An image someone puts into a description, a comment or an article is seen by eve
 When a text is saved, the server goes through every image in it:
 
 - **External images** (`http`, `https`) become a link with the text "External image". If the app showed them, merely opening the text would give the address of every reader to the foreign server, and nobody would have checked the bytes. This mostly affects e-mails with embedded logos.
-- **`data:` images** pass the same check as an upload and end up in the media store, at most 20 per save. Where the check refuses one, "Image not included" takes its place.
+- **`data:` images** pass the same check as an upload and end up in the media store, at most 20 per save and each up to 25 megapixels. Where the check refuses one, "Image not included" takes its place. Their preview is made the first time somebody looks at them.
 - Images of this server stay as they are. Any other source becomes "Image not included" as well.
+
+A text holds at most 200 images. Saving one with more is refused with a message that says so.
 
 !!! note "Two size ceilings work together"
     Spring's multipart limits (`max-file-size` / `max-request-size`, driven by the same MB values) are the outer guard. The app also enforces the file count and total size. For larger uploads, raise all of them together.

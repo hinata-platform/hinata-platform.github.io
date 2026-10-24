@@ -19,6 +19,7 @@ Lokale Anmeldung mit Benutzername und Passwort: [Authentifizierung](/de/authenti
 2. Die App lädt die aktiven Provider vom öffentlichen Endpunkt **`/api/v1/auth/sso/providers`** und zeigt für jeden einen Anmeldebutton auf dem Login.
 3. Der Benutzer meldet sich beim Identity Provider an.
 4. Der IdP leitet zu Hinatas Callback zurück. Der Server prüft die Antwort, legt den Benutzer an oder ordnet ihn zu und gibt über den Deep Link **`hinata://auth-callback`** an die App zurück (im Web-Build über den passenden Universal Link).
+5. Der Link trägt einen Code zum einmaligen Einlösen, nie die Tokens. Die App löst ihn unter **`/api/v1/auth/sso/exchange`** mit einem Geheimnis ein, das sie beim Start der Anmeldung behalten hat; der Start trug nur dessen Challenge. Ein Code, der bei jemand anderem landet, etwa in einem weitergeleiteten oder geposteten Link, meldet niemanden an.
 
 !!! info "Funktioniert hinter Proxies und Tunneln"
     Der **State des OAuth-2.0-Authorization-Requests liegt in MongoDB** statt in Cookie oder HTTP-Session. Deshalb klappt der Ablauf auch hinter Reverse Proxies, Load Balancern und Dev-Tunneln (z. B. ngrok), die das Session-Cookie sonst verwerfen oder umschreiben. Das ist anderswo eine häufige Ursache für `authorization_request_not_found`.
