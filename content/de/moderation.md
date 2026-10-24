@@ -33,6 +33,8 @@ Das Ziel ist eine Antwort innerhalb von 24 Stunden. Nach 20 Stunden bekommen die
 
 Auf einem breiten Bildschirm stehen die Liste und der geöffnete Fall nebeneinander.
 
+![Die Moderationsseite mit den offenen Fällen und einem geöffneten Fall daneben](/assets/img/shot-moderation-case.png)
+
 ## Ein Fall
 
 **Übernehmen** macht den Fall zu deinem, damit nicht zwei Leute gleichzeitig daran arbeiten. **Zurückgeben** gibt ihn frei. Hält jemand einen Fall zwei Stunden lang, ohne zu entscheiden, kann jede andere Person ihn **übernehmen**.
@@ -47,6 +49,8 @@ Der Fall zeigt:
 - **Verlauf**: jeder Schritt, mit Person und Grund.
 
 ## Entscheiden
+
+![Die Entscheidung, rechts die Begründung so, wie die Person sie liest](/assets/img/shot-moderation-decision.png)
 
 **Entscheiden …** öffnet die Entscheidung. Wähle das Ergebnis:
 
