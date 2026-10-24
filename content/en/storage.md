@@ -130,11 +130,32 @@ The defaults:
 | Max files in one request | `hinata.storage.max-files-per-request` | `10` |
 | Max total size of one request | `HINATA_STORAGE_MAX_REQUEST_MB` | `100` MB |
 
-Only content types from an explicit allow list are accepted: PNG, JPEG, GIF, WebP, PDF, plain text, CSV, ZIP, JSON, and OOXML Word and Excel documents. Also:
+Every byte someone uploads passes the same check before it is stored: attachments, images in texts, voice messages, avatars, the logo and the attachments of incoming e-mail. What the check refuses is not stored.
 
+- **The content decides, not the declared type.** The server reads the first bytes and compares them with the declared content type. A program that calls itself a PDF is refused. For e-mail attachments only the content counts.
+- **A fixed list per kind.** Attachments may be PNG, JPEG, GIF, WebP, PDF, plain text, CSV, ZIP, JSON, and OOXML Word and Excel documents. Images in texts are PNG, JPEG, GIF or WebP, voice messages M4A, AAC, MP3, WebM, Ogg or WAV, avatars and the logo PNG, JPEG, GIF or BMP.
 - **`image/svg+xml` is excluded on purpose.** SVG can embed JavaScript (a stored XSS risk).
-- **Magic byte verification.** For binary types the server checks the leading bytes against the declared content type, so a file can't pretend to be a PNG.
-- A rejected upload returns a stable, localized error (`error.storage.fileTooLarge`, `error.storage.fileTypeNotAllowed`, `error.storage.contentMismatch`).
+- **Size per kind.** Attachments and images in texts up to `HINATA_STORAGE_MAX_UPLOAD_MB`, voice messages up to 16 MB, avatars up to 12 MB and the logo up to 8 MB. The server reads how many pixels an image has from its header before it opens it, so a small file cannot pass itself off as a huge picture.
+- **File names** are at most 200 characters long and contain no control characters and no `/` or `\`.
+- A refused upload answers `422` with a localized sentence. Its `details` carry `code: upload.refused` and the reason: `type`, `signature`, `size`, `image`, `metadata`, `fileName`, `empty`, `disabled` or `unreadable`. Every refusal counts into the yearly figures of moderation.
+
+Under **Admin area › Moderation › File types** you switch off whole groups: images, PDF, Office documents, text and spreadsheets, ZIP and voice messages. That only narrows the list. It cannot be widened, so nobody can allow SVG or programs. Avatars and the logo are not affected.
+
+The server does not check what an image shows. A person reviews reported images.
+
+### Metadata of images
+
+An image someone puts into a description, a comment or an article is seen by everybody who reads the text. A phone photo often carries the place it was taken in its EXIF data. So the server removes EXIF, XMP and IPTC from embedded images before storing them, GPS position included, along with comments and text blocks. It only cuts these blocks out and does not encode the image again, so quality and animation (GIF, WebP) stay. Only a JPEG whose EXIF says it is shown turned gets turned by the server itself and stored anew, so that it stands the right way up without the EXIF. An image whose blocks cannot be read safely is refused.
+
+**Attachments stay as they were uploaded.** Whoever attaches a photo as a file on purpose gets it back with all its metadata. Avatars, the logo and previews are encoded anew by the server anyway and carry no metadata.
+
+### Images from other sources
+
+When a text is saved, the server goes through every image in it:
+
+- **External images** (`http`, `https`) become a link with the text "External image". If the app showed them, merely opening the text would give the address of every reader to the foreign server, and nobody would have checked the bytes. This mostly affects e-mails with embedded logos.
+- **`data:` images** pass the same check as an upload and end up in the media store, at most 20 per save. Where the check refuses one, "Image not included" takes its place.
+- Images of this server stay as they are. Any other source becomes "Image not included" as well.
 
 !!! note "Two size ceilings work together"
     Spring's multipart limits (`max-file-size` / `max-request-size`, driven by the same MB values) are the outer guard. The app also enforces the file count and total size. For larger uploads, raise all of them together.

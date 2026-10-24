@@ -136,7 +136,7 @@ was diese Plattform anbietet.
 
 ### Moderation
 
-Zwei Karten:
+Drei Karten:
 
 - **Wer moderiert**: alle Personen mit der Rolle Moderation. Sie prüfen
   gemeldete Inhalte und entscheiden über sie, sehen nur, was gemeldet ist, und
@@ -149,6 +149,12 @@ Zwei Karten:
   (Art. 11 und 12). Ohne Anmeldung steht der Kontakt in `/api/v1/meta`. Fehlt
   die E-Mail-Adresse, zeigt die Karte eine Warnung. Eine Adresse in
   `HINATA_MODERATION_CONTACT_EMAIL` gilt, solange hier keine eingetragen ist.
+- **Dateitypen**: ein Schalter je Gruppe, nämlich Bilder, PDF,
+  Office-Dokumente, Text und Tabellen, ZIP und Sprachnachrichten. Dateien
+  einer abgeschalteten Gruppe kann niemand mehr anhängen, in Texte einfügen
+  oder senden. Die Schalter schränken die sichere Liste des Servers
+  nur ein. SVG oder Programme lassen sich hier nie erlauben. Avatare und das
+  Logo sind ausgenommen. Mehr dazu unter [Objektspeicher](/de/storage.html).
 
 ### Authentifizierung & SSO
 
