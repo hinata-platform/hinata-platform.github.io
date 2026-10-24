@@ -226,6 +226,18 @@ Neue Kommentare, Bearbeitungen, Reaktionen, Löschungen und Änderungen an Anhä
 
 Die Schalter liegen unter [Dein Konto](/de/guide-account.html). [Auf dem Laufenden bleiben](/de/guide-notifications.html) erklärt sie.
 
+## Jemanden blockieren
+
+Wird dir eine Person zu viel, blockierst du sie: im Kommentarmenü über **Person blockieren** oder im Profil der Person unter **Privatsphäre → Blockieren**. Vorher zeigt Hinata, was sich ändert und was bleibt.
+
+- Was die Person auslöst, erreicht dich nicht mehr: keine Glocke, kein Push, keine E-Mail, auch keine Erwähnungen und Antworten und keine Zeilen in Sammelmails oder der Wochenübersicht.
+- Ihre Kommentare und Sprachnachrichten siehst du eingeklappt. **Anzeigen** öffnet einen davon, bis du die App schließt.
+- Sie kann dich nicht mehr an Vorgängen beteiligen und dir keine Zeiteinträge teilen.
+
+Die Zusammenarbeit bleibt. Vorgänge, Beschreibungen, Anhänge und Seiten siehst du weiter, und was du für deine Arbeit brauchst, kommt an: wenn dir die Person etwas zuweist, dich in ein Projekt oder Team aufnimmt, dir eine Schicht gibt oder dich als Vertretung einträgt.
+
+Die Person erfährt nichts davon, die Moderation auch nicht. Soll jemand einen Inhalt prüfen, melde ihn. Aufheben kannst du jederzeit im Profil der Person oder unter [Dein Konto](/de/guide-account.html#blockierte-personen).
+
 ## Auf dem Handy
 
 - Der Composer klebt unten und schiebt sich beim Tippen über die Tastatur.
