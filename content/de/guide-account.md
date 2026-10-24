@@ -204,6 +204,10 @@ Unter **Blockierte Personen** siehst du, wen du blockiert hast und seit wann, di
 
 Auf einem Server ohne Moderation steht dort nur **Über die App**.
 
+## Wenn ein Text nicht gespeichert wird
+
+Dein Server prüft Texte beim Speichern. Enthält ein Kommentar, ein Vorgang, eine Seite oder dein Profil etwas, das die Hausregeln nicht erlauben, speichert er sie nicht. Du siehst dann genau dort, wo du geschrieben hast, welches Wort es war. Dein Entwurf bleibt stehen, du kannst ihn ändern und noch einmal speichern. **Hausregeln lesen** öffnet die Regeln deines Servers.
+
 ## Deine Daten
 
 Deine Rechte aus der DSGVO sind hier als Buttons umgesetzt.

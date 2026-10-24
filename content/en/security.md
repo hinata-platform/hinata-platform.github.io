@@ -96,6 +96,12 @@ Behind a reverse proxy the limits per address need `HINATA_TRUSTED_PROXIES`, see
 - **Stable, localized JSON errors with no stack traces.** The server resolves errors from message bundles based on the client's `Accept-Language` and always returns the same shape. Internal paths, class names and stack traces never reach clients.
 - **Regex-escaped search input.** Search terms are escaped before they reach the query layer, so a crafted term can't become an injected or expensive regular expression.
 
+## Texts and links
+
+- **Links lead only to the web, to mail or into the app.** When a text is saved, a link in it keeps only targets with `http`, `https` or `mailto` and paths of the app that start with exactly one `/`. Anything else, such as `javascript:`, `data:` or `//foreign.host`, loses its link and keeps its words. That holds for every way into a text, Markdown from MCP and from mail included. A one-time migration did the same for every text stored before.
+- **Outside a browser the apps follow only addresses with a scheme.** A relative path means nothing there, and Windows would open it as a path on the disk, `//host` as a network share.
+- **The automatic text check** refuses clear violations when a text is saved, on every way in. It runs in the server, without any outside service. See [Admin area](/en/admin-area.html).
+
 ## File uploads and object storage
 
 - **Content type and size are validated** on upload, so clients can't slip in disallowed or oversized files (limits are ENV-driven).

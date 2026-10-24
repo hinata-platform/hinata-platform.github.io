@@ -96,6 +96,12 @@ Die Grenzen je Adresse brauchen hinter einem Reverse Proxy `HINATA_TRUSTED_PROXI
 - **Stabile, lokalisierte JSON-Fehler ohne Stacktraces.** Der Server holt Fehlertexte passend zum `Accept-Language` des Clients aus Message-Bundles und liefert sie immer im selben Format. Interne Pfade, Klassennamen oder Stacktraces erreichen nie den Client.
 - **Escapte Sucheingaben.** Suchbegriffe werden escaped, bevor sie die Abfrageschicht erreichen. Ein präparierter Begriff wird so nie zu einem eingeschleusten oder teuren regulären Ausdruck.
 
+## Texte und Links
+
+- **Links führen nur ins Web, zur Mail oder in die App.** Beim Speichern behält ein Link in einem Text nur Ziele mit `http`, `https` oder `mailto` und Pfade der App, die mit genau einem `/` beginnen. Alles andere, etwa `javascript:`, `data:` oder `//fremder.host`, verliert den Link und behält seine Wörter. Das gilt für jeden Weg in einen Text, auch für Markdown aus MCP und aus Mails. Eine einmalige Migration hat es für alle vorher gespeicherten Texte nachgeholt.
+- **Außerhalb des Browsers folgen die Apps nur Adressen mit Schema.** Ein relativer Pfad bedeutet dort nichts, und Windows öffnete ihn als Pfad auf der Festplatte, `//host` als Netzwerkfreigabe.
+- **Die automatische Textprüfung** lehnt eindeutige Verstöße beim Speichern ab, auf jedem Weg. Sie läuft im Server, ohne fremden Dienst. Siehe [Adminbereich](/de/admin-area.html).
+
 ## Datei-Uploads und Objektspeicher
 
 - **Content-Type und Größe werden beim Upload geprüft**, damit niemand unerlaubte oder zu große Dateien einschleust (Limits per ENV).

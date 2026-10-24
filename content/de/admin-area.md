@@ -154,7 +154,7 @@ Tag lang eine Warnung über den Karten: Dann zählt jeder Client als Adresse des
 Proxys. Setz `HINATA_TRUSTED_PROXIES`, siehe
 [Reverse Proxy & TLS](/de/reverse-proxy.html).
 
-Danach vier Karten:
+Danach fünf Karten:
 
 - **Wer moderiert**: alle Personen mit der Rolle Moderation. Sie prüfen
   gemeldete Inhalte und entscheiden über sie, sehen nur, was gemeldet ist, und
@@ -185,6 +185,41 @@ Danach vier Karten:
   neues Zugriffstoken, und kein KI-Client bekommt ihre Zustimmung. Ohne Konto
   liest jeder die Regeln unter `/api/v1/public/rules`, jede frühere Fassung mit
   `?version=N`.
+- **Automatische Textprüfung**: welche Texte der Server beim Speichern ablehnt
+  und ob er unklare Fälle zur Moderation gibt. Mehr dazu gleich unten.
+
+Die automatische Textprüfung vergleicht Texte beim Speichern mit Wortlisten:
+Vorgänge, Kommentare, Wissensseiten, Name, Position und Pronomen im Profil,
+Benutzernamen und die Namen von KI-Clients. Das gilt auf jedem Weg, in der
+App, über MCP, aus E-Mails und aus Git. Nichts davon verlässt den Server. Code,
+Logs und technische Begriffe wie `kill -9` lösen nichts aus. Die Karte hat:
+
+- **Klare Verstöße ablehnen**, eingeschaltet. Drohungen, Hetze und Ähnliches
+  werden nicht gespeichert. Wer schreibt, sieht, welches Wort es war, und
+  behält den Entwurf.
+- **Unklare Fälle zur Moderation geben**, ausgeschaltet, auch nach dem Update.
+  Eingeschaltet wird der Text gespeichert, und die Moderation bekommt eine
+  Meldung ohne meldende Person, nur für neue Funde aus den mitgelieferten
+  Listen. Damit prüft das System die Texte eurer Mitglieder selbst. Je nach
+  Organisation braucht es vorher die Zustimmung der Interessenvertretung, in
+  Deutschland nach § 87 Abs. 1 Nr. 6 BetrVG oder dem Personalvertretungsrecht,
+  und eine Datenschutz-Folgenabschätzung nach Art. 35 DSGVO. Deshalb fragt der
+  Server beim Einschalten noch einmal nach.
+- **Eigene Begriffe** werden immer abgelehnt, in jeder Schreibweise. Sie geben
+  nie etwas zur Moderation, sonst ließe sich jede Erwähnung eines Namens oder
+  des Betriebsrats dorthin leiten.
+- **Ausnahmen** sind Wörter, die bei euch harmlos sind, etwa Fachbegriffe.
+  Inhalte, die Kinder gefährden, bleiben trotzdem gesperrt. Beide Listen
+  nehmen bis zu 500 Begriffe mit je 60 Zeichen.
+- **Text ausprobieren** zeigt, was der Server mit einem Text täte, mit den
+  gespeicherten Einstellungen. Der Text wird weder gespeichert noch gezählt.
+
+Mitgeliefert sind Listen für Deutsch und Englisch. Für andere Sprachen wirken
+nur eure eigenen Begriffe. Bilder und Anhänge prüft die Textprüfung nicht,
+dafür gibt es Meldungen. **So moderieren wir** nennt eure eigenen Begriffe und
+ob unklare Fälle zur Moderation gehen. Jede Änderung an Schaltern und Listen
+steht im Audit-Log. Eine abgelehnte E-Mail wird kein Vorgang und bekommt keine
+Antwort. Ihre Verbindung unter **E-Mail** zählt, wie viele es waren.
 
 ### Authentifizierung & SSO
 

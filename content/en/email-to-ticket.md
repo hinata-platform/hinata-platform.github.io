@@ -74,6 +74,13 @@ Each message becomes one issue in the selected **default project**:
     give the address of every reader to the foreign server. More on this under
     [Object storage](/en/storage.html).
 
+!!! note "Mails the text check refuses"
+    When a mail contains something the automatic text check refuses, it becomes
+    no issue. The server does not reply, or the inbox could be used to send
+    spam to other people's addresses. It does not store the content either. The
+    connection in the admin area counts how many mails there were and when the
+    last one came.
+
 !!! note "An author who is not a project member"
     Being the author grants no access. Only project members can open the issue.
     An author outside the project still gets e-mail and push notices, but without
