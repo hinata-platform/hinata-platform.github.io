@@ -43,6 +43,17 @@ Universal Links laufen über `https://<gateway>/l/<code>`. Die App dekodiert den
 
 Bringst du eine **eigene** gebrandete App in die Stores, gehören dir ihre Zugangsdaten für Push und ihre Link-Domain. Dann betreibst du ein eigenes Gateway und stellst deinen Server mit `HINATA_GATEWAY_BASE_URL` darauf ein. Das ist ein fortgeschrittener Weg und gehört zu einem vollständigen [eigenen Client-Build](/de/self-hosted-app.html). Die Weiterleitung funktioniert wie beim gehosteten Gateway.
 
+## Bedingungen für die Verbindung
+
+Hinata Connect leitet für jede verbundene Instanz Benachrichtigungen und Links weiter. Dafür gilt für jede verbundene Instanz:
+
+- Sie nennt einen Kontakt für Meldungen unter **Adminbereich › Moderation › Kontakt für Meldungen**. Die App zeigt ihn allen unter **Einstellungen › Hilfe und Kontakt**. Solange keiner gesetzt ist, sagt **Adminbereich › Connect** das.
+- Sie hat einen Betreiber, der für ihre Inhalte und ihre Moderation verantwortlich ist. Das Gateway leitet Benachrichtigungen und Links weiter und moderiert keine Instanz.
+
+## Kontaktstellen
+
+Hinata Connect betreibt der Anbieter der App. Für Behörden und für alle, die es nutzen, ist die Kontaktstelle nach Art. 11 und 12 DSA mail@ahmadre.com, auf Deutsch oder Englisch, siehe [Impressum](/de/impressum.html). Zu Inhalten auf einer Instanz wende dich an ihren Betreiber.
+
 ## Nächste Schritte
 
 - Eigenen Client veröffentlichen: [Branding & eigene Clients](/de/self-hosted-app.html).

@@ -15,10 +15,10 @@ Nach Art. 13 und 14 der Datenschutz-Grundverordnung (DSGVO) informieren wir Sie 
 
 Verantwortlicher im Sinne des Art. 4 Nr. 7 DSGVO für die Bereitstellung der App (Vertrieb über die App Stores oder als Webanwendung) und für die in dieser Erklärung beschriebene Verarbeitung ist:
 
-Rebar Ahmad
-Weberstr. 58
-47798 Krefeld
-Deutschland
+Rebar Ahmad\
+Weberstr. 58\
+47798 Krefeld\
+Deutschland\
 E-Mail: mail@ahmadre.com
 
 Ein Datenschutzbeauftragter ist gesetzlich nicht vorgeschrieben und nicht bestellt.
