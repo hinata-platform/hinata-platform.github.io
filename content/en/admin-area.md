@@ -131,7 +131,7 @@ platform offers.
 
 ### Moderation
 
-Two cards:
+Three cards:
 
 - **Who moderates**: everyone with the moderation role. They review reported
   content and decide on it, see only what was reported, and have no access to
@@ -143,6 +143,12 @@ Two cards:
   12). Without signing in, the contact is in `/api/v1/meta`. While the email
   address is missing, the card shows a warning. An address in
   `HINATA_MODERATION_CONTACT_EMAIL` applies as long as none is entered here.
+- **File types**: one switch per group, namely images, PDF, Office
+  documents, text and spreadsheets, ZIP and voice messages. Files of a group
+  that is switched off can no longer be attached, put into texts or sent. The
+  switches only narrow the server's safe list. SVG or programs can never be
+  allowed here. Avatars and the logo are exempt. More on this under
+  [Object storage](/en/storage.html).
 
 ### Authentication & SSO
 

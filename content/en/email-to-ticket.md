@@ -65,6 +65,14 @@ Each message becomes one issue in the selected **default project**:
 | **Type** | **Task** |
 | **Reporter** | The sender's e-mail address |
 | **Author** | The sender, if their address belongs to an active Hinata account. They then get notified about every change, like any watcher. If nobody owns the address, the issue has no author. The description header still names the sender |
+| **Attachments** | The e-mail's attachments, once they pass the same check as an upload. The server reads the type from the content, not from the mail's header. A refused attachment is not stored. The description gets a line such as "Attachment `invoice.pdf` refused: This file type is not allowed here" instead, and the server log the reason |
+
+!!! note "External images become links"
+    When an HTML mail loads images from foreign servers, such as the logo in a
+    signature, Hinata does not show them. Each of these images becomes a link
+    with the text "External image". Otherwise merely opening the issue would
+    give the address of every reader to the foreign server. More on this under
+    [Object storage](/en/storage.html).
 
 !!! note "An author who is not a project member"
     Being the author grants no access. Only project members can open the issue.

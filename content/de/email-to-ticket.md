@@ -66,6 +66,14 @@ Jede Nachricht wird ein Vorgang im gewählten **Standardprojekt**:
 | **Typ** | **Task** |
 | **Melder** | Die E-Mail-Adresse des Absenders |
 | **Autor** | Der Absender, falls seine Adresse zu einem aktiven Hinata-Konto gehört. Dann bekommt er wie jeder Beobachter Benachrichtigungen zu jeder Änderung. Gehört die Adresse niemandem, bleibt der Vorgang ohne Autor. Der Kopf der Beschreibung nennt den Absender trotzdem |
+| **Anhänge** | Die Anhänge der E-Mail, sobald sie dieselbe Prüfung wie ein Upload bestanden haben. Den Typ liest der Server aus dem Inhalt, nicht aus dem Kopf der Mail. Einen abgelehnten Anhang speichert er nicht. Die Beschreibung bekommt dafür eine Zeile wie „Anhang `rechnung.pdf` abgelehnt: Dieser Dateityp ist hier nicht erlaubt“, das Protokoll des Servers den Grund |
+
+!!! note "Externe Bilder werden zu Links"
+    Lädt eine HTML-Mail Bilder von fremden Servern, etwa das Logo in einer
+    Signatur, zeigt Hinata sie nicht an. Jedes dieser Bilder wird ein Link mit
+    dem Text „Externes Bild“. Sonst verriete schon das Öffnen des Vorgangs die
+    Adresse jeder lesenden Person an den fremden Server. Mehr dazu unter
+    [Objektspeicher](/de/storage.html).
 
 !!! note "Ein Autor ohne Projektmitgliedschaft"
     Autor zu sein gibt keinen Zugriff. Nur wer Projektmitglied ist, kann den
