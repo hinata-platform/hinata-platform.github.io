@@ -13,7 +13,7 @@ In Hinata gibt es drei Rollen für Aufgaben, die über einzelne Projekte hinausg
 | --- | --- | --- |
 | **Administrator** (`ADMIN`) | Konten, Anmeldung und SSO, Servereinstellungen, E-Mail, Git und das Audit-Protokoll | [Adminbereich](/de/admin-area.html) |
 | **Organisationsadmin** (`ORG_ADMIN`) | Arbeitszeit mit erweiterter Zeiterfassung, Stundenzettel-Freigaben, Abwesenheiten, Feiertagskalender, Zeit-Tags, Ausnahmen vom Sperrdatum, Abrechnung und der Standard für relative Fristen | Seite **Organisation** in der App |
-| **Moderation** (`MODERATOR`) | Gemeldete Inhalte und Personen prüfen und über sie entscheiden, mit einer Begründung an alle Beteiligten | Seite **Moderation** in der App |
+| **Moderation** (`MODERATOR`) | Gemeldete Inhalte und Personen prüfen und über sie entscheiden, mit einer Begründung an alle Beteiligten | Seite **Moderation** in der App, siehe [Moderation](/de/moderation.html) |
 
 Alle Rollen vergibst du unter **Adminbereich → Benutzer**. Organisationsadmins und Moderierende haben keinen Zugang zum Adminbereich.
 

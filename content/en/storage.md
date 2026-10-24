@@ -160,6 +160,12 @@ When a text is saved, the server goes through every image in it:
 !!! note "Two size ceilings work together"
     Spring's multipart limits (`max-file-size` / `max-request-size`, driven by the same MB values) are the outer guard. The app also enforces the file count and total size. For larger uploads, raise all of them together.
 
+## Quarantine of removed content
+
+When moderation removes a file or an image, the server copies it inside the store to `quarantine/<case>/` and deletes the original only afterwards. A picture that other texts still show stays in its place. Removed texts and the versions of a removed page go into the database. The quarantine is what moderators see in the case and what a successful appeal puts back. Nobody else can reach it. When the retention of the case ends, the server deletes the quarantine with it, unless law enforcement was told. See [Moderation](/en/moderation.html#retention).
+
+The copy happens inside the store and never passes through the server. Every provider below can do that. With SeaweedFS keep `-s3.encryptVolumeData` off, as described above.
+
 ## Using an external provider
 
 Clear the compose profile in `.env` to turn off the bundled SeaweedFS:

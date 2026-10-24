@@ -58,7 +58,7 @@ Zwei unabhängige Schichten schützen Logins und API.
 
 ## Was ohne Anmeldung erreichbar ist
 
-Inhalte einer Instanz erreichen nur ihre Mitglieder. Davon hängt auch ab, dass eine Instanz rechtlich ein Hostingdienst bleibt und keine Online-Plattform wird. Ohne Token antwortet der Server deshalb nur auf diese Wege:
+Inhalte einer Instanz erreichen nur ihre Mitglieder. Davon hängt auch ab, dass eine Instanz rechtlich ein Hostingdienst bleibt und keine Online-Plattform wird, siehe [Moderation für Betreiber](/de/moderation-operators.html). Ohne Token antwortet der Server deshalb nur auf diese Wege:
 
 | Wofür | Wege |
 | --- | --- |

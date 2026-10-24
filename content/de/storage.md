@@ -160,6 +160,12 @@ Beim Speichern eines Textes geht der Server jedes Bild darin durch:
 !!! note "Zwei Größenobergrenzen arbeiten zusammen"
     Die Multipart-Limits von Spring (`max-file-size` / `max-request-size`, aus denselben MB-Werten) sind die äußere Grenze. Die App prüft zusätzlich Dateianzahl und Gesamtgröße. Für größere Uploads erhöhst du alle Werte gemeinsam.
 
+## Quarantäne entfernter Inhalte
+
+Entfernt die Moderation eine Datei oder ein Bild, kopiert der Server es im Speicher nach `quarantine/<fall>/` und löscht das Original erst danach. Ein Bild, das andere Texte noch zeigen, bleibt an seiner Stelle. Entfernte Texte und die Fassungen einer entfernten Seite kommen in die Datenbank. Die Quarantäne ist, was Moderierende im Fall sehen und was ein erfolgreicher Widerspruch zurückholt. Sonst kommt niemand daran. Endet die Aufbewahrung des Falls, löscht der Server die Quarantäne mit ihm, außer die Strafverfolgung wurde informiert. Siehe [Moderation](/de/moderation.html#aufbewahrung).
+
+Die Kopie entsteht im Speicher selbst und läuft nie über den Server. Jeder der Anbieter unten kann das. Bei SeaweedFS bleibt `-s3.encryptVolumeData` aus, wie oben beschrieben.
+
 ## Einen externen Anbieter verwenden
 
 Leere das Compose-Profil in `.env`, um das mitgelieferte SeaweedFS abzuschalten:

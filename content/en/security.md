@@ -58,7 +58,7 @@ Two independent layers protect logins and the API.
 
 ## What is reachable without signing in
 
-The content of an instance reaches only its members. That is also what keeps an instance legally a hosting service rather than an online platform. Without a token, the server therefore answers only these:
+The content of an instance reaches only its members. That is also what keeps an instance legally a hosting service rather than an online platform, see [Moderation for operators](/en/moderation-operators.html). Without a token, the server therefore answers only these:
 
 | What for | Routes |
 | --- | --- |

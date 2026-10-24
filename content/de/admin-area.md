@@ -154,7 +154,7 @@ Tag lang eine Warnung über den Karten: Dann zählt jeder Client als Adresse des
 Proxys. Setz `HINATA_TRUSTED_PROXIES`, siehe
 [Reverse Proxy & TLS](/de/reverse-proxy.html).
 
-Danach fünf Karten:
+Danach sechs Karten:
 
 - **Wer moderiert**: alle Personen mit der Rolle Moderation. Sie prüfen
   gemeldete Inhalte und entscheiden über sie, sehen nur, was gemeldet ist, und
@@ -167,12 +167,13 @@ Danach fünf Karten:
   (Art. 11 und 12). Ohne Anmeldung steht der Kontakt in `/api/v1/meta`. Fehlt
   die E-Mail-Adresse, zeigt die Karte eine Warnung. Eine Adresse in
   `HINATA_MODERATION_CONTACT_EMAIL` gilt, solange hier keine eingetragen ist.
-- **Dateitypen**: ein Schalter je Gruppe, nämlich Bilder, PDF,
-  Office-Dokumente, Text und Tabellen, ZIP und Sprachnachrichten. Dateien
-  einer abgeschalteten Gruppe kann niemand mehr anhängen, in Texte einfügen
-  oder senden. Die Schalter schränken die sichere Liste des Servers
-  nur ein. SVG oder Programme lassen sich hier nie erlauben. Avatare und das
-  Logo sind ausgenommen. Mehr dazu unter [Objektspeicher](/de/storage.html).
+- **Aufbewahrung und Zahlen**: ob erledigte Fälle, ihre Meldungen und die
+  Quarantäne nach 6 oder 12 Monaten gelöscht werden, außer die Strafverfolgung
+  wurde informiert. **Jahreszahlen … herunterladen** gibt die Jahreszahlen der
+  Moderation im Muster der EU-Kommission, eine CSV-Datei je Teil in einem ZIP,
+  für dieses Jahr oder ein früheres. Was in den Zahlen steht und was du vor dem
+  Veröffentlichen ergänzt, steht unter
+  [Moderation für Betreiber](/de/moderation-operators.html#jahreszahlen).
 - **Hausregeln**: dem stimmen alle zu, bevor sie schreiben. **Standard** ist
   eingebaut, in neun Sprachen, und nennt euren Kontakt. **Eigener Text** nimmt
   Markdown, **Adresse** eine eigene Seite (https). Was du auch wählst, der
@@ -187,6 +188,12 @@ Danach fünf Karten:
   `?version=N`.
 - **Automatische Textprüfung**: welche Texte der Server beim Speichern ablehnt
   und ob er unklare Fälle zur Moderation gibt. Mehr dazu gleich unten.
+- **Dateitypen**: ein Schalter je Gruppe, nämlich Bilder, PDF,
+  Office-Dokumente, Text und Tabellen, ZIP und Sprachnachrichten. Dateien
+  einer abgeschalteten Gruppe kann niemand mehr anhängen, in Texte einfügen
+  oder senden. Die Schalter schränken die sichere Liste des Servers
+  nur ein. SVG oder Programme lassen sich hier nie erlauben. Avatare und das
+  Logo sind ausgenommen. Mehr dazu unter [Objektspeicher](/de/storage.html).
 
 Die automatische Textprüfung vergleicht Texte beim Speichern mit Wortlisten:
 Vorgänge, Kommentare, Wissensseiten, Name, Position und Pronomen im Profil,
@@ -220,6 +227,11 @@ dafür gibt es Meldungen. **So moderieren wir** nennt eure eigenen Begriffe und
 ob unklare Fälle zur Moderation gehen. Jede Änderung an Schaltern und Listen
 steht im Audit-Log. Eine abgelehnte E-Mail wird kein Vorgang und bekommt keine
 Antwort. Ihre Verbindung unter **E-Mail** zählt, wie viele es waren.
+
+Wie Moderierende Meldungen abarbeiten, steht unter
+[Moderation](/de/moderation.html). Was der Digital Services Act von dir als
+Betreiber verlangt und wie die Jahreszahlen funktionieren, steht unter
+[Moderation für Betreiber](/de/moderation-operators.html).
 
 ### Authentifizierung & SSO
 
