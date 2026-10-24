@@ -44,7 +44,7 @@ MongoDB. Dabei gilt:
 
 Der Adminbereich hat drei Gruppen:
 
-- **Allgemein**, **Plattform** und **Sicherheit**
+- **Allgemein**, **Plattform**, **Sicherheit** und **Moderation**
 - **Authentifizierung**, **E-Mail** und **Git-Integration**
 - **Audit-Protokoll** und **Benutzer**
 
@@ -58,10 +58,11 @@ Hier verwaltest du die Personen auf deiner Instanz:
 
 - ausstehende Registrierungen **genehmigen**
 - Konten **aktivieren** oder deaktivieren
-- **Rollen** zuweisen: **Admin** (`ADMIN`) und **Organisationsadmin**
-  (`ORG_ADMIN`). Die beiden sind unabhängig voneinander, eine Person kann eine,
-  beide oder keine haben. Mehrere Personen auf einmal machst du über die
-  Auswahl zu Organisationsadmins oder nimmst ihnen die Rolle.
+- **Rollen** zuweisen: **Admin** (`ADMIN`), **Organisationsadmin**
+  (`ORG_ADMIN`) und **Moderation** (`MODERATOR`). Die drei sind unabhängig
+  voneinander, eine Person kann eine, mehrere oder keine haben. Mehrere
+  Personen auf einmal machst du über die Auswahl zu Organisationsadmins oder
+  nimmst ihnen die Rolle. Die Moderation vergibst du im Fenster der Person.
 - die **Anmeldeadresse** einer Person ändern
 
 Für die Rollen gelten ein paar Regeln. Dich selbst kannst du nicht zum
@@ -72,7 +73,9 @@ Vergabe im Audit-Protokoll, das lässt sich nicht abschalten, und alle
 Organisationsadmins werden benachrichtigt. Der letzte
 Organisationsadmin lässt sich nicht entfernen, deaktivieren oder löschen. Kommt
 jemand zur Rolle dazu oder gibt sie ab, bekommen alle Organisationsadmins eine
-Benachrichtigung.
+Benachrichtigung. Für die Moderation gilt dasselbe: nicht an dich selbst, die
+letzte Person mit der Rolle bleibt, jede Vergabe steht im Audit-Protokoll, und
+alle, die moderieren, erfahren davon.
 
 Änderst du die Anmeldeadresse einer Person, bekommt sie an ihrer alten Adresse
 eine Nachricht darüber. Einen Tag lang geht danach kein Zurücksetzen des
@@ -87,6 +90,11 @@ für jede Person einzeln im Audit-Protokoll, und jede bekommt eine
 Benachrichtigung. Willst du
 die Rollen trennen, nimm sie hier bewusst auseinander. Siehe
 [Organisation](/de/organization.html).
+
+Mit dem Update auf eine Version mit Moderation ist außerdem jeder bisherige
+Admin einmalig auch Moderator, damit Meldungen von Anfang an jemanden
+erreichen. Auch das steht je Person im Audit-Protokoll. Die Benachrichtigung
+empfiehlt, die Rolle an Personen zu geben, die nicht die Plattform betreiben.
 
 Ist die Selbstregistrierung mit Admin-Genehmigung aktiv (siehe unten), warten neue
 Anmeldungen hier, bis ein Admin sie freigibt.
@@ -125,6 +133,22 @@ was diese Plattform anbietet.
     Alles unter Plattform überschreibt die passende
     `hinata.app.*`-Umgebungsvariable. Umgebungswerte sind nur der Startpunkt
     einer neuen Instanz.
+
+### Moderation
+
+Zwei Karten:
+
+- **Wer moderiert**: alle Personen mit der Rolle Moderation. Sie prüfen
+  gemeldete Inhalte und entscheiden über sie, sehen nur, was gemeldet ist, und
+  haben keinen Zugang zum Adminbereich. Moderiert nur eine Person, steht hier
+  der Hinweis, dass zwei besser sind: So entscheidet niemand über eine Meldung
+  gegen sich selbst.
+- **Kontakt für Meldungen**: Betreiber, E-Mail-Adresse und Link zum Impressum.
+  Darüber erreichen Menschen, wer die Instanz betreibt. Die App-Stores verlangen
+  einen veröffentlichten Kontakt, der Digital Services Act eine Kontaktstelle
+  (Art. 11 und 12). Ohne Anmeldung steht der Kontakt in `/api/v1/meta`. Fehlt
+  die E-Mail-Adresse, zeigt die Karte eine Warnung. Eine Adresse in
+  `HINATA_MODERATION_CONTACT_EMAIL` gilt, solange hier keine eingetragen ist.
 
 ### Authentifizierung & SSO
 

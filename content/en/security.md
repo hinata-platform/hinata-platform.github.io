@@ -50,11 +50,32 @@ Two independent layers protect logins and the API.
 - **Tenant and project visibility.** Team membership decides project visibility across the app: a user only sees projects their team grants (see [Projects & teams](/en/projects-teams.html)).
 - **No back door for admins.** The `ADMIN` role only opens the admin area. An admin sees projects, teams, issues, boards, knowledge base pages, search hits and time entries only through their own membership, like everyone else.
 - **Organization duties have their own role.** The settings for time tracking, approvals, absences, holidays and billing need the `ORG_ADMIN` role. Everyone else gets a 403 there, admins included. See [Organization](/en/organization.html).
-- **Roles you cannot give yourself.** An admin cannot make themselves an organization admin, another admin has to do it. This is a transparency measure, not a hard barrier, because a second admin account would still get around it. That is why every grant is recorded, and that cannot be switched off. The last organization admin cannot be removed, deactivated or deleted. Every organization admin is told when someone joins or leaves the role.
+- **Roles you cannot give yourself.** An admin cannot make themselves an organization admin, another admin has to do it. This is a transparency measure, not a hard barrier, because a second admin account would still get around it. That is why every grant is recorded, and that cannot be switched off. The last organization admin cannot be removed, deactivated or deleted. Every organization admin is told when someone joins or leaves the role. The same holds for the moderation role (`MODERATOR`). Whether someone moderates is checked on the stored account, not on the token: a role taken away takes effect at once.
 - **No account takeover by admins.** When an admin changes a person's sign-in address, the person gets a message at their old address. For one day after that, no password reset reaches them, neither from the admin area nor from the public "forgot password" page, which quietly sends nothing during that time.
 - **A separate audit log.** **Admin area → Audit** only shows platform records: sign-ins, accounts, configuration and integrations. Records about working time, timesheets and absences are in the log on the Organization page. Records about absences are only shown there to whoever keeps absences. Organization admins decide which of these events are recorded. Admins cannot change that, and the platform's master switch does not turn them off. Records about issues and pages appear for admins without their details, so without issue keys and page ids. Changes to the admin and organization admin roles, and any change of a sign-in address by an admin, are always recorded and cannot be switched off.
 - **Knowledge base protected by roles.** A page can be read by whoever sees its project, by the Team-Admins of its team, or by members the team opened it to. Pages with neither project nor team are read only by their author. Search only returns what the caller can reach. Only someone with authority over a page's current place can move it somewhere else, and only its author can make it private.
-- **Public endpoints are explicit.** Only this short allowlist works without a token: `/meta`, `/setup/status`, `/setup`, `/auth/login`, `/auth/refresh`, `/auth/sso/providers`, `/actuator/health`. Everything else needs a Bearer token.
+- **Public endpoints are explicit.** Everything that works without a token is listed under [What is reachable without signing in](#what-is-reachable-without-signing-in). Everything else needs a Bearer token.
+
+## What is reachable without signing in
+
+The content of an instance reaches only its members. That is also what keeps an instance legally a hosting service rather than an online platform. Without a token, the server therefore answers only these:
+
+| What for | Routes |
+| --- | --- |
+| Signing in, joining and getting back in | `POST /api/v1/auth/login`, `/2fa`, `/refresh`, `/register`, `/verify-email`, `/resend-verification`, `/reset/request`, `/reset/accept`, `/invite/accept`, `/sso/exchange`; `GET /api/v1/auth/invite/info`, `/sso/providers`, `/sso/start/{id}` |
+| Links from mails and calendar subscriptions, each with its own secret | `GET /api/v1/me/email-change/confirm`, `GET` and `POST /api/v1/me/password-reset/confirm`, `GET /api/v1/me/export.pdf`, `GET /api/v1/shifts/feed/{token}.ics` |
+| What the app learns about a server before signing in: name, logo, contact for reports | `GET /api/v1/meta`, `GET /api/v1/meta/logo` |
+| Profile pictures for mails and pushes | `GET /api/v1/users/{id}/avatar` |
+| The first start of a new server, refused afterwards | `GET /api/v1/setup/status`, `POST /api/v1/setup` |
+| Git providers; a webhook counts only with the signature of a connected repository | `GET /api/v1/git/oauth/callback`, `POST /api/v1/git/webhooks/github`, `/gitlab`, `/bitbucket` |
+| OAuth for AI clients connecting to `/mcp` | `GET /.well-known/oauth-authorization-server`, `GET /.well-known/oauth-protected-resource` and `…/mcp`, `POST /oauth/register`, `GET /oauth/authorize`, `POST /oauth/token` |
+| Hinata Connect checking that the server controls its domain | `GET /.well-known/hinata-connect-challenge` |
+| Liveness for the container runtime, status only | `GET /actuator/health` and below |
+| The description of the API, off with `HINATA_DOCS_ENABLED=false` | `GET /v3/api-docs`, `/docs`, `/docs/scalar.js`, `/webjars/**` |
+| Error responses | `/error` |
+| Redirects to and from an identity provider | `/oauth2/authorization/{id}`, `/login/oauth2/code/{id}`, `/saml2/authenticate/{id}`, `/login/saml2/sso/{id}`, `/logout` (only a redirect; a token is no session) |
+
+A test in the server (`UnauthenticatedSurfaceTest`) reads this from the running server on every build: every route of every handler mapping, the filters of every security chain, every servlet and every servlet filter. When a route without sign-in appears, in whatever way, the test fails until somebody has reviewed it and listed it here. What these routes take is bounded, for example the name of a dynamically registered OAuth client to 100 characters and at most ten redirect addresses.
 
 ## Hardened HTTP responses
 
