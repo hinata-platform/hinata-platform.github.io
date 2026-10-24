@@ -44,7 +44,7 @@ rules:
 
 The Admin area has three groups:
 
-- **General**, **Platform** and **Security**
+- **General**, **Platform**, **Security** and **Moderation**
 - **Authentication**, **E-mail** and **Git integration**
 - **Audit log** and **Users**
 
@@ -58,10 +58,11 @@ Manage the people on your instance:
 
 - **approve** pending registrations
 - **enable** or disable accounts
-- assign **roles**: **Admin** (`ADMIN`) and **Organization admin**
-  (`ORG_ADMIN`). The two are independent, so a person can hold one, both or
-  neither. Select several people to make them organization admins, or to take
-  the role away, in one go.
+- assign **roles**: **Admin** (`ADMIN`), **Organization admin**
+  (`ORG_ADMIN`) and **Moderation** (`MODERATOR`). The three are independent,
+  so a person can hold one, several or none. Select several people to make
+  them organization admins, or to take the role away, in one go. You hand out
+  moderation in the person's panel.
 - change a person's **sign-in address**
 
 A few rules apply to the roles. You cannot make yourself an organization
@@ -70,7 +71,9 @@ not a hard barrier: with a second administrator account the role could still
 be granted. That is why every grant is recorded in the audit log, which cannot
 be switched off, and every organization admin is notified. The last organization admin
 cannot be removed, deactivated or deleted. When someone joins the role or
-leaves it, every organization admin gets a notification.
+leaves it, every organization admin gets a notification. The same holds for
+moderation: not to yourself, the last person with the role stays, every grant
+is in the audit log, and everyone who moderates hears about it.
 
 When you change a person's sign-in address, they are told at their old
 address. For one day after that, no password reset reaches them, neither from
@@ -84,6 +87,11 @@ recorded for each person in the audit log, and each of them gets a
 notification. If you want the
 roles apart, separate them here on purpose. See
 [Organization](/en/organization.html).
+
+With the update to a version with moderation, every existing admin also
+becomes a moderator once, so that reports reach somebody from the start. That
+too is recorded for each person in the audit log. The notification suggests
+handing the role to people who do not run the platform.
 
 When self-registration with admin approval is on (see below), new sign-ups wait
 here until an admin lets them in.
@@ -120,6 +128,21 @@ platform offers.
     Anything under Platform wins over the matching `hinata.app.*`
     environment variable. Env values are only the starting point for a fresh
     instance.
+
+### Moderation
+
+Two cards:
+
+- **Who moderates**: everyone with the moderation role. They review reported
+  content and decide on it, see only what was reported, and have no access to
+  the admin area. When only one person moderates, the card says two are
+  better, so that nobody decides on a report about themselves.
+- **Contact for reports**: operator, email address and a link to the imprint.
+  This is how people reach whoever runs the instance. The app stores require a
+  published contact, the Digital Services Act a point of contact (Art. 11 and
+  12). Without signing in, the contact is in `/api/v1/meta`. While the email
+  address is missing, the card shows a warning. An address in
+  `HINATA_MODERATION_CONTACT_EMAIL` applies as long as none is entered here.
 
 ### Authentication & SSO
 

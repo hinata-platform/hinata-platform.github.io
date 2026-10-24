@@ -50,11 +50,32 @@ Zwei unabhängige Schichten schützen Logins und API.
 - **Sichtbarkeit von Mandanten und Projekten.** Die Teammitgliedschaft steuert in der ganzen App, welche Projekte jemand sieht: nur die, die sein Team freigibt (siehe [Projekte & Teams](/de/projects-teams.html)).
 - **Keine Hintertür für Admins.** Die Rolle `ADMIN` öffnet nur den Adminbereich. Projekte, Teams, Vorgänge, Boards, Seiten der Wissensdatenbank, Suchtreffer und Zeiteinträge sieht ein Admin nur über seine eigene Mitgliedschaft, wie alle anderen.
 - **Organisationsaufgaben mit eigener Rolle.** Die Einstellungen für Zeiterfassung, Freigaben, Abwesenheiten, Feiertage und Abrechnung verlangen die Rolle `ORG_ADMIN`. Andere erhalten dort 403, auch Admins. Siehe [Organisation](/de/organization.html).
-- **Rollen, die sich nicht selbst vergeben.** Ein Admin kann sich nicht selbst zum Organisationsadmin machen, das muss ein anderer Admin tun. Das ist eine Maßnahme für Nachvollziehbarkeit und keine harte Sperre, denn mit einem zweiten Adminkonto ginge es trotzdem. Deshalb wird jede Vergabe aufgezeichnet, ohne dass sich das abschalten lässt. Der letzte Organisationsadmin lässt sich nicht entfernen, deaktivieren oder löschen. Wer die Rolle bekommt oder abgibt, wird allen Organisationsadmins gemeldet.
+- **Rollen, die sich nicht selbst vergeben.** Ein Admin kann sich nicht selbst zum Organisationsadmin machen, das muss ein anderer Admin tun. Das ist eine Maßnahme für Nachvollziehbarkeit und keine harte Sperre, denn mit einem zweiten Adminkonto ginge es trotzdem. Deshalb wird jede Vergabe aufgezeichnet, ohne dass sich das abschalten lässt. Der letzte Organisationsadmin lässt sich nicht entfernen, deaktivieren oder löschen. Wer die Rolle bekommt oder abgibt, wird allen Organisationsadmins gemeldet. Für die Rolle Moderation (`MODERATOR`) gilt dasselbe. Ob jemand moderiert, prüft der Server am gespeicherten Konto, nicht am Token: Eine entzogene Rolle wirkt sofort.
 - **Schutz vor Kontoübernahme durch Admins.** Ändert ein Admin die Anmeldeadresse einer Person, bekommt sie eine Nachricht an ihre alte Adresse. Einen Tag lang geht danach kein Zurücksetzen des Passworts an sie, weder aus dem Adminbereich noch über die öffentliche Seite „Passwort vergessen“, die in dieser Zeit stillschweigend nichts verschickt.
 - **Getrenntes Audit-Protokoll.** Unter **Adminbereich → Audit** stehen nur Einträge der Plattform: Anmeldungen, Konten, Konfiguration und Integrationen. Einträge zu Arbeitszeit, Stundenzetteln und Abwesenheiten stehen im Protokoll der Seite Organisation. Einträge zu Abwesenheiten sieht dort nur, wer die Abwesenheiten führt. Welche dieser Ereignisse aufgezeichnet werden, entscheiden die Organisationsadmins. Admins können das nicht ändern, und der Hauptschalter der Plattform schaltet sie nicht ab. Einträge zu Vorgängen und Seiten erscheinen für Admins ohne Details, also ohne Vorgangsschlüssel und Seiten-IDs. Änderungen an den Rollen Admin und Organisationsadmin und jede Änderung einer Anmeldeadresse durch einen Admin werden immer aufgezeichnet und lassen sich nicht abschalten.
 - **Wissensdatenbank über Rollen geschützt.** Eine Seite liest, wer ihr Projekt sieht, wer Team-Admin ihres Teams ist oder wem das Team sie geöffnet hat. Seiten ohne Projekt und Team liest nur ihr Autor. Die Suche liefert nur, was der Aufrufer erreichen darf. Eine Seite an einen anderen Ort verschieben darf nur, wer über ihren jetzigen Ort bestimmt, und privat machen kann sie nur ihr Autor.
-- **Öffentliche Endpunkte sind festgelegt.** Ohne Token erreichbar ist nur diese kurze Liste: `/meta`, `/setup/status`, `/setup`, `/auth/login`, `/auth/refresh`, `/auth/sso/providers`, `/actuator/health`. Alles andere verlangt ein Bearer-Token.
+- **Öffentliche Endpunkte sind festgelegt.** Was ohne Token erreichbar ist, steht vollständig unter [Was ohne Anmeldung erreichbar ist](#was-ohne-anmeldung-erreichbar-ist). Alles andere verlangt ein Bearer-Token.
+
+## Was ohne Anmeldung erreichbar ist
+
+Inhalte einer Instanz erreichen nur ihre Mitglieder. Davon hängt auch ab, dass eine Instanz rechtlich ein Hostingdienst bleibt und keine Online-Plattform wird. Ohne Token antwortet der Server deshalb nur auf diese Wege:
+
+| Wofür | Wege |
+| --- | --- |
+| Anmelden, beitreten, Zugang zurückholen | `POST /api/v1/auth/login`, `/2fa`, `/refresh`, `/register`, `/verify-email`, `/resend-verification`, `/reset/request`, `/reset/accept`, `/invite/accept`, `/sso/exchange`; `GET /api/v1/auth/invite/info`, `/sso/providers`, `/sso/start/{id}` |
+| Links aus Mails und Kalender-Abos, jeder mit eigenem Geheimnis | `GET /api/v1/me/email-change/confirm`, `GET` und `POST /api/v1/me/password-reset/confirm`, `GET /api/v1/me/export.pdf`, `GET /api/v1/shifts/feed/{token}.ics` |
+| Was die App vor dem Anmelden über den Server erfährt: Name, Logo, Kontakt für Meldungen | `GET /api/v1/meta`, `GET /api/v1/meta/logo` |
+| Profilbilder für Mails und Pushes | `GET /api/v1/users/{id}/avatar` |
+| Erster Start eines neuen Servers, danach abgelehnt | `GET /api/v1/setup/status`, `POST /api/v1/setup` |
+| Git-Anbieter; ein Webhook zählt nur mit der Signatur eines verbundenen Repositorys | `GET /api/v1/git/oauth/callback`, `POST /api/v1/git/webhooks/github`, `/gitlab`, `/bitbucket` |
+| OAuth für KI-Clients an `/mcp` | `GET /.well-known/oauth-authorization-server`, `GET /.well-known/oauth-protected-resource` und `…/mcp`, `POST /oauth/register`, `GET /oauth/authorize`, `POST /oauth/token` |
+| Hinata Connect prüft, dass der Server seine Domain kontrolliert | `GET /.well-known/hinata-connect-challenge` |
+| Zustand für die Container-Laufzeit, nur der Status | `GET /actuator/health` und darunter |
+| Beschreibung der API, abschaltbar mit `HINATA_DOCS_ENABLED=false` | `GET /v3/api-docs`, `/docs`, `/docs/scalar.js`, `/webjars/**` |
+| Fehlerantworten | `/error` |
+| Weiterleitungen zu und von einem Identity Provider | `/oauth2/authorization/{id}`, `/login/oauth2/code/{id}`, `/saml2/authenticate/{id}`, `/login/saml2/sso/{id}`, `/logout` (nur eine Weiterleitung, ein Token ist keine Sitzung) |
+
+Ein Test im Server (`UnauthenticatedSurfaceTest`) liest das bei jedem Build aus dem laufenden Server: jede Route jedes Handler-Mappings, die Filter jeder Security-Kette, jedes Servlet und jeden Servlet-Filter. Kommt ein Weg ohne Anmeldung dazu, auf welche Art auch immer, schlägt der Test fehl, bis jemand ihn geprüft und hier eingetragen hat. Eingaben dieser Wege sind begrenzt, zum Beispiel der Name eines dynamisch registrierten OAuth-Clients auf 100 Zeichen und höchstens zehn Weiterleitungsadressen.
 
 ## Gehärtete HTTP-Antworten
 

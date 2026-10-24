@@ -5,16 +5,17 @@ description: The organization admin role and the Organization page with working 
 
 # Organization
 
-Hinata has two roles for work that goes beyond a single project. **Administrators** run the platform. **Organization admins** look after working time, absences and billing for the whole organization. The two roles are independent. A person can hold one of them, both or neither.
+Hinata has three roles for work that goes beyond a single project. **Administrators** run the platform. **Organization admins** look after working time, absences and billing for the whole organization. **Moderators** review reported content and decide on it. The three roles are independent. A person can hold one of them, several or none.
 
-## Two roles
+## Three roles
 
 | Role | What it is for | Where it works |
 | --- | --- | --- |
 | **Administrator** (`ADMIN`) | Accounts, sign-in and SSO, server settings, e-mail, Git and the audit log | [Admin area](/en/admin-area.html) |
 | **Organization admin** (`ORG_ADMIN`) | Working time with extended time tracking, timesheet approvals, absences, holiday calendars, time tags, lock exceptions, billing and the default for relative deadlines | **Organization** page in the app |
+| **Moderation** (`MODERATOR`) | Reviewing reported content and people and deciding on them, with reasons sent to everyone involved | **Moderation** page in the app |
 
-You assign both roles in **Admin area → Users**. Organization admins have no access to the admin area.
+You assign all roles in **Admin area → Users**. Organization admins and moderators have no access to the admin area.
 
 ### Rules for the organization admin role
 
@@ -23,8 +24,14 @@ You assign both roles in **Admin area → Users**. Organization admins have no a
 - When someone joins the role or leaves it, every organization admin gets a notification.
 - Every change to the admin and organization admin roles goes into the audit log. You cannot switch that off.
 
-!!! info "Neither role opens other people's projects"
-    An administrator only sees the projects, teams, issues, boards, knowledge base pages, search hits and time entries they are a member of, just like everyone else. Running the platform is not a reason to read other people's work. Organization admins also only see project content through their own membership. They do see every time entry, because approvals, corrections and billing need that. How far that goes is explained below under [Reports and exports](#reports-and-exports).
+### Rules for the moderation role
+
+- Nobody gives themselves the role, as with organization admins. Every grant is in the audit log, and everyone who moderates gets a notification.
+- The last person with the role cannot be removed, deactivated or deleted. Appoint someone else first.
+- At least two are good, so that nobody decides on a report about themselves.
+
+!!! info "None of these roles opens other people's projects"
+    An administrator only sees the projects, teams, issues, boards, knowledge base pages, search hits and time entries they are a member of, just like everyone else. Running the platform is not a reason to read other people's work. Organization admins also only see project content through their own membership. They do see every time entry, because approvals, corrections and billing need that. How far that goes is explained below under [Reports and exports](#reports-and-exports). Moderators see only what was reported, with the least context needed.
 
 ## The Organization page
 
@@ -89,7 +96,9 @@ The setting only preselects what a new deadline starts with. Existing deadlines 
 
 So that nothing stops working, every existing administrator also becomes an organization admin once during the update. Everything works as it did before. The hand-over is recorded for each person in the audit log, and each person gets a notification. If you want the roles apart, separate them afterwards in **Admin area → Users**. That is a deliberate step.
 
-On a new install, the first person the [setup wizard](/en/setup-wizard.html) creates gets both roles.
+With the update to a version with moderation, every existing administrator also becomes a moderator once, so that reports reach somebody from the start. That too is recorded for each person in the audit log, and the notification suggests handing the role on.
+
+On a new install, the first person the [setup wizard](/en/setup-wizard.html) creates gets all three roles.
 
 ## Where to go next
 

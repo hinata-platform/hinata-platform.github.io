@@ -5,16 +5,17 @@ description: Die Rolle Organisationsadmin und die Seite Organisation mit Arbeits
 
 # Organisation
 
-In Hinata gibt es zwei Rollen für Aufgaben, die über einzelne Projekte hinausgehen. **Administratoren** betreiben die Plattform. **Organisationsadmins** kümmern sich um Arbeitszeit, Abwesenheiten und Abrechnung der ganzen Organisation. Die beiden Rollen sind unabhängig voneinander. Eine Person kann eine davon haben, beide oder keine.
+In Hinata gibt es drei Rollen für Aufgaben, die über einzelne Projekte hinausgehen. **Administratoren** betreiben die Plattform. **Organisationsadmins** kümmern sich um Arbeitszeit, Abwesenheiten und Abrechnung der ganzen Organisation. **Moderierende** prüfen gemeldete Inhalte und entscheiden über sie. Die drei Rollen sind unabhängig voneinander. Eine Person kann eine davon haben, mehrere oder keine.
 
-## Zwei Rollen
+## Drei Rollen
 
 | Rolle | Wofür sie da ist | Wo sie arbeitet |
 | --- | --- | --- |
 | **Administrator** (`ADMIN`) | Konten, Anmeldung und SSO, Servereinstellungen, E-Mail, Git und das Audit-Protokoll | [Adminbereich](/de/admin-area.html) |
 | **Organisationsadmin** (`ORG_ADMIN`) | Arbeitszeit mit erweiterter Zeiterfassung, Stundenzettel-Freigaben, Abwesenheiten, Feiertagskalender, Zeit-Tags, Ausnahmen vom Sperrdatum, Abrechnung und der Standard für relative Fristen | Seite **Organisation** in der App |
+| **Moderation** (`MODERATOR`) | Gemeldete Inhalte und Personen prüfen und über sie entscheiden, mit einer Begründung an alle Beteiligten | Seite **Moderation** in der App |
 
-Beide Rollen vergibst du unter **Adminbereich → Benutzer**. Organisationsadmins haben keinen Zugang zum Adminbereich.
+Alle Rollen vergibst du unter **Adminbereich → Benutzer**. Organisationsadmins und Moderierende haben keinen Zugang zum Adminbereich.
 
 ### Regeln für die Rolle Organisationsadmin
 
@@ -23,8 +24,14 @@ Beide Rollen vergibst du unter **Adminbereich → Benutzer**. Organisationsadmin
 - Kommt jemand zur Rolle dazu oder gibt sie ab, bekommen alle Organisationsadmins eine Benachrichtigung.
 - Jede Änderung an den Rollen Admin und Organisationsadmin landet im Audit-Protokoll. Das lässt sich nicht abschalten.
 
-!!! info "Keine der beiden Rollen öffnet fremde Projekte"
-    Ein Administrator sieht nur Projekte, Teams, Vorgänge, Boards, Seiten der Wissensdatenbank, Suchtreffer und Zeiteinträge, bei denen er selbst Mitglied ist, genau wie alle anderen. Die Plattform zu betreiben heißt nicht, die Arbeit anderer zu lesen. Auch Organisationsadmins sehen Projektinhalte nur über ihre eigene Mitgliedschaft. Zeiteinträge sehen sie dagegen alle, weil Freigaben, Korrekturen und Abrechnung das verlangen. Wie weit das geht, steht unten unter [Berichte und Exporte](#berichte-und-exporte).
+### Regeln für die Rolle Moderation
+
+- Niemand gibt sich die Rolle selbst, wie beim Organisationsadmin. Jede Vergabe steht im Audit-Protokoll, und alle, die moderieren, bekommen eine Benachrichtigung.
+- Die letzte Person mit der Rolle lässt sich nicht entfernen, deaktivieren oder löschen. Ernenne zuerst eine andere Person.
+- Mindestens zwei sind gut, damit niemand über eine Meldung gegen sich selbst entscheidet.
+
+!!! info "Keine dieser Rollen öffnet fremde Projekte"
+    Ein Administrator sieht nur Projekte, Teams, Vorgänge, Boards, Seiten der Wissensdatenbank, Suchtreffer und Zeiteinträge, bei denen er selbst Mitglied ist, genau wie alle anderen. Die Plattform zu betreiben heißt nicht, die Arbeit anderer zu lesen. Auch Organisationsadmins sehen Projektinhalte nur über ihre eigene Mitgliedschaft. Zeiteinträge sehen sie dagegen alle, weil Freigaben, Korrekturen und Abrechnung das verlangen. Wie weit das geht, steht unten unter [Berichte und Exporte](#berichte-und-exporte). Moderierende sehen nur, was gemeldet ist, mit dem nötigsten Umfeld.
 
 ## Die Seite Organisation
 
@@ -89,7 +96,9 @@ Die Einstellung wählt nur vor, womit eine neue Frist startet. Bestehende Friste
 
 Damit nichts stehen bleibt, wird beim Update jeder bestehende Administrator einmalig auch Organisationsadmin. Alles funktioniert also wie vorher. Diese Übergabe steht für jede Person einzeln im Audit-Protokoll, und jede betroffene Person bekommt eine Benachrichtigung. Sollen die Rollen getrennt sein, nimmst du sie danach unter **Adminbereich → Benutzer** bewusst auseinander.
 
-Bei einer neuen Installation bekommt die erste Person, die der [Einrichtungsassistent](/de/setup-wizard.html) anlegt, beide Rollen.
+Mit dem Update auf eine Version mit Moderation wird außerdem jeder bestehende Administrator einmalig auch Moderator, damit Meldungen von Anfang an jemanden erreichen. Auch das steht je Person im Audit-Protokoll, und die Benachrichtigung empfiehlt, die Rolle an andere zu geben.
+
+Bei einer neuen Installation bekommt die erste Person, die der [Einrichtungsassistent](/de/setup-wizard.html) anlegt, alle drei Rollen.
 
 ## Wie es weitergeht
 
