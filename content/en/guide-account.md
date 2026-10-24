@@ -199,6 +199,10 @@ The secret is shown once, at creation. No card means the feature is off. See
 
 On a server without moderation, only **About the app** is there.
 
+## When a text is not saved
+
+Your server checks texts when they are saved. When a comment, an issue, a page or your profile contains something the house rules do not allow, it does not save it. You see which word it was right where you were writing. Your draft stays, so you can change it and save again. **Read the house rules** opens your server's rules.
+
 ## Your data
 
 Your GDPR rights are available here as buttons.

@@ -75,6 +75,13 @@ Jede Nachricht wird ein Vorgang im gewählten **Standardprojekt**:
     Adresse jeder lesenden Person an den fremden Server. Mehr dazu unter
     [Objektspeicher](/de/storage.html).
 
+!!! note "Mails, die die Textprüfung ablehnt"
+    Enthält eine Mail etwas, das die automatische Textprüfung ablehnt, wird
+    sie kein Vorgang. Der Server antwortet nicht, sonst ließe sich der Eingang
+    nutzen, um Spam an fremde Adressen zu schicken. Den Inhalt speichert er
+    nicht. Die Verbindung im Adminbereich zählt, wie viele Mails es waren und
+    wann die letzte kam.
+
 !!! note "Ein Autor ohne Projektmitgliedschaft"
     Autor zu sein gibt keinen Zugriff. Nur wer Projektmitglied ist, kann den
     Vorgang öffnen. Ein Autor außerhalb des Projekts bekommt weiter E-Mail- und

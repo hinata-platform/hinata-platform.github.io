@@ -147,7 +147,7 @@ If requests come through a proxy the server does not trust, a warning above the
 cards says so for a day: every client then counts as the proxy's address. Set
 `HINATA_TRUSTED_PROXIES`, see [Reverse proxy & TLS](/en/reverse-proxy.html).
 
-Then four cards:
+Then five cards:
 
 - **Who moderates**: everyone with the moderation role. They review reported
   content and decide on it, see only what was reported, and have no access to
@@ -176,6 +176,41 @@ Then four cards:
   Until a person agrees, they get no new access token and no AI client gets
   their consent. Anybody can read the rules without an account at
   `/api/v1/public/rules`, any earlier version with `?version=N`.
+- **Automatic text check**: which texts the server refuses when they are
+  saved, and whether it sends unclear cases to moderation. More on this just
+  below.
+
+The automatic text check compares texts with word lists when they are saved:
+issues, comments, knowledge pages, name, position and pronouns in a profile,
+usernames and the names of AI clients. That holds on every way in, in the app,
+over MCP, from mail and from Git. None of it leaves the server. Code, logs and
+technical terms such as `kill -9` set nothing off. The card has:
+
+- **Refuse clear violations**, on. Threats, hate speech and the like are not
+  saved. The writer sees which word it was and keeps the draft.
+- **Send unclear cases to moderation**, off, also after the update. When it is
+  on, the text is saved and moderation gets a report without a reporter, only
+  for new finds from the built-in lists. The system then checks your members'
+  texts itself. Depending on your organisation that first needs the consent of
+  your staff representatives, in Germany under § 87(1) no. 6 BetrVG or the
+  law on staff representation in the public sector, and a data protection
+  impact assessment under Art. 35 GDPR. That is why the server asks once more
+  when it is turned on.
+- **Own terms** are always refused, however they are spelled. They never send
+  anything to moderation, or any mention of a name or of the works council
+  could be routed there.
+- **Exceptions** are words that are harmless for you, such as technical terms.
+  Content that endangers children stays blocked all the same. Both lists take
+  up to 500 terms of 60 characters each.
+- **Try a text** shows what the server would do with a text, with the saved
+  settings. The text is neither stored nor counted.
+
+The built-in lists cover German and English. For other languages only your own
+terms work. The text check does not look at images and attachments; reports
+cover those. **How we moderate** names your own terms and whether unclear cases
+go to moderation. Every change of the switches and lists is in the audit log. A
+refused mail becomes no issue and gets no reply. Its connection under
+**E-mail** counts how many there were.
 
 ### Authentication & SSO
 
