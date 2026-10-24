@@ -68,7 +68,7 @@ Wie du die PKI erzeugst und den `$external`-Benutzer registrierst, steht unter
 
 | Variable | Zweck | Standard / Beispiel | Erforderlich |
 | --- | --- | --- | --- |
-| `HINATA_TRUSTED_PROXIES` | Kommagetrennte CIDRs der Reverse Proxies, die `X-Forwarded-For` setzen dürfen. Leer = keinem vertrauen | `172.16.0.0/12` | Empfohlen |
+| `HINATA_TRUSTED_PROXIES` | Kommagetrennte CIDRs der Reverse Proxies, die `X-Forwarded-For` setzen dürfen. Leer = keinem vertrauen | `172.16.0.0/12` | **Ja (hinter einem Proxy)** |
 
 !!! warning
     Setze hier genau den Adressbereich, aus dem dein Proxy den Container erreicht.

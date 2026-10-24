@@ -65,6 +65,7 @@ The content of an instance reaches only its members. That is also what keeps an 
 | Signing in, joining and getting back in | `POST /api/v1/auth/login`, `/2fa`, `/refresh`, `/register`, `/verify-email`, `/resend-verification`, `/reset/request`, `/reset/accept`, `/invite/accept`, `/sso/exchange`; `GET /api/v1/auth/invite/info`, `/sso/providers`, `/sso/start/{id}` |
 | Links from mails and calendar subscriptions, each with its own secret | `GET /api/v1/me/email-change/confirm`, `GET` and `POST /api/v1/me/password-reset/confirm`, `GET /api/v1/me/export.pdf`, `GET /api/v1/shifts/feed/{token}.ics` |
 | What the app learns about a server before signing in: name, logo, contact for reports | `GET /api/v1/meta`, `GET /api/v1/meta/logo` |
+| The house rules and the form for reports from people without an account (DSA Art. 14 and 16) | `GET /api/v1/public/rules`, `GET` and `POST /api/v1/public/report` |
 | Profile pictures for mails and pushes | `GET /api/v1/users/{id}/avatar` |
 | The first start of a new server, refused afterwards | `GET /api/v1/setup/status`, `POST /api/v1/setup` |
 | Git providers; a webhook counts only with the signature of a connected repository | `GET /api/v1/git/oauth/callback`, `POST /api/v1/git/webhooks/github`, `/gitlab`, `/bitbucket` |
@@ -76,6 +77,18 @@ The content of an instance reaches only its members. That is also what keeps an 
 | Redirects to and from an identity provider | `/oauth2/authorization/{id}`, `/login/oauth2/code/{id}`, `/saml2/authenticate/{id}`, `/login/saml2/sso/{id}`, `/logout` (only a redirect; a token is no session) |
 
 A test in the server (`UnauthenticatedSurfaceTest`) reads this from the running server on every build: every route of every handler mapping, the filters of every security chain, every servlet and every servlet filter. When a route without sign-in appears, in whatever way, the test fails until somebody has reviewed it and listed it here. What these routes take is bounded, for example the name of a dynamically registered OAuth client to 100 characters and at most ten redirect addresses.
+
+### Reports without an account
+
+The report form at `/api/v1/public/report` is a page of the server, without JavaScript. So that it can be used neither to send spam nor to wear the server down:
+
+- Every form carries a single-use token bound to a hash of the IP address. It counts after 3 seconds at the earliest and 2 hours at the latest, and sending uses it up. A hidden field catches bots.
+- Only the same origin may send it (`Sec-Fetch-Site`, else `Origin`), otherwise 403.
+- The limits live in the database: 10 reports an hour per address, 3 a day per email address, 100 an hour in all. When a limit is reached, the page shows the instance's contact instead of an error.
+- The server never fetches the address given. When it points to content of this instance, the report attaches to exactly that content, and moderation only sees it once a second person releases it. The page never says whether the content exists.
+- The receipt repeats nothing of what was entered and names no internal ids.
+
+Behind a reverse proxy the limits per address need `HINATA_TRUSTED_PROXIES`, see [Reverse proxy & TLS](/en/reverse-proxy.html).
 
 ## Hardened HTTP responses
 

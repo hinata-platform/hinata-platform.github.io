@@ -65,6 +65,7 @@ Inhalte einer Instanz erreichen nur ihre Mitglieder. Davon hängt auch ab, dass 
 | Anmelden, beitreten, Zugang zurückholen | `POST /api/v1/auth/login`, `/2fa`, `/refresh`, `/register`, `/verify-email`, `/resend-verification`, `/reset/request`, `/reset/accept`, `/invite/accept`, `/sso/exchange`; `GET /api/v1/auth/invite/info`, `/sso/providers`, `/sso/start/{id}` |
 | Links aus Mails und Kalender-Abos, jeder mit eigenem Geheimnis | `GET /api/v1/me/email-change/confirm`, `GET` und `POST /api/v1/me/password-reset/confirm`, `GET /api/v1/me/export.pdf`, `GET /api/v1/shifts/feed/{token}.ics` |
 | Was die App vor dem Anmelden über den Server erfährt: Name, Logo, Kontakt für Meldungen | `GET /api/v1/meta`, `GET /api/v1/meta/logo` |
+| Die Hausregeln und das Formular für Meldungen ohne Konto (DSA Art. 14 und 16) | `GET /api/v1/public/rules`, `GET` und `POST /api/v1/public/report` |
 | Profilbilder für Mails und Pushes | `GET /api/v1/users/{id}/avatar` |
 | Erster Start eines neuen Servers, danach abgelehnt | `GET /api/v1/setup/status`, `POST /api/v1/setup` |
 | Git-Anbieter; ein Webhook zählt nur mit der Signatur eines verbundenen Repositorys | `GET /api/v1/git/oauth/callback`, `POST /api/v1/git/webhooks/github`, `/gitlab`, `/bitbucket` |
@@ -76,6 +77,18 @@ Inhalte einer Instanz erreichen nur ihre Mitglieder. Davon hängt auch ab, dass 
 | Weiterleitungen zu und von einem Identity Provider | `/oauth2/authorization/{id}`, `/login/oauth2/code/{id}`, `/saml2/authenticate/{id}`, `/login/saml2/sso/{id}`, `/logout` (nur eine Weiterleitung, ein Token ist keine Sitzung) |
 
 Ein Test im Server (`UnauthenticatedSurfaceTest`) liest das bei jedem Build aus dem laufenden Server: jede Route jedes Handler-Mappings, die Filter jeder Security-Kette, jedes Servlet und jeden Servlet-Filter. Kommt ein Weg ohne Anmeldung dazu, auf welche Art auch immer, schlägt der Test fehl, bis jemand ihn geprüft und hier eingetragen hat. Eingaben dieser Wege sind begrenzt, zum Beispiel der Name eines dynamisch registrierten OAuth-Clients auf 100 Zeichen und höchstens zehn Weiterleitungsadressen.
+
+### Meldungen ohne Konto
+
+Das Meldeformular unter `/api/v1/public/report` ist eine Seite des Servers ohne JavaScript. Damit es weder zum Spam-Versand noch zum Lahmlegen taugt:
+
+- Jedes Formular trägt ein Einmal-Token, an den Hash der IP-Adresse gebunden. Es gilt frühestens nach 3 Sekunden und höchstens 2 Stunden und ist nach dem Senden verbraucht. Ein verstecktes Feld fängt Bots.
+- Gesendet wird nur von derselben Herkunft (`Sec-Fetch-Site` beziehungsweise `Origin`), sonst 403.
+- Die Grenzen liegen in der Datenbank: 10 Meldungen je Stunde und Adresse, 3 am Tag je E-Mail-Adresse, 100 je Stunde insgesamt. Ist eine Grenze erreicht, zeigt die Seite den Kontakt der Instanz statt eines Fehlers.
+- Der Server ruft die angegebene Adresse nie ab. Zeigt sie auf einen Inhalt dieser Instanz, hängt die Meldung genau dort, und die Moderation sieht den Inhalt erst, wenn eine zweite Person ihn freigibt. Die Seite sagt nie, ob es den Inhalt gibt.
+- Die Eingangsbestätigung wiederholt nichts von dem, was eingegeben wurde, und nennt keine internen Kennungen.
+
+Die Grenzen je Adresse brauchen hinter einem Reverse Proxy `HINATA_TRUSTED_PROXIES`, siehe [Reverse Proxy & TLS](/de/reverse-proxy.html).
 
 ## Gehärtete HTTP-Antworten
 
