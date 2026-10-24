@@ -173,6 +173,7 @@ Then six cards:
   kept. Every saved change makes a new version that never changes again, so
   every agreement and every decision points to the words it was given. A new
   version does not ask anybody again; **Ask everybody to agree again** does.
+  An app that is open asks the next time it comes to the front.
   Until a person agrees, they get no new access token and no AI client gets
   their consent. Anybody can read the rules without an account at
   `/api/v1/public/rules`, any earlier version with `?version=N`.
@@ -204,7 +205,9 @@ technical terms such as `kill -9` set nothing off. The card has:
   when it is turned on.
 - **Own terms** are always refused, however they are spelled. They never send
   anything to moderation, or any mention of a name or of the works council
-  could be routed there.
+  could be routed there. They stand word for word in the public house rules,
+  under **How we moderate**, and in every earlier version of them. Never enter
+  a person's name or anything confidential.
 - **Exceptions** are words that are harmless for you, such as technical terms.
   Content that endangers children stays blocked all the same. Both lists take
   up to 500 terms of 60 characters each.

@@ -320,6 +320,15 @@ docker compose -f docker-compose.yml -f docker-compose.app.yml pull hinata-app
 docker compose -f docker-compose.yml -f docker-compose.app.yml up -d hinata-app
 ```
 
+!!! note "The first start after an update can take longer"
+    A release that adds indexes builds them at its first start. The release
+    with moderation builds them on notifications, comments, cases and users. On
+    a large instance that takes a few minutes, and the server answers its health
+    check once it is done; the image allows 180 seconds for the start. Plan the
+    minutes into the maintenance window, or start the new version once against
+    a copy of the database beforehand. An index a release no longer needs, such
+    as the old one on a notification's `userId`, is dropped on its own.
+
 !!! danger "A redeploy updates only app and server, never Mongo or SeaweedFS"
     Issues, attachments and users live in the `mongo1-data`, `mongo2-data` and
     `seaweedfs-data` Docker volumes. Recreating or removing the database or storage

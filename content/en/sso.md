@@ -19,6 +19,7 @@ Local username and password sign-in: [Authentication](/en/authentication.html).
 2. The app fetches the enabled providers from the public endpoint **`/api/v1/auth/sso/providers`** and shows a sign-in button for each on the login screen.
 3. The user authenticates at the identity provider.
 4. The IdP redirects back to Hinata's callback. The server verifies the response, provisions or matches the user and hands control back to the app through the **`hinata://auth-callback`** deep link (or the matching universal link on the web build).
+5. The link carries a single-use code, never the tokens. The app redeems it at **`/api/v1/auth/sso/exchange`** with a secret it kept when it started the sign-in; the start carried only that secret's challenge. A code that reaches anybody else, in a link someone forwards or posts, signs nobody in.
 
 !!! info "Works behind proxies and tunnels"
     The OAuth 2.0 **authorization-request state is stored in MongoDB** instead of a cookie or HTTP session. So the flow survives reverse proxies, load balancers and dev tunnels (e.g. ngrok) that would otherwise drop or rewrite the session cookie. Elsewhere, that is a common cause of `authorization_request_not_found`.

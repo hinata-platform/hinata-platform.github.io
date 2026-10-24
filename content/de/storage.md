@@ -137,6 +137,8 @@ Jedes Byte, das jemand hochlädt, läuft vor dem Speichern durch dieselbe Prüfu
 - **`image/svg+xml` ist bewusst ausgeschlossen.** SVG kann JavaScript enthalten (Risiko für Stored XSS).
 - **Größe je Art.** Anhänge und Bilder in Texten bis `HINATA_STORAGE_MAX_UPLOAD_MB`, Sprachnachrichten bis 16 MB, Avatare bis 12 MB und das Logo bis 8 MB. Wie viele Pixel ein Bild hat, liest der Server aus seinem Kopf, bevor er es öffnet. So kann eine kleine Datei nicht ein riesiges Bild vortäuschen.
 - **Dateinamen** sind höchstens 200 Zeichen lang und enthalten weder Steuerzeichen noch `/` oder `\`.
+- **Namen, die ein System ausführt, werden abgelehnt**, für jede Art und unabhängig vom Inhalt: Programme, Skripte, Verknüpfungen und Webseiten wie `.exe`, `.bat`, `.ps1`, `.js`, `.lnk`, `.html` oder `.svg`. Ein Download wird so nie zu einem davon.
+- **Text wird gelesen, bevor er bleibt.** Eine Text-, CSV- oder JSON-Datei liest der Server bis zu ihren ersten 8 KB. Die Bytes eines Programms lehnt er ab, ebenso einen Anfang, den ein Browser oder der Desktop ausführen würde: HTML, SVG, XML oder ein Skript.
 - Ein abgelehnter Upload antwortet mit `422` und einem lokalisierten Satz. In `details` stehen `code: upload.refused` und der Grund: `type`, `signature`, `size`, `image`, `metadata`, `fileName`, `empty`, `disabled` oder `unreadable`. Jede Ablehnung zählt in die Jahreszahlen der Moderation.
 
 Unter **Adminbereich › Moderation › Dateitypen** schaltest du ganze Gruppen ab: Bilder, PDF, Office-Dokumente, Text und Tabellen, ZIP und Sprachnachrichten. Das schränkt die Liste nur ein. Erweitern lässt sie sich nicht, SVG oder Programme kann also niemand erlauben. Avatare und das Logo bleiben davon unberührt.
@@ -145,7 +147,7 @@ Was ein Bild zeigt, prüft der Server nicht. Gemeldete Bilder prüft ein Mensch.
 
 ### Metadaten von Bildern
 
-Ein Bild, das jemand in eine Beschreibung, einen Kommentar oder einen Artikel einfügt, sehen alle, die den Text lesen. Ein Foto vom Handy trägt in seinen EXIF-Daten oft den Ort, an dem es aufgenommen wurde. Deshalb entfernt der Server aus eingebetteten Bildern vor dem Speichern EXIF, XMP und IPTC samt GPS-Position, dazu Kommentare und Textblöcke. Er schneidet nur diese Blöcke heraus und kodiert das Bild nicht neu, Qualität und Animation (GIF, WebP) bleiben also erhalten. Nur ein JPEG, das laut EXIF gedreht angezeigt werden soll, dreht er selbst und speichert es neu, damit es auch ohne EXIF richtig herum steht. Ein Bild, dessen Blöcke sich nicht sicher lesen lassen, lehnt er ab.
+Ein Bild, das jemand in eine Beschreibung, einen Kommentar oder einen Artikel einfügt, sehen alle, die den Text lesen. Ein Foto vom Handy trägt in seinen EXIF-Daten oft den Ort, an dem es aufgenommen wurde. Deshalb entfernt der Server aus eingebetteten Bildern vor dem Speichern EXIF, XMP und IPTC samt GPS-Position, dazu Kommentare und Textblöcke. Er schneidet nur diese Blöcke heraus und kodiert das Bild nicht neu, Qualität und Animation (GIF, WebP) bleiben also erhalten. Ein JPEG, das laut EXIF gedreht angezeigt werden soll, behält genau das und sonst nichts, in einem kleinen EXIF-Block, damit es richtig herum steht. Neu kodiert wird auch dieses nicht, die Vorschau dreht der Server selbst. Ein Bild, dessen Blöcke sich nicht sicher lesen lassen, lehnt er ab.
 
 **Anhänge bleiben, wie sie hochgeladen wurden.** Wer ein Foto bewusst als Datei anhängt, bekommt es mit allen Metadaten zurück. Avatare, das Logo und Vorschaubilder kodiert der Server ohnehin neu, sie tragen keine Metadaten.
 
@@ -154,8 +156,10 @@ Ein Bild, das jemand in eine Beschreibung, einen Kommentar oder einen Artikel ei
 Beim Speichern eines Textes geht der Server jedes Bild darin durch:
 
 - **Externe Bilder** (`http`, `https`) werden zu einem Link mit dem Text „Externes Bild“. Würde die App sie anzeigen, verriete schon das Öffnen des Textes die Adresse jeder lesenden Person an den fremden Server, und geprüft hätte die Bytes niemand. Das betrifft vor allem E-Mails mit eingebetteten Logos.
-- **`data:`-Bilder** laufen durch dieselbe Prüfung wie ein Upload und landen im Medienspeicher, höchstens 20 je Speichern. Lehnt die Prüfung eines ab, steht an seiner Stelle „Bild nicht übernommen“.
+- **`data:`-Bilder** laufen durch dieselbe Prüfung wie ein Upload und landen im Medienspeicher, höchstens 20 je Speichern und jedes mit bis zu 25 Megapixeln. Lehnt die Prüfung eines ab, steht an seiner Stelle „Bild nicht übernommen“. Ihr Vorschaubild entsteht, wenn es zum ersten Mal jemand ansieht.
 - Bilder dieses Servers bleiben, wie sie sind. Jede andere Quelle wird ebenfalls zu „Bild nicht übernommen“.
+
+Ein Text fasst höchstens 200 Bilder. Wer einen mit mehr speichert, bekommt eine Ablehnung, die das sagt.
 
 !!! note "Zwei Größenobergrenzen arbeiten zusammen"
     Die Multipart-Limits von Spring (`max-file-size` / `max-request-size`, aus denselben MB-Werten) sind die äußere Grenze. Die App prüft zusätzlich Dateianzahl und Gesamtgröße. Für größere Uploads erhöhst du alle Werte gemeinsam.

@@ -182,7 +182,8 @@ Danach sechs Karten:
   aufbewahrt wird. Jede gespeicherte Änderung ergibt eine neue Fassung, die sich
   nie mehr ändert. So zeigt jede Zustimmung und jede Entscheidung auf den
   Wortlaut, der damals galt. Eine neue Fassung fragt niemanden erneut, **Alle
-  neu zustimmen lassen** schon. Bis eine Person zustimmt, bekommt sie kein
+  neu zustimmen lassen** schon. Eine geöffnete App fragt, sobald sie das
+  nächste Mal nach vorn kommt. Bis eine Person zustimmt, bekommt sie kein
   neues Zugriffstoken, und kein KI-Client bekommt ihre Zustimmung. Ohne Konto
   liest jeder die Regeln unter `/api/v1/public/rules`, jede frühere Fassung mit
   `?version=N`.
@@ -214,7 +215,9 @@ Logs und technische Begriffe wie `kill -9` lösen nichts aus. Die Karte hat:
   Server beim Einschalten noch einmal nach.
 - **Eigene Begriffe** werden immer abgelehnt, in jeder Schreibweise. Sie geben
   nie etwas zur Moderation, sonst ließe sich jede Erwähnung eines Namens oder
-  des Betriebsrats dorthin leiten.
+  des Betriebsrats dorthin leiten. Sie stehen Wort für Wort in den öffentlichen
+  Hausregeln unter **So moderieren wir**, auch in jeder früheren Fassung. Tragt
+  nie den Namen einer Person oder etwas Vertrauliches ein.
 - **Ausnahmen** sind Wörter, die bei euch harmlos sind, etwa Fachbegriffe.
   Inhalte, die Kinder gefährden, bleiben trotzdem gesperrt. Beide Listen
   nehmen bis zu 500 Begriffe mit je 60 Zeichen.
