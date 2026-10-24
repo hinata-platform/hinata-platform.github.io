@@ -147,7 +147,7 @@ If requests come through a proxy the server does not trust, a warning above the
 cards says so for a day: every client then counts as the proxy's address. Set
 `HINATA_TRUSTED_PROXIES`, see [Reverse proxy & TLS](/en/reverse-proxy.html).
 
-Then five cards:
+Then six cards:
 
 - **Who moderates**: everyone with the moderation role. They review reported
   content and decide on it, see only what was reported, and have no access to
@@ -159,12 +159,12 @@ Then five cards:
   12). Without signing in, the contact is in `/api/v1/meta`. While the email
   address is missing, the card shows a warning. An address in
   `HINATA_MODERATION_CONTACT_EMAIL` applies as long as none is entered here.
-- **File types**: one switch per group, namely images, PDF, Office
-  documents, text and spreadsheets, ZIP and voice messages. Files of a group
-  that is switched off can no longer be attached, put into texts or sent. The
-  switches only narrow the server's safe list. SVG or programs can never be
-  allowed here. Avatars and the logo are exempt. More on this under
-  [Object storage](/en/storage.html).
+- **Retention and figures**: whether done cases, their reports and the
+  quarantine are deleted after 6 or 12 months, unless law enforcement was told.
+  **Download figures for …** gives the yearly figures of moderation in the
+  European Commission's template, one CSV file per part in a ZIP, for this year
+  or an earlier one. What the figures hold and what you add before publishing
+  them is on [Moderation for operators](/en/moderation-operators.html#yearly-figures).
 - **House rules**: what everybody agrees to before writing. **Standard** is
   built in, in nine languages, and names your contact. **Own text** takes
   Markdown, **Address** a page of your own (https). Whatever you choose, the
@@ -179,6 +179,12 @@ Then five cards:
 - **Automatic text check**: which texts the server refuses when they are
   saved, and whether it sends unclear cases to moderation. More on this just
   below.
+- **File types**: one switch per group, namely images, PDF, Office
+  documents, text and spreadsheets, ZIP and voice messages. Files of a group
+  that is switched off can no longer be attached, put into texts or sent. The
+  switches only narrow the server's safe list. SVG or programs can never be
+  allowed here. Avatars and the logo are exempt. More on this under
+  [Object storage](/en/storage.html).
 
 The automatic text check compares texts with word lists when they are saved:
 issues, comments, knowledge pages, name, position and pronouns in a profile,
@@ -211,6 +217,10 @@ cover those. **How we moderate** names your own terms and whether unclear cases
 go to moderation. Every change of the switches and lists is in the audit log. A
 refused mail becomes no issue and gets no reply. Its connection under
 **E-mail** counts how many there were.
+
+How moderators work through reports is on [Moderation](/en/moderation.html).
+What the Digital Services Act asks of you as the operator, and how the yearly
+figures work, is on [Moderation for operators](/en/moderation-operators.html).
 
 ### Authentication & SSO
 

@@ -13,7 +13,7 @@ Hinata has three roles for work that goes beyond a single project. **Administrat
 | --- | --- | --- |
 | **Administrator** (`ADMIN`) | Accounts, sign-in and SSO, server settings, e-mail, Git and the audit log | [Admin area](/en/admin-area.html) |
 | **Organization admin** (`ORG_ADMIN`) | Working time with extended time tracking, timesheet approvals, absences, holiday calendars, time tags, lock exceptions, billing and the default for relative deadlines | **Organization** page in the app |
-| **Moderation** (`MODERATOR`) | Reviewing reported content and people and deciding on them, with reasons sent to everyone involved | **Moderation** page in the app |
+| **Moderation** (`MODERATOR`) | Reviewing reported content and people and deciding on them, with reasons sent to everyone involved | **Moderation** page in the app, see [Moderation](/en/moderation.html) |
 
 You assign all roles in **Admin area → Users**. Organization admins and moderators have no access to the admin area.
 
