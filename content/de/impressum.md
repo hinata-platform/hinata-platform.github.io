@@ -12,7 +12,8 @@ Weberstr. 58\
 47798 Krefeld\
 Deutschland
 
-E-Mail: mail@ahmadre.com
+E-Mail: mail@ahmadre.com\
+Telefon: +49 152 56407050
 
 ## Kontaktstelle nach Art. 11 und 12 DSA
 
