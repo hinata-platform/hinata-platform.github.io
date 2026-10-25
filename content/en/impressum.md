@@ -12,7 +12,8 @@ Weberstr. 58\
 47798 Krefeld\
 Germany
 
-Email: mail@ahmadre.com
+Email: mail@ahmadre.com\
+Phone: +49 152 56407050
 
 ## Point of contact under Art. 11 and 12 DSA
 
