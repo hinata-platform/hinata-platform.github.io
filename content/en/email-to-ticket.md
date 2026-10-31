@@ -61,18 +61,34 @@ Each message becomes one issue in the selected **default project**:
 | Issue field | Comes from |
 | --- | --- |
 | **Title** | The e-mail **subject** (or `(no subject)` if empty), truncated to a safe length |
-| **Description** | A short header naming the sender, then the plain-text body. If there's no plain part, the HTML part is converted to text |
+| **Description** | A short header naming the sender, then the message. An HTML mail keeps its layout: columns, colours, fonts, spacing, images and buttons are rebuilt so the description looks like the mail, and stay editable. On a phone, columns stack the way a mail app stacks them. A plain-text mail stays text |
 | **Type** | **Task** |
 | **Reporter** | The sender's e-mail address |
 | **Author** | The sender, if their address belongs to an active Hinata account. They then get notified about every change, like any watcher. If nobody owns the address, the issue has no author. The description header still names the sender |
 | **Attachments** | The e-mail's attachments, once they pass the same check as an upload. The server reads the type from the content, not from the mail's header. A refused attachment is not stored. The description gets a line such as "Attachment `invoice.pdf` refused: This file type is not allowed here" instead, and the server log the reason |
 
-!!! note "External images become links"
-    When an HTML mail loads images from foreign servers, such as the logo in a
-    signature, Hinata does not show them. Each of these images becomes a link
-    with the text "External image". Otherwise merely opening the issue would
-    give the address of every reader to the foreign server. More on this under
-    [Object storage](/en/storage.html).
+### External images
+
+When a mail loads images from other servers, such as a newsletter's logo and
+banner, Hinata holds them back, the way a mail app does. Each image keeps its
+space, and above the description it says:
+
+> External images were blocked to protect your privacy.
+> **Load once** · **Always load from vodafone.com**
+
+- **Load once** shows the images for as long as you keep the issue open.
+- **Always load from …** remembers the sender's domain in your account. Mail
+  from there then shows its images straight away. You manage the list under
+  [Trusted senders](/en/guide-account.html#trusted-senders).
+
+The server always fetches the images and hands them to the app. The other
+server never learns who reads the issue, and every image is checked before it
+is shown. More on this under [Object storage](/en/storage.html).
+
+Hinata offers "always load" only for a genuine sender: your own mail server
+must have confirmed the mail with DMARC (or an aligned DKIM signature). For
+that you enter the **mail server name** in the connection, see below. Without
+it there is only "Load once".
 
 !!! note "Mails the text check refuses"
     When a mail contains something the automatic text check refuses, it becomes
@@ -112,6 +128,7 @@ Open **Admin area → E-mail ingest** and enter the mailbox details:
 | **Folder** | `INBOX` | Which folder to scan |
 | **Default project** | (empty) | The project that receives the issues |
 | **Poll interval** | `60` s | Minimum seconds between mailbox scans |
+| **Mail server name (authserv-id)** | (empty) | The name your receiving mail server writes into the `Authentication-Results` header, such as `mx.example.org`. Only senders that header confirms can be trusted to show their images. You find the name in the source of a received mail |
 
 Ingestion stays idle until **Enabled** is on **and** both **host** and **default
 project** are set. A half-finished configuration does nothing.
@@ -120,6 +137,11 @@ project** are set. A half-finished configuration does nothing.
     Every **unseen** message in the folder is imported and marked seen. Use a
     mailbox that exists only for this. In a shared inbox, ordinary unread mail
     would turn into issues and get marked as read.
+
+!!! tip "Rebuild issues after an update"
+    **Reprocess** on a connection reads the mailbox again and rebuilds the
+    description of every issue nobody has edited by hand. That is how older
+    mail issues get their layout.
 
 ## How it complements outbound SMTP
 

@@ -192,6 +192,10 @@ die Karte, ist die Funktion aus. Siehe [MCP-Server](/de/mcp.html).
 
 Unter **Blockierte Personen** siehst du, wen du blockiert hast und seit wann, die neuesten zuerst. **Aufheben** beendet eine Blockierung sofort und ohne Rückfrage. Was Blockieren bewirkt, steht unter [Kommentare & Anhänge](/de/guide-collaboration.html#jemanden-blockieren). Fehlt der Eintrag, kennt dein Server das Blockieren noch nicht.
 
+## Vertrauenswürdige Absender
+
+Unter **Vertrauenswürdige Absender** stehen die Domains, deren Mails ihre Bilder ohne Rückfrage zeigen, die neuesten zuerst. Du fügst einen Absender hinzu, indem du über einem Vorgang aus einer E-Mail **Immer von … laden** wählst. **Entfernen** nimmt das zurück. Danach fragt Hinata bei Bildern dieses Absenders wieder. Die Liste gilt nur für dich. Mehr dazu unter [E-Mail zu Vorgang](/de/email-to-ticket.html#externe-bilder).
+
 ## Hilfe und Kontakt
 
 **Hilfe und Kontakt** sammelt, was du brauchst, wenn etwas nicht stimmt:

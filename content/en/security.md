@@ -100,6 +100,8 @@ Behind a reverse proxy the limits per address need `HINATA_TRUSTED_PROXIES`, see
 
 - **Links lead only to the web, to mail or into the app.** When a text is saved, a link in it keeps only targets with `http`, `https` or `mailto` and paths of the app that start with exactly one `/`. Anything else, such as `javascript:`, `data:` or `//foreign.host`, loses its link and keeps its words. That holds for every way into a text, Markdown from MCP and from mail included. A one-time migration did the same for every text stored before.
 - **Outside a browser the apps follow only addresses with a scheme.** A relative path means nothing there, and Windows would open it as a path on the disk, `//host` as a network share.
+- **Only the server fetches external images, and only after consent.** The app never loads an image from another host. The server fetches it only once the reader agrees, and only if the address appears in the issue's text. It resolves the address itself and connects only to public addresses (no internal, loopback, link-local, ULA or metadata addresses, not after a redirect either), only on ports 80 and 443, with a time limit, at most 8 MB, and recognises the type from the content (never SVG). Concurrent fetches are limited per person and in total. See [E-mail to ticket](/en/email-to-ticket.html#external-images).
+- **Styles from mails are limited to a fixed list.** Colours, spacing, widths, borders and font, every value checked, no `url()`. That holds for documents an app saves too.
 - **The automatic text check** refuses clear violations when a text is saved, on every way in. It runs in the server, without any outside service. See [Admin area](/en/admin-area.html).
 
 ## File uploads and object storage
