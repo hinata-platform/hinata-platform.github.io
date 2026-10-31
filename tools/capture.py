@@ -853,6 +853,21 @@ def prune_own_sessions(access):
         print("signed out the demo account's other sessions")
 
 
+def accept_house_rules(access):
+    """Agree to the current house rules as the demo account.
+
+    A server with moderation holds every signed-in screen behind the house rules
+    until they are agreed to, so each shot would be that gate instead. A server
+    without moderation answers 404 and nothing happens."""
+    h = {"Authorization": f"Bearer {access}"}
+    r = requests.get(f"{API}/api/v1/me/rules", headers=h, timeout=15)
+    if not r.ok or not r.json().get("pending"):
+        return
+    requests.post(f"{API}/api/v1/me/rules/acceptance", headers=h, timeout=15,
+                  json={"version": r.json()["version"]}).raise_for_status()
+    print("agreed to the house rules as the demo account")
+
+
 def non_member(access, team_id):
     """Someone in the directory who is not on this team, by display name — the
     only person the Add-members picker can still offer."""
@@ -1840,7 +1855,11 @@ def _board_columns(page, ids):
     # Where WIP limits are set — an ordinary text box per column, which "the
     # count badge reads 3/5" does not suggest.
     tap(page, "Board options", after=2200)
-    tap(page, "Columns", after=3500)
+    tap(page, "Columns", after=800)
+    # The editor reads the board's layout first and shows only a loader until
+    # then; "Add column" is the first control the loaded editor paints.
+    page.get_by_role("button", name="Add column").wait_for(timeout=30000)
+    page.wait_for_timeout(1200)
     return lambda: dismiss(page, "Cancel")
 
 
@@ -2844,6 +2863,7 @@ def main(frames_only=False, only=None):
         )
     httpd = serve()
     access, refresh = login()
+    accept_house_rules(access)
     seed = init_script(access, refresh)
 
     # --frames-only: just re-render the two landing-page device heroes
