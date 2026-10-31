@@ -42,6 +42,12 @@ def api(method, path, token=None, body=None):
 
 login = api("POST", "/api/v1/auth/login", body={"identifier": "admin", "password": "hinata-demo-2026"})
 ACCESS, REFRESH = login["accessToken"], login["refreshToken"]
+# A server with moderation holds every screen behind the house rules until they
+# are agreed to; one without it answers 404.
+_rules = requests.get(f"{API}/api/v1/me/rules", timeout=15,
+                      headers={"Authorization": f"Bearer {ACCESS}"})
+if _rules.ok and _rules.json().get("pending"):
+    api("POST", "/api/v1/me/rules/acceptance", ACCESS, {"version": _rules.json()["version"]})
 now = datetime.now(timezone.utc)
 iso = lambda d: d.strftime("%Y-%m-%dT%H:%M:%SZ")
 events = api("GET", f"/api/v1/shifts/events?from={iso(now - timedelta(days=1))}"
@@ -67,6 +73,8 @@ def init_script(theme):
 
 
 missing = []
+# Shot names to take (without -dark); none given takes them all.
+ONLY = set(sys.argv[1:])
 
 
 def go(page, route, wait=7):
@@ -98,6 +106,8 @@ def run(browser, theme):
     suffix = "" if theme == "light" else "-dark"
 
     def shot(page, name, wait=1.5):
+        if ONLY and name not in ONLY:
+            return
         time.sleep(wait)
         page.screenshot(path=os.path.join(OUT, f"{name}{suffix}.png"))
         print("shot", name + suffix, flush=True)
@@ -183,6 +193,16 @@ def run(browser, theme):
         close(page)
 
     go(page, f"/shifts/calendar?span=month&date={FAIR_DAY}")
+    # The fair starts on the Monday after the seed, which can fall in the last
+    # week of the month: below the fold, so the month would show no marks at all.
+    # In English the week starts on Sunday; a week row is about 140 px high.
+    fair = datetime.strptime(FAIR_DAY, "%Y-%m-%d")
+    lead = (fair.replace(day=1).weekday() + 1) % 7
+    row = (lead + fair.day - 1) // 7
+    if row > 3:
+        page.mouse.move(w * 0.6, h * 0.6)
+        page.mouse.wheel(0, (row - 3) * 140)
+        time.sleep(1.5)
     shot(page, "shot-shifts-calendar-month")
 
     go(page, "/shifts/events")
