@@ -155,7 +155,7 @@ Ein Bild, das jemand in eine Beschreibung, einen Kommentar oder einen Artikel ei
 
 Beim Speichern eines Textes geht der Server jedes Bild darin durch:
 
-- **Externe Bilder** (`http`, `https`) werden zu einem Link mit dem Text „Externes Bild“. Würde die App sie anzeigen, verriete schon das Öffnen des Textes die Adresse jeder lesenden Person an den fremden Server, und geprüft hätte die Bytes niemand. Das betrifft vor allem E-Mails mit eingebetteten Logos.
+- **Externe Bilder** (`http`, `https`) bleiben in Beschreibungen und Kommentaren von Vorgängen Bilder, die App lädt sie aber nie selbst. Erst wenn die lesende Person zustimmt („Einmal laden“ oder ein vertrauenswürdiger Absender, siehe [E-Mail zu Vorgang](/de/email-to-ticket.html#externe-bilder)), holt der Server das Bild und reicht es weiter. Der fremde Server sieht so nur den Server, nie die Adresse der lesenden Person. Der Server lädt nur Bilder, die im Text dieses Vorgangs stehen, nur über `http`/`https` auf den Ports 80 und 443, nie von internen Adressen, höchstens 8 MB, und nur PNG, JPEG, GIF oder WebP. In Wissensartikeln werden externe Bilder weiter zu einem Link mit dem Text „Externes Bild“. Apps, die die neue Darstellung noch nicht kennen, bekommen ebenfalls diesen Link.
 - **`data:`-Bilder** laufen durch dieselbe Prüfung wie ein Upload und landen im Medienspeicher, höchstens 20 je Speichern und jedes mit bis zu 25 Megapixeln. Lehnt die Prüfung eines ab, steht an seiner Stelle „Bild nicht übernommen“. Ihr Vorschaubild entsteht, wenn es zum ersten Mal jemand ansieht.
 - Bilder dieses Servers bleiben, wie sie sind. Jede andere Quelle wird ebenfalls zu „Bild nicht übernommen“.
 
