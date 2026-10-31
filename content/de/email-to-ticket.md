@@ -91,6 +91,13 @@ Mailserver muss die Mail mit DMARC (oder einer passenden DKIM-Signatur)
 bestätigt haben. Dafür trägst du in der Verbindung den **Namen des Mailservers**
 ein, siehe unten. Ohne ihn gibt es nur „Einmal laden“.
 
+!!! warning "Nur mit einem Mailserver, der fremde Prüfkopfzeilen entfernt"
+    Der Name schützt nur, wenn dein Mailserver eingehende Kopfzeilen
+    `Authentication-Results` mit seinem eigenen Namen entfernt, bevor er selbst
+    prüft. Sonst könnte ein Absender eine gefälschte Bestätigung mitschicken.
+    Postfix mit OpenDMARC, Rspamd und Exchange Online tun das. Prüft dein
+    Mailserver gar nicht, lass das Feld leer.
+
 !!! note "Mails, die die Textprüfung ablehnt"
     Enthält eine Mail etwas, das die automatische Textprüfung ablehnt, wird
     sie kein Vorgang. Der Server antwortet nicht, sonst ließe sich der Eingang

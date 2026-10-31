@@ -90,6 +90,13 @@ must have confirmed the mail with DMARC (or an aligned DKIM signature). For
 that you enter the **mail server name** in the connection, see below. Without
 it there is only "Load once".
 
+!!! warning "Only with a mail server that removes foreign check headers"
+    The name protects only if your mail server removes incoming
+    `Authentication-Results` headers carrying its own name before it checks the
+    mail itself. Otherwise a sender could ship a forged confirmation. Postfix
+    with OpenDMARC, Rspamd and Exchange Online do that. If your mail server
+    does not check at all, leave the field empty.
+
 !!! note "Mails the text check refuses"
     When a mail contains something the automatic text check refuses, it becomes
     no issue. The server does not reply, or the inbox could be used to send
