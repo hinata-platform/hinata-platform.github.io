@@ -187,6 +187,10 @@ The secret is shown once, at creation. No card means the feature is off. See
 
 **Blocked people** lists whom you have blocked and since when, newest first. **Unblock** lifts a block at once, without asking. What blocking does is explained under [Comments & attachments](/en/guide-collaboration.html#block-someone). If the entry is missing, your server does not support blocking yet.
 
+## Trusted senders
+
+**Trusted senders** lists the domains whose mail shows its images without asking, newest first. You add a sender by choosing **Always load from …** above an issue made from an e-mail. **Remove** takes it back, and Hinata asks again for that sender's images. The list is yours alone. More on this under [E-mail to ticket](/en/email-to-ticket.html#external-images).
+
 ## Help and contact
 
 **Help and contact** gathers what you need when something is wrong:

@@ -155,7 +155,7 @@ An image someone puts into a description, a comment or an article is seen by eve
 
 When a text is saved, the server goes through every image in it:
 
-- **External images** (`http`, `https`) become a link with the text "External image". If the app showed them, merely opening the text would give the address of every reader to the foreign server, and nobody would have checked the bytes. This mostly affects e-mails with embedded logos.
+- **External images** (`http`, `https`) stay images in issue descriptions and comments, but the app never loads them itself. Only once the reader agrees ("Load once" or a trusted sender, see [E-mail to ticket](/en/email-to-ticket.html#external-images)) does the server fetch the image and pass it on. The other server sees only the server, never the reader's address. The server fetches only images that appear in that issue's text, only over `http`/`https` on ports 80 and 443, never from internal addresses, at most 8 MB, and only PNG, JPEG, GIF or WebP. In knowledge articles external images still become a link with the text "External image". Apps that do not know the new layout yet get that link too.
 - **`data:` images** pass the same check as an upload and end up in the media store, at most 20 per save and each up to 25 megapixels. Where the check refuses one, "Image not included" takes its place. Their preview is made the first time somebody looks at them.
 - Images of this server stay as they are. Any other source becomes "Image not included" as well.
 
