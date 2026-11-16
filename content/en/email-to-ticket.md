@@ -85,10 +85,17 @@ The server always fetches the images and hands them to the app. The other
 server never learns who reads the issue, and every image is checked before it
 is shown. More on this under [Object storage](/en/storage.html).
 
-Hinata offers "always load" only for a genuine sender: your own mail server
-must have confirmed the mail with DMARC (or an aligned DKIM signature). For
-that you enter the **mail server name** in the connection, see below. Without
-it there is only "Load once".
+Hinata offers "always load" only for a genuine sender. The server checks
+that itself: the mail needs a valid DKIM signature, and the signing domain has
+to match the domain in the sender address. The server gets the key from the
+sender's DNS. DMARC checks the same way. A mail with a forged sender fails
+this check.
+
+If the signature is missing or does not match, there is only "Load once", and
+the note above the images says why.
+
+You can also enter the **mail server name** in the connection, see below.
+Then your mail server's own result counts as well. You don't need it.
 
 !!! warning "Only with a mail server that removes foreign check headers"
     The name protects only if your mail server removes incoming
@@ -135,7 +142,7 @@ Open **Admin area → E-mail ingest** and enter the mailbox details:
 | **Folder** | `INBOX` | Which folder to scan |
 | **Default project** | (empty) | The project that receives the issues |
 | **Poll interval** | `60` s | Minimum seconds between mailbox scans |
-| **Mail server name (authserv-id)** | (empty) | The name your receiving mail server writes into the `Authentication-Results` header, such as `mx.example.org`. Only senders that header confirms can be trusted to show their images. You find the name in the source of a received mail |
+| **Mail server name (authserv-id)** | (empty) | Optional. The name your receiving mail server writes into the `Authentication-Results` header, such as `mx.example.org`. When that header confirms a sender, it counts on top of the server's own check. You find the name in the source of a received mail |
 
 Ingestion stays idle until **Enabled** is on **and** both **host** and **default
 project** are set. A half-finished configuration does nothing.
@@ -148,7 +155,8 @@ project** are set. A half-finished configuration does nothing.
 !!! tip "Rebuild issues after an update"
     **Reprocess** on a connection reads the mailbox again and rebuilds the
     description of every issue nobody has edited by hand. That is how older
-    mail issues get their layout.
+    mail issues get their layout, and their sender gets checked so "always
+    load" can show up there.
 
 ## How it complements outbound SMTP
 
