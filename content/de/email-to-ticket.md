@@ -98,7 +98,13 @@ Hinweis über den Bildern sagt dann, warum.
 Die Signatur sagt nur, dass die Mail über den Absender verschickt wurde, nicht
 wer ihren Inhalt geschrieben hat. Vertraue einer Domain deshalb nur, wenn
 niemand sonst Inhalte in ihre Mails bringen kann, etwa über ein Kontaktformular
-oder einen Newsletter-Dienst, der fremde Texte weiterreicht.
+oder einen Newsletter-Dienst, der fremde Texte weiterreicht. Eine signierte
+Mail kann außerdem jeder, der sie hat, unverändert noch einmal verschicken.
+„Immer laden“ vertraut also dem Inhalt der Domain, nicht dem Weg, auf dem die
+Mail ankam.
+
+Mails über 10 MB prüft der Server nicht; dort gibt es ebenfalls nur
+„Einmal laden“.
 
 !!! note "Was der Absender dabei sieht"
     Um den Schlüssel zu holen, fragt der Server das DNS des Absenders. Dessen

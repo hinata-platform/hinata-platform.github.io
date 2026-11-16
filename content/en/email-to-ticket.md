@@ -97,7 +97,11 @@ the note above the images says why.
 The signature only says the mail was sent through the sender, not who wrote
 what is in it. So only trust a domain if nobody else can put content into its
 mail, for example through a contact form or a newsletter service that passes
-on other people's text.
+on other people's text. Also, anyone who has a signed mail can send it again
+unchanged. "Always load" therefore trusts the domain's content, not the way
+the mail arrived.
+
+The server does not check mails over 10 MB; they also only get "Load once".
 
 !!! note "What the sender learns"
     To get the key, the server asks the sender's DNS. Its name server can
