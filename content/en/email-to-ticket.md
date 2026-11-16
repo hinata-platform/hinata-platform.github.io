@@ -94,6 +94,16 @@ this check.
 If the signature is missing or does not match, there is only "Load once", and
 the note above the images says why.
 
+The signature only says the mail was sent through the sender, not who wrote
+what is in it. So only trust a domain if nobody else can put content into its
+mail, for example through a contact form or a newsletter service that passes
+on other people's text.
+
+!!! note "What the sender learns"
+    To get the key, the server asks the sender's DNS. Its name server can
+    therefore see roughly when Hinata processed the mail. It does not learn
+    who reads it.
+
 You can also enter the **mail server name** in the connection, see below.
 Then your mail server's own result counts as well. You don't need it.
 

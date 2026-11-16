@@ -194,7 +194,7 @@ Unter **Blockierte Personen** siehst du, wen du blockiert hast und seit wann, di
 
 ## Vertrauenswürdige Absender
 
-Unter **Vertrauenswürdige Absender** stehen die Domains, deren Mails ihre Bilder ohne Rückfrage zeigen, die neuesten zuerst. Du fügst einen Absender hinzu, indem du über den blockierten Bildern eines Vorgangs aus einer E-Mail **Immer von … laden** wählst. Das gibt es, wenn die Signatur der E-Mail ihren Absender bestätigt. **Entfernen** nimmt das zurück. Danach fragt Hinata bei Bildern dieses Absenders wieder. Die Liste gilt nur für dich. Mehr dazu unter [E-Mail zu Vorgang](/de/email-to-ticket.html#externe-bilder).
+Unter **Vertrauenswürdige Absender** stehen die Domains, deren Mails ihre Bilder ohne Rückfrage zeigen, die neuesten zuerst. Du fügst einen Absender hinzu, indem du über den blockierten Bildern eines Vorgangs aus einer E-Mail **Immer von … laden** wählst. Das gibt es, wenn die Signatur der E-Mail ihren Absender bestätigt. Vertraue einer Domain nur, wenn niemand sonst Inhalte in ihre E-Mails bringen kann. **Entfernen** nimmt das zurück. Danach fragt Hinata bei Bildern dieses Absenders wieder. Die Liste gilt nur für dich. Mehr dazu unter [E-Mail zu Vorgang](/de/email-to-ticket.html#externe-bilder).
 
 ## Hilfe und Kontakt
 
