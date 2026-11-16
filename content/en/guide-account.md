@@ -189,7 +189,7 @@ The secret is shown once, at creation. No card means the feature is off. See
 
 ## Trusted senders
 
-**Trusted senders** lists the domains whose mail shows its images without asking, newest first. You add a sender by choosing **Always load from …** above the blocked images of an issue made from an e-mail. It's there when the e-mail's signature confirms its sender. **Remove** takes it back, and Hinata asks again for that sender's images. The list is yours alone. More on this under [E-mail to ticket](/en/email-to-ticket.html#external-images).
+**Trusted senders** lists the domains whose mail shows its images without asking, newest first. You add a sender by choosing **Always load from …** above the blocked images of an issue made from an e-mail. It's there when the e-mail's signature confirms its sender. Only trust a domain if nobody else can put content into its mail. **Remove** takes it back, and Hinata asks again for that sender's images. The list is yours alone. More on this under [E-mail to ticket](/en/email-to-ticket.html#external-images).
 
 ## Help and contact
 

@@ -95,6 +95,16 @@ Absender besteht diese Prüfung nicht.
 Fehlt die Signatur oder passt sie nicht, gibt es nur „Einmal laden“. Der
 Hinweis über den Bildern sagt dann, warum.
 
+Die Signatur sagt nur, dass die Mail über den Absender verschickt wurde, nicht
+wer ihren Inhalt geschrieben hat. Vertraue einer Domain deshalb nur, wenn
+niemand sonst Inhalte in ihre Mails bringen kann, etwa über ein Kontaktformular
+oder einen Newsletter-Dienst, der fremde Texte weiterreicht.
+
+!!! note "Was der Absender dabei sieht"
+    Um den Schlüssel zu holen, fragt der Server das DNS des Absenders. Dessen
+    Nameserver sieht also ungefähr, wann Hinata die Mail verarbeitet hat. Wer
+    sie liest, erfährt er nicht.
+
 Zusätzlich kannst du in der Verbindung den **Namen des Mailservers** eintragen,
 siehe unten. Dann zählt auch das Prüfergebnis deines Mailservers. Nötig ist
 das nicht.
