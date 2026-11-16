@@ -86,10 +86,18 @@ Die Bilder lädt immer der Server und reicht sie an die App weiter. Der fremde
 Server erfährt also nie, wer den Vorgang liest, und jedes Bild wird vor dem
 Anzeigen geprüft. Mehr dazu unter [Objektspeicher](/de/storage.html).
 
-„Immer laden“ bietet Hinata nur an, wenn der Absender echt ist: Der eigene
-Mailserver muss die Mail mit DMARC (oder einer passenden DKIM-Signatur)
-bestätigt haben. Dafür trägst du in der Verbindung den **Namen des Mailservers**
-ein, siehe unten. Ohne ihn gibt es nur „Einmal laden“.
+„Immer laden“ bietet Hinata nur an, wenn der Absender echt ist. Das prüft der
+Server selbst: Die Mail braucht eine gültige DKIM-Signatur, und die signierende
+Domain muss zur Domain im Absender passen. Den Schlüssel dazu holt der Server
+aus dem DNS des Absenders. So prüft auch DMARC. Eine Mail mit gefälschtem
+Absender besteht diese Prüfung nicht.
+
+Fehlt die Signatur oder passt sie nicht, gibt es nur „Einmal laden“. Der
+Hinweis über den Bildern sagt dann, warum.
+
+Zusätzlich kannst du in der Verbindung den **Namen des Mailservers** eintragen,
+siehe unten. Dann zählt auch das Prüfergebnis deines Mailservers. Nötig ist
+das nicht.
 
 !!! warning "Nur mit einem Mailserver, der fremde Prüfkopfzeilen entfernt"
     Der Name schützt nur, wenn dein Mailserver eingehende Kopfzeilen
@@ -137,7 +145,7 @@ Entwicklungsinformationen, sobald jemand seinen Schlüssel erwähnt.
 | **Ordner** | `INBOX` | Welcher Ordner gescannt wird |
 | **Standardprojekt** | (leer) | Das Projekt, in dem die Vorgänge landen |
 | **Poll-Intervall** | `60` s | Mindestabstand zwischen zwei Abrufen in Sekunden |
-| **Name des Mailservers (authserv-id)** | (leer) | Der Name, den dein empfangender Mailserver in den Kopf `Authentication-Results` schreibt, etwa `mx.example.org`. Nur Absender, die dieser Kopf bestätigt, kann jemand für ihre Bilder als vertrauenswürdig markieren. Den Namen findest du im Quelltext einer empfangenen Mail |
+| **Name des Mailservers (authserv-id)** | (leer) | Freiwillig. Der Name, den dein empfangender Mailserver in den Kopf `Authentication-Results` schreibt, etwa `mx.example.org`. Bestätigt dieser Kopf einen Absender, zählt das zusätzlich zur eigenen Prüfung des Servers. Den Namen findest du im Quelltext einer empfangenen Mail |
 
 Der Eingang tut nichts, solange nicht **Aktiviert** an ist **und** **Host** und
 **Standardprojekt** gesetzt sind. Eine halbfertige Konfiguration bleibt also
@@ -152,7 +160,8 @@ wirkungslos.
 !!! tip "Vorgänge nach einem Update neu aufbauen"
     **Neu verarbeiten** bei einer Verbindung liest das Postfach noch einmal und
     baut die Beschreibung jedes Vorgangs neu auf, den noch niemand von Hand
-    geändert hat. So bekommen ältere Mail-Vorgänge ihr Layout.
+    geändert hat. So bekommen ältere Mail-Vorgänge ihr Layout, und ihr
+    Absender wird geprüft, damit es dort „Immer laden“ geben kann.
 
 ## Wie es ausgehendes SMTP ergänzt
 
