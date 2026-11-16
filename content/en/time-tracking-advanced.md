@@ -21,7 +21,9 @@ At the top of **Time tracking** you switch between pills:
 ![The list of time entries](/assets/img/shot-time-entries.png)
 *The list view with the entries of one week.*
 
-**New entry** opens the entry editor. In it you either type a duration or a start and an end. You add a description, place the entry on a project or an issue and pick tags. **Log time** on an issue opens the same editor, already placed on that issue.
+**New entry** opens the entry editor. In it you either type a duration or a start and an end. You add a description, choose under **Project** and **Issue** where the entry belongs, and pick tags. Both are optional. An issue brings its project along, and the issue search stays inside the chosen project. **Log time** on an issue opens the same editor, already placed on that issue.
+
+You can place an existing entry afterwards too, for example one the timer filed without a project: open the entry, choose a **Project** or an **Issue**, save. The time moves with it, from the old issue and project to the new ones, in budgets and reports as well. **No issue** takes only the issue away, **No project** both. You can only file an entry where you are a member yourself. An invoiced entry, or one on a locked or approved day, stays where it is on both sides: it can be moved neither in nor out.
 
 ## The timer
 
@@ -265,7 +267,7 @@ With billing switched on, a project can also have a **money budget**. Hinata val
 - **Revenue**: valued at the billable rates. The project's lead sets it and sees it.
 - **Cost**: valued at the cost rates. Only organization admins who also manage the project set and see it.
 
-A revenue budget counts billable entries only. Whether a new entry is billable is decided by **Billable by default** in the project settings, and otherwise by the instance default. The timer follows the same rule. The **Billable** switch in an entry's form changes it, also afterwards. Hinata names the hours that do not count under the money budget: entries that are not billable, and entries on a day no rate applied to yet.
+A revenue budget counts billable entries only. Whether a new entry is billable is decided by **Billable by default** in the project settings, and otherwise by the instance default. The timer follows the same rule. The **Billable** switch in an entry's form changes it, also afterwards. When you move an entry to another project, the switch follows the new project's default, as long as it was still on the old one's. Hinata names the hours that do not count under the money budget: entries that are not billable, and entries on a day no rate applied to yet.
 
 Members never see the money budget, not even in the form while recording. Alerts about the money budget go to leads only, and only for revenue.
 
