@@ -21,7 +21,9 @@ Oben in der **Zeiterfassung** wechselst du zwischen Pillen:
 ![Die Liste der Zeiteinträge](/assets/img/shot-time-entries.png)
 *Die Listenansicht mit den Einträgen einer Woche.*
 
-**Neuer Eintrag** öffnet den Editor. Dort tippst du entweder eine Dauer oder Beginn und Ende ein. Du ergänzt eine Beschreibung, ordnest den Eintrag einem Projekt oder Vorgang zu und wählst Tags. **Zeit erfassen** an einem Vorgang öffnet denselben Editor, schon diesem Vorgang zugeordnet.
+**Neuer Eintrag** öffnet den Editor. Dort tippst du entweder eine Dauer oder Beginn und Ende ein. Du ergänzt eine Beschreibung, wählst unter **Projekt** und **Vorgang**, wohin der Eintrag gehört, und wählst Tags. Beides ist freiwillig. Ein Vorgang bringt sein Projekt mit, und die Vorgangssuche bleibt im gewählten Projekt. **Zeit erfassen** an einem Vorgang öffnet denselben Editor, schon diesem Vorgang zugeordnet.
+
+Auch einen bestehenden Eintrag ordnest du nachträglich zu, etwa einen, den der Timer ohne Projekt abgelegt hat: Eintrag antippen, **Projekt** oder **Vorgang** wählen, speichern. Die Zeit wandert dann mit, vom alten Vorgang und Projekt zum neuen, auch in Budgets und Berichten. **Ohne Vorgang** nimmt nur den Vorgang weg, **Ohne Projekt** beide. Du kannst einen Eintrag nur dort ablegen, wo du selbst Mitglied bist. Ein abgerechneter Eintrag oder einer an einem gesperrten oder freigegebenen Tag bleibt, wo er ist, auf beiden Seiten: Er lässt sich weder hinein- noch herausschieben.
 
 ## Der Timer
 
@@ -265,7 +267,7 @@ Ist die Abrechnung eingeschaltet, kann ein Projekt zusätzlich ein **Geldbudget*
 - **Erlös**: bewertet mit den abrechenbaren Sätzen. Die Leitung des Projekts setzt es und sieht es.
 - **Kosten**: bewertet mit den Kostensätzen. Nur Admins der Organisation, die das Projekt auch verwalten, setzen und sehen es.
 
-Ins Erlös-Budget zählen nur abrechenbare Einträge. Ob ein neuer Eintrag abrechenbar ist, legt **Standardmäßig abrechenbar** in den Projekt-Einstellungen fest, sonst die Vorgabe der Instanz. Das gilt auch für den Timer. Im Formular eines Eintrags lässt es sich mit dem Schalter **Abrechenbar** ändern, auch nachträglich. Stunden, die nicht zählen, nennt Hinata unter dem Geldbudget: nicht abrechenbare Einträge und Einträge, für deren Tag noch kein Satz galt.
+Ins Erlös-Budget zählen nur abrechenbare Einträge. Ob ein neuer Eintrag abrechenbar ist, legt **Standardmäßig abrechenbar** in den Projekt-Einstellungen fest, sonst die Vorgabe der Instanz. Das gilt auch für den Timer. Im Formular eines Eintrags lässt es sich mit dem Schalter **Abrechenbar** ändern, auch nachträglich. Ordnest du einen Eintrag einem anderen Projekt zu, folgt der Schalter der Vorgabe des neuen Projekts, solange er noch auf der des alten stand. Stunden, die nicht zählen, nennt Hinata unter dem Geldbudget: nicht abrechenbare Einträge und Einträge, für deren Tag noch kein Satz galt.
 
 Mitglieder sehen das Geldbudget nie, auch nicht im Formular beim Erfassen. Meldungen zum Geldbudget gehen nur an die Leitungen und nur beim Erlös.
 
