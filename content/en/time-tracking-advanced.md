@@ -23,7 +23,7 @@ At the top of **Time tracking** you switch between pills:
 
 **New entry** opens the entry editor. In it you either type a duration or a start and an end. You add a description, choose under **Project** and **Issue** where the entry belongs, and add tags. Both are optional. An issue brings its project along, and the issue search stays inside the chosen project. **Log time** on an issue opens the same editor, already placed on that issue.
 
-You can place an existing entry afterwards too, for example one the timer filed without a project: open the entry, choose a **Project** or an **Issue**, save. The time moves with it, from the old issue and project to the new ones, in budgets and reports as well. **No issue** takes only the issue away, **No project** both. You can only file an entry where you are a member yourself. An invoiced entry stays where it is. If an entry sits on a locked or approved day, you can move it neither out of that project nor into a locked one. Project leads and admins may move someone else's entry only to where they can manage it themselves and where its owner can see it.
+You can place an existing entry afterwards too, for example one the timer filed without a project: open the entry, choose a **Project** or an **Issue**, save. The time moves with it, from the old issue and project to the new ones, in budgets and reports as well. **No issue** takes only the issue away, **No project** both. You can only file an entry where you are a member yourself. An invoiced entry stays where it is. If the entry's day is locked or approved in its current or in the new project, it cannot be moved. Project leads and admins may move someone else's entry only to where they can manage it themselves and where its owner can see it.
 
 ## The timer
 
